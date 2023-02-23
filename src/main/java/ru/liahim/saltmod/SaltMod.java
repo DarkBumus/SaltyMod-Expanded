@@ -30,13 +30,13 @@ import ru.liahim.saltmod.structure.ComponentCampPieces;
 import ru.liahim.saltmod.structure.MapGenCamp;
 import ru.liahim.saltmod.structure.SurfaceFinder;*/
 
-@Mod(modid = "SaltMod", name = "Salty Mod Expanded", version = "2.0.0")
+@Mod(modid = SaltMod.MODID, name = SaltMod.NAME, version = SaltMod.VERSION)
 public class SaltMod {
   public static final String MODID = "SaltMod";
   
   public static final String NAME = "Salty Mod Expanded";
   
-  public static final String VERSION = "2.0.0";
+  public static final String VERSION = "GRADLETOKEN_VERSION";
   
   public static final Logger logger = LogManager.getLogger("Salty Mod Expanded");
   
