@@ -1,0 +1,231 @@
+﻿CREATIVE TAB
+
+itemGroup.saltTab=Salty Mod Expanded
+
+BLOCKS
+
+tile.saltOre.name=Steinsalz
+tile.saltDeepslateOre.name=Tiefenschiefer-Steinsalz
+tile.saltLake.name=Salzseeboden
+tile.saltBlock.name=Salzblock
+tile.saltBlockChiseled.name=Gemeißelter Salzblock
+tile.saltBlockPillar.name=Salzsäule
+tile.saltBrick.name=Salzziegel
+tile.saltBlockCracked.name=Rissiger Salzblock
+tile.saltBrickCracked.name=Rissige Salzziegel
+tile.saltBrickChiseled.name=Gemeißelte Salzziegel
+tile.saltChapiter.name=Salzsäulenkopf
+tile.saltBrickStair.name=Salzziegeltreppe
+tile.saltSlab.Block.name=Salzstufe
+tile.saltSlab.Brick.name=Salzziegelstufe
+tile.saltSlab.Pillar.name=Kurze Salzsäule
+tile.saltLamp.name=Salzlampe
+tile.saltDirtLake.name=Salzseeboden
+tile.saltDirt.name=Salzige Erde
+tile.saltDirtLite.name=Leicht Salzige Erde
+tile.saltGrass.name=Leicht Salziges Gras
+tile.mudBlock.name=Mineralschlamm
+tile.mudBrickWet.name=Feuchte Schlammziegel
+tile.mudBrickDry.name=Schlammziegel
+tile.oakLogSaltCrusted.name=Salzverkrusteter Eichenstamm
+
+tile.extractor.name=Verdampfer
+container.extractor=Verdampfer
+container.discard=Verwerfen
+fluid.milk=Milch
+
+tile.saltCrystal.name=Salzkristall
+tile.saltWort.name=Salzkraut
+
+ITEMS
+
+item.hungerFood.name=§5Leerenapfel
+item.hungerFood.tooltip=Leert die Hungerleiste
+item.stuffedFood.name=§6Füllender Apfel
+item.stuffedFood.tooltip=Füllt die Hungerleiste
+item.effectFoodPos.name=§dApfel positiver Effekte
+item.effectFoodPos.tooltip=Gibt alle positiven Trankeffekte
+item.effectFoodNeg.name=§4Apfel negativer Effekte
+item.effectFoodNeg.tooltip=Gibt alle negativen Trankeffekte
+item.testFood.name=§bTestapfel
+
+item.mineralMud.name=Mineralschlammklumpen
+item.soda.name=Backsoda
+item.powderedMilk.name=Milchpulver
+item.powderedMilk.tooltip=Mit einem Eimer und einem Wassereimer mischen
+item.salt.name=Salz
+item.saltPinch.name=Prise Salz
+item.sugarPinch.name=Prise Zucker
+
+item.escargot.name=Zähe Gallerte
+item.saltWortSeed.name=Salzkraut
+item.goldenSaltWortSeed.name=Glitzerndes Salzkraut
+item.saltBeefCooked.name=Salziges Steak
+item.saltPorkchopCooked.name=Salziges gebratenes Schweinefleisch
+item.saltMuttonCooked.name=Salziges gebratenes Hammelfleisch
+item.saltStriderCooked.name=Salziges Schreitersteak
+item.saltHaunchCooked.name=Salzige gebratene Pferdehüfte
+item.saltPotatoBaked.name=Salzige gebackene Kartoffel
+item.saltChickenCooked.name=Salziges gebratenes Hühnchen
+item.saltRabbitCooked.name=Salziges gebratenes Kaninchen
+item.saltFishCod.name=Salziger Kabeljau
+item.saltFishCodCooked.name=Salziger gebratener Kabeljau
+item.saltFishSalmon.name=Salziger Lachs
+item.saltFishSalmonCooked.name=Salziger gebratener Lachs
+item.saltFishClownfish.name=Salziger Tropenfisch
+item.saltFishClownfishCooked.name=Salziger gebratener Tropenfisch
+item.saltCalamariCooked.name=Salzige gebratene Calamari
+item.cornedBeef.name=Corned Beef
+item.saltBread.name=Salziges Brot
+item.saltBeetroot.name=Salzige Rote Bete
+item.saltEgg.name=Weichgekochtes Ei
+item.saltMushroomStew.name=Salzige Pilzsuppe
+item.saltRabbitStew.name=Salziges Kaninchenragout
+item.saltBeetrootSoup.name=Salziger Borschtsch
+item.pumpkinPorridge.name=Kürbisbrei
+item.saltPumpkinPorridge.name=Salziger Kürbisbrei
+item.cactusStew.name=Kaktussuppe
+item.saltCactusStew.name=Salzige Kürbissuppe
+item.vegetableStew.name=Gedünstetes Gemüse
+item.saltVegetableStew.name=Salziges gedünstetes Gemüse
+item.potatoMushroom.name=Kartoffeln mit Pilzen
+item.saltPotatoMushroom.name=Salzige Kartoffeln mit Pilzen
+item.goldenVegetables.name=Glitzerndes Gemüse
+item.saltGoldenVegetables.name=Salziges glitzerndes Gemüse
+item.fishSoup.name=Kabeljausuppe
+item.saltFishSoup.name=Salzige Kabeljausuppe
+item.fishSalmonSoup.name=Lachssuppe
+item.saltFishSalmonSoup.name=Salzige Lachssuppe
+item.fishClownfishSoup.name=Tropenfischsuppe
+item.saltFishClownfishSoup.name=Salzige Tropenfischsuppe
+item.dandelionSalad.name=Löwenzahnsalat
+item.saltDandelionSalad.name=Salziger Löwenzahnsalat
+item.wheatSprouts.name=Weizensprossen
+item.saltWheatSprouts.name=Salzige Weizensprossen
+item.beetrootSalad.name=Rote-Bete-Salat
+item.saltBeetrootSalad.name=Salziger Rote-Bete-Salat
+item.herringUFC.name=Hering im Pelzmantel
+item.saltHerringUFC.name=Salziger Hering im Pelzmantel
+item.saltWortSalad.name=Salzkrautsalat
+item.goldenSaltWortSalad.name=Glitzernder Salzkrautsalat
+item.saltWortBeef.name=Steak mit Salzkraut
+item.saltWortPorkchop.name=Gebratenes Schweinefleisch mit Salzkraut
+item.saltWortHoneyedPorkchop.name=Honigglasiertes Schweinefleisch mit Salzkraut
+item.saltWortMutton.name=Gebratenes Hammelfleisch mit Salzkraut
+item.saltWortHaunch.name=Gebratene Pferdehüfte mit Salzkraut
+item.sugarApple.name=Zuckriger Apfel
+item.sugarMelon.name=Zuckrige Melonenscheibe
+item.sugarBerries.name=Zuckrige Süßbeeren
+item.fruitSalad.name=Obstsalat
+item.sugarFruitSalad.name=Zuckriger Obstsalat
+item.gratedCarrot.name=Geriebene Karotte
+item.sugarGratedCarrot.name=Zuckrige geriebene Karotte
+item.melonSoup.name=Melonensuppe
+item.sugarMelonSoup.name=Zuckrige Melonensuppe
+item.goldenFruitSalad.name=Glitzernder Obstsalat
+item.sugarGoldenFruitSalad.name=Zuckriger glitzernder Obstsalat
+item.honeyedBerries.name=Honigglasierte Süßbeeren
+item.honeyedApple.name=Honigglasierter Apfel
+item.honeyedPorkchop.name=Honigglasiertes Schweinefleisch
+item.chocolateBerries.name=Schokoladenüberzogene Süßbeeren
+item.chocolateBar.name=Schokoladentafel
+item.chocolateBar.tooltip=Iss nicht zuviel davon!
+item.chocolateBar.mess.0=Zuviel!
+item.chocolateBar.mess.1=Ich bin satt!
+item.chocolateBar.mess.2=Mir wird schlecht!
+item.chocolateBar.mess.3=Börk!
+item.chocolatePie.name=Schokoladenkuchen
+item.carrotPie.name=Karottenkuchen
+item.applePie.name=Apfelkuchen
+item.sweetberryPie.name=Süßbeerenkuchen
+item.potatoPie.name=Kartoffelkuchen
+item.onionPie.name=Zwiebelkuchen
+item.fishPie.name=Kabeljaukuchen
+item.fishSalmonPie.name=Lachskuchen
+item.fishClownfishPie.name=Tropenfischkuchen
+item.calamariPie.name=Calamarikuchen
+item.shepherdsPie.name=Shepherd's Pie
+item.mushroomPie.name=Pilzkuchen
+item.saltWortPie.name=Salzkrautkuchen
+item.fermentedSaltWort.name=Fermentiertes Salzkraut
+item.pickledMushroom.name=Eingelegte Pilze
+item.pickledFern.name=Eingelegter Farn
+item.pickledCalamari.name=Eingelegte Calamari
+item.pickledOnion.name=Eingelegte Zwiebeln
+item.preservedMelon.name=Melonen-Eingemachtes
+item.preservedSweetberries.name=Süßbeeren-Eingemachtes
+item.preservedApple.name=Apfel-Eingemachtes
+item.cobblerConcoction.name=Bergarbeiter-Gebräu
+item.cobblerConcoction.tooltip=Eklig, aber hilfreich
+item.fizzyDrink.name=Sprudelndes Getränk
+item.fizzyDrink.tooltip=Entfernt Flüche und löscht Feuer
+item.muffin.name=Muffin
+item.muffin.tooltip=Als Nachtisch!
+item.muffin.mess.0=Guten Appetit!
+item.muffin.mess.1=Mmm... So lecker!
+item.muffin.mess.2=Om Nom Nom
+item.muffin.mess.3=Schmeckt!
+
+item.mudHelmet.name=Gesichtsschlammmaske
+item.mudChestplate.name=Körperschlammmaske
+item.mudLeggings.name=Beinschlammmaske
+item.mudBoots.name=Fußschlammmaske
+
+item.saltStar.name=Salzstern
+item.rainmaker.name=Regenmacher
+item.rainmaker.tooltip=Sollte über den Wolken explodieren
+
+MOD ITEMS
+
+item.hemoglobin.name=Hämoglobin
+
+item.saltVenisonCooked.name=Salziges Hirschsteak
+item.saltMeefSteak.name=Salziges Meef-Steak
+item.saltMeefStroganoff.name=Salziges Meef Stroganoff
+item.saltHydraChop.name=Salziger Hydraleib
+item.pickledMushgloom.name=Eingelegte Düsterpilze
+item.saltWortVenison.name=Hirschsteak mit Salzkraut
+item.saltWortMeefSteak.name=Meef-Steak mit Salzkraut
+
+item.bop_poison.name=Gift
+item.bop_sugarSaladFruit.name=Zuckriger Obstsalat
+item.bop_saltSaladVeggie.name=Salziger Gemüsesalat
+item.bop_saltSaladShroom.name=Salziger Pilzsalat
+item.bop_saltRiceBowl.name=Salzige Schale mit Reis
+item.bop_pickledTurnip.name=Eingelegte Rübe
+item.bop_saltShroomPowder.name=Salziges Pilzpulver
+
+ACHIEVEMENTS
+
+achievement.salt=Salz!
+achievement.salt.desc=Finde Salz
+achievement.saltFarm=Salzfarmer
+achievement.saltFarm.desc=Sammle den Ertrag einer Salzfarm
+achievement.rain=Regenmacher
+achievement.rain.desc=Rufe den Regen
+achievement.mineralMud=Schwarz und zäh
+achievement.mineralMud.desc=Finde oder mische Mineralschlamm
+achievement.fullMud=Schönheit und Gesundheit
+achievement.fullMud.desc=Trage eine Schlammmaske auf dem gesamten Körper auf
+achievement.discomfiture=Unbehagen
+achievement.discomfiture.desc=Wasche die Schlammmaske ab
+achievement.saltWort=Es gibt Leben auf dem Salz?
+achievement.saltWort.desc=Finde Salzkraut
+achievement.saltWortFarm=Gott der Aufbereitung
+achievement.saltWortFarm.desc=Dünge ein Stück Boden auf dem Salzkraut wächst
+achievement.fizzyDrink=Das Mütchen kühlen!
+achievement.fizzyDrink.desc=Lösche dich selbst mit einem Sprudelnden Getränk
+achievement.muffin=Schnauze voll
+achievement.muffin.desc=Erhalte den Sättigungseffekt, nachdem du einen Muffin gegessen hast
+achievement.moreBuckets=Auf die nächsten 10.000!
+achievement.moreBuckets.desc=Erhalte Salz aus dem Verdampfer
+achievement.saltCrystalGet=Mehr als nur Salz
+achievement.saltCrystalGet.desc=Erhalte einen Salzkristall
+achievement.saltWitch=Achillesferse
+achievement.saltWitch.desc=Töte eine Hexe mit einem Salzkristall in der Hand
+achievement.saltSlime=Zähe Gallerte
+achievement.saltSlime.desc=Töte einen Schleim mit einem Salzkristall in der Hand
+achievement.saltLake=Knirschen unter den Füßen
+achievement.saltLake.desc=Laufe auf einem ausgetrockneten Salzsee
+achievement.saltCrystal=Wunder der Natur
+achievement.saltCrystal.desc=Finde einen Salzkrstall tief in einer Höhle

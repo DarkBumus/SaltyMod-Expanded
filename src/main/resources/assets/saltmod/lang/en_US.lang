@@ -1,0 +1,236 @@
+﻿CREATIVE TAB
+
+itemGroup.saltTab=Salty Mod
+
+BLOCKS
+
+tile.saltOre.name=Salt Ore
+tile.saltDeepslateOre.name=Deepslate Salt Ore
+tile.saltLake.name=Salt Lake Bottom
+tile.saltBlock.name=Salt Block
+tile.saltBlockChiseled.name=Chiseled Salt Block
+tile.saltBlockPillar.name=Salt Pillar
+tile.saltBrick.name=Salt Bricks
+tile.saltBlockCracked.name=Cracked Salt Block
+tile.saltBrickCracked.name=Cracked Salt Bricks
+tile.saltBrickChiseled.name=Chiseled Salt Bricks
+tile.saltChapiter.name=Salt Chapiter
+tile.saltBrickStair.name=Salt Brick Stairs
+tile.saltSlab.Block.name=Salt Slab
+tile.saltSlab.Brick.name=Salt Brick Slab
+tile.saltSlab.Pillar.name=Salt Pillar Slab
+tile.saltLamp.name=Salt Lamp
+tile.saltDirtLake.name=Salt Lake Bottom
+tile.saltDirt.name=Saline Soil
+tile.saltDirtLite.name=Slightly Saline Soil
+tile.saltGrass.name=Slightly Saline Grass
+tile.mudBlock.name=Mineral Mud
+tile.mudBrickWet.name=Wet Mud Bricks
+tile.mudBrickDry.name=Mud Bricks
+tile.oakLogSaltCrusted.name=Salt Crusted Oak Log
+
+tile.extractor.name=Evaporator
+container.extractor=Evaporator
+container.discard=Discard
+fluid.milk=Milk
+
+tile.saltCrystal.name=Salt Crystal
+tile.saltWort.name=Saltwort
+
+ITEMS
+
+item.clownfishCooked.name=Cooked Tropical Fish
+item.hungerFood.name=§5Void Apple
+item.hungerFood.tooltip=Drains the hunger bar
+item.stuffedFood.name=§6Stuffing Apple
+item.stuffedFood.tooltip=Fills up the hunger bar
+item.effectFoodPos.name=§dPositive Effect Apple
+item.effectFoodPos.tooltip=Gives you all the positive potion effects
+item.effectFoodNeg.name=§4Negative Effect Apple
+item.effectFoodNeg.tooltip=Gives you all the negative potion effects
+item.testFood.name=§bTest Apple
+
+item.mineralMud.name=Mineral Mud Ball
+item.soda.name=Baking Soda
+item.powderedMilk.name=Powdered Milk
+item.powderedMilk.tooltip=Mixed with Water Bucket & Bucket
+item.salt.name=Salt
+item.saltPinch.name=Pinch of Salt
+item.sugarPinch.name=Pinch of Sugar
+
+item.escargot.name=Tough Jelly
+item.saltWortSeed.name=Saltwort
+item.goldenSaltWortSeed.name=Glistering Saltwort
+item.saltBeefCooked.name=Salty Steak
+item.saltPorkchopCooked.name=Salty Cooked Porkchop
+item.saltMuttonCooked.name=Salty Cooked Mutton
+item.saltStriderCooked.name=Salty Strider Steak
+item.saltHaunchCooked.name=Salty Cooked Haunch
+item.saltPotatoBaked.name=Salty Baked Potato
+item.saltChickenCooked.name=Salty Cooked Chicken
+item.saltRabbitCooked.name=Salty Cooked Rabbit
+item.saltFishCod.name=Salty Cod
+item.saltFishCodCooked.name=Salty Cooked Cod
+item.saltFishSalmon.name=Salty Salmon
+item.saltFishSalmonCooked.name=Salty Cooked Salmon
+item.saltFishClownfish.name=Salty Tropical Fish
+item.saltFishClownfishCooked.name=Salty Cooked Tropical Fish
+item.saltCalamariCooked.name=Salty Cooked Calamari
+item.cornedBeef.name=Corned Beef
+item.saltBread.name=Salty Bread
+item.saltBeetroot.name=Salty Beetroot
+item.saltEgg.name=Soft-Boiled Egg
+item.saltMushroomStew.name=Salty Mushroom Stew
+item.saltRabbitStew.name=Salty Rabbit Stew
+item.saltBeetrootSoup.name=Salty Beetroot Soup
+item.pumpkinPorridge.name=Pumpkin Porridge
+item.saltPumpkinPorridge.name=Salty Pumpkin Porridge
+item.cactusStew.name=Cactus Stew
+item.saltCactusStew.name=Salty Cactus Stew
+item.vegetableStew.name=Stewed Vegetables
+item.saltVegetableStew.name=Salty Stewed Vegetables
+item.potatoMushroom.name=Potato with Mushroom
+item.saltPotatoMushroom.name=Salty Potato with Mushroom
+item.goldenVegetables.name=Glistering Vegetables
+item.saltGoldenVegetables.name=Salty Glistering Vegetables
+item.fishSoup.name=Cod Soup
+item.saltFishSoup.name=Salty Cod Soup
+item.fishSalmonSoup.name=Salmon Soup
+item.saltFishSalmonSoup.name=Salty Salmon Soup
+item.fishClownfishSoup.name=Tropical Fish Soup
+item.saltFishClownfishSoup.name=Salty Tropical Fish Soup
+item.dandelionSalad.name=Dandelion Salad
+item.saltDandelionSalad.name=Salty Dandelion Salad
+item.wheatSprouts.name=Wheat Sprouts
+item.saltWheatSprouts.name=Salty Wheat Sprouts
+item.beetrootSalad.name=Beetroot Salad
+item.saltBeetrootSalad.name=Salty Beetroot Salad
+item.herringUFC.name=Herring under a Fur Coat
+item.saltHerringUFC.name=Salty Herring under a Fur Coat
+item.saltWortSalad.name=Saltwort Salad
+item.goldenSaltWortSalad.name=Glistering Saltwort Salad
+item.saltWortBeef.name=Steak with Saltwort
+item.saltWortPorkchop.name=Cooked Porkchop with Saltwort
+item.saltWortHoneyedPorkchop.name=Honey Glazed Porkchop with Saltwort
+item.saltWortMutton.name=Cooked Mutton with Saltwort
+item.saltWortHaunch.name=Cooked Haunch with Saltwort
+item.sugarApple.name=Sugary Apple
+item.sugarMelon.name=Sugary Melon Slice
+item.sugarBerries.name=Sugary Sweet Berries
+item.fruitSalad.name=Fruit Salad
+item.sugarFruitSalad.name=Sugary Fruit Salad
+item.gratedCarrot.name=Grated Carrot
+item.sugarGratedCarrot.name=Sugary Grated Carrot
+item.melonSoup.name=Melon Soup
+item.sugarMelonSoup.name=Sugary Melon Soup
+item.goldenFruitSalad.name=Glistering Fruit Salad
+item.sugarGoldenFruitSalad.name=Sugary Glistering Fruit Salad
+item.honeyedBerries.name=Honey Glazed Sweet Berries
+item.honeyedApple.name=Honey Glazed Apple
+item.honeyedPorkchop.name=Honey Glazed Porkchop
+item.chocolateBerries.name=Chocolate Laced Sweet Berries
+item.chocolateBar.name=Chocolate Bar
+item.chocolateBar.tooltip=Don't eat too much of it!
+item.chocolateBar.mess.0=Too much!
+item.chocolateBar.mess.1=I'm stuffed!
+item.chocolateBar.mess.2=I'm gonna be sick!
+item.chocolateBar.mess.3=Blargh!
+item.chocolatePie.name=Chocolate Pie
+item.carrotPie.name=Carrot Pie
+item.applePie.name=Apple Pie
+item.sweetberryPie.name=Sweet Berry Pie
+item.potatoPie.name=Potato Pie
+item.onionPie.name=Onion Pie
+item.fishPie.name=Cod Pie
+item.fishSalmonPie.name=Salmon Pie
+item.fishClownfishPie.name=Tropical Fish Pie
+item.calamariPie.name=Calamari Pie
+item.shepherdsPie.name=Shepherd's Pie
+item.mushroomPie.name=Mushroom Pie
+item.saltWortPie.name=Saltwort Pie
+item.fermentedSaltWort.name=Fermented Saltwort
+item.pickledMushroom.name=Pickled Mushroom
+item.pickledFern.name=Pickled Fern
+item.pickledCalamari.name=Pickled Calamari
+item.pickledOnion.name=Pickled Onion
+item.preservedMelon.name=Melon Preserves
+item.preservedSweetberries.name=Sweet Berry Preserves
+item.preservedApple.name=Apple Preserves
+item.cobblerConcoction.name=Cobbler's Concoction
+item.cobblerConcoction.tooltip=Icky, but rather helpful
+item.fizzyDrink.name=Fizzy Drink
+item.fizzyDrink.tooltip=Removes spells and extinguishes fire
+item.muffin.name=Muffin
+item.muffin.tooltip=For dessert!
+item.muffin.mess.0=Bon Appetit!
+item.muffin.mess.1=Mmm... So tasty!
+item.muffin.mess.2=Om Nom Nom
+item.muffin.mess.3=Yummy!
+
+item.mudHelmet.name=Head Mud Mask
+item.mudChestplate.name=Body Mud Mask
+item.mudLeggings.name=Legs Mud Mask
+item.mudBoots.name=Foot Mud Mask
+
+item.saltStar.name=Salt Star
+item.rainmaker.name=Rainmaker
+item.rainmaker.tooltip=Should explode above the clouds
+
+MOD ITEMS
+
+item.hemoglobin.name=Hemoglobin
+
+item.tf_saltVenisonCooked.name=Salty Venison Steak
+item.tf_saltMeefSteak.name=Salty Meef Steak
+item.tf_saltMeefStroganoff.name=Salty Meef Stroganoff
+item.tf_saltHydraChop.name=Salty Hydra Chop
+item.tf_pickledMushgloom.name=Pickled Mushgloom
+item.tf_saltWortVenison.name=Venison Steak With Saltwort
+item.tf_saltWortMeefSteak.name=Meef Steak With Saltwort
+
+item.bop_poison.name=Poison
+item.bop_sugarSaladFruit.name=Sugary Fruit Salad
+item.bop_saltSaladVeggie.name=Salty Veggie Salad
+item.bop_saltSaladShroom.name=Salty Shroom Salad
+item.bop_saltRiceBowl.name=Salty Bowl of Rice
+item.bop_pickledTurnip.name=Pickled Turnip
+item.bop_saltShroomPowder.name=Salty Shroom Powder
+
+ACHIEVEMENTS
+
+achievement.salt=Salt!
+achievement.salt.desc=Get salt
+achievement.saltFarm=Salty farmer
+achievement.saltFarm.desc=Gather the harvest from a salt farm
+achievement.rain=Rainmaker
+achievement.rain.desc=Call the rain
+achievement.mineralMud=Something black and viscous
+achievement.mineralMud.desc=Find or mix together mineral mud
+achievement.fullMud=Beauty and health
+achievement.fullMud.desc=Apply a mud mask on the whole body
+achievement.discomfiture=Discomfiture
+achievement.discomfiture.desc=Rinse off the mud mask
+achievement.saltWort=Is there life on salt?
+achievement.saltWort.desc=Find saltwort
+achievement.saltWortFarm=God of melioration
+achievement.saltWortFarm.desc=Fertilize a block of soil with a growing saltwort
+achievement.fizzyDrink=Cool the zeal!
+achievement.fizzyDrink.desc=Extinguish yourself with Fizzy Drink
+achievement.muffin=Fed up
+achievement.muffin.desc=Get a saturation effect after eating a muffin
+achievement.moreBuckets=More 10,000 buckets!
+achievement.moreBuckets.desc=Obtain salt through the evaporator
+achievement.saltCrystalGet=More than salt
+achievement.saltCrystalGet.desc=Obtain a salt crystal
+achievement.saltWitch=Achilles' heel
+achievement.saltWitch.desc=Kill the witch with a salt crystal in hand
+achievement.saltSlime=Tough Jelly
+achievement.saltSlime.desc=Kill the slime with a salt crystal in hand
+achievement.saltLake=Crunching underfoot
+achievement.saltLake.desc=Walk on a dried salt lake
+achievement.saltCrystal=Wonder of Nature
+achievement.saltCrystal.desc=Find a salt crystal in deep caves
+
+BIOMES/GENERATION
+
+generator.saltMarsh=Salt Marsh

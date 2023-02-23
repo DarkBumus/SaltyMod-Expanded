@@ -1,0 +1,229 @@
+﻿CREATIVE TAB
+
+itemGroup.saltTab=Соль
+
+BLOCKS
+
+tile.saltOre.name=Каменная соль
+tile.saltDeepslateOre.name=Глубинная каменная соль
+tile.saltLake.name=Дно соляного озера
+tile.saltBlock.name=Соляной блок
+tile.saltBlockChiseled.name=Резной соляной блок
+tile.saltBlockPillar.name=Соляной пилон
+tile.saltBrick.name=Соляной кирпич
+tile.saltBlockCracked.name=Потрескавшийся соляной блок
+tile.saltBrickCracked.name=Потрескавшийся соляной кирпич
+tile.saltBrickChiseled.name=Резной соляной кирпич
+tile.saltChapiter.name=Соляная капитель
+tile.saltBrickStair.name=Ступени из соляных кирпичей
+tile.saltSlab.Block.name=Соляная плита
+tile.saltSlab.Brick.name=Плита из соляных кирпичей
+tile.saltSlab.Pillar.name=Короткий соляной пилон
+tile.saltLamp.name=Соляной светильник
+tile.saltDirtLake.name=Дно соляного озера
+tile.saltDirt.name=Солончак
+tile.saltDirtLite.name=Слабый солончак
+tile.saltGrass.name=Заросший слабый солончак
+tile.mudBlock.name=Блок минеральной грязи
+tile.mudBrickWet.name=Влажный саман
+tile.mudBrickDry.name=Саман
+
+tile.extractor.name=Выпариватель
+container.extractor=Выпариватель
+container.discard=Опорожнить
+fluid.milk=Молоко
+
+tile.saltCrystal.name=Кристаллы соли
+tile.saltWort.name=Солерос
+
+ITEMS
+
+item.hungerFood.name=§5Пустое яблоко
+item.hungerFood.tooltip=Опустошает шкалу голода
+item.stuffedFood.name=§6Наполненное яблоко
+item.stuffedFood.tooltip=Наполняет шкалу голода
+item.effectFoodPos.name=§dПозитивное яблоко
+item.effectFoodPos.tooltip=Даёт вам все позитивные эффекты
+item.effectFoodNeg.name=§4Негативное яблоко
+item.effectFoodNeg.tooltip=Даёт вам все негативные эффекты
+item.testFood.name=§bТестовое яблоко
+
+item.mineralMud.name=Минеральная грязь
+item.soda.name=Шипучая зола
+item.powderedMilk.name=Сухое молоко
+item.powderedMilk.tooltip=Смешать с ведром воды и пустым ведром
+item.salt.name=Соль
+item.saltPinch.name=Щепотка соли
+item.sugarPinch.name=Щепотка сахара
+
+item.escargot.name=Эскарго
+item.saltWortSeed.name=Солерос
+item.goldenSaltWortSeed.name=Золотой солерос
+item.saltBeefCooked.name=Стейк с солью
+item.saltPorkchopCooked.name=Жареная свинина с солью
+item.saltMuttonCooked.name=Жареная баранина с солью
+item.saltStriderCooked.name=Стейк из страйдера с солью
+item.saltHaunchCooked.name=Жареная конина с солью
+item.saltPotatoBaked.name=Печёный картофель с солью
+item.saltChickenCooked.name=Жареная курица с солью
+item.saltRabbitCooked.name=Жареная крольчатина с солью
+item.saltFishCod.name=Солёная треска
+item.saltFishCodCooked.name=Жареная треска с солью
+item.saltFishSalmon.name=Солёный лосось
+item.saltFishSalmonCooked.name=Жареный лосось с солью
+item.saltFishClownfish.name=Солёная тропическая рыба
+item.saltFishClownfishCooked.name=Жареная тропическая рыба с солью
+item.saltCalamariCooked.name=Жареный кальмар с солью
+item.cornedBeef.name=Солонина
+item.saltBread.name=Хлеб с солью
+item.saltBeetroot.name=Свёкла с солью
+item.saltEgg.name=Яйцо всмятку
+item.saltMushroomStew.name=Тушёные грибы с солью
+item.saltRabbitStew.name=Тушёный кролик с солью
+item.saltBeetrootSoup.name=Свекольный суп с солью
+item.pumpkinPorridge.name=Тыквенная каша
+item.saltPumpkinPorridge.name=Тыквенная каша с солью
+item.cactusStew.name=Суп из кактуса
+item.saltCactusStew.name=Суп из кактуса с солью
+item.vegetableStew.name=Тушёные овощи
+item.saltVegetableStew.name=Тушёные овощи с солью
+item.potatoMushroom.name=Картофель с грибами
+item.saltPotatoMushroom.name=Картофель с грибами и солью
+item.goldenVegetables.name=Золотые овощи
+item.saltGoldenVegetables.name=Золотые овощи с солью
+item.fishSoup.name=Рыбный суп
+item.saltFishSoup.name=Рыбный суп с солью
+item.fishSalmonSoup.name=Суп из лосося
+item.saltFishSalmonSoup.name=Суп из лосося с солью
+item.fishClownfishSoup.name=Суп из тропической рыбы
+item.saltFishClownfishSoup.name=Суп из тропической рыбы с солью
+item.dandelionSalad.name=Салат из одуванчика
+item.saltDandelionSalad.name=Салат из одуванчика с солью
+item.wheatSprouts.name=Пророщенная пшеница
+item.saltWheatSprouts.name=Пророщенная пшеница с солью
+item.beetrootSalad.name=Винегрет
+item.saltBeetrootSalad.name=Винегрет с солью
+item.herringUFC.name=Сельдь под шубой
+item.saltHerringUFC.name=Сельдь под шубой с солью
+item.saltWortSalad.name=Салат из солероса
+item.goldenSaltWortSalad.name=Салат из золотого солероса
+item.saltWortBeef.name=Стейк с солеросом
+item.saltWortPorkchop.name=Жареная свинина с солеросом
+item.saltWortHoneyedPorkchop.name=Свинина с карамелью и солеросом
+item.saltWortMutton.name=Жареная баранина с солеросом
+item.saltWortHaunch.name=Жареная конина с солеросом
+item.sugarApple.name=Яблоко с сахаром
+item.sugarMelon.name=Арбуз с сахаром
+item.sugarBerries.name=Ягоды с сахаром
+item.fruitSalad.name=Фруктовый салат
+item.sugarFruitSalad.name=Фруктовый салат с сахаром
+item.gratedCarrot.name=Тёртая морковь
+item.sugarGratedCarrot.name=Тёртая морковь с сахаром
+item.melonSoup.name=Арбузный суп
+item.sugarMelonSoup.name=Арбузный суп с сахаром
+item.goldenFruitSalad.name=Салат из золотых фруктов
+item.sugarGoldenFruitSalad.name=Салат из золотых фруктов с сахаром
+item.honeyedBerries.name=Ягоды в глазури
+item.honeyedApple.name=Карамельное яблоко
+item.honeyedPorkchop.name=Свинина с карамелью
+item.chocolateBerries.name=Ягоды в шоколаде
+item.chocolateBar.name=Плитка шоколада
+item.chocolateBar.tooltip=Не ешьте слишком много!
+item.chocolateBar.mess.0=Слишком много!
+item.chocolateBar.mess.1=Я наелся!
+item.chocolateBar.mess.2=Что-то мне не хорошо...
+item.chocolateBar.mess.3=Ик
+item.chocolatePie.name=Шоколадный пирог
+item.carrotPie.name=Морковный пирог
+item.applePie.name=Яблочный пирог
+item.sweetberryPie.name=Ягодный пирог
+item.potatoPie.name=Картофельный пирог
+item.onionPie.name=Луковый пирог
+item.fishPie.name=Рыбный пирог
+item.fishSalmonPie.name=Пирог с лососем
+item.fishClownfishPie.name=Пирог с тропической рыбой
+item.calamariPie.name=Пирог с кальмаром
+item.shepherdsPie.name=Пастуший пирог
+item.mushroomPie.name=Грибной пирог
+item.saltWortPie.name=Пирог с солеросом
+item.fermentedSaltWort.name=Маринованный солерос
+item.pickledMushroom.name=Солёные грибы
+item.pickledFern.name=Маринованный папоротник
+item.pickledCalamari.name=Маринованный кальмар
+item.pickledOnion.name=Маринованный лук
+item.preservedMelon.name=Арбузное варенье
+item.preservedSweetberries.name=Ягодное варенье
+item.preservedApple.name=Яблочное варенье
+item.cobblerConcoction.name=Коблер
+item.cobblerConcoction.tooltip=Противный, но полезный
+item.fizzyDrink.name=Шипучка
+item.fizzyDrink.tooltip=Снимает чары и гасит огонь
+item.muffin.name=Маффин
+item.muffin.tooltip=На десерт!
+item.muffin.mess.0=Приятного аппетита!
+item.muffin.mess.1=Ммм... Как вкусно!
+item.muffin.mess.2=ОмНомНом
+item.muffin.mess.3=Ням-ням
+
+item.mudHelmet.name=Минеральная маска для волос
+item.mudChestplate.name=Минеральная маска для тела
+item.mudLeggings.name=Минеральная маска для ног
+item.mudBoots.name=Минеральная маска для стоп
+
+item.saltStar.name=Звёздочка с солью
+item.rainmaker.name=Призывающий дождь
+item.rainmaker.tooltip=Должен взорваться над облаками
+
+MOD ITEMS
+
+item.hemoglobin.name=Гемоглобин
+
+item.saltVenisonCooked.name=Стейк из оленины с солью
+item.saltMeefSteak.name=Стейк из минотавра с солью
+item.saltMeefStroganoff.name=Бефстроганов из Кентавра с солью
+item.saltHydraChop.name=Отбивная Гидры с солью
+item.pickledMushgloom.name=Солёный светогриб
+item.saltWortVenison.name=Стейк из оленины с солеросом
+item.saltWortMeefSteak.name=Стейк из минотавра с солеросом
+
+item.bop_poison.name=Яд
+item.bop_saltSaladVeggie.name=Овощной салат с солью
+item.bop_saltSaladShroom.name=Грибной салат с солью
+item.bop_saltRiceBowl.name=Миска риса с солью
+item.bop_pickledTurnip.name=Солёная репа
+item.bop_saltShroomPowder.name=Молотый гриб с солью
+
+ACHIEVEMENTS
+
+achievement.salt=Соль!
+achievement.salt.desc=Найдите соль
+achievement.saltFarm=Соляной фермер
+achievement.saltFarm.desc=Соберите урожай с соляной фермы
+achievement.rain=Грозный малый
+achievement.rain.desc=Вызовите дождь
+achievement.mineralMud=Что-то чёрное и вязкое
+achievement.mineralMud.desc=Добудьте минеральную грязь или смешайте соль, шипучую золу, глину и уголь
+achievement.fullMud=Красота и здоровье
+achievement.fullMud.desc=Нанесите минеральные маски на всё тело
+achievement.discomfiture=Конфуз
+achievement.discomfiture.desc=Смойте с себя минеральную маску
+achievement.saltWort=Есть ли жизнь на соли?
+achievement.saltWort.desc=Найдите солерос
+achievement.saltWortFarm=Бог мелиорации
+achievement.saltWortFarm.desc=Удобрите блок почвы с растущим солеросом
+achievement.fizzyDrink=Остудить пыл
+achievement.fizzyDrink.desc=Потушите себя Шипучкой
+achievement.muffin=Сыт по горло
+achievement.muffin.desc=Получите эффект насыщения съев маффин
+achievement.moreBuckets=Ещё 10 000 ведёр!
+achievement.moreBuckets.desc=Получите соль с помощью црена
+achievement.saltCrystalGet=Больше, чем соль
+achievement.saltCrystalGet.desc=Добудьте соляной кристалл
+achievement.saltWitch=Ахиллесова пята
+achievement.saltWitch.desc=Убейте ведьму с кристаллом соли в руке
+achievement.saltSlime=Эскарго из слизня
+achievement.saltSlime.desc=Убейте слизня с кристаллом соли в руке
+achievement.saltLake=Хрустит под ногами
+achievement.saltLake.desc=Пройдитесь по дну соляного озера
+achievement.saltCrystal=Чудо природы
+achievement.saltCrystal.desc=Найдите кристаллы соли в глубоких пещерах
