@@ -1,1 +1,1 @@
-gradlew setupDecompWorkspace idea
+cmd /k gradlew setupDecompWorkspace idea

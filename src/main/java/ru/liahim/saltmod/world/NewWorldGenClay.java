@@ -14,7 +14,6 @@ public class NewWorldGenClay  extends WorldGenerator
 {
     private Block clay;
     private int numberOfBlocks;
-    private static final String __OBFID = "CL_00000405";
 
     public NewWorldGenClay(int number)
     {
