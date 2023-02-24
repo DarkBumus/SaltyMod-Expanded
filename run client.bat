@@ -1,1 +1,1 @@
-cmd /k gradlew runClient --stacktrace
+cmd /k gradlew runClient --debug > debuglog.txt
