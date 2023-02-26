@@ -81,7 +81,11 @@ public class ModBlocks {
 
   public static Block extractorSteam = (Block)new Extractor(true, true, "extractor", null);
 
-  public static Block storageBlock = new StorageBlock("storageBlock", tab);
+  public static Block storageCrate = new StorageCrate("storageCrate", tab);
+
+  public static Block storageBarrel = new StorageBarrel("storageBarrel", tab);
+
+  public static Block storageSack = new StorageSack("storageSack", tab);
 
   public static Block saltCrystal = (Block)new SaltCrystal("saltCrystal", tab);
 
@@ -121,7 +125,9 @@ public class ModBlocks {
     GameRegistry.registerBlock(extractor, "extractor");
     GameRegistry.registerBlock(extractorLit, "extractorLit").setLightLevel(0.9F);
     GameRegistry.registerBlock(extractorSteam, "extractorSteam").setLightLevel(0.9F);
-    GameRegistry.registerBlock(storageBlock, "storageBlock");
+    GameRegistry.registerBlock(storageCrate, "storageCrate");
+    GameRegistry.registerBlock(storageBarrel, "storageBarrel");
+    GameRegistry.registerBlock(storageSack, "storageSack");
     GameRegistry.registerBlock(saltCrystal, "saltCrystal");
     GameRegistry.registerBlock(saltWort, "saltWort");
     SaltMod.logger.info("Finished initializing Blocks");
