@@ -79,6 +79,18 @@ public class ModItems {
 
     public static Item goldenSaltWortSeed = new SaltFood("goldenSaltWortSeed", 6, 0.8F, new PotionEffect[] { new PotionEffect(Potion.regeneration.id, 80, 1) }).setCreativeTab(tab).setTextureName("saltmod:GoldenSaltWortSeed");
 
+    public static Item blossom = new MainItems("blossom", tab, "Blossom");
+
+    public static Item queenBee = new MainItems("queenBee", tab, "QueenBee");
+
+    public static Item waxComb = new MainItems("waxComb", tab, "WaxComb");
+
+    public static Item honeyComb = new MainItems("honeyComb", tab, "HoneyComb");
+
+    public static Item beeGrub = new MainItems("beeGrub", tab, "BeeGrub");
+
+    public static Item royalJelly = new MainItems("royalJelly", tab, "RoyalJelly");
+
     public static Item saltBeefCooked = new SaltFood("saltBeefCooked", 9, 0.9F).setCreativeTab(tab).setTextureName("saltmod:SaltBeefCooked");
 
     public static Item saltPorkchopCooked = new SaltFood("saltPorkchopCooked", 9, 0.9F).setCreativeTab(tab).setTextureName("saltmod:SaltPorkchopCooked");
@@ -334,6 +346,12 @@ public class ModItems {
         GameRegistry.registerItem(escargot, "escargot");
         GameRegistry.registerItem(saltWortSeed, "saltWortSeed");
         GameRegistry.registerItem(goldenSaltWortSeed, "goldenSaltWortSeed");
+        GameRegistry.registerItem(blossom, "blossom");
+        GameRegistry.registerItem(queenBee, "queenBee");
+        GameRegistry.registerItem(waxComb, "waxComb");
+        GameRegistry.registerItem(honeyComb, "honeyComb");
+        GameRegistry.registerItem(beeGrub, "beeGrub");
+        GameRegistry.registerItem(royalJelly, "royalJelly");
         GameRegistry.registerItem(saltBeefCooked, "saltBeefCooked");
         GameRegistry.registerItem(saltPorkchopCooked, "saltPorkchopCooked");
         if(Loader.isModLoaded("etfuturum")) {

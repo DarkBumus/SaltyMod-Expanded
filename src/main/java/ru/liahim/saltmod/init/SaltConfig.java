@@ -18,60 +18,64 @@ import ru.liahim.saltmod.item.SaltFood;
 public class SaltConfig extends Configuration {
 
   public static int saltOreFrequency;
-  
+
   public static int saltOreSize;
-  
+
   public static int saltDeepslateOreHeight;
-  
+
   public static int saltLakeGroupRarity;
-  
+
   public static int saltLakeQuantity;
-  
+
   public static int saltLakeDistance;
-  
+
   public static int saltLakeRadius;
-  
+
+  public static boolean enableBlossom;
+
   public static int saltCrystalGrowSpeed;
-  
+
   public static int saltWortGrowSpeed;
-  
+
+  public static boolean enableHoney;
+
   public static boolean fizzyEffect;
-  
+
   public static boolean mudArmorWaterDam;
-  
+
   public static int mudRegenSpeed;
-  
+
   public static boolean mudBrickComplex;
-  
+
   public static int extractorVolume;
-  
+
   public static Map<Integer, Integer> cloudLevel;
-  
+
   private String[] loadedCloudLevel;
-  
+
   public static int TFDim;
-  
+
   public static boolean TFOreGen;
-  
+
   public static int SaltMarshBiomeID;
-  
+
   public static int SaltMarshBiomeWeight;
-  
+
   public static int saltOreFrequencyBiome;
-  
+
   public static boolean saltOreBiome;
-  
+
   public static boolean enableBrickmakerCamp;
-  
+
   public static int brickmakerCampFrequency;
-  
+
   private File file;
-  
+
   public SaltConfig(File file) {
     super(file);
     this.file = file;
   }
-  
+
   public void preInit() {
     String[] defaultCloudLevel = { "0=128", "7=160" };
     load();
@@ -82,8 +86,10 @@ public class SaltConfig extends Configuration {
     saltLakeQuantity = getInt("SaltLakeQuantity", "World", 5, 1, 10, "The maximum quantity of the salt lakes in the salt lake groups");
     saltLakeDistance = getInt("SaltLakeDistance", "World", 30, 10, 50, "The maximum distance between the salt lakes in the salt lake groups");
     saltLakeRadius = getInt("SaltLakeRadius", "World", 20, 5, 50, "The maximum radius of the salt lake");
+    enableBlossom = getBoolean("Enables Blossom Trees", "World", true, "If true, generates Blossom trees in Forests");
     saltCrystalGrowSpeed = getInt("SaltCrystalGrowRate", "Farm", 14, 1, 20, "The salt crystals growth rate (1 - fastly, 20 - slowly)");
     saltWortGrowSpeed = getInt("SaltWortGrowRate", "Farm", 7, 1, 20, "The saltwort growth rate (1 - fastly, 20 - slowly)");
+    enableHoney = getBoolean("Enables Honey", "Farm", true, "If true, enables the Apiary and all the adjacent Items");
     mudBrickComplex = getBoolean("Makes Mud Bricks complex [Currently doesn't do anything and only disables the recipe to get dry mud bricks]", "Blocks", false, "If true, makes Wet Mud Bricks dry when put on the ground, instead of in the furnace");
     extractorVolume = getInt("EvaporatorVolume", "Evaporator", 1, 1, 3, "The number of buckets in evaporator");
     fizzyEffect = getBoolean("FizzyEffect", "Effects", false, "Do Fizzy Drink removes all effects? (true - all effects, false - milk analogue)");
@@ -93,19 +99,19 @@ public class SaltConfig extends Configuration {
     TFOreGen = getBoolean("TFOreGen", "TwilightForest", true, "Salt ore generation in the Twilight Forest dimention");
     SaltMarshBiomeID = get("Biome Generation", "SaltMarsh ID, set to -1 to completly disable the Biome", 40).getInt(40);
     SaltMarshBiomeWeight = get("Biome Generation", "SaltMarsh Weight, The spawn chance of this biome", 10).getInt(10);
-    saltOreFrequencyBiome = getInt("Additional SaltOreFrequency", "Biome Generation", 4, 1, 10, "Additional Salt ore frequency in SaltMarsh");
-    saltOreBiome = getBoolean("Generate Additional Salt Ore", "Biome Generation", true, "If true, generates additional salt ore in SaltMarsh");
-    enableBrickmakerCamp = getBoolean("Enables Brickmaker Camps", "Biome Generation", true, "If true, spawns Brickmaker Camps in the Salt Marsh");
+    saltOreFrequencyBiome = getInt("Additional SaltOreFrequency", "Biome Generation", 4, 1, 10, "Additional Salt ore frequency in Salt Marshes");
+    saltOreBiome = getBoolean("Generate Additional Salt Ore", "Biome Generation", true, "If true, generates additional salt ore in Salt Marshes");
+    enableBrickmakerCamp = getBoolean("Enables Brickmaker Camps", "Biome Generation", true, "If true, spawns Brickmaker Camps in the Salt Marshes");
     brickmakerCampFrequency = getInt("BrickmakerCampFrequency", "Biome Generation", 300, 10, 1000, "Changes the frequency of Brickmaker Camps in Salt Marshes");
     save();
   }
-  
+
   public void init() {
     Configuration configTF = new Configuration(new File("./config", "TwilightForest.cfg"));
     configTF.load();
     TFDim = configTF.get("dimension", "dimensionID", 7).getInt();
   }
-  
+
   public void postInit() {
     cloudLevel = new HashMap<Integer, Integer>();
     Pattern splitpattern = Pattern.compile("=");
@@ -121,15 +127,15 @@ public class SaltConfig extends Configuration {
         } catch (NumberFormatException e) {
           SaltMod.logger.warn("Cannot parse DimensionID \"" + pair[0] + "\" to integer point at DimCloudLevel line " + (i + 1));
           break;
-        } 
+        }
         try {
           level = Integer.parseInt(pair[1]);
         } catch (NumberFormatException e) {
           SaltMod.logger.warn("Cannot parse CloudLevel \"" + pair[1] + "\" to integer point at DimCloudLevel line " + (i + 1));
           break;
-        } 
+        }
         cloudLevel.put(Integer.valueOf(dim), Integer.valueOf(level));
-      } 
-    } 
+      }
+    }
   }
 }

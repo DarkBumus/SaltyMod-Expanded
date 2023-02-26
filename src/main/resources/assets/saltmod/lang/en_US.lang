@@ -28,7 +28,14 @@ tile.mudBlock.name=Mineral Mud
 tile.mudBrickWet.name=Wet Mud Bricks
 tile.mudBrickDry.name=Mud Bricks
 tile.oakLogSaltCrusted.name=Salt Crusted Oak Log
+tile.blossomLog.name=Blossom Log
+tile.blossomBurrow.name=Blossom Burrow
+tile.blossomLeaves.name=Blossom Leaves
+tile.blossomPlanks.name=Blossom Planks
+tile.blossomDoor.name=Blossom Door
+tile.blossomTrapdoor.name=Blossom Trapdoor
 
+tile.apiary.name=Apiary
 tile.extractor.name=Evaporator
 container.extractor=Evaporator
 container.discard=Discard

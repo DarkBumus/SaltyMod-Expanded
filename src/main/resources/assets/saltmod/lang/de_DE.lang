@@ -28,7 +28,14 @@ tile.mudBlock.name=Mineralschlamm
 tile.mudBrickWet.name=Feuchte Schlammziegel
 tile.mudBrickDry.name=Schlammziegel
 tile.oakLogSaltCrusted.name=Salzverkrusteter Eichenstamm
+tile.blossomLog.name=Blütholzstamm
+tile.blossomBurrow.name=Blütholznest
+tile.blossomLeaves.name=Blütholzlaub
+tile.blossomPlanks.name=Blütholzbretter
+tile.blossomDoor.name=Blütholztür
+tile.blossomTrapdoor.name=Blütholzfalltür
 
+tile.apiary.name=Bienenhaus
 tile.extractor.name=Verdampfer
 container.extractor=Verdampfer
 container.discard=Verwerfen
