@@ -49,6 +49,14 @@ item.effectFoodNeg.name=§4Apfel negativer Effekte
 item.effectFoodNeg.tooltip=Gibt alle negativen Trankeffekte
 item.testFood.name=§bTestapfel
 
+item.goldenPotato.name=Glitzernde Kartoffel
+item.goldenBerries.name=Glitzernde Süßbeeren
+item.fishClownfishCooked.name=Gebratener Tropenfisch
+item.haunchRaw.name=Rohe Pferdehüfte
+item.haunchCooked.name=Gebratene Pferdehüfte
+item.calamariRaw.name=Rohe Calamari
+item.calamariCooked.name=Gebratene Calamari
+
 item.mineralMud.name=Mineralschlammklumpen
 item.soda.name=Backsoda
 item.powderedMilk.name=Milchpulver
@@ -158,7 +166,7 @@ item.preservedApple.name=Apfel-Eingemachtes
 item.cobblerConcoction.name=Bergarbeiter-Gebräu
 item.cobblerConcoction.tooltip=Eklig, aber hilfreich
 item.fizzyDrink.name=Sprudelndes Getränk
-item.fizzyDrink.tooltip=Entfernt Flüche und löscht Feuer
+item.fizzyDrink.tooltip=Entfernt Effekte und löscht Feuer
 item.muffin.name=Muffin
 item.muffin.tooltip=Als Nachtisch!
 item.muffin.mess.0=Guten Appetit!

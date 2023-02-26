@@ -39,7 +39,6 @@ tile.saltWort.name=Saltwort
 
 ITEMS
 
-item.clownfishCooked.name=Cooked Tropical Fish
 item.hungerFood.name=§5Void Apple
 item.hungerFood.tooltip=Drains the hunger bar
 item.stuffedFood.name=§6Stuffing Apple
@@ -49,6 +48,14 @@ item.effectFoodPos.tooltip=Gives you all the positive potion effects
 item.effectFoodNeg.name=§4Negative Effect Apple
 item.effectFoodNeg.tooltip=Gives you all the negative potion effects
 item.testFood.name=§bTest Apple
+
+item.goldenPotato.name=Glistering Potato
+item.goldenBerries.name=Glistering Sweet Berries
+item.fishClownfishCooked.name=Cooked Tropical Fish
+item.haunchRaw.name=Raw Haunch
+item.haunchCooked.name=Cooked Haunch
+item.calamariRaw.name=Raw Calamari
+item.calamariCooked.name=Cooked Calamari
 
 item.mineralMud.name=Mineral Mud Ball
 item.soda.name=Baking Soda
@@ -159,7 +166,7 @@ item.preservedApple.name=Apple Preserves
 item.cobblerConcoction.name=Cobbler's Concoction
 item.cobblerConcoction.tooltip=Icky, but rather helpful
 item.fizzyDrink.name=Fizzy Drink
-item.fizzyDrink.tooltip=Removes spells and extinguishes fire
+item.fizzyDrink.tooltip=Removes effects and extinguishes fire
 item.muffin.name=Muffin
 item.muffin.tooltip=For dessert!
 item.muffin.mess.0=Bon Appetit!

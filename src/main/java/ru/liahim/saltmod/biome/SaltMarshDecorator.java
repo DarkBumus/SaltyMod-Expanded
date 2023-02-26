@@ -53,14 +53,14 @@ public class SaltMarshDecorator {
         xx = x + offsetXZ();
         zz = z + offsetXZ();
         yy = world.getTopSolidOrLiquidBlock(xx, zz);
-        if (rand.nextInt(2) == 0) {
+        if (rand.nextInt(3) == 0) {
             (new WorldGenSaltTree(false, 3)).generate(world, rand, xx, yy, zz);
         }
 
         xx = x + offsetXZ();
         zz = z + offsetXZ();
         yy = world.getTopSolidOrLiquidBlock(xx, zz);
-        if (rand.nextInt(10) == 0) {
+        if (rand.nextInt(20) == 0) {
             (new WorldGenSaltBigTree(false, false)).generate(world, rand, xx, yy, zz);
         }
 

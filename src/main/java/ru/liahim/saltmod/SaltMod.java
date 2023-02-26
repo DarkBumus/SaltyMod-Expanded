@@ -8,6 +8,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
+import net.minecraft.util.EnumChatFormatting;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -52,6 +53,7 @@ public class SaltMod {
   @EventHandler
   public void preInit(FMLPreInitializationEvent event) {
     logger.info("Starting SaltMod PreInitialization");
+      event.getModMetadata().name = EnumChatFormatting.DARK_AQUA+SaltMod.NAME;
     config = new SaltConfig(event.getSuggestedConfigurationFile());
     config.preInit();
     RecipeRemover.init();

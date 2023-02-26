@@ -41,7 +41,6 @@ public class SaltMarshBiome extends BiomeGenBase {
 //		Multiple entries are possible
         BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeEntry(this, SaltConfig.SaltMarshBiomeWeight));
 
-
         this.waterColorMultiplier = 14745518;
         this.setTemperatureRainfall(0.9F, 0.9F);
 
@@ -63,14 +62,12 @@ public class SaltMarshBiome extends BiomeGenBase {
 
     }
 
-    //	 The different Terrain Blocks
-    public void genTerrainBlocks(World world, Random random, Block[] blocks, byte[] bytes, int x, int z, double doub)
-    {
+//	 The different Terrain Blocks
+    public void genTerrainBlocks(World world, Random random, Block[] blocks, byte[] bytes, int x, int z, double doub) {
 
-
-    //Top Meta
+//      Top Meta
         field_150604_aj = 0;
-    //Filler Meta
+//      Filler Meta
         field_76754_C = 0;
 
         if (doub > 2.4D) {
@@ -87,21 +84,22 @@ public class SaltMarshBiome extends BiomeGenBase {
         genBiomeTerrain(world, random, blocks, bytes, x, z, doub);
     }
 
-    //Different grass color depending on coordinates in Biome
+//  Different grass color depending on coordinates in Biome
     @SideOnly(Side.CLIENT)
     public int getBiomeGrassColor(int x, int y, int z)
     {
-    //Vanilla Grass Color: d0 < -0.1D ? 5015851 : 4291888;
+//      Vanilla Grass Color: d0 < -0.1D ? 5015851 : 4291888;
         double d0 = plantNoise.func_151601_a((double)x * 0.0225D, (double)z * 0.0225D);
         return d0 < -0.01D ? 6331695 : 8953651;
 
     }
 
-    //Different foliage color depending on coordinates in Biome
+//  Different foliage color depending on coordinates in Biome
     @SideOnly(Side.CLIENT)
     public int getBiomeFoliageColor(int x, int y, int z)
     {
-    //Vanilla Foliage Color: d0 < -0.1D ? 5015851 : 4291888;
+
+//      Vanilla Foliage Color: d0 < -0.1D ? 5015851 : 4291888;
         double d0 = plantNoise.func_151601_a((double)x * 0.0225D, (double)z * 0.0225D);
         return d0 < -0.01D ? 6331695 : 8953651;
     }
