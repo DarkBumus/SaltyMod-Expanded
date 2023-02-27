@@ -389,10 +389,8 @@ public class ModItems {
         GameRegistry.registerItem(saltVegetableStew, "saltVegetableStew");
         GameRegistry.registerItem(potatoMushroom, "potatoMushroom");
         GameRegistry.registerItem(saltPotatoMushroom, "saltPotatoMushroom");
-        if(Loader.isModLoaded("sbv")) {
-            GameRegistry.registerItem(goldenVegetables, "goldenVegetables");
-            GameRegistry.registerItem(saltGoldenVegetables, "saltGoldenVegetables");
-        }
+        GameRegistry.registerItem(goldenVegetables, "goldenVegetables");
+        GameRegistry.registerItem(saltGoldenVegetables, "saltGoldenVegetables");
         GameRegistry.registerItem(fishSoup, "fishSoup");
         GameRegistry.registerItem(saltFishSoup, "saltFishSoup");
         GameRegistry.registerItem(fishSalmonSoup, "fishSalmonSoup");
@@ -413,9 +411,7 @@ public class ModItems {
         GameRegistry.registerItem(goldenSaltWortSalad, "goldenSaltWortSalad");
         GameRegistry.registerItem(saltWortBeef, "saltWortBeef");
         GameRegistry.registerItem(saltWortPorkchop, "saltWortPorkchop");
-        if(Loader.isModLoaded("harvestcraft") || Loader.isModLoaded("Forestry") || Loader.isModLoaded("Growthcraft|Bees")|| Loader.isModLoaded("BiomesOPlenty")) {
-            GameRegistry.registerItem(saltWortHoneyedPorkchop, "saltWortHoneyedPorkchop");
-        }
+        GameRegistry.registerItem(saltWortHoneyedPorkchop, "saltWortHoneyedPorkchop");
         if(Loader.isModLoaded("etfuturum")) {
             GameRegistry.registerItem(saltWortMutton, "saltWortMutton");
         }
@@ -435,13 +431,9 @@ public class ModItems {
         GameRegistry.registerItem(sugarGratedCarrot, "sugarGratedCarrot");
         GameRegistry.registerItem(melonSoup, "melonSoup");
         GameRegistry.registerItem(sugarMelonSoup, "sugarMelonSoup");
-        if(Loader.isModLoaded("etfuturum") && Loader.isModLoaded("harvestcraft") || Loader.isModLoaded("Forestry") || Loader.isModLoaded("Growthcraft|Bees") || Loader.isModLoaded("BiomesOPlenty")) {
-            GameRegistry.registerItem(honeyedBerries, "honeyedBerries");
-        }
-        if(Loader.isModLoaded("harvestcraft") || Loader.isModLoaded("Forestry") || Loader.isModLoaded("Growthcraft|Bees")|| Loader.isModLoaded("BiomesOPlenty")) {
-            GameRegistry.registerItem(honeyedApple, "honeyedApple");
-            GameRegistry.registerItem(honeyedPorkchop, "honeyedPorkchop");
-        }
+        GameRegistry.registerItem(honeyedBerries, "honeyedBerries");
+        GameRegistry.registerItem(honeyedApple, "honeyedApple");
+        GameRegistry.registerItem(honeyedPorkchop, "honeyedPorkchop");
         if(Loader.isModLoaded("etfuturum")) {
             GameRegistry.registerItem(chocolateBerries, "chocolateBerries");
         }

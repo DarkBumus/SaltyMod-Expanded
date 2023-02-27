@@ -18,6 +18,7 @@ import ru.liahim.saltmod.init.ModBiomes;
 import ru.liahim.saltmod.init.ModBlocks;
 import ru.liahim.saltmod.init.ModItems;
 import ru.liahim.saltmod.init.SaltConfig;
+import ru.liahim.saltmod.item.Salt;
 /*import ru.liahim.saltmod.structure.BrickmakerCampGen;
 import ru.liahim.saltmod.structure.ChestContent;
 import ru.liahim.saltmod.structure.BrickmakerCampGenerator;
@@ -53,7 +54,8 @@ public class SaltMod {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         logger.info("Starting SaltMod PreInitialization");
-        event.getModMetadata().name = EnumChatFormatting.DARK_PURPLE+SaltMod.NAME;
+        event.getModMetadata().name = EnumChatFormatting.GOLD+SaltMod.NAME;
+        event.getModMetadata().version = EnumChatFormatting.YELLOW+SaltMod.VERSION;
         config = new SaltConfig(event.getSuggestedConfigurationFile());
         config.preInit();
         RecipeRemover.init();

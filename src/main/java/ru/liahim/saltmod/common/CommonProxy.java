@@ -28,6 +28,7 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import ru.liahim.saltmod.SaltMod;
 import ru.liahim.saltmod.api.ExtractRegistry;
@@ -134,6 +135,8 @@ public class CommonProxy {
         OreDictionary.registerOre("RedMeats", Items.cooked_beef);
         OreDictionary.registerOre("Redmeats", ModItems.haunchCooked);
         OreDictionary.registerOre("Sweeteners", Items.sugar);
+        OreDictionary.registerOre("Honeys", ModItems.honeyComb);
+        OreDictionary.registerOre("RoyalJellies", ModItems.royalJelly);
         OreDictionary.registerOre("logWood", ModBlocks.blossomLog);
         OreDictionary.registerOre("logWood", ModBlocks.blossomStrippedLog);
         OreDictionary.registerOre("logWood", ModBlocks.blossomBark);
@@ -181,6 +184,7 @@ public class CommonProxy {
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.blossomPlanks, 4), new ItemStack(ModBlocks.blossomLog) );
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.blossomPlanks, 4), new ItemStack(ModBlocks.blossomStrippedLog) );
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.blossomPlanks, 4), new ItemStack(ModBlocks.blossomBark) );
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.blossomPlanks, 4), new ItemStack(ModBlocks.blossomStrippedBark) );
 
         GameRegistry.addShapelessRecipe(new ItemStack(Items.carrot, 9), new ItemStack(ModBlocks.storageCrate) );
         GameRegistry.addShapelessRecipe(new ItemStack(Items.potato, 9), new ItemStack(ModBlocks.storageCrate, 1, 1) );
@@ -273,7 +277,6 @@ public class CommonProxy {
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.preservedApple), new ItemStack(ModItems.sugarPinch), new ItemStack(Items.potionitem), new ItemStack(Items.apple), new ItemStack(Items.apple) );
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.cobblerConcoction), new ItemStack(Items.ghast_tear), new ItemStack(Items.glass_bottle), new ItemStack(ModItems.saltPinch), new ItemStack(ModItems.sugarPinch), new ItemStack(ModItems.soda), new ItemStack(Items.dye, 1, 3), new ItemStack(ModItems.mineralMud), new ItemStack(Items.redstone), new ItemStack(Items.glowstone_dust) );
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.fizzyDrink), new ItemStack(ModItems.soda), new ItemStack(Items.potionitem) );
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.muffin), new ItemStack(ModItems.soda), new ItemStack(Items.dye, 1, 3), new ItemStack(Items.wheat), new ItemStack(Items.egg) );
 
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltStar), new ItemStack(Items.gunpowder), new ItemStack(ModItems.salt), new ItemStack(ModItems.salt), new ItemStack(ModItems.salt), new ItemStack(ModItems.salt), new ItemStack(ModItems.soda), new ItemStack(ModItems.soda), new ItemStack(ModItems.soda), new ItemStack(ModItems.soda) );
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.rainmaker), new ItemStack(ModItems.saltStar), new ItemStack(ModItems.saltStar), new ItemStack(ModItems.saltStar), new ItemStack(ModItems.saltStar), new ItemStack(ModItems.saltStar), new ItemStack(Items.paper), new ItemStack(Items.gunpowder), new ItemStack(Items.gunpowder), new ItemStack(Items.gunpowder) );
@@ -283,6 +286,9 @@ public class CommonProxy {
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.shepherdsPie), new ItemStack(ModItems.salt), "RedMeats", new ItemStack(Items.wheat), new ItemStack(Items.egg) ));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.honeyedApple), "Honeys", new ItemStack(Items.apple) ));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.honeyedPorkchop), "Honeys", new ItemStack(Items.cooked_porkchop) ));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.muffin), new ItemStack(ModItems.soda), "RoyalJellies", new ItemStack(Items.dye, 1, 3), new ItemStack(Items.wheat), new ItemStack(Items.egg) ));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.apiary), "xxx", "yyy", "xxx", 'x', "plankWood", 'y', Items.item_frame) );
 
         GameRegistry.addRecipe(new ItemStack(ModItems.salt), "xxx", "xxx", "xxx", 'x', ModItems.saltPinch );
         GameRegistry.addRecipe(new ItemStack(ModItems.goldenSaltWortSeed), "xxx", "xyx", "xxx", 'x', Items.gold_nugget, 'y', ModItems.saltWortSeed );
@@ -302,7 +308,11 @@ public class CommonProxy {
 
         GameRegistry.addRecipe(new ItemStack(ModBlocks.mudBlock), "xx", "xx", 'x', ModItems.mineralMud );
         GameRegistry.addRecipe(new ItemStack(ModBlocks.mudBrickWet, 2), "xy", "yx", 'x', ModBlocks.mudBlock, 'y', new ItemStack(Items.wheat) );
+        GameRegistry.addRecipe(new ItemStack(ModBlocks.mudBrickDryStairs), "x  ", "xx ", "xxx", 'x', new ItemStack(ModBlocks.mudBrickDry) );
+        GameRegistry.addRecipe(new ItemStack(ModBlocks.mudBrickDrySlab), "xxx", 'x', new ItemStack(ModBlocks.mudBrickDry) );
 
+        GameRegistry.addRecipe(new ItemStack(ModBlocks.blossomStairs), "x  ", "xx ", "xxx", 'x', new ItemStack(ModBlocks.blossomPlanks) );
+        GameRegistry.addRecipe(new ItemStack(ModBlocks.blossomSlab), "xxx", 'x', new ItemStack(ModBlocks.blossomPlanks) );
 
         GameRegistry.addRecipe(new ItemStack(ModBlocks.extractor), "xyx", "x x", "xxx", 'x', Blocks.cobblestone, 'y', Items.cauldron );
         GameRegistry.addRecipe(new ItemStack(ModBlocks.storageCrate), "xxx", "xxx", "xxx", 'x', Items.carrot );
@@ -381,9 +391,13 @@ public class CommonProxy {
 
         if(Loader.isModLoaded("harvestcraft")) {
             Item honeycombItem = GameRegistry.findItem("harvestcraft", "honeycombItem");
+            Item royaljellyItem = GameRegistry.findItem("harvestcraft", "royaljellyItem");
             if(honeycombItem != null) {
                 OreDictionary.registerOre("Sweeteners", honeycombItem);
                 OreDictionary.registerOre("Honeys", honeycombItem);
+            }
+            if(royaljellyItem != null) {
+                OreDictionary.registerOre("RoyalJellies", royaljellyItem);
             }
         }
 
