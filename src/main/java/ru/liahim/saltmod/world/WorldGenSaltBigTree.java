@@ -4,7 +4,6 @@ import java.util.Random;
 
 import ru.liahim.saltmod.init.ModBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;

@@ -1,4 +1,4 @@
-package ru.liahim.saltmod.block;
+/*package ru.liahim.saltmod.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -8,4 +8,4 @@ public class BlossomTrapdoor extends Block {
     public BlossomTrapdoor(String blossomTrapdoor, CreativeTabs tab) {
         super(Material.wood);
     }
-}
+}*/

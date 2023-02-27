@@ -5,9 +5,7 @@ import java.util.Random;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ru.liahim.saltmod.init.ModBlocks;
-import ru.liahim.saltmod.init.ModItems;
 import ru.liahim.saltmod.init.ModSounds;
-import ru.liahim.saltmod.init.SaltConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -18,11 +16,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
+import static ru.liahim.saltmod.init.SaltConfig.*;
+
 public class MudBrickWet extends Block implements IDegradable {
 
 	@SideOnly(Side.CLIENT)
 		private IIcon SIDE_1;
-	  
+
 	@SideOnly(Side.CLIENT)
 		private IIcon SIDE_2;
 
@@ -32,10 +32,10 @@ public class MudBrickWet extends Block implements IDegradable {
 		setBlockName(name);
 		setCreativeTab(tab);
 		setHardness(1.0F);
-		setResistance(0.5F);
+		setResistance(3.0F);
 		setHarvestLevel("shovel", 0);
-		if(SaltConfig.mudBrickComplex) {
-		setTickRandomly(true);	
+		if(mudBrickComplex) {
+		setTickRandomly(true);
 		} else {
 		setTickRandomly(false);
 		}
@@ -64,12 +64,12 @@ public class MudBrickWet extends Block implements IDegradable {
 				} else if (meta == 1) {
 					world.setBlock(x, y, z, this, (meta + 1), 3);
 					if (!player.capabilities.isCreativeMode)
-						current.stackSize--; 
+						current.stackSize--;
 				} else if (meta == 2) {
 					world.setBlock(x, y, z, ModBlocks.mudBrickDry);
 					if (!player.capabilities.isCreativeMode)
 						current.stackSize--;
-				} 
+				}
 				return true;
 		}
 		return false;

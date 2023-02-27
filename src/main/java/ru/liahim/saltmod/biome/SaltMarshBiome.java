@@ -25,11 +25,9 @@ public class SaltMarshBiome extends BiomeGenBase {
 
         this.decorator = new SaltMarshDecorator();
 
-//		Biome Dictionary
         BiomeDictionary.registerBiomeType(this, BiomeDictionary.Type.SWAMP);
         BiomeDictionary.registerBiomeType(this, BiomeDictionary.Type.WET);
 
-//		Making you able to spawn in this biome
         BiomeManager.addSpawnBiome(this);
 
 //		Height and Height variation (Vanilla: -0.1F, -0.025F)
@@ -50,19 +48,11 @@ public class SaltMarshBiome extends BiomeGenBase {
         this.addFlower(Blocks.tallgrass, 0, 2);
         this.addFlower(ModBlocks.saltWort, 0, 5);
 
-//		The creatures that are able to spawn, CreatureList is only for Creatures spawning as animals,
-//		There are other lists for Cave Creatures (Ambient Creatures like Bats) Water for Squids and Monsters
         this.spawnableCreatureList.clear();
         this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntitySheep.class, 8, 4, 4));
 //	    this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityCow.class, 4, 4, 4));
-
-//	    Top and Filler are not needed, because they are set in a method changing the terrain blocks
-//		this.topBlock = ModBlocks.saltGrass;
-//		this.fillerBlock = ModBlocks.saltDirtLite;
-
     }
 
-//	 The different Terrain Blocks
     public void genTerrainBlocks(World world, Random random, Block[] blocks, byte[] bytes, int x, int z, double doub) {
 
 //      Top Meta
@@ -86,28 +76,19 @@ public class SaltMarshBiome extends BiomeGenBase {
 
 //  Different grass color depending on coordinates in Biome
     @SideOnly(Side.CLIENT)
-    public int getBiomeGrassColor(int x, int y, int z)
-    {
-//      Vanilla Grass Color: d0 < -0.1D ? 5015851 : 4291888;
+    public int getBiomeGrassColor(int x, int y, int z) {
         double d0 = plantNoise.func_151601_a((double)x * 0.0225D, (double)z * 0.0225D);
         return d0 < -0.01D ? 6331695 : 8953651;
-
     }
 
-//  Different foliage color depending on coordinates in Biome
     @SideOnly(Side.CLIENT)
-    public int getBiomeFoliageColor(int x, int y, int z)
-    {
-
-//      Vanilla Foliage Color: d0 < -0.1D ? 5015851 : 4291888;
+    public int getBiomeFoliageColor(int x, int y, int z) {
         double d0 = plantNoise.func_151601_a((double)x * 0.0225D, (double)z * 0.0225D);
         return d0 < -0.01D ? 6331695 : 8953651;
     }
 
     @Override
     public void decorate(World world, Random rand, int x, int z) {
-
         decorator.decorate(world, rand, x, z);
     }
-
 }

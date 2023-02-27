@@ -5,8 +5,8 @@ import net.minecraft.item.ItemSlab;
 import ru.liahim.saltmod.init.ModBlocks;
 
 public class ItemSaltSlab extends ItemSlab {
-  public ItemSaltSlab(Block block) {
-    super(block, ModBlocks.saltSlab, ModBlocks.saltSlabDouble, false);
-    setHasSubtypes(true);
-  }
+    public ItemSaltSlab(Block block) {
+        super(block, ModBlocks.saltSlab, ModBlocks.saltSlabDouble, false);
+        setHasSubtypes(true);
+    }
 }

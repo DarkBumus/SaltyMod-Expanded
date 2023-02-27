@@ -13,52 +13,52 @@ import net.minecraft.tileentity.TileEntityFlowerPot;
 import ru.liahim.saltmod.init.ModBlocks;
 
 public class SaltWortMessage implements IMessage {
-  int x;
-  
-  int y;
-  
-  int z;
-  
-  int i;
-  
-  public SaltWortMessage() {}
-  
-  public SaltWortMessage(int x, int y, int z, int i) {
-    this.x = x;
-    this.y = y;
-    this.z = z;
-    this.i = i;
-  }
-  
-  public void fromBytes(ByteBuf buf) {
-    this.x = buf.readInt();
-    this.y = buf.readInt();
-    this.z = buf.readInt();
-    this.i = buf.readInt();
-  }
-  
-  public void toBytes(ByteBuf buf) {
-    buf.writeInt(this.x);
-    buf.writeInt(this.y);
-    buf.writeInt(this.z);
-    buf.writeInt(this.i);
-  }
-  
-  public static class Handler implements IMessageHandler<SaltWortMessage, IMessage> {
-    public IMessage onMessage(SaltWortMessage message, MessageContext ctx) {
-      SaltWortMessage.act(message.x, message.y, message.z, message.i);
-      return null;
+    int x;
+
+    int y;
+
+    int z;
+
+    int i;
+
+    public SaltWortMessage() {}
+
+    public SaltWortMessage(int x, int y, int z, int i) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.i = i;
     }
-  }
-  
-  @SideOnly(Side.CLIENT)
-  private static void act(int x, int y, int z, int i) {
-    WorldClient world = (Minecraft.getMinecraft()).theWorld;
-    if (world.getTileEntity(x, y, z) != null && world
-      .getTileEntity(x, y, z) instanceof TileEntityFlowerPot) {
-      TileEntityFlowerPot te = (TileEntityFlowerPot)world.getTileEntity(x, y, z);
-      te.func_145964_a(Item.getItemFromBlock(ModBlocks.saltWort), i);
-      world.markBlockForUpdate(x, y, z);
-    } 
-  }
+
+    public void fromBytes(ByteBuf buf) {
+        this.x = buf.readInt();
+        this.y = buf.readInt();
+        this.z = buf.readInt();
+        this.i = buf.readInt();
+    }
+
+    public void toBytes(ByteBuf buf) {
+        buf.writeInt(this.x);
+        buf.writeInt(this.y);
+        buf.writeInt(this.z);
+        buf.writeInt(this.i);
+    }
+
+    public static class Handler implements IMessageHandler<SaltWortMessage, IMessage> {
+        public IMessage onMessage(SaltWortMessage message, MessageContext ctx) {
+            SaltWortMessage.act(message.x, message.y, message.z, message.i);
+            return null;
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    private static void act(int x, int y, int z, int i) {
+        WorldClient world = (Minecraft.getMinecraft()).theWorld;
+        if (world.getTileEntity(x, y, z) != null && world
+            .getTileEntity(x, y, z) instanceof TileEntityFlowerPot) {
+            TileEntityFlowerPot te = (TileEntityFlowerPot)world.getTileEntity(x, y, z);
+            te.func_145964_a(Item.getItemFromBlock(ModBlocks.saltWort), i);
+            world.markBlockForUpdate(x, y, z);
+        }
+    }
 }
