@@ -53,7 +53,7 @@ public class SaltMod {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         logger.info("Starting SaltMod PreInitialization");
-        event.getModMetadata().name = EnumChatFormatting.DARK_AQUA+SaltMod.NAME;
+        event.getModMetadata().name = EnumChatFormatting.DARK_PURPLE+SaltMod.NAME;
         config = new SaltConfig(event.getSuggestedConfigurationFile());
         config.preInit();
         RecipeRemover.init();
