@@ -21,10 +21,13 @@ import static ru.liahim.saltmod.init.SaltConfig.*;
 public class MudBrickWet extends Block implements IDegradable {
 
 	@SideOnly(Side.CLIENT)
-		private IIcon SIDE_1;
+    private IIcon MAIN0;
 
 	@SideOnly(Side.CLIENT)
-		private IIcon SIDE_2;
+    private IIcon MAIN1;
+
+    @SideOnly(Side.CLIENT)
+    private IIcon MAIN2;
 
 	public MudBrickWet(String name, CreativeTabs tab) {
 		super (Material.clay);
@@ -43,36 +46,14 @@ public class MudBrickWet extends Block implements IDegradable {
 
 	@SideOnly(Side.CLIENT)
 		public IIcon getIcon(int side, int meta) {
-			return (meta == 1) ? this.SIDE_1 : ((meta == 2) ? this.SIDE_2 : this.blockIcon);
+			return (meta == 1) ? this.MAIN1 : ((meta == 2) ? this.MAIN2 : this.MAIN0);
 	}
 
 	@SideOnly(Side.CLIENT)
 		public void registerBlockIcons(IIconRegister par1) {
-			this.blockIcon = par1.registerIcon("saltMod:MudBrickWet_0");
-			this.SIDE_1 = par1.registerIcon("saltMod:MudBrickWet_1");
-			this.SIDE_2 = par1.registerIcon("saltMod:MudBrickWet_2");
-	}
-
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side) {
-		if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == Items.stick) {
-			ItemStack current = player.getCurrentEquippedItem();
-			int meta = world.getBlockMetadata(x, y, z);
-				if (meta == 0) {
-					world.setBlock(x, y, z, this, (meta + 1), 3);
-					if (!player.capabilities.isCreativeMode)
-						current.stackSize--;
-				} else if (meta == 1) {
-					world.setBlock(x, y, z, this, (meta + 1), 3);
-					if (!player.capabilities.isCreativeMode)
-						current.stackSize--;
-				} else if (meta == 2) {
-					world.setBlock(x, y, z, ModBlocks.mudBrickDry);
-					if (!player.capabilities.isCreativeMode)
-						current.stackSize--;
-				}
-				return true;
-		}
-		return false;
+			this.MAIN0 = par1.registerIcon("saltMod:MudBrickWet_0");
+			this.MAIN1 = par1.registerIcon("saltMod:MudBrickWet_1");
+			this.MAIN2 = par1.registerIcon("saltMod:MudBrickWet_2");
 	}
 
 	public void updateTick(World world, int x, int y, int z, Random rand) {
@@ -81,11 +62,11 @@ public class MudBrickWet extends Block implements IDegradable {
 
 	@Override
 	public int getMudBrickWetMeta(int paramInt) {
-		return paramInt;
+        return paramInt;
 	}
 
 	@Override
 	public Block getMudBrickWetFromMeta(int paramInt) {
-		return this;
+        return this;
 	}
 }
