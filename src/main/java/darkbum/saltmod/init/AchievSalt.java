@@ -38,9 +38,8 @@ public class AchievSalt {
 
     public static Achievement saltSlime = (new Achievement("saltSlime", "saltSlime", -2, 1, ModItems.escargot, saltCrystalGet)).setSpecial().registerStat();
 
-    public static AchievementPage achievSaltPage = new AchievementPage("Salty Mod", new Achievement[] {
-        salt, saltFarm, rain, mineralMud, fullMud, discomfiture, saltWort, saltWortFarm, fizzyDrink, moreBuckets,
-        muffin, saltCrystalGet, saltSlime, saltWitch, saltLake, saltCrystal });
+    public static AchievementPage achievSaltPage = new AchievementPage("Salty Mod", salt, saltFarm, rain, mineralMud, fullMud, discomfiture, saltWort, saltWortFarm, fizzyDrink, moreBuckets,
+        muffin, saltCrystalGet, saltSlime, saltWitch, saltLake, saltCrystal);
 
     public static void init() {
         AchievementPage.registerAchievementPage(achievSaltPage);

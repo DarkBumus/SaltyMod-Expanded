@@ -215,6 +215,7 @@ public class SaltSlab extends BlockSlab {
         return false;
     }
 
+    @Override
     public String func_150002_b(int par1) {
         if (par1 < 0 || par1 >= type.length)
             par1 = 0;

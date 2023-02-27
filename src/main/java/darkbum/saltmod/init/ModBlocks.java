@@ -3,14 +3,12 @@ package darkbum.saltmod.init;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import darkbum.saltmod.block.*;
-import darkbum.saltmod.item.*;
+import darkbum.saltmod.blockitems.*;
 import net.minecraft.block.*;
 import net.minecraft.creativetab.CreativeTabs;
 import darkbum.saltmod.SaltMod;
-import darkbum.saltmod.block.*;
 //import darkbum.saltmod.block.MudBrickDryWall;
 import darkbum.saltmod.common.CommonProxy;
-import darkbum.saltmod.item.*;
 
 public class ModBlocks {
     static CreativeTabs tab = CommonProxy.saltTab;

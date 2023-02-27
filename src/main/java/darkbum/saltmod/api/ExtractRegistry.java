@@ -18,7 +18,7 @@ public class ExtractRegistry {
 
     public void addExtracting(Fluid fluid, ItemStack stack, int vol, float exp) {
         this.extractingList.put(fluid, new ExtractResults(stack, vol));
-        this.experienceList.put(Arrays.asList(new Object[] { stack.getItem(), Integer.valueOf(stack.getItemDamage()) } ), new Experience(exp));
+        this.experienceList.put(Arrays.asList(stack.getItem(), stack.getItemDamage()), new Experience(exp));
     }
 
     public void addExtracting(Fluid fluid, Item item, int vol, float exp) {
@@ -55,7 +55,7 @@ public class ExtractRegistry {
     public ExtractResults getExtractResults(Fluid fluid) {
         if (fluid == null)
             return null;
-        ExtractResults ret = (ExtractResults)this.extractingList.get(Arrays.asList(new Fluid[] { fluid }));
+        ExtractResults ret = (ExtractResults)this.extractingList.get(Arrays.asList(fluid));
         if (ret != null)
             return ret;
         return (ExtractResults)this.extractingList.get(fluid);
@@ -86,7 +86,7 @@ public class ExtractRegistry {
     public Experience getExperience(ItemStack stack) {
         if (stack == null)
             return null;
-        Experience ret = this.experienceList.get(Arrays.asList(new Object[] { stack.getItem(), Integer.valueOf(stack.getItemDamage()) }));
+        Experience ret = this.experienceList.get(Arrays.asList(stack.getItem(), stack.getItemDamage()));
         if (ret != null)
             return ret;
         return this.experienceList.get(stack);

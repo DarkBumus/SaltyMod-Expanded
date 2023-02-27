@@ -37,9 +37,9 @@ public class ModItems {
 
     public static Item effectFoodNeg = new EffectFoodNeg("effectFoodNeg", tab, "EffectFoodNeg").setTextureName("saltmod:" + "dev/" + "EffectFoodNeg");
 
-//  field_76434_w = Health Boost
-//  field_76443_y = Saturation
-//  field_76444_x = Absorption
+//    field_76434_w = Health Boost
+//    field_76443_y = Saturation
+//    field_76444_x = Absorption
 //    public static Item testFood = new SaltFood("testFood", 8, 0.6F, new PotionEffect[0]).setAlwaysEdible().setCreativeTab(tab).setTextureName("saltmod:" + "dev/" + "TestFood");
 
     public static Item achievItem = new AchievItem("achievItem", null);

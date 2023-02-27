@@ -1,4 +1,4 @@
-package darkbum.saltmod.item;
+package darkbum.saltmod.blockitems;
 
 import darkbum.saltmod.init.ModBlocks;
 import net.minecraft.block.Block;

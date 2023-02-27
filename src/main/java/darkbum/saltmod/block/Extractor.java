@@ -10,7 +10,6 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -111,8 +110,8 @@ public class Extractor extends BlockContainer {
         TileEntityExtractor te = (TileEntityExtractor)world.getTileEntity(x, y, z);
         if (te != null) {
             ItemStack itemstack = player.inventory.getCurrentItem();
-            if (!fillTank(world, x, y, z, (IFluidHandler)te, itemstack, player) &&
-                !drainTank(world, x, y, z, (IFluidHandler)te, itemstack, player))
+            if (!fillTank(world, x, y, z, te, itemstack, player) &&
+                !drainTank(world, x, y, z, te, itemstack, player))
                 player.openGui(SaltMod.instance, 0, world, x, y, z);
         }
         return true;
@@ -151,7 +150,7 @@ public class Extractor extends BlockContainer {
                 heldContents = FluidContainerRegistry.getFluidForFilledItem(filled);
                 if (available.getFluid() == FluidRegistry.WATER && held.getItem() == Items.glass_bottle && available.amount >= 333) {
                     if (!player.capabilities.isCreativeMode)
-                        playerInvChange(world, x, y, z, held, player, new ItemStack((Item)Items.potionitem));
+                        playerInvChange(world, x, y, z, held, player, new ItemStack(Items.potionitem));
                     tank.drain(ForgeDirection.UNKNOWN, 333, true);
                     return true;
                 }
@@ -168,10 +167,10 @@ public class Extractor extends BlockContainer {
 
     private static void playerInvChange(World world, int x, int y, int z, ItemStack held, EntityPlayer player, ItemStack stack) {
         if (--held.stackSize <= 0)
-            player.inventory.setInventorySlotContents(player.inventory.currentItem, (ItemStack)null);
+            player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
         if (player.inventory.getCurrentItem() != null) {
             if (!player.inventory.addItemStackToInventory(stack)) {
-                world.spawnEntityInWorld((Entity)new EntityItem(world, x + 0.5D, y + 1.5D, z + 0.5D, stack));
+                world.spawnEntityInWorld(new EntityItem(world, x + 0.5D, y + 1.5D, z + 0.5D, stack));
             } else if (player instanceof EntityPlayerMP) {
                 ((EntityPlayerMP)player).sendContainerToPlayer(player.inventoryContainer);
             }
@@ -204,7 +203,7 @@ public class Extractor extends BlockContainer {
     }
 
     public TileEntity createNewTileEntity(World world, int metadata) {
-        return (TileEntity)new TileEntityExtractor();
+        return new TileEntityExtractor();
     }
 
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack itemStack) {
@@ -243,7 +242,7 @@ public class Extractor extends BlockContainer {
                             entityitem.motionX = ((float)this.random.nextGaussian() * f3);
                             entityitem.motionY = ((float)this.random.nextGaussian() * f3 + 0.2F);
                             entityitem.motionZ = ((float)this.random.nextGaussian() * f3);
-                            world.spawnEntityInWorld((Entity)entityitem);
+                            world.spawnEntityInWorld(entityitem);
                         }
                     }
                 }

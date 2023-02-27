@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Random;
 
 import darkbum.saltmod.init.ModBlocks;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -34,7 +33,7 @@ public class SaltBrickStair extends BlockStairs {
             EntityList.getEntityString(entity) != null && ((
             EntityList.getEntityString(entity).toLowerCase().contains("slime") && !EntityList.getEntityString(entity).toLowerCase().contains("lava")) ||
             EntityList.getEntityString(entity).toLowerCase().contains("witch")))
-            world.scheduleBlockUpdate(x, y, z, (Block)this, 0);
+            world.scheduleBlockUpdate(x, y, z, this, 0);
     }
 
     public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
@@ -42,7 +41,7 @@ public class SaltBrickStair extends BlockStairs {
             EntityList.getEntityString(entity) != null && ((
             EntityList.getEntityString(entity).toLowerCase().contains("slime") && !EntityList.getEntityString(entity).toLowerCase().contains("lava")) ||
             EntityList.getEntityString(entity).toLowerCase().contains("witch")))
-            world.scheduleBlockUpdate(x, y, z, (Block)this, 0);
+            world.scheduleBlockUpdate(x, y, z, this, 0);
     }
 
     public void updateTick(World world, int x, int y, int z, Random rand) {
@@ -68,7 +67,7 @@ public class SaltBrickStair extends BlockStairs {
                                 .getBlock(x1, y, z1) == ModBlocks.saltLake || world.getBlock(x1, y, z1) == ModBlocks.saltDirt || world
                                 .getBlock(x1, y, z1) == ModBlocks.saltBrickStair || world.getBlock(x1, y, z1) == ModBlocks.saltSlab || world
                                 .getBlock(x1, y, z1) == ModBlocks.saltSlabDouble)
-                                world.scheduleBlockUpdate(x1, y, z1, (Block)this, 10);
+                                world.scheduleBlockUpdate(x1, y, z1, this, 10);
                         }
                     }
                 }
@@ -84,7 +83,7 @@ public class SaltBrickStair extends BlockStairs {
                             .getBlock(x2, y2 + 1, z2) == this || world.getBlock(x2, y2 + 1, z2).getMaterial() == Material.water)) || (z2 - 1 == z && (world
                             .getBlock(x2, y2, z2 - 1) == this || world.getBlock(x2, y2, z2 - 1).getMaterial() == Material.water)) || (z2 + 1 == z && (world
                             .getBlock(x2, y2, z2 + 1) == this || world.getBlock(x2, y2, z2 + 1).getMaterial() == Material.water)))) {
-                            world.scheduleBlockUpdate(x, y, z, (Block)this, 5);
+                            world.scheduleBlockUpdate(x, y, z, this, 5);
                             if (rand.nextInt(20) == 0) {
                                 if (world.getBlock(x2, y2, z2) == Blocks.ice || world.getBlock(x2, y2, z2) == Blocks.snow)
                                     world.setBlock(x2, y2, z2, Blocks.water);
