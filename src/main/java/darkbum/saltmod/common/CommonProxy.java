@@ -203,6 +203,7 @@ public class CommonProxy {
 
         GameRegistry.addShapelessRecipe(new ItemStack(Items.milk_bucket), new ItemStack(ModItems.powderedMilk), new ItemStack(Items.water_bucket), new ItemStack(Items.bucket) );
         GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 2), new ItemStack(ModItems.saltWortSeed) );
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 9), new ItemStack(ModItems.blossom) );
 
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltBeefCooked), new ItemStack(ModItems.saltPinch), new ItemStack(Items.cooked_beef) );
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltPorkchopCooked), new ItemStack(ModItems.saltPinch), new ItemStack(Items.cooked_porkchop) );
@@ -351,7 +352,7 @@ public class CommonProxy {
         GameRegistry.addSmelting(ModBlocks.saltLake, new ItemStack(ModItems.salt, 1), 0.7F);
         GameRegistry.addSmelting(new ItemStack(ModBlocks.saltBlock, 1, 0), new ItemStack(ModBlocks.saltBlock, 1, 6), 0.1F);
         GameRegistry.addSmelting(new ItemStack(ModBlocks.saltBlock, 1, 5), new ItemStack(ModBlocks.saltBlock, 1, 7), 0.1F);
-        GameRegistry.addSmelting(ModItems.saltWortSeed, new ItemStack(ModItems.soda, 1), 0.0F);
+        GameRegistry.addSmelting(ModItems.saltWortSeed, new ItemStack(ModItems.soda, 1), 1.0F);
         GameRegistry.addSmelting(new ItemStack(Items.fish, 1, 2), new ItemStack(ModItems.fishClownfishCooked), 0.35F);
         GameRegistry.addSmelting(ModItems.haunchRaw, new ItemStack(ModItems.haunchCooked), 0.35F);
         GameRegistry.addSmelting(ModItems.calamariRaw, new ItemStack(ModItems.calamariCooked), 0.35F);
