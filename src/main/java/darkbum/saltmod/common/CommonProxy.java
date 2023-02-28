@@ -69,7 +69,6 @@ public class CommonProxy {
 
     public static SimpleNetworkWrapper network;
 
-
     public void preInit(FMLPreInitializationEvent event) {
         SaltModEvent sEvent = new SaltModEvent();
         FMLCommonHandler.instance().bus().register(sEvent);
@@ -85,29 +84,23 @@ public class CommonProxy {
         AchievSalt.init();
         ClientProxy.setBlockRenderers();
         MinecraftForge.EVENT_BUS.register(new DropHandler());
-        if (event.getSide().isClient())
+        if (event.getSide().isClient()) {
             ClientProxy.setEntityRenderers();
-
-
+        }
 
         GameRegistry.registerTileEntity(TileEntityExtractor.class, "tileEntityExtractor");
-
 
         EntityRegistry.registerModEntity(EntityRainmaker.class, "entityRainmaker", 0, SaltMod.instance, 64, 20, true);
         EntityRegistry.registerModEntity(EntityRainmakerDust.class, "entityRainmakerDust", 1, SaltMod.instance, 64, 20, false);
 
-
         BlockDispenser.dispenseBehaviorRegistry.putObject(ModItems.rainmaker, new DispenserBehaviorRainmaiker());
         BlockDispenser.dispenseBehaviorRegistry.putObject(ModItems.saltPinch, new DispenserBehaviorSaltPinch());
-
 
         GameRegistry.registerWorldGenerator(saltOreGenerator, 0);
         GameRegistry.registerWorldGenerator(saltCrystalGenerator, 10);
         GameRegistry.registerWorldGenerator(saltLakeGenerator, 15);
 
-
         ExtractRegistry.instance().addExtracting(FluidRegistry.WATER, ModItems.saltPinch, 1000, 0.0F);
-
 
         ChestGenHooks.addItem("bonusChest", new WeightedRandomChestContent(new ItemStack(ModItems.salt), 2, 5, 5));
         ChestGenHooks.addItem("dungeonChest", new WeightedRandomChestContent(new ItemStack(ModItems.salt), 2, 5, 5));
@@ -119,7 +112,6 @@ public class CommonProxy {
         ChestGenHooks.addItem("pyramidDesertyChest", new WeightedRandomChestContent(new ItemStack(ModItems.saltWortSeed), 2, 3, 3));
         ChestGenHooks.addItem("pyramidJungleChest", new WeightedRandomChestContent(new ItemStack(ModItems.saltWortSeed), 2, 5, 5));
 
-
         OreDictionary.registerOre("oreSalt", ModBlocks.saltOre);
         OreDictionary.registerOre("SaltBlocks", new ItemStack(ModBlocks.saltBlock, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("MudBlocks", ModBlocks.mudBlock);
@@ -128,7 +120,7 @@ public class CommonProxy {
         OreDictionary.registerOre("Mushrooms", Blocks.red_mushroom);
         OreDictionary.registerOre("Mushrooms", Blocks.brown_mushroom);
         OreDictionary.registerOre("RedMeats", Items.cooked_beef);
-        OreDictionary.registerOre("Redmeats", ModItems.haunchCooked);
+        OreDictionary.registerOre("RedMeats", ModItems.haunchCooked);
         OreDictionary.registerOre("Sweeteners", Items.sugar);
         OreDictionary.registerOre("Honeys", ModItems.honeyComb);
         OreDictionary.registerOre("RoyalJellies", ModItems.royalJelly);
@@ -142,11 +134,12 @@ public class CommonProxy {
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.mudBrickWet, 1, 1), new ItemStack(ModBlocks.mudBrickWet), new ItemStack(Items.stick));
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.mudBrickWet, 1, 2), new ItemStack(ModBlocks.mudBrickWet, 1, 1), new ItemStack(Items.stick));
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.apiary, 1, 1), new ItemStack(ModBlocks.apiary), new ItemStack(Items.stick));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.apiary, 1, 2), new ItemStack(ModBlocks.apiary, 1, 1), new ItemStack(Items.stick));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.apiary, 1, 3), new ItemStack(ModBlocks.apiary, 1, 2), new ItemStack(Items.stick));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.apiary, 1, 4), new ItemStack(ModBlocks.apiary, 1, 3), new ItemStack(Items.stick));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.apiary, 1, 5), new ItemStack(ModBlocks.apiary, 1, 4), new ItemStack(Items.stick));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.apiary, 1, 6), new ItemStack(ModBlocks.apiary, 1, 5), new ItemStack(Items.stick));
+        ItemStack stick = new ItemStack(Items.stick);
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.apiary, 1, 2), new ItemStack(ModBlocks.apiary, 1, 1), stick);
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.apiary, 1, 3), new ItemStack(ModBlocks.apiary, 1, 2), stick);
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.apiary, 1, 4), new ItemStack(ModBlocks.apiary, 1, 3), stick);
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.apiary, 1, 5), new ItemStack(ModBlocks.apiary, 1, 4), stick);
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.apiary, 1, 6), new ItemStack(ModBlocks.apiary, 1, 5), stick);
 // D E B U G // T E S T I N G //
 
 //  Salty Food Rules:				1. Salt/Sugar Pinch, 2. Ingredient
@@ -158,14 +151,7 @@ public class CommonProxy {
 //  Pickled Ingredient Rules:		1. Salt Pinch, 2. Water Bottle, 3. Ingredient
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltPinch, 9),  new ItemStack(ModItems.salt) );
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.sugarPinch, 9), new ItemStack(Items.sugar) );
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.salt, 9), new ItemStack(ModBlocks.saltBlock) );
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.salt, 9), new ItemStack(ModBlocks.saltBlock, 1, 1) );
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.salt, 9), new ItemStack(ModBlocks.saltBlock, 1, 2) );
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.salt, 9), new ItemStack(ModBlocks.saltBlock, 1, 5) );
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.salt, 9), new ItemStack(ModBlocks.saltBlock, 1, 6) );
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.salt, 9), new ItemStack(ModBlocks.saltBlock, 1, 7) );
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.salt, 9), new ItemStack(ModBlocks.saltBlock, 1, 8) );
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.salt, 9), new ItemStack(ModBlocks.saltBlock, 1, 9) );
+        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.salt, 9), new ItemStack(ModBlocks.saltBlock, 1, OreDictionary.WILDCARD_VALUE) );
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.salt, 9), new ItemStack(ModBlocks.saltLamp) );
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.salt, 9), new ItemStack(ModBlocks.saltBrickStair) );
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltPinch, 40), new ItemStack(ModBlocks.saltSlab, 1, 0) );
