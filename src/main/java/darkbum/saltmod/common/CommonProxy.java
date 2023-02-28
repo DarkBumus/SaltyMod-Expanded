@@ -143,11 +143,11 @@ public class CommonProxy {
 // D E B U G // T E S T I N G //
 
 //  Salty Food Rules:				1. Salt/Sugar Pinch, 2. Ingredient
-//  Bowl Rules:					1. Salt/Sugar Pinch, 2. Bowl, 3. Ingredients (Apple-Carrot-Melon-Potato-Mushroom-Fish-Seeds/Saltwort-Dandelion-Allium
-//  Honeyed Food Rules:			1. Honey, 2. Food
+//  Bowl Rules:					    1. Salt/Sugar Pinch, 2. Bowl, 3. Ingredients (Apple-Carrot-Melon-Potato-Mushroom-Fish-Seeds/Saltwort-Dandelion-Allium
+//  Honeyed Food Rules:			    1. Honey, 2. Food
 //  Chocolate Food Rules:			1. Cocoa Beans, 2. Food
-//  Pie Rules:					1. Salt/Sugar Pinch, 2. Ingredients, 3. Wheat, 4. Egg,
-//  Fermented Ingredient Rules:	1. Ghast Tear, 2. Glass Bottle, 3. Ingredient
+//  Pie Rules:					    1. Salt/Sugar Pinch, 2. Ingredients, 3. Wheat, 4. Egg,
+//  Fermented Ingredient Rules:	    1. Ghast Tear, 2. Glass Bottle, 3. Ingredient
 //  Pickled Ingredient Rules:		1. Salt Pinch, 2. Water Bottle, 3. Ingredient
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltPinch, 9),  new ItemStack(ModItems.salt) );
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.sugarPinch, 9), new ItemStack(Items.sugar) );
