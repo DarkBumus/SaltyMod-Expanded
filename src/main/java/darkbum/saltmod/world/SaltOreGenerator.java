@@ -30,7 +30,7 @@ public class SaltOreGenerator implements IWorldGenerator {
     }
 
     private void generateOverworld(World world, Random rand, int chunkX, int chunkZ) {
-        generateOre(ModBlocks.saltOre, world, rand, chunkX, chunkZ, SaltConfig.saltOreSize, SaltConfig.saltOreFrequency, SaltConfig.saltDeepslateOreHeight + 1, 96, Blocks.stone);
+        generateOre(ModBlocks.saltOre, world, rand, chunkX, chunkZ, SaltConfig.saltOreSize, SaltConfig.saltOreFrequency, 1, 96, Blocks.stone);
 
     }
 

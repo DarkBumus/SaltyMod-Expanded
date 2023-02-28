@@ -13,8 +13,6 @@ public class SaltConfig extends Configuration {
 
     public static int saltOreSize;
 
-    public static int saltDeepslateOreHeight;
-
     public static int saltLakeGroupRarity;
 
     public static int saltLakeQuantity;
@@ -73,7 +71,6 @@ public class SaltConfig extends Configuration {
         load();
         saltOreFrequency = getInt("SaltOreFrequency", "World", 4, 1, 10, "Salt ore frequency");
         saltOreSize = getInt("SaltOreSize", "World", 5, 1, 10, "Salt ore size");
-        saltDeepslateOreHeight = getInt("SaltDeepslateOreHeight", "World", 22, 2, 94, "Salt Deepslate Ore Height");
         saltLakeGroupRarity = getInt("SaltLakeGroupRarity", "World", 500, 1, 1000, "Rarity of the salt lake groups");
         saltLakeQuantity = getInt("SaltLakeQuantity", "World", 5, 1, 10, "The maximum quantity of the salt lakes in the salt lake groups");
         saltLakeDistance = getInt("SaltLakeDistance", "World", 30, 10, 50, "The maximum distance between the salt lakes in the salt lake groups");

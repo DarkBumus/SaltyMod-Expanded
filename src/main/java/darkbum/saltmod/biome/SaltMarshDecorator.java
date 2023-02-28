@@ -102,7 +102,7 @@ public class SaltMarshDecorator {
         if (SaltConfig.saltOreBiome) {
             WorldGenMinable gen = new WorldGenMinable(ModBlocks.saltOre, SaltConfig.saltOreSize, Blocks.stone);
             int maxY = 96;
-            int minY = SaltConfig.saltDeepslateOreHeight + 1;
+            int minY = 1;
             int heightRange = maxY - minY;
             for (attempt = 0; attempt < SaltConfig.saltOreFrequencyBiome; attempt++) {
                 xx = x + rand.nextInt(16);

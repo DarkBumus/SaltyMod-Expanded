@@ -17,7 +17,6 @@ import darkbum.saltmod.init.ModBlocks;
 import darkbum.saltmod.init.ModItems;
 import darkbum.saltmod.init.SaltConfig;
 import darkbum.saltmod.world.SaltCrystalGenerator;
-import darkbum.saltmod.world.SaltDeepslateOreGenerator;
 import darkbum.saltmod.world.SaltLakeGenerator;
 import darkbum.saltmod.world.SaltOreGenerator;
 import net.minecraft.block.BlockDispenser;
@@ -56,8 +55,6 @@ public class CommonProxy {
     public static CreativeTabs saltTab = new SaltTab("saltTab");
 
     public static SaltOreGenerator saltOreGenerator = new SaltOreGenerator();
-
-    public static SaltDeepslateOreGenerator saltDeepslateOreGenerator = new SaltDeepslateOreGenerator();
 
     public static SaltCrystalGenerator saltCrystalGenerator = new SaltCrystalGenerator();
 
@@ -105,7 +102,6 @@ public class CommonProxy {
 
 
         GameRegistry.registerWorldGenerator(saltOreGenerator, 0);
-        GameRegistry.registerWorldGenerator(saltDeepslateOreGenerator, 0);
         GameRegistry.registerWorldGenerator(saltCrystalGenerator, 10);
         GameRegistry.registerWorldGenerator(saltLakeGenerator, 15);
 
@@ -125,7 +121,6 @@ public class CommonProxy {
 
 
         OreDictionary.registerOre("oreSalt", ModBlocks.saltOre);
-        OreDictionary.registerOre("oreSalt", ModBlocks.saltDeepslateOre);
         OreDictionary.registerOre("SaltBlocks", new ItemStack(ModBlocks.saltBlock, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("MudBlocks", ModBlocks.mudBlock);
         OreDictionary.registerOre("MudBlocks", ModBlocks.mudBrickWet);

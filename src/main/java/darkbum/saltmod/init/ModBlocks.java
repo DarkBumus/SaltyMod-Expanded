@@ -15,7 +15,7 @@ public class ModBlocks {
 
     public static Block saltOre = new SaltOre("saltOre", tab);
 
-    public static Block saltDeepslateOre = new SaltDeepslateOre("saltDeepslateOre", tab);
+    public static Block saltDeepslateOre;
 
     public static Block saltLake = new SaltLake("saltLake", tab);
 
@@ -65,7 +65,7 @@ public class ModBlocks {
 
     public static Block blossomBurrow = new BlossomBurrow("blossomBurrow", tab);
 
-    public static Block blossomLeaves = new BlossomLeaves("blossomLeaves", tab, BlossomLeaves.LeafCategory.CAT1);
+    public static Block blossomLeaves = new BlossomLeaves("blossomLeaves", tab);
 
     public static Block blossomPlanks = new BlossomPlanks("blossomPlanks", tab);
 
@@ -102,9 +102,11 @@ public class ModBlocks {
     public static Block saltWort = new SaltWort("saltWort", null);
 
     public static void init() {
+
         SaltMod.logger.info("Start to initialize Blocks");
         GameRegistry.registerBlock(saltOre, "saltOre");
         if(Loader.isModLoaded("etfuturum")) {
+            saltDeepslateOre = new SaltDeepslateOre(saltOre);
             GameRegistry.registerBlock(saltDeepslateOre, "saltDeepslateOre");
         }
         GameRegistry.registerBlock(saltLake, "saltLake");

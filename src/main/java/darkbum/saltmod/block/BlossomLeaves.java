@@ -2,11 +2,15 @@ package darkbum.saltmod.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import darkbum.saltmod.init.ModItems;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
@@ -15,73 +19,78 @@ import net.minecraftforge.common.IShearable;
 
 import java.util.ArrayList;
 
-public class BlossomLeaves extends BlockLeavesBase implements IShearable {
-    @Override
-    public boolean isShearable(ItemStack item, IBlockAccess world, int x, int y, int z) {
-        return false;
-    }
+public class BlossomLeaves extends BlockLeaves {
 
-    @Override
-    public ArrayList onSheared(ItemStack item, IBlockAccess world, int x, int y, int z, int fortune) {
-        return null;
-    }
+    public static final String[] leafTypes = new String[] {"blossom"};
 
-    public enum LeafCategory {
-        CAT1;
-    }
-
-    @SideOnly(Side.CLIENT)
-    private IIcon FANCY;
-
-    @SideOnly(Side.CLIENT)
-    private IIcon FAST;
-
-    private static final float[] fallingLeavesChance = new float[] {
-        0.1F, 0.008F, 0.016F, 0.008F, 0.0F, 0.008F, 0.016F, 0.1F, 0.008F, 0.1F,
-        0.008F, 0.1F, 0.008F, 0.008F };
-
-    private final LeafCategory category;
-
-    int[] adjacentTreeBlocks;
-
-    public BlossomLeaves(String name, CreativeTabs tab, LeafCategory cat) {
-        super(Material.leaves, false);
-        this.category = cat;
-        setTickRandomly(true);
-        setHardness(0.2F);
-        setResistance(0.2F);
-        setStepSound(soundTypeGrass);
-        setLightOpacity(1);
+    public BlossomLeaves(String name, CreativeTabs tab) {
+        super();
         setBlockName(name);
+        setCreativeTab(tab);
     }
 
-    public void registerBlockIcons(IIconRegister icon) {
-        this.FANCY = icon.registerIcon("saltmod:BlossomLeaves");
-        this.FAST = icon.registerIcon("saltmod:BlossomLeaves_Opaque");
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerBlockIcons(IIconRegister reg) {
+        field_150129_M[0] = new IIcon[] {reg.registerIcon("saltmod:leaves_blossom")};
+        field_150129_M[1] = new IIcon[] {reg.registerIcon("saltmod:leaves_blossom_opaque")};
     }
 
+    @SideOnly(Side.CLIENT)
+    @Override
     public IIcon getIcon(int side, int meta) {
-        if (isOpaqueCube()) {
-            return this.FAST;
+        if(isOpaqueCube()) {
+            return field_150129_M[1][0];
         } else {
-            return this.FANCY;
+            return field_150129_M[0][0];
         }
     }
 
+    @SideOnly(Side.CLIENT)
+    @Override
+    public int getBlockColor() {
+        return 16777215;
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public int getRenderColor(int meta) {
+        return 16777215;
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public int colorMultiplier(IBlockAccess worldIn, int x, int y, int z) {
+        return 16777215;
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public boolean shouldSideBeRendered(IBlockAccess worldIn, int x, int y, int z, int side) {
+        return !worldIn.getBlock(x, y, z).isOpaqueCube();
+    }
+
+    @Override
+    protected void func_150124_c(World world, int x, int y, int z, int metadata, int chance)  {
+        chance *= 0.5f;
+        if(world.rand.nextInt(chance) == 0) {
+            dropBlockAsItem(world, x, y, z, new ItemStack(ModItems.blossom, 1, 0));
+        }
+    }
+
+    @Override
+    public String[] func_150125_e() {
+        return leafTypes;
+    }
+
+    @Override
+    protected int func_150123_b(int metadata) {
+        return 40;
+    }
+
+    @Override
     public boolean isOpaqueCube() {
         return Blocks.leaves.isOpaqueCube();
-    }
-
-    public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
-        return true;
-    }
-
-    public void beginLeavesDecay(World world, int x, int y, int z) {
-        world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z) | 0x8, 4);
-    }
-
-    public boolean isLeaves(IBlockAccess world, int x, int y, int z) {
-        return true;
     }
 
 }

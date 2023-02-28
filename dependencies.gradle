@@ -15,12 +15,13 @@
  *       Requires you to enable usesShadowedDependencies in gradle.properties
  *
  *  - compile("g:n:v:c"): deprecated, replace with "api" (works like the old "compile") or "implementation" (can be more efficient)
- *  - implementation("com.github.GTNewHorizons:AppleCore:3.2.10:dev")
+ *
  * You can exclude transitive dependencies (dependencies of the chosen dependency) by appending { transitive = false } if needed,
  * but use this sparingly as it can break using your mod as another mod's dependency if you're not careful.
  *
  * For more details, see https://docs.gradle.org/7.6/userguide/java_library_plugin.html#sec:java_library_configurations_graph
  */
 dependencies {
-
+    compile deobf('https://github.com/Roadhog360/Et-Futurum-Requiem/releases/download/2.4.2/Et_Futurum_Requiem-2.4.2-nomixin.jar')
+    implementation("com.github.GTNewHorizons:AppleCore:3.2.10:dev")
 }

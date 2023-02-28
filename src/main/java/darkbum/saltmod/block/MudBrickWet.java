@@ -6,6 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltmod.init.ModSounds;
 import darkbum.saltmod.init.SaltConfig;
+import ganymedes01.etfuturum.blocks.IDegradable;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -13,7 +14,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-public class MudBrickWet extends Block implements IDegradable {
+public class MudBrickWet extends Block {
 
 	@SideOnly(Side.CLIENT)
     private IIcon MAIN0;
@@ -51,17 +52,4 @@ public class MudBrickWet extends Block implements IDegradable {
 			this.MAIN2 = par1.registerIcon("saltMod:MudBrickWet_2");
 	}
 
-	public void updateTick(World world, int x, int y, int z, Random rand) {
-		tickDegradation(world, x, y, z, rand);
-	}
-
-	@Override
-	public int getMudBrickWetMeta(int paramInt) {
-        return paramInt;
-	}
-
-	@Override
-	public Block getMudBrickWetFromMeta(int paramInt) {
-        return this;
-	}
 }
