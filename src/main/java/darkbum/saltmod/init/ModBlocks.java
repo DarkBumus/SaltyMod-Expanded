@@ -127,19 +127,23 @@ public class ModBlocks {
         GameRegistry.registerBlock(oakLogSaltCrusted, "oakLogSaltCrusted");
 //        GameRegistry.registerBlock(blossomSapling, "blossomSapling");
         GameRegistry.registerBlock(blossomLog, "blossomLog");
-        GameRegistry.registerBlock(blossomBark, "blossomBark");
-        GameRegistry.registerBlock(blossomStrippedLog, "blossomStrippedLog");
-        GameRegistry.registerBlock(blossomStrippedBark, "blossomStrippedBark");
+        if(Loader.isModLoaded("etfuturum")) {
+            GameRegistry.registerBlock(blossomBark, "blossomBark");
+            GameRegistry.registerBlock(blossomStrippedLog, "blossomStrippedLog");
+            GameRegistry.registerBlock(blossomStrippedBark, "blossomStrippedBark");
+        }
         GameRegistry.registerBlock(blossomBurrow, "blossomBurrow");
         GameRegistry.registerBlock(blossomLeaves, "blossomLeaves");
         GameRegistry.registerBlock(blossomPlanks, "blossomPlanks");
         GameRegistry.registerBlock(blossomStairs, "blossomStairs");
         GameRegistry.registerBlock(blossomSlab, ItemBlossomSlab.class,"blossomSlab");
         GameRegistry.registerBlock(blossomSlabDouble, ItemBlossomSlab.class,"blossomSlabDouble");
+        if(Loader.isModLoaded("etfuturum")) {
 //        GameRegistry.registerBlock(blossomFence, "blossomFence");
 //        GameRegistry.registerBlock(blossomFenceGate, "blossomFenceGate");
 //        GameRegistry.registerBlock(blossomDoor, "blossomDoor");
 //        GameRegistry.registerBlock(blossomTrapdoor, "blossomTrapdoor");
+        }
         GameRegistry.registerBlock(apiary, "apiary");
         GameRegistry.registerBlock(extractor, "extractor");
         GameRegistry.registerBlock(extractorLit, "extractorLit").setLightLevel(0.9F);
