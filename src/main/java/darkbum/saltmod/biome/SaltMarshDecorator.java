@@ -2,18 +2,12 @@ package darkbum.saltmod.biome;
 
 import darkbum.saltmod.init.ModBlocks;
 import darkbum.saltmod.init.SaltConfig;
+import darkbum.saltmod.world.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenReed;
 import net.minecraft.world.gen.feature.WorldGenWaterlily;
-import darkbum.saltmod.world.AlliumPatch;
-import darkbum.saltmod.world.NewWorldGenClay;
-import darkbum.saltmod.world.SaltLakeGenerator;
-import darkbum.saltmod.world.SaltMarshPlantMix;
-import darkbum.saltmod.world.SaltWortMix;
-import darkbum.saltmod.world.WorldGenSaltBigTree;
-import darkbum.saltmod.world.WorldGenSaltTree;
 
 import java.util.Random;
 
@@ -62,6 +56,13 @@ public class SaltMarshDecorator {
         yy = world.getTopSolidOrLiquidBlock(xx, zz);
         if (rand.nextInt(20) == 0) {
             (new WorldGenSaltBigTree(false, false)).generate(world, rand, xx, yy, zz);
+        }
+
+        xx = x + offsetXZ();
+        zz = z + offsetXZ();
+        yy = world.getTopSolidOrLiquidBlock(xx, zz);
+        if (rand.nextInt(20) == 0) {
+            (new WorldGenBlossomBigTree(false, false)).generate(world, rand, xx, yy, zz);
         }
 
         for (attempt = 0; attempt < 5; ++attempt) {

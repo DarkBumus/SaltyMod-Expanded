@@ -1,4 +1,4 @@
-/*package ru.liahim.saltmod.block;
+/*package darkbum.saltmod.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -11,8 +11,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.util.ForgeDirection;
-import ru.liahim.saltmod.init.ModBlocks;
-import ru.liahim.saltmod.world.WorldGenBlossomTree;
+import darkbum.saltmod.init.ModBlocks;
+import darkbum.saltmod.world.WorldGenBlossomTree;
 
 import java.util.Random;
 
@@ -64,7 +64,7 @@ public class BlossomSapling extends BlockSapling {
         Object obj = null;
         int rnd = random.nextInt(8);
         if (obj == null)
-            obj = new WorldGenBlossomTree(ModBlocks.blossomLog, ModBlocks.blossomBurrow, ModBlocks.blossomLeaves, 0, 0);
+            obj = new WorldGenBlossomTree(ModBlocks.blossomLog, ModBlocks.blossomLeaves, 0, 0);
         if (obj != null) {
             world.setBlockToAir(x, y, z);
             if (!((WorldGenerator)obj).generate(world, random, x, y, z))
