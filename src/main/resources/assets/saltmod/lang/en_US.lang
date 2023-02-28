@@ -6,6 +6,7 @@ BLOCKS
 
 tile.saltOre.name=Salt Ore
 tile.saltDeepslateOre.name=Deepslate Salt Ore
+tile.etfuturum.deepslate_saltore.name=Deepslate Salt Ore
 tile.saltLake.name=Salt Lake Bottom
 tile.saltBlock.name=Salt Block
 tile.saltBlockChiseled.name=Chiseled Salt Block
