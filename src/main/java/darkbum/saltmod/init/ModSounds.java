@@ -7,41 +7,41 @@ public class ModSounds {
 
 	public static final Block.SoundType soundTypeDeepslate = new Block.SoundType("SaltDeepslateOre", 1.0F, 1.0F) {
 		public String getBreakSound() {
-			return "saltmod:deepslate.break";
+			return "saltmod:block.deepslate.break";
 		}
 		public String getStepResourcePath() {
-			return "saltmod:deepslate.step";
+			return "saltmod:block.deepslate.step";
 		}
 		public String func_150496_b() {
-			return "saltmod:deepslate.place";
+			return "saltmod:block.deepslate.place";
 		}
 	};
 
 	public static final Block.SoundType soundTypeMud = new Block.SoundType("MudBlock", 1.0F, 1.0F) {
 		public String getBreakSound() {
-			return "saltmod:mud.break";
+			return "saltmod:block.mud.break";
 		}
 		public String getStepResourcePath() {
-			return "saltmod:mud.step";
+			return "saltmod:block.mud.step";
 		}
 	};
 
 	public static final Block.SoundType soundTypeWetMudBrick = new Block.SoundType("MudBrickWet", 1.0F, 1.0F) {
 		public String getBreakSound() {
-			return "saltmod:wet_mud_bricks.break";
+			return "saltmod:block.wet_mud_bricks.break";
 		}
 		public String getStepResourcePath() {
-			return "saltmod:wet_mud_bricks.step";
+			return "saltmod:block.wet_mud_bricks.step";
 		}
 	};
 
 
 	public static final Block.SoundType soundTypeDryMudBrick = new Block.SoundType("MudBrickDry", 1.0F, 1.0F) {
 		public String getBreakSound() {
-			return "saltmod:dry_mud_bricks.break";
+			return "saltmod:block.dry_mud_bricks.break";
 		}
 		public String getStepResourcePath() {
-			return "saltmod:dry_mud_bricks.step";
+			return "saltmod:block.dry_mud_bricks.step";
 		}
 	};
 

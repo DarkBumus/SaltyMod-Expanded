@@ -55,7 +55,7 @@ public class SaltMod {
         logger.info("Starting SaltMod PreInitialization");
         event.getModMetadata().name = EnumChatFormatting.GOLD+SaltMod.NAME;
         event.getModMetadata().version = EnumChatFormatting.YELLOW+SaltMod.VERSION;
-
+        event.getModMetadata().credits = EnumChatFormatting.AQUA + "Thanks to original author Liahim85 and contributors jss2a98aj, Roadhog360, DelirusCrux, AstroTibs";
         config = new SaltConfig(event.getSuggestedConfigurationFile());
         config.preInit();
         RecipeRemover.init();

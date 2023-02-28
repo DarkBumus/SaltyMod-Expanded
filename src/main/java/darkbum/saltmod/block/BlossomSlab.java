@@ -21,6 +21,7 @@ public class BlossomSlab extends BlockSlab {
         setCreativeTab(tab);
         setHardness(2.0F);
         setResistance(3.0F);
+        setStepSound(soundTypeWood);
         setHarvestLevel("axe", 0);
         this.useNeighborBrightness = true;
         setBlockTextureName("saltmod:BlossomPlanks");
@@ -39,6 +40,7 @@ public class BlossomSlab extends BlockSlab {
     }
 
     public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
-        return getPickBlock(target, world, x, y, z);
+        ItemStack stack = new ItemStack(this, 1, world.getBlockMetadata(x,y,z));
+        return stack;
     }
 }

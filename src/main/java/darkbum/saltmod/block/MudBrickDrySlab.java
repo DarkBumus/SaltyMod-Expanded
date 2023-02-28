@@ -3,6 +3,7 @@ package darkbum.saltmod.block;
 import java.util.Random;
 
 import darkbum.saltmod.init.ModBlocks;
+import darkbum.saltmod.init.ModSounds;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -21,6 +22,7 @@ public class MudBrickDrySlab extends BlockSlab {
         setCreativeTab(tab);
         setHardness(1.5F);
         setResistance(3.0F);
+        setStepSound(ModSounds.soundTypeDryMudBrick);
         setHarvestLevel("pickaxe", 0);
         this.useNeighborBrightness = true;
         setBlockTextureName("saltmod:MudBrickDry");
@@ -39,6 +41,7 @@ public class MudBrickDrySlab extends BlockSlab {
     }
 
     public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
-        return getPickBlock(target, world, x, y, z);
+        ItemStack stack = new ItemStack(this, 1, world.getBlockMetadata(x,y,z));
+        return stack;
     }
 }

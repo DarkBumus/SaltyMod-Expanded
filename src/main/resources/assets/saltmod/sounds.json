@@ -1,6 +1,6 @@
 {
-"deepslate.break": {
-    "category": "blocks",
+"block.deepslate.break": {
+    "category": "block",
     "sounds": [
       "block/deepslate/break1",
       "block/deepslate/break2",
@@ -8,8 +8,8 @@
       "block/deepslate/break4"
     ]
   },
-"deepslate.place": {
-    "category": "blocks",
+"block.deepslate.place": {
+    "category": "block",
     "sounds": [
       "block/deepslate/place1",
       "block/deepslate/place2",
@@ -19,8 +19,8 @@
       "block/deepslate/place6"
     ]
   },
-"deepslate.step": {
-    "category": "blocks",
+"block.deepslate.step": {
+    "category": "block",
     "sounds": [
       "block/deepslate/step1",
       "block/deepslate/step2",
@@ -30,8 +30,8 @@
       "block/deepslate/step6"
     ]
   },
-"dry_mud_bricks.break": {
-    "category": "blocks",
+"block.dry_mud_bricks.break": {
+    "category": "block",
     "sounds": [
       "block/dry_mud_bricks/break1",
       "block/dry_mud_bricks/break2",
@@ -41,8 +41,8 @@
       "block/dry_mud_bricks/break6"
     ]
   },
-"dry_mud_bricks.step": {
-    "category": "blocks",
+"block.dry_mud_bricks.step": {
+    "category": "block",
     "sounds": [
       "block/dry_mud_bricks/step1",
       "block/dry_mud_bricks/step2",
@@ -52,8 +52,8 @@
       "block/dry_mud_bricks/step6"
     ]
   },
-"mud.break": {
-    "category": "blocks",
+"block.mud.break": {
+    "category": "block",
     "sounds": [
       "block/mud/break1",
       "block/mud/break2",
@@ -63,8 +63,8 @@
       "block/mud/break6"
     ]
   },
-"mud.step": {
-    "category": "blocks",
+"block.mud.step": {
+    "category": "block",
     "sounds": [
       "block/mud/step1",
       "block/mud/step2",
@@ -74,8 +74,8 @@
       "block/mud/step6"
     ]
   },
-"wet_mud_bricks.break": {
-    "category": "blocks",
+"block.wet_mud_bricks.break": {
+    "category": "block",
     "sounds": [
       "block/wet_mud_bricks/break1",
       "block/wet_mud_bricks/break2",
@@ -85,8 +85,8 @@
       "block/wet_mud_bricks/break6"
     ]
   },
-"wet_mud_bricks.step": {
-    "category": "blocks",
+"block.wet_mud_bricks.step": {
+    "category": "block",
     "sounds": [
       "block/wet_mud_bricks/step1",
       "block/wet_mud_bricks/step2",
