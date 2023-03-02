@@ -3,6 +3,7 @@ package darkbum.saltmod.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -69,7 +70,7 @@ public class Apiary extends Block {
                 return this.TOP;
             if (side == 1)
                 return this.TOP;
-            if (side == 4)
+            if (side == 3)
                 return this.FRONT0;
             return this.SIDE;
         }

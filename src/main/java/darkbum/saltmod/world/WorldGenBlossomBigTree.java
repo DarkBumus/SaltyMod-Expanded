@@ -12,6 +12,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class WorldGenBlossomBigTree extends WorldGenAbstractTree {
 
@@ -245,6 +246,63 @@ public class WorldGenBlossomBigTree extends WorldGenAbstractTree {
     boolean leafNodeNeedsBase(int p_76493_1_) {
         return (double)p_76493_1_ >= (double)this.heightLimit * 0.2;
     }
+
+/*    void generateTrunkColumn(int[] bottomPos, int[] topPos) {
+        int[] aint2 = new int[] {0, 0, 0};
+        byte b1 = 0;
+
+        for(byte coord = 0; coord < 3; ++coord) {
+            aint2[coord] = topPos[coord] - bottomPos[coord];
+
+            if(Math.abs(aint2[coord]) > Math.abs(aint2[b1])) {
+                b1 = coord;
+            }
+        }
+
+        if(aint2[b1] != 0) {
+            byte b2 = otherCoordPairs[b1];
+            byte b3 = otherCoordPairs[b1 + 3];
+            byte direction;
+
+            if(aint2[b1] > 0) {
+                direction = 1;
+            } else {
+                direction = -1;
+            }
+
+            double d0 = (double)aint2[b2] / (double)aint2[b1];
+            double d1 = (double)aint2[b3] / (double)aint2[b1];
+            int[] finalPos = new int[] {0, 0, 0};
+            int height = aint2[b1] + direction;
+
+
+            for(int i = 0; i != height; i += direction) {
+                finalPos[b1] = MathHelper.floor_double((double)(bottomPos[b1] + i) + 0.5D);
+                finalPos[b2] = MathHelper.floor_double((double)bottomPos[b2] + (double)i * d0 + 0.5D);
+                finalPos[b3] = MathHelper.floor_double((double)bottomPos[b3] + (double)i * d1 + 0.5D);
+                byte meta = 0;
+                int k = Math.abs(finalPos[0] - bottomPos[0]);
+                int l = Math.abs(finalPos[2] - bottomPos[2]);
+                int i1 = Math.max(k, l);
+
+                if(i1 > 0) {
+                    if(k == i1) {
+                        meta = 4;
+                    } else if(l == i1) {
+                        meta = 8;
+                    }
+                }
+
+                Block block = Blocks.log;
+                Block otherBlock = worldObj.getBlock(finalPos[0], finalPos[1] + 3, finalPos[2]);
+                if(otherBlock != block && otherBlock != ModBlocks.blossomBurrow && otherBlock.isOpaqueCube() && !otherBlock.isLeaves(worldObj, finalPos[0], finalPos[1] - 1, finalPos[2])) {
+                    block = ModBlocks.blossomBurrow;
+                }
+
+                setBlockAndNotifyAdequately(worldObj, finalPos[0], finalPos[1], finalPos[2], block, meta);
+            }
+        }
+    }*/
 
     void generateTrunk() {
         int i = this.basePos[0];
