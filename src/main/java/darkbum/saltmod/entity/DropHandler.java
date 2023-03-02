@@ -2,6 +2,7 @@ package darkbum.saltmod.entity;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 import darkbum.saltmod.init.ModItems;
 import ganymedes01.etfuturum.items.equipment.ItemEFRArmour;
@@ -28,24 +29,36 @@ public class DropHandler {
 
         int dropAmountHorse = random.nextInt(2) + 1;
         int dropAmountSquid = random.nextInt(3) + 1;
+        int dropAmountZombie = 1;
         if (event.entityLiving instanceof net.minecraft.entity.passive.EntitySquid)
             if (event.entityLiving.isBurning()) {
                 event.entityLiving.entityDropItem(new ItemStack(ModItems.calamariCooked, dropAmountSquid), dropped);
             } else {
                 event.entityLiving.entityDropItem(new ItemStack(ModItems.calamariRaw, dropAmountSquid), dropped);
             }
-        if (event.entityLiving instanceof net.minecraft.entity.passive.EntityHorse && !event.entityLiving.isChild())
+        if (event.entityLiving instanceof net.minecraft.entity.passive.EntityHorse &&
+            !event.entityLiving.isChild())
             if (event.entityLiving.isBurning()) {
                 event.entityLiving.entityDropItem(new ItemStack(ModItems.haunchCooked, dropAmountHorse), dropped);
             } else {
                 event.entityLiving.entityDropItem(new ItemStack(ModItems.haunchRaw, dropAmountHorse), dropped);
             }
+        if (event.entityLiving instanceof net.minecraft.entity.monster.EntityZombie &&
+            !event.entityLiving.isChild() &&
+            ThreadLocalRandom.current().nextInt(0, 1000) < 25) {
+            event.entityLiving.entityDropItem(new ItemStack(ModItems.onion, dropAmountZombie), dropped);
+        }
     }
+
 
     @SubscribeEvent
     public void onDrops(BlockEvent.HarvestDropsEvent event) {
 
-        if (event.block == Blocks.red_flower && event.harvester.getHeldItem() != null && event.harvester.getHeldItem().getItem() instanceof ItemHoe) {
+        if (event.block == Blocks.red_flower &&
+            event.blockMetadata == 2 &&
+            event.harvester != null &&
+            event.harvester.getHeldItem() != null &&
+            event.harvester.getHeldItem().getItem() instanceof ItemHoe) {
             event.drops.add(new ItemStack(ModItems.onion));
         }
     }

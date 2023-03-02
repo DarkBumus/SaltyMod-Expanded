@@ -24,4 +24,5 @@
 dependencies {
     compile deobf('https://github.com/Roadhog360/Et-Futurum-Requiem/releases/download/2.4.2/Et_Futurum_Requiem-2.4.2-nomixin.jar')
     implementation("com.github.GTNewHorizons:AppleCore:3.2.10:dev")
+    runtimeOnly('com.github.GTNewHorizons:NotEnoughItems:2.3.36-GTNH:dev')
 }

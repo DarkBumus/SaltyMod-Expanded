@@ -2,6 +2,8 @@ package darkbum.saltmod.world;
 
 import java.util.Random;
 
+import cpw.mods.fml.common.IWorldGenerator;
+import cpw.mods.fml.common.registry.GameRegistry;
 import darkbum.saltmod.init.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
