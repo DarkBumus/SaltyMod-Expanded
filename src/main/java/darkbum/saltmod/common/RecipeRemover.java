@@ -16,6 +16,9 @@ import net.minecraft.item.crafting.ShapelessRecipes;
 public class RecipeRemover {
     public static void init() {
         RemoveRecipeItem(Items.mushroom_stew, 1, 0);
+        RemoveRecipeItem(Items.bread, 1, 0);
+        RemoveRecipeItem(Items.cake, 1, 0);
+        RemoveRecipeItem(Items.cookie, 8, 0);
         if(Loader.isModLoaded("etfuturum")) {
             Item rabbit_stew = GameRegistry.findItem("etfuturum", "rabbit_stew");
             Item beetroot_soup = GameRegistry.findItem("etfuturum", "beetroot_soup");

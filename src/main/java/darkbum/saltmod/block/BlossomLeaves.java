@@ -3,21 +3,14 @@ package darkbum.saltmod.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltmod.init.ModItems;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
-import net.minecraft.block.BlockLeavesBase;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.IShearable;
-
-import java.util.ArrayList;
 
 public class BlossomLeaves extends BlockLeaves {
 
@@ -72,7 +65,7 @@ public class BlossomLeaves extends BlockLeaves {
 
     @Override
     protected void func_150124_c(World world, int x, int y, int z, int metadata, int chance)  {
-        chance *= 0.5f;
+        chance *= 0.8f;
         if(world.rand.nextInt(chance) == 0) {
             dropBlockAsItem(world, x, y, z, new ItemStack(ModItems.blossom, 1, 0));
         }

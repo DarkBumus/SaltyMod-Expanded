@@ -109,7 +109,7 @@ public class StorageCrate extends Block {
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister icon) {
-        this.BOTTOM = icon.registerIcon("saltmod:StorageStorageCrate_Bottom");
+        this.BOTTOM = icon.registerIcon("saltmod:StorageCrate_Bottom");
         this.CARROTSIDE = icon.registerIcon("saltmod:StorageCrate_Carrot_Side");
         this.CARROTTOP = icon.registerIcon("saltmod:StorageCrate_Carrot_Top");
         this.POTATOSIDE = icon.registerIcon("saltmod:StorageCrate_Potato_Side");

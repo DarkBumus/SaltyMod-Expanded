@@ -8,12 +8,11 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
+import darkbum.saltmod.common.*;
 import net.minecraft.util.EnumChatFormatting;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import darkbum.saltmod.common.CommonProxy;
-import darkbum.saltmod.common.RecipeRemover;
 import darkbum.saltmod.init.ModBiomes;
 import darkbum.saltmod.init.ModBlocks;
 import darkbum.saltmod.init.ModItems;
@@ -58,10 +57,14 @@ public class SaltMod {
         event.getModMetadata().credits = EnumChatFormatting.AQUA + "Thanks to original author Liahim85 and contributors jss2a98aj, Roadhog360, DelirusCrux, AstroTibs, Just Moe";
         config = new SaltConfig(event.getSuggestedConfigurationFile());
         config.preInit();
-        RecipeRemover.init();
         ModItems.init();
         ModBlocks.init();
         ModBiomes.SaltMod();
+        OreDictionary.init();
+        RecipeRemover.init();
+        ShapedRecipes.init();
+        ShapelessRecipes.init();
+        SmeltingRecipes.init();
 /*    if(SaltConfig.enableBrickmakerCamp) {
     	GameRegistry.registerWorldGenerator((IWorldGenerator)new BrickmakerCampGenerator(), 0);
     	MapGenStructureIO.registerStructure(MapGenCamp.Start.class, "BrickmakerCamp");

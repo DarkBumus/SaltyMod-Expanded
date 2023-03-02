@@ -2,6 +2,7 @@ package darkbum.saltmod.init;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
+import darkbum.saltmod.item.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -10,21 +11,6 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import darkbum.saltmod.SaltMod;
 import darkbum.saltmod.common.CommonProxy;
-import darkbum.saltmod.item.AchievItem;
-import darkbum.saltmod.item.ChocolateBar;
-import darkbum.saltmod.item.CobblerConcoction;
-import darkbum.saltmod.item.EffectFoodPos;
-import darkbum.saltmod.item.EffectFoodNeg;
-import darkbum.saltmod.item.FizzyDrink;
-import darkbum.saltmod.item.MainItems;
-import darkbum.saltmod.item.MudArmor;
-import darkbum.saltmod.item.Muffin;
-import darkbum.saltmod.item.Rainmaker;
-import darkbum.saltmod.item.Salt;
-import darkbum.saltmod.item.SaltFood;
-import darkbum.saltmod.item.SaltWortSeed;
-import darkbum.saltmod.item.HungerFood;
-import darkbum.saltmod.item.StuffedFood;
 
 public class ModItems {
     static CreativeTabs tab = CommonProxy.saltTab;
@@ -70,11 +56,15 @@ public class ModItems {
 
     public static Item sugarPinch = new MainItems("sugarPinch", tab, "SugarPinch");
 
-    public static Item escargot = ((ItemFood)(new SaltFood("escargot", 2, 0.1F)).setAlwaysEdible().setCreativeTab(tab)).setPotionEffect(Potion.confusion.id, 15, 0, 0.3F).setTextureName("saltmod:Escargot");
+    public static Item dough = new Dough("dough", tab, "Dough");
+
+    public static Item escargot = new Escargot("escargot", tab, "Escargot");
 
     public static Item saltWortSeed = new SaltWortSeed("saltWortSeed", tab);
 
     public static Item goldenSaltWortSeed = new SaltFood("goldenSaltWortSeed", 6, 0.8F, new PotionEffect(Potion.regeneration.id, 80, 1) ).setCreativeTab(tab).setTextureName("saltmod:GoldenSaltWortSeed");
+
+    public static Item onion = new SaltFood("onion", 2, 0.2F).setCreativeTab(tab).setTextureName("saltmod:Onion");
 
     public static Item blossom = new MainItems("blossom", tab, "Blossom");
 
@@ -340,9 +330,11 @@ public class ModItems {
         GameRegistry.registerItem(salt, "salt");
         GameRegistry.registerItem(saltPinch, "saltPinch");
         GameRegistry.registerItem(sugarPinch, "sugarPinch");
+        GameRegistry.registerItem(dough, "dough");
         GameRegistry.registerItem(escargot, "escargot");
         GameRegistry.registerItem(saltWortSeed, "saltWortSeed");
         GameRegistry.registerItem(goldenSaltWortSeed, "goldenSaltWortSeed");
+        GameRegistry.registerItem(onion, "onion");
         GameRegistry.registerItem(blossom, "blossom");
         GameRegistry.registerItem(queenBee, "queenBee");
         GameRegistry.registerItem(waxComb, "waxComb");
