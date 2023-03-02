@@ -15,7 +15,6 @@ import darkbum.saltmod.api.ExtractRegistry;
 import darkbum.saltmod.init.AchievSalt;
 import darkbum.saltmod.init.ModBlocks;
 import darkbum.saltmod.init.ModItems;
-import darkbum.saltmod.init.SaltConfig;
 import darkbum.saltmod.world.SaltCrystalGenerator;
 import darkbum.saltmod.world.SaltLakeGenerator;
 import darkbum.saltmod.world.SaltOreGenerator;
@@ -36,10 +35,9 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import darkbum.saltmod.SaltMod;
-import darkbum.saltmod.dispenser.DispenserBehaviorRainmaiker;
+import darkbum.saltmod.dispenser.DispenserBehaviorRainmaker;
 import darkbum.saltmod.dispenser.DispenserBehaviorSaltPinch;
 import darkbum.saltmod.entity.DropHandler;
 import darkbum.saltmod.entity.EntityRainmaker;
@@ -93,7 +91,7 @@ public class CommonProxy {
         EntityRegistry.registerModEntity(EntityRainmaker.class, "entityRainmaker", 0, SaltMod.instance, 64, 20, true);
         EntityRegistry.registerModEntity(EntityRainmakerDust.class, "entityRainmakerDust", 1, SaltMod.instance, 64, 20, false);
 
-        BlockDispenser.dispenseBehaviorRegistry.putObject(ModItems.rainmaker, new DispenserBehaviorRainmaiker());
+        BlockDispenser.dispenseBehaviorRegistry.putObject(ModItems.rainmaker, new DispenserBehaviorRainmaker());
         BlockDispenser.dispenseBehaviorRegistry.putObject(ModItems.saltPinch, new DispenserBehaviorSaltPinch());
 
         GameRegistry.registerWorldGenerator(saltOreGenerator, 0);

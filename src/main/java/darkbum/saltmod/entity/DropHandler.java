@@ -13,6 +13,7 @@ import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraft.block.*;
 
 public class DropHandler {
 
@@ -44,7 +45,8 @@ public class DropHandler {
     @SubscribeEvent
     public void onDrops(BlockEvent.HarvestDropsEvent event) {
 
-        if (event.block == Blocks.red_flower && event.harvester.getHeldItem() != null && event.harvester.getHeldItem().getItem() instanceof ItemHoe)
+        if (event.block == Blocks.red_flower && event.harvester.getHeldItem() != null && event.harvester.getHeldItem().getItem() instanceof ItemHoe) {
             event.drops.add(new ItemStack(ModItems.onion));
+        }
     }
 }

@@ -58,12 +58,12 @@ public class SaltMarshDecorator {
             (new WorldGenSaltBigTree(false, false)).generate(world, rand, xx, yy, zz);
         }
 
-        xx = x + offsetXZ();
+/*        xx = x + offsetXZ();
         zz = z + offsetXZ();
         yy = world.getTopSolidOrLiquidBlock(xx, zz);
         if (rand.nextInt(20) == 0) {
             (new WorldGenBlossomBigTree(false, false)).generate(world, rand, xx, yy, zz);
-        }
+        }*/
 
         for (attempt = 0; attempt < 5; ++attempt) {
             xx = x + offsetXZ();

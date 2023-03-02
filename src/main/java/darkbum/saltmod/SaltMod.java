@@ -29,7 +29,7 @@ import ru.liahim.saltmod.structure.SurfaceFinder;*/
 public class SaltMod {
     public static final String MODID = "SaltMod";
 
-    public static final String NAME = "Salty Mod Expanded";
+    public static final String NAME = "SaltyMod Expanded";
 
     public static final String VERSION = "GRADLETOKEN_VERSION";
 

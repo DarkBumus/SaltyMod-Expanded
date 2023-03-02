@@ -30,19 +30,17 @@ public class ModItems {
 
     public static Item achievItem = new AchievItem("achievItem", null);
 
-    public static Item goldenPotato = (new SaltFood("goldenPotato", 6, 0.9F, new PotionEffect(Potion.regeneration.id, 60, 0) ).setCreativeTab(tab).setTextureName("saltmod:GoldenPotato"));
+    public static Item blossom = new MainItems("blossom", tab, "Blossom");
 
-    public static Item goldenBerries = (new SaltFood("goldenBerries", 2, 1.2F).setCreativeTab(tab).setTextureName("saltmod:GoldenBerries"));
+    public static Item queenBee = new MainItems("queenBee", tab, "QueenBee");
 
-    public static Item fishClownfishCooked = new SaltFood("fishClownfishCooked", 4, 0.6F).setCreativeTab(tab).setTextureName("saltmod:FishClownfishCooked");
+    public static Item waxComb = new MainItems("waxComb", tab, "WaxComb");
 
-    public static Item haunchRaw = new SaltFood("haunchRaw", 3, 0.3F).setCreativeTab(tab).setTextureName("saltmod:HaunchRaw");
+    public static Item honeyComb = new MainItems("honeyComb", tab, "HoneyComb");
 
-    public static Item haunchCooked = new SaltFood("haunchCooked", 8, 0.8F).setCreativeTab(tab).setTextureName("saltmod:HaunchCooked");
+    public static Item beeGrub = new MainItems("beeGrub", tab, "BeeGrub");
 
-    public static Item calamariRaw = new SaltFood("calamariRaw", 2, 0.1F).setCreativeTab(tab).setTextureName("saltmod:CalamariRaw");
-
-    public static Item calamariCooked = new SaltFood("calamariCooked", 5, 0.6F).setCreativeTab(tab).setTextureName("saltmod:CalamariCooked");
+    public static Item royalJelly = new MainItems("royalJelly", tab, "RoyalJelly");
 
     public static Item mineralMud = new MainItems("mineralMud", tab, "MineralMud");
 
@@ -58,25 +56,15 @@ public class ModItems {
 
     public static Item dough = new Dough("dough", tab, "Dough");
 
-    public static Item escargot = new Escargot("escargot", tab, "Escargot");
+    public static Item onion = new SaltFood("onion", 2, 0.2F).setCreativeTab(tab).setTextureName("saltmod:Onion");
 
     public static Item saltWortSeed = new SaltWortSeed("saltWortSeed", tab);
 
     public static Item goldenSaltWortSeed = new SaltFood("goldenSaltWortSeed", 6, 0.8F, new PotionEffect(Potion.regeneration.id, 80, 1) ).setCreativeTab(tab).setTextureName("saltmod:GoldenSaltWortSeed");
 
-    public static Item onion = new SaltFood("onion", 2, 0.2F).setCreativeTab(tab).setTextureName("saltmod:Onion");
+    public static Item goldenPotato = (new SaltFood("goldenPotato", 6, 0.9F, new PotionEffect(Potion.regeneration.id, 60, 0) ).setCreativeTab(tab).setTextureName("saltmod:GoldenPotato"));
 
-    public static Item blossom = new MainItems("blossom", tab, "Blossom");
-
-    public static Item queenBee = new MainItems("queenBee", tab, "QueenBee");
-
-    public static Item waxComb = new MainItems("waxComb", tab, "WaxComb");
-
-    public static Item honeyComb = new MainItems("honeyComb", tab, "HoneyComb");
-
-    public static Item beeGrub = new MainItems("beeGrub", tab, "BeeGrub");
-
-    public static Item royalJelly = new MainItems("royalJelly", tab, "RoyalJelly");
+    public static Item goldenBerries = (new SaltFood("goldenBerries", 2, 1.2F).setCreativeTab(tab).setTextureName("saltmod:GoldenBerries"));
 
     public static Item saltBeefCooked = new SaltFood("saltBeefCooked", 9, 0.9F).setCreativeTab(tab).setTextureName("saltmod:SaltBeefCooked");
 
@@ -85,6 +73,10 @@ public class ModItems {
     public static Item saltMuttonCooked = new SaltFood("saltMuttonCooked", 7, 0.9F).setCreativeTab(tab).setTextureName("saltmod:SaltMuttonCooked");
 
     public static Item saltStriderCooked = new SaltFood("saltStriderCooked", 9, 0.9F).setCreativeTab(tab).setTextureName("saltmod:SaltStriderCooked");
+
+    public static Item haunchRaw = new SaltFood("haunchRaw", 3, 0.3F).setCreativeTab(tab).setTextureName("saltmod:HaunchRaw");
+
+    public static Item haunchCooked = new SaltFood("haunchCooked", 8, 0.8F).setCreativeTab(tab).setTextureName("saltmod:HaunchCooked");
 
     public static Item saltHaunchCooked = new SaltFood("saltHaunchCooked", 9, 0.9F).setCreativeTab(tab).setTextureName("saltmod:SaltHaunchCooked");
 
@@ -102,9 +94,15 @@ public class ModItems {
 
     public static Item saltFishSalmonCooked = new SaltFood("saltFishSalmonCooked", 7, 0.9F).setCreativeTab(tab).setTextureName("saltmod:SaltFishSalmonCooked");
 
+    public static Item fishClownfishCooked = new SaltFood("fishClownfishCooked", 4, 0.6F).setCreativeTab(tab).setTextureName("saltmod:FishClownfishCooked");
+
     public static Item saltFishClownfish = new SaltFood("saltFishClownfish", 4, 0.2F).setCreativeTab(tab).setTextureName("saltmod:SaltFishClownfish");
 
     public static Item saltFishClownfishCooked = new SaltFood("saltFishClownfishCooked", 5, 0.7F).setCreativeTab(tab).setTextureName("saltmod:SaltFishClownfishCooked");
+
+    public static Item calamariRaw = new SaltFood("calamariRaw", 2, 0.1F).setCreativeTab(tab).setTextureName("saltmod:CalamariRaw");
+
+    public static Item calamariCooked = new SaltFood("calamariCooked", 5, 0.6F).setCreativeTab(tab).setTextureName("saltmod:CalamariCooked");
 
     public static Item saltCalamariCooked = new SaltFood("saltCalamariCooked", 6, 0.6F).setCreativeTab(tab).setTextureName("saltmod:SaltCalamariCooked");
 
@@ -274,6 +272,8 @@ public class ModItems {
 
     public static Item mudBoots = new MudArmor("mudBoots", CommonProxy.mudMaterial, 3);
 
+    public static Item escargot = new Escargot("escargot", tab, "Escargot");
+
     public static Item saltStar = new MainItems("saltStar", tab, "SaltStar");
 
     public static Item rainmaker = new Rainmaker("rainmaker", tab, "Rainmaker");
@@ -315,15 +315,12 @@ public class ModItems {
         GameRegistry.registerItem(effectFoodNeg, "effectFoodNeg");
 //        GameRegistry.registerItem(testFood, "testFood");
         GameRegistry.registerItem(achievItem, "achivItem");
-        GameRegistry.registerItem(goldenPotato, "goldenPotato");
-        if(Loader.isModLoaded("etfuturum")) {
-            GameRegistry.registerItem(goldenBerries, "goldenBerries");
-        }
-        GameRegistry.registerItem(fishClownfishCooked, "fishClownfishCooked");
-        GameRegistry.registerItem(haunchRaw, "haunchRaw");
-        GameRegistry.registerItem(haunchCooked, "haunchCooked");
-        GameRegistry.registerItem(calamariRaw, "calamariRaw");
-        GameRegistry.registerItem(calamariCooked, "calamariCooked");
+        GameRegistry.registerItem(blossom, "blossom");
+        GameRegistry.registerItem(queenBee, "queenBee");
+        GameRegistry.registerItem(waxComb, "waxComb");
+        GameRegistry.registerItem(honeyComb, "honeyComb");
+        GameRegistry.registerItem(beeGrub, "beeGrub");
+        GameRegistry.registerItem(royalJelly, "royalJelly");
         GameRegistry.registerItem(mineralMud, "mineralMud");
         GameRegistry.registerItem(soda, "soda");
         GameRegistry.registerItem(powderedMilk, "powderedMilk");
@@ -331,16 +328,13 @@ public class ModItems {
         GameRegistry.registerItem(saltPinch, "saltPinch");
         GameRegistry.registerItem(sugarPinch, "sugarPinch");
         GameRegistry.registerItem(dough, "dough");
-        GameRegistry.registerItem(escargot, "escargot");
+        GameRegistry.registerItem(onion, "onion");
         GameRegistry.registerItem(saltWortSeed, "saltWortSeed");
         GameRegistry.registerItem(goldenSaltWortSeed, "goldenSaltWortSeed");
-        GameRegistry.registerItem(onion, "onion");
-        GameRegistry.registerItem(blossom, "blossom");
-        GameRegistry.registerItem(queenBee, "queenBee");
-        GameRegistry.registerItem(waxComb, "waxComb");
-        GameRegistry.registerItem(honeyComb, "honeyComb");
-        GameRegistry.registerItem(beeGrub, "beeGrub");
-        GameRegistry.registerItem(royalJelly, "royalJelly");
+        GameRegistry.registerItem(goldenPotato, "goldenPotato");
+        if(Loader.isModLoaded("etfuturum")) {
+            GameRegistry.registerItem(goldenBerries, "goldenBerries");
+        }
         GameRegistry.registerItem(saltBeefCooked, "saltBeefCooked");
         GameRegistry.registerItem(saltPorkchopCooked, "saltPorkchopCooked");
         if(Loader.isModLoaded("etfuturum")) {
@@ -349,6 +343,8 @@ public class ModItems {
         if(Loader.isModLoaded("netherlicious")) {
             GameRegistry.registerItem(saltStriderCooked, "saltStriderCooked");
         }
+        GameRegistry.registerItem(haunchRaw, "haunchRaw");
+        GameRegistry.registerItem(haunchCooked, "haunchCooked");
         GameRegistry.registerItem(saltHaunchCooked, "saltHaunchCooked");
         GameRegistry.registerItem(saltPotatoBaked, "saltPotatoBaked");
         GameRegistry.registerItem(saltChickenCooked, "saltChickenCooked");
@@ -359,8 +355,11 @@ public class ModItems {
         GameRegistry.registerItem(saltFishCodCooked, "saltFishCodCooked");
         GameRegistry.registerItem(saltFishSalmon, "saltFishSalmon");
         GameRegistry.registerItem(saltFishSalmonCooked, "saltFishSalmonCooked");
+        GameRegistry.registerItem(fishClownfishCooked, "fishClownfishCooked");
         GameRegistry.registerItem(saltFishClownfish, "saltFishClownfish");
         GameRegistry.registerItem(saltFishClownfishCooked, "saltFishClownfishCooked");
+        GameRegistry.registerItem(calamariRaw, "calamariRaw");
+        GameRegistry.registerItem(calamariCooked, "calamariCooked");
         GameRegistry.registerItem(saltCalamariCooked, "saltCalamariCooked");
         GameRegistry.registerItem(cornedBeef, "cornedBeef");
         GameRegistry.registerItem(saltBread, "saltBread");
@@ -462,6 +461,7 @@ public class ModItems {
         GameRegistry.registerItem(mudChestplate, "mudChestplate");
         GameRegistry.registerItem(mudLeggings, "mudLeggings");
         GameRegistry.registerItem(mudBoots, "mudBoots");
+        GameRegistry.registerItem(escargot, "escargot");
         GameRegistry.registerItem(saltStar, "saltStar");
         GameRegistry.registerItem(rainmaker, "rainmaker");
 

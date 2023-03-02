@@ -10,7 +10,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class DispenserBehaviorRainmaiker implements IBehaviorDispenseItem {
+public class DispenserBehaviorRainmaker implements IBehaviorDispenseItem {
     public ItemStack dispense(IBlockSource source, ItemStack stack) {
         World world = source.getWorld();
         EnumFacing enumfacing = BlockDispenser.func_149937_b(source.getBlockMetadata());
