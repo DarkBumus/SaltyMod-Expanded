@@ -14,6 +14,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
+import java.util.List;
 import java.util.Random;
 
 public class MudBrickDryWall extends BlockWall {
@@ -33,12 +34,18 @@ public class MudBrickDryWall extends BlockWall {
     }
 
     @SideOnly(Side.CLIENT)
-    public IIcon getIcon(Block block, int meta) {
-        return this.getIcon(ModBlocks.mudBrickDry, 0);
+    public IIcon getIcon(int side, int meta) {
+        return ModBlocks.mudBrickDry.getIcon(side, meta);
     }
 
     public Item getItemDropped(int p_149650_1_, Random random, int p_149650_3_) {
         return Item.getItemFromBlock(ModBlocks.mudBrickDryWall);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void getSubBlocks(Item itemIn, CreativeTabs tab, List list)
+    {
+        list.add(new ItemStack(itemIn, 1, 0));
     }
 
     public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
