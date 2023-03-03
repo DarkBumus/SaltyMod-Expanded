@@ -83,7 +83,7 @@ public class SaltModEvent {
                         if (EntityList.getEntityString(target).toLowerCase().contains("witch"))
                             player.addStat(AchievSalt.saltWitch, 1);
                         if (target instanceof net.minecraft.entity.monster.EntitySlime) {
-                            EntityItem EIS = new EntityItem(world, target.posX, target.posY, target.posZ, new ItemStack(ModItems.escargot));
+                            EntityItem EIS = new EntityItem(world, target.posX, target.posY, target.posZ, new ItemStack(ModItems.toughJelly));
                             EI.delayBeforeCanPickup = 10;
                             world.spawnEntityInWorld(EIS);
                             player.addStat(AchievSalt.saltSlime, 1);

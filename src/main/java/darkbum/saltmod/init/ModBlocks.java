@@ -2,8 +2,8 @@ package darkbum.saltmod.init;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
-import darkbum.saltmod.block.*;
 import darkbum.saltmod.blockitems.*;
+import darkbum.saltmod.blocks.*;
 import net.minecraft.block.*;
 import net.minecraft.creativetab.CreativeTabs;
 import darkbum.saltmod.SaltMod;
@@ -101,9 +101,11 @@ public class ModBlocks {
 
     public static Block saltWort = new SaltWort("saltWort", null);
 
-    public static void init() {
+    public static Block blockOnion = new BlockOnion("blockOnion", null);
 
+    public static void init() {
         SaltMod.logger.info("Start to initialize Blocks");
+
         GameRegistry.registerBlock(saltOre, "saltOre");
         if(Loader.isModLoaded("etfuturum")) {
             saltDeepslateOre = new SaltDeepslateOre(saltOre);
@@ -155,6 +157,8 @@ public class ModBlocks {
         GameRegistry.registerBlock(storageSack, ItemStorageSack.class, "storageSack");
         GameRegistry.registerBlock(saltCrystal, "saltCrystal");
         GameRegistry.registerBlock(saltWort, "saltWort");
+        GameRegistry.registerBlock(blockOnion, "blockOnion");
+
         SaltMod.logger.info("Finished initializing Blocks");
     }
 }

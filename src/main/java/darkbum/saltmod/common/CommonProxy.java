@@ -40,9 +40,9 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 import darkbum.saltmod.SaltMod;
 import darkbum.saltmod.dispenser.DispenserBehaviorRainmaker;
 import darkbum.saltmod.dispenser.DispenserBehaviorSaltPinch;
-import darkbum.saltmod.entity.DropHandler;
-import darkbum.saltmod.entity.EntityRainmaker;
-import darkbum.saltmod.entity.EntityRainmakerDust;
+import darkbum.saltmod.entities.DropHandler;
+import darkbum.saltmod.entities.EntityRainmaker;
+import darkbum.saltmod.entities.EntityRainmakerDust;
 import darkbum.saltmod.inventory.gui.GuiExtractorHandler;
 import darkbum.saltmod.network.ExtractorButtonMessage;
 import darkbum.saltmod.network.SaltModEvent;
@@ -161,34 +161,34 @@ public class CommonProxy {
             Item honeycombItem = GameRegistry.findItem("harvestcraft", "honeycombItem");
             Item royaljellyItem = GameRegistry.findItem("harvestcraft", "royaljellyItem");
             if(honeycombItem != null) {
-                OreDictionary.registerOre("Sweeteners", honeycombItem);
-                OreDictionary.registerOre("Honeys", honeycombItem);
+                OreDictionary.registerOre("itemSweetener", honeycombItem);
+                OreDictionary.registerOre("itemHoney", honeycombItem);
             }
             if(royaljellyItem != null) {
-                OreDictionary.registerOre("RoyalJellies", royaljellyItem);
+                OreDictionary.registerOre("itemRoyaljelly", royaljellyItem);
             }
         }
 
         if(Loader.isModLoaded("Forestry")) {
             Item beeCombs = GameRegistry.findItem("Forestry", "beeCombs");
             if(beeCombs != null) {
-                OreDictionary.registerOre("Sweeteners", beeCombs);
-                OreDictionary.registerOre("Honeys", beeCombs);
+                OreDictionary.registerOre("itemSweetener", beeCombs);
+                OreDictionary.registerOre("itemHoney", beeCombs);
             }
         }
 
         if(Loader.isModLoaded("Growthcraft")) {
             Item honeyCombFilled = GameRegistry.findItem("Growthcraft|Bees", "grc.honeyCombFilled");
             if(honeyCombFilled != null) {
-                OreDictionary.registerOre("Sweeteners", honeyCombFilled);
-                OreDictionary.registerOre("Honeys", honeyCombFilled);
+                OreDictionary.registerOre("itemSweetener", honeyCombFilled);
+                OreDictionary.registerOre("itemHoney", honeyCombFilled);
             }
         }
 
         if(Loader.isModLoaded("netherlicious")) {
             Item StriderFlankCooked = GameRegistry.findItem("netherlicious", "StriderFlankCooked");
             if(StriderFlankCooked != null) {
-                OreDictionary.registerOre("itemRedmeats", StriderFlankCooked);
+                OreDictionary.registerOre("itemRedmeat", StriderFlankCooked);
                 GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltStriderCooked), new ItemStack(ModItems.saltPinch), new ItemStack(StriderFlankCooked) );
             }
         }
@@ -202,7 +202,7 @@ public class CommonProxy {
             Item beetroot_soup = GameRegistry.findItem("etfuturum", "beetroot_soup");
             Item sweet_berries = GameRegistry.findItem("etfuturum", "sweet_berries");
             if(mutton_cooked != null) {
-                OreDictionary.registerOre("itemRedmeats", mutton_cooked);
+                OreDictionary.registerOre("itemRedmeat", mutton_cooked);
                 GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltMuttonCooked), new ItemStack(ModItems.saltPinch), new ItemStack(mutton_cooked) );
                 GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltWortMutton), new ItemStack(Items.bowl), new ItemStack(mutton_cooked), new ItemStack(ModItems.saltWortSeed), new ItemStack(ModItems.saltWortSeed) );
             }
@@ -224,6 +224,7 @@ public class CommonProxy {
                 GameRegistry.addShapelessRecipe(new ItemStack(ModItems.herringUFC), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), new ItemStack(beetroot), new ItemStack(Items.egg), new ItemStack(Items.fish), new ItemStack(Blocks.red_flower, 1, 2) );
                 GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltHerringUFC), new ItemStack(ModItems.saltPinch), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), new ItemStack(beetroot), new ItemStack(Items.egg), new ItemStack(Items.fish), new ItemStack(Blocks.red_flower, 1, 2) );
                 GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltHerringUFC), new ItemStack(ModItems.saltPinch), new ItemStack(ModItems.herringUFC) );
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.pickledBeetroot), new ItemStack(ModItems.saltPinch), new ItemStack(Items.potionitem), new ItemStack(beetroot), new ItemStack(beetroot) );
                 GameRegistry.addRecipe(new ItemStack(ModBlocks.storageCrate, 1, 4), "xxx", "xxx", "xxx", 'x', new ItemStack(beetroot) );
             }
             if(beetroot_seeds != null) {
@@ -279,8 +280,8 @@ public class CommonProxy {
         if(Loader.isModLoaded("BiomesOPlenty")) {
             Item food = GameRegistry.findItem("BiomesOPlenty", "food");
             if(food != null) {
-                OreDictionary.registerOre("Sweeteners", new ItemStack(food, 1, 9));
-                OreDictionary.registerOre("Honeys", new ItemStack(food, 1, 9));
+                OreDictionary.registerOre("itemSweetener", new ItemStack(food, 1, 9));
+                OreDictionary.registerOre("itemHoney", new ItemStack(food, 1, 9));
                 GameRegistry.addShapelessRecipe(new ItemStack(ModItems.bop_saltShroomPowder), new ItemStack(ModItems.saltPinch), new ItemStack(food, 1, 1) );
                 GameRegistry.addShapelessRecipe(new ItemStack(ModItems.bop_sugarSaladFruit), new ItemStack(ModItems.sugarPinch), new ItemStack(food, 1, 4) );
                 GameRegistry.addShapelessRecipe(new ItemStack(ModItems.bop_saltSaladVeggie), new ItemStack(ModItems.saltPinch), new ItemStack(food, 1, 5) );

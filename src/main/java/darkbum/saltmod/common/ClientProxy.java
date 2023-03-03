@@ -5,11 +5,11 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltmod.init.ModItems;
 import net.minecraft.client.renderer.entity.RenderSnowball;
-import darkbum.saltmod.block.render.ExtractorRenderer;
-import darkbum.saltmod.block.render.SaltGrassRenderer;
-import darkbum.saltmod.entity.EntityRainmaker;
-import darkbum.saltmod.entity.EntityRainmakerDust;
-import darkbum.saltmod.entity.render.RenderRainmakerDust;
+import darkbum.saltmod.blocks.render.ExtractorRenderer;
+import darkbum.saltmod.blocks.render.SaltGrassRenderer;
+import darkbum.saltmod.entities.EntityRainmaker;
+import darkbum.saltmod.entities.EntityRainmakerDust;
+import darkbum.saltmod.entities.render.RenderRainmakerDust;
 
 public class ClientProxy extends CommonProxy {
     public static int saltGrassRenderType;

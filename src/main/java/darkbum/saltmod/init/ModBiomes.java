@@ -1,6 +1,6 @@
 package darkbum.saltmod.init;
 
-import darkbum.saltmod.biome.SaltMarshBiome;
+import darkbum.saltmod.biomes.SaltMarshBiome;
 import net.minecraft.world.biome.BiomeGenBase;
 
 public class ModBiomes {
