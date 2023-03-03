@@ -51,4 +51,8 @@ public class MudBrickDryWall extends BlockWall {
         ItemStack stack = new ItemStack(this, 1, world.getBlockMetadata(x,y,z));
         return stack;
     }
+
+    public boolean canPlaceTorchOnTop(World world, int x, int y, int z) {
+        return true;
+    }
 }
