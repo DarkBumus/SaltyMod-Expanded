@@ -9,6 +9,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
 
 import java.util.List;
 
@@ -54,45 +55,37 @@ public class StorageSack extends Block {
     }
 
     public IIcon getIcon(int side, int meta) {
-        if (meta < 0 || meta > 4)
-            meta = 0;
 
-        if (meta == 0) {
-            if (side == 0)
-                return this.BOTTOM;
-            if (side == 1)
-                return this.WHEATSEEDS;
-            return this.SIDE;
+        meta = MathHelper.clamp_int(meta, 0, 4);
+
+        if(side > 0) {
+            if (meta == 0) {
+                if (side == 1)
+                    return this.WHEATSEEDS;
+                return this.SIDE;
+            }
+            if (meta == 1) {
+                if (side == 1)
+                    return this.MELONSEEDS;
+                return this.SIDE;
+            }
+            if (meta == 2) {
+                if (side == 1)
+                    return this.PUMPKINSEEDS;
+                return this.SIDE;
+            }
+            if (meta == 3) {
+                if (side == 1)
+                    return this.SALTWORT;
+                return this.SIDE;
+            }
+            if (meta == 4) {
+                if (side == 1)
+                    return this.BEETROOTSEEDS;
+                return this.SIDE;
+            }
         }
-        if (meta == 1) {
-            if (side == 0)
-                return this.BOTTOM;
-            if (side == 1)
-                return this.MELONSEEDS;
-            return this.SIDE;
-        }
-        if (meta == 2) {
-            if (side == 0)
-                return this.BOTTOM;
-            if (side == 1)
-                return this.PUMPKINSEEDS;
-            return this.SIDE;
-        }
-        if (meta == 3) {
-            if (side == 0)
-                return this.BOTTOM;
-            if (side == 1)
-                return this.SALTWORT;
-            return this.SIDE;
-        }
-        if (meta == 4) {
-            if (side == 0)
-                return this.BOTTOM;
-            if (side == 1)
-                return this.BEETROOTSEEDS;
-            return this.SIDE;
-        }
-        return null; // ???
+        return this.BOTTOM;
     }
 
     @SideOnly(Side.CLIENT)

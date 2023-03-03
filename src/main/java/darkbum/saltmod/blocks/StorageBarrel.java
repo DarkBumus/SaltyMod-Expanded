@@ -9,6 +9,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
 
 import java.util.List;
 
@@ -51,38 +52,32 @@ public class StorageBarrel extends Block {
     }
 
     public IIcon getIcon(int side, int meta) {
-        if (meta < 0 || meta > 3)
-            meta = 0;
 
-        if (meta == 0) {
-            if (side == 0)
-                return this.BOTTOM;
-            if (side == 1)
-                return this.COD;
-            return this.SIDE;
+        meta = MathHelper.clamp_int(meta, 0, 4);
+
+        if(side > 0) {
+            if (meta == 0) {
+                if (side == 1)
+                    return this.COD;
+                return this.SIDE;
+            }
+            if (meta == 1) {
+                if (side == 1)
+                    return this.SALMON;
+                return this.SIDE;
+            }
+            if (meta == 2) {
+                if (side == 1)
+                    return this.CLOWNFISH;
+                return this.SIDE;
+            }
+            if (meta == 3) {
+                if (side == 1)
+                    return this.PUFFERFISH;
+                return this.SIDE;
+            }
         }
-        if (meta == 1) {
-            if (side == 0)
-                return this.BOTTOM;
-            if (side == 1)
-                return this.SALMON;
-            return this.SIDE;
-        }
-        if (meta == 2) {
-            if (side == 0)
-                return this.BOTTOM;
-            if (side == 1)
-                return this.CLOWNFISH;
-            return this.SIDE;
-        }
-        if (meta == 3) {
-            if (side == 0)
-                return this.BOTTOM;
-            if (side == 1)
-                return this.PUFFERFISH;
-            return this.SIDE;
-        }
-        return null;
+        return this.BOTTOM;
     }
 
     @SideOnly(Side.CLIENT)
