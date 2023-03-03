@@ -222,7 +222,7 @@ public class ModItems {
 
     public static Item applePie = new SaltFood("applePie", 8, 0.3F).setCreativeTab(tab).setTextureName("saltmod:apple_pie");
 
-    public static Item sweetberryPie = new SaltFood("sweetberryPie", 7, 0.3F).setCreativeTab(tab).setTextureName("saltmod:SweetberryPie");
+    public static Item sweetberryPie = new SaltFood("sweetberryPie", 7, 0.3F).setCreativeTab(tab).setTextureName("saltmod:sweetberry_pie");
 
     public static Item potatoPie = new SaltFood("potatoPie", 8, 0.3F).setCreativeTab(tab).setTextureName("saltmod:potato_pie");
 
