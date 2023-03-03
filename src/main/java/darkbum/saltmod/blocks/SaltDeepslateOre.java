@@ -2,6 +2,8 @@ package darkbum.saltmod.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import darkbum.saltmod.common.CommonProxy;
+import darkbum.saltmod.common.SaltTab;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 
@@ -13,6 +15,7 @@ public class SaltDeepslateOre extends BlockDeepslateOre {
 
     public SaltDeepslateOre(Block block) {
         super(block);
+        setCreativeTab(CommonProxy.saltTab);
     }
 
     @SideOnly(Side.CLIENT)
