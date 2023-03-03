@@ -82,7 +82,7 @@ public class ModBlocks {
 
     public static Block blossomPressurePlate = new BlossomPressurePlate(0, tab);
 
-//    public static Block blossomButton = new BlossomButton("blossomButton", tab);
+    public static Block blossomButton = new BlossomButton();
 
     public static Block blossomLeaves = new BlossomLeaves("blossomLeaves", tab);
 
@@ -153,7 +153,7 @@ public class ModBlocks {
 //            GameRegistry.registerBlock(blossomDoor, "blossomDoor");
 //            GameRegistry.registerBlock(blossomTrapdoor, "blossomTrapdoor");
             GameRegistry.registerBlock(blossomPressurePlate, "blossomPressurePlate");
-//            GameRegistry.registerBlock(blossomButton, "blossomButton");
+            GameRegistry.registerBlock(blossomButton, "blossomButton");
         }
         GameRegistry.registerBlock(blossomLeaves, "blossomLeaves");
 //        GameRegistry.registerBlock(blossomSapling, "blossomSapling");
