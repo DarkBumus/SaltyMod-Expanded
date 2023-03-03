@@ -43,8 +43,7 @@ public class MudBrickDryWall extends BlockWall {
     }
 
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, List list)
-    {
+    public void getSubBlocks(Item itemIn, CreativeTabs tab, List list) {
         list.add(new ItemStack(itemIn, 1, 0));
     }
 

@@ -31,6 +31,7 @@ tile.mudBrickWet.name=Wet Mud Bricks
 tile.mudBrickDry.name=Mud Bricks
 tile.mudBrickDryStairs.name=Mud Brick Stairs
 tile.mudBrickDrySlab.name=Mud Brick Slab
+tile.mudBrickDryWall.name=Mud Brick Wall
 
 tile.oakLogSaltCrusted.name=Salt Crusted Oak Log
 tile.blossomLog.name=Blossom Log

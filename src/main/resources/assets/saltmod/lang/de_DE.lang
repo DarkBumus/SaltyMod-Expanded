@@ -31,6 +31,7 @@ tile.mudBrickWet.name=Feuchte Schlammziegel
 tile.mudBrickDry.name=Schlammziegel
 tile.mudBrickDryStairs.name=Schlammziegeltreppe
 tile.mudBrickDrySlab.name=Schlammziegelstufe
+tile.mudBrickDryWall.name=Schlammziegelmauer
 
 tile.oakLogSaltCrusted.name=Salzverkrusteter Eichenstamm
 tile.blossomLog.name=Blütholzstamm
