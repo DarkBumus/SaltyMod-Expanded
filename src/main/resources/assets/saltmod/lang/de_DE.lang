@@ -33,18 +33,22 @@ tile.mudBrickDryStairs.name=Schlammziegeltreppe
 tile.mudBrickDrySlab.name=Schlammziegelstufe
 
 tile.oakLogSaltCrusted.name=Salzverkrusteter Eichenstamm
-tile.blossomSapling.name=Blütholzsetzling
 tile.blossomLog.name=Blütholzstamm
 tile.blossomBark.name=Blütholz
 tile.blossomStrippedLog.name=Entrindeter Blütholzstamm
 tile.blossomStrippedBark.name=Entrindetes Blütholz
 tile.blossomBurrow.name=Blütholznest
-tile.blossomLeaves.name=Blütholzlaub
 tile.blossomPlanks.name=Blütholzbretter
 tile.blossomStairs.name=Blütholztreppe
 tile.blossomSlab.name=Blütholzstufe
+tile.blossomFence.name=Blütholzzaun
+tile.blossomFenceGate.name=Blütholzzauntor
 tile.blossomDoor.name=Blütholztür
 tile.blossomTrapdoor.name=Blütholzfalltür
+tile.blossomPressurePlate.name=Blütholzdruckplatte
+tile.blossomButton.name=Blütholzknopf
+tile.blossomLeaves.name=Blütholzlaub
+tile.blossomSapling.name=Blütholzsetzling
 
 tile.apiary.name=Bienenhaus
 tile.extractor.name=Verdampfer

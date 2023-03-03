@@ -33,18 +33,22 @@ tile.mudBrickDryStairs.name=Mud Brick Stairs
 tile.mudBrickDrySlab.name=Mud Brick Slab
 
 tile.oakLogSaltCrusted.name=Salt Crusted Oak Log
-tile.blossomSapling.name=Blossom Sapling
 tile.blossomLog.name=Blossom Log
 tile.blossomBark.name=Blossom Wood
 tile.blossomStrippedLog.name=Stripped Blossom Log
 tile.blossomStrippedBark.name=Stripped Blossom Wood
 tile.blossomBurrow.name=Blossom Burrow
-tile.blossomLeaves.name=Blossom Leaves
 tile.blossomPlanks.name=Blossom Planks
 tile.blossomStairs.name=Blossom Stairs
 tile.blossomSlab.name=Blossom Slab
+tile.blossomFence.name=Blossom Fence
+tile.blossomFenceGate.name=Blossom Fence Gate
 tile.blossomDoor.name=Blossom Door
 tile.blossomTrapdoor.name=Blossom Trapdoor
+tile.blossomPressurePlate.name=Blossom Pressure Plate
+tile.blossomButton.name=Blossom Button
+tile.blossomLeaves.name=Blossom Leaves
+tile.blossomSapling.name=Blossom Sapling
 
 tile.apiary.name=Apiary
 tile.extractor.name=Evaporator
