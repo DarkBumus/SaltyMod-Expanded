@@ -42,8 +42,8 @@ public class ShapelessRecipes {
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.saltGrass), new ItemStack(ModBlocks.saltDirtLite), new ItemStack(Items.wheat_seeds));
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.blossomPlanks, 4), new ItemStack(ModBlocks.blossomLog));
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.blossomPlanks, 4), new ItemStack(ModBlocks.blossomStrippedLog));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.blossomPlanks, 4), new ItemStack(ModBlocks.blossomBark));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.blossomPlanks, 4), new ItemStack(ModBlocks.blossomStrippedBark));
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.blossomPlanks, 4), new ItemStack(ModBlocks.blossomWood));
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.blossomPlanks, 4), new ItemStack(ModBlocks.blossomStrippedWood));
 
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.royalJelly), new ItemStack(ModItems.beeGrub));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.mineralMud, 4), new ItemStack(ModBlocks.mudBlock));

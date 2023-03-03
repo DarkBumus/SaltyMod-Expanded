@@ -25,7 +25,7 @@ public class OreDictionary {
         net.minecraftforge.oredict.OreDictionary.registerOre("blockMud", ModBlocks.mudBrickDry);
         net.minecraftforge.oredict.OreDictionary.registerOre("logWood", ModBlocks.blossomLog);
         net.minecraftforge.oredict.OreDictionary.registerOre("logWood", ModBlocks.blossomStrippedLog);
-        net.minecraftforge.oredict.OreDictionary.registerOre("logWood", ModBlocks.blossomBark);
+        net.minecraftforge.oredict.OreDictionary.registerOre("logWood", ModBlocks.blossomWood);
         net.minecraftforge.oredict.OreDictionary.registerOre("plankWood", ModBlocks.blossomPlanks);
         net.minecraftforge.oredict.OreDictionary.registerOre("stairWood", ModBlocks.blossomStairs);
         net.minecraftforge.oredict.OreDictionary.registerOre("slabWood", ModBlocks.blossomSlab);

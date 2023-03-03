@@ -10,11 +10,11 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 
-public class BlockOnion extends BlockCrops {
+public class CropOnion extends BlockCrops {
     @SideOnly(Side.CLIENT)
     private IIcon[] icons;
 
-    public BlockOnion(String name, CreativeTabs tab) {
+    public CropOnion(String name, CreativeTabs tab) {
         setBlockName(name);
         setStepSound(soundTypeGrass);
         setCreativeTab(tab);

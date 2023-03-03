@@ -58,7 +58,7 @@ public class ModItems {
 
     public static Item dough = new Dough("dough", tab, "dough");
 
-    public static Item onion = new ItemSeedFood(2, 0.2F, ModBlocks.blockOnion, Blocks.farmland).setUnlocalizedName("onion").setCreativeTab(tab).setTextureName("saltmod:onion");
+    public static Item onion = new ItemSeedFood(2, 0.2F, ModBlocks.cropOnion, Blocks.farmland).setUnlocalizedName("onion").setCreativeTab(tab).setTextureName("saltmod:onion");
 
     public static Item saltWortSeed = new SaltWortSeed("saltWortSeed", tab);
 
@@ -278,7 +278,7 @@ public class ModItems {
 
     public static Item toughJelly = new ToughJelly("toughJelly", tab, "tough_jelly");
 
-    public static Item rainmakerStar = new MainItems("RainmakerStar", tab, "rainmaker_star");
+    public static Item rainmakerStar = new MainItems("rainmakerStar", tab, "rainmaker_star");
 
     public static Item rainmaker = new Rainmaker("rainmaker", tab, "rainmaker");
 

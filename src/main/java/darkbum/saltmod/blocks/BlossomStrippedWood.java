@@ -9,11 +9,11 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
-public class BlossomStrippedBark extends BlockRotatedPillar {
+public class BlossomStrippedWood extends BlockRotatedPillar {
     @SideOnly(Side.CLIENT)
     private IIcon SIDE;
 
-    public BlossomStrippedBark(String name, CreativeTabs tab) {
+    public BlossomStrippedWood(String name, CreativeTabs tab) {
         super(Material.wood);
         setStepSound(soundTypeWood);
         setBlockName(name);

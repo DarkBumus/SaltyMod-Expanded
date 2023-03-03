@@ -1,6 +1,7 @@
 ﻿CREATIVE TAB
 
-itemGroup.saltTab=Salty Mod
+itemGroup.saltTab=SaltyMod Expanded
+
 
 BLOCKS
 
@@ -30,7 +31,6 @@ tile.mudBrickWet.name=Wet Mud Bricks
 tile.mudBrickDry.name=Mud Bricks
 tile.mudBrickDryStairs.name=Mud Brick Stairs
 tile.mudBrickDrySlab.name=Mud Brick Slab
-
 
 tile.oakLogSaltCrusted.name=Salt Crusted Oak Log
 tile.blossomSapling.name=Blossom Sapling
@@ -69,12 +69,14 @@ tile.storageSack_Beetrootseeds.name=Beetroot Seed Sack
 
 tile.saltCrystal.name=Salt Crystal
 tile.saltWort.name=Saltwort
-tile.blockOnion.name=Onions
+tile.cropOnion.name=Onions
+
 
 ITEMS
 
 item.etfuturum.rabbit_stew.name=Rabbit Ragout
 item.etfuturum.beetroot_soup.name=Borscht
+item.etfuturum.sweet_berries.name=Sweetberries
 
 item.hungerFood.name=§5Void Apple
 item.hungerFood.tooltip=Drains the hunger bar
@@ -106,7 +108,7 @@ item.onion.name=Onion
 item.saltWortSeed.name=Saltwort
 item.goldenSaltWortSeed.name=Glistering Saltwort
 item.goldenPotato.name=Glistering Potato
-item.goldenBerries.name=Glistering Sweet Berries
+item.goldenBerries.name=Glistering Sweetberries
 item.saltBeefCooked.name=Salted Steak
 item.saltPorkchopCooked.name=Salted Cooked Porkchop
 item.saltMuttonCooked.name=Salted Cooked Mutton
@@ -169,7 +171,7 @@ item.saltWortHaunch.name=Cooked Haunch with Saltwort
 
 item.sugarApple.name=Sugared Apple
 item.sugarMelon.name=Sugared Melon Slice
-item.sugarBerries.name=Sugared Sweet Berries
+item.sugarBerries.name=Sugared Sweetberries
 item.fruitSalad.name=Fruit Salad
 item.sugarFruitSalad.name=Sugared Fruit Salad
 item.goldenFruitSalad.name=Glistering Fruit Salad
@@ -178,10 +180,10 @@ item.gratedCarrot.name=Grated Carrot
 item.sugarGratedCarrot.name=Sugared Grated Carrot
 item.melonSoup.name=Melon Soup
 item.sugarMelonSoup.name=Sugared Melon Soup
-item.honeyedBerries.name=Honey Glazed Sweet Berries
+item.honeyedBerries.name=Honey Glazed Sweetberries
 item.honeyedApple.name=Honey Glazed Apple
 item.honeyedPorkchop.name=Honey Glazed Porkchop
-item.chocolateBerries.name=Chocolate Laced Sweet Berries
+item.chocolateBerries.name=Chocolate Laced Sweetberries
 item.chocolateBar.name=Chocolate Bar
 item.chocolateBar.tooltip=Don't eat too much of it!
 item.chocolateBar.mess.0=Too much!
@@ -192,7 +194,7 @@ item.chocolateBar.mess.3=Blargh!
 item.chocolatePie.name=Chocolate Pie
 item.carrotPie.name=Carrot Pie
 item.applePie.name=Apple Pie
-item.sweetberryPie.name=Sweet Berry Pie
+item.sweetberryPie.name=Sweetberry Pie
 item.potatoPie.name=Potato Pie
 item.onionPie.name=Onion Pie
 item.fishPie.name=Cod Pie
@@ -210,7 +212,7 @@ item.pickledCalamari.name=Pickled Calamari
 item.pickledOnion.name=Pickled Onion
 item.pickledBeetroot.name=Pickled Beetroot
 item.preservedMelon.name=Melon Preserves
-item.preservedSweetberries.name=Sweet Berry Preserves
+item.preservedSweetberries.name=Sweetberry Preserves
 item.preservedApple.name=Apple Preserves
 item.cobblerConcoction.name=Cobbler's Concoction
 item.cobblerConcoction.tooltip=Icky, but rather helpful
@@ -230,9 +232,10 @@ item.mud_boots.name=Foot Mud Mask
 
 item.toughJelly.name=Tough Jelly
 
-item.rainmakerStar.name=Salt Star
+item.rainmakerStar.name=Rainmaker Star
 item.rainmaker.name=Rainmaker
 item.rainmaker.tooltip=Should explode above the clouds
+
 
 MOD ITEMS
 
@@ -253,6 +256,7 @@ item.bop_saltSaladVeggie.name=Salted Veggie Salad
 item.bop_saltSaladShroom.name=Salted Shroom Salad
 item.bop_saltRiceBowl.name=Salted Bowl of Rice
 item.bop_pickledTurnip.name=Pickled Turnip
+
 
 ACHIEVEMENTS
 
@@ -288,6 +292,7 @@ achievement.saltLake=Crunching underfoot
 achievement.saltLake.desc=Walk on a dried salt lake
 achievement.saltCrystal=Wonder of Nature
 achievement.saltCrystal.desc=Find a salt crystal in deep caves
+
 
 BIOMES/GENERATION
 

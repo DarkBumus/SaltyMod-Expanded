@@ -1,11 +1,13 @@
-﻿CREATIVE TAB
+﻿KREATIVMODUS-TAB
 
-itemGroup.saltTab=Salty Mod Expanded
+itemGroup.saltTab=SaltyMod Expanded
 
-BLOCKS
+
+BLÖCKE
 
 tile.saltOre.name=Steinsalz
 tile.saltDeepslateOre.name=Tiefenschiefer-Steinsalz
+tile.etfuturum.deepslate_saltore.name=Tiefenschiefer-Steinsalz
 tile.saltLake.name=Salzseeboden
 tile.saltBlock.name=Salzblock
 tile.saltBlockChiseled.name=Gemeißelter Salzblock
@@ -27,11 +29,20 @@ tile.saltGrass.name=Leicht Salziges Gras
 tile.mudBlock.name=Mineralschlamm
 tile.mudBrickWet.name=Feuchte Schlammziegel
 tile.mudBrickDry.name=Schlammziegel
+tile.mudBrickDryStairs.name=Schlammziegeltreppe
+tile.mudBrickDrySlab.name=Schlammziegelstufe
+
 tile.oakLogSaltCrusted.name=Salzverkrusteter Eichenstamm
+tile.blossomSapling.name=Blütholzsetzling
 tile.blossomLog.name=Blütholzstamm
+tile.blossomBark.name=Blütholz
+tile.blossomStrippedLog.name=Entrindeter Blütholzstamm
+tile.blossomStrippedBark.name=Entrindetes Blütholz
 tile.blossomBurrow.name=Blütholznest
 tile.blossomLeaves.name=Blütholzlaub
 tile.blossomPlanks.name=Blütholzbretter
+tile.blossomStairs.name=Blütholztreppe
+tile.blossomSlab.name=Blütholzstufe
 tile.blossomDoor.name=Blütholztür
 tile.blossomTrapdoor.name=Blütholzfalltür
 
@@ -41,8 +52,25 @@ container.extractor=Verdampfer
 container.discard=Verwerfen
 fluid.milk=Milch
 
+tile.storageCrate_Carrot.name=Karottenkiste
+tile.storageCrate_Potato.name=Kartoffelkiste
+tile.storageCrate_Poipotato.name=Giftige Kartoffelkiste
+tile.storageCrate_Onion.name=Zwiebelkiste
+tile.storageCrate_Beetroot.name=Rote-Bete-Kiste
+tile.storageBarrel_Cod.name=Kabeljau-Fass
+tile.storageBarrel_Salmon.name=Lachs-Fass
+tile.storageBarrel_Clownfish.name=Tropenfisch-Fass
+tile.storageBarrel_Pufferfish.name=Kugelfisch-Fass
+tile.storageSack_Wheatseeds.name=Weizenkörner-Sack
+tile.storageSack_Melonseeds.name=Melonenkerne-Sack
+tile.storageSack_Pumpkinseeds.name=Kürbiskerne-Sack
+tile.storageSack_Saltwort.name=Salzkraut-Sack
+tile.storageSack_Beetrootseeds.name=Rote-Bete-Samen-Sack
+
 tile.saltCrystal.name=Salzkristall
 tile.saltWort.name=Salzkraut
+tile.cropOnion.name=Zwiebeln
+
 
 ITEMS
 
@@ -56,13 +84,12 @@ item.effectFoodNeg.name=§4Apfel negativer Effekte
 item.effectFoodNeg.tooltip=Gibt alle negativen Trankeffekte
 item.testFood.name=§bTestapfel
 
-item.goldenPotato.name=Glitzernde Kartoffel
-item.goldenBerries.name=Glitzernde Süßbeeren
-item.fishClownfishCooked.name=Gebratener Tropenfisch
-item.haunchRaw.name=Rohe Pferdehüfte
-item.haunchCooked.name=Gebratene Pferdehüfte
-item.calamariRaw.name=Rohe Calamari
-item.calamariCooked.name=Gebratene Calamari
+item.blossom.name=Blüte
+item.queenBee.name=Bienenkönigin
+item.waxComb.name=Wachswabe
+item.honeyComb.name=Honigwabe
+item.beeGrub.name=Bienenlarve
+item.royalJelly.name=Gelée Royale
 
 item.mineralMud.name=Mineralschlammklumpen
 item.soda.name=Backsoda
@@ -72,13 +99,18 @@ item.salt.name=Salz
 item.saltPinch.name=Prise Salz
 item.sugarPinch.name=Prise Zucker
 
-item.escargot.name=Zähe Gallerte
+item.dough.name=Teig
+item.onion.name=Zwiebel
 item.saltWortSeed.name=Salzkraut
 item.goldenSaltWortSeed.name=Glitzerndes Salzkraut
+item.goldenPotato.name=Glitzernde Kartoffel
+item.goldenBerries.name=Glitzernde Süßbeeren
 item.saltBeefCooked.name=Salziges Steak
 item.saltPorkchopCooked.name=Salziges gebratenes Schweinefleisch
 item.saltMuttonCooked.name=Salziges gebratenes Hammelfleisch
 item.saltStriderCooked.name=Salziges Schreitersteak
+item.haunchRaw.name=Rohe Pferdehüfte
+item.haunchCooked.name=Gebratene Pferdehüfte
 item.saltHaunchCooked.name=Salzige gebratene Pferdehüfte
 item.saltPotatoBaked.name=Salzige gebackene Kartoffel
 item.saltChickenCooked.name=Salziges gebratenes Hühnchen
@@ -87,20 +119,24 @@ item.saltFishCod.name=Salziger Kabeljau
 item.saltFishCodCooked.name=Salziger gebratener Kabeljau
 item.saltFishSalmon.name=Salziger Lachs
 item.saltFishSalmonCooked.name=Salziger gebratener Lachs
+item.fishClownfishCooked.name=Gebratener Tropenfisch
 item.saltFishClownfish.name=Salziger Tropenfisch
 item.saltFishClownfishCooked.name=Salziger gebratener Tropenfisch
+item.calamariRaw.name=Rohe Calamari
+item.calamariCooked.name=Gebratene Calamari
 item.saltCalamariCooked.name=Salzige gebratene Calamari
 item.cornedBeef.name=Corned Beef
 item.saltBread.name=Salziges Brot
 item.saltBeetroot.name=Salzige Rote Bete
 item.saltEgg.name=Weichgekochtes Ei
+
 item.saltMushroomStew.name=Salzige Pilzsuppe
 item.saltRabbitStew.name=Salziges Kaninchenragout
 item.saltBeetrootSoup.name=Salziger Borschtsch
 item.pumpkinPorridge.name=Kürbisbrei
 item.saltPumpkinPorridge.name=Salziger Kürbisbrei
 item.cactusStew.name=Kaktussuppe
-item.saltCactusStew.name=Salzige Kürbissuppe
+item.saltCactusStew.name=Salzige Kaktussuppe
 item.vegetableStew.name=Gedünstetes Gemüse
 item.saltVegetableStew.name=Salziges gedünstetes Gemüse
 item.potatoMushroom.name=Kartoffeln mit Pilzen
@@ -128,6 +164,7 @@ item.saltWortPorkchop.name=Gebratenes Schweinefleisch mit Salzkraut
 item.saltWortHoneyedPorkchop.name=Honigglasiertes Schweinefleisch mit Salzkraut
 item.saltWortMutton.name=Gebratenes Hammelfleisch mit Salzkraut
 item.saltWortHaunch.name=Gebratene Pferdehüfte mit Salzkraut
+
 item.sugarApple.name=Zuckriger Apfel
 item.sugarMelon.name=Zuckrige Melonenscheibe
 item.sugarBerries.name=Zuckrige Süßbeeren
@@ -149,6 +186,7 @@ item.chocolateBar.mess.0=Zuviel!
 item.chocolateBar.mess.1=Ich bin satt!
 item.chocolateBar.mess.2=Mir wird schlecht!
 item.chocolateBar.mess.3=Börk!
+
 item.chocolatePie.name=Schokoladenkuchen
 item.carrotPie.name=Karottenkuchen
 item.applePie.name=Apfelkuchen
@@ -162,11 +200,13 @@ item.calamariPie.name=Calamarikuchen
 item.shepherdsPie.name=Shepherd's Pie
 item.mushroomPie.name=Pilzkuchen
 item.saltWortPie.name=Salzkrautkuchen
+
 item.fermentedSaltWort.name=Fermentiertes Salzkraut
 item.pickledMushroom.name=Eingelegte Pilze
 item.pickledFern.name=Eingelegter Farn
 item.pickledCalamari.name=Eingelegte Calamari
 item.pickledOnion.name=Eingelegte Zwiebeln
+item.pickledBeetroot.name=Eingelegte Rote Bete
 item.preservedMelon.name=Melonen-Eingemachtes
 item.preservedSweetberries.name=Süßbeeren-Eingemachtes
 item.preservedApple.name=Apfel-Eingemachtes
@@ -186,11 +226,14 @@ item.mudChestplate.name=Körperschlammmaske
 item.mudLeggings.name=Beinschlammmaske
 item.mudBoots.name=Fußschlammmaske
 
-item.saltStar.name=Salzstern
+item.toughJelly.name=Zähe Gallerte
+
+item.rainmakerStar.name=Regenmacher-Stern
 item.rainmaker.name=Regenmacher
 item.rainmaker.tooltip=Sollte über den Wolken explodieren
 
-MOD ITEMS
+
+MOD-ITEMS
 
 item.hemoglobin.name=Hämoglobin
 
@@ -203,12 +246,13 @@ item.saltWortVenison.name=Hirschsteak mit Salzkraut
 item.saltWortMeefSteak.name=Meef-Steak mit Salzkraut
 
 item.bop_poison.name=Gift
+item.bop_saltShroomPowder.name=Salziges Pilzpulver
 item.bop_sugarSaladFruit.name=Zuckriger Obstsalat
 item.bop_saltSaladVeggie.name=Salziger Gemüsesalat
 item.bop_saltSaladShroom.name=Salziger Pilzsalat
 item.bop_saltRiceBowl.name=Salzige Schale mit Reis
 item.bop_pickledTurnip.name=Eingelegte Rübe
-item.bop_saltShroomPowder.name=Salziges Pilzpulver
+
 
 ACHIEVEMENTS
 
@@ -244,3 +288,8 @@ achievement.saltLake=Knirschen unter den Füßen
 achievement.saltLake.desc=Laufe auf einem ausgetrockneten Salzsee
 achievement.saltCrystal=Wunder der Natur
 achievement.saltCrystal.desc=Finde einen Salzkrstall tief in einer Höhle
+
+
+BIOME/WELTGENERATION
+
+generator.saltMarsh=Salzwiese
