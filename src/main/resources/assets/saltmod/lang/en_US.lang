@@ -47,7 +47,7 @@ tile.blossomFenceGate.name=Blossom Fence Gate
 tile.blossomDoor.name=Blossom Door
 tile.blossomTrapdoor.name=Blossom Trapdoor
 tile.blossomPressurePlate.name=Blossom Pressure Plate
-tile.blossomButton.name=Blossom Button
+tile.blossom_button.name=Blossom Button
 tile.blossomLeaves.name=Blossom Leaves
 tile.blossomSapling.name=Blossom Sapling
 

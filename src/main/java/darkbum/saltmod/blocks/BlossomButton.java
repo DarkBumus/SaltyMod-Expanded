@@ -18,6 +18,8 @@ public class BlossomButton extends BlockButton {
     public BlossomButton() {
         super(true);
         setCreativeTab(CommonProxy.saltTab);
+        setStepSound(soundTypeWood);
+        setBlockName("blossom_button");
     }
 
     @SideOnly(Side.CLIENT)

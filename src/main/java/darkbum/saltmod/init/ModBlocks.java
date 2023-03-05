@@ -5,10 +5,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import darkbum.saltmod.blockitems.*;
 import darkbum.saltmod.blocks.*;
 import net.minecraft.block.*;
-import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import darkbum.saltmod.SaltMod;
-//import darkbum.saltmod.block.MudBrickDryWall;
 import darkbum.saltmod.common.CommonProxy;
 
 public class ModBlocks {

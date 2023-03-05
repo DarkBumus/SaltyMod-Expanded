@@ -89,4 +89,18 @@ public class SaltMod {
         config.postInit();
         proxy.postInit(event);
     }
+
+/*    @Mod.EventHandler
+    public void missingMapping(FMLMissingMappingsEvent event) {
+        for (FMLMissingMappingsEvent.MissingMapping mapping : event.getAll()) {
+            if (mapping.type == GameRegistry.Type.BLOCK) {
+                switch (mapping.name) {
+                    case "SaltMod:saltLamp":
+                        mapping.remap(GameRegistry.findBlock(MODID, "salt_lamp"));
+                        break;
+                    default:
+                }
+            }
+        }
+    }*/
 }
