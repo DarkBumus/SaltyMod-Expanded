@@ -7,6 +7,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Random;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 import darkbum.saltmod.api.RainMakerEvent;
 import darkbum.saltmod.common.CommonProxy;
@@ -26,6 +27,7 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFlowerPot;
 import net.minecraft.util.DamageSource;
@@ -33,12 +35,13 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fluids.FluidRegistry;
 
-public class SaltModEvent {
+public class SaltModEventHandler {
     private static final UUID uuid1 = UUID.fromString("ca3f8f85-df1e-4fe8-8cf6-e7030f33ed8e");
 
     private static final UUID uuid2 = UUID.fromString("42e70891-8397-4cf0-aca3-1a1d237768eb");
@@ -54,6 +57,10 @@ public class SaltModEvent {
     private static final AttributeModifier legsModifierUP = new AttributeModifier(uuid3, "mudBoostUP", 6.0D, 0);
 
     private static final AttributeModifier feetModifierUP = new AttributeModifier(uuid4, "mudBoostUP", 4.0D, 0);
+
+    public static Random random;
+
+    public static int dropped;
 
     @SubscribeEvent
     public void onPlayerAttack(AttackEntityEvent e) {
@@ -220,11 +227,52 @@ public class SaltModEvent {
 
     @SubscribeEvent
     public void breakBlock(BlockEvent.HarvestDropsEvent event) {
-        if (event.world.getTileEntity(event.x, event.y, event.z) != null && event.world
-            .getTileEntity(event.x, event.y, event.z) instanceof TileEntityFlowerPot) {
+        if (event.world.getTileEntity(event.x, event.y, event.z) != null &&
+            event.world.getTileEntity(event.x, event.y, event.z) instanceof TileEntityFlowerPot) {
             TileEntityFlowerPot te = (TileEntityFlowerPot)event.world.getTileEntity(event.x, event.y, event.z);
             if (te.getFlowerPotItem() == Item.getItemFromBlock(ModBlocks.saltWort))
                 event.drops.set(1, new ItemStack(ModItems.saltWortSeed));
+        }
+    }
+
+    @SubscribeEvent
+    public void onEntityDrop(LivingDropsEvent event) {
+
+        random = new Random();
+        dropped = random.nextInt(2);
+
+        int dropAmountHorse = random.nextInt(2) + 1;
+        int dropAmountSquid = random.nextInt(3) + 1;
+        int dropAmountZombie = 1;
+        if (event.entityLiving instanceof net.minecraft.entity.passive.EntitySquid)
+            if (event.entityLiving.isBurning()) {
+                event.entityLiving.entityDropItem(new ItemStack(ModItems.calamariCooked, dropAmountSquid), dropped);
+            } else {
+                event.entityLiving.entityDropItem(new ItemStack(ModItems.calamariRaw, dropAmountSquid), dropped);
+            }
+        if (event.entityLiving instanceof net.minecraft.entity.passive.EntityHorse &&
+            !event.entityLiving.isChild())
+            if (event.entityLiving.isBurning()) {
+                event.entityLiving.entityDropItem(new ItemStack(ModItems.haunchCooked, dropAmountHorse), dropped);
+            } else {
+                event.entityLiving.entityDropItem(new ItemStack(ModItems.haunchRaw, dropAmountHorse), dropped);
+            }
+        if (event.entityLiving instanceof net.minecraft.entity.monster.EntityZombie &&
+            !event.entityLiving.isChild() &&
+            ThreadLocalRandom.current().nextInt(0, 1000) < 25) {
+            event.entityLiving.entityDropItem(new ItemStack(ModItems.onion, dropAmountZombie), dropped);
+        }
+    }
+
+    @SubscribeEvent
+    public void onDrops(BlockEvent.HarvestDropsEvent event) {
+
+        if (event.block == Blocks.red_flower &&
+            event.blockMetadata == 2 &&
+            event.harvester != null &&
+            event.harvester.getHeldItem() != null &&
+            event.harvester.getHeldItem().getItem() instanceof ItemHoe) {
+            event.drops.add(new ItemStack(ModItems.onion));
         }
     }
 }

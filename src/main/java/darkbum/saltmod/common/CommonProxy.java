@@ -40,12 +40,11 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 import darkbum.saltmod.SaltMod;
 import darkbum.saltmod.dispenser.DispenserBehaviorRainmaker;
 import darkbum.saltmod.dispenser.DispenserBehaviorSaltPinch;
-import darkbum.saltmod.entities.DropHandler;
 import darkbum.saltmod.entities.EntityRainmaker;
 import darkbum.saltmod.entities.EntityRainmakerDust;
 import darkbum.saltmod.inventory.gui.GuiExtractorHandler;
 import darkbum.saltmod.network.ExtractorButtonMessage;
-import darkbum.saltmod.network.SaltModEvent;
+import darkbum.saltmod.network.SaltModEventHandler;
 import darkbum.saltmod.network.SaltWortMessage;
 import darkbum.saltmod.tileentity.TileEntityExtractor;
 
@@ -71,7 +70,7 @@ public class CommonProxy {
     public static SimpleNetworkWrapper network;
 
     public void preInit(FMLPreInitializationEvent event) {
-        SaltModEvent sEvent = new SaltModEvent();
+        SaltModEventHandler sEvent = new SaltModEventHandler();
         FMLCommonHandler.instance().bus().register(sEvent);
         MinecraftForge.EVENT_BUS.register(sEvent);
         NetworkRegistry.INSTANCE.registerGuiHandler(SaltMod.instance, new GuiExtractorHandler());
@@ -84,7 +83,6 @@ public class CommonProxy {
 
         AchievSalt.init();
         ClientProxy.setBlockRenderers();
-        MinecraftForge.EVENT_BUS.register(new DropHandler());
         if (event.getSide().isClient()) {
             ClientProxy.setEntityRenderers();
         }

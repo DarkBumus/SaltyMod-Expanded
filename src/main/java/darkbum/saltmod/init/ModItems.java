@@ -32,29 +32,29 @@ public class ModItems {
 
     public static Item achievItem = new AchievItem("achievItem", null);
 
-    public static Item blossom = new MainItems("blossom", tab, "blossom");
+    public static Item blossom = new SaltItems("blossom", tab, "blossom");
 
-    public static Item queenBee = new MainItems("queenBee", tab, "queen_bee");
+    public static Item queenBee = new SaltItems("queenBee", tab, "queen_bee").setMaxStackSize(1).setMaxDamage(18);
 
-    public static Item waxComb = new MainItems("waxComb", tab, "waxcomb");
+    public static Item waxComb = new SaltItems("waxComb", tab, "waxcomb");
 
-    public static Item honeyComb = new MainItems("honeyComb", tab, "honeycomb");
+    public static Item honeyComb = new SaltItems("honeyComb", tab, "honeycomb");
 
-    public static Item beeGrub = new MainItems("beeGrub", tab, "bee_grub");
+    public static Item beeGrub = new SaltItems("beeGrub", tab, "bee_grub");
 
-    public static Item royalJelly = new MainItems("royalJelly", tab, "royal_jelly");
+    public static Item royalJelly = new SaltItems("royalJelly", tab, "royal_jelly");
 
-    public static Item mineralMud = new MainItems("mineralMud", tab, "mineral_mud");
+    public static Item mineralMud = new SaltItems("mineralMud", tab, "mineral_mud");
 
-    public static Item soda = new MainItems("soda", tab, "baking_soda");
+    public static Item soda = new SaltItems("soda", tab, "baking_soda");
 
-    public static Item powderedMilk = new MainItems("powderedMilk", tab, "powdered_milk");
+    public static Item powderedMilk = new SaltItems("powderedMilk", tab, "powdered_milk");
 
     public static Item salt = new Salt("salt", tab, "salt");
 
-    public static Item saltPinch = new MainItems("saltPinch", tab, "salt_pinch");
+    public static Item saltPinch = new SaltItems("saltPinch", tab, "salt_pinch");
 
-    public static Item sugarPinch = new MainItems("sugarPinch", tab, "sugar_pinch");
+    public static Item sugarPinch = new SaltItems("sugarPinch", tab, "sugar_pinch");
 
     public static Item dough = new Dough("dough", tab, "dough");
 
@@ -278,7 +278,7 @@ public class ModItems {
 
     public static Item toughJelly = new ToughJelly("toughJelly", tab, "tough_jelly");
 
-    public static Item rainmakerStar = new MainItems("rainmakerStar", tab, "rainmaker_star");
+    public static Item rainmakerStar = new SaltItems("rainmakerStar", tab, "rainmaker_star");
 
     public static Item rainmaker = new Rainmaker("rainmaker", tab, "rainmaker");
 
@@ -297,7 +297,7 @@ public class ModItems {
 
     public static Item tf_saltWortMeefSteak = new SaltFood("tf_saltWortMeefSteak", 8, 0.9F, Items.bowl, new PotionEffect(Potion.regeneration.id, 100, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:" + "tf/" + "tf_saltwort_meef_steak");
 
-    public static Item bop_poison = new MainItems("bop_poison", tab, "BOP_Poison").setTextureName("saltmod:" + "bop/" + "bop_poison");
+    public static Item bop_poison = new SaltItems("bop_poison", tab, "BOP_Poison").setTextureName("saltmod:" + "bop/" + "bop_poison");
 
     public static Item bop_saltShroomPowder = ((ItemFood)(new SaltFood("bop_saltShroomPowder", 2, 0.2F)).setAlwaysEdible().setCreativeTab(tab)).setPotionEffect(Potion.confusion.id, 15, 0, 0.3F).setTextureName("saltmod:" + "bop/" + "bop_salt_shroom_powder");
 

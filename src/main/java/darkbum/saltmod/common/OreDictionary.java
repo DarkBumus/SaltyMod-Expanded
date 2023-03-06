@@ -33,6 +33,7 @@ public class OreDictionary {
 
         net.minecraftforge.oredict.OreDictionary.registerOre("itemRedmeat", Items.cooked_beef);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemRedmeat", ModItems.haunchCooked);
+        net.minecraftforge.oredict.OreDictionary.registerOre("materialWaxcomb", ModItems.waxComb);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemSweetener", Items.sugar);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemSweetener", ModItems.honeyComb);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemHoney", ModItems.honeyComb);
@@ -58,28 +59,23 @@ public class OreDictionary {
             net.minecraftforge.oredict.OreDictionary.registerOre("foodDough", ModItems.dough);
             net.minecraftforge.oredict.OreDictionary.registerOre("listAllseeds", ModItems.saltWortSeed);
             net.minecraftforge.oredict.OreDictionary.registerOre("listAllsugar", ModItems.honeyComb);
-
-//Et Futurum Requiem Ore Dictionaries
-            if (Loader.isModLoaded("etfuturum")) {
-                net.minecraftforge.oredict.OreDictionary.registerOre("materialWaxcomb", ModItems.waxComb);
-            }
+        }
 
 //Ore Recipes
-            GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Items.mushroom_stew), new ItemStack(Items.bowl), "blockMushroom", "blockMushroom"));
-            GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.mineralMud), new ItemStack(ModItems.soda), new ItemStack(ModItems.salt), "itemCoal", new ItemStack(Items.clay_ball)));
-            GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.saltMushroomStew), new ItemStack(ModItems.saltPinch), new ItemStack(Items.bowl), "blockMushroom", "blockMushroom"));
-            GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.vegetableStew), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), "blockMushroom"));
-            GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.saltVegetableStew), new ItemStack(ModItems.saltPinch), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), "blockMushroom"));
-            GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.potatoMushroom), new ItemStack(Items.bowl), new ItemStack(Items.potato), new ItemStack(Items.potato), "blockMushroom"));
-            GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.saltPotatoMushroom), new ItemStack(ModItems.saltPinch), new ItemStack(Items.bowl), new ItemStack(Items.potato), new ItemStack(Items.potato), "blockMushroom"));
-            GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.honeyedApple), "itemHoney", new ItemStack(Items.apple)));
-            GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.honeyedPorkchop), "itemHoney", new ItemStack(Items.cooked_porkchop)));
-            GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.shepherdsPie), new ItemStack(ModItems.salt), "itemRedmeat", new ItemStack(ModItems.dough), new ItemStack(Items.egg)));
-            GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.mushroomPie), new ItemStack(ModItems.salt), "blockMushroom", "blockMushroom", new ItemStack(Items.egg)));
-            GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.pickledMushroom), new ItemStack(ModItems.saltPinch), new ItemStack(Items.potionitem), "blockMushroom", "blockMushroom"));
-            GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.muffin), "itemRoyaljelly", new ItemStack(Items.dye, 1, 3), new ItemStack(ModItems.dough), new ItemStack(Items.egg)));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Items.mushroom_stew), new ItemStack(Items.bowl), "blockMushroom", "blockMushroom"));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.mineralMud), new ItemStack(ModItems.soda), new ItemStack(ModItems.salt), "itemCoal", new ItemStack(Items.clay_ball)));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.saltMushroomStew), new ItemStack(ModItems.saltPinch), new ItemStack(Items.bowl), "blockMushroom", "blockMushroom"));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.vegetableStew), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), "blockMushroom"));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.saltVegetableStew), new ItemStack(ModItems.saltPinch), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), "blockMushroom"));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.potatoMushroom), new ItemStack(Items.bowl), new ItemStack(Items.potato), new ItemStack(Items.potato), "blockMushroom"));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.saltPotatoMushroom), new ItemStack(ModItems.saltPinch), new ItemStack(Items.bowl), new ItemStack(Items.potato), new ItemStack(Items.potato), "blockMushroom"));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.honeyedApple), "itemHoney", new ItemStack(Items.apple)));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.honeyedPorkchop), "itemHoney", new ItemStack(Items.cooked_porkchop)));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.shepherdsPie), new ItemStack(ModItems.salt), "itemRedmeat", new ItemStack(ModItems.dough), new ItemStack(Items.egg)));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.mushroomPie), new ItemStack(ModItems.salt), "blockMushroom", "blockMushroom", new ItemStack(Items.egg)));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.pickledMushroom), new ItemStack(ModItems.saltPinch), new ItemStack(Items.potionitem), "blockMushroom", "blockMushroom"));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.muffin), "itemRoyaljelly", new ItemStack(Items.dye, 1, 3), new ItemStack(ModItems.dough), new ItemStack(Items.egg)));
 
-            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.apiary), "xxx", "yyy", "xxx", 'x', "plankWood", 'y', Items.item_frame));
-        }
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.apiary), "xxx", "yyy", "xxx", 'x', "plankWood", 'y', Items.item_frame));
     }
 }
