@@ -93,9 +93,9 @@ public class SaltMod {
 
         ItemFood apple = (ItemFood) Items.apple;
         apple.healAmount = 10;
-        apple.saturationModifier = 10;
+        apple.saturationModifier = 10F;
 
-        
+
     }
 
 /*    @Mod.EventHandler
