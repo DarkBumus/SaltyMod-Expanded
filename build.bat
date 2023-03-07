@@ -1,1 +1,1 @@
-cmd /k gradlew build
+cmd /k gradlew build --stacktrace

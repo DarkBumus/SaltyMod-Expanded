@@ -9,6 +9,8 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 import darkbum.saltmod.common.*;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemFood;
 import net.minecraft.util.EnumChatFormatting;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -88,6 +90,12 @@ public class SaltMod {
     public void postInit(FMLPostInitializationEvent event) {
         config.postInit();
         proxy.postInit(event);
+
+        ItemFood apple = (ItemFood) Items.apple;
+        apple.healAmount = 10;
+        apple.saturationModifier = 10;
+
+        
     }
 
 /*    @Mod.EventHandler
