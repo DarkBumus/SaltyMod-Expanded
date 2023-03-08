@@ -84,12 +84,12 @@ public class SaltMod {
     }*/
     }
 
-/*    @EventHandler
+    @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        /*config.postInit();
+        config.postInit();
         proxy.postInit(event);
 
-        ItemFood apple = (ItemFood) Items.apple;
+        /*ItemFood apple = (ItemFood) Items.apple;
         apple.healAmount = 1;
         apple.saturationModifier = 0.3F;
 
@@ -99,7 +99,7 @@ public class SaltMod {
             ItemFood food = (ItemFood)sweet_berries;
             food.healAmount = 6;
             food.saturationModifier = 2f;
-        }
+        }*/
 
 
     }
