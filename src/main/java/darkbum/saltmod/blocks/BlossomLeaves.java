@@ -25,8 +25,8 @@ public class BlossomLeaves extends BlockLeaves {
     @SideOnly(Side.CLIENT)
     @Override
     public void registerBlockIcons(IIconRegister reg) {
-        field_150129_M[0] = new IIcon[] {reg.registerIcon("saltmod:leaves_blossom")};
-        field_150129_M[1] = new IIcon[] {reg.registerIcon("saltmod:leaves_blossom_opaque")};
+        field_150129_M[0] = new IIcon[] {reg.registerIcon("saltmod:blossom_leaves")};
+        field_150129_M[1] = new IIcon[] {reg.registerIcon("saltmod:blossom_leaves_opaque")};
     }
 
     @SideOnly(Side.CLIENT)

@@ -154,7 +154,6 @@ public class CommonProxy {
             GameRegistry.addShapelessRecipe(bop_poisondart, new ItemStack(bop_dart), ModItems.bop_poison );
         }
 
-
         if(Loader.isModLoaded("harvestcraft")) {
             Item honeycombItem = GameRegistry.findItem("harvestcraft", "honeycombItem");
             Item royaljellyItem = GameRegistry.findItem("harvestcraft", "royaljellyItem");
@@ -187,7 +186,7 @@ public class CommonProxy {
             Item StriderFlankCooked = GameRegistry.findItem("netherlicious", "StriderFlankCooked");
             if(StriderFlankCooked != null) {
                 OreDictionary.registerOre("itemRedmeat", StriderFlankCooked);
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltStriderCooked), new ItemStack(ModItems.saltPinch), new ItemStack(StriderFlankCooked) );
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltStriderCooked), new ItemStack(ModItems.saltPinch), new ItemStack(StriderFlankCooked));
             }
         }
 
@@ -201,53 +200,54 @@ public class CommonProxy {
             Item sweet_berries = GameRegistry.findItem("etfuturum", "sweet_berries");
             if(mutton_cooked != null) {
                 OreDictionary.registerOre("itemRedmeat", mutton_cooked);
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltMuttonCooked), new ItemStack(ModItems.saltPinch), new ItemStack(mutton_cooked) );
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltWortMutton), new ItemStack(Items.bowl), new ItemStack(mutton_cooked), new ItemStack(ModItems.saltWortSeed), new ItemStack(ModItems.saltWortSeed) );
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltMuttonCooked), new ItemStack(ModItems.saltPinch), new ItemStack(mutton_cooked));
             }
             if(rabbit_cooked != null) {
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltRabbitCooked), new ItemStack(ModItems.saltPinch), new ItemStack(rabbit_cooked) );
-                GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.saltRabbitStew), new ItemStack(ModItems.saltPinch), new ItemStack(Items.bowl), new ItemStack(rabbit_cooked), new ItemStack(Items.carrot), new ItemStack(Items.baked_potato), "Mushrooms" ));
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltRabbitCooked), new ItemStack(ModItems.saltPinch), new ItemStack(rabbit_cooked));
+                GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.saltRabbitStew), new ItemStack(ModItems.saltPinch), new ItemStack(Items.bowl), new ItemStack(rabbit_cooked), new ItemStack(Items.carrot), new ItemStack(Items.baked_potato), "Mushrooms"));
             }
             if(rabbit_stew != null) {
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltRabbitStew), new ItemStack(ModItems.saltPinch), new ItemStack(rabbit_stew) );
-                GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(rabbit_stew), new ItemStack(Items.bowl), new ItemStack(rabbit_cooked), new ItemStack(Items.carrot), new ItemStack(Items.baked_potato), "Mushrooms" ));
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltRabbitStew), new ItemStack(ModItems.saltPinch), new ItemStack(rabbit_stew));
+                GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(rabbit_stew), new ItemStack(Items.bowl), new ItemStack(rabbit_cooked), new ItemStack(Items.carrot), new ItemStack(Items.baked_potato), "Mushrooms"));
             }
             if(beetroot != null) {
-                GameRegistry.addShapelessRecipe(new ItemStack(beetroot, 9), new ItemStack(ModBlocks.storageCrate, 1, 4) );
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltBeetroot), new ItemStack(ModItems.saltPinch), new ItemStack(beetroot) );
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltBeetrootSoup), new ItemStack(ModItems.saltPinch), new ItemStack(Items.bowl), new ItemStack(beetroot), new ItemStack(beetroot), new ItemStack(beetroot), new ItemStack(beetroot), new ItemStack(beetroot), new ItemStack(beetroot) );
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.beetrootSalad), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), new ItemStack(beetroot) );
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltBeetrootSalad), new ItemStack(ModItems.saltPinch), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), new ItemStack(beetroot) );
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltBeetrootSalad), new ItemStack(ModItems.saltPinch), new ItemStack(ModItems.beetrootSalad) );
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.herringUFC), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), new ItemStack(beetroot), new ItemStack(Items.egg), new ItemStack(Items.fish), new ItemStack(Blocks.red_flower, 1, 2) );
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltHerringUFC), new ItemStack(ModItems.saltPinch), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), new ItemStack(beetroot), new ItemStack(Items.egg), new ItemStack(Items.fish), new ItemStack(Blocks.red_flower, 1, 2) );
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltHerringUFC), new ItemStack(ModItems.saltPinch), new ItemStack(ModItems.herringUFC) );
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.pickledBeetroot), new ItemStack(ModItems.saltPinch), new ItemStack(Items.potionitem), new ItemStack(beetroot), new ItemStack(beetroot) );
-                GameRegistry.addRecipe(new ItemStack(ModBlocks.storageCrate, 1, 4), "xxx", "xxx", "xxx", 'x', new ItemStack(beetroot) );
+                GameRegistry.addShapelessRecipe(new ItemStack(beetroot, 9), new ItemStack(ModBlocks.storageCrate, 1, 4));
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltBeetroot), new ItemStack(ModItems.saltPinch), new ItemStack(beetroot));
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltBeetrootSoup), new ItemStack(ModItems.saltPinch), new ItemStack(Items.bowl), new ItemStack(beetroot), new ItemStack(beetroot), new ItemStack(beetroot), new ItemStack(beetroot), new ItemStack(beetroot), new ItemStack(beetroot));
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.beetrootSalad), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), new ItemStack(beetroot));
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltBeetrootSalad), new ItemStack(ModItems.saltPinch), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), new ItemStack(beetroot));
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltBeetrootSalad), new ItemStack(ModItems.saltPinch), new ItemStack(ModItems.beetrootSalad));
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.herringUFC), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), new ItemStack(beetroot), new ItemStack(Items.egg), new ItemStack(Items.fish), new ItemStack(Blocks.red_flower, 1, 2));
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltHerringUFC), new ItemStack(ModItems.saltPinch), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), new ItemStack(beetroot), new ItemStack(Items.egg), new ItemStack(Items.fish), new ItemStack(Blocks.red_flower, 1, 2));
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltHerringUFC), new ItemStack(ModItems.saltPinch), new ItemStack(ModItems.herringUFC));
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.pickledBeetroot), new ItemStack(ModItems.saltPinch), new ItemStack(Items.potionitem), new ItemStack(beetroot), new ItemStack(beetroot));
+                GameRegistry.addRecipe(new ItemStack(ModBlocks.storageCrate, 1, 4), "xxx", "xxx", "xxx", 'x', new ItemStack(beetroot));
             }
             if(beetroot_seeds != null) {
-                GameRegistry.addShapelessRecipe(new ItemStack(beetroot_seeds, 9), new ItemStack(ModBlocks.storageSack, 1, 4) );
-                GameRegistry.addRecipe(new ItemStack(ModBlocks.storageSack, 1, 4), "xxx", "xxx", "xxx", 'x', new ItemStack(beetroot_seeds) );
+                GameRegistry.addShapelessRecipe(new ItemStack(beetroot_seeds, 9), new ItemStack(ModBlocks.storageSack, 1, 4));
+                GameRegistry.addRecipe(new ItemStack(ModBlocks.storageSack, 1, 4), "xxx", "xxx", "xxx", 'x', new ItemStack(beetroot_seeds));
             }
             if(beetroot_soup != null) {
-                GameRegistry.addShapelessRecipe(new ItemStack(beetroot_soup), new ItemStack(Items.bowl), new ItemStack(beetroot), new ItemStack(beetroot), new ItemStack(beetroot), new ItemStack(beetroot), new ItemStack(beetroot), new ItemStack(beetroot) );
-//                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltBeetrootSoup), new ItemStack(ModItems.saltPinch), new ItemStack(beetroot_soup) );
+                GameRegistry.addShapelessRecipe(new ItemStack(beetroot_soup), new ItemStack(Items.bowl), new ItemStack(beetroot), new ItemStack(beetroot), new ItemStack(beetroot), new ItemStack(beetroot), new ItemStack(beetroot), new ItemStack(beetroot));
+//                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltBeetrootSoup), new ItemStack(ModItems.saltPinch), new ItemStack(beetroot_soup));
             }
             if(sweet_berries != null) {
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.chocolateBerries), new ItemStack(Items.dye, 1, 3), new ItemStack(sweet_berries) );
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.sweetberryPie), new ItemStack(Items.sugar), new ItemStack(sweet_berries), new ItemStack(sweet_berries), new ItemStack(Items.egg) );
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.sugarBerries), new ItemStack(ModItems.sugarPinch), new ItemStack(sweet_berries) );
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.fruitSalad), new ItemStack(Items.bowl), new ItemStack(Items.apple), new ItemStack(sweet_berries), new ItemStack(Items.melon) );
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.sugarFruitSalad), new ItemStack(ModItems.sugarPinch), new ItemStack(Items.bowl), new ItemStack(Items.apple), new ItemStack(sweet_berries), new ItemStack(Items.melon) );
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.goldenFruitSalad), new ItemStack(Items.bowl), new ItemStack(Items.golden_apple), new ItemStack(ModItems.goldenBerries), new ItemStack(Items.speckled_melon) );
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.sugarGoldenFruitSalad), new ItemStack(ModItems.sugarPinch), new ItemStack(Items.bowl), new ItemStack(Items.golden_apple), new ItemStack(ModItems.goldenBerries), new ItemStack(Items.speckled_melon) );
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.preservedSweetberries), new ItemStack(ModItems.sugarPinch), new ItemStack(Items.potionitem), new ItemStack(sweet_berries), new ItemStack(sweet_berries) );
-                GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.honeyedBerries), "Honeys", new ItemStack(sweet_berries) ));
-                GameRegistry.addRecipe(new ItemStack(ModItems.goldenBerries), "xxx", "xyx", "xxx", 'x', Items.gold_nugget, 'y', new ItemStack(sweet_berries) );
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.chocolateBerries), new ItemStack(Items.dye, 1, 3), new ItemStack(sweet_berries));
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.sweetberryPie), new ItemStack(Items.sugar), new ItemStack(sweet_berries), new ItemStack(sweet_berries), new ItemStack(Items.egg));
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.sugarBerries), new ItemStack(ModItems.sugarPinch), new ItemStack(sweet_berries));
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.fruitSalad), new ItemStack(Items.bowl), new ItemStack(Items.apple), new ItemStack(sweet_berries), new ItemStack(Items.melon));
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.sugarFruitSalad), new ItemStack(ModItems.sugarPinch), new ItemStack(Items.bowl), new ItemStack(Items.apple), new ItemStack(sweet_berries), new ItemStack(Items.melon));
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.goldenFruitSalad), new ItemStack(Items.bowl), new ItemStack(Items.golden_apple), new ItemStack(ModItems.goldenBerries), new ItemStack(Items.speckled_melon));
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.sugarGoldenFruitSalad), new ItemStack(ModItems.sugarPinch), new ItemStack(Items.bowl), new ItemStack(Items.golden_apple), new ItemStack(ModItems.goldenBerries), new ItemStack(Items.speckled_melon));
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.preservedSweetberries), new ItemStack(ModItems.sugarPinch), new ItemStack(Items.potionitem), new ItemStack(sweet_berries), new ItemStack(sweet_berries));
+                GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.honeyedBerries), "Honeys", new ItemStack(sweet_berries)));
+                GameRegistry.addRecipe(new ItemStack(ModItems.goldenBerries), "xxx", "xyx", "xxx", 'x', Items.gold_nugget, 'y', new ItemStack(sweet_berries));
+                GameRegistry.addRecipe(new ItemStack(ModItems.goldenBerries, 1, 1), "xxx", "xyx", "xxx", 'x', Blocks.gold_block, 'y', new ItemStack(sweet_berries));
+
             }
         } else {
-            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.fruitSalad), new ItemStack(Items.bowl), new ItemStack(Items.apple), new ItemStack(Items.carrot), new ItemStack(Items.melon) );
-            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.sugarFruitSalad), new ItemStack(ModItems.sugarPinch), new ItemStack(Items.bowl), new ItemStack(Items.apple), new ItemStack(Items.carrot), new ItemStack(Items.melon) );
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.fruitSalad), new ItemStack(Items.bowl), new ItemStack(Items.apple), new ItemStack(Items.carrot), new ItemStack(Items.melon));
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.sugarFruitSalad), new ItemStack(ModItems.sugarPinch), new ItemStack(Items.bowl), new ItemStack(Items.apple), new ItemStack(Items.carrot), new ItemStack(Items.melon));
         }
 
         if(Loader.isModLoaded("TwilightForest")) {
@@ -257,21 +257,19 @@ public class CommonProxy {
             Item hydraChop = GameRegistry.findItem("TwilightForest", "item.hydraChop");
             Item mushgloom = GameRegistry.findItem("TwilightForest", "tile.TFPlant");
             if(venisonCooked != null) {
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.tf_saltVenisonCooked), new ItemStack(ModItems.saltPinch), new ItemStack(venisonCooked) );
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.tf_saltWortVenison), new ItemStack(Items.bowl), new ItemStack(venisonCooked), new ItemStack(ModItems.saltWortSeed), new ItemStack(ModItems.saltWortSeed) );
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.tf_saltVenisonCooked), new ItemStack(ModItems.saltPinch), new ItemStack(venisonCooked));
             }
             if(meefSteak != null) {
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.tf_saltMeefSteak), new ItemStack(ModItems.saltPinch), new ItemStack(meefSteak) );
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.tf_saltWortMeefSteak), new ItemStack(Items.bowl), new ItemStack(meefSteak), new ItemStack(ModItems.saltWortSeed), new ItemStack(ModItems.saltWortSeed) );
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.tf_saltMeefSteak), new ItemStack(ModItems.saltPinch), new ItemStack(meefSteak));
             }
             if(meefStroganoff != null) {
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.tf_saltMeefStroganoff), new ItemStack(ModItems.saltPinch), new ItemStack(meefStroganoff) );
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.tf_saltMeefStroganoff), new ItemStack(ModItems.saltPinch), new ItemStack(meefStroganoff));
             }
             if(hydraChop != null) {
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.tf_saltHydraChop), new ItemStack(ModItems.saltPinch), new ItemStack(hydraChop) );
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.tf_saltHydraChop), new ItemStack(ModItems.saltPinch), new ItemStack(hydraChop));
             }
             if(mushgloom != null) {
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.tf_pickledMushgloom), new ItemStack(ModItems.saltPinch), new ItemStack(Items.potionitem), new ItemStack(mushgloom, 1, 9), new ItemStack(mushgloom, 1, 9) );
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.tf_pickledMushgloom), new ItemStack(ModItems.saltPinch), new ItemStack(Items.potionitem), new ItemStack(mushgloom, 1, 9), new ItemStack(mushgloom, 1, 9));
             }
         }
 
@@ -280,12 +278,12 @@ public class CommonProxy {
             if(food != null) {
                 OreDictionary.registerOre("itemSweetener", new ItemStack(food, 1, 9));
                 OreDictionary.registerOre("itemHoney", new ItemStack(food, 1, 9));
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.bop_saltShroomPowder), new ItemStack(ModItems.saltPinch), new ItemStack(food, 1, 1) );
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.bop_sugarSaladFruit), new ItemStack(ModItems.sugarPinch), new ItemStack(food, 1, 4) );
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.bop_saltSaladVeggie), new ItemStack(ModItems.saltPinch), new ItemStack(food, 1, 5) );
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.bop_saltSaladShroom), new ItemStack(ModItems.saltPinch), new ItemStack(food, 1, 6) );
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.bop_saltRiceBowl), new ItemStack(ModItems.saltPinch), new ItemStack(food, 1, 13) );
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.bop_pickledTurnip), new ItemStack(ModItems.saltPinch), new ItemStack(Items.potionitem), new ItemStack(food, 1, 11), new ItemStack(food, 1, 11) );
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.bop_saltShroomPowder), new ItemStack(ModItems.saltPinch), new ItemStack(food, 1, 1));
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.bop_sugarSaladFruit), new ItemStack(ModItems.sugarPinch), new ItemStack(food, 1, 4));
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.bop_saltSaladVeggie), new ItemStack(ModItems.saltPinch), new ItemStack(food, 1, 5));
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.bop_saltSaladShroom), new ItemStack(ModItems.saltPinch), new ItemStack(food, 1, 6));
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.bop_saltRiceBowl), new ItemStack(ModItems.saltPinch), new ItemStack(food, 1, 13));
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.bop_pickledTurnip), new ItemStack(ModItems.saltPinch), new ItemStack(Items.potionitem), new ItemStack(food, 1, 11), new ItemStack(food, 1, 11));
             }
         }
     }

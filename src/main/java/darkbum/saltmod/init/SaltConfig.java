@@ -9,6 +9,8 @@ import darkbum.saltmod.SaltMod;
 
 public class SaltConfig extends Configuration {
 
+    public static boolean developerFoods;
+
     public static int saltOreFrequency;
 
     public static int saltOreSize;
@@ -69,6 +71,7 @@ public class SaltConfig extends Configuration {
     public void preInit() {
         String[] defaultCloudLevel = { "0=128", "7=160" };
         load();
+        developerFoods = getBoolean("DeveloperFoods", "Debug", false, "If true, adds developer testing food items");
         saltOreFrequency = getInt("SaltOreFrequency", "World", 4, 1, 10, "Salt ore frequency");
         saltOreSize = getInt("SaltOreSize", "World", 5, 1, 10, "Salt ore size");
         saltLakeGroupRarity = getInt("SaltLakeGroupRarity", "World", 500, 1, 1000, "Rarity of the salt lake groups");

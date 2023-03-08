@@ -28,7 +28,7 @@ public class ModItems {
 //    field_76434_w = Health Boost
 //    field_76443_y = Saturation
 //    field_76444_x = Absorption
-//    public static Item testFood = new SaltFood("testFood", 8, 0.6F, Items.glass_bottle).setAlwaysEdible().setCreativeTab(tab).setTextureName("saltmod:" + "dev/" + "test_food");
+    public static Item testFood = new SaltFood("testFood", 2, 0.3F, new PotionEffect(Potion.field_76443_y.id, 300)).setAlwaysEdible().setCreativeTab(tab).setTextureName("saltmod:" + "dev/" + "test_food");
 
     public static Item achievItem = new AchievItem("achievItem", null);
 
@@ -64,15 +64,23 @@ public class ModItems {
 
     public static Item goldenSaltWortSeed = new SaltFood("goldenSaltWortSeed", 6, 0.8F, new PotionEffect(Potion.regeneration.id, 80, 1) ).setCreativeTab(tab).setTextureName("saltmod:glistering_saltwort");
 
-    public static Item goldenPotato = (new SaltFood("goldenPotato", 6, 0.9F, new PotionEffect(Potion.regeneration.id, 60, 0) ).setCreativeTab(tab).setTextureName("saltmod:glistering_potato"));
+    public static Item goldenPotato = new SaltFood("goldenPotato", 6, 0.9F, new PotionEffect(Potion.regeneration.id, 60, 0) ).setCreativeTab(tab).setTextureName("saltmod:glistering_potato");
 
-    public static Item goldenBerries = (new SaltFood("goldenBerries", 2, 1.2F).setCreativeTab(tab).setTextureName("saltmod:glistering_berries"));
-
-    public static Item saltBeefCooked = new SaltFood("saltBeefCooked", 9, 0.9F).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_beef");
+    public static Item goldenBerries = new GoldenBerries(2, 1.2F, false).setAlwaysEdible().setPotionEffect(Potion.regeneration.id, 5, 1, 1.0F).setUnlocalizedName("goldenBerries").setCreativeTab(tab).setTextureName("saltmod:glistering_berries");
 
     public static Item saltPorkchopCooked = new SaltFood("saltPorkchopCooked", 9, 0.9F).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_porkchop");
 
+    public static Item saltBeefCooked = new SaltFood("saltBeefCooked", 9, 0.9F).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_beef");
+
+    public static Item saltChickenCooked = new SaltFood("saltChickenCooked", 7, 0.7F).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_chicken");
+
+    public static Item saltRabbitCooked = new SaltFood("saltRabbitCooked", 6, 0.7F).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_rabbit");
+
     public static Item saltMuttonCooked = new SaltFood("saltMuttonCooked", 7, 0.9F).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_mutton");
+
+    public static Item striderRaw = new SaltFood("striderRaw", 3, 0.3F).setCreativeTab(tab).setTextureName("saltmod:strider");
+
+    public static Item striderCooked = new SaltFood("striderCooked", 8, 0.8F).setCreativeTab(tab).setTextureName("saltmod:strider_cooked");
 
     public static Item saltStriderCooked = new SaltFood("saltStriderCooked", 9, 0.9F).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_strider");
 
@@ -82,23 +90,13 @@ public class ModItems {
 
     public static Item saltHaunchCooked = new SaltFood("saltHaunchCooked", 9, 0.9F).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_haunch");
 
-    public static Item saltPotatoBaked = new SaltFood("saltPotatoBaked", 7, 0.7F).setCreativeTab(tab).setTextureName("saltmod:salt_baked_potato");
-
-    public static Item saltChickenCooked = new SaltFood("saltChickenCooked", 7, 0.7F).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_chicken");
-
-    public static Item saltRabbitCooked = new SaltFood("saltRabbitCooked", 6, 0.7F).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_rabbit");
-
-    public static Item saltFishCod = new SaltFood("saltFishCod", 5, 0.2F).setCreativeTab(tab).setTextureName("saltmod:salt_cod");
+    public static Item cornedBeef = new SaltFood("cornedBeef", 5, 1.2F).setCreativeTab(tab).setTextureName("saltmod:cured_meat");
 
     public static Item saltFishCodCooked = new SaltFood("saltFishCodCooked", 6, 0.7F).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_cod");
-
-    public static Item saltFishSalmon = new SaltFood("saltFishSalmon", 6, 0.2F).setCreativeTab(tab).setTextureName("saltmod:salt_salmon");
 
     public static Item saltFishSalmonCooked = new SaltFood("saltFishSalmonCooked", 7, 0.9F).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_salmon");
 
     public static Item fishClownfishCooked = new SaltFood("fishClownfishCooked", 4, 0.6F).setCreativeTab(tab).setTextureName("saltmod:cooked_tropical_fish");
-
-    public static Item saltFishClownfish = new SaltFood("saltFishClownfish", 4, 0.2F).setCreativeTab(tab).setTextureName("saltmod:salt_tropical_fish");
 
     public static Item saltFishClownfishCooked = new SaltFood("saltFishClownfishCooked", 5, 0.7F).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_tropical_fish");
 
@@ -108,9 +106,9 @@ public class ModItems {
 
     public static Item saltCalamariCooked = new SaltFood("saltCalamariCooked", 6, 0.6F).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_calamari");
 
-    public static Item cornedBeef = new SaltFood("cornedBeef", 5, 1.2F).setCreativeTab(tab).setTextureName("saltmod:cured_meat");
-
     public static Item saltBread = new SaltFood("saltBread", 6, 0.7F).setCreativeTab(tab).setTextureName("saltmod:salt_bread");
+
+    public static Item saltPotatoBaked = new SaltFood("saltPotatoBaked", 7, 0.7F).setCreativeTab(tab).setTextureName("saltmod:salt_baked_potato");
 
     public static Item saltBeetroot = new SaltFood("saltBeetroot", 2, 0.7F).setCreativeTab(tab).setTextureName("saltmod:salt_beetroot");
 
@@ -174,15 +172,15 @@ public class ModItems {
 
     public static Item goldenSaltWortSalad = new SaltFood("goldenSaltWortSalad", 7, 1.2F, Items.bowl, new PotionEffect(Potion.regeneration.id, 400, 1)).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:glistering_saltwort_salad");
 
-    public static Item saltWortBeef = new SaltFood("saltWortBeef", 10, 0.9F, Items.bowl, new PotionEffect(Potion.regeneration.id, 400, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:saltwort_cooked_beef");
+    public static Item saltWortBeef = new SaltFood("saltWortBeef", 10, 1.0F, Items.bowl, new PotionEffect(Potion.regeneration.id, 400, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:saltwort_cooked_beef");
 
-    public static Item saltWortPorkchop = new SaltFood("saltWortPorkchop", 10, 0.9F, Items.bowl, new PotionEffect(Potion.regeneration.id, 400, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:saltwort_cooked_porkchop");
+    public static Item saltWortPorkchop = new SaltFood("saltWortPorkchop", 10, 1.0F, Items.bowl, new PotionEffect(Potion.regeneration.id, 400, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:saltwort_cooked_porkchop");
 
-    public static Item saltWortHoneyedPorkchop = new SaltFood("saltWortHoneyedPorkchop", 9, 0.9F, Items.bowl, new PotionEffect(Potion.regeneration.id, 400, 1), new PotionEffect(Potion.field_76444_x.id, 900, 2)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:saltwort_honey_porkchop");
+    public static Item saltWortHoneyedPorkchop = new SaltFood("saltWortHoneyedPorkchop", 9, 1.0F, Items.bowl, new PotionEffect(Potion.regeneration.id, 400, 1), new PotionEffect(Potion.field_76444_x.id, 900, 2)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:saltwort_honey_porkchop");
 
-    public static Item saltWortMutton = new SaltFood("saltWortMutton", 8, 0.9F, Items.bowl, new PotionEffect(Potion.regeneration.id, 400, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:saltwort_cooked_mutton");
+    public static Item saltWortMutton = new SaltFood("saltWortMutton", 8, 1.0F, Items.bowl, new PotionEffect(Potion.regeneration.id, 400, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:saltwort_cooked_mutton");
 
-    public static Item saltWortHaunch = new SaltFood("saltWortHaunch", 10, 0.9F, Items.bowl, new PotionEffect(Potion.regeneration.id, 400, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:saltwort_cooked_haunch");
+    public static Item saltWortHaunch = new SaltFood("saltWortHaunch", 10, 1.0F, Items.bowl, new PotionEffect(Potion.regeneration.id, 400, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:saltwort_cooked_haunch");
 
     public static Item sugarApple = new SaltFood("sugarApple", 5, 0.4F).setCreativeTab(tab).setTextureName("saltmod:sugar_apple");
 
@@ -204,13 +202,13 @@ public class ModItems {
 
     public static Item melonSoup = new SaltFood("melonSoup", 4, 0.4F, Items.bowl, new PotionEffect(Potion.jump.id, 900, 0)).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:melon_soup");
 
-    public static Item sugarMelonSoup = new SaltFood("sugarMelonSoup", 4, 0.4F, Items.bowl, new PotionEffect(Potion.jump.id, 1200, 1)).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:sugar_melon_soup");
+    public static Item sugarMelonSoup = new SaltFood("sugarMelonSoup", 5, 0.5F, Items.bowl, new PotionEffect(Potion.jump.id, 1200, 1)).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:sugar_melon_soup");
 
-    public static Item honeyedBerries = new SaltFood("honeyedBerries", 2, 0.2F, new PotionEffect(Potion.field_76444_x.id, 300)).setCreativeTab(tab).setTextureName("saltmod:honey_berries");
+    public static Item honeyedPorkchop = new SaltFood("honeyedPorkchop", 8, 0.9F, new PotionEffect(Potion.field_76444_x.id, 900, 2)).setCreativeTab(tab).setTextureName("saltmod:honey_porkchop");
 
     public static Item honeyedApple = new SaltFood("honeyedApple", 4, 0.4F, new PotionEffect(Potion.field_76444_x.id, 600, 1)).setCreativeTab(tab).setTextureName("saltmod:honey_apple");
 
-    public static Item honeyedPorkchop = new SaltFood("honeyedPorkchop", 8, 0.9F, new PotionEffect(Potion.field_76444_x.id, 900, 2)).setCreativeTab(tab).setTextureName("saltmod:honey_porkchop");
+    public static Item honeyedBerries = new SaltFood("honeyedBerries", 2, 0.2F, new PotionEffect(Potion.field_76444_x.id, 300)).setCreativeTab(tab).setTextureName("saltmod:honey_berries");
 
     public static Item chocolateBerries = new SaltFood("chocolateBerries", 2, 0.2F, new PotionEffect(Potion.digSpeed.id, 300, 0)).setCreativeTab(tab).setTextureName("saltmod:chocolate_berries");
 
@@ -218,15 +216,19 @@ public class ModItems {
 
     public static Item chocolatePie = new SaltFood("chocolatePie", 7, 0.3F, new PotionEffect(Potion.digSpeed.id, 900, 2)).setCreativeTab(tab).setTextureName("saltmod:chocolate_pie");
 
-    public static Item carrotPie = new SaltFood("carrotPie", 8, 0.3F).setCreativeTab(tab).setTextureName("saltmod:carrot_pie");
-
     public static Item applePie = new SaltFood("applePie", 8, 0.3F).setCreativeTab(tab).setTextureName("saltmod:apple_pie");
 
     public static Item sweetberryPie = new SaltFood("sweetberryPie", 7, 0.3F).setCreativeTab(tab).setTextureName("saltmod:sweetberry_pie");
 
+    public static Item carrotPie = new SaltFood("carrotPie", 8, 0.3F).setCreativeTab(tab).setTextureName("saltmod:carrot_pie");
+
+    public static Item mushroomPie = new SaltFood("mushroomPie", 8, 0.3F).setCreativeTab(tab).setTextureName("saltmod:mushroom_pie");
+
     public static Item potatoPie = new SaltFood("potatoPie", 8, 0.3F).setCreativeTab(tab).setTextureName("saltmod:potato_pie");
 
     public static Item onionPie = new SaltFood("onionPie", 7, 0.3F).setCreativeTab(tab).setTextureName("saltmod:onion_pie");
+
+    public static Item shepherdsPie = new SaltFood("shepherdsPie", 10, 0.8F).setCreativeTab(tab).setTextureName("saltmod:shepherds_pie");
 
     public static Item fishPie = new SaltFood("fishPie", 8, 0.6F).setCreativeTab(tab).setTextureName("saltmod:cod_pie");
 
@@ -236,29 +238,25 @@ public class ModItems {
 
     public static Item calamariPie = new SaltFood("calamariPie", 8, 0.6F).setCreativeTab(tab).setTextureName("saltmod:calamari_pie");
 
-    public static Item shepherdsPie = new SaltFood("shepherdsPie", 10, 0.8F).setCreativeTab(tab).setTextureName("saltmod:shepherds_pie");
-
-    public static Item mushroomPie = new SaltFood("mushroomPie", 8, 0.3F).setCreativeTab(tab).setTextureName("saltmod:mushroom_pie");
-
     public static Item saltWortPie = new SaltFood("saltWortPie", 6, 0.3F, new PotionEffect(Potion.regeneration.id, 100, 0)).setAlwaysEdible().setCreativeTab(tab).setTextureName("saltmod:saltwort_pie");
 
     public static Item fermentedSaltWort = new SaltFood("fermentedSaltWort", 5, 0.8F, Items.glass_bottle, new PotionEffect(Potion.regeneration.id, 600, 2)).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:fermented_saltwort");
 
-    public static Item pickledMushroom = new SaltFood("pickledMushroom", 6, 0.8F, Items.glass_bottle).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:pickled_mushroom");
-
     public static Item pickledFern = new SaltFood("pickledFern", 4, 0.8F, Items.glass_bottle, new PotionEffect(Potion.resistance.id, 800, 0)).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:pickled_fern");
+
+    public static Item pickledMushroom = new SaltFood("pickledMushroom", 6, 0.8F, Items.glass_bottle).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:pickled_mushroom");
 
     public static Item pickledCalamari = new SaltFood("pickledCalamari", 6, 0.8F, Items.glass_bottle).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:pickled_calamari");
 
+    public static Item pickledBeetroot = new SaltFood("pickledBeetroot", 5, 0.8F, Items.glass_bottle).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:pickled_beetroot");
+
     public static Item pickledOnion = new SaltFood("pickledOnion", 6, 0.8F, Items.glass_bottle, new PotionEffect(Potion.resistance.id, 800, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:pickled_onion");
 
-    public static Item pickledBeetroot = new SaltFood("pickledBeetroot", 5, 0.8F, Items.glass_bottle).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:pickled_beetroot");
+    public static Item preservedApple = new SaltFood("preservedApple", 8, 0.8F, Items.glass_bottle).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:apple_preserves");
 
     public static Item preservedMelon = new SaltFood("preservedMelon", 6, 0.8F, Items.glass_bottle).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:melon_preserves");
 
     public static Item preservedSweetberries = new SaltFood("preservedSweetberries", 6, 0.8F, Items.glass_bottle).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:sweet_berry_preserves");
-
-    public static Item preservedApple = new SaltFood("preservedApple", 8, 0.8F, Items.glass_bottle).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:apple_preserves");
 
     public static Item cobblerConcoction = new CobblerConcoction("cobblerConcoction", tab, "cobbler_concoction");
 
@@ -314,11 +312,13 @@ public class ModItems {
     public static void init() {
         SaltMod.logger.info("Start to initialize Items");
 
-        GameRegistry.registerItem(hungerFood, "hungerFood");
-        GameRegistry.registerItem(stuffedFood, "stuffedFood");
-        GameRegistry.registerItem(effectFoodPos, "effectFoodPos");
-        GameRegistry.registerItem(effectFoodNeg, "effectFoodNeg");
-//        GameRegistry.registerItem(testFood, "testFood");
+        if(SaltConfig.developerFoods) {
+            GameRegistry.registerItem(hungerFood, "hungerFood");
+            GameRegistry.registerItem(stuffedFood, "stuffedFood");
+            GameRegistry.registerItem(effectFoodPos, "effectFoodPos");
+            GameRegistry.registerItem(effectFoodNeg, "effectFoodNeg");
+            GameRegistry.registerItem(testFood, "testFood");
+        }
         GameRegistry.registerItem(achievItem, "achivItem");
         GameRegistry.registerItem(blossom, "blossom");
         GameRegistry.registerItem(queenBee, "queenBee");
@@ -340,34 +340,33 @@ public class ModItems {
         if(Loader.isModLoaded("etfuturum")) {
             GameRegistry.registerItem(goldenBerries, "goldenBerries");
         }
-        GameRegistry.registerItem(saltBeefCooked, "saltBeefCooked");
         GameRegistry.registerItem(saltPorkchopCooked, "saltPorkchopCooked");
-        if(Loader.isModLoaded("etfuturum")) {
-            GameRegistry.registerItem(saltMuttonCooked, "saltMuttonCooked");
-        }
-        if(Loader.isModLoaded("netherlicious")) {
-            GameRegistry.registerItem(saltStriderCooked, "saltStriderCooked");
-        }
-        GameRegistry.registerItem(haunchRaw, "haunchRaw");
-        GameRegistry.registerItem(haunchCooked, "haunchCooked");
-        GameRegistry.registerItem(saltHaunchCooked, "saltHaunchCooked");
-        GameRegistry.registerItem(saltPotatoBaked, "saltPotatoBaked");
+        GameRegistry.registerItem(saltBeefCooked, "saltBeefCooked");
         GameRegistry.registerItem(saltChickenCooked, "saltChickenCooked");
         if(Loader.isModLoaded("etfuturum")) {
             GameRegistry.registerItem(saltRabbitCooked, "saltRabbitCooked");
+            GameRegistry.registerItem(saltMuttonCooked, "saltMuttonCooked");
         }
-        GameRegistry.registerItem(saltFishCod, "saltFishCod");
+//        if(Loader.isModLoaded("etfuturum") && !Loader.isModLoaded("netherlicious")) {
+            GameRegistry.registerItem(striderRaw, "striderRaw");
+            GameRegistry.registerItem(striderCooked, "striderCooked");
+//        }
+//        if(Loader.isModLoaded("netherlicious")) {
+            GameRegistry.registerItem(saltStriderCooked, "saltStriderCooked");
+//        }
+        GameRegistry.registerItem(haunchRaw, "haunchRaw");
+        GameRegistry.registerItem(haunchCooked, "haunchCooked");
+        GameRegistry.registerItem(saltHaunchCooked, "saltHaunchCooked");
+        GameRegistry.registerItem(cornedBeef, "cornedBeef");
         GameRegistry.registerItem(saltFishCodCooked, "saltFishCodCooked");
-        GameRegistry.registerItem(saltFishSalmon, "saltFishSalmon");
         GameRegistry.registerItem(saltFishSalmonCooked, "saltFishSalmonCooked");
         GameRegistry.registerItem(fishClownfishCooked, "fishClownfishCooked");
-        GameRegistry.registerItem(saltFishClownfish, "saltFishClownfish");
         GameRegistry.registerItem(saltFishClownfishCooked, "saltFishClownfishCooked");
         GameRegistry.registerItem(calamariRaw, "calamariRaw");
         GameRegistry.registerItem(calamariCooked, "calamariCooked");
         GameRegistry.registerItem(saltCalamariCooked, "saltCalamariCooked");
-        GameRegistry.registerItem(cornedBeef, "cornedBeef");
         GameRegistry.registerItem(saltBread, "saltBread");
+        GameRegistry.registerItem(saltPotatoBaked, "saltPotatoBaked");
         if(Loader.isModLoaded("etfuturum")) {
             GameRegistry.registerItem(saltBeetroot, "saltBeetroot");
         }
@@ -427,41 +426,42 @@ public class ModItems {
         GameRegistry.registerItem(sugarGratedCarrot, "sugarGratedCarrot");
         GameRegistry.registerItem(melonSoup, "melonSoup");
         GameRegistry.registerItem(sugarMelonSoup, "sugarMelonSoup");
-        GameRegistry.registerItem(honeyedBerries, "honeyedBerries");
-        GameRegistry.registerItem(honeyedApple, "honeyedApple");
         GameRegistry.registerItem(honeyedPorkchop, "honeyedPorkchop");
+        GameRegistry.registerItem(honeyedApple, "honeyedApple");
+        GameRegistry.registerItem(honeyedBerries, "honeyedBerries");
         if(Loader.isModLoaded("etfuturum")) {
             GameRegistry.registerItem(chocolateBerries, "chocolateBerries");
         }
         GameRegistry.registerItem(chocolateBar, "chocolateBar");
         GameRegistry.registerItem(chocolatePie, "chocolatePie");
-        GameRegistry.registerItem(carrotPie, "carrotPie");
         GameRegistry.registerItem(applePie, "applePie");
         if(Loader.isModLoaded("etfuturum")) {
             GameRegistry.registerItem(sweetberryPie, "sweetberryPie");
         }
+        GameRegistry.registerItem(carrotPie, "carrotPie");
+        GameRegistry.registerItem(mushroomPie, "mushroomPie");
         GameRegistry.registerItem(potatoPie, "potatoPie");
         GameRegistry.registerItem(onionPie, "onionPie");
+        GameRegistry.registerItem(shepherdsPie, "shepherdsPie");
+        GameRegistry.registerItem(shepherdsPie, "shepherdsPie");
         GameRegistry.registerItem(fishPie, "fishPie");
         GameRegistry.registerItem(fishSalmonPie, "fishSalmonPie");
         GameRegistry.registerItem(fishClownfishPie, "fishClownfishPie");
         GameRegistry.registerItem(calamariPie, "calamariPie");
-        GameRegistry.registerItem(shepherdsPie, "shepherdsPie");
-        GameRegistry.registerItem(mushroomPie, "mushroomPie");
         GameRegistry.registerItem(saltWortPie, "saltWortPie");
         GameRegistry.registerItem(fermentedSaltWort, "fermentedSaltWort");
-        GameRegistry.registerItem(pickledMushroom, "pickledMushroom");
         GameRegistry.registerItem(pickledFern, "pickledFern");
+        GameRegistry.registerItem(pickledMushroom, "pickledMushroom");
         GameRegistry.registerItem(pickledCalamari, "pickledCalamari");
-        GameRegistry.registerItem(pickledOnion, "pickledOnion");
         if(Loader.isModLoaded("etfuturum")) {
             GameRegistry.registerItem(pickledBeetroot, "pickledBeetroot");
         }
+        GameRegistry.registerItem(pickledOnion, "pickledOnion");
+        GameRegistry.registerItem(preservedApple, "preservedApple");
         GameRegistry.registerItem(preservedMelon, "preservedMelon");
         if(Loader.isModLoaded("etfuturum")) {
             GameRegistry.registerItem(preservedSweetberries, "preservedSweetberries");
         }
-        GameRegistry.registerItem(preservedApple, "preservedApple");
         GameRegistry.registerItem(cobblerConcoction, "cobblerConcoction");
         GameRegistry.registerItem(fizzyDrink, "fizzyDrink");
         GameRegistry.registerItem(muffin, "muffin");

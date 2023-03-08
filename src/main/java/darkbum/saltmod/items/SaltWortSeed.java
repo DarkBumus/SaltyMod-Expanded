@@ -29,21 +29,21 @@ public class SaltWortSeed extends ItemFood {
 
     @Override
     public void addInformation(ItemStack is, EntityPlayer player, List list, boolean flag) {
-        PotionEffect ptn_efct = new PotionEffect(Potion.regeneration.id, 40, 1);
+        PotionEffect effect = new PotionEffect(Potion.regeneration.id, 40, 1);
         String mess = "";
-        mess = mess + (Potion.potionTypes[ptn_efct.getPotionID()].isBadEffect() ? EnumChatFormatting.RED : EnumChatFormatting.GRAY);
-        mess = mess + StatCollector.translateToLocal(ptn_efct.getEffectName()).trim();
-        if (ptn_efct.getAmplifier() == 1) {
+        mess = mess + (Potion.potionTypes[effect.getPotionID()].isBadEffect() ? EnumChatFormatting.RED : EnumChatFormatting.GRAY);
+        mess = mess + StatCollector.translateToLocal(effect.getEffectName()).trim();
+        if (effect.getAmplifier() == 1) {
             mess = mess + " II";
-        } else if (ptn_efct.getAmplifier() == 2) {
+        } else if (effect.getAmplifier() == 2) {
             mess = mess + " III";
-        } else if (ptn_efct.getAmplifier() == 3) {
+        } else if (effect.getAmplifier() == 3) {
             mess = mess + " IV";
-        } else if (ptn_efct.getAmplifier() == 4) {
+        } else if (effect.getAmplifier() == 4) {
             mess = mess + " V";
         }
-        if (ptn_efct.getDuration() > 20)
-            mess = mess + " (" + Potion.getDurationString(ptn_efct) + ")";
+        if (effect.getDuration() > 20)
+            mess = mess + " (" + Potion.getDurationString(effect) + ")";
         mess = mess + EnumChatFormatting.RESET;
         list.add(mess);
     }

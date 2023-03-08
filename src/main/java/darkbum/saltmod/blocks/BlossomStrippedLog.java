@@ -41,8 +41,8 @@ public class BlossomStrippedLog extends BlockRotatedPillar {
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister icon) {
-        this.TOP = icon.registerIcon("saltmod:stripped_blossom_log_top");
-        this.SIDE = icon.registerIcon("saltmod:stripped_blossom_log");
+        this.TOP = icon.registerIcon("saltmod:blossom_log_stripped_top");
+        this.SIDE = icon.registerIcon("saltmod:blossom_log_stripped");
     }
 
     public boolean canSustainLeaves(IBlockAccess world, int x, int y, int z) {

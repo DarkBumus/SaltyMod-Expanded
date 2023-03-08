@@ -9,8 +9,6 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 import darkbum.saltmod.common.*;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemFood;
 import net.minecraft.util.EnumChatFormatting;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,7 +29,7 @@ import ru.liahim.saltmod.structure.SurfaceFinder;*/
 public class SaltMod {
     public static final String MODID = "SaltMod";
 
-    public static final String NAME = "SaltyMod Expanded";
+    public static final String NAME = "Saltymod Expanded";
 
     public static final String VERSION = "GRADLETOKEN_VERSION";
 
@@ -88,12 +86,20 @@ public class SaltMod {
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        config.postInit();
+        /*config.postInit();
         proxy.postInit(event);
 
         ItemFood apple = (ItemFood) Items.apple;
-        apple.healAmount = 10;
-        apple.saturationModifier = 10F;
+        apple.healAmount = 1;
+        apple.saturationModifier = 0.3F;
+
+
+        Item sweet_berries = GameRegistry.findItem("etfuturum", "sweet_berries");
+        if(sweet_berries instanceof ItemFood) {
+            ItemFood food = (ItemFood)sweet_berries;
+            food.healAmount = 6;
+            food.saturationModifier = 2f;
+        }*/
 
 
     }

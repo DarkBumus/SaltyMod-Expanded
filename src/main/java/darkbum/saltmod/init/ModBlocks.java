@@ -110,7 +110,7 @@ public class ModBlocks {
         SaltMod.logger.info("Start to initialize Blocks");
 
         GameRegistry.registerBlock(saltOre, "saltOre");
-        if(Loader.isModLoaded("etfuturum")) {
+        if(Loader.isModLoaded("etfuturum") && ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableDeepslate && ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableDeepslateOres) {
             saltDeepslateOre = new SaltDeepslateOre(saltOre);
             GameRegistry.registerBlock(saltDeepslateOre, "saltDeepslateOre");
         }
@@ -150,6 +150,8 @@ public class ModBlocks {
 //            GameRegistry.registerBlock(blossomFenceGate, "blossomFenceGate");
 //            GameRegistry.registerBlock(blossomDoor, "blossomDoor");
 //            GameRegistry.registerBlock(blossomTrapdoor, "blossomTrapdoor");
+        }
+        if(Loader.isModLoaded("etfuturum") && ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableWoodRedstone) {
             GameRegistry.registerBlock(blossomPressurePlate, "blossomPressurePlate");
             GameRegistry.registerBlock(blossomButton, "blossomButton");
         }
