@@ -126,6 +126,7 @@ public class CommonProxy {
     }
 
     public void postInit(FMLPostInitializationEvent event) {
+
         if (FluidRegistry.isFluidRegistered("milk")) {
             Fluid milk = FluidRegistry.getFluid("milk");
             ExtractRegistry.instance().addExtracting(milk, ModItems.powderedMilk, 1000, 0.0F);
