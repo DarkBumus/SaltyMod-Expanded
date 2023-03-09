@@ -8,12 +8,9 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-
-<<<<<<< Updated upstream
 import cpw.mods.fml.common.versioning.ComparableVersion;
-=======
 import cpw.mods.fml.common.registry.GameRegistry;
->>>>>>> Stashed changes
+
 import darkbum.saltmod.common.*;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -100,19 +97,13 @@ public class SaltMod {
         config.postInit();
         proxy.postInit(event);
 
-<<<<<<< Updated upstream
         if(Loader.isModLoaded("etfuturum") && new ComparableVersion(Loader.instance().getIndexedModList().get("etfuturum").getProcessedVersion().getVersionString()).compareTo(new ComparableVersion("2.4.4")) <= 0) {
             System.out.println("deepslate ore registered");
             ganymedes01.etfuturum.core.utils.DeepslateOreRegistry.addOre(ModBlocks.saltOre, ModBlocks.saltDeepslateOre);
         }
 
-        /*ItemFood apple = (ItemFood) Items.apple;
-        apple.healAmount = 1;
-=======
-
         ItemFood apple = (ItemFood) Items.apple;
         apple.healAmount = 2;
->>>>>>> Stashed changes
         apple.saturationModifier = 0.3F;
 
         ItemFood melon = (ItemFood) Items.melon;
