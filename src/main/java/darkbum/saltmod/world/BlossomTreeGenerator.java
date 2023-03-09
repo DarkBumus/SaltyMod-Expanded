@@ -23,7 +23,7 @@ public class BlossomTreeGenerator implements IWorldGenerator {
             return;
         }
 
-        if (biomeName == "Forest" || biomeName == "ForestHills" ) {
+        if (biomeName == "Forest" || biomeName == "ForestHills" || biomeName == "Birch Forest" || biomeName == "Birch Forest Hills") {
             xx = x + offsetXZ(random);
             zz = z + offsetXZ(random);
             yy = world.getTopSolidOrLiquidBlock(xx, zz);

@@ -58,205 +58,207 @@ public class ModItems {
 
     public static Item dough = new Dough("dough", tab, "dough");
 
-    public static Item onion = new ItemSeedFood(2, 0.2F, ModBlocks.cropOnion, Blocks.farmland).setUnlocalizedName("onion").setCreativeTab(tab).setTextureName("saltmod:onion");
+    public static Item onion = new ItemSeedFood(2, 0.3F, ModBlocks.cropOnion, Blocks.farmland).setUnlocalizedName("onion").setCreativeTab(tab).setTextureName("saltmod:onion");
 
     public static Item saltWortSeed = new SaltWortSeed("saltWortSeed", tab);
 
-    public static Item goldenSaltWortSeed = new SaltFood("goldenSaltWortSeed", 6, 0.8F, new PotionEffect(Potion.regeneration.id, 80, 1) ).setCreativeTab(tab).setTextureName("saltmod:glistering_saltwort");
+    public static Item goldenSaltWortSeed = new SaltFood("goldenSaltWortSeed", 6, 1.2F, new PotionEffect(Potion.regeneration.id, 60, 2)).setCreativeTab(tab).setTextureName("saltmod:glistering_saltwort");
 
-    public static Item goldenPotato = new SaltFood("goldenPotato", 6, 0.9F, new PotionEffect(Potion.regeneration.id, 60, 0) ).setCreativeTab(tab).setTextureName("saltmod:glistering_potato");
+    public static Item goldenPotato = new SaltFood("goldenPotato", 6, 1.2F).setCreativeTab(tab).setTextureName("saltmod:glistering_potato");
 
-    public static Item goldenBerries = new GoldenBerries(2, 1.2F, false).setAlwaysEdible().setPotionEffect(Potion.regeneration.id, 5, 1, 1.0F).setUnlocalizedName("goldenBerries").setCreativeTab(tab).setTextureName("saltmod:glistering_berries");
+    public static Item goldenBerries = new GoldenBerries(3, 0.6F, false).setAlwaysEdible().setPotionEffect(Potion.regeneration.id, 5, 1, 1.0F).setUnlocalizedName("goldenBerries").setCreativeTab(tab).setTextureName("saltmod:glistering_berries");
 
-    public static Item saltPorkchopCooked = new SaltFood("saltPorkchopCooked", 9, 0.9F).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_porkchop");
+    public static Item saltPorkchopCooked = new SaltFood("saltPorkchopCooked", 6, 0.7F, new PotionEffect(Potion.field_76434_w.id, 300, 3)).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_porkchop");
 
-    public static Item saltBeefCooked = new SaltFood("saltBeefCooked", 9, 0.9F).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_beef");
+    public static Item saltBeefCooked = new SaltFood("saltBeefCooked", 6, 0.7F, new PotionEffect(Potion.field_76434_w.id, 300, 3)).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_beef");
 
-    public static Item saltChickenCooked = new SaltFood("saltChickenCooked", 7, 0.7F).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_chicken");
+    public static Item saltChickenCooked = new SaltFood("saltChickenCooked", 5, 0.7F, new PotionEffect(Potion.field_76434_w.id, 300, 3)).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_chicken");
 
-    public static Item saltRabbitCooked = new SaltFood("saltRabbitCooked", 6, 0.7F).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_rabbit");
+    public static Item saltRabbitCooked = new SaltFood("saltRabbitCooked", 5, 0.7F, new PotionEffect(Potion.field_76434_w.id, 300, 3)).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_rabbit");
 
-    public static Item saltMuttonCooked = new SaltFood("saltMuttonCooked", 7, 0.9F).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_mutton");
+    public static Item saltMuttonCooked = new SaltFood("saltMuttonCooked", 6, 0.7F, new PotionEffect(Potion.field_76434_w.id, 300, 3)).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_mutton");
 
-    public static Item striderRaw = new SaltFood("striderRaw", 3, 0.3F).setCreativeTab(tab).setTextureName("saltmod:strider");
+    public static Item striderRaw = new SaltFood("striderRaw", 2, 0.6F).setCreativeTab(tab).setTextureName("saltmod:strider");
 
-    public static Item striderCooked = new SaltFood("striderCooked", 8, 0.8F).setCreativeTab(tab).setTextureName("saltmod:strider_cooked");
+    public static Item striderCooked = new SaltFood("striderCooked", 4, 0.6F).setCreativeTab(tab).setTextureName("saltmod:cooked_strider");
 
-    public static Item saltStriderCooked = new SaltFood("saltStriderCooked", 9, 0.9F).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_strider");
+    public static Item saltStriderCooked = new SaltFood("saltStriderCooked", 6, 0.7F, new PotionEffect(Potion.field_76434_w.id, 300, 3)).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_strider");
 
-    public static Item haunchRaw = new SaltFood("haunchRaw", 3, 0.3F).setCreativeTab(tab).setTextureName("saltmod:haunch");
+    public static Item haunchRaw = new SaltFood("haunchRaw", 2, 0.6F).setCreativeTab(tab).setTextureName("saltmod:haunch");
 
-    public static Item haunchCooked = new SaltFood("haunchCooked", 8, 0.8F).setCreativeTab(tab).setTextureName("saltmod:cooked_haunch");
+    public static Item haunchCooked = new SaltFood("haunchCooked", 4, 0.6F).setCreativeTab(tab).setTextureName("saltmod:cooked_haunch");
 
-    public static Item saltHaunchCooked = new SaltFood("saltHaunchCooked", 9, 0.9F).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_haunch");
+    public static Item saltHaunchCooked = new SaltFood("saltHaunchCooked", 6, 0.7F, new PotionEffect(Potion.field_76434_w.id, 300, 3)).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_haunch");
 
-    public static Item cornedBeef = new SaltFood("cornedBeef", 5, 1.2F).setCreativeTab(tab).setTextureName("saltmod:cured_meat");
+    public static Item cornedBeef = new SaltFood("cornedBeef", 4, 0.7F, new PotionEffect(Potion.field_76434_w.id, 300, 4)).setCreativeTab(tab).setTextureName("saltmod:cured_meat");
 
-    public static Item saltFishCodCooked = new SaltFood("saltFishCodCooked", 6, 0.7F).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_cod");
+    public static Item saltFishCodCooked = new SaltFood("saltFishCodCooked", 4, 0.6F, new PotionEffect(Potion.field_76434_w.id, 300, 2)).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_cod");
 
-    public static Item saltFishSalmonCooked = new SaltFood("saltFishSalmonCooked", 7, 0.9F).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_salmon");
+    public static Item saltFishSalmonCooked = new SaltFood("saltFishSalmonCooked", 4, 0.6F, new PotionEffect(Potion.field_76434_w.id, 300, 2)).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_salmon");
 
-    public static Item fishClownfishCooked = new SaltFood("fishClownfishCooked", 4, 0.6F).setCreativeTab(tab).setTextureName("saltmod:cooked_tropical_fish");
+    public static Item fishClownfishCooked = new SaltFood("fishClownfishCooked", 3, 0.5F).setCreativeTab(tab).setTextureName("saltmod:cooked_tropical_fish");
 
-    public static Item saltFishClownfishCooked = new SaltFood("saltFishClownfishCooked", 5, 0.7F).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_tropical_fish");
+    public static Item saltFishClownfishCooked = new SaltFood("saltFishClownfishCooked", 4, 0.6F, new PotionEffect(Potion.field_76434_w.id, 300, 2)).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_tropical_fish");
 
-    public static Item calamariRaw = new SaltFood("calamariRaw", 2, 0.1F).setCreativeTab(tab).setTextureName("saltmod:calamari");
+    public static Item calamariRaw = new SaltFood("calamariRaw", 2, 0.5F).setCreativeTab(tab).setTextureName("saltmod:calamari");
 
-    public static Item calamariCooked = new SaltFood("calamariCooked", 5, 0.6F).setCreativeTab(tab).setTextureName("saltmod:cooked_calamari");
+    public static Item calamariCooked = new SaltFood("calamariCooked", 3, 0.5F, new PotionEffect(Potion.field_76434_w.id, 300, 2)).setCreativeTab(tab).setTextureName("saltmod:cooked_calamari");
 
-    public static Item saltCalamariCooked = new SaltFood("saltCalamariCooked", 6, 0.6F).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_calamari");
+    public static Item saltCalamariCooked = new SaltFood("saltCalamariCooked", 5, 0.6F).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_calamari");
 
-    public static Item saltBread = new SaltFood("saltBread", 6, 0.7F).setCreativeTab(tab).setTextureName("saltmod:salt_bread");
+    public static Item saltBread = new SaltFood("saltBread", 4, 0.6F, new PotionEffect(Potion.field_76434_w.id, 300, 1)).setCreativeTab(tab).setTextureName("saltmod:salt_bread");
 
-    public static Item saltPotatoBaked = new SaltFood("saltPotatoBaked", 7, 0.7F).setCreativeTab(tab).setTextureName("saltmod:salt_baked_potato");
+    public static Item saltPotatoBaked = new SaltFood("saltPotatoBaked", 4, 0.6F, new PotionEffect(Potion.field_76434_w.id, 300, 1)).setCreativeTab(tab).setTextureName("saltmod:salt_baked_potato");
 
-    public static Item saltBeetroot = new SaltFood("saltBeetroot", 2, 0.7F).setCreativeTab(tab).setTextureName("saltmod:salt_beetroot");
+    public static Item saltBeetroot = new SaltFood("saltBeetroot", 2, 0.3F, new PotionEffect(Potion.field_76434_w.id, 300, 0)).setCreativeTab(tab).setTextureName("saltmod:salt_beetroot");
 
-    public static Item saltEgg = new SaltFood("saltEgg", 3, 0.4F).setMaxStackSize(16).setCreativeTab(tab).setTextureName("saltmod:salt_egg");
+    public static Item saltEgg = new SaltFood("saltEgg", 2, 0.3F, new PotionEffect(Potion.field_76434_w.id, 300, 0)).setMaxStackSize(16).setCreativeTab(tab).setTextureName("saltmod:salt_egg");
 
-    public static Item saltMushroomStew = new SaltFood("saltMushroomStew", 7, 0.7F, Items.bowl).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_mushroom_stew");
+    public static Item saltMushroomStew = new SaltFood("saltMushroomStew", 6, 0.8F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 120, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_mushroom_stew");
 
-    public static Item saltRabbitStew = new SaltFood("saltRabbitStew", 11, 0.7F, Items.bowl).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_rabbit_ragout");
+    public static Item saltRabbitStew = new SaltFood("saltRabbitStew", 8, 0.8F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 120, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_rabbit_ragout");
 
-    public static Item saltBeetrootSoup = new SaltFood("saltBeetrootSoup", 7, 0.7F, Items.bowl).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_borscht");
+    public static Item saltBeetrootSoup = new SaltFood("saltBeetrootSoup", 6, 0.8F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 120, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_borscht");
 
-    public static Item pumpkinPorridge = new SaltFood("pumpkinPorridge", 6, 0.6F, Items.bowl).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:pumpkin_porridge");
+    public static Item pumpkinPorridge = new SaltFood("pumpkinPorridge", 5, 0.7F, Items.bowl).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:pumpkin_porridge");
 
-    public static Item saltPumpkinPorridge = new SaltFood("saltPumpkinPorridge", 7, 0.7F, Items.bowl).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_pumpkin_porridge");
+    public static Item saltPumpkinPorridge = new SaltFood("saltPumpkinPorridge", 6, 0.8F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 120, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_pumpkin_porridge");
 
-    public static Item cactusStew = new SaltFood("cactusStew", 3, 0.6F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 400, 0)).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:cactus_stew");
+    public static Item cactusStew = new SaltFood("cactusStew", 5, 0.7F, Items.bowl, new PotionEffect(Potion.heal.id, 20, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:cactus_stew");
 
-    public static Item saltCactusStew = new SaltFood("saltCactusStew", 4, 0.7F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 800, 0)).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_cactus_stew");
+    public static Item saltCactusStew = new SaltFood("saltCactusStew", 6, 0.8F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 120, 0), new PotionEffect(Potion.heal.id, 20, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_cactus_stew");
 
-    public static Item vegetableStew = new SaltFood("vegetableStew", 5, 0.6F, Items.bowl).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:stewed_vegetables");
+    public static Item vegetableStew = new SaltFood("vegetableStew", 6, 0.7F, Items.bowl, new PotionEffect(Potion.nightVision.id, 300, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:stewed_vegetables");
 
-    public static Item saltVegetableStew = new SaltFood("saltVegetableStew", 6, 0.7F, Items.bowl).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_stewed_vegetables");
+    public static Item saltVegetableStew = new SaltFood("saltVegetableStew", 7, 0.8F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 120, 0), new PotionEffect(Potion.nightVision.id, 600, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_stewed_vegetables");
 
-    public static Item potatoMushroom = new SaltFood("potatoMushroom", 5, 0.6F, Items.bowl).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:potato_mushroom");
+    public static Item potatoMushroom = new SaltFood("potatoMushroom", 5, 0.7F, Items.bowl).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:potato_mushroom");
 
-    public static Item saltPotatoMushroom = new SaltFood("saltPotatoMushroom", 6, 0.7F, Items.bowl).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_potato_mushroom");
+    public static Item saltPotatoMushroom = new SaltFood("saltPotatoMushroom", 6, 0.8F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 120, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_potato_mushroom");
 
-    public static Item goldenVegetables = new SaltFood("goldenVegetables", 6, 1.2F, Items.bowl, new PotionEffect(Potion.regeneration.id, 80, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:glistering_vegetables");
+    public static Item goldenVegetables = new SaltFood("goldenVegetables", 10, 1.2F, Items.bowl, new PotionEffect(Potion.regeneration.id, 120, 2)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:glistering_vegetables");
 
-    public static Item saltGoldenVegetables = new SaltFood("saltGoldenVegetables", 7, 1.2F, Items.bowl, new PotionEffect(Potion.regeneration.id, 100, 2)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_glistering_vegetables");
+    public static Item saltGoldenVegetables = new SaltFood("saltGoldenVegetables", 11, 1.2F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 120, 0), new PotionEffect(Potion.regeneration.id, 180, 2)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_glistering_vegetables");
 
-    public static Item fishSoup = new SaltFood("fishSoup", 6, 0.6F, Items.bowl).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:cod_soup");
+    public static Item fishSoup = new SaltFood("fishSoup", 6, 0.7F, Items.bowl, new PotionEffect(Potion.waterBreathing.id, 300, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:cod_soup");
 
-    public static Item saltFishSoup = new SaltFood("saltFishSoup", 7, 0.7F, Items.bowl).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_cod_soup");
+    public static Item saltFishSoup = new SaltFood("saltFishSoup", 7, 0.8F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 120, 0), new PotionEffect(Potion.waterBreathing.id, 600, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_cod_soup");
 
-    public static Item fishSalmonSoup = new SaltFood("fishSalmonSoup", 7, 0.8F, Items.bowl).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salmon_soup");
+    public static Item fishSalmonSoup = new SaltFood("fishSalmonSoup", 6, 0.7F, Items.bowl, new PotionEffect(Potion.waterBreathing.id, 300, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salmon_soup");
 
-    public static Item saltFishSalmonSoup = new SaltFood("saltFishSalmonSoup", 8, 0.9F, Items.bowl).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_salmon_soup");
+    public static Item saltFishSalmonSoup = new SaltFood("saltFishSalmonSoup", 7, 0.8F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 120, 0), new PotionEffect(Potion.waterBreathing.id, 600, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_salmon_soup");
 
-    public static Item fishClownfishSoup = new SaltFood("fishClownfishSoup", 4, 0.6F, Items.bowl).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:tropical_fish_soup");
+    public static Item fishClownfishSoup = new SaltFood("fishClownfishSoup", 6, 0.7F, Items.bowl, new PotionEffect(Potion.waterBreathing.id, 300, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:tropical_fish_soup");
 
-    public static Item saltFishClownfishSoup = new SaltFood("saltFishClownfishSoup", 5, 0.7F, Items.bowl).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_tropical_fish_soup");
+    public static Item saltFishClownfishSoup = new SaltFood("saltFishClownfishSoup", 7, 0.8F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 120, 0), new PotionEffect(Potion.waterBreathing.id, 600, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_tropical_fish_soup");
 
-    public static Item dandelionSalad = new SaltFood("dandelionSalad", 4, 0.6F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 800, 0)).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:dandelion_salad");
+    public static Item dandelionSalad = new SaltFood("dandelionSalad", 6, 0.7F, Items.bowl, new PotionEffect(Potion.resistance.id, 300, 0), new PotionEffect(Potion.heal.id, 20, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:dandelion_salad");
 
-    public static Item saltDandelionSalad = new SaltFood("saltDandelionSalad", 5, 0.7F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 1200, 0)).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_dandelion_salad");
+    public static Item saltDandelionSalad = new SaltFood("saltDandelionSalad", 7, 0.8F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 120, 0), new PotionEffect(Potion.resistance.id, 600, 0), new PotionEffect(Potion.heal.id, 20, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_dandelion_salad");
 
-    public static Item wheatSprouts = new SaltFood("wheatSprouts", 3, 0.6F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 600, 0)).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:wheat_sprouts");
+    public static Item wheatSprouts = new SaltFood("wheatSprouts", 4, 0.7F, Items.bowl, new PotionEffect(Potion.heal.id, 20, 2)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:wheat_sprouts");
 
-    public static Item saltWheatSprouts = new SaltFood("saltWheatSprouts", 4, 0.7F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 900, 0)).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_wheat_sprouts");
+    public static Item saltWheatSprouts = new SaltFood("saltWheatSprouts", 5, 0.8F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 120, 0), new PotionEffect(Potion.heal.id, 20, 3)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_wheat_sprouts");
 
-    public static Item beetrootSalad = new SaltFood("beetrootSalad", 5, 0.4F, Items.bowl).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:beetroot_salad");
+    public static Item beetrootSalad = new SaltFood("beetrootSalad", 6, 0.7F, Items.bowl).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:beetroot_salad");
 
-    public static Item saltBeetrootSalad = new SaltFood("saltBeetrootSalad", 6, 0.5F, Items.bowl).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_beetroot_salad");
+    public static Item saltBeetrootSalad = new SaltFood("saltBeetrootSalad", 7, 0.8F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 120, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_beetroot_salad");
 
-    public static Item herringUFC = new SaltFood("herringUFC", 8, 0.9F, Items.bowl).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:dressed_herring");
+    public static Item herringUFC = new SaltFood("herringUFC", 6, 0.7F, Items.bowl, new PotionEffect(Potion.nightVision.id, 300, 0), new PotionEffect(Potion.waterBreathing.id, 300, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:dressed_herring");
 
-    public static Item saltHerringUFC = new SaltFood("saltHerringUFC", 9, 1.0F, Items.bowl).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_dressed_herring");
+    public static Item saltHerringUFC = new SaltFood("saltHerringUFC", 7, 0.8F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 120, 0), new PotionEffect(Potion.nightVision.id, 600, 0), new PotionEffect(Potion.waterBreathing.id, 600, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_dressed_herring");
 
-    public static Item saltWortSalad = new SaltFood("saltWortSalad", 6, 0.4F, Items.bowl, new PotionEffect(Potion.regeneration.id, 200, 1)).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:saltwort_salad");
+    public static Item saltWortSalad = new SaltFood("saltWortSalad", 5, 0.7F, Items.bowl, new PotionEffect(Potion.regeneration.id, 180, 2)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:saltwort_salad");
 
-    public static Item goldenSaltWortSalad = new SaltFood("goldenSaltWortSalad", 7, 1.2F, Items.bowl, new PotionEffect(Potion.regeneration.id, 400, 1)).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:glistering_saltwort_salad");
+    public static Item goldenSaltWortSalad = new SaltFood("goldenSaltWortSalad", 6, 1.2F, Items.bowl, new PotionEffect(Potion.regeneration.id, 180, 3)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:glistering_saltwort_salad");
 
-    public static Item saltWortBeef = new SaltFood("saltWortBeef", 10, 1.0F, Items.bowl, new PotionEffect(Potion.regeneration.id, 400, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:saltwort_cooked_beef");
+    public static Item saltWortPorkchop = new SaltFood("saltWortPorkchop", 12, 0.9F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 120, 0), new PotionEffect(Potion.regeneration.id, 300, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:saltwort_cooked_porkchop");
 
-    public static Item saltWortPorkchop = new SaltFood("saltWortPorkchop", 10, 1.0F, Items.bowl, new PotionEffect(Potion.regeneration.id, 400, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:saltwort_cooked_porkchop");
+    public static Item saltWortHoneyPorkchop = new SaltFood("saltWortHoneyPorkchop", 12, 0.9F, Items.bowl, new PotionEffect(Potion.regeneration.id, 300, 1), new PotionEffect(Potion.field_76444_x.id, 900, 2)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:saltwort_honey_porkchop");
 
-    public static Item saltWortHoneyedPorkchop = new SaltFood("saltWortHoneyedPorkchop", 9, 1.0F, Items.bowl, new PotionEffect(Potion.regeneration.id, 400, 1), new PotionEffect(Potion.field_76444_x.id, 900, 2)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:saltwort_honey_porkchop");
+    public static Item saltWortBeef = new SaltFood("saltWortBeef", 12, 0.9F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 120, 0), new PotionEffect(Potion.regeneration.id, 300, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:saltwort_cooked_beef");
 
-    public static Item saltWortMutton = new SaltFood("saltWortMutton", 8, 1.0F, Items.bowl, new PotionEffect(Potion.regeneration.id, 400, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:saltwort_cooked_mutton");
+    public static Item saltWortMutton = new SaltFood("saltWortMutton", 12, 0.9F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 120, 0), new PotionEffect(Potion.regeneration.id, 300, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:saltwort_cooked_mutton");
 
-    public static Item saltWortHaunch = new SaltFood("saltWortHaunch", 10, 1.0F, Items.bowl, new PotionEffect(Potion.regeneration.id, 400, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:saltwort_cooked_haunch");
+    public static Item saltWortStrider = new SaltFood("saltWortStrider", 12, 0.9F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 120, 0), new PotionEffect(Potion.regeneration.id, 300, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:saltwort_cooked_strider");
 
-    public static Item sugarApple = new SaltFood("sugarApple", 5, 0.4F).setCreativeTab(tab).setTextureName("saltmod:sugar_apple");
+    public static Item saltWortHaunch = new SaltFood("saltWortHaunch", 12, 0.9F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 120, 0), new PotionEffect(Potion.regeneration.id, 300, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:saltwort_cooked_haunch");
 
-    public static Item sugarMelon = new SaltFood("sugarMelon", 3, 0.4F).setCreativeTab(tab).setTextureName("saltmod:sugar_melon_slice");
+    public static Item sugarApple = new SaltFood("sugarApple", 4, 0.5F, new PotionEffect(Potion.moveSpeed.id, 120, 0)).setCreativeTab(tab).setTextureName("saltmod:sugar_apple");
 
-    public static Item sugarBerries = new SaltFood("sugarBerries", 3, 0.2F).setCreativeTab(tab).setTextureName("saltmod:sugar_sweet_berries");
+    public static Item sugarMelon = new SaltFood("sugarMelon", 3, 0.5F, new PotionEffect(Potion.moveSpeed.id, 120, 0)).setCreativeTab(tab).setTextureName("saltmod:sugar_melon_slice");
 
-    public static Item fruitSalad = new SaltFood("fruitSalad", 5, 0.4F, Items.bowl, new PotionEffect(Potion.moveSpeed.id, 900, 0)).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:fruit_salad");
+    public static Item sugarBerries = new SaltFood("sugarBerries", 3, 0.5F, new PotionEffect(Potion.moveSpeed.id, 120, 0)).setCreativeTab(tab).setTextureName("saltmod:sugar_sweet_berries");
 
-    public static Item sugarFruitSalad = new SaltFood("sugarFruitSalad", 6, 0.5F, Items.bowl, new PotionEffect(Potion.moveSpeed.id, 1200, 1)).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:sugar_fruit_salad");
+    public static Item fruitSalad = new SaltFood("fruitSalad", 6, 0.7F, Items.bowl, new PotionEffect(Potion.jump.id, 60, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:fruit_salad");
 
-    public static Item goldenFruitSalad = new SaltFood("goldenFruitSalad", 5, 0.8F, Items.bowl, new PotionEffect(Potion.regeneration.id, 100, 1), new PotionEffect(Potion.field_76444_x.id, 2400), new PotionEffect(Potion.heal.id, 1)).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:glistering_fruit_salad");
+    public static Item sugarFruitSalad = new SaltFood("sugarFruitSalad", 7, 0.8F, Items.bowl, new PotionEffect(Potion.moveSpeed.id, 120, 0), new PotionEffect(Potion.jump.id, 60, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:sugar_fruit_salad");
 
-    public static Item sugarGoldenFruitSalad = new SaltFood("sugarGoldenFruitSalad", 6, 0.8F, Items.bowl, new PotionEffect(Potion.regeneration.id, 125, 2), new PotionEffect(Potion.field_76444_x.id, 3000, 1), new PotionEffect(Potion.heal.id, 1, 1)).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:sugar_glistering_fruit_salad");
+    public static Item goldenFruitSalad = new SaltFood("goldenFruitSalad", 8, 0.7F, Items.bowl, new PotionEffect(Potion.regeneration.id, 120, 1), new PotionEffect(Potion.field_76444_x.id, 3000)).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:glistering_fruit_salad");
 
-    public static Item gratedCarrot = new SaltFood("gratedCarrot", 5, 0.4F, Items.bowl, new PotionEffect(Potion.nightVision.id, 900, 0)).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:grated_carrot");
+    public static Item sugarGoldenFruitSalad = new SaltFood("sugarGoldenFruitSalad", 9, 0.8F, Items.bowl, new PotionEffect(Potion.moveSpeed.id, 120, 0), new PotionEffect(Potion.regeneration.id, 240, 1), new PotionEffect(Potion.field_76444_x.id, 3000, 1), new PotionEffect(Potion.heal.id, 1, 1)).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:sugar_glistering_fruit_salad");
 
-    public static Item sugarGratedCarrot = new SaltFood("sugarGratedCarrot", 6, 0.5F, Items.bowl, new PotionEffect(Potion.nightVision.id, 1200, 0)).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:sugar_grated_carrot");
+    public static Item gratedCarrot = new SaltFood("gratedCarrot", 6, 0.7F, Items.bowl, new PotionEffect(Potion.nightVision.id, 600, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:grated_carrot");
 
-    public static Item melonSoup = new SaltFood("melonSoup", 4, 0.4F, Items.bowl, new PotionEffect(Potion.jump.id, 900, 0)).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:melon_soup");
+    public static Item sugarGratedCarrot = new SaltFood("sugarGratedCarrot", 7, 0.8F, Items.bowl, new PotionEffect(Potion.moveSpeed.id, 120, 0), new PotionEffect(Potion.nightVision.id, 1200, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:sugar_grated_carrot");
 
-    public static Item sugarMelonSoup = new SaltFood("sugarMelonSoup", 5, 0.5F, Items.bowl, new PotionEffect(Potion.jump.id, 1200, 1)).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:sugar_melon_soup");
+    public static Item melonSoup = new SaltFood("melonSoup", 5, 0.7F, Items.bowl, new PotionEffect(Potion.jump.id, 600, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:melon_soup");
 
-    public static Item honeyedPorkchop = new SaltFood("honeyedPorkchop", 8, 0.9F, new PotionEffect(Potion.field_76444_x.id, 900, 2)).setCreativeTab(tab).setTextureName("saltmod:honey_porkchop");
+    public static Item sugarMelonSoup = new SaltFood("sugarMelonSoup", 6, 0.8F, Items.bowl, new PotionEffect(Potion.moveSpeed.id, 120, 0), new PotionEffect(Potion.jump.id, 1200, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:sugar_melon_soup");
 
-    public static Item honeyedApple = new SaltFood("honeyedApple", 4, 0.4F, new PotionEffect(Potion.field_76444_x.id, 600, 1)).setCreativeTab(tab).setTextureName("saltmod:honey_apple");
+    public static Item honeyPorkchop = new SaltFood("honeyPorkchop", 6, 0.7F, new PotionEffect(Potion.field_76444_x.id, 900, 2)).setCreativeTab(tab).setTextureName("saltmod:honey_porkchop");
 
-    public static Item honeyedBerries = new SaltFood("honeyedBerries", 2, 0.2F, new PotionEffect(Potion.field_76444_x.id, 300)).setCreativeTab(tab).setTextureName("saltmod:honey_berries");
+    public static Item honeyApple = new SaltFood("honeyApple", 4, 0.5F, new PotionEffect(Potion.field_76444_x.id, 600, 1)).setCreativeTab(tab).setTextureName("saltmod:honey_apple");
 
-    public static Item chocolateBerries = new SaltFood("chocolateBerries", 2, 0.2F, new PotionEffect(Potion.digSpeed.id, 300, 0)).setCreativeTab(tab).setTextureName("saltmod:chocolate_berries");
+    public static Item honeyBerries = new SaltFood("honeyBerries", 3, 0.5F, new PotionEffect(Potion.field_76444_x.id, 300)).setCreativeTab(tab).setTextureName("saltmod:honey_berries");
+
+    public static Item chocolateBerries = new SaltFood("chocolateBerries", 3, 0.5F, new PotionEffect(Potion.digSpeed.id, 300, 0)).setCreativeTab(tab).setTextureName("saltmod:chocolate_berries");
 
     public static Item chocolateBar = new ChocolateBar("chocolateBar", tab, "chocolate_bar");
 
-    public static Item chocolatePie = new SaltFood("chocolatePie", 7, 0.3F, new PotionEffect(Potion.digSpeed.id, 900, 2)).setCreativeTab(tab).setTextureName("saltmod:chocolate_pie");
+    public static Item chocolatePie = new SaltFood("chocolatePie", 7, 0.9F, new PotionEffect(Potion.digSpeed.id, 900, 2)).setCreativeTab(tab).setTextureName("saltmod:chocolate_pie");
 
-    public static Item applePie = new SaltFood("applePie", 8, 0.3F).setCreativeTab(tab).setTextureName("saltmod:apple_pie");
+    public static Item applePie = new SaltFood("applePie", 8, 0.9F).setCreativeTab(tab).setTextureName("saltmod:apple_pie");
 
-    public static Item sweetberryPie = new SaltFood("sweetberryPie", 7, 0.3F).setCreativeTab(tab).setTextureName("saltmod:sweetberry_pie");
+    public static Item sweetberryPie = new SaltFood("sweetberryPie", 7, 0.9F).setCreativeTab(tab).setTextureName("saltmod:sweetberry_pie");
 
-    public static Item carrotPie = new SaltFood("carrotPie", 8, 0.3F).setCreativeTab(tab).setTextureName("saltmod:carrot_pie");
+    public static Item carrotPie = new SaltFood("carrotPie", 8, 0.9F, new PotionEffect(Potion.nightVision.id, 1200, 0)).setCreativeTab(tab).setTextureName("saltmod:carrot_pie");
 
-    public static Item mushroomPie = new SaltFood("mushroomPie", 8, 0.3F).setCreativeTab(tab).setTextureName("saltmod:mushroom_pie");
+    public static Item mushroomPie = new SaltFood("mushroomPie", 7, 0.9F, new PotionEffect(Potion.damageBoost.id, 300, 1), new PotionEffect(Potion.blindness.id, 60, 0)).setCreativeTab(tab).setTextureName("saltmod:mushroom_pie");
 
-    public static Item potatoPie = new SaltFood("potatoPie", 8, 0.3F).setCreativeTab(tab).setTextureName("saltmod:potato_pie");
+    public static Item potatoPie = new SaltFood("potatoPie", 7, 0.9F).setCreativeTab(tab).setTextureName("saltmod:potato_pie");
 
-    public static Item onionPie = new SaltFood("onionPie", 7, 0.3F).setCreativeTab(tab).setTextureName("saltmod:onion_pie");
+    public static Item onionPie = new SaltFood("onionPie", 8, 0.9F).setCreativeTab(tab).setTextureName("saltmod:onion_pie");
 
-    public static Item shepherdsPie = new SaltFood("shepherdsPie", 10, 0.8F).setCreativeTab(tab).setTextureName("saltmod:shepherds_pie");
+    public static Item shepherdsPie = new SaltFood("shepherdsPie", 10, 0.9F).setCreativeTab(tab).setTextureName("saltmod:shepherds_pie");
 
-    public static Item fishPie = new SaltFood("fishPie", 8, 0.6F).setCreativeTab(tab).setTextureName("saltmod:cod_pie");
+    public static Item fishPie = new SaltFood("fishPie", 7, 0.9F, new PotionEffect(Potion.waterBreathing.id, 300, 0)).setCreativeTab(tab).setTextureName("saltmod:cod_pie");
 
-    public static Item fishSalmonPie = new SaltFood("fishSalmonPie", 9, 0.6F).setCreativeTab(tab).setTextureName("saltmod:salmon_pie");
+    public static Item fishSalmonPie = new SaltFood("fishSalmonPie", 7, 0.9F, new PotionEffect(Potion.waterBreathing.id, 300, 0)).setCreativeTab(tab).setTextureName("saltmod:salmon_pie");
 
-    public static Item fishClownfishPie = new SaltFood("fishClownfishPie", 8, 0.6F).setCreativeTab(tab).setTextureName("saltmod:tropical_fish_pie");
+    public static Item fishClownfishPie = new SaltFood("fishClownfishPie", 7, 0.9F, new PotionEffect(Potion.waterBreathing.id, 300, 0)).setCreativeTab(tab).setTextureName("saltmod:tropical_fish_pie");
 
-    public static Item calamariPie = new SaltFood("calamariPie", 8, 0.6F).setCreativeTab(tab).setTextureName("saltmod:calamari_pie");
+    public static Item calamariPie = new SaltFood("calamariPie", 7, 0.9F, new PotionEffect(Potion.waterBreathing.id, 300, 0)).setCreativeTab(tab).setTextureName("saltmod:calamari_pie");
 
-    public static Item saltWortPie = new SaltFood("saltWortPie", 6, 0.3F, new PotionEffect(Potion.regeneration.id, 100, 0)).setAlwaysEdible().setCreativeTab(tab).setTextureName("saltmod:saltwort_pie");
+    public static Item saltWortPie = new SaltFood("saltWortPie", 7, 0.9F, new PotionEffect(Potion.regeneration.id, 600, 1)).setCreativeTab(tab).setTextureName("saltmod:saltwort_pie");
 
-    public static Item fermentedSaltWort = new SaltFood("fermentedSaltWort", 5, 0.8F, Items.glass_bottle, new PotionEffect(Potion.regeneration.id, 600, 2)).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:fermented_saltwort");
+    public static Item fermentedSaltWort = new SaltFood("fermentedSaltWort", 5, 0.7F, Items.glass_bottle, new PotionEffect(Potion.regeneration.id, 900, 2)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:fermented_saltwort");
 
-    public static Item pickledFern = new SaltFood("pickledFern", 4, 0.8F, Items.glass_bottle, new PotionEffect(Potion.resistance.id, 800, 0)).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:pickled_fern");
+    public static Item pickledFern = new SaltFood("pickledFern", 4, 0.7F, Items.glass_bottle, new PotionEffect(Potion.field_76434_w.id, 1200, 1), new PotionEffect(Potion.resistance.id, 900, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:pickled_fern");
 
-    public static Item pickledMushroom = new SaltFood("pickledMushroom", 6, 0.8F, Items.glass_bottle).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:pickled_mushroom");
+    public static Item pickledMushroom = new SaltFood("pickledMushroom", 4, 0.7F, Items.glass_bottle, new PotionEffect(Potion.field_76434_w.id, 1200, 1), new PotionEffect(Potion.damageBoost.id, 600, 1), new PotionEffect(Potion.blindness.id, 120, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:pickled_mushroom");
 
-    public static Item pickledCalamari = new SaltFood("pickledCalamari", 6, 0.8F, Items.glass_bottle).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:pickled_calamari");
+    public static Item pickledCalamari = new SaltFood("pickledCalamari", 6, 0.7F, Items.glass_bottle, new PotionEffect(Potion.field_76434_w.id, 1200, 1), new PotionEffect(Potion.waterBreathing.id, 600, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:pickled_calamari");
 
-    public static Item pickledBeetroot = new SaltFood("pickledBeetroot", 5, 0.8F, Items.glass_bottle).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:pickled_beetroot");
+    public static Item pickledBeetroot = new SaltFood("pickledBeetroot", 5, 0.8F, Items.glass_bottle, new PotionEffect(Potion.field_76434_w.id, 1200, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:pickled_beetroot");
 
-    public static Item pickledOnion = new SaltFood("pickledOnion", 6, 0.8F, Items.glass_bottle, new PotionEffect(Potion.resistance.id, 800, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:pickled_onion");
+    public static Item pickledOnion = new SaltFood("pickledOnion", 6, 0.8F, Items.glass_bottle, new PotionEffect(Potion.field_76434_w.id, 1200, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:pickled_onion");
 
-    public static Item preservedApple = new SaltFood("preservedApple", 8, 0.8F, Items.glass_bottle).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:apple_preserves");
+    public static Item preservedApple = new SaltFood("preservedApple", 8, 0.8F, Items.glass_bottle, new PotionEffect(Potion.moveSpeed.id, 300, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:apple_preserves");
 
-    public static Item preservedMelon = new SaltFood("preservedMelon", 6, 0.8F, Items.glass_bottle).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:melon_preserves");
+    public static Item preservedMelon = new SaltFood("preservedMelon", 6, 0.8F, Items.glass_bottle, new PotionEffect(Potion.moveSpeed.id, 300, 1), new PotionEffect(Potion.jump.id, 600, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:melon_preserves");
 
-    public static Item preservedSweetberries = new SaltFood("preservedSweetberries", 6, 0.8F, Items.glass_bottle).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:sweet_berry_preserves");
+    public static Item preservedSweetberries = new SaltFood("preservedSweetberries", 6, 0.8F, Items.glass_bottle, new PotionEffect(Potion.moveSpeed.id, 300, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:sweet_berry_preserves");
 
     public static Item cobblerConcoction = new CobblerConcoction("cobblerConcoction", tab, "cobbler_concoction");
 
@@ -347,10 +349,10 @@ public class ModItems {
             GameRegistry.registerItem(saltRabbitCooked, "saltRabbitCooked");
             GameRegistry.registerItem(saltMuttonCooked, "saltMuttonCooked");
         }
-//        if(Loader.isModLoaded("etfuturum") && !Loader.isModLoaded("netherlicious")) {
+        if(Loader.isModLoaded("etfuturum") && !Loader.isModLoaded("netherlicious")) {
             GameRegistry.registerItem(striderRaw, "striderRaw");
             GameRegistry.registerItem(striderCooked, "striderCooked");
-//        }
+        }
 //        if(Loader.isModLoaded("netherlicious")) {
             GameRegistry.registerItem(saltStriderCooked, "saltStriderCooked");
 //        }
@@ -404,9 +406,12 @@ public class ModItems {
         }
         GameRegistry.registerItem(saltWortSalad, "saltWortSalad");
         GameRegistry.registerItem(goldenSaltWortSalad, "goldenSaltWortSalad");
-        GameRegistry.registerItem(saltWortBeef, "saltWortBeef");
         GameRegistry.registerItem(saltWortPorkchop, "saltWortPorkchop");
-        GameRegistry.registerItem(saltWortHoneyedPorkchop, "saltWortHoneyedPorkchop");
+        GameRegistry.registerItem(saltWortHoneyPorkchop, "saltWortHoneyPorkchop");
+        GameRegistry.registerItem(saltWortBeef, "saltWortBeef");
+//        if(Loader.isModLoaded("netherlicious")) {
+            GameRegistry.registerItem(saltWortStrider, "saltWortStrider");
+//        }
         if(Loader.isModLoaded("etfuturum")) {
             GameRegistry.registerItem(saltWortMutton, "saltWortMutton");
         }
@@ -426,9 +431,9 @@ public class ModItems {
         GameRegistry.registerItem(sugarGratedCarrot, "sugarGratedCarrot");
         GameRegistry.registerItem(melonSoup, "melonSoup");
         GameRegistry.registerItem(sugarMelonSoup, "sugarMelonSoup");
-        GameRegistry.registerItem(honeyedPorkchop, "honeyedPorkchop");
-        GameRegistry.registerItem(honeyedApple, "honeyedApple");
-        GameRegistry.registerItem(honeyedBerries, "honeyedBerries");
+        GameRegistry.registerItem(honeyPorkchop, "honeyPorkchop");
+        GameRegistry.registerItem(honeyApple, "honeyApple");
+        GameRegistry.registerItem(honeyBerries, "honeyBerries");
         if(Loader.isModLoaded("etfuturum")) {
             GameRegistry.registerItem(chocolateBerries, "chocolateBerries");
         }

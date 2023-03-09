@@ -194,7 +194,7 @@ public class SaltModEventHandler {
     @SideOnly(Side.CLIENT)
     public void registerIcons(TextureStitchEvent.Pre event) {
         if (event.map.getTextureType() == 0 && FluidRegistry.isFluidRegistered(CommonProxy.milk))
-            CommonProxy.milkIcon = event.map.registerIcon("saltmod:Milk");
+            CommonProxy.milkIcon = event.map.registerIcon("saltmod:milk");
     }
 
     @SubscribeEvent

@@ -20,7 +20,7 @@ import darkbum.saltmod.network.SaltWortMessage;
 
 public class SaltWortSeed extends ItemFood {
     public SaltWortSeed(String name, CreativeTabs tab) {
-        super(1, 0.4F, false);
+        super(1, 0.3F, false);
         setUnlocalizedName(name);
         setCreativeTab(tab);
         setTextureName("saltmod:saltwort");
@@ -29,7 +29,7 @@ public class SaltWortSeed extends ItemFood {
 
     @Override
     public void addInformation(ItemStack is, EntityPlayer player, List list, boolean flag) {
-        PotionEffect effect = new PotionEffect(Potion.regeneration.id, 40, 1);
+        PotionEffect effect = new PotionEffect(Potion.regeneration.id, 60, 1);
         String mess = "";
         mess = mess + (Potion.potionTypes[effect.getPotionID()].isBadEffect() ? EnumChatFormatting.RED : EnumChatFormatting.GRAY);
         mess = mess + StatCollector.translateToLocal(effect.getEffectName()).trim();

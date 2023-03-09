@@ -23,10 +23,8 @@ public class RecipeRemover {
         if(Loader.isModLoaded("etfuturum")) {
             Item rabbit_stew = GameRegistry.findItem("etfuturum", "rabbit_stew");
             Item beetroot_soup = GameRegistry.findItem("etfuturum", "beetroot_soup");
-            if(rabbit_stew != null) {
+            if ((rabbit_stew != null) && (beetroot_soup != null)) {
                 RemoveRecipeItem(rabbit_stew, 1, 0);
-            }
-            if(beetroot_soup != null) {
                 RemoveRecipeItem(beetroot_soup, 1, 0);
             }
         }

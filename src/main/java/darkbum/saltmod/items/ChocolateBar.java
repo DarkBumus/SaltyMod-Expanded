@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 
 public class ChocolateBar extends SaltFood {
     public ChocolateBar(String name, CreativeTabs tab, String textureName) {
-        super("chocolateBar", 5, 0.4F, new PotionEffect(Potion.digSpeed.id, 600, 1));
+        super("chocolateBar", 3, 0.2F, new PotionEffect(Potion.digSpeed.id, 600, 1));
         setUnlocalizedName(name);
         setCreativeTab(tab);
         setTextureName("saltmod:" + textureName);
