@@ -1,5 +1,6 @@
 package darkbum.saltmod;
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -8,6 +9,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
+import cpw.mods.fml.common.versioning.ComparableVersion;
 import darkbum.saltmod.common.*;
 import net.minecraft.util.EnumChatFormatting;
 import org.apache.logging.log4j.LogManager;
@@ -88,6 +90,11 @@ public class SaltMod {
     public void postInit(FMLPostInitializationEvent event) {
         config.postInit();
         proxy.postInit(event);
+
+        if(Loader.isModLoaded("etfuturum") && new ComparableVersion(Loader.instance().getIndexedModList().get("etfuturum").getProcessedVersion().getVersionString()).compareTo(new ComparableVersion("2.4.4")) <= 0) {
+            System.out.println("deepslate ore registered");
+            ganymedes01.etfuturum.core.utils.DeepslateOreRegistry.addOre(ModBlocks.saltOre, ModBlocks.saltDeepslateOre);
+        }
 
         /*ItemFood apple = (ItemFood) Items.apple;
         apple.healAmount = 1;

@@ -1,35 +1,4 @@
 {
-"block.deepslate.break": {
-    "category": "block",
-    "sounds": [
-      "block/deepslate/break1",
-      "block/deepslate/break2",
-      "block/deepslate/break3",
-      "block/deepslate/break4"
-    ]
-  },
-"block.deepslate.place": {
-    "category": "block",
-    "sounds": [
-      "block/deepslate/place1",
-      "block/deepslate/place2",
-      "block/deepslate/place3",
-      "block/deepslate/place4",
-      "block/deepslate/place5",
-      "block/deepslate/place6"
-    ]
-  },
-"block.deepslate.step": {
-    "category": "block",
-    "sounds": [
-      "block/deepslate/step1",
-      "block/deepslate/step2",
-      "block/deepslate/step3",
-      "block/deepslate/step4",
-      "block/deepslate/step5",
-      "block/deepslate/step6"
-    ]
-  },
 "block.dry_mud_bricks.break": {
     "category": "block",
     "sounds": [
