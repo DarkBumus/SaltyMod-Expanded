@@ -2,6 +2,7 @@ package darkbum.saltmod.init;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
+import darkbum.saltmod.blockitems.ItemBlossomSign;
 import darkbum.saltmod.items.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -282,6 +283,12 @@ public class ModItems {
 
     public static Item rainmaker = new Rainmaker("rainmaker", tab, "rainmaker");
 
+//    public static Item itemBlossomBoat = new ItemBlossomBoat();
+
+//    public static Item itemBlossomChestBoat = new ItemBlossomChestBoat();
+
+    public static Item itemBlossomSign = new ItemBlossomSign();
+
 
     public static Item tf_saltVenisonCooked = new SaltFood("tf_saltVenisonCooked", 9, 0.9F).setCreativeTab(tab).setTextureName("saltmod:" + "tf/" + "tf_saltwort_cooked_venison");
 
@@ -477,6 +484,11 @@ public class ModItems {
         GameRegistry.registerItem(toughJelly, "toughJelly");
         GameRegistry.registerItem(rainmakerStar, "rainmakerStar");
         GameRegistry.registerItem(rainmaker, "rainmaker");
+        if(Loader.isModLoaded("etfuturum")) {
+//            GameRegistry.registerItem(itemBlossomBoat, "itemBlossomBoat");
+//            GameRegistry.registerItem(itemBlossomChestBoat, "itemBlossomChestBoat");
+            GameRegistry.registerItem(itemBlossomSign, "itemBlossomSign");
+        }
 
         if(Loader.isModLoaded("TwilightForest")) {
             GameRegistry.registerItem(tf_saltVenisonCooked, "tf_saltVenisonCooked");

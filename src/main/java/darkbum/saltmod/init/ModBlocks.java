@@ -52,39 +52,42 @@ public class ModBlocks {
 
     public static Block oakLogSaltCrusted = new OakLogSaltCrusted("oakLogSaltCrusted", tab);
 
+    public static Block blossomPlanks = new BlossomPlanks("blossomPlanks", tab);
+
+    //    public static Block blossomSapling = new BlossomSapling("blossomSapling", tab);
+
     public static Block blossomLog = new BlossomLog("blossomLog", tab);
-
-    public static Block blossomWood = new BlossomWood("blossomWood", tab);
-
-    public static Block blossomStrippedLog = new BlossomStrippedLog("blossomStrippedLog", tab);
-
-    public static Block blossomStrippedWood = new BlossomStrippedWood("blossomStrippedWood", tab);
 
     public static Block blossomBurrow = new BlossomBurrow("blossomBurrow", tab);
 
-    public static Block blossomPlanks = new BlossomPlanks("blossomPlanks", tab);
+    public static Block blossomStrippedLog = new BlossomStrippedLog("blossomStrippedLog", tab);
 
-    public static Block blossomStairs = new BlossomStairs("blossomStairs", tab);
+    public static Block blossomWood = new BlossomWood("blossomWood", tab);
+
+    public static Block blossomStrippedWood = new BlossomStrippedWood("blossomStrippedWood", tab);
+
+    public static Block blossomLeaves = new BlossomLeaves("blossomLeaves", tab);
 
     public static BlockSlab blossomSlab = new BlossomSlab(false, "blossomSlab", tab);
 
     public static BlockSlab blossomSlabDouble = new BlossomSlab(true, "saltSlabDouble", null);
 
-//    public static BlockFence blossomFence
+    //    public static BlockFence blossomFence
+
+    public static Block blossomStairs = new BlossomStairs("blossomStairs", tab);
 
 //    public static BlockFenceGate blossomFenceGate
-
-//    public static Block blossomDoor = new BlossomDoor("blossomDoor", tab);
-
-//    public static Block blossomTrapdoor = new BlossomTrapdoor("blossomTrapdoor", tab);
 
     public static Block blossomPressurePlate = new BlossomPressurePlate(0, tab);
 
     public static Block blossomButton = new BlossomButton();
 
-    public static Block blossomLeaves = new BlossomLeaves("blossomLeaves", tab);
+//    public static Block blossomDoor = new BlossomDoor("blossomDoor", tab);
 
-//    public static Block blossomSapling = new BlossomSapling("blossomSapling", tab);
+//    public static Block blossomTrapdoor = new BlossomTrapdoor("blossomTrapdoor", tab);
+
+//    public static Block blossomSign = new BlossomSign();
+
 
     public static Block apiary = new Apiary("apiary", tab);
 
@@ -134,29 +137,32 @@ public class ModBlocks {
             GameRegistry.registerBlock(mudBrickDryWall, "mudBrickDryWall");
         }
         GameRegistry.registerBlock(oakLogSaltCrusted, "oakLogSaltCrusted");
+        GameRegistry.registerBlock(blossomPlanks, "blossomPlanks");
+//        GameRegistry.registerBlock(blossomSapling, "blossomSapling");
         GameRegistry.registerBlock(blossomLog, "blossomLog");
+        GameRegistry.registerBlock(blossomBurrow, "blossomBurrow");
         if(Loader.isModLoaded("etfuturum")) {
-            GameRegistry.registerBlock(blossomWood, "blossomWood");
             GameRegistry.registerBlock(blossomStrippedLog, "blossomStrippedLog");
+            GameRegistry.registerBlock(blossomWood, "blossomWood");
             GameRegistry.registerBlock(blossomStrippedWood, "blossomStrippedWood");
         }
-        GameRegistry.registerBlock(blossomBurrow, "blossomBurrow");
-        GameRegistry.registerBlock(blossomPlanks, "blossomPlanks");
-        GameRegistry.registerBlock(blossomStairs, "blossomStairs");
+        GameRegistry.registerBlock(blossomLeaves, "blossomLeaves");
         GameRegistry.registerBlock(blossomSlab, ItemBlossomSlab.class,"blossomSlab");
         GameRegistry.registerBlock(blossomSlabDouble, ItemBlossomSlab.class,"blossomSlabDouble");
         if(Loader.isModLoaded("etfuturum")) {
 //            GameRegistry.registerBlock(blossomFence, "blossomFence");
-//            GameRegistry.registerBlock(blossomFenceGate, "blossomFenceGate");
-//            GameRegistry.registerBlock(blossomDoor, "blossomDoor");
-//            GameRegistry.registerBlock(blossomTrapdoor, "blossomTrapdoor");
         }
+        GameRegistry.registerBlock(blossomStairs, "blossomStairs");
         if(Loader.isModLoaded("etfuturum") && ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableWoodRedstone) {
             GameRegistry.registerBlock(blossomPressurePlate, "blossomPressurePlate");
             GameRegistry.registerBlock(blossomButton, "blossomButton");
         }
-        GameRegistry.registerBlock(blossomLeaves, "blossomLeaves");
-//        GameRegistry.registerBlock(blossomSapling, "blossomSapling");
+        if(Loader.isModLoaded("etfuturum")) {
+//            GameRegistry.registerBlock(blossomDoor, "blossomDoor");
+//            GameRegistry.registerBlock(blossomTrapdoor, "blossomTrapdoor");
+//            GameRegistry.registerBlock(blossomFenceGate, "blossomFenceGate");
+//            GameRegistry.registerBlock(blossomSign, "blossomSign");
+        }
         GameRegistry.registerBlock(apiary, "apiary");
         GameRegistry.registerBlock(extractor, "extractor");
         GameRegistry.registerBlock(extractorLit, "extractorLit").setLightLevel(0.9F);
