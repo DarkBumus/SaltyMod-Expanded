@@ -62,6 +62,7 @@ public class ShapelessRecipes {
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltFishCodCooked), new ItemStack(ModItems.saltPinch), new ItemStack(Items.cooked_fished));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltFishSalmonCooked), new ItemStack(ModItems.saltPinch), new ItemStack(Items.cooked_fished, 1, 1));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltFishClownfishCooked), new ItemStack(ModItems.saltPinch), new ItemStack(ModItems.fishClownfishCooked));
+        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltFishTailorCooked), new ItemStack(ModItems.saltPinch), new ItemStack(ModItems.fishTailorCooked));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltCalamariCooked), new ItemStack(ModItems.saltPinch), new ItemStack(ModItems.calamariCooked));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltBread), new ItemStack(ModItems.saltPinch), new ItemStack(Items.bread));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltEgg), new ItemStack(ModItems.saltPinch), new ItemStack(Items.egg));
@@ -77,15 +78,7 @@ public class ShapelessRecipes {
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.goldenVegetables), new ItemStack(Items.bowl), new ItemStack(Items.golden_carrot), new ItemStack(ModItems.goldenPotato), new ItemStack(ModItems.goldenSaltWortSeed));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltGoldenVegetables), new ItemStack(ModItems.saltPinch), new ItemStack(ModItems.goldenVegetables));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltGoldenVegetables), new ItemStack(ModItems.saltPinch), new ItemStack(Items.bowl), new ItemStack(Items.golden_carrot), new ItemStack(ModItems.goldenPotato), new ItemStack(ModItems.goldenSaltWortSeed));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.fishSoup), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), new ItemStack(Items.fish));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltFishSoup), new ItemStack(ModItems.saltPinch), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), new ItemStack(Items.fish));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltFishSoup), new ItemStack(ModItems.saltPinch), new ItemStack(ModItems.fishSoup));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.fishSalmonSoup), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), new ItemStack(Items.fish, 1, 1));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltFishSalmonSoup), new ItemStack(ModItems.saltPinch), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), new ItemStack(Items.fish, 1, 1));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltFishSalmonSoup), new ItemStack(ModItems.saltPinch), new ItemStack(ModItems.fishSalmonSoup));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.fishClownfishSoup), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), new ItemStack(Items.fish, 1, 2));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltFishClownfishSoup), new ItemStack(ModItems.saltPinch), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), new ItemStack(Items.fish, 1, 2));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltFishClownfishSoup), new ItemStack(ModItems.saltPinch), new ItemStack(ModItems.fishClownfishSoup));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.dandelionSalad), new ItemStack(Items.bowl), new ItemStack(Blocks.tallgrass, 1, 2), new ItemStack(Blocks.yellow_flower), new ItemStack(ModItems.onion));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltDandelionSalad), new ItemStack(ModItems.saltPinch), new ItemStack(Items.bowl), new ItemStack(Blocks.tallgrass, 1, 2), new ItemStack(Blocks.yellow_flower), new ItemStack(ModItems.onion));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltDandelionSalad), new ItemStack(ModItems.saltPinch), new ItemStack(ModItems.dandelionSalad));
@@ -118,6 +111,7 @@ public class ShapelessRecipes {
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.fishPie), new ItemStack(ModItems.salt), new ItemStack(Items.fish), new ItemStack(ModItems.dough), new ItemStack(Items.egg));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.fishSalmonPie), new ItemStack(ModItems.salt), new ItemStack(Items.fish, 1, 1), new ItemStack(ModItems.dough), new ItemStack(Items.egg));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.fishClownfishPie), new ItemStack(ModItems.salt), new ItemStack(Items.fish, 1, 2), new ItemStack(ModItems.dough), new ItemStack(Items.egg));
+        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.fishTailorPie), new ItemStack(ModItems.salt), new ItemStack(ModItems.fishTailorRaw), new ItemStack(ModItems.dough), new ItemStack(Items.egg));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.calamariPie), new ItemStack(ModItems.salt), new ItemStack(ModItems.calamariRaw), new ItemStack(ModItems.dough), new ItemStack(Items.egg));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltWortPie), new ItemStack(ModItems.saltWortSeed), new ItemStack(ModItems.saltWortSeed), new ItemStack(ModItems.dough), new ItemStack(Items.egg));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.fermentedSaltWort), new ItemStack(Items.ghast_tear), new ItemStack(Items.glass_bottle), new ItemStack(ModItems.saltWortSeed), new ItemStack(ModItems.saltWortSeed), new ItemStack(ModItems.saltWortSeed), new ItemStack(ModItems.saltWortSeed), new ItemStack(ModItems.saltWortSeed));

@@ -21,6 +21,7 @@ import darkbum.saltmod.world.SaltLakeGenerator;
 import darkbum.saltmod.world.SaltOreGenerator;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.projectile.EntityFishHook;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -28,6 +29,7 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraft.util.WeightedRandomFishable;
 import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
@@ -47,6 +49,10 @@ import darkbum.saltmod.network.ExtractorButtonMessage;
 import darkbum.saltmod.network.SaltModEventHandler;
 import darkbum.saltmod.network.SaltWortMessage;
 import darkbum.saltmod.tileentity.TileEntityExtractor;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CommonProxy {
 

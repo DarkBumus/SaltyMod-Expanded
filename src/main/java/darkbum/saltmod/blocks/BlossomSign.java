@@ -1,4 +1,4 @@
-package darkbum.saltmod.blocks;
+/*package darkbum.saltmod.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -6,7 +6,6 @@ import darkbum.saltmod.common.CommonProxy;
 import darkbum.saltmod.init.ModBlocks;
 import darkbum.saltmod.init.ModItems;
 import net.minecraft.block.BlockSign;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -41,4 +40,4 @@ public class BlossomSign extends BlockSign {
     public Item getItem(World p_149694_1_, int p_149694_2_, int p_149694_3_, int p_149694_4_) {
         return ModItems.itemBlossomSign;
     }
-}
+}*/

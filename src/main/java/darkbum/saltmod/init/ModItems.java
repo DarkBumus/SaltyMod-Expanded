@@ -101,6 +101,12 @@ public class ModItems {
 
     public static Item saltFishClownfishCooked = new SaltFood("saltFishClownfishCooked", 4, 0.6F, new PotionEffect(Potion.field_76434_w.id, 300, 2)).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_tropical_fish");
 
+    public static Item fishTailorRaw = new SaltFood("fishTailorRaw", 1, 0.5F, new PotionEffect(Potion.waterBreathing.id, 3, 0)).setCreativeTab(tab).setTextureName("saltmod:tailor");
+
+    public static Item fishTailorCooked = new SaltFood("fishTailorCooked", 3, 0.5F).setCreativeTab(tab).setTextureName("saltmod:cooked_tailor");
+
+    public static Item saltFishTailorCooked = new SaltFood("saltFishTailorCooked", 4, 0.6F, new PotionEffect(Potion.field_76434_w.id, 300, 2)).setCreativeTab(tab).setTextureName("saltmod:salt_cooked_tailor");
+
     public static Item calamariRaw = new SaltFood("calamariRaw", 2, 0.5F).setCreativeTab(tab).setTextureName("saltmod:calamari");
 
     public static Item calamariCooked = new SaltFood("calamariCooked", 3, 0.5F, new PotionEffect(Potion.field_76434_w.id, 300, 2)).setCreativeTab(tab).setTextureName("saltmod:cooked_calamari");
@@ -144,14 +150,6 @@ public class ModItems {
     public static Item fishSoup = new SaltFood("fishSoup", 6, 0.7F, Items.bowl, new PotionEffect(Potion.waterBreathing.id, 300, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:cod_soup");
 
     public static Item saltFishSoup = new SaltFood("saltFishSoup", 7, 0.8F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 120, 0), new PotionEffect(Potion.waterBreathing.id, 600, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_cod_soup");
-
-    public static Item fishSalmonSoup = new SaltFood("fishSalmonSoup", 6, 0.7F, Items.bowl, new PotionEffect(Potion.waterBreathing.id, 300, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salmon_soup");
-
-    public static Item saltFishSalmonSoup = new SaltFood("saltFishSalmonSoup", 7, 0.8F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 120, 0), new PotionEffect(Potion.waterBreathing.id, 600, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_salmon_soup");
-
-    public static Item fishClownfishSoup = new SaltFood("fishClownfishSoup", 6, 0.7F, Items.bowl, new PotionEffect(Potion.waterBreathing.id, 300, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:tropical_fish_soup");
-
-    public static Item saltFishClownfishSoup = new SaltFood("saltFishClownfishSoup", 7, 0.8F, Items.bowl, new PotionEffect(Potion.field_76434_w.id, 120, 0), new PotionEffect(Potion.waterBreathing.id, 600, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:salt_tropical_fish_soup");
 
     public static Item dandelionSalad = new SaltFood("dandelionSalad", 6, 0.7F, Items.bowl, new PotionEffect(Potion.resistance.id, 300, 0), new PotionEffect(Potion.heal.id, 20, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:dandelion_salad");
 
@@ -239,6 +237,8 @@ public class ModItems {
 
     public static Item fishClownfishPie = new SaltFood("fishClownfishPie", 7, 0.9F, new PotionEffect(Potion.waterBreathing.id, 300, 0)).setCreativeTab(tab).setTextureName("saltmod:tropical_fish_pie");
 
+    public static Item fishTailorPie = new SaltFood("fishTailorPie", 7, 0.9F, new PotionEffect(Potion.waterBreathing.id, 300, 0)).setCreativeTab(tab).setTextureName("saltmod:tailor_pie");
+
     public static Item calamariPie = new SaltFood("calamariPie", 7, 0.9F, new PotionEffect(Potion.waterBreathing.id, 300, 0)).setCreativeTab(tab).setTextureName("saltmod:calamari_pie");
 
     public static Item saltWortPie = new SaltFood("saltWortPie", 7, 0.9F, new PotionEffect(Potion.regeneration.id, 600, 1)).setCreativeTab(tab).setTextureName("saltmod:saltwort_pie");
@@ -287,7 +287,7 @@ public class ModItems {
 
 //    public static Item itemBlossomChestBoat = new ItemBlossomChestBoat();
 
-    public static Item itemBlossomSign = new ItemBlossomSign();
+//    public static Item itemBlossomSign = new ItemBlossomSign();
 
 
     public static Item tf_saltVenisonCooked = new SaltFood("tf_saltVenisonCooked", 9, 0.9F).setCreativeTab(tab).setTextureName("saltmod:" + "tf/" + "tf_saltwort_cooked_venison");
@@ -371,6 +371,9 @@ public class ModItems {
         GameRegistry.registerItem(saltFishSalmonCooked, "saltFishSalmonCooked");
         GameRegistry.registerItem(fishClownfishCooked, "fishClownfishCooked");
         GameRegistry.registerItem(saltFishClownfishCooked, "saltFishClownfishCooked");
+        GameRegistry.registerItem(fishTailorRaw, "fishTailorRaw");
+        GameRegistry.registerItem(fishTailorCooked, "fishTailorCooked");
+        GameRegistry.registerItem(saltFishTailorCooked, "saltFishTailorCooked");
         GameRegistry.registerItem(calamariRaw, "calamariRaw");
         GameRegistry.registerItem(calamariCooked, "calamariCooked");
         GameRegistry.registerItem(saltCalamariCooked, "saltCalamariCooked");
@@ -397,10 +400,6 @@ public class ModItems {
         GameRegistry.registerItem(saltGoldenVegetables, "saltGoldenVegetables");
         GameRegistry.registerItem(fishSoup, "fishSoup");
         GameRegistry.registerItem(saltFishSoup, "saltFishSoup");
-        GameRegistry.registerItem(fishSalmonSoup, "fishSalmonSoup");
-        GameRegistry.registerItem(saltFishSalmonSoup, "saltFishSalmonSoup");
-        GameRegistry.registerItem(fishClownfishSoup, "fishClownfishSoup");
-        GameRegistry.registerItem(saltFishClownfishSoup, "saltFishClownfishSoup");
         GameRegistry.registerItem(dandelionSalad, "dandelionSalad");
         GameRegistry.registerItem(saltDandelionSalad, "saltDandelionSalad");
         GameRegistry.registerItem(wheatSprouts, "wheatSprouts");
@@ -459,6 +458,7 @@ public class ModItems {
         GameRegistry.registerItem(fishPie, "fishPie");
         GameRegistry.registerItem(fishSalmonPie, "fishSalmonPie");
         GameRegistry.registerItem(fishClownfishPie, "fishClownfishPie");
+        GameRegistry.registerItem(fishTailorPie, "fishTailorPie");
         GameRegistry.registerItem(calamariPie, "calamariPie");
         GameRegistry.registerItem(saltWortPie, "saltWortPie");
         GameRegistry.registerItem(fermentedSaltWort, "fermentedSaltWort");
@@ -487,7 +487,7 @@ public class ModItems {
         if(Loader.isModLoaded("etfuturum")) {
 //            GameRegistry.registerItem(itemBlossomBoat, "itemBlossomBoat");
 //            GameRegistry.registerItem(itemBlossomChestBoat, "itemBlossomChestBoat");
-            GameRegistry.registerItem(itemBlossomSign, "itemBlossomSign");
+//            GameRegistry.registerItem(itemBlossomSign, "itemBlossomSign");
         }
 
         if(Loader.isModLoaded("TwilightForest")) {

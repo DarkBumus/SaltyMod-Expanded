@@ -34,6 +34,10 @@ public class OreDictionary {
         net.minecraftforge.oredict.OreDictionary.registerOre("itemRedmeat", Items.cooked_beef);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemRedmeat", ModItems.haunchCooked);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemRedmeat", ModItems.striderCooked);
+        net.minecraftforge.oredict.OreDictionary.registerOre("itemFish", new ItemStack(Items.fish, 1, 0));
+        net.minecraftforge.oredict.OreDictionary.registerOre("itemFish", new ItemStack(Items.fish, 1, 1));
+        net.minecraftforge.oredict.OreDictionary.registerOre("itemFish", new ItemStack(Items.fish, 1, 2));
+        net.minecraftforge.oredict.OreDictionary.registerOre("itemFish", ModItems.fishTailorRaw);
         net.minecraftforge.oredict.OreDictionary.registerOre("materialWaxcomb", ModItems.waxComb);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemSweetener", Items.sugar);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemSweetener", ModItems.honeyComb);
@@ -68,6 +72,9 @@ public class OreDictionary {
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", Items.baked_potato);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", new ItemStack(Items.cooked_fished, net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE));
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.fishClownfishCooked);
+        net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.fishTailorRaw);
+        net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.fishTailorCooked);
+        net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.saltFishTailorCooked);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.calamariCooked);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", Items.cooked_porkchop);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", Items.cooked_beef);
@@ -108,8 +115,6 @@ public class OreDictionary {
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.potatoMushroom);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.goldenVegetables);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.fishSoup);
-        net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.fishSalmonSoup);
-        net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.fishClownfishSoup);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.dandelionSalad);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.wheatSprouts);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.beetrootSalad);
@@ -138,8 +143,6 @@ public class OreDictionary {
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.saltPotatoMushroom);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.saltGoldenVegetables);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.saltFishSoup);
-        net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.saltFishSalmonSoup);
-        net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.saltFishClownfishSoup);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.saltDandelionSalad);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.saltWheatSprouts);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.saltBeetrootSalad);
@@ -198,6 +201,8 @@ public class OreDictionary {
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.saltVegetableStew), new ItemStack(ModItems.saltPinch), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), "blockMushroom"));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.potatoMushroom), new ItemStack(Items.bowl), new ItemStack(Items.potato), new ItemStack(Items.potato), "blockMushroom"));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.saltPotatoMushroom), new ItemStack(ModItems.saltPinch), new ItemStack(Items.bowl), new ItemStack(Items.potato), new ItemStack(Items.potato), "blockMushroom"));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.fishSoup), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), "itemFish"));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.saltFishSoup), new ItemStack(ModItems.saltPinch), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), "itemFish"));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.honeyApple), "itemHoney", new ItemStack(Items.apple)));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.honeyPorkchop), "itemHoney", new ItemStack(Items.cooked_porkchop)));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.shepherdsPie), new ItemStack(ModItems.salt), "itemRedmeat", new ItemStack(ModItems.dough), new ItemStack(Items.egg)));

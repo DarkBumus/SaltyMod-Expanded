@@ -14,7 +14,7 @@ import net.minecraft.util.MathHelper;
 import java.util.List;
 
 public class StorageBarrel extends Block {
-    public static final String[] types = new String[] {"cod", "salmon", "clownfish", "pufferfish"};
+    public static final String[] types = new String[] {"cod", "salmon", "clownfish", "tailor", "pufferfish"};
 
     @SideOnly(Side.CLIENT)
     private IIcon BOTTOM;
@@ -32,8 +32,10 @@ public class StorageBarrel extends Block {
     private IIcon CLOWNFISH;
 
     @SideOnly(Side.CLIENT)
-    private IIcon PUFFERFISH;
+    private IIcon TAILOR;
 
+    @SideOnly(Side.CLIENT)
+    private IIcon PUFFERFISH;
 
     public StorageBarrel(String name, CreativeTabs tab) {
         super(Material.wood);
@@ -53,7 +55,7 @@ public class StorageBarrel extends Block {
 
     public IIcon getIcon(int side, int meta) {
 
-        meta = MathHelper.clamp_int(meta, 0, 4);
+        meta = MathHelper.clamp_int(meta, 0, 5);
 
         if(side > 0) {
             if (meta == 0) {
@@ -73,6 +75,11 @@ public class StorageBarrel extends Block {
             }
             if (meta == 3) {
                 if (side == 1)
+                    return this.TAILOR;
+                return this.SIDE;
+            }
+            if (meta == 4) {
+                if (side == 1)
                     return this.PUFFERFISH;
                 return this.SIDE;
             }
@@ -87,6 +94,7 @@ public class StorageBarrel extends Block {
         this.COD = icon.registerIcon("saltmod:storage_barrel_cod");
         this.SALMON = icon.registerIcon("saltmod:storage_barrel_salmon");
         this.CLOWNFISH = icon.registerIcon("saltmod:storage_barrel_clownfish");
+        this.TAILOR = icon.registerIcon("saltmod:storage_barrel_tailor");
         this.PUFFERFISH = icon.registerIcon("saltmod:storage_barrel_pufferfish");
     }
 
