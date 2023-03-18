@@ -29,5 +29,5 @@ dependencies {
 	runtimeOnly('com.github.GTNewHorizons:AppleCore:3.2.10:dev')
 	runtimeOnly('com.github.GTNewHorizons:NotEnoughItems:2.3.36-GTNH:dev')
 	runtimeOnly('com.github.GTNewHorizons:NaturesCompass:1.3.6-GTNH:dev')
-	runtimeOnly('com.github.GTNewHorizons:waila:1.5.23:dev')
+	runtimeOnly('com.github.GTNewHorizons:waila:1.5.24:dev')
 }
