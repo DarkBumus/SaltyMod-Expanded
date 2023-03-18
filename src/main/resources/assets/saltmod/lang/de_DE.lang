@@ -90,7 +90,7 @@ item.effectFoodNeg.tooltip=Gibt alle negativen Trankeffekte
 item.testFood.name=§bTestapfel
 
 item.blossom.name=Blüte
-item.queenBee.name=Bienenkönigin
+item.carpenterBee.name=Holzbiene
 item.waxComb.name=Wachswabe
 item.honeyComb.name=Honigwabe
 item.beeGrub.name=Bienenlarve

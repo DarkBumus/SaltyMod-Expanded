@@ -95,7 +95,7 @@ item.effectFoodNeg.tooltip=Gives you all the negative potion effects
 item.testFood.name=§bTest Apple
 
 item.blossom.name=Blossom
-item.queenBee.name=Queen Bee
+item.carpenterBee.name=Carpenter Bee
 item.waxComb.name=Wax Comb
 item.honeyComb.name=Honey Comb
 item.beeGrub.name=Bee Grub

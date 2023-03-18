@@ -5,7 +5,7 @@ import net.minecraft.item.ItemBlockWithMetadata;
 import net.minecraft.item.ItemStack;
 
 public class ItemStorageBarrel extends ItemBlockWithMetadata {
-    private static final String[] types = new String[] {"Cod", "Salmon", "Clownfish", "Pufferfish"};
+    private static final String[] types = new String[] {"Cod", "Salmon", "Clownfish", "Tailor", "Pufferfish"};
 
     public ItemStorageBarrel(Block block) {
         super(block, block);

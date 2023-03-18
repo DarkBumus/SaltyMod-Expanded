@@ -19,7 +19,7 @@ public class SlotApiary extends Slot {
     }
 
     public boolean isItemValid(ItemStack stack) {
-        return (stack.getItem() == ModItems.queenBee);
+        return (stack.getItem() == ModItems.carpenterBee);
     }
 
     public EntityPlayer getPlayer() {

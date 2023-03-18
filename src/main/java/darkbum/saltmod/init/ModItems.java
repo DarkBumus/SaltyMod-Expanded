@@ -2,7 +2,6 @@ package darkbum.saltmod.init;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
-import darkbum.saltmod.blockitems.ItemBlossomSign;
 import darkbum.saltmod.items.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -35,7 +34,7 @@ public class ModItems {
 
     public static Item blossom = new SaltItems("blossom", tab, "blossom");
 
-    public static Item queenBee = new SaltItems("queenBee", tab, "queen_bee").setMaxStackSize(1).setMaxDamage(18);
+    public static Item carpenterBee = new SaltItems("carpenterBee", tab, "carpenter_bee").setMaxStackSize(1).setMaxDamage(18);
 
     public static Item waxComb = new SaltItems("waxComb", tab, "waxcomb");
 
@@ -330,7 +329,7 @@ public class ModItems {
         }
         GameRegistry.registerItem(achievItem, "achivItem");
         GameRegistry.registerItem(blossom, "blossom");
-        GameRegistry.registerItem(queenBee, "queenBee");
+        GameRegistry.registerItem(carpenterBee, "carpenterBee");
         GameRegistry.registerItem(waxComb, "waxComb");
         GameRegistry.registerItem(honeyComb, "honeyComb");
         GameRegistry.registerItem(beeGrub, "beeGrub");
