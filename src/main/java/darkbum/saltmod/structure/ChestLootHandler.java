@@ -1,8 +1,8 @@
-/*package ru.liahim.saltmod.structure;
+package darkbum.saltmod.structure;
 
 public class ChestLootHandler {
 
 	public static void campChest() {
-		
+
 	}
-}*/
+}

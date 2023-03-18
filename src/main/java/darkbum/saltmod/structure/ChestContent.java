@@ -1,7 +1,7 @@
-/*package ru.liahim.saltmod.structure;
+package darkbum.saltmod.structure;
 
-import ru.liahim.saltmod.init.ModBlocks;
-import ru.liahim.saltmod.init.ModItems;
+import darkbum.saltmod.init.ModBlocks;
+import darkbum.saltmod.init.ModItems;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -9,13 +9,13 @@ import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.ChestGenHooks;
 
 public class ChestContent {
-	
+
 	public static void addDungeonLoot() {
 		final ItemStack shovelSilk = new ItemStack(Items.iron_shovel, 1, 100);
 		shovelSilk.addEnchantment(Enchantment.silkTouch, 1);
 		final ItemStack bookSilk = new ItemStack(Items.enchanted_book, 1, 0);
 		bookSilk.addEnchantment(Enchantment.silkTouch, 1);
-		
+
 		final ChestGenHooks campChest_I = ChestGenHooks.getInfo("campChest_I");
 		campChest_I.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.salt), 1, 2, 10));
 		campChest_I.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.saltWortSeed), 1, 4, 20));
@@ -29,7 +29,7 @@ public class ChestContent {
 		campChest_I.addItem(new WeightedRandomChestContent(bookSilk, 1, 1, 1));
 		campChest_I.setMin(5);
 		campChest_I.setMax(10);
-		
+
 		final ChestGenHooks campChest_II = ChestGenHooks.getInfo("campChest_II");
 		campChest_II.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.salt), 1, 3, 10));
 		campChest_II.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.saltWortSeed), 1, 6, 20));
@@ -42,7 +42,7 @@ public class ChestContent {
 		campChest_II.addItem(new WeightedRandomChestContent(new ItemStack(Items.emerald), 1, 3, 1));
 		campChest_II.setMin(6);
 		campChest_II.setMax(12);
-		
+
 		final ChestGenHooks campChest_III = ChestGenHooks.getInfo("campChest_III");
 		campChest_III.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.salt), 1, 1, 10));
 		campChest_III.addItem(new WeightedRandomChestContent(new ItemStack(ModItems.saltWortSeed), 1, 2, 20));
@@ -55,4 +55,4 @@ public class ChestContent {
 		campChest_III.setMin(3);
 		campChest_III.setMax(6);
 	}
-}*/
+}

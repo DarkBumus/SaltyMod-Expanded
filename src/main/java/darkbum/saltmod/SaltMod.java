@@ -12,6 +12,7 @@ import cpw.mods.fml.common.versioning.ComparableVersion;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 import darkbum.saltmod.common.*;
+import darkbum.saltmod.structure.ChestLootHandler;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
@@ -24,13 +25,7 @@ import darkbum.saltmod.init.ModBiomes;
 import darkbum.saltmod.init.ModBlocks;
 import darkbum.saltmod.init.ModItems;
 import darkbum.saltmod.init.SaltConfig;
-/*import darkbum.saltmod.structure.BrickmakerCampGen;
 import darkbum.saltmod.structure.ChestContent;
-import darkbum.saltmod.structure.BrickmakerCampGenerator;
-import darkbum.saltmod.structure.ChestLootHandler;
-import darkbum.saltmod.structure.ComponentCampPieces;
-import darkbum.saltmod.structure.MapGenCamp;
-import darkbum.saltmod.structure.SurfaceFinder;*/
 
 @Mod(modid = SaltMod.MODID, name = SaltMod.NAME, version = SaltMod.VERSION)
 public class SaltMod {
@@ -42,11 +37,7 @@ public class SaltMod {
 
     public static final Logger logger = LogManager.getLogger("Salty Mod Expanded");
 
-/*  public static SurfaceFinder surfaceFinder = new SurfaceFinder();
-
-  public static BrickmakerCampGen brickermakerCampGen = new BrickmakerCampGen();
-
-  public static ChestContent chestConent;*/
+    public static ChestContent chestConent;
 
     public static SaltConfig config;
 
@@ -73,12 +64,9 @@ public class SaltMod {
         ShapedRecipes.init();
         ShapelessRecipes.init();
         SmeltingRecipes.init();
-/*    if(SaltConfig.enableBrickmakerCamp) {
-    	GameRegistry.registerWorldGenerator((IWorldGenerator)new BrickmakerCampGenerator(), 0);
-    	MapGenStructureIO.registerStructure(MapGenCamp.Start.class, "BrickmakerCamp");
-    	ComponentCampPieces.registerScatteredFeaturePieces();
-    	ChestLootHandler.campChest();
-    }*/
+        if(SaltConfig.enableBrickmakerCamp) {
+            ChestLootHandler.campChest();
+        }
         proxy.preInit(event);
     }
 
@@ -86,10 +74,9 @@ public class SaltMod {
     public void init(FMLInitializationEvent event) {
         config.init();
         proxy.init(event);
-/*    if(SaltConfig.enableBrickmakerCamp) {
-    	GameRegistry.registerWorldGenerator((IWorldGenerator)SaltMod.surfaceFinder, 0);
+    if(SaltConfig.enableBrickmakerCamp) {
     	ChestContent.addDungeonLoot();
-    }*/
+    }
     }
 
     @EventHandler
@@ -277,9 +264,6 @@ public class SaltMod {
         pumpkin_pie.saturationModifier = 0.9F;
 
         }
-
-
-
 
 /*    @Mod.EventHandler
     public void missingMapping(FMLMissingMappingsEvent event) {
