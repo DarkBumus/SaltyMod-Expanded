@@ -51,7 +51,6 @@ public class ShapelessRecipes {
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.salt_pinch, 9),  new ItemStack(ModItems.salt));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.salt_pinch, 40), new ItemStack(ModBlocks.salt_slab, 1, OreDictionary.WILDCARD_VALUE));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.sugar_pinch, 9), new ItemStack(Items.sugar));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.dough, 3), new ItemStack(ModItems.salt_pinch), new ItemStack(ModItems.sugar_pinch), new ItemStack(ModItems.soda), new ItemStack(Items.wheat), new ItemStack(Items.wheat), new ItemStack(Items.wheat), new ItemStack(Items.water_bucket));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.onion, 9), new ItemStack(ModBlocks.storage_crate, 1, 3));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltwort, 9), new ItemStack(ModBlocks.storage_sack, 1, 3));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.salt_cooked_porkchop), new ItemStack(ModItems.salt_pinch), new ItemStack(Items.cooked_porkchop));

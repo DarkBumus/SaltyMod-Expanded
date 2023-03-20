@@ -110,6 +110,8 @@ public class ModBlocks {
 
     public static Block onions = new BlockOnions("onions", null);
 
+    public static Block marsh_reeds = new BlockMarshReeds("marsh_reeds", tab);
+
     public static void init() {
         SaltMod.logger.info("Start to initialize Blocks");
 
@@ -174,6 +176,7 @@ public class ModBlocks {
         GameRegistry.registerBlock(salt_crystal, "saltCrystal");
         GameRegistry.registerBlock(saltworts, "saltWort");
         GameRegistry.registerBlock(onions, "onions");
+//        GameRegistry.registerBlock(marsh_reeds, "marsh_reeds");
 
         SaltMod.logger.info("Finished initializing Blocks");
     }

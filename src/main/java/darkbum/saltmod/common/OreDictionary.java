@@ -43,6 +43,8 @@ public class OreDictionary {
         net.minecraftforge.oredict.OreDictionary.registerOre("itemSweetener", ModItems.honeycomb);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemHoney", ModItems.honeycomb);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemRoyaljelly", ModItems.royal_jelly);
+        net.minecraftforge.oredict.OreDictionary.registerOre("itemIngredientBucket", Items.water_bucket);
+        net.minecraftforge.oredict.OreDictionary.registerOre("itemIngredientBucket", Items.milk_bucket);
         net.minecraftforge.oredict.OreDictionary.registerOre("cropOnion", ModItems.onion);
         net.minecraftforge.oredict.OreDictionary.registerOre("cropSaltwort", ModItems.saltwort);
 
@@ -196,6 +198,7 @@ public class OreDictionary {
 //Ore Recipes
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Items.mushroom_stew), new ItemStack(Items.bowl), "blockMushroom", "blockMushroom"));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.mineral_mud_ball), new ItemStack(ModItems.soda), new ItemStack(ModItems.salt), "itemCoal", new ItemStack(Items.clay_ball)));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.dough, 3), new ItemStack(ModItems.salt_pinch), new ItemStack(ModItems.sugar_pinch), new ItemStack(ModItems.soda), new ItemStack(Items.wheat), new ItemStack(Items.wheat), new ItemStack(Items.wheat), "itemIngredientBucket"));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.salt_mushroom_stew), new ItemStack(ModItems.salt_pinch), new ItemStack(Items.bowl), "blockMushroom", "blockMushroom"));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.stewed_vegetables), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), "blockMushroom"));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.salt_stewed_vegetables), new ItemStack(ModItems.salt_pinch), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), "blockMushroom"));
