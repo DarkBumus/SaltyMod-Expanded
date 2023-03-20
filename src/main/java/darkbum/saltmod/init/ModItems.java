@@ -30,29 +30,29 @@ public class ModItems {
 //    field_76444_x = Absorption
     public static Item testing_apple = new ItemSaltFood("testing_apple", 2, 0.3F, new PotionEffect(Potion.field_76443_y.id, 300)).setAlwaysEdible().setCreativeTab(null).setTextureName("saltmod:" + "dev/" + "test_food");
 
-    public static Item blossom = new SaltItem("blossom", tab, "blossom");
+    public static Item blossom = new Item().setCreativeTab(tab).setUnlocalizedName("blossom").setTextureName("saltmod:blossom");
 
-    public static Item bee_grub = new SaltItem("bee_grub", tab, "bee_grub");
+    public static Item bee_grub = new Item().setCreativeTab(tab).setUnlocalizedName("bee_grub").setTextureName("saltmod:bee_grub");
 
-    public static Item carpenter_bee = new SaltItem("carpenter_bee", tab, "carpenter_bee").setMaxStackSize(1).setMaxDamage(18);
+    public static Item carpenter_bee = new ItemCarpenterBee("carpenter_bee", tab, "carpenter_bee").setMaxStackSize(1).setMaxDamage(18);
 
-    public static Item waxcomb = new SaltItem("waxcomb", tab, "waxcomb");
+    public static Item waxcomb = new Item().setCreativeTab(tab).setUnlocalizedName("waxcomb").setTextureName("saltmod:waxcomb");
 
-    public static Item honeycomb = new SaltItem("honeycomb", tab, "honeycomb");
+    public static Item honeycomb = new Item().setCreativeTab(tab).setUnlocalizedName("honeycomb").setTextureName("saltmod:honeycomb");
 
-    public static Item royal_jelly = new SaltItem("royal_jelly", tab, "royal_jelly");
+    public static Item royal_jelly = new Item().setCreativeTab(tab).setUnlocalizedName("royal_jelly").setTextureName("saltmod:royal_jelly");
 
-    public static Item mineral_mud_ball = new SaltItem("mineralMud", tab, "mineral_mud");
+    public static Item mineral_mud_ball = new Item().setCreativeTab(tab).setUnlocalizedName("mineralMud").setTextureName("saltmod:mineral_mud");
 
-    public static Item soda = new SaltItem("soda", tab, "baking_soda");
+    public static Item soda = new Item().setCreativeTab(tab).setUnlocalizedName("soda").setTextureName("saltmod:baking_soda");
 
-    public static Item powdered_milk = new SaltItem("powderedMilk", tab, "powdered_milk");
+    public static Item powdered_milk = new ItemPowderedMilk("powderedMilk", tab, "powdered_milk");
 
     public static Item salt = new ItemSalt("salt", tab, "salt");
 
-    public static Item salt_pinch = new SaltItem("saltPinch", tab, "salt_pinch");
+    public static Item salt_pinch = new Item().setCreativeTab(tab).setUnlocalizedName("saltPinch").setTextureName("saltmod:salt_pinch");
 
-    public static Item sugar_pinch = new SaltItem("sugarPinch", tab, "sugar_pinch");
+    public static Item sugar_pinch = new Item().setCreativeTab(tab).setUnlocalizedName("sugarPinch").setTextureName("saltmod:sugar_pinch");
 
     public static Item dough = new ItemDough("dough", tab, "dough");
 
@@ -276,7 +276,7 @@ public class ModItems {
 
     public static Item tough_jelly = new ItemToughJelly("toughJelly", tab, "tough_jelly");
 
-    public static Item rainmaker_star = new SaltItem("rainmaker_star", tab, "rainmaker_star");
+    public static Item rainmaker_star = new Item().setCreativeTab(tab).setUnlocalizedName("rainmaker_star").setTextureName("saltmod:rainmaker_star");
 
     public static Item rainmaker = new ItemRainmaker("rainmaker", tab, "rainmaker");
 
@@ -301,7 +301,7 @@ public class ModItems {
 
     public static Item tf_saltwort_meef_steak = new ItemSaltFood("tf_saltWortMeefSteak", 8, 0.9F, Items.bowl, new PotionEffect(Potion.regeneration.id, 100, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltmod:" + "tf/" + "tf_saltwort_meef_steak");
 
-    public static Item bop_poison = new SaltItem("bop_poison", tab, "BOP_Poison").setTextureName("saltmod:" + "bop/" + "bop_poison");
+    public static Item bop_poison = new Item().setCreativeTab(tab).setUnlocalizedName("bop_poison").setTextureName("saltmod:" + "bop/" + "bop_poison");
 
     public static Item bop_salt_shroom_powder = ((ItemFood)(new ItemSaltFood("bop_saltShroomPowder", 2, 0.2F)).setAlwaysEdible().setCreativeTab(tab)).setPotionEffect(Potion.confusion.id, 15, 0, 0.3F).setTextureName("saltmod:" + "bop/" + "bop_salt_shroom_powder");
 

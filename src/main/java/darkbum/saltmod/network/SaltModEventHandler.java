@@ -170,6 +170,8 @@ public class SaltModEventHandler {
             EntityAnimal animal = (EntityAnimal)event.entity;
             if (animal instanceof net.minecraft.entity.passive.EntityCow || animal instanceof net.minecraft.entity.passive.EntityHorse)
                 animal.tasks.addTask(3, new EntityAITempt(animal, 1.25D, ModItems.salt, false));
+            if (animal instanceof net.minecraft.entity.passive.EntityPig)
+                animal.tasks.addTask(3, new EntityAITempt(animal, 1.25D, ModItems.onion, false));
         }
     }
 

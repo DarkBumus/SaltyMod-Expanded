@@ -27,7 +27,7 @@ public class BlossomTreeGenerator implements IWorldGenerator {
             xx = x + offsetXZ(random);
             zz = z + offsetXZ(random);
             yy = world.getTopSolidOrLiquidBlock(xx, zz);
-            if (random.nextInt(150) == 0) {
+            if (random.nextInt(200) == 0) {
                 (new WorldGenBlossomBigTree(false, false)).generate(world, random, xx, yy, zz);
             }
         }

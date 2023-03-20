@@ -7,8 +7,8 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
 public class TabSalt extends CreativeTabs {
-    public TabSalt(String lable) {
-        super(lable);
+    public TabSalt(String label) {
+        super(label);
     }
 
     @SideOnly(Side.CLIENT)
