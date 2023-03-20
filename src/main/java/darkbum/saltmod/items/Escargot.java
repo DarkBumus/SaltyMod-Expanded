@@ -3,7 +3,7 @@ package darkbum.saltmod.items;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.potion.Potion;
 
-public class Escargot extends SaltFood {
+public class Escargot extends ItemSaltFood {
     public Escargot(String name, CreativeTabs tab, String textureName) {
         super("escargot", 2, 0.1F);
         setUnlocalizedName(name);

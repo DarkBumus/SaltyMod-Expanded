@@ -29,11 +29,11 @@ public class SaltCrystalGenerator implements IWorldGenerator {
         for (int y = 8; y < dimensionSpawnHeight; y++) {
             for (int x1 = x; x1 < x + 16; x1++) {
                 for (int z1 = z; z1 < z + 16; z1++) {
-                    if (world.getBlock(x1, y - 1, z1) == ModBlocks.saltOre && world.isAirBlock(x1, y, z1) && world.getFullBlockLightValue(x1, y, z1) < 13)
+                    if (world.getBlock(x1, y - 1, z1) == ModBlocks.salt_ore && world.isAirBlock(x1, y, z1) && world.getFullBlockLightValue(x1, y, z1) < 13)
                         if (rand.nextInt(2) == 0) {
-                            world.setBlock(x1, y, z1, ModBlocks.saltCrystal, 1, 3);
+                            world.setBlock(x1, y, z1, ModBlocks.salt_crystal, 1, 3);
                         } else {
-                            world.setBlock(x1, y, z1, ModBlocks.saltCrystal);
+                            world.setBlock(x1, y, z1, ModBlocks.salt_crystal);
                         }
                 }
             }

@@ -3,7 +3,7 @@ package darkbum.saltmod.tileentity;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltmod.api.ExtractRegistry;
-import darkbum.saltmod.blocks.Extractor;
+import darkbum.saltmod.blocks.BlockExtractor;
 import darkbum.saltmod.init.SaltConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -90,13 +90,13 @@ public class TileEntityExtractor extends TileEntity implements ISidedInventory, 
                 this.liquidChange = this.liquidLevel;
                 teUpdate = true;
                 if (canExtract())
-                    Extractor.updateExtractorBlockState((this.burningTime > 0), true, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+                    BlockExtractor.updateExtractorBlockState((this.burningTime > 0), true, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
             }
             if (this.liquidLevel == 0 && this.liquidChange > 0) {
                 this.liquidChange = 0;
                 this.extractTime = 0;
                 teUpdate = true;
-                Extractor.updateExtractorBlockState((this.burningTime > 0), false, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+                BlockExtractor.updateExtractorBlockState((this.burningTime > 0), false, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
             }
             if (this.burningTime > 0)
                 this.burningTime--;
@@ -138,7 +138,7 @@ public class TileEntityExtractor extends TileEntity implements ISidedInventory, 
             }
             if (burn != ((this.burningTime > 0))) {
                 teUpdate = true;
-                Extractor.updateExtractorBlockState((this.burningTime > 0), canExtract(), this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+                BlockExtractor.updateExtractorBlockState((this.burningTime > 0), canExtract(), this.worldObj, this.xCoord, this.yCoord, this.zCoord);
             }
             if ((this.steamLevel != 0 && clear) || (this.liquidLevel == 0 && !clear) || !isBurning()) {
                 this.pressure = 0;

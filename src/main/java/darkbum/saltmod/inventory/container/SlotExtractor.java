@@ -60,7 +60,7 @@ public class SlotExtractor extends Slot {
             }
         }
         this.count = 0;
-        if (stack.getItem() == ModItems.saltPinch)
+        if (stack.getItem() == ModItems.salt_pinch)
             this.thePlayer.addStat(AchievSalt.moreBuckets, 1);
     }
 }

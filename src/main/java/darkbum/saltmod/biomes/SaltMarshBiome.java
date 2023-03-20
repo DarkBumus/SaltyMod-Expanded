@@ -46,7 +46,7 @@ public class SaltMarshBiome extends BiomeGenBase {
         this.flowers.clear();
         this.addFlower(Blocks.red_flower, 2, 10);
         this.addFlower(Blocks.tallgrass, 0, 2);
-        this.addFlower(ModBlocks.saltWort, 0, 5);
+        this.addFlower(ModBlocks.saltworts, 0, 5);
 
         this.spawnableCreatureList.clear();
         this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntitySheep.class, 8, 4, 4));
@@ -61,11 +61,11 @@ public class SaltMarshBiome extends BiomeGenBase {
         field_76754_C = 0;
 
         if (doub > 2.4D) {
-            topBlock = ModBlocks.saltGrass;
-            fillerBlock = ModBlocks.saltDirtLite;
+            topBlock = ModBlocks.salt_grass;
+            fillerBlock = ModBlocks.lite_salt_dirt;
         } else if (doub > -1.5D) {
-            topBlock = ModBlocks.saltGrass;
-            fillerBlock = ModBlocks.saltDirtLite;
+            topBlock = ModBlocks.salt_grass;
+            fillerBlock = ModBlocks.lite_salt_dirt;
         } else {
             topBlock = Blocks.grass;
             fillerBlock = Blocks.dirt;

@@ -207,7 +207,7 @@ public class TileEntityApiary extends TileEntity implements IInventory {
 
     private boolean canRun() {
         if (this.inventory[18] != null)
-            return (this.inventory[18].getItem() == ModItems.carpenterBee && this.inventory[18]
+            return (this.inventory[18].getItem() == ModItems.carpenter_bee && this.inventory[18]
                 .getItemDamage() != this.inventory[18].getMaxDamage());
         return false;
     }
@@ -216,13 +216,13 @@ public class TileEntityApiary extends TileEntity implements IInventory {
         Random rnd = new Random();
         int rndnum = rnd.nextInt(100);
         if (this.inventory[18] != null) {
-            if (this.inventory[18].getItem() == ModItems.carpenterBee && this.inventory[18].getItemDamage() == 17)
-                return new ItemStack(ModItems.beeGrub);
+            if (this.inventory[18].getItem() == ModItems.carpenter_bee && this.inventory[18].getItemDamage() == 17)
+                return new ItemStack(ModItems.bee_grub);
             if (rndnum < 50)
-                return new ItemStack(ModItems.waxComb);
+                return new ItemStack(ModItems.waxcomb);
             if (rndnum >= 50 && rndnum < 95)
-                return new ItemStack(ModItems.honeyComb);
-            return new ItemStack(ModItems.beeGrub);
+                return new ItemStack(ModItems.honeycomb);
+            return new ItemStack(ModItems.bee_grub);
         }
         return null;
     }
@@ -242,7 +242,7 @@ public class TileEntityApiary extends TileEntity implements IInventory {
     int getRunTime(ItemStack stack) {
         if (stack == null)
             return 0;
-        if (stack.getItem() == ModItems.carpenterBee)
+        if (stack.getItem() == ModItems.carpenter_bee)
             return 3200;
         return 0;
     }

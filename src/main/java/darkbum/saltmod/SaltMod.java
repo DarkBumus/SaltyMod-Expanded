@@ -86,7 +86,7 @@ public class SaltMod {
 
         if(Loader.isModLoaded("etfuturum") && new ComparableVersion(Loader.instance().getIndexedModList().get("etfuturum").getProcessedVersion().getVersionString()).compareTo(new ComparableVersion("2.4.4")) <= 0) {
             System.out.println("deepslate ore registered");
-            ganymedes01.etfuturum.core.utils.DeepslateOreRegistry.addOre(ModBlocks.saltOre, ModBlocks.saltDeepslateOre);
+            ganymedes01.etfuturum.core.utils.DeepslateOreRegistry.addOre(ModBlocks.salt_ore, ModBlocks.salt_deepslate_ore);
         }
 
         ItemFood apple = (ItemFood) Items.apple;

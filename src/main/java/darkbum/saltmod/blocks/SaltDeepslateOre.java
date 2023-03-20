@@ -15,7 +15,7 @@ public class SaltDeepslateOre extends Block {
         super(Material.rock);
         setBlockName("saltDeepslateOre");
         setStepSound(ganymedes01.etfuturum.client.sound.ModSounds.soundDeepslate);
-        setCreativeTab(CommonProxy.saltTab);
+        setCreativeTab(CommonProxy.tabSalt);
         setHardness(4.5F);
         setResistance(3.0F);
     }

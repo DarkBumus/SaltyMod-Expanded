@@ -26,9 +26,9 @@ public class SaltWortMix extends WorldGenerator
             int j1 = y + random.nextInt(4) - random.nextInt(4);
             int k1 = z + random.nextInt(8) - random.nextInt(8);
 
-            if (world.isAirBlock(i1, j1, k1) && (world.getBlock(i1, j1 - 1, k1) == ModBlocks.saltDirtLite || world.getBlock(i1, j1 - 1, k1) == ModBlocks.saltDirt)) {
+            if (world.isAirBlock(i1, j1, k1) && (world.getBlock(i1, j1 - 1, k1) == ModBlocks.lite_salt_dirt || world.getBlock(i1, j1 - 1, k1) == ModBlocks.salt_dirt)) {
 
-                world.setBlock(i1, j1, k1, ModBlocks.saltWort, random.nextInt(5), 2);
+                world.setBlock(i1, j1, k1, ModBlocks.saltworts, random.nextInt(5), 2);
 
             }
 

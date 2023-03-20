@@ -11,7 +11,7 @@ import java.util.List;
 
 public class FishRegistry {
     public static void registerItems() {
-        normalFishLoot(new ItemStack(ModItems.fishTailorRaw, 1, 0), 100);
+        normalFishLoot(new ItemStack(ModItems.tailor, 1, 0), 100);
     }
 
     public static void normalFishLoot(ItemStack item, int weight) {

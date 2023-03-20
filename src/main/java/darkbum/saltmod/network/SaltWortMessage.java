@@ -57,7 +57,7 @@ public class SaltWortMessage implements IMessage {
         if (world.getTileEntity(x, y, z) != null && world
             .getTileEntity(x, y, z) instanceof TileEntityFlowerPot) {
             TileEntityFlowerPot te = (TileEntityFlowerPot)world.getTileEntity(x, y, z);
-            te.func_145964_a(Item.getItemFromBlock(ModBlocks.saltWort), i);
+            te.func_145964_a(Item.getItemFromBlock(ModBlocks.saltworts), i);
             world.markBlockForUpdate(x, y, z);
         }
     }

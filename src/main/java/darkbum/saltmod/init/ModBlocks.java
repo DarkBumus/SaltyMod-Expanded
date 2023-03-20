@@ -4,83 +4,84 @@ import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import darkbum.saltmod.blockitems.*;
 import darkbum.saltmod.blocks.*;
+import darkbum.saltmod.blocks.BlockSalt;
 import net.minecraft.block.*;
 import net.minecraft.creativetab.CreativeTabs;
 import darkbum.saltmod.SaltMod;
 import darkbum.saltmod.common.CommonProxy;
 
 public class ModBlocks {
-    static CreativeTabs tab = CommonProxy.saltTab;
+    static CreativeTabs tab = CommonProxy.tabSalt;
 
-    public static Block saltOre = new SaltOre("saltOre", tab);
+    public static Block salt_ore = new BlockSaltOre("saltOre", tab);
 
-    public static Block saltDeepslateOre;
+    public static Block salt_deepslate_ore;
 
-    public static Block saltLake = new SaltLake("saltLake", tab);
+    public static Block salt_lake = new BlockSaltLake("saltLake", tab);
 
-    public static Block saltBlock = new SaltBlock(tab);
+    public static Block salt_block = new BlockSalt(tab);
 
-    public static BlockStairs saltBrickStair = new SaltBrickStair("saltBrickStair", tab);
+    public static BlockStairs salt_brick_stairs = new BlockSaltBrickStairs("saltBrickStair", tab);
 
-    public static BlockSlab saltSlab = new SaltSlab(false, "saltSlab", tab);
+    public static BlockSlab salt_slab = new BlockSaltSlab(false, "saltSlab", tab);
 
-    public static BlockSlab saltSlabDouble = new SaltSlab(true, "saltSlabDouble", null);
+    public static BlockSlab double_salt_slab = new BlockSaltSlab(true, "saltSlabDouble", null);
 
-    public static Block saltLamp = new SaltLamp("saltLamp", tab);
+    public static Block salt_lamp = new SaltLamp("saltLamp", tab);
 
-    public static Block saltDirt = new SaltDirt(tab);
+    public static Block salt_dirt = new BlockSaltDirt(tab);
 
-    public static Block saltDirtLite = new SaltDirtLite("saltDirtLite", tab);
+    public static Block lite_salt_dirt = new BlockLiteSaltDirt("saltDirtLite", tab);
 
-    public static Block saltGrass = new SaltGrass("saltGrass", tab);
+    public static Block salt_grass = new BlockSaltGrass("saltGrass", tab);
 
-    public static Block grassTop = new GrassTop("grassTop", null);
+    public static Block grass_top = new BlockGrassTop("grassTop", null);
 
-    public static Block mudBlock = new MudBlock("mudBlock", tab);
+    public static Block mineral_mud = new BlockMineralMud("mudBlock", tab);
 
-    public static Block mudBrickWet = new MudBrickWet("mudBrickWet", tab);
+    public static Block wet_mud_brick = new BlockWetMudBrick("wet_mud_brick", tab);
 
-    public static Block mudBrickDry = new MudBrickDry("mudBrickDry", tab);
+    public static Block dry_mud_brick = new BlockDryMudBrick("dry_mud_brick", tab);
 
-    public static Block mudBrickDryStairs = new MudBrickDryStairs("mudBrickDryStairs", tab);
+    public static Block dry_mud_brick_stairs = new BlockDryMudBrickStairs("dry_mud_brick_stairs", tab);
 
-    public static BlockSlab mudBrickDrySlab = new MudBrickDrySlab(false, "mudBrickDrySlab", tab);
+    public static BlockSlab dry_mud_brick_slab = new BlockDryMudBrickSlab(false, "dry_mud_brick_slab", tab);
 
-    public static BlockSlab mudBrickDrySlabDouble = new MudBrickDrySlab(true, "mudBrickDrySlabDouble", null);
+    public static BlockSlab double_dry_mud_brick_slab = new BlockDryMudBrickSlab(true, "double_dry_mud_brick_slab", null);
 
-    public static BlockWall mudBrickDryWall = new MudBrickDryWall(ModBlocks.mudBrickDry, tab);
+    public static BlockWall dry_mud_brick_wall = new BlockDryMudBrickWall(ModBlocks.dry_mud_brick, tab);
 
-    public static Block oakLogSaltCrusted = new OakLogSaltCrusted("oakLogSaltCrusted", tab);
+    public static Block salt_crusted_oak_log = new BlockSaltCrustedOakLog("salt_crusted_oak_log", tab);
 
-    public static Block blossomPlanks = new BlossomPlanks("blossomPlanks", tab);
+    public static Block blossom_planks = new BlockBlossomPlanks("blossom_planks", tab);
 
     //    public static Block blossomSapling = new BlossomSapling("blossomSapling", tab);
 
-    public static Block blossomLog = new BlossomLog("blossomLog", tab);
+    public static Block blossom_log = new BlockBlossomLog("blossom_log", tab);
 
-    public static Block blossomBurrow = new BlossomBurrow("blossomBurrow", tab);
+    public static Block blossom_burrow = new BlockBlossomBurrow("blossom_burrow", tab);
 
-    public static Block blossomStrippedLog = new BlossomStrippedLog("blossomStrippedLog", tab);
+    public static Block blossom_stripped_log = new BlockBlossomStrippedLog("blossom_stripped_log", tab);
 
-    public static Block blossomWood = new BlossomWood("blossomWood", tab);
+    public static Block blossom_wood = new BlockBlossomWood("blossom_wood", tab);
 
-    public static Block blossomStrippedWood = new BlossomStrippedWood("blossomStrippedWood", tab);
+    public static Block blossom_stripped_wood = new BlockBlossomStrippedWood("blossom_stripped_wood", tab);
 
-    public static Block blossomLeaves = new BlossomLeaves("blossomLeaves", tab);
+    public static Block blossom_leaves = new BlockBlossomLeaves("blossom_leaves", tab);
 
-    public static BlockSlab blossomSlab = new BlossomSlab(false, "blossomSlab", tab);
+    public static BlockSlab blossom_slab = new BlockBlossomSlab(false, "blossom_slab", tab);
 
-    public static BlockSlab blossomSlabDouble = new BlossomSlab(true, "saltSlabDouble", null);
+    public static BlockSlab double_blossom_slab = new BlockBlossomSlab(true, "double_blossom_slab", null);
 
     //    public static BlockFence blossomFence
 
-    public static Block blossomStairs = new BlossomStairs("blossomStairs", tab);
+    public static Block blossom_stairs = new BlockBlossomStairs("blossom_stairs", tab);
 
 //    public static BlockFenceGate blossomFenceGate
 
-    public static Block blossomPressurePlate = new BlossomPressurePlate(0, tab);
+    public static Block blossom_pressure_plate = new BlockBlossomPressurePlate(0, tab);
 
-    public static Block blossomButton = new BlossomButton();
+    public static Block blossom_button = new BlockBlossomButton();
 
 //    public static Block blossomDoor = new BlossomDoor("blossomDoor", tab);
 
@@ -89,73 +90,73 @@ public class ModBlocks {
 //    public static Block blossomSign = new BlossomSign();
 
 
-    public static Block apiary = new Apiary("apiary", tab);
+    public static Block apiary = new BlockApiary("apiary", tab);
 
-    public static Block extractor = new Extractor(false, false, "extractor", tab);
+    public static Block extractor = new BlockExtractor(false, false, "extractor", tab);
 
-    public static Block extractorLit = new Extractor(true, false, "extractor", null);
+    public static Block lit_extractor = new BlockExtractor(true, false, "extractor", null);
 
-    public static Block extractorSteam = new Extractor(true, true, "extractor", null);
+    public static Block steam_extractor = new BlockExtractor(true, true, "extractor", null);
 
-    public static Block storageCrate = new StorageCrate("storageCrate", tab);
+    public static Block storage_crate = new BlockStorageCrate("storage_crate", tab);
 
-    public static Block storageBarrel = new StorageBarrel("storageBarrel", tab);
+    public static Block storage_barrel = new BlockStorageBarrel("storage_barrel", tab);
 
-    public static Block storageSack = new StorageSack("storageSack", tab);
+    public static Block storage_sack = new BlockStorageSack("storage_sack", tab);
 
-    public static Block saltCrystal = new SaltCrystal("saltCrystal", tab);
+    public static Block salt_crystal = new BlockSaltCrystal("saltCrystal", tab);
 
-    public static Block saltWort = new SaltWort("saltWort", null);
+    public static Block saltworts = new BlockSaltwort("saltWort", null);
 
-    public static Block cropOnion = new CropOnion("cropOnion", null);
+    public static Block onions = new BlockOnions("onions", null);
 
     public static void init() {
         SaltMod.logger.info("Start to initialize Blocks");
 
-        GameRegistry.registerBlock(saltOre, "saltOre");
+        GameRegistry.registerBlock(salt_ore, "saltOre");
         if(Loader.isModLoaded("etfuturum") && ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableDeepslate && ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableDeepslateOres) {
-            saltDeepslateOre = new SaltDeepslateOre(saltOre);
-            GameRegistry.registerBlock(saltDeepslateOre, "saltDeepslateOre");
+            salt_deepslate_ore = new SaltDeepslateOre(salt_ore);
+            GameRegistry.registerBlock(salt_deepslate_ore, "saltDeepslateOre");
         }
-        GameRegistry.registerBlock(saltLake, "saltLake");
-        GameRegistry.registerBlock(saltBlock, ItemSaltBlock.class, "saltBlock");
-        GameRegistry.registerBlock(saltBrickStair, "saltBrickStair");
-        GameRegistry.registerBlock(saltSlab, ItemSaltSlab.class, "saltSlab");
-        GameRegistry.registerBlock(saltSlabDouble, ItemSaltSlab.class, "saltSlabDouble");
-        GameRegistry.registerBlock(saltLamp, "saltLamp");
-        GameRegistry.registerBlock(saltDirt, ItemSaltDirt.class, "saltDirt");
-        GameRegistry.registerBlock(saltDirtLite, "saltDirtLite");
-        GameRegistry.registerBlock(saltGrass, "saltGrass");
-        GameRegistry.registerBlock(grassTop, "grassTop");
-        GameRegistry.registerBlock(mudBlock, "mudBlock");
-        GameRegistry.registerBlock(mudBrickWet, "mudBrickWet");
-        GameRegistry.registerBlock(mudBrickDry, "mudBrickDry");
-        GameRegistry.registerBlock(mudBrickDryStairs, "mudBrickDryStairs");
-        GameRegistry.registerBlock(mudBrickDrySlab, ItemMudBrickDrySlab.class, "mudBrickDrySlab");
-        GameRegistry.registerBlock(mudBrickDrySlabDouble, ItemMudBrickDrySlab.class, "mudBrickDrySlabDouble");
+        GameRegistry.registerBlock(salt_lake, "saltLake");
+        GameRegistry.registerBlock(salt_block, darkbum.saltmod.blockitems.ItemSaltBlock.class, "saltBlock");
+        GameRegistry.registerBlock(salt_brick_stairs, "saltBrickStair");
+        GameRegistry.registerBlock(salt_slab, ItemSaltSlab.class, "saltSlab");
+        GameRegistry.registerBlock(double_salt_slab, ItemSaltSlab.class, "saltSlabDouble");
+        GameRegistry.registerBlock(salt_lamp, "saltLamp");
+        GameRegistry.registerBlock(salt_dirt, ItemSaltDirt.class, "saltDirt");
+        GameRegistry.registerBlock(lite_salt_dirt, "saltDirtLite");
+        GameRegistry.registerBlock(salt_grass, "saltGrass");
+        GameRegistry.registerBlock(grass_top, "grassTop");
+        GameRegistry.registerBlock(mineral_mud, "mudBlock");
+        GameRegistry.registerBlock(wet_mud_brick, "wet_mud_brick");
+        GameRegistry.registerBlock(dry_mud_brick, "dry_mud_brick");
+        GameRegistry.registerBlock(dry_mud_brick_stairs, "dry_mud_brick_stairs");
+        GameRegistry.registerBlock(dry_mud_brick_slab, ItemMudBrickDrySlab.class, "dry_mud_brick_slab");
+        GameRegistry.registerBlock(double_dry_mud_brick_slab, ItemMudBrickDrySlab.class, "double_dry_mud_brick_slab");
         if(Loader.isModLoaded("etfuturum")) {
-            GameRegistry.registerBlock(mudBrickDryWall, "mudBrickDryWall");
+            GameRegistry.registerBlock(dry_mud_brick_wall, "dry_mud_brick_wall");
         }
-        GameRegistry.registerBlock(oakLogSaltCrusted, "oakLogSaltCrusted");
-        GameRegistry.registerBlock(blossomPlanks, "blossomPlanks");
+        GameRegistry.registerBlock(salt_crusted_oak_log, "salt_crusted_oak_log");
+        GameRegistry.registerBlock(blossom_planks, "blossom_planks");
 //        GameRegistry.registerBlock(blossomSapling, "blossomSapling");
-        GameRegistry.registerBlock(blossomLog, "blossomLog");
-        GameRegistry.registerBlock(blossomBurrow, "blossomBurrow");
+        GameRegistry.registerBlock(blossom_log, "blossom_log");
+        GameRegistry.registerBlock(blossom_burrow, "blossom_burrow");
         if(Loader.isModLoaded("etfuturum")) {
-            GameRegistry.registerBlock(blossomStrippedLog, "blossomStrippedLog");
-            GameRegistry.registerBlock(blossomWood, "blossomWood");
-            GameRegistry.registerBlock(blossomStrippedWood, "blossomStrippedWood");
+            GameRegistry.registerBlock(blossom_stripped_log, "blossom_stripped_log");
+            GameRegistry.registerBlock(blossom_wood, "blossom_wood");
+            GameRegistry.registerBlock(blossom_stripped_wood, "blossom_stripped_wood");
         }
-        GameRegistry.registerBlock(blossomLeaves, "blossomLeaves");
-        GameRegistry.registerBlock(blossomSlab, ItemBlossomSlab.class,"blossomSlab");
-        GameRegistry.registerBlock(blossomSlabDouble, ItemBlossomSlab.class,"blossomSlabDouble");
+        GameRegistry.registerBlock(blossom_leaves, "blossom_leaves");
+        GameRegistry.registerBlock(blossom_slab, ItemBlossomSlab.class,"blossom_slab");
+        GameRegistry.registerBlock(double_blossom_slab, ItemBlossomSlab.class,"double_blossom_slab");
         if(Loader.isModLoaded("etfuturum")) {
 //            GameRegistry.registerBlock(blossomFence, "blossomFence");
         }
-        GameRegistry.registerBlock(blossomStairs, "blossomStairs");
+        GameRegistry.registerBlock(blossom_stairs, "blossom_stairs");
         if(Loader.isModLoaded("etfuturum") && ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableWoodRedstone) {
-            GameRegistry.registerBlock(blossomPressurePlate, "blossomPressurePlate");
-            GameRegistry.registerBlock(blossomButton, "blossomButton");
+            GameRegistry.registerBlock(blossom_pressure_plate, "blossom_pressure_plate");
+            GameRegistry.registerBlock(blossom_button, "blossom_button");
         }
         if(Loader.isModLoaded("etfuturum")) {
 //            GameRegistry.registerBlock(blossomDoor, "blossomDoor");
@@ -165,14 +166,14 @@ public class ModBlocks {
         }
         GameRegistry.registerBlock(apiary, "apiary");
         GameRegistry.registerBlock(extractor, "extractor");
-        GameRegistry.registerBlock(extractorLit, "extractorLit").setLightLevel(0.9F);
-        GameRegistry.registerBlock(extractorSteam, "extractorSteam").setLightLevel(0.9F);
-        GameRegistry.registerBlock(storageCrate, ItemStorageCrate.class, "storageCrate");
-        GameRegistry.registerBlock(storageBarrel, ItemStorageBarrel.class, "storageBarrel");
-        GameRegistry.registerBlock(storageSack, ItemStorageSack.class, "storageSack");
-        GameRegistry.registerBlock(saltCrystal, "saltCrystal");
-        GameRegistry.registerBlock(saltWort, "saltWort");
-        GameRegistry.registerBlock(cropOnion, "cropOnion");
+        GameRegistry.registerBlock(lit_extractor, "extractorLit").setLightLevel(0.9F);
+        GameRegistry.registerBlock(steam_extractor, "extractorSteam").setLightLevel(0.9F);
+        GameRegistry.registerBlock(storage_crate, ItemStorageCrate.class, "storage_crate");
+        GameRegistry.registerBlock(storage_barrel, ItemStorageBarrel.class, "storage_barrel");
+        GameRegistry.registerBlock(storage_sack, ItemStorageSack.class, "storage_sack");
+        GameRegistry.registerBlock(salt_crystal, "saltCrystal");
+        GameRegistry.registerBlock(saltworts, "saltWort");
+        GameRegistry.registerBlock(onions, "onions");
 
         SaltMod.logger.info("Finished initializing Blocks");
     }

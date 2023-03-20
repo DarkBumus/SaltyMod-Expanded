@@ -179,8 +179,8 @@ public class WorldGenSaltBigTree extends WorldGenAbstractTree  {
 
                 Block block = Blocks.log;
                 Block otherBlock = worldObj.getBlock(finalPos[0], finalPos[1] - 1, finalPos[2]);
-                if(otherBlock != block && otherBlock != ModBlocks.oakLogSaltCrusted && otherBlock.isOpaqueCube() && !otherBlock.isLeaves(worldObj, finalPos[0], finalPos[1] - 1, finalPos[2])) {
-                    block = ModBlocks.oakLogSaltCrusted;
+                if(otherBlock != block && otherBlock != ModBlocks.salt_crusted_oak_log && otherBlock.isOpaqueCube() && !otherBlock.isLeaves(worldObj, finalPos[0], finalPos[1] - 1, finalPos[2])) {
+                    block = ModBlocks.salt_crusted_oak_log;
                 }
 
                 setBlockAndNotifyAdequately(worldObj, finalPos[0], finalPos[1], finalPos[2], block, meta);

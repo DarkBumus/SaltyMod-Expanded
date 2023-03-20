@@ -2,8 +2,6 @@ package darkbum.saltmod.world;
 
 import java.util.Random;
 
-import cpw.mods.fml.common.IWorldGenerator;
-import cpw.mods.fml.common.registry.GameRegistry;
 import darkbum.saltmod.init.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
@@ -12,7 +10,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class WorldGenBlossomBigTree extends WorldGenAbstractTree {
 
@@ -177,7 +174,7 @@ public class WorldGenBlossomBigTree extends WorldGenAbstractTree {
 
         for(int i1 = p_76491_2_ + this.leafDistanceLimit; l < i1; ++l) {
             float f = this.leafSize(l - p_76491_2_);
-            this.func_150529_a(p_76491_1_, l, p_76491_3_, f, (byte)1, ModBlocks.blossomLeaves);
+            this.func_150529_a(p_76491_1_, l, p_76491_3_, f, (byte)1, ModBlocks.blossom_leaves);
         }
 
     }
@@ -311,17 +308,17 @@ public class WorldGenBlossomBigTree extends WorldGenAbstractTree {
         int l = this.basePos[2];
         int[] aint = new int[]{i, j, l};
         int[] aint1 = new int[]{i, k, l};
-        this.func_150530_a(aint, aint1, ModBlocks.blossomLog);
+        this.func_150530_a(aint, aint1, ModBlocks.blossom_log);
         if (this.trunkSize == 2) {
             int var10002 = aint[0]++;
             var10002 = aint1[0]++;
-            this.func_150530_a(aint, aint1, ModBlocks.blossomLog);
+            this.func_150530_a(aint, aint1, ModBlocks.blossom_log);
             var10002 = aint[2]++;
             var10002 = aint1[2]++;
-            this.func_150530_a(aint, aint1, ModBlocks.blossomLog);
+            this.func_150530_a(aint, aint1, ModBlocks.blossom_log);
             aint[0] += -1;
             aint1[0] += -1;
-            this.func_150530_a(aint, aint1, ModBlocks.blossomLog);
+            this.func_150530_a(aint, aint1, ModBlocks.blossom_log);
         }
 
     }
@@ -336,7 +333,7 @@ public class WorldGenBlossomBigTree extends WorldGenAbstractTree {
             aint[1] = aint1[3];
             int k = aint[1] - this.basePos[1];
             if (this.leafNodeNeedsBase(k)) {
-                this.func_150530_a(aint, aint2, ModBlocks.blossomLog);
+                this.func_150530_a(aint, aint2, ModBlocks.blossom_log);
             }
         }
 

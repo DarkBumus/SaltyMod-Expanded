@@ -2,7 +2,7 @@ package darkbum.saltmod.entities;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltmod.items.Rainmaker;
+import darkbum.saltmod.items.ItemRainmaker;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -91,7 +91,7 @@ public class EntityRainmaker extends Entity {
     @SideOnly(Side.CLIENT)
     public void handleHealthUpdate(byte par_byte) {
         if (par_byte == 17 && this.worldObj.isRemote)
-            this.worldObj.makeFireworks(this.posX, this.posY, this.posZ, this.motionX, this.motionY, this.motionZ, Rainmaker.tag);
+            this.worldObj.makeFireworks(this.posX, this.posY, this.posZ, this.motionX, this.motionY, this.motionZ, ItemRainmaker.tag);
         super.handleHealthUpdate(par_byte);
     }
 

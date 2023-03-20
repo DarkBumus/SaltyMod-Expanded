@@ -16,7 +16,7 @@ public class NewWorldGenClay  extends WorldGenerator
     private int numberOfBlocks;
 
     public NewWorldGenClay(int number) {
-        this.clay = ModBlocks.mudBlock;
+        this.clay = ModBlocks.mineral_mud;
         this.numberOfBlocks = number;
     }
 
@@ -36,7 +36,7 @@ public class NewWorldGenClay  extends WorldGenerator
                         for (int i2 = y - b0; i2 <= y + b0; ++i2) {
                             Block block = world.getBlock(i1, i2, j1);
 
-                            if (block instanceof BlockDirt || block == Blocks.clay || block == ModBlocks.saltDirt || block == ModBlocks.saltDirtLite) {
+                            if (block instanceof BlockDirt || block == Blocks.clay || block == ModBlocks.salt_dirt || block == ModBlocks.lite_salt_dirt) {
                                 world.setBlock(i1, i2, j1, this.clay, 0, 2);
                             }
                         }

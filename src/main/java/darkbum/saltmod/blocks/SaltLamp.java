@@ -56,9 +56,9 @@ public class SaltLamp extends Block {
                     d1--;
                     for (int x1 = x - 1; x1 < x + 2; x1++) {
                         for (int z1 = z - 1; z1 < z + 2; z1++) {
-                            if (world.getBlock(x1, y, z1) == ModBlocks.saltBlock || world.getBlock(x1, y, z1) == ModBlocks.saltLamp || world
-                                .getBlock(x1, y, z1) == ModBlocks.saltLake || world.getBlock(x1, y, z1) == ModBlocks.saltDirt || world
-                                .getBlock(x1, y, z1) == ModBlocks.saltBrickStair)
+                            if (world.getBlock(x1, y, z1) == ModBlocks.salt_block || world.getBlock(x1, y, z1) == ModBlocks.salt_lamp || world
+                                .getBlock(x1, y, z1) == ModBlocks.salt_lake || world.getBlock(x1, y, z1) == ModBlocks.salt_dirt || world
+                                .getBlock(x1, y, z1) == ModBlocks.salt_brick_stairs)
                                 world.scheduleBlockUpdate(x1, y, z1, this, 10);
                         }
                     }

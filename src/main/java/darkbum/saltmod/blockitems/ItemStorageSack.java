@@ -5,7 +5,7 @@ import net.minecraft.item.ItemBlockWithMetadata;
 import net.minecraft.item.ItemStack;
 
 public class ItemStorageSack extends ItemBlockWithMetadata {
-    private static final String[] types = new String[] {"Wheatseeds", "Melonseeds", "Pumpkinseeds", "Saltwort", "Beetrootseeds"};
+    private static final String[] types = new String[] {"wheatseeds", "melonseeds", "pumpkinseeds", "saltwort", "beetrootseeds"};
 
     public ItemStorageSack(Block block) {
         super(block, block);

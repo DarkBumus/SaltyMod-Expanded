@@ -42,7 +42,7 @@ public class SaltGrassRenderer implements ISimpleBlockRenderingHandler {
 
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
         renderer.renderStandardBlock(block, x, y, z);
-        renderer.renderStandardBlock(ModBlocks.grassTop, x, y, z);
+        renderer.renderStandardBlock(ModBlocks.grass_top, x, y, z);
         return true;
     }
 

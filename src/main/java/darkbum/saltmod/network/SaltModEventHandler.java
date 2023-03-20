@@ -76,7 +76,7 @@ public class SaltModEventHandler {
                 EntityList.getEntityString(target).toLowerCase().contains("witch"))) {
                 if (is.getItem() instanceof net.minecraft.item.ItemBlock && Block.getBlockFromItem(is.getItem()) != Blocks.air)
                     block = Block.getBlockFromItem(is.getItem());
-                if (block != null && block == ModBlocks.saltCrystal) {
+                if (block != null && block == ModBlocks.salt_crystal) {
                     target.attackEntityFrom(DamageSource.cactus, 30.0F);
                     world.playSoundEffect(target.posX, target.posY, target.posZ, "dig.stone", 2.0F, 1.0F);
                     world.playSoundEffect(target.posX, target.posY, target.posZ, "dig.glass", 2.0F, 2.0F);
@@ -84,13 +84,13 @@ public class SaltModEventHandler {
                         is.stackSize--;
                         if (is.stackSize == 0)
                             player.setCurrentItemOrArmor(0, null);
-                        EntityItem EI = new EntityItem(world, target.posX, target.posY, target.posZ, new ItemStack(ModItems.saltPinch));
+                        EntityItem EI = new EntityItem(world, target.posX, target.posY, target.posZ, new ItemStack(ModItems.salt_pinch));
                         EI.delayBeforeCanPickup = 10;
                         world.spawnEntityInWorld(EI);
                         if (EntityList.getEntityString(target).toLowerCase().contains("witch"))
                             player.addStat(AchievSalt.saltWitch, 1);
                         if (target instanceof net.minecraft.entity.monster.EntitySlime) {
-                            EntityItem EIS = new EntityItem(world, target.posX, target.posY, target.posZ, new ItemStack(ModItems.toughJelly));
+                            EntityItem EIS = new EntityItem(world, target.posX, target.posY, target.posZ, new ItemStack(ModItems.tough_jelly));
                             EI.delayBeforeCanPickup = 10;
                             world.spawnEntityInWorld(EIS);
                             player.addStat(AchievSalt.saltSlime, 1);
@@ -110,44 +110,44 @@ public class SaltModEventHandler {
                 ItemStack body = player.getCurrentArmor(2);
                 ItemStack legs = player.getCurrentArmor(1);
                 ItemStack feet = player.getCurrentArmor(0);
-                boolean mud = (player.worldObj.getBlock(MathHelper.floor_double(player.posX), MathHelper.floor_double(player.posY), MathHelper.floor_double(player.posZ)) == ModBlocks.mudBlock);
+                boolean mud = (player.worldObj.getBlock(MathHelper.floor_double(player.posX), MathHelper.floor_double(player.posY), MathHelper.floor_double(player.posZ)) == ModBlocks.mineral_mud);
                 IAttributeInstance boost = event.player.getEntityAttribute(SharedMonsterAttributes.maxHealth);
-                if (head != null && boost.getModifier(uuid1) == null && head.getItem() == ModItems.mudHelmet)
+                if (head != null && boost.getModifier(uuid1) == null && head.getItem() == ModItems.mud_helmet)
                     boost.applyModifier(headModifierUP);
-                if ((head == null || head.getItem() != ModItems.mudHelmet) && boost.getModifier(uuid1) != null) {
+                if ((head == null || head.getItem() != ModItems.mud_helmet) && boost.getModifier(uuid1) != null) {
                     boost.removeModifier(headModifierUP);
                     if (player.getHealth() > player.getMaxHealth())
                         player.setHealth(player.getMaxHealth());
                 }
-                if (body != null && boost.getModifier(uuid2) == null && body.getItem() == ModItems.mudChestplate)
+                if (body != null && boost.getModifier(uuid2) == null && body.getItem() == ModItems.mud_chestplate)
                     boost.applyModifier(bodyModifierUP);
-                if ((body == null || body.getItem() != ModItems.mudChestplate) && boost.getModifier(uuid2) != null) {
+                if ((body == null || body.getItem() != ModItems.mud_chestplate) && boost.getModifier(uuid2) != null) {
                     boost.removeModifier(bodyModifierUP);
                     if (player.getHealth() > player.getMaxHealth())
                         player.setHealth(player.getMaxHealth());
-                    if (legs != null && boost.getModifier(uuid3) == null && legs.getItem() == ModItems.mudLeggings)
+                    if (legs != null && boost.getModifier(uuid3) == null && legs.getItem() == ModItems.mud_leggings)
                         boost.applyModifier(legsModifierUP);
-                    if ((legs == null || legs.getItem() != ModItems.mudLeggings) && boost.getModifier(uuid3) != null) {
+                    if ((legs == null || legs.getItem() != ModItems.mud_leggings) && boost.getModifier(uuid3) != null) {
                         boost.removeModifier(legsModifierUP);
                         if (player.getHealth() > player.getMaxHealth())
                             player.setHealth(player.getMaxHealth());
                     }
-                    if (((feet != null && feet.getItem() == ModItems.mudBoots) || mud) && boost.getModifier(uuid4) == null)
+                    if (((feet != null && feet.getItem() == ModItems.mud_boots) || mud) && boost.getModifier(uuid4) == null)
                         boost.applyModifier(feetModifierUP);
-                    if ((feet == null || feet.getItem() != ModItems.mudBoots) && !mud && boost.getModifier(uuid4) != null) {
+                    if ((feet == null || feet.getItem() != ModItems.mud_boots) && !mud && boost.getModifier(uuid4) != null) {
                         boost.removeModifier(feetModifierUP);
                         if (player.getHealth() > player.getMaxHealth())
                             player.setHealth(player.getMaxHealth());
                     }
                     if (player.getHealth() < player.getMaxHealth() && player.getFoodStats().getFoodLevel() > 0) {
                         int chek = 0;
-                        if (head != null && head.getItem() == ModItems.mudHelmet)
+                        if (head != null && head.getItem() == ModItems.mud_helmet)
                             chek++;
-                        if (body != null && body.getItem() == ModItems.mudChestplate)
+                        if (body != null && body.getItem() == ModItems.mud_chestplate)
                             chek += 2;
-                        if (legs != null && legs.getItem() == ModItems.mudLeggings)
+                        if (legs != null && legs.getItem() == ModItems.mud_leggings)
                             chek += 2;
-                        if ((feet != null && feet.getItem() == ModItems.mudBoots) || mud)
+                        if ((feet != null && feet.getItem() == ModItems.mud_boots) || mud)
                             chek++;
                         if (chek > 0) {
                             if (player.ticksExisted % (10 - chek) * SaltConfig.mudRegenSpeed == 0)
@@ -210,18 +210,18 @@ public class SaltModEventHandler {
         if (!world.isRemote) {
             if (event.item.getEntityItem().getItem() == ModItems.salt)
                 event.entityPlayer.addStat(AchievSalt.salt, 1);
-            if (event.item.getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.saltCrystal))
+            if (event.item.getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.salt_crystal))
                 event.entityPlayer.addStat(AchievSalt.saltCrystalGet, 1);
-            if (event.item.getEntityItem().getItem() == ModItems.mineralMud)
+            if (event.item.getEntityItem().getItem() == ModItems.mineral_mud_ball)
                 event.entityPlayer.addStat(AchievSalt.mineralMud, 1);
-            if (event.item.getEntityItem().getItem() == ModItems.saltWortSeed)
+            if (event.item.getEntityItem().getItem() == ModItems.saltwort)
                 event.entityPlayer.addStat(AchievSalt.saltWort, 1);
         }
     }
 
     @SubscribeEvent
     public void crafting(PlayerEvent.ItemCraftedEvent event) {
-        if (event.crafting.getItem() == ModItems.mineralMud)
+        if (event.crafting.getItem() == ModItems.mineral_mud_ball)
             event.player.addStat(AchievSalt.mineralMud, 1);
     }
 
@@ -230,8 +230,8 @@ public class SaltModEventHandler {
         if (event.world.getTileEntity(event.x, event.y, event.z) != null &&
             event.world.getTileEntity(event.x, event.y, event.z) instanceof TileEntityFlowerPot) {
             TileEntityFlowerPot te = (TileEntityFlowerPot)event.world.getTileEntity(event.x, event.y, event.z);
-            if (te.getFlowerPotItem() == Item.getItemFromBlock(ModBlocks.saltWort))
-                event.drops.set(1, new ItemStack(ModItems.saltWortSeed));
+            if (te.getFlowerPotItem() == Item.getItemFromBlock(ModBlocks.saltworts))
+                event.drops.set(1, new ItemStack(ModItems.saltwort));
         }
     }
 
@@ -246,16 +246,16 @@ public class SaltModEventHandler {
         int dropAmountZombie = 1;
         if (event.entityLiving instanceof net.minecraft.entity.passive.EntitySquid)
             if (event.entityLiving.isBurning()) {
-                event.entityLiving.entityDropItem(new ItemStack(ModItems.calamariCooked, dropAmountSquid), dropped);
+                event.entityLiving.entityDropItem(new ItemStack(ModItems.cooked_calamari, dropAmountSquid), dropped);
             } else {
-                event.entityLiving.entityDropItem(new ItemStack(ModItems.calamariRaw, dropAmountSquid), dropped);
+                event.entityLiving.entityDropItem(new ItemStack(ModItems.calamari, dropAmountSquid), dropped);
             }
         if (event.entityLiving instanceof net.minecraft.entity.passive.EntityHorse &&
             !event.entityLiving.isChild())
             if (event.entityLiving.isBurning()) {
-                event.entityLiving.entityDropItem(new ItemStack(ModItems.haunchCooked, dropAmountHorse), dropped);
+                event.entityLiving.entityDropItem(new ItemStack(ModItems.cooked_haunch, dropAmountHorse), dropped);
             } else {
-                event.entityLiving.entityDropItem(new ItemStack(ModItems.haunchRaw, dropAmountHorse), dropped);
+                event.entityLiving.entityDropItem(new ItemStack(ModItems.haunch, dropAmountHorse), dropped);
             }
         if (event.entityLiving instanceof net.minecraft.entity.monster.EntityZombie &&
             !event.entityLiving.isChild() &&

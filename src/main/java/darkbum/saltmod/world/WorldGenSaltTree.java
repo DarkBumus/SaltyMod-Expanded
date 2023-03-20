@@ -9,7 +9,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class WorldGenSaltTree extends WorldGenAbstractTree  {
 
@@ -67,7 +66,7 @@ public class WorldGenSaltTree extends WorldGenAbstractTree  {
                     block = world.getBlock(x, y, z);
 
                     if(block.isAir(world, x, y, z) || block.isLeaves(world, x, y, z)) {
-                        setBlockAndNotifyAdequately(world, x, y , z, ModBlocks.oakLogSaltCrusted, 0);
+                        setBlockAndNotifyAdequately(world, x, y , z, ModBlocks.salt_crusted_oak_log, 0);
                     }
 
                     for(checkAtZ = 1; checkAtZ < heightRandomization; ++checkAtZ) {
