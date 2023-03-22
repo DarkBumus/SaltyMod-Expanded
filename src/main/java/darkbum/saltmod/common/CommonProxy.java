@@ -143,13 +143,13 @@ public class CommonProxy {
         }
         if (FluidRegistry.isFluidRegistered("blood")) {
             Fluid blood = FluidRegistry.getFluid("blood");
-            GameRegistry.registerItem(ModItems.hemoglobin, "hemoglobin");
-            ExtractRegistry.instance().addExtracting(blood, ModItems.hemoglobin, 1000, 1.0F);
+            GameRegistry.registerItem(ModItems.bop_hemoglobin, "hemoglobin");
+            ExtractRegistry.instance().addExtracting(blood, ModItems.bop_hemoglobin, 1000, 1.0F);
         }
         if (FluidRegistry.isFluidRegistered("hell_blood")) {
             Fluid blood = FluidRegistry.getFluid("hell_blood");
-            GameRegistry.registerItem(ModItems.hemoglobin, "hemoglobin");
-            ExtractRegistry.instance().addExtracting(blood, ModItems.hemoglobin, 1000, 1.0F);
+            GameRegistry.registerItem(ModItems.bop_hemoglobin, "hemoglobin");
+            ExtractRegistry.instance().addExtracting(blood, ModItems.bop_hemoglobin, 1000, 1.0F);
         }
         Item bop_dart = GameRegistry.findItem("BiomesOPlenty", "dart");
         ItemStack bop_poisondart = new ItemStack(bop_dart, 1, 1);

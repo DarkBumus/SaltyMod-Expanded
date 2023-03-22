@@ -13,28 +13,28 @@ public class ItemSaltBlock extends ItemBlockWithMetadata {
         String nameBlock = "";
         switch (stack.getItemDamage()) {
             case 0:
-                nameBlock = "saltBlock";
+                nameBlock = "salt_block";
                 break;
             case 1:
-                nameBlock = "saltBlockChiseled";
+                nameBlock = "salt_chiseled_block";
                 break;
             case 2:
-                nameBlock = "saltBlockPillar";
+                nameBlock = "salt_pillar";
                 break;
             case 5:
-                nameBlock = "saltBrick";
+                nameBlock = "salt_brick";
                 break;
             case 6:
-                nameBlock = "saltBlockCracked";
+                nameBlock = "salt_cracked_block";
                 break;
             case 7:
-                nameBlock = "saltBrickCracked";
+                nameBlock = "salt_cracked_brick";
                 break;
             case 8:
-                nameBlock = "saltBrickChiseled";
+                nameBlock = "salt_chiseled_brick";
                 break;
             case 9:
-                nameBlock = "saltChapiter";
+                nameBlock = "salt_chapiter";
                 break;
         }
         return "tile." + nameBlock;

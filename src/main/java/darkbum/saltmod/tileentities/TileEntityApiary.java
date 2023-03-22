@@ -217,12 +217,12 @@ public class TileEntityApiary extends TileEntity implements IInventory {
         int rndnum = rnd.nextInt(100);
         if (this.inventory[18] != null) {
             if (this.inventory[18].getItem() == ModItems.carpenter_bee && this.inventory[18].getItemDamage() == 17)
-                return new ItemStack(ModItems.bee_grub);
+                return new ItemStack(ModItems.bee_larva);
             if (rndnum < 50)
                 return new ItemStack(ModItems.waxcomb);
             if (rndnum >= 50 && rndnum < 95)
                 return new ItemStack(ModItems.honeycomb);
-            return new ItemStack(ModItems.bee_grub);
+            return new ItemStack(ModItems.bee_larva);
         }
         return null;
     }

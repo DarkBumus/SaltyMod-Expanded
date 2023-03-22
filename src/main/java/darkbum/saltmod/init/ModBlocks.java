@@ -13,31 +13,31 @@ import darkbum.saltmod.common.CommonProxy;
 public class ModBlocks {
     static CreativeTabs tab = CommonProxy.tabSalt;
 
-    public static Block salt_ore = new BlockSaltOre("saltOre", tab);
+    public static Block salt_ore = new BlockSaltOre("salt_ore", tab);
 
     public static Block salt_deepslate_ore;
 
-    public static Block salt_lake = new BlockSaltLake("saltLake", tab);
+    public static Block salt_lake = new BlockSaltLake("salt_lake", tab);
 
     public static Block salt_block = new BlockSalt(tab);
 
-    public static BlockStairs salt_brick_stairs = new BlockSaltBrickStairs("saltBrickStair", tab);
+    public static BlockStairs salt_brick_stairs = new BlockSaltBrickStairs("salt_brick_stairs", tab);
 
-    public static BlockSlab salt_slab = new BlockSaltSlab(false, "saltSlab", tab);
+    public static BlockSlab salt_slab = new BlockSaltSlab(false, "salt_slab", tab);
 
-    public static BlockSlab double_salt_slab = new BlockSaltSlab(true, "saltSlabDouble", null);
+    public static BlockSlab double_salt_slab = new BlockSaltSlab(true, "double_salt_slab", null);
 
-    public static Block salt_lamp = new BlockSaltLamp("saltLamp", tab);
+    public static Block salt_lamp = new BlockSaltLamp("salt_lamp", tab);
 
     public static Block salt_dirt = new BlockSaltDirt(tab);
 
-    public static Block lite_salt_dirt = new BlockLiteSaltDirt("saltDirtLite", tab);
+    public static Block lite_salt_dirt = new BlockLiteSaltDirt("lite_salt_dirt", tab);
 
-    public static Block salt_grass = new BlockSaltGrass("saltGrass", tab);
+    public static Block salt_grass = new BlockSaltGrass("salt_grass", tab);
 
-    public static Block grass_top = new BlockGrassTop("grassTop", null);
+    public static Block grass_top = new BlockGrassTop("grass_top", null);
 
-    public static Block mineral_mud = new BlockMineralMud("mudBlock", tab);
+    public static Block mineral_mud = new BlockMineralMud("mineral_mud", tab);
 
     public static Block wet_mud_brick = new BlockWetMudBrick("wet_mud_brick", tab);
 
@@ -104,9 +104,9 @@ public class ModBlocks {
 
     public static Block storage_sack = new BlockStorageSack("storage_sack", tab);
 
-    public static Block salt_crystal = new BlockSaltCrystal("saltCrystal", tab);
+    public static Block salt_crystal = new BlockSaltCrystal("salt_crystal", tab);
 
-    public static Block saltworts = new BlockSaltwort("saltWort", null);
+    public static Block saltworts = new BlockSaltwort("saltworts", null);
 
     public static Block onions = new BlockOnions("onions", null);
 
@@ -115,22 +115,22 @@ public class ModBlocks {
     public static void init() {
         SaltMod.logger.info("Start to initialize Blocks");
 
-        GameRegistry.registerBlock(salt_ore, "saltOre");
+        GameRegistry.registerBlock(salt_ore, "salt_ore");
         if(Loader.isModLoaded("etfuturum") && ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableDeepslate && ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableDeepslateOres) {
             salt_deepslate_ore = new BlockSaltDeepslateOre(salt_ore);
-            GameRegistry.registerBlock(salt_deepslate_ore, "saltDeepslateOre");
+            GameRegistry.registerBlock(salt_deepslate_ore, "salt_deepslate_ore");
         }
-        GameRegistry.registerBlock(salt_lake, "saltLake");
-        GameRegistry.registerBlock(salt_block, darkbum.saltmod.blockitems.ItemSaltBlock.class, "saltBlock");
-        GameRegistry.registerBlock(salt_brick_stairs, "saltBrickStair");
-        GameRegistry.registerBlock(salt_slab, ItemSaltSlab.class, "saltSlab");
-        GameRegistry.registerBlock(double_salt_slab, ItemSaltSlab.class, "saltSlabDouble");
-        GameRegistry.registerBlock(salt_lamp, "saltLamp");
-        GameRegistry.registerBlock(salt_dirt, ItemSaltDirt.class, "saltDirt");
-        GameRegistry.registerBlock(lite_salt_dirt, "saltDirtLite");
-        GameRegistry.registerBlock(salt_grass, "saltGrass");
-        GameRegistry.registerBlock(grass_top, "grassTop");
-        GameRegistry.registerBlock(mineral_mud, "mudBlock");
+        GameRegistry.registerBlock(salt_lake, "salt_lake");
+        GameRegistry.registerBlock(salt_block, darkbum.saltmod.blockitems.ItemSaltBlock.class, "salt_block");
+        GameRegistry.registerBlock(salt_brick_stairs, "salt_brick_stairs");
+        GameRegistry.registerBlock(salt_slab, ItemSaltSlab.class, "salt_slab");
+        GameRegistry.registerBlock(double_salt_slab, ItemSaltSlab.class, "double_salt_slab");
+        GameRegistry.registerBlock(salt_lamp, "salt_lamp");
+        GameRegistry.registerBlock(salt_dirt, ItemSaltDirt.class, "salt_dirt");
+        GameRegistry.registerBlock(lite_salt_dirt, "lite_salt_dirt");
+        GameRegistry.registerBlock(salt_grass, "salt_grass");
+        GameRegistry.registerBlock(grass_top, "grass_top");
+        GameRegistry.registerBlock(mineral_mud, "mineral_mud");
         GameRegistry.registerBlock(wet_mud_brick, "wet_mud_brick");
         GameRegistry.registerBlock(dry_mud_brick, "dry_mud_brick");
         GameRegistry.registerBlock(dry_mud_brick_stairs, "dry_mud_brick_stairs");
@@ -168,13 +168,13 @@ public class ModBlocks {
         }
         GameRegistry.registerBlock(apiary, "apiary");
         GameRegistry.registerBlock(extractor, "extractor");
-        GameRegistry.registerBlock(lit_extractor, "extractorLit").setLightLevel(0.9F);
-        GameRegistry.registerBlock(steam_extractor, "extractorSteam").setLightLevel(0.9F);
+        GameRegistry.registerBlock(lit_extractor, "lit_extractor").setLightLevel(0.9F);
+        GameRegistry.registerBlock(steam_extractor, "steam_extractor").setLightLevel(0.9F);
         GameRegistry.registerBlock(storage_crate, ItemStorageCrate.class, "storage_crate");
         GameRegistry.registerBlock(storage_barrel, ItemStorageBarrel.class, "storage_barrel");
         GameRegistry.registerBlock(storage_sack, ItemStorageSack.class, "storage_sack");
-        GameRegistry.registerBlock(salt_crystal, "saltCrystal");
-        GameRegistry.registerBlock(saltworts, "saltWort");
+        GameRegistry.registerBlock(salt_crystal, "salt_crystal");
+        GameRegistry.registerBlock(saltworts, "saltworts");
         GameRegistry.registerBlock(onions, "onions");
 //        GameRegistry.registerBlock(marsh_reeds, "marsh_reeds");
 

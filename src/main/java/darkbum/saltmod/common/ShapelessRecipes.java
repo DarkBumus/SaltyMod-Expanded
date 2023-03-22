@@ -45,7 +45,7 @@ public class ShapelessRecipes {
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.blossom_planks, 4), new ItemStack(ModBlocks.blossom_wood));
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.blossom_planks, 4), new ItemStack(ModBlocks.blossom_stripped_wood));
 
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.royal_jelly), new ItemStack(ModItems.bee_grub));
+        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.royal_jelly), new ItemStack(ModItems.bee_larva));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.mineral_mud_ball, 4), new ItemStack(ModBlocks.mineral_mud));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.salt, 9), new ItemStack(ModBlocks.salt_block, 1, OreDictionary.WILDCARD_VALUE));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.salt_pinch, 9),  new ItemStack(ModItems.salt));
@@ -121,9 +121,9 @@ public class ShapelessRecipes {
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.pickled_onion), new ItemStack(ModItems.salt_pinch), new ItemStack(Items.potionitem), new ItemStack(ModItems.onion), new ItemStack(ModItems.onion));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.melon_preserves), new ItemStack(ModItems.sugar_pinch), new ItemStack(Items.potionitem), new ItemStack(Items.melon), new ItemStack(Items.melon));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.apple_preserves), new ItemStack(ModItems.sugar_pinch), new ItemStack(Items.potionitem), new ItemStack(Items.apple), new ItemStack(Items.apple));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.tunneler_concoction), new ItemStack(Items.ghast_tear), new ItemStack(Items.glass_bottle), new ItemStack(ModItems.salt_pinch), new ItemStack(ModItems.sugar_pinch), new ItemStack(ModItems.soda), new ItemStack(Items.dye, 1, 3), new ItemStack(ModItems.mineral_mud_ball), new ItemStack(Items.redstone), new ItemStack(Items.glowstone_dust));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.fizzy_drink), new ItemStack(ModItems.soda), new ItemStack(Items.potionitem));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.rainmaker_star), new ItemStack(Items.gunpowder), new ItemStack(ModItems.salt), new ItemStack(ModItems.salt), new ItemStack(ModItems.salt), new ItemStack(ModItems.salt), new ItemStack(ModItems.soda), new ItemStack(ModItems.soda), new ItemStack(ModItems.soda), new ItemStack(ModItems.soda));
+        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.tunneler_concoction), new ItemStack(Items.ghast_tear), new ItemStack(Items.glass_bottle), new ItemStack(ModItems.salt_pinch), new ItemStack(ModItems.sugar_pinch), new ItemStack(ModItems.baking_soda), new ItemStack(Items.dye, 1, 3), new ItemStack(ModItems.mineral_mud_ball), new ItemStack(Items.redstone), new ItemStack(Items.glowstone_dust));
+        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.fizzy_drink), new ItemStack(ModItems.baking_soda), new ItemStack(Items.potionitem));
+        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.rainmaker_star), new ItemStack(Items.gunpowder), new ItemStack(ModItems.salt), new ItemStack(ModItems.salt), new ItemStack(ModItems.salt), new ItemStack(ModItems.salt), new ItemStack(ModItems.baking_soda), new ItemStack(ModItems.baking_soda), new ItemStack(ModItems.baking_soda), new ItemStack(ModItems.baking_soda));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.rainmaker), new ItemStack(ModItems.rainmaker_star), new ItemStack(ModItems.rainmaker_star), new ItemStack(ModItems.rainmaker_star), new ItemStack(ModItems.rainmaker_star), new ItemStack(ModItems.rainmaker_star), new ItemStack(Items.paper), new ItemStack(Items.gunpowder), new ItemStack(Items.gunpowder), new ItemStack(Items.gunpowder));
 
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.tf_saltwort_cooked_venison), new ItemStack(Items.bowl), new ItemStack(ModItems.tf_salt_cooked_venison), new ItemStack(ModItems.saltwort), new ItemStack(ModItems.saltwort));

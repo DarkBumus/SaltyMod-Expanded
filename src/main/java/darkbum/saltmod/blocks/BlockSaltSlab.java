@@ -26,7 +26,7 @@ import net.minecraft.world.World;
 public class BlockSaltSlab extends BlockSlab {
     protected boolean crystal = true;
 
-    public static final String[] type = new String[] { "Block", "Brick", "Pillar" };
+    public static final String[] type = new String[] { "block", "brick", "pillar" };
 
     @SideOnly(Side.CLIENT)
     private IIcon SALTBLOCK;

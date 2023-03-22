@@ -24,7 +24,7 @@ public class SmeltingRecipes {
         GameRegistry.addSmelting(new ItemStack(ModBlocks.salt_block, 1, 5), new ItemStack(ModBlocks.salt_block, 1, 7), 0.1F);
 
         GameRegistry.addSmelting(new ItemStack(ModItems.dough), new ItemStack(Items.bread), 0.35F);
-        GameRegistry.addSmelting(new ItemStack(ModItems.saltwort), new ItemStack(ModItems.soda, 1), 0.5F);
+        GameRegistry.addSmelting(new ItemStack(ModItems.saltwort), new ItemStack(ModItems.baking_soda, 1), 0.5F);
         GameRegistry.addSmelting(new ItemStack(ModItems.haunch), new ItemStack(ModItems.cooked_haunch), 0.35F);
         GameRegistry.addSmelting(new ItemStack(ModItems.tailor), new ItemStack(ModItems.cooked_tailor), 0.35F);
         GameRegistry.addSmelting(new ItemStack(ModItems.calamari), new ItemStack(ModItems.cooked_calamari), 0.35F);

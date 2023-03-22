@@ -13,10 +13,10 @@ public class ItemSaltDirt extends ItemBlockWithMetadata {
         String nameDirt = "";
         switch (stack.getItemDamage()) {
             case 0:
-                nameDirt = "saltDirt";
+                nameDirt = "salt_dirt";
                 break;
             case 1:
-                nameDirt = "saltDirtLake";
+                nameDirt = "salt_lake_dirt";
                 break;
         }
         return "tile." + nameDirt;
