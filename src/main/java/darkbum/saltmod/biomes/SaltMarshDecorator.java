@@ -13,97 +13,101 @@ import java.util.Random;
 
 public class SaltMarshDecorator {
 
-    protected World world;
-    protected Random rand;
-    protected int x, z;
-    protected int xx, yy, zz, attempt;
+    private final WorldGenMinable worldGenSaltOre = new WorldGenMinable(ModBlocks.salt_ore, SaltConfig.saltOreSize, Blocks.stone);
+    private final SaltLakeGenerator saltLakeGenerator = new SaltLakeGenerator();
+    private final NewWorldGenClay newWorldGenClay = new NewWorldGenClay(20);
+    private final WorldGenSaltTree worldGenSaltTree = new WorldGenSaltTree(false, 3);
+    private final WorldGenSaltBigTree worldGenSaltBigTree = new WorldGenSaltBigTree(false, false);
+    private final SaltMarshPlantMix saltMarshPlantMix = new SaltMarshPlantMix(64);
+    private final SaltWortMix saltWortMix = new SaltWortMix(32);
+    private final AlliumPatch alliumPatch = new AlliumPatch(16);
+    private final WorldGenWaterlily worldGenWaterlily = new WorldGenWaterlily();
+    private final WorldGenReed worldGenReed = new WorldGenReed();
 
-    protected final int offsetXZ() {
+    protected final int offsetXZ(Random rand) {
         return rand.nextInt(16) + 8;
     }
 
     public final void decorate(World world, Random rand, int x, int z) {
+        int pass, passX, passZ;
 
-        this.world = world;
-        this.rand = rand;
-        this.x = x;
-        this.z = z;
-
-        decorate();
-    }
-
-    protected void decorate() {
-        for (attempt = 0; attempt < 7; ++attempt) {
-            (new SaltLakeGenerator()).generateOverworld(world, rand, x + offsetXZ(), z + offsetXZ());
-        }
-
-        for (attempt = 0; attempt < 5; ++attempt) {
-            xx = x + offsetXZ();
-            zz = z + offsetXZ();
-            yy = world.getTopSolidOrLiquidBlock(xx, zz);
-            (new NewWorldGenClay(20)).generate(world, rand, xx, yy, zz);
-        }
-
-        xx = x + offsetXZ();
-        zz = z + offsetXZ();
-        yy = world.getTopSolidOrLiquidBlock(xx, zz);
-        if (rand.nextInt(3) == 0) {
-            (new WorldGenSaltTree(false, 3)).generate(world, rand, xx, yy, zz);
-        }
-
-        xx = x + offsetXZ();
-        zz = z + offsetXZ();
-        yy = world.getTopSolidOrLiquidBlock(xx, zz);
-        if (rand.nextInt(20) == 0) {
-            (new WorldGenSaltBigTree(false, false)).generate(world, rand, xx, yy, zz);
-        }
-
-        for (attempt = 0; attempt < 5; ++attempt) {
-            xx = x + offsetXZ();
-            zz = z + offsetXZ();
-            yy = world.getTopSolidOrLiquidBlock(xx, zz);
-            (new SaltMarshPlantMix(64)).generate(world, rand, xx, yy, zz);
-        }
-
-        for (attempt = 0; attempt < 5; ++attempt) {
-            xx = x + offsetXZ();
-            zz = z + offsetXZ();
-            yy = world.getTopSolidOrLiquidBlock(xx, zz);
-            (new SaltWortMix(32)).generate(world, rand, xx, yy, zz);
-        }
-
-        for (attempt = 0; attempt < 1; ++attempt) {
-            xx = x + offsetXZ();
-            zz = z + offsetXZ();
-            yy = world.getTopSolidOrLiquidBlock(xx, zz);
-            (new AlliumPatch(16)).generate(world, rand, xx, yy, zz);
-        }
-
-        for (attempt = 0; attempt < 4; ++attempt) {
-            xx = x + offsetXZ();
-            zz = z + offsetXZ();
-            yy = world.getTopSolidOrLiquidBlock(xx, zz);
-            (new WorldGenWaterlily()).generate(world, rand, xx, yy, zz);
-        }
-
-        for (attempt = 0; attempt < 3; ++attempt) {
-            xx = x + offsetXZ();
-            zz = z + offsetXZ();
-            yy = world.getTopSolidOrLiquidBlock(xx, zz);
-            (new WorldGenReed()).generate(world, rand, xx, yy, zz);
-        }
-
-        if (SaltConfig.saltOreBiome) {
-            WorldGenMinable gen = new WorldGenMinable(ModBlocks.salt_ore, SaltConfig.saltOreSize, Blocks.stone);
-            int maxY = 96;
-            int minY = 1;
-            int heightRange = maxY - minY;
-            for (attempt = 0; attempt < SaltConfig.saltOreFrequencyBiome; attempt++) {
-                xx = x + rand.nextInt(16);
-                yy = rand.nextInt(heightRange) + minY;
-                zz = z + rand.nextInt(16);
-                gen.generate(world, rand, xx, yy, zz);
+        if(SaltConfig.saltOreBiome) {
+            for(pass = 0; pass < SaltConfig.saltOreFrequencyBiome; ++pass) {
+                worldGenSaltOre.generate(world, rand,
+                    x + rand.nextInt(16),
+                    rand.nextInt(96) + 1,
+                    z + rand.nextInt(16)
+                );
             }
         }
+
+        for(pass = 0; pass < 7; ++pass) {
+            saltLakeGenerator.generateOverworld(world, rand,x + offsetXZ(rand), z + offsetXZ(rand));
+        }
+
+        for(pass = 0; pass < 5; ++pass) {
+            passX = x + offsetXZ(rand);
+            passZ = z + offsetXZ(rand);
+            newWorldGenClay.generate(world, rand,
+                passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ
+            );
+        }
+
+        passX = x + offsetXZ(rand);
+        passZ = z + offsetXZ(rand);
+        if(rand.nextInt(3) == 0) {
+            worldGenSaltTree.generate(world, rand,
+                passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ
+            );
+        }
+
+        passX = x + offsetXZ(rand);
+        passZ = z + offsetXZ(rand);
+        if(rand.nextInt(20) == 0) {
+            worldGenSaltBigTree.generate(world, rand,
+                passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ
+            );
+        }
+
+        for(pass = 0; pass < 5; ++pass) {
+            passX = x + offsetXZ(rand);
+            passZ = z + offsetXZ(rand);
+            saltMarshPlantMix.generate(world, rand,
+                passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ
+            );
+        }
+
+        for(pass = 0; pass < 5; ++pass) {
+            passX = x + offsetXZ(rand);
+            passZ = z + offsetXZ(rand);
+            saltWortMix.generate(world, rand,
+                passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ
+            );
+        }
+
+        for(pass = 0; pass < 1; ++pass) {
+            passX = x + offsetXZ(rand);
+            passZ = z + offsetXZ(rand);
+            alliumPatch.generate(world, rand,
+                passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ
+            );
+        }
+
+        for(pass = 0; pass < 4; ++pass) {
+            passX = x + offsetXZ(rand);
+            passZ = z + offsetXZ(rand);
+            worldGenWaterlily.generate(world, rand,
+                passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ
+            );
+        }
+
+        for(pass = 0; pass < 3; ++pass) {
+            passX = x + offsetXZ(rand);
+            passZ = z + offsetXZ(rand);
+            worldGenReed.generate(world, rand,
+                passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ
+            );
+        }
     }
+
 }

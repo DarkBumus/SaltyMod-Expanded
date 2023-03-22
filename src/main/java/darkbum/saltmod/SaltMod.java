@@ -36,9 +36,9 @@ public class SaltMod {
 
     public static final String VERSION = "GRADLETOKEN_VERSION";
 
-    public static final Logger logger = LogManager.getLogger("Salty Mod Expanded");
+    public static final Logger logger = LogManager.getLogger(MODID);
 
-    public static ChestContent chestConent;
+    public static ChestContent chestContent;
 
     public static SaltConfig config;
 
