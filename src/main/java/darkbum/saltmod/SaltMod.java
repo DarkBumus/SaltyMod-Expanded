@@ -279,4 +279,25 @@ public class SaltMod {
             }
         }
     }*/
+
+/*        //TO-DO-LIST//
+            - Finish Refactoring
+                - Restructure/Merge Items?
+                - Change Salt Crystal Drop [Salt Shard/Crystal Item]
+            - Finish Salt Marsh
+                - Reeds/Water Grass
+                - Decide on Onions/Allium
+            - Create/Finish Brickmaker Camps [Schematica?]
+            - Fix Fish Hunger Values [Probably set up Mixins in general?]
+            - Change Saltwort/Salt Dirt behavior
+            - Restructure Config file/class
+                - Rainmaker behavior!!!
+            - Finish Blossom Burrow
+            - Finish Apiary [as a whole]
+            - Make Fish automatable [Fish Trap? Something else?]
+            - Create/Finish Blossom Fence&Fence Gate&Door&Trapdoor&Sign [Later Boat&Chest Boat&Hanging Sign]
+            - Tackle Powdered Milk Recipe [Duplicating Bucket]
+            - Underground Salt Lakes?
+            - Underground Salt Caves/Tunnels/Mines?
+            - Whatever I can think of that is tackle-able*/
 }
