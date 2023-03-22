@@ -1,4 +1,4 @@
-package darkbum.saltmod.tileentity;
+package darkbum.saltmod.tileentities;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

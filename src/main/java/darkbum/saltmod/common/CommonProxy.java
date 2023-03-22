@@ -46,7 +46,7 @@ import darkbum.saltmod.inventory.gui.GuiExtractorHandler;
 import darkbum.saltmod.network.ExtractorButtonMessage;
 import darkbum.saltmod.network.SaltModEventHandler;
 import darkbum.saltmod.network.SaltWortMessage;
-import darkbum.saltmod.tileentity.TileEntityExtractor;
+import darkbum.saltmod.tileentities.TileEntityExtractor;
 
 public class CommonProxy {
 

@@ -29,7 +29,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidHandler;
 import darkbum.saltmod.SaltMod;
 import darkbum.saltmod.common.ClientProxy;
-import darkbum.saltmod.tileentity.TileEntityExtractor;
+import darkbum.saltmod.tileentities.TileEntityExtractor;
 
 public class BlockExtractor extends BlockContainer {
     @SideOnly(Side.CLIENT)

@@ -15,6 +15,7 @@ import darkbum.saltmod.common.*;
 import darkbum.saltmod.structure.ChestLootHandler;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemFishFood;
 import net.minecraft.item.ItemFood;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.EnumChatFormatting;
@@ -127,7 +128,7 @@ public class SaltMod {
             ItemBeetroot.saturationModifier = 0.3F;
         }
 
-        ItemFood fish = (ItemFood) Items.fish;
+        ItemFishFood fish = (ItemFishFood) Items.fish;
         fish.healAmount = 1;
         fish.saturationModifier = 0.5F;
         fish.setPotionEffect(Potion.waterBreathing.id, 3, 0, 1.0F);
@@ -189,7 +190,7 @@ public class SaltMod {
         baked_potato.healAmount = 3;
         baked_potato.saturationModifier = 0.5F;
 
-        ItemFood cooked_fished = (ItemFood) Items.cooked_fished;
+        ItemFishFood cooked_fished = (ItemFishFood) Items.cooked_fished;
         cooked_fished.healAmount = 3;
         cooked_fished.saturationModifier = 0.5F;
 

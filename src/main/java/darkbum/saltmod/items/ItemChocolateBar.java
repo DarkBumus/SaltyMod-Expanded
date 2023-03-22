@@ -12,8 +12,8 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 
-public class ChocolateBar extends ItemSaltFood {
-    public ChocolateBar(String name, CreativeTabs tab, String textureName) {
+public class ItemChocolateBar extends ItemSaltFood {
+    public ItemChocolateBar(String name, CreativeTabs tab, String textureName) {
         super("chocolateBar", 3, 0.2F, new PotionEffect(Potion.digSpeed.id, 600, 1));
         setUnlocalizedName(name);
         setCreativeTab(tab);

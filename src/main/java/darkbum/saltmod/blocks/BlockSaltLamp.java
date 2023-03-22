@@ -16,8 +16,8 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-public class SaltLamp extends Block {
-    public SaltLamp(String name, CreativeTabs tab) {
+public class BlockSaltLamp extends Block {
+    public BlockSaltLamp(String name, CreativeTabs tab) {
         super(Material.rock);
         setTickRandomly(true);
         setBlockName(name);

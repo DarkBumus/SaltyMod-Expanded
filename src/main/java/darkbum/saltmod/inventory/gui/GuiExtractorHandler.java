@@ -1,7 +1,7 @@
 package darkbum.saltmod.inventory.gui;
 
 import cpw.mods.fml.common.network.IGuiHandler;
-import darkbum.saltmod.tileentity.TileEntityExtractor;
+import darkbum.saltmod.tileentities.TileEntityExtractor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

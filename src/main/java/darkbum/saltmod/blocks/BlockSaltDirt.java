@@ -15,6 +15,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -76,6 +77,19 @@ public class BlockSaltDirt extends Block {
 
     public void updateTick(World world, int x, int y, int z, Random random) {
         if (!world.isRemote) {
+            if (world.getBlockLightValue(x, y + 1, z) < 4 && world.getBlockLightOpacity(x, y + 1, z) > 2) {
+                world.setBlock(x, y, z, ModBlocks.lite_salt_dirt, 0, 3);
+            } else if (world.getBlockLightValue(x, y + 1, z) >= 9) {
+                for (int l = 0; l < 4; ++l) {
+                    int i1 = x + random.nextInt(3) - 1;
+                    int j1 = y + random.nextInt(5) - 3;
+                    int k1 = z + random.nextInt(3) - 1;
+                    Block block = world.getBlock(i1, j1 + 1, k1);
+                    if (world.getBlock(i1, j1, k1) == ModBlocks.lite_salt_dirt && world.getBlockMetadata(i1, j1, k1) == 0 && world.getBlockLightValue(i1, j1 + 1, k1) >= 4 && world.getBlockLightOpacity(i1, j1 + 1, k1) <= 2) {
+                        world.setBlock(i1, j1, k1, ModBlocks.salt_grass);
+                    }
+                }
+            }
             if (world.getBlockMetadata(x, y, z) == 1) {
                 int d1 = 0;
                 double d0 = 0.0625D;
@@ -84,7 +98,7 @@ public class BlockSaltDirt extends Block {
                 Iterator<Entity> iterator = list.iterator();
                 while (iterator.hasNext()) {
                     Entity entity = iterator.next();
-                    if (entity instanceof net.minecraft.entity.EntityLivingBase && EntityList.getEntityString(entity) != null && ((
+                    if (entity instanceof EntityLivingBase && EntityList.getEntityString(entity) != null && ((
                         EntityList.getEntityString(entity).toLowerCase().contains("slime") && !EntityList.getEntityString(entity).toLowerCase().contains("lava")) ||
                         EntityList.getEntityString(entity).toLowerCase().contains("witch"))) {
                         entity.attackEntityFrom(DamageSource.cactus, 1.0F);

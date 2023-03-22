@@ -177,7 +177,11 @@ public class OreDictionary {
 
 //HarvestCraft Ore Dictionaries
         if (Loader.isModLoaded("harvestcraft")) {
+            net.minecraftforge.oredict.OreDictionary.registerOre("listAllfishraw", ModItems.tailor);
             net.minecraftforge.oredict.OreDictionary.registerOre("listAllfishcooked", ModItems.cooked_tropical_fish);
+            net.minecraftforge.oredict.OreDictionary.registerOre("listAllfishcooked", ModItems.cooked_tailor);
+            net.minecraftforge.oredict.OreDictionary.registerOre("listAllmeatraw", ModItems.strider);
+            net.minecraftforge.oredict.OreDictionary.registerOre("listAllmeatcooked", ModItems.cooked_strider);
             net.minecraftforge.oredict.OreDictionary.registerOre("listAllmeatraw", ModItems.haunch);
             net.minecraftforge.oredict.OreDictionary.registerOre("listAllmeatcooked", ModItems.cooked_haunch);
             net.minecraftforge.oredict.OreDictionary.registerOre("listAllfishraw", ModItems.calamari);

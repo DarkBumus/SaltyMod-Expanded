@@ -7,11 +7,12 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 
-public class SaltDeepslateOre extends Block {
+public class BlockSaltDeepslateOre extends Block {
+
     //@SideOnly(Side.CLIENT)
     //private IIcon SIDE;
 
-    public SaltDeepslateOre(Block block) {
+    public BlockSaltDeepslateOre(Block block) {
         super(Material.rock);
         setBlockName("saltDeepslateOre");
         setStepSound(ganymedes01.etfuturum.client.sound.ModSounds.soundDeepslate);

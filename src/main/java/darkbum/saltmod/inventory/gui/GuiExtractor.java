@@ -7,7 +7,7 @@ import java.util.List;
 
 import darkbum.saltmod.common.CommonProxy;
 import darkbum.saltmod.network.ExtractorButtonMessage;
-import darkbum.saltmod.tileentity.TileEntityExtractor;
+import darkbum.saltmod.tileentities.TileEntityExtractor;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;

@@ -210,7 +210,7 @@ public class ModItems {
 
     public static Item chocolate_berries = new ItemSaltFood("chocolateBerries", 3, 0.5F, new PotionEffect(Potion.digSpeed.id, 300, 0)).setCreativeTab(tab).setTextureName("saltmod:chocolate_berries");
 
-    public static Item chocolate_bar = new ChocolateBar("chocolateBar", tab, "chocolate_bar");
+    public static Item chocolate_bar = new ItemChocolateBar("chocolateBar", tab, "chocolate_bar");
 
     public static Item chocolate_pie = new ItemSaltFood("chocolatePie", 7, 0.9F, new PotionEffect(Potion.digSpeed.id, 900, 2)).setCreativeTab(tab).setTextureName("saltmod:chocolate_pie");
 
@@ -356,9 +356,11 @@ public class ModItems {
             GameRegistry.registerItem(strider, "strider");
             GameRegistry.registerItem(cooked_strider, "cooked_strider");
         }
-//        if(Loader.isModLoaded("netherlicious")) {
+        if(Loader.isModLoaded("netherlicious")) {
             GameRegistry.registerItem(salt_cooked_strider, "salt_cooked_strider");
-//        }
+        } else if (Loader.isModLoaded("etfuturum") && !Loader.isModLoaded("netherlicious")) {
+            GameRegistry.registerItem(salt_cooked_strider, "salt_cooked_strider");
+        }
         GameRegistry.registerItem(haunch, "haunchRaw");
         GameRegistry.registerItem(cooked_haunch, "haunchCooked");
         GameRegistry.registerItem(salt_cooked_haunch, "saltHaunchCooked");
@@ -411,9 +413,11 @@ public class ModItems {
         GameRegistry.registerItem(saltwort_cooked_porkchop, "saltWortPorkchop");
         GameRegistry.registerItem(saltwort_honey_porkchop, "saltwort_honey_porkchop");
         GameRegistry.registerItem(saltwort_cooked_beef, "saltWortBeef");
-//        if(Loader.isModLoaded("netherlicious")) {
+        if(Loader.isModLoaded("netherlicious")) {
             GameRegistry.registerItem(saltwort_cooked_strider, "saltwort_cooked_strider");
-//        }
+        } else if (Loader.isModLoaded("etfuturum") && !Loader.isModLoaded("netherlicious")) {
+            GameRegistry.registerItem(saltwort_cooked_strider, "saltwort_cooked_strider");
+        }
         if(Loader.isModLoaded("etfuturum")) {
             GameRegistry.registerItem(saltwort_cooked_mutton, "saltWortMutton");
         }
@@ -480,11 +484,11 @@ public class ModItems {
         GameRegistry.registerItem(tough_jelly, "toughJelly");
         GameRegistry.registerItem(rainmaker_star, "rainmaker_star");
         GameRegistry.registerItem(rainmaker, "rainmaker");
-//        if(Loader.isModLoaded("etfuturum")) {
+        if(Loader.isModLoaded("etfuturum")) {
 //            GameRegistry.registerItem(itemBlossomBoat, "itemBlossomBoat");
 //            GameRegistry.registerItem(itemBlossomChestBoat, "itemBlossomChestBoat");
 //            GameRegistry.registerItem(itemBlossomSign, "itemBlossomSign");
-//        }
+        }
 
         if(Loader.isModLoaded("TwilightForest")) {
             GameRegistry.registerItem(tf_salt_cooked_venison, "tf_saltVenisonCooked");

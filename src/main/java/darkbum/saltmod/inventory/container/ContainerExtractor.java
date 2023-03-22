@@ -2,7 +2,7 @@ package darkbum.saltmod.inventory.container;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltmod.tileentity.TileEntityExtractor;
+import darkbum.saltmod.tileentities.TileEntityExtractor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;

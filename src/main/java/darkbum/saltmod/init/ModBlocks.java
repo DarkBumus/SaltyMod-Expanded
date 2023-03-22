@@ -27,7 +27,7 @@ public class ModBlocks {
 
     public static BlockSlab double_salt_slab = new BlockSaltSlab(true, "saltSlabDouble", null);
 
-    public static Block salt_lamp = new SaltLamp("saltLamp", tab);
+    public static Block salt_lamp = new BlockSaltLamp("saltLamp", tab);
 
     public static Block salt_dirt = new BlockSaltDirt(tab);
 
@@ -117,7 +117,7 @@ public class ModBlocks {
 
         GameRegistry.registerBlock(salt_ore, "saltOre");
         if(Loader.isModLoaded("etfuturum") && ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableDeepslate && ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableDeepslateOres) {
-            salt_deepslate_ore = new SaltDeepslateOre(salt_ore);
+            salt_deepslate_ore = new BlockSaltDeepslateOre(salt_ore);
             GameRegistry.registerBlock(salt_deepslate_ore, "saltDeepslateOre");
         }
         GameRegistry.registerBlock(salt_lake, "saltLake");
