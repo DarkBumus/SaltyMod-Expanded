@@ -113,15 +113,20 @@ public class CommonProxy {
         ChestGenHooks.addItem("pyramidJungleChest", new WeightedRandomChestContent(new ItemStack(ModItems.saltwort), 2, 5, 5));
 
 // D E B U G // T E S T I N G //
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.wet_mud_brick, 1, 1), new ItemStack(ModBlocks.wet_mud_brick), new ItemStack(Items.stick));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.wet_mud_brick, 1, 2), new ItemStack(ModBlocks.wet_mud_brick, 1, 1), new ItemStack(Items.stick));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.apiary, 1, 1), new ItemStack(ModBlocks.apiary), new ItemStack(Items.stick));
         ItemStack stick = new ItemStack(Items.stick);
+
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.wet_mud_brick, 1, 1), new ItemStack(ModBlocks.wet_mud_brick), stick);
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.wet_mud_brick, 1, 2), new ItemStack(ModBlocks.wet_mud_brick, 1, 1), stick);
+
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.apiary, 1, 1), new ItemStack(ModBlocks.apiary), stick);
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.apiary, 1, 2), new ItemStack(ModBlocks.apiary, 1, 1), stick);
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.apiary, 1, 3), new ItemStack(ModBlocks.apiary, 1, 2), stick);
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.apiary, 1, 4), new ItemStack(ModBlocks.apiary, 1, 3), stick);
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.apiary, 1, 5), new ItemStack(ModBlocks.apiary, 1, 4), stick);
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.apiary, 1, 6), new ItemStack(ModBlocks.apiary, 1, 5), stick);
+
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.salt_crusted_oak_log, 1, 1), new ItemStack(ModBlocks.salt_crusted_oak_log), stick);
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.salt_crusted_oak_log, 1, 2), new ItemStack(ModBlocks.salt_crusted_oak_log, 1, 1), stick);
 // D E B U G // T E S T I N G //
     }
 

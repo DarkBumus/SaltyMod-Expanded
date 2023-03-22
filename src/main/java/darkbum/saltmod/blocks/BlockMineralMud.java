@@ -4,6 +4,7 @@ import java.util.Random;
 
 import darkbum.saltmod.init.ModItems;
 import darkbum.saltmod.init.ModSounds;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -13,7 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
-public class BlockMineralMud extends BlockFalling {
+public class BlockMineralMud extends Block {
     public BlockMineralMud(String name, CreativeTabs tab) {
         super(Material.ground);
         setBlockName(name);
@@ -28,11 +29,6 @@ public class BlockMineralMud extends BlockFalling {
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
         float f = 0.125F;
         return AxisAlignedBB.getBoundingBox(x, y, z, (x + 1), ((y + 1) - f), (z + 1));
-    }
-
-    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
-        entity.motionX *= 1.0D;
-        entity.motionZ *= 1.0D;
     }
 
     public Item getItemDropped(int meta, Random rand, int fortune) {

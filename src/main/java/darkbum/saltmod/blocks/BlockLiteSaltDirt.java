@@ -63,23 +63,6 @@ public class BlockLiteSaltDirt extends Block {
         this.BOTTOM = par1.registerIcon("saltmod:slightly_saline_dirt_bottom");
     }
 
-    public void updateTick(World world, int x, int y, int z, Random rand) {
-        if (!world.isRemote)
-            if (world.getBlock(x, y + 1, z).getMaterial() == Material.snow) {
-                world.setBlockToAir(x, y + 1, z);
-            } else if (!world.getBlock(x, y + 1, z).getMaterial().isSolid() && world.getFullBlockLightValue(x, y + 1, z) > 7) {
-                int j = world.getBlockMetadata(x, y, z);
-                if (j > 2)
-                    for (int x1 = x - 1; x1 < x + 2; x1++) {
-                        for (int z1 = z - 1; z1 < z + 2; z1++) {
-                            if ((world.getBlock(x1, y, z1) == Blocks.grass || world.getBlock(x1, y, z1) == ModBlocks.salt_grass) && world
-                                .getBlock(x, y, z) == ModBlocks.lite_salt_dirt && world.getBlockLightValue(x, y + 1, z) > 7 && rand.nextInt(5) == 0)
-                                world.setBlock(x, y, z, ModBlocks.salt_grass, j, 3);
-                        }
-                    }
-            }
-    }
-
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx, float hity, float hitz) {
         if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == ModItems.salt_pinch) {
             ItemStack current = player.getCurrentEquippedItem();

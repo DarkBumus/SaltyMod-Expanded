@@ -59,9 +59,6 @@ public class BlockSaltCrustedOakLog extends Block {
     }
 
 	public IIcon getIcon(int side, int meta) {
-        if (meta < 0 || meta > 2)
-            meta = 0;
-        if (meta == 0) {
             if (side == 0)
                 return this.BOTTOM;
             if (side == 1)
@@ -69,36 +66,6 @@ public class BlockSaltCrustedOakLog extends Block {
             else
                 return this.SIDE;
         }
-        if (meta == 1) {
-            if (side == 0)
-                return this.LBOTTOM;
-            if (side == 1)
-                return this.LTOP;
-            if (side == 2 || side == 3)
-                return this.LSIDE;
-            if (side == 4 || side == 5)
-                return this.LEND;
-        }
-        if (meta == 2) {
-            if (side == 0)
-                return this.LBOTTOM;
-            if (side == 1)
-                return this.LTOP;
-            if (side == 2 || side == 3)
-                return this.LEND;
-            if (side == 4 || side == 5)
-                return this.LSIDE;
-        }
-        return this.BOTTOM;
-	}
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tabs, List list) {
-        list.add(new ItemStack(item, 1, 0));
-        list.add(new ItemStack(item, 1, 1));
-        list.add(new ItemStack(item, 1, 2));
-    }
 
 	public Item getItemDropped(int par1, Random random, int par2) {
 		return Item.getItemFromBlock(Blocks.log);
