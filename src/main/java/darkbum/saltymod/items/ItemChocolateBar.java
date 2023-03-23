@@ -3,6 +3,7 @@ package darkbum.saltymod.items;
 import java.util.List;
 import java.util.Random;
 
+import darkbum.saltymod.common.ProbablePotionEffect;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,7 +15,7 @@ import net.minecraft.world.World;
 
 public class ItemChocolateBar extends ItemSaltFood {
     public ItemChocolateBar(String name, CreativeTabs tab) {
-        super("chocolateBar", 3, 0.2F, new PotionEffect(Potion.digSpeed.id, 600, 1));
+        super("chocolateBar", 3, 0.2F, new ProbablePotionEffect(Potion.digSpeed.id, 600, 1));
         setUnlocalizedName(name);
         setCreativeTab(tab);
         setAlwaysEdible();

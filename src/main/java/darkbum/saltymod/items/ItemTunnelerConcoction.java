@@ -3,6 +3,7 @@ package darkbum.saltymod.items;
 import java.util.List;
 import java.util.Random;
 
+import darkbum.saltymod.common.ProbablePotionEffect;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,7 +17,7 @@ import net.minecraft.world.World;
 
 public class ItemTunnelerConcoction extends ItemSaltFood {
     public ItemTunnelerConcoction(String name, CreativeTabs tab) {
-        super("cobblerConcoction", 0, 0.0F, Items.glass_bottle, new PotionEffect(Potion.digSpeed.id, 3600, 3));
+        super("cobblerConcoction", 0, 0.0F, Items.glass_bottle, new ProbablePotionEffect(Potion.digSpeed.id, 3600, 3));
         setMaxStackSize(1);
         setUnlocalizedName(name);
         setCreativeTab(tab);

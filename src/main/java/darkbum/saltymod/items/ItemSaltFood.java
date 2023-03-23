@@ -2,6 +2,7 @@ package darkbum.saltymod.items;
 
 import java.util.List;
 
+import darkbum.saltymod.common.ProbablePotionEffect;
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,21 +19,21 @@ import net.minecraft.world.World;
 
 public class ItemSaltFood extends ItemFood {
     private final Item container;
+    private final ProbablePotionEffect[] effects;
+    private EnumAction action = EnumAction.eat;
 
-    private final PotionEffect[] effects;
-
-    public ItemSaltFood(String name, int amount, float saturation, Item container, PotionEffect... potionEffect) {
+    public ItemSaltFood(String name, int amount, float saturation, Item container, ProbablePotionEffect... potionEffects) {
         super(amount, saturation, false);
         setUnlocalizedName(name);
         this.container = container;
-        this.effects = potionEffect;
+        this.effects = potionEffects;
     }
 
-    public ItemSaltFood(String name, int amount, float saturation, PotionEffect... potionEffect) {
+    public ItemSaltFood(String name, int amount, float saturation, ProbablePotionEffect... potionEffects) {
         super(amount, saturation, false);
         setUnlocalizedName(name);
         this.container = null;
-        this.effects = potionEffect;
+        this.effects = potionEffects;
     }
 
     public ItemSaltFood(String name, int amount, float saturation) {
@@ -45,44 +46,33 @@ public class ItemSaltFood extends ItemFood {
     @Override
     public void addInformation(ItemStack is, EntityPlayer player, List list, boolean flag) {
         super.addInformation(is, player, list, flag);
-        if (this.effects != null)
-            for (PotionEffect effect : this.effects) {
-                String mess = "";
-                if (effect != null && effect.getPotionID() > 0) {
-                    mess = mess + (Potion.potionTypes[effect.getPotionID()].isBadEffect() ? EnumChatFormatting.RED : EnumChatFormatting.GRAY);
-                    mess = mess + StatCollector.translateToLocal(effect.getEffectName()).trim();
-                    if (effect.getAmplifier() == 1) {
-                        mess = mess + " II";
-                    } else if (effect.getAmplifier() == 2) {
-                        mess = mess + " III";
-                    } else if (effect.getAmplifier() == 3) {
-                        mess = mess + " IV";
-                    } else if (effect.getAmplifier() == 4) {
-                        mess = mess + " V";
-                    }
-                    if (effect.getDuration() > 20)
-                        mess = mess + " (" + Potion.getDurationString(effect) + ")";
-                    mess = mess + EnumChatFormatting.RESET;
-                    list.add(mess);
-                }
+        if(effects != null) {
+            for(ProbablePotionEffect effect : effects) {
+                list.add(effect.GenerateTooltip());
             }
+        }
     }
 
     public EnumAction getItemUseAction(ItemStack item) {
-        if (getUnlocalizedName().equals(ModItems.fermented_saltwort.getUnlocalizedName()))
-            return EnumAction.drink;
-        return EnumAction.eat;
+        return action;
+    }
+
+    public ItemSaltFood setItemUseAction(EnumAction action) {
+        this.action = action;
+        return this;
     }
 
     public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player) {
         super.onEaten(stack, world, player);
-        if (this.effects != null)
-            for (PotionEffect effect : this.effects) {
-                if (!world.isRemote && effect != null && effect.getPotionID() > 0)
-                    player.addPotionEffect(new PotionEffect(effect));
+        if(effects != null && !world.isRemote) {
+            for(ProbablePotionEffect effect : effects) {
+                effect.procEffect(player, itemRand);
             }
-        if (!world.isRemote && getUnlocalizedName().equals(ModItems.salt_egg.getUnlocalizedName()))
+        }
+        if(!world.isRemote && getUnlocalizedName().equals(ModItems.salt_egg.getUnlocalizedName())) {
             world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, new ItemStack(Items.dye, 1, 15)));
-        return (this.container != null) ? new ItemStack(this.container) : stack;
+        }
+        return container != null ? new ItemStack(container) : stack;
     }
+
 }
