@@ -1,0 +1,305 @@
+﻿CREATIVE TAB
+
+itemGroup.salt=SaltyMod Expanded
+
+
+BLOCKS
+
+tile.salt_ore.name=Salt Ore
+tile.salt_deepslate_ore.name=Deepslate Salt Ore
+tile.etfuturum.deepslate_saltore.name=Deepslate Salt Ore
+tile.salt_lake.name=Salt Lake Bottom
+tile.salt_block.name=Salt Block
+tile.salt_chiseled_block.name=Chiseled Salt Block
+tile.salt_pillar.name=Salt Pillar
+tile.salt_brick.name=Salt Bricks
+tile.salt_cracked_block.name=Cracked Salt Block
+tile.salt_cracked_brick.name=Cracked Salt Bricks
+tile.salt_chiseled_brick.name=Chiseled Salt Bricks
+tile.salt_chapiter.name=Salt Chapiter
+tile.salt_brick_stairs.name=Salt Brick Stairs
+tile.salt_slab.block.name=Salt Slab
+tile.salt_slab.brick.name=Salt Brick Slab
+tile.salt_slab.pillar.name=Salt Pillar Slab
+tile.salt_lamp.name=Salt Lamp
+tile.salt_lake_dirt.name=Salt Lake Bottom
+tile.salt_dirt.name=Saline Soil
+tile.lite_salt_dirt.name=Slightly Saline Soil
+tile.salt_grass.name=Slightly Saline Grass
+tile.mineral_mud.name=Mineral Mud
+tile.wet_mud_brick.name=Wet Mud Bricks
+tile.dry_mud_brick.name=Mud Bricks
+tile.dry_mud_brick_stairs.name=Mud Brick Stairs
+tile.dry_mud_brick_slab.name=Mud Brick Slab
+tile.dry_mud_brick_wall.name=Mud Brick Wall
+
+tile.salt_crusted_oak_log.name=Salt Crusted Oak Log
+tile.blossom_log.name=Blossom Log
+tile.blossom_wood.name=Blossom Wood
+tile.blossom_stripped_log.name=Stripped Blossom Log
+tile.blossom_stripped_wood.name=Stripped Blossom Wood
+tile.blossom_burrow.name=Blossom Burrow
+tile.blossom_planks.name=Blossom Planks
+tile.blossom_stairs.name=Blossom Stairs
+tile.blossom_slab.name=Blossom Slab
+tile.blossom_fence.name=Blossom Fence
+tile.blossom_fence_gate.name=Blossom Fence Gate
+tile.blossom_door.name=Blossom Door
+tile.blossom_trapdoor.name=Blossom Trapdoor
+tile.blossom_pressure_plate.name=Blossom Pressure Plate
+tile.blossom_button.name=Blossom Button
+tile.blossom_leaves.name=Blossom Leaves
+tile.blossom_sapling.name=Blossom Sapling
+
+tile.apiary.name=Apiary
+tile.extractor.name=Evaporator
+container.extractor=Evaporator
+container.discard=Discard
+fluid.milk=Milk
+
+tile.storage_crate_carrot.name=Carrot Crate
+tile.storage_crate_potato.name=Potato Crate
+tile.storage_crate_poisonous_potato.name=Poisonous Potato Crate
+tile.storage_crate_onion.name=Onion Crate
+tile.storage_crate_beetroot.name=Beetroot Crate
+tile.storage_barrel_cod.name=Cod Barrel
+tile.storage_barrel_salmon.name=Salmon Barrel
+tile.storage_barrel_tropical_fish.name=Tropical Fish Barrel
+tile.storage_barrel_tailor.name=Tailor Barrel
+tile.storage_barrel_pufferfish.name=Pufferfish Barrel
+tile.storage_sack_wheatseeds.name=Wheat Seed Sack
+tile.storage_sack_melonseeds.name=Melon Seed Sack
+tile.storage_sack_pumpkinseeds.name=Pumpkin Seed Sack
+tile.storage_sack_saltwort.name=Saltwort Sack
+tile.storage_sack_beetrootseeds.name=Beetroot Seed Sack
+
+tile.salt_crystal.name=Salt Crystal
+tile.saltworts.name=Saltwort
+tile.onions.name=Onions
+
+
+ITEMS
+
+item.minecraft.fish.name=Raw Cod
+item.minecraft.cooked_fished.name=Cooked Cod
+
+item.etfuturum.rabbit_stew.name=Rabbit Ragout
+item.etfuturum.beetroot_soup.name=Borscht
+item.etfuturum.sweet_berries.name=Sweetberries
+
+item.void_apple.name=§5Void Apple
+item.void_apple.tooltip=Drains the hunger bar
+item.stuffing_apple.name=§6Stuffing Apple
+item.stuffing_apple.tooltip=Fills up the hunger bar
+item.effect_apple.name=Effect Apple
+item.effect_apple.tooltip=Gives you potion effects
+item.testing_apple.name=§bTest Apple
+
+item.blossom.name=Blossom
+item.carpenter_bee.name=Carpenter Bee
+item.waxcomb.name=Wax Comb
+item.honeycomb.name=Honey Comb
+item.bee_larva.name=Bee Grub
+item.royal_jelly.name=Royal Jelly
+
+item.mineral_mud_ball.name=Mineral Mud Ball
+item.baking_soda.name=Baking Soda
+item.powdered_milk.name=Powdered Milk
+item.powdered_milk.tooltip=Mixed with Water Bucket & Bucket
+item.salt.name=Salt
+item.salt_pinch.name=Pinch of Salt
+item.sugar_pinch.name=Pinch of Sugar
+
+item.dough.name=Dough
+item.onion.name=Onion
+item.saltwort.name=Saltwort
+item.golden_saltwort.name=Golden Saltwort
+item.golden_potato.name=Golden Potato
+item.golden_berries.name=Golden Sweetberries
+item.salt_cooked_porkchop.name=Salted Cooked Porkchop
+item.salt_cooked_beef.name=Salted Steak
+item.salt_cooked_chicken.name=Salted Cooked Chicken
+item.salt_cooked_rabbit.name=Salted Cooked Rabbit
+item.salt_cooked_mutton.name=Salted Cooked Mutton
+item.strider.name=Raw Strider Flank
+item.cooked_strider.name=Strider Steak
+item.salt_cooked_strider.name=Salted Strider Steak
+item.haunch.name=Raw Haunch
+item.cooked_haunch.name=Cooked Haunch
+item.salt_cooked_haunch.name=Salted Cooked Haunch
+item.cured_meat.name=Cured Meat
+item.salt_cooked_cod.name=Salted Cooked Cod
+item.salt_cooked_salmon.name=Salted Cooked Salmon
+item.cooked_tropical_fish.name=Cooked Tropical Fish
+item.salt_cooked_tropical_fish.name=Salted Cooked Tropical Fish
+item.tailor.name=Raw Tailor
+item.cooked_tailor.name=Cooked Tailor
+item.salt_cooked_tailor.name=Salted Cooked Tailor
+item.calamari.name=Raw Calamari
+item.cooked_calamari.name=Cooked Calamari
+item.salt_cooked_calamari.name=Salted Cooked Calamari
+item.salt_bread.name=Salted Bread
+item.salt_baked_potato.name=Salted Baked Potato
+item.salt_beetroot.name=Salted Beetroot
+item.salt_egg.name=Soft-Boiled Egg
+
+item.salt_mushroom_stew.name=Salted Mushroom Stew
+item.salt_rabbit_stew.name=Salted Rabbit Ragout
+item.salt_beetroot_soup.name=Salted Borscht
+item.pumpkin_porridge.name=Pumpkin Porridge
+item.salt_pumpkin_porridge.name=Salted Pumpkin Porridge
+item.cactus_stew.name=Cactus Stew
+item.salt_cactus_stew.name=Salted Cactus Stew
+item.stewed_vegetables.name=Stewed Vegetables
+item.salt_stewed_vegetables.name=Salted Stewed Vegetables
+item.potato_mushroom.name=Potato with Mushroom
+item.salt_potato_mushroom.name=Salted Potato with Mushroom
+item.golden_vegetables.name=Glistering Vegetables
+item.salt_golden_vegetables.name=Salted Glistering Vegetables
+item.fish_soup.name=Fish Soup
+item.salt_fish_soup.name=Salted Fish Soup
+item.dandelion_salad.name=Dandelion Salad
+item.salt_dandelion_salad.name=Salted Dandelion Salad
+item.wheat_sprouts.name=Wheat Sprouts
+item.salt_wheat_sprouts.name=Salted Wheat Sprouts
+item.beetroot_salad.name=Beetroot Salad
+item.salt_beetroot_salad.name=Salted Beetroot Salad
+item.dressed_herring.name=Dressed Herring
+item.salt_dressed_herring.name=Salted Dressed Herring
+item.saltwort_salad.name=Saltwort Salad
+item.golden_saltwort_salad.name=Glistering Saltwort Salad
+item.saltwort_cooked_porkchop.name=Salted Cooked Porkchop with Saltwort
+item.saltwort_honey_porkchop.name=Honey Glazed Porkchop with Saltwort
+item.saltwort_cooked_beef.name=Salted Steak with Saltwort
+item.saltwort_cooked_strider.name=Salted Strider Steak with Saltwort
+item.saltwort_cooked_mutton.name=Salted Cooked Mutton with Saltwort
+item.saltwort_cooked_haunch.name=Salted Cooked Haunch with Saltwort
+
+item.sugar_apple.name=Sugared Apple
+item.sugar_melon.name=Sugared Melon Slice
+item.sugar_berries.name=Sugared Sweetberries
+item.fruit_salad.name=Fruit Salad
+item.sugar_fruit_salad.name=Sugared Fruit Salad
+item.golden_fruit_salad.name=Glistering Fruit Salad
+item.sugar_golden_fruit_salad.name=Sugared Glistering Fruit Salad
+item.grated_carrot.name=Grated Carrot
+item.sugar_grated_carrot.name=Sugared Grated Carrot
+item.melon_soup.name=Melon Soup
+item.sugar_melon_soup.name=Sugared Melon Soup
+item.honey_berries.name=Honey Glazed Sweetberries
+item.honey_apple.name=Honey Glazed Apple
+item.honey_porkchop.name=Honey Glazed Porkchop
+item.chocolate_berries.name=Chocolate Laced Sweetberries
+item.chocolate_bar.name=Chocolate Bar
+item.chocolate_bar.tooltip=Don't eat too much of it!
+item.chocolate_bar.mess.0=Too much!
+item.chocolate_bar.mess.1=I'm stuffed!
+item.chocolate_bar.mess.2=I'm gonna be sick!
+item.chocolate_bar.mess.3=Blargh!
+
+item.chocolate_pie.name=Chocolate Pie
+item.apple_pie.name=Apple Pie
+item.sweetberry_pie.name=Sweetberry Pie
+item.carrot_pie.name=Carrot Pie
+item.mushroom_pie.name=Mushroom Pie
+item.potato_pie.name=Potato Pie
+item.onion_pie.name=Onion Pie
+item.shepherds_pie.name=Shepherd's Pie
+item.cod_pie.name=Cod Pie
+item.salmon_pie.name=Salmon Pie
+item.tropical_fish_pie.name=Tropical Fish Pie
+item.tailor_pie.name=Tailor Pie
+item.calamari_pie.name=Calamari Pie
+item.saltwort_pie.name=Saltwort Pie
+
+item.fermented_saltwort.name=Fermented Saltwort
+item.pickled_fern.name=Pickled Fern
+item.pickled_mushroom.name=Pickled Mushroom
+item.pickled_calamari.name=Pickled Calamari
+item.pickled_beetroot.name=Pickled Beetroot
+item.pickled_onion.name=Pickled Onion
+item.apple_preserves.name=Apple Preserves
+item.melon_preserves.name=Melon Preserves
+item.berry_preserves.name=Sweetberry Preserves
+item.tunneler_concoction.name=Tunneler's Concoction
+item.tunneler_concoction.tooltip=Icky, but rather helpful
+item.fizzy_drink.name=Fizzy Drink
+item.fizzy_drink.tooltip=Removes effects and extinguishes fire
+item.muffin.name=Muffin
+item.muffin.tooltip=For dessert!
+item.muffin.mess.0=Bon Appetit!
+item.muffin.mess.1=Mmm... So tasty!
+item.muffin.mess.2=Om Nom Nom
+item.muffin.mess.3=Yummy!
+
+item.mud_helmet.name=Head Mud Mask
+item.mud_chestplate.name=Body Mud Mask
+item.mud_leggings.name=Legs Mud Mask
+item.mud_boots.name=Foot Mud Mask
+
+item.tough_jelly.name=Tough Jelly
+
+item.rainmaker_star.name=Rainmaker Star
+item.rainmaker.name=Rainmaker
+item.rainmaker.tooltip=Should explode above the clouds
+
+
+MOD ITEMS
+
+item.tf_salt_cooked_venison.name=Salted Venison Steak
+item.tf_salt_meef_steak.name=Salted Meef Steak
+item.tf_salt_meef_stroganoff.name=Salted Meef Stroganoff
+item.tf_salt_hydra_chop.name=Salted Hydra Chop
+item.tf_pickled_mushgloom.name=Pickled Mushgloom
+item.tf_saltwort_cooked_venison.name=Venison Steak With Saltwort
+item.tf_saltwort_meef_steak.name=Meef Steak With Saltwort
+
+item.bop_hemoglobin.name=Hemoglobin
+item.bop_poison.name=Poison
+item.bop_salt_shroom_powder.name=Salted Shroom Powder
+item.bop_sugar_fruit_salad.name=Sugared Fruit Salad
+item.bop_salt_veggie_salad.name=Salted Veggie Salad
+item.bop_salt_shroom_salad.name=Salted Shroom Salad
+item.bop_salt_rice_bowl.name=Salted Bowl of Rice
+item.bop_pickled_turnip.name=Pickled Turnip
+
+
+ACHIEVEMENTS
+
+achievement.salt=Salt!
+achievement.salt.desc=Get salt
+achievement.saltFarm=Salty farmer
+achievement.saltFarm.desc=Gather the harvest from a salt farm
+achievement.rain=Rainmaker
+achievement.rain.desc=Call the rain
+achievement.mineralMud=Something black and viscous
+achievement.mineralMud.desc=Find or mix together mineral mud
+achievement.fullMud=Beauty and health
+achievement.fullMud.desc=Apply a mud mask on the whole body
+achievement.discomfiture=Discomfiture
+achievement.discomfiture.desc=Rinse off the mud mask
+achievement.saltWort=Is there life on salt?
+achievement.saltWort.desc=Find saltwort
+achievement.saltWortFarm=God of melioration
+achievement.saltWortFarm.desc=Fertilize a block of soil with a growing saltwort
+achievement.fizzyDrink=Cool the zeal!
+achievement.fizzyDrink.desc=Extinguish yourself with Fizzy Drink
+achievement.muffin=Fed up
+achievement.muffin.desc=Get a saturation effect after eating a muffin
+achievement.moreBuckets=More 10,000 buckets!
+achievement.moreBuckets.desc=Obtain salt through the evaporator
+achievement.saltCrystalGet=More than salt
+achievement.saltCrystalGet.desc=Obtain a salt crystal
+achievement.saltWitch=Achilles' heel
+achievement.saltWitch.desc=Kill the witch with a salt crystal in hand
+achievement.saltSlime=Tough Jelly
+achievement.saltSlime.desc=Kill the slime with a salt crystal in hand
+achievement.saltLake=Crunching underfoot
+achievement.saltLake.desc=Walk on a dried salt lake
+achievement.saltCrystal=Wonder of Nature
+achievement.saltCrystal.desc=Find a salt crystal in deep caves
+
+
+BIOMES/GENERATION
+
+generator.saltMarsh=Salt Marsh
