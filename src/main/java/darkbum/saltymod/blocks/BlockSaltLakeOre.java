@@ -49,9 +49,9 @@ public class BlockSaltLakeOre extends Block {
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1) {
-        this.blockIcon = par1.registerIcon("saltymod:salt_ore_lake");
-        this.TOP = par1.registerIcon("saltymod:salt_ore_lake_top");
-        this.SIDE = par1.registerIcon("saltymod:salt_ore_lake_side");
+        this.blockIcon = par1.registerIcon("saltymod:salt_lake_ore");
+        this.TOP = par1.registerIcon("saltymod:salt_lake_ore_top");
+        this.SIDE = par1.registerIcon("saltymod:salt_lake_ore_side");
     }
 
     public void onEntityWalking(World world, int x, int y, int z, Entity entity) {

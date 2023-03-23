@@ -76,6 +76,11 @@ tile.storage_sack_beetrootseeds.name=Beetroot Seed Sack
 tile.salt_crystal.name=Salt Crystal
 tile.saltworts.name=Saltwort
 tile.onions.name=Onions
+tile.salt_flower_daucus.name=Daucus
+tile.salt_flower_wild_carrot.name=Daucus
+tile.salt_flower_solanum.name=Solanum
+tile.salt_flower_wild_potato.name=Solanum
+tile.salt_flower_wild_onion.name=Allium
 
 
 ITEMS

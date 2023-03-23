@@ -96,7 +96,7 @@ public class BlockSaltCrystal extends BlockBush {
         ArrayList drop = new ArrayList();
         if (metadata == 0)
             if (this.silkdrop) {
-                drop.add(new ItemStack(ModItems.salt_shard));
+                drop.add(new ItemStack(this));
             } else {
                 drop.add(new ItemStack(ModItems.salt_pinch));
             }

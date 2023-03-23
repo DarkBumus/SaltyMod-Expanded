@@ -67,7 +67,13 @@ public class BlockSaltGrass extends Block {
     @SideOnly(Side.CLIENT)
     @Override
     public IIcon getIcon(int side, int meta) {
-        return (side == 1) ? this.TOP : ((side == 0 && meta > 0) ? this.BOTTOM1 : ((side == 0 && meta == 0) ? this.BOTTOM0 : (((side == 2 && (meta == 7 || meta == 11 || meta == 14 || meta == 15)) || (side == 5 && (meta == 8 || meta == 11 || meta == 12 || meta == 15)) || (side == 3 && (meta == 9 || meta == 12 || meta == 13 || meta == 15)) || (side == 4 && (meta == 10 || meta == 13 || meta == 14 || meta == 15))) ? this.SIDE : (((side == 2 && (meta == 3 || meta == 8 || meta == 12)) || (side == 5 && (meta == 4 || meta == 9 || meta == 13)) || (side == 3 && (meta == 5 || meta == 10 || meta == 14)) || (side == 4 && (meta == 6 || meta == 7 || meta == 11))) ? this.SIDE_L : (((side == 2 && (meta == 6 || meta == 10 || meta == 13)) || (side == 5 && (meta == 3 || meta == 7 || meta == 14)) || (side == 3 && (meta == 4 || meta == 8 || meta == 11)) || (side == 4 && (meta == 5 || meta == 9 || meta == 12))) ? this.SIDE_R : this.blockIcon)))));
+        return (side == 1) ?
+            this.TOP : ((side == 0 && meta > 0) ?
+            this.BOTTOM1 : ((side == 0 && meta == 0) ?
+            this.BOTTOM0 : (((side == 2 && (meta == 7 || meta == 11 || meta == 14 || meta == 15)) || (side == 5 && (meta == 8 || meta == 11 || meta == 12 || meta == 15)) || (side == 3 && (meta == 9 || meta == 12 || meta == 13 || meta == 15)) || (side == 4 && (meta == 10 || meta == 13 || meta == 14 || meta == 15))) ?
+            this.SIDE : (((side == 2 && (meta == 3 || meta == 8 || meta == 12)) || (side == 5 && (meta == 4 || meta == 9 || meta == 13)) || (side == 3 && (meta == 5 || meta == 10 || meta == 14)) || (side == 4 && (meta == 6 || meta == 7 || meta == 11))) ?
+            this.SIDE_L : (((side == 2 && (meta == 6 || meta == 10 || meta == 13)) || (side == 5 && (meta == 3 || meta == 7 || meta == 14)) || (side == 3 && (meta == 4 || meta == 8 || meta == 11)) || (side == 4 && (meta == 5 || meta == 9 || meta == 12))) ?
+            this.SIDE_R : this.blockIcon)))));
     }
 
     @SideOnly(Side.CLIENT)

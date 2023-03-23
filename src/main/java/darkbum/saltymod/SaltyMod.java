@@ -273,13 +273,13 @@ public class SaltyMod {
             - Add Blossom Wood to EFR's "Strippables"
             - Finish Salt Marsh
                 - Reeds/Water Grass
-                - Decide on Onions/Allium
+                - Finish Salt Flowers
             - Create/Finish Brickmaker Camps [Schematica?]
-            - Fix Fish Hunger Values [Probably set up Mixins in general?]
+            - Fix Fish Hunger Values [Probably set up Mixins in general?
             - Change Saltwort/Salt Dirt behavior
             - Restructure Config and Achiev file/class
                 - Rainmaker behavior!!!
-            - Finish Blossom Burrow
+            - Finish Blossom Burrow/Tree
             - Finish Apiary [as a whole]
             - Make Fish automatable [Fish Trap? Something else?]
             - Create/Finish Blossom Fence&Fence Gate&Door&Trapdoor&Sign [Later Boat&Chest Boat&Hanging Sign]

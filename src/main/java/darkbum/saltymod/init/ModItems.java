@@ -486,7 +486,7 @@ public class ModItems {
         GameRegistry.registerItem(mud_chestplate, "mud_chestplate");
         GameRegistry.registerItem(mud_leggings, "mud_leggings");
         GameRegistry.registerItem(mud_boots, "mud_boots");
-        GameRegistry.registerItem(salt_shard, "salt_shard");
+//        GameRegistry.registerItem(salt_shard, "salt_shard");
         GameRegistry.registerItem(rainmaker_star, "rainmaker_star");
         GameRegistry.registerItem(rainmaker, "rainmaker");
         if(Loader.isModLoaded("etfuturum")) {

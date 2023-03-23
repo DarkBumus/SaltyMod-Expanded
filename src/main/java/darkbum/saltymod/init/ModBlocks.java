@@ -5,6 +5,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import darkbum.saltymod.blockitems.*;
 import darkbum.saltymod.blocks.*;
 import darkbum.saltymod.blocks.BlockSalt;
+import darkbum.saltymod.blocks.BlockSaltFlower;
 import net.minecraft.block.*;
 import net.minecraft.creativetab.CreativeTabs;
 import darkbum.saltymod.SaltyMod;
@@ -112,6 +113,8 @@ public class ModBlocks {
 
     public static Block marsh_reeds = new BlockMarshReeds("marsh_reeds", tab);
 
+    public static Block salt_flower = new BlockSaltFlower();
+
     public static void init() {
         SaltyMod.logger.info("Start to initialize Blocks");
 
@@ -177,6 +180,7 @@ public class ModBlocks {
         GameRegistry.registerBlock(saltworts, "saltworts");
         GameRegistry.registerBlock(onions, "onions");
 //        GameRegistry.registerBlock(marsh_reeds, "marsh_reeds");
+        GameRegistry.registerBlock(salt_flower, ItemSaltFlower.class, "salt_flower");
 
         SaltyMod.logger.info("Finished initializing Blocks");
     }

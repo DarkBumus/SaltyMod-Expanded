@@ -221,6 +221,7 @@ public class CommonProxy {
             Item beetroot_soup = GameRegistry.findItem("etfuturum", "beetroot_soup");
             Item chorus_fruit = GameRegistry.findItem("etfuturum", "chorus_fruit");
             Item sweet_berries = GameRegistry.findItem("etfuturum", "sweet_berries");
+            Item dye = GameRegistry.findItem("etfuturum", "dye");
             if ((suspicious_stew != null) &&
                 (mutton_raw != null) &&
                 (mutton_cooked != null) &&
@@ -231,7 +232,8 @@ public class CommonProxy {
                 (beetroot_seeds != null) &&
                 (beetroot_soup != null) &&
                 (chorus_fruit != null) &&
-                (sweet_berries != null)) {
+                (sweet_berries != null) &&
+                (dye != null)) {
 
                 OreDictionary.registerOre("itemRedmeat", mutton_cooked);
 
@@ -268,6 +270,7 @@ public class CommonProxy {
                 GameRegistry.addShapelessRecipe(new ItemStack(ModItems.golden_fruit_salad), new ItemStack(Items.bowl), new ItemStack(Items.golden_apple), new ItemStack(ModItems.golden_berries), new ItemStack(Items.speckled_melon));
                 GameRegistry.addShapelessRecipe(new ItemStack(ModItems.sugar_golden_fruit_salad), new ItemStack(ModItems.sugar_pinch), new ItemStack(Items.bowl), new ItemStack(Items.golden_apple), new ItemStack(ModItems.golden_berries), new ItemStack(Items.speckled_melon));
                 GameRegistry.addShapelessRecipe(new ItemStack(ModItems.berry_preserves), new ItemStack(ModItems.sugar_pinch), new ItemStack(Items.potionitem), new ItemStack(sweet_berries), new ItemStack(sweet_berries));
+                GameRegistry.addShapelessRecipe(new ItemStack(dye, 1,0), new ItemStack(ModBlocks.salt_flower, 1, 0));
 
                 GameRegistry.addRecipe(new ItemStack(ModBlocks.storage_crate, 1, 4), "xxx", "xxx", "xxx", 'x', new ItemStack(beetroot));
                 GameRegistry.addRecipe(new ItemStack(ModBlocks.storage_sack, 1, 4), "xxx", "xxx", "xxx", 'x', new ItemStack(beetroot_seeds));
@@ -280,6 +283,7 @@ public class CommonProxy {
             } else {
                 GameRegistry.addShapelessRecipe(new ItemStack(ModItems.fruit_salad), new ItemStack(Items.bowl), new ItemStack(Items.apple), new ItemStack(Items.carrot), new ItemStack(Items.melon));
                 GameRegistry.addShapelessRecipe(new ItemStack(ModItems.sugar_fruit_salad), new ItemStack(ModItems.sugar_pinch), new ItemStack(Items.bowl), new ItemStack(Items.apple), new ItemStack(Items.carrot), new ItemStack(Items.melon));
+                GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 15), new ItemStack(ModBlocks.salt_flower, 0));
             }
         }
 

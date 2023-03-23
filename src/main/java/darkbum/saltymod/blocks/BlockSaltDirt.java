@@ -34,6 +34,9 @@ public class BlockSaltDirt extends Block {
     @SideOnly(Side.CLIENT)
     private IIcon SIDE_2;
 
+//    @SideOnly(Side.CLIENT)
+//    private IIcon SIDE_3;
+
     public BlockSaltDirt(String name, CreativeTabs tab) {
         super(Material.ground);
         setTickRandomly(true);
@@ -47,18 +50,25 @@ public class BlockSaltDirt extends Block {
 
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-        return (meta == 1) ? this.SIDE_1 : ((meta == 2) ? this.SIDE_2 : ((side == 0 && meta >= 3) ? this.BOTTOM : (((side == 2 && (meta == 7 || meta == 11 || meta == 14 || meta == 15)) || (side == 5 && (meta == 8 || meta == 11 || meta == 12 || meta == 15)) || (side == 3 && (meta == 9 || meta == 12 || meta == 13 || meta == 15)) || (side == 4 && (meta == 10 || meta == 13 || meta == 14 || meta == 15))) ? this.SIDE : (((side == 2 && (meta == 3 || meta == 8 || meta == 12)) || (side == 5 && (meta == 4 || meta == 9 || meta == 13)) || (side == 3 && (meta == 5 || meta == 10 || meta == 14)) || (side == 4 && (meta == 6 || meta == 7 || meta == 11))) ? this.SIDE_L : (((side == 2 && (meta == 6 || meta == 10 || meta == 13)) || (side == 5 && (meta == 3 || meta == 7 || meta == 14)) || (side == 3 && (meta == 4 || meta == 8 || meta == 11)) || (side == 4 && (meta == 5 || meta == 9 || meta == 12))) ? this.SIDE_R : this.blockIcon)))));
+        return (meta == 1) ?
+            this.SIDE_1 : ((meta == 2) ?
+            this.SIDE_2 : ((side == 0 && meta >= 3) ?
+            this.BOTTOM : (((side == 2 && (meta == 7 || meta == 11 || meta == 14 || meta == 15)) || (side == 5 && (meta == 8 || meta == 11 || meta == 12 || meta == 15)) || (side == 3 && (meta == 9 || meta == 12 || meta == 13 || meta == 15)) || (side == 4 && (meta == 10 || meta == 13 || meta == 14 || meta == 15))) ?
+            this.SIDE : (((side == 2 && (meta == 3 || meta == 8 || meta == 12)) || (side == 5 && (meta == 4 || meta == 9 || meta == 13)) || (side == 3 && (meta == 5 || meta == 10 || meta == 14)) || (side == 4 && (meta == 6 || meta == 7 || meta == 11))) ?
+            this.SIDE_L : (((side == 2 && (meta == 6 || meta == 10 || meta == 13)) || (side == 5 && (meta == 3 || meta == 7 || meta == 14)) || (side == 3 && (meta == 4 || meta == 8 || meta == 11)) || (side == 4 && (meta == 5 || meta == 9 || meta == 12))) ?
+            this.SIDE_R : this.blockIcon)))));
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister par1) {
-        this.blockIcon = par1.registerIcon("saltymod:slightly_saline_dirt_0");
-        this.SIDE_1 = par1.registerIcon("saltymod:slightly_saline_dirt_1");
-        this.SIDE_2 = par1.registerIcon("saltymod:slightly_saline_dirt_2");
-        this.SIDE = par1.registerIcon("saltymod:slightly_saline_dirt_side_0");
-        this.SIDE_L = par1.registerIcon("saltymod:slightly_saline_dirt_side_1");
-        this.SIDE_R = par1.registerIcon("saltymod:slightly_saline_dirt_side_2");
-        this.BOTTOM = par1.registerIcon("saltymod:slightly_saline_dirt_bottom");
+    public void registerBlockIcons(IIconRegister icon) {
+        this.blockIcon = icon.registerIcon("saltymod:slightly_saline_dirt_0");
+        this.SIDE_1 = icon.registerIcon("saltymod:slightly_saline_dirt_1");
+        this.SIDE_2 = icon.registerIcon("saltymod:slightly_saline_dirt_2");
+//        this.SIDE_3 = icon.registerIcon("saltymod:salt_dirt_3");
+        this.SIDE = icon.registerIcon("saltymod:slightly_saline_dirt_side_0");
+        this.SIDE_L = icon.registerIcon("saltymod:slightly_saline_dirt_side_1");
+        this.SIDE_R = icon.registerIcon("saltymod:slightly_saline_dirt_side_2");
+        this.BOTTOM = icon.registerIcon("saltymod:slightly_saline_dirt_bottom");
     }
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx, float hity, float hitz) {
