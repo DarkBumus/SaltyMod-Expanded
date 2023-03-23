@@ -26,7 +26,7 @@ public class BlockSaltLamp extends Block {
         setResistance(10.0F);
         setLightLevel(0.9F);
         setHarvestLevel("pickaxe", 1);
-        setBlockTextureName("saltmod:salt_lamp");
+        setBlockTextureName("saltymod:salt_lamp");
     }
 
     public void onEntityWalking(World world, int x, int y, int z, Entity entity) {

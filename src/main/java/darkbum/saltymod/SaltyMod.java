@@ -270,6 +270,7 @@ public class SaltyMod {
                 - Restructure/Merge Items?
                 - Change Salt Crystal Drop [Salt Shard/Crystal Item]
             - Potion Effect [Well Fed]
+            - Add Blossom Wood to EFR's "Strippables"
             - Finish Salt Marsh
                 - Reeds/Water Grass
                 - Decide on Onions/Allium

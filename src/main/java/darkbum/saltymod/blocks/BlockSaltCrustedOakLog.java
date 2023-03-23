@@ -48,12 +48,12 @@ public class BlockSaltCrustedOakLog extends Block {
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister icon) {
 	    this.TOP = icon.registerIcon("log_oak_top");
-	    this.BOTTOM = icon.registerIcon("saltmod:oak_log_crusted_bottom");
-	    this.SIDE = icon.registerIcon("saltmod:oak_log_crusted");
+	    this.BOTTOM = icon.registerIcon("saltymod:oak_log_crusted_bottom");
+	    this.SIDE = icon.registerIcon("saltymod:oak_log_crusted");
         this.LTOP = icon.registerIcon("log_oak");
-        this.LBOTTOM = icon.registerIcon("saltmod:oak_log_crusted_lying_bottom");
-        this.LSIDE = icon.registerIcon("saltmod:oak_log_crusted_lying");
-        this.LEND = icon.registerIcon("saltmod:oak_log_crusted_lying_end");
+        this.LBOTTOM = icon.registerIcon("saltymod:oak_log_crusted_lying_bottom");
+        this.LSIDE = icon.registerIcon("saltymod:oak_log_crusted_lying");
+        this.LEND = icon.registerIcon("saltymod:oak_log_crusted_lying_end");
     }
 
 	public IIcon getIcon(int side, int meta) {

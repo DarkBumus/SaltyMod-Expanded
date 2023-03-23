@@ -90,13 +90,13 @@ public class BlockStorageSack extends Block {
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister icon) {
-        this.BOTTOM = icon.registerIcon("saltmod:storage_sack_bottom");
-        this.SIDE = icon.registerIcon("saltmod:storage_sack");
-        this.WHEATSEEDS = icon.registerIcon("saltmod:storage_sack_wheat_seeds");
-        this.MELONSEEDS = icon.registerIcon("saltmod:storage_sack_melon_seeds");
-        this.PUMPKINSEEDS = icon.registerIcon("saltmod:storage_sack_pumpkin_seeds");
-        this.SALTWORT = icon.registerIcon("saltmod:storage_sack_saltwort");
-        this.BEETROOTSEEDS = icon.registerIcon("saltmod:storage_sack_beetroot_seeds");
+        this.BOTTOM = icon.registerIcon("saltymod:storage_sack_bottom");
+        this.SIDE = icon.registerIcon("saltymod:storage_sack");
+        this.WHEATSEEDS = icon.registerIcon("saltymod:storage_sack_wheat_seeds");
+        this.MELONSEEDS = icon.registerIcon("saltymod:storage_sack_melon_seeds");
+        this.PUMPKINSEEDS = icon.registerIcon("saltymod:storage_sack_pumpkin_seeds");
+        this.SALTWORT = icon.registerIcon("saltymod:storage_sack_saltwort");
+        this.BEETROOTSEEDS = icon.registerIcon("saltymod:storage_sack_beetroot_seeds");
     }
 
     @Override

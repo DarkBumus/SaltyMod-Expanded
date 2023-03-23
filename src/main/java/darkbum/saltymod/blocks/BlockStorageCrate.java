@@ -102,17 +102,17 @@ public class BlockStorageCrate extends Block {
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister icon) {
-        this.BOTTOM = icon.registerIcon("saltmod:storage_crate_bottom");
-        this.CARROTSIDE = icon.registerIcon("saltmod:storage_crate_carrot_side");
-        this.CARROTTOP = icon.registerIcon("saltmod:storage_crate_carrot_top");
-        this.POTATOSIDE = icon.registerIcon("saltmod:storage_crate_potato_side");
-        this.POTATOTOP = icon.registerIcon("saltmod:storage_crate_potato_top");
-        this.POIPOTATOSIDE = icon.registerIcon("saltmod:storage_crate_poisonous_potato_side");
-        this.POIPOTATOTOP = icon.registerIcon("saltmod:storage_crate_poisonous_potato_top");
-        this.ONIONSIDE = icon.registerIcon("saltmod:storage_crate_onion_side");
-        this.ONIONTOP = icon.registerIcon("saltmod:storage_crate_onion_top");
-        this.BEETROOTSIDE = icon.registerIcon("saltmod:storage_crate_beetroot_side");
-        this.BEETROOTTOP = icon.registerIcon("saltmod:storage_crate_beetroot_top");
+        this.BOTTOM = icon.registerIcon("saltymod:storage_crate_bottom");
+        this.CARROTSIDE = icon.registerIcon("saltymod:storage_crate_carrot_side");
+        this.CARROTTOP = icon.registerIcon("saltymod:storage_crate_carrot_top");
+        this.POTATOSIDE = icon.registerIcon("saltymod:storage_crate_potato_side");
+        this.POTATOTOP = icon.registerIcon("saltymod:storage_crate_potato_top");
+        this.POIPOTATOSIDE = icon.registerIcon("saltymod:storage_crate_poisonous_potato_side");
+        this.POIPOTATOTOP = icon.registerIcon("saltymod:storage_crate_poisonous_potato_top");
+        this.ONIONSIDE = icon.registerIcon("saltymod:storage_crate_onion_side");
+        this.ONIONTOP = icon.registerIcon("saltymod:storage_crate_onion_top");
+        this.BEETROOTSIDE = icon.registerIcon("saltymod:storage_crate_beetroot_side");
+        this.BEETROOTTOP = icon.registerIcon("saltymod:storage_crate_beetroot_top");
     }
 
     @Override

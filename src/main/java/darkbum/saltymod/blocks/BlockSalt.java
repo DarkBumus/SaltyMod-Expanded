@@ -179,22 +179,22 @@ public class BlockSalt extends Block {
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1) {
-        this.blockIcon = par1.registerIcon("saltmod:salt_block");
-        this.CHISELED = par1.registerIcon("saltmod:chiseled_salt_block");
-        this.LINES = par1.registerIcon("saltmod:salt_pillar");
-        this.LINESTOP = par1.registerIcon("saltmod:salt_pillar_top");
-        this.BRICK = par1.registerIcon("saltmod:salt_bricks");
-        this.BRICKTOP = par1.registerIcon("saltmod:salt_bricks_top");
-        this.BRICKBOTTOM = par1.registerIcon("saltmod:salt_bricks_bottom");
-        this.BLOCKCRACKED = par1.registerIcon("saltmod:cracked_salt_block");
-        this.BRICKCRACKED = par1.registerIcon("saltmod:cracked_salt_bricks");
-        this.BRICKCRACKEDTOP = par1.registerIcon("saltmod:cracked_salt_bricks_top");
-        this.BRICKCRACKEDBOTTOM = par1.registerIcon("saltmod:cracked_salt_bricks_bottom");
-        this.BRICKCHISELED = par1.registerIcon("saltmod:chiseled_salt_bricks");
-        this.BRICKCHISELEDTOP = par1.registerIcon("saltmod:chiseled_salt_bricks_top");
-        this.BRICKCHISELEDBOTTOM = par1.registerIcon("saltmod:chiseled_salt_bricks_bottom");
-        this.CHAPITER = par1.registerIcon("saltmod:salt_chapiter");
-        this.CHAPITERTOP = par1.registerIcon("saltmod:salt_chapiter_top");
+        this.blockIcon = par1.registerIcon("saltymod:salt_block");
+        this.CHISELED = par1.registerIcon("saltymod:chiseled_salt_block");
+        this.LINES = par1.registerIcon("saltymod:salt_pillar");
+        this.LINESTOP = par1.registerIcon("saltymod:salt_pillar_top");
+        this.BRICK = par1.registerIcon("saltymod:salt_bricks");
+        this.BRICKTOP = par1.registerIcon("saltymod:salt_bricks_top");
+        this.BRICKBOTTOM = par1.registerIcon("saltymod:salt_bricks_bottom");
+        this.BLOCKCRACKED = par1.registerIcon("saltymod:cracked_salt_block");
+        this.BRICKCRACKED = par1.registerIcon("saltymod:cracked_salt_bricks");
+        this.BRICKCRACKEDTOP = par1.registerIcon("saltymod:cracked_salt_bricks_top");
+        this.BRICKCRACKEDBOTTOM = par1.registerIcon("saltymod:cracked_salt_bricks_bottom");
+        this.BRICKCHISELED = par1.registerIcon("saltymod:chiseled_salt_bricks");
+        this.BRICKCHISELEDTOP = par1.registerIcon("saltymod:chiseled_salt_bricks_top");
+        this.BRICKCHISELEDBOTTOM = par1.registerIcon("saltymod:chiseled_salt_bricks_bottom");
+        this.CHAPITER = par1.registerIcon("saltymod:salt_chapiter");
+        this.CHAPITERTOP = par1.registerIcon("saltymod:salt_chapiter_top");
     }
 
     public void onEntityWalking(World world, int x, int y, int z, Entity entity) {

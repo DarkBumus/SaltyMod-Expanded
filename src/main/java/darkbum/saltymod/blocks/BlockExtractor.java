@@ -71,8 +71,8 @@ public class BlockExtractor extends BlockContainer {
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1) {
         this.SIDE = par1.registerIcon("furnace_side");
-        this.blockIcon = par1.registerIcon(this.isActive ? "saltmod:extractor_front_on" : "saltmod:extractor_front_off");
-        this.TOP = par1.registerIcon("saltmod:extractor_top");
+        this.blockIcon = par1.registerIcon(this.isActive ? "saltymod:extractor_front_on" : "saltymod:extractor_front_off");
+        this.TOP = par1.registerIcon("saltymod:extractor_top");
         this.BOTTOM = par1.registerIcon("furnace_top");
     }
 

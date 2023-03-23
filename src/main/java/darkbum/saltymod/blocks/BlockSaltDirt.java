@@ -51,9 +51,9 @@ public class BlockSaltDirt extends Block {
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1) {
-        this.blockIcon = par1.registerIcon("saltmod:saline_dirt");
-        this.TOP = par1.registerIcon("saltmod:saline_dirt_lake_top");
-        this.SIDE = par1.registerIcon("saltmod:saline_dirt_lake");
+        this.blockIcon = par1.registerIcon("saltymod:saline_dirt");
+        this.TOP = par1.registerIcon("saltymod:saline_dirt_lake_top");
+        this.SIDE = par1.registerIcon("saltymod:saline_dirt_lake");
     }
 
     @Override

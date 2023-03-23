@@ -25,7 +25,7 @@ public class BlockDryMudBrickSlab extends BlockSlab {
         setStepSound(ModSounds.soundTypeDryMudBrick);
         setHarvestLevel("pickaxe", 0);
         this.useNeighborBrightness = true;
-        setBlockTextureName("saltmod:mud_bricks");
+        setBlockTextureName("saltymod:mud_bricks");
     }
 
     public Item getItemDropped(int p_149650_1_, Random random, int p_149650_3_) {

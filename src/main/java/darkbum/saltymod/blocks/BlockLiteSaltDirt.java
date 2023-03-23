@@ -52,13 +52,13 @@ public class BlockLiteSaltDirt extends Block {
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1) {
-        this.blockIcon = par1.registerIcon("saltmod:slightly_saline_dirt_0");
-        this.SIDE_1 = par1.registerIcon("saltmod:slightly_saline_dirt_1");
-        this.SIDE_2 = par1.registerIcon("saltmod:slightly_saline_dirt_2");
-        this.SIDE = par1.registerIcon("saltmod:slightly_saline_dirt_side_0");
-        this.SIDE_L = par1.registerIcon("saltmod:slightly_saline_dirt_side_1");
-        this.SIDE_R = par1.registerIcon("saltmod:slightly_saline_dirt_side_2");
-        this.BOTTOM = par1.registerIcon("saltmod:slightly_saline_dirt_bottom");
+        this.blockIcon = par1.registerIcon("saltymod:slightly_saline_dirt_0");
+        this.SIDE_1 = par1.registerIcon("saltymod:slightly_saline_dirt_1");
+        this.SIDE_2 = par1.registerIcon("saltymod:slightly_saline_dirt_2");
+        this.SIDE = par1.registerIcon("saltymod:slightly_saline_dirt_side_0");
+        this.SIDE_L = par1.registerIcon("saltymod:slightly_saline_dirt_side_1");
+        this.SIDE_R = par1.registerIcon("saltymod:slightly_saline_dirt_side_2");
+        this.BOTTOM = par1.registerIcon("saltymod:slightly_saline_dirt_bottom");
     }
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx, float hity, float hitz) {

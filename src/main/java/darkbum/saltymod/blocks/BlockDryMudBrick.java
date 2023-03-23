@@ -14,7 +14,7 @@ public class BlockDryMudBrick extends Block {
         setHardness(1.5F);
         setResistance(3.0F);
         setHarvestLevel("pickaxe", 0);
-        setBlockTextureName("saltmod:mud_bricks");
+        setBlockTextureName("saltymod:mud_bricks");
         setTickRandomly(false);
     }
 }

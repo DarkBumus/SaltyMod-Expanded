@@ -14,7 +14,7 @@ public class BlockBlossomStairs extends BlockStairs {
         setHardness(2.0F);
         setResistance(3.0F);
         setHarvestLevel("axe", 0);
-        setBlockTextureName("saltmod:blossom_planks");
+        setBlockTextureName("saltymod:blossom_planks");
         this.useNeighborBrightness = true;
     }
 }

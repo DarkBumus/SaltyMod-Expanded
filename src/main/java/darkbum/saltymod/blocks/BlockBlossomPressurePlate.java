@@ -13,7 +13,7 @@ public class BlockBlossomPressurePlate extends BlockPressurePlate {
     private final int meta;
 
     public BlockBlossomPressurePlate(int meta, CreativeTabs tab) {
-        super("saltmod:blossom_planks", Material.wood, Sensitivity.everything);
+        super("saltymod:blossom_planks", Material.wood, Sensitivity.everything);
         this.meta = meta;
         this.disableStats();
         this.setHardness(0.5F);

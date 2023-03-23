@@ -36,7 +36,7 @@ public class BlockSaltCrystal extends BlockBush {
     public BlockSaltCrystal(String name, CreativeTabs tab) {
         setBlockName(name);
         setCreativeTab(tab);
-        setBlockTextureName("saltmod:salt_crystal");
+        setBlockTextureName("saltymod:salt_crystal");
     }
 
     @SideOnly(Side.CLIENT)

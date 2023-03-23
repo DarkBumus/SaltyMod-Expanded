@@ -47,7 +47,7 @@ public class BlockSaltwort extends BlockBush implements IGrowable {
         setStepSound(soundTypeGrass);
         setCreativeTab(tab);
         setTickRandomly(true);
-        setBlockTextureName("saltmod:saltwort");
+        setBlockTextureName("saltymod:saltwort");
     }
 
     @SideOnly(Side.CLIENT)

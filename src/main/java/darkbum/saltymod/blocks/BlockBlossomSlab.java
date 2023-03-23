@@ -24,7 +24,7 @@ public class BlockBlossomSlab extends BlockSlab {
         setStepSound(soundTypeWood);
         setHarvestLevel("axe", 0);
         this.useNeighborBrightness = true;
-        setBlockTextureName("saltmod:blossom_planks");
+        setBlockTextureName("saltymod:blossom_planks");
     }
 
     public Item getItemDropped(int p_149650_1_, Random random, int p_149650_3_) {

@@ -102,14 +102,14 @@ public class BlockApiary extends Block {
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister icon) {
-        this.TOP = icon.registerIcon("saltmod:apiary_top");
-        this.FRONT0 = icon.registerIcon("saltmod:apiary_front_0");
-        this.FRONT1 = icon.registerIcon("saltmod:apiary_front_1");
-        this.FRONT2 = icon.registerIcon("saltmod:apiary_front_2");
-        this.FRONT3 = icon.registerIcon("saltmod:apiary_front_3");
-        this.FRONT4 = icon.registerIcon("saltmod:apiary_front_4");
-        this.FRONT5 = icon.registerIcon("saltmod:apiary_front_5");
-        this.FRONT6 = icon.registerIcon("saltmod:apiary_front_6");
+        this.TOP = icon.registerIcon("saltymod:apiary_top");
+        this.FRONT0 = icon.registerIcon("saltymod:apiary_front_0");
+        this.FRONT1 = icon.registerIcon("saltymod:apiary_front_1");
+        this.FRONT2 = icon.registerIcon("saltymod:apiary_front_2");
+        this.FRONT3 = icon.registerIcon("saltymod:apiary_front_3");
+        this.FRONT4 = icon.registerIcon("saltymod:apiary_front_4");
+        this.FRONT5 = icon.registerIcon("saltymod:apiary_front_5");
+        this.FRONT6 = icon.registerIcon("saltymod:apiary_front_6");
     }
 
     public IIcon getIcon(int side, int meta) {

@@ -33,7 +33,7 @@ public class ModItems {
 
     public static Item bee_larva = new Item().setCreativeTab(tab).setUnlocalizedName("bee_larva").setTextureName("saltymod:bee_larva");
 
-    public static Item carpenter_bee = new ItemCarpenterBee("carpenter_bee", tab, "carpenter_bee").setMaxStackSize(1).setMaxDamage(18);
+    public static Item carpenter_bee = new ItemCarpenterBee("carpenter_bee", tab).setMaxStackSize(1).setMaxDamage(18).setTextureName("saltymod:carpenter_bee");
 
     public static Item waxcomb = new Item().setCreativeTab(tab).setUnlocalizedName("waxcomb").setTextureName("saltymod:waxcomb");
 

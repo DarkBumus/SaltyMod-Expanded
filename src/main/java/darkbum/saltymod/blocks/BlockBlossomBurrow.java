@@ -39,9 +39,9 @@ public class BlockBlossomBurrow extends Block {
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister icon) {
-        this.TOP = icon.registerIcon("saltmod:blossom_log_top");
-        this.SIDE = icon.registerIcon("saltmod:blossom_log");
-        this.BURROW = icon.registerIcon("saltmod:blossom_burrow");
+        this.TOP = icon.registerIcon("saltymod:blossom_log_top");
+        this.SIDE = icon.registerIcon("saltymod:blossom_log");
+        this.BURROW = icon.registerIcon("saltymod:blossom_burrow");
     }
 
     public IIcon getIcon(int side, int meta) {

@@ -80,13 +80,13 @@ public class BlockSaltSlab extends BlockSlab {
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1) {
-        this.blockIcon = par1.registerIcon("saltmod:salt_bricks");
-        this.BRICKTOP = par1.registerIcon("saltmod:salt_bricks_top");
-        this.BRICKBOTTOM = par1.registerIcon("saltmod:salt_bricks_bottom");
-        this.SALTBLOCK = par1.registerIcon("saltmod:salt_block");
-        this.SALTBLOCKSIDE = par1.registerIcon("saltmod:salt_slab_side");
-        this.LINES = par1.registerIcon("saltmod:salt_pillar");
-        this.LINESTOP = par1.registerIcon("saltmod:salt_pillar_top");
+        this.blockIcon = par1.registerIcon("saltymod:salt_bricks");
+        this.BRICKTOP = par1.registerIcon("saltymod:salt_bricks_top");
+        this.BRICKBOTTOM = par1.registerIcon("saltymod:salt_bricks_bottom");
+        this.SALTBLOCK = par1.registerIcon("saltymod:salt_block");
+        this.SALTBLOCKSIDE = par1.registerIcon("saltymod:salt_slab_side");
+        this.LINES = par1.registerIcon("saltymod:salt_pillar");
+        this.LINESTOP = par1.registerIcon("saltymod:salt_pillar_top");
     }
 
     @Override

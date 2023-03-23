@@ -21,7 +21,7 @@ public class BlockMineralMud extends Block {
         setHardness(0.5F);
         setResistance(0.5F);
         setHarvestLevel("shovel", 0);
-        setBlockTextureName("saltmod:mud");
+        setBlockTextureName("saltymod:mud");
     }
 
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {

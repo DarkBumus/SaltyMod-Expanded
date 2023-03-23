@@ -43,8 +43,8 @@ public class BlockWetMudBrick extends Block {
 
 	@SideOnly(Side.CLIENT)
 		public void registerBlockIcons(IIconRegister par1) {
-			this.MAIN0 = par1.registerIcon("saltMod:wet_mud_bricks_0");
-			this.MAIN1 = par1.registerIcon("saltMod:wet_mud_bricks_1");
-			this.MAIN2 = par1.registerIcon("saltMod:wet_mud_bricks_2");
+			this.MAIN0 = par1.registerIcon("saltymod:wet_mud_bricks_0");
+			this.MAIN1 = par1.registerIcon("saltymod:wet_mud_bricks_1");
+			this.MAIN2 = par1.registerIcon("saltymod:wet_mud_bricks_2");
 	}
 }

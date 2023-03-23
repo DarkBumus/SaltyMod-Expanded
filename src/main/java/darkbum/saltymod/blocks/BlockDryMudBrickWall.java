@@ -29,7 +29,7 @@ public class BlockDryMudBrickWall extends BlockWall {
         setStepSound(ModSounds.soundTypeDryMudBrick);
         setHarvestLevel("pickaxe", 0);
         this.useNeighborBrightness = true;
-		setBlockTextureName("saltmod:mud_bricks");
+		setBlockTextureName("saltymod:mud_bricks");
     }
 
     @SideOnly(Side.CLIENT)

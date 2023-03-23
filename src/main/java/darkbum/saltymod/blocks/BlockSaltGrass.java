@@ -73,13 +73,13 @@ public class BlockSaltGrass extends Block {
     @SideOnly(Side.CLIENT)
     @Override
     public void registerBlockIcons(IIconRegister iconRegister) {
-        blockIcon = iconRegister.registerIcon("saltmod:slightly_saline_grass");
-        TOP = iconRegister.registerIcon("saltmod:slightly_saline_grass_top");
-        SIDE = iconRegister.registerIcon("saltmod:slightly_saline_grass_side_0");
-        SIDE_L = iconRegister.registerIcon("saltmod:slightly_saline_grass_side_1");
-        SIDE_R = iconRegister.registerIcon("saltmod:slightly_saline_grass_side_2");
-        BOTTOM0 = iconRegister.registerIcon("saltmod:slightly_saline_dirt_0");
-        BOTTOM1 = iconRegister.registerIcon("saltmod:slightly_saline_dirt_bottom");
+        blockIcon = iconRegister.registerIcon("saltymod:slightly_saline_grass");
+        TOP = iconRegister.registerIcon("saltymod:slightly_saline_grass_top");
+        SIDE = iconRegister.registerIcon("saltymod:slightly_saline_grass_side_0");
+        SIDE_L = iconRegister.registerIcon("saltymod:slightly_saline_grass_side_1");
+        SIDE_R = iconRegister.registerIcon("saltymod:slightly_saline_grass_side_2");
+        BOTTOM0 = iconRegister.registerIcon("saltymod:slightly_saline_dirt_0");
+        BOTTOM1 = iconRegister.registerIcon("saltymod:slightly_saline_dirt_bottom");
     }
 
     @Override

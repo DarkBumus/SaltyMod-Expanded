@@ -14,7 +14,7 @@ public class BlockSaltDeepslateOre extends Block {
 
     public BlockSaltDeepslateOre(Block block) {
         super(Material.rock);
-        setBlockName("saltDeepslateOre");
+        setBlockName("deepslate_salt_ore");
         setStepSound(ganymedes01.etfuturum.client.sound.ModSounds.soundDeepslate);
         setCreativeTab(CommonProxy.tabSalt);
         setHardness(4.5F);
@@ -24,7 +24,7 @@ public class BlockSaltDeepslateOre extends Block {
     @SideOnly(Side.CLIENT)
     @Override
     public void registerBlockIcons(IIconRegister par1) {
-        blockIcon = par1.registerIcon("saltmod:deepslate_salt_ore");
+        blockIcon = par1.registerIcon("saltymod:deepslate_salt_ore");
         //SIDE = par1.registerIcon("saltmod:deepslate_salt_ore_side");
     }
 }

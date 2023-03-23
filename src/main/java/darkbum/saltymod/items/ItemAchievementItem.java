@@ -22,7 +22,7 @@ public class ItemAchievementItem extends Item {
     public void registerIcons(IIconRegister reg) {
         this.icon = new IIcon[3];
         for (int i = 0; i < this.icon.length; i++)
-            this.icon[i] = reg.registerIcon("saltmod:dev/achievement_icon_" + i);
+            this.icon[i] = reg.registerIcon("saltymod:dev/achievement_icon_" + i);
     }
 
     @SideOnly(Side.CLIENT)

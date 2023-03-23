@@ -19,7 +19,7 @@ public class BlockOnions extends BlockCrops {
         setStepSound(soundTypeGrass);
         setCreativeTab(tab);
         setTickRandomly(true);
-        setBlockTextureName("saltmod:onions");
+        setBlockTextureName("saltymod:onions");
     }
 
     @SideOnly(Side.CLIENT)

@@ -9,10 +9,9 @@ import net.minecraft.item.ItemStack;
 import java.util.List;
 
 public class ItemCarpenterBee extends Item {
-    public ItemCarpenterBee(String name, CreativeTabs tab, String textureName) {
+    public ItemCarpenterBee(String name, CreativeTabs tab) {
         setUnlocalizedName(name);
         setCreativeTab(tab);
-        setTextureName("saltmod:" + textureName);
     }
 
     @SideOnly(Side.CLIENT)

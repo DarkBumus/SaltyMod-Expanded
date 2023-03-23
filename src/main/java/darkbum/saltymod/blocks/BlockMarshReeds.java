@@ -30,7 +30,7 @@ public class BlockMarshReeds extends BlockDoublePlant {
         setCreativeTab(tab);
         setHardness(0.0F);
         setStepSound(Block.soundTypeGrass);
-        setBlockTextureName("saltmod:marsh_reeds");
+        setBlockTextureName("saltymod:marsh_reeds");
     }
 
     public int getRenderType() {

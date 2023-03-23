@@ -12,6 +12,6 @@ public class BlockBlossomPlanks extends Block {
         setStepSound(soundTypeWood);
         setBlockName(name);
         setCreativeTab(tab);
-        setBlockTextureName("saltmod:blossom_planks");
+        setBlockTextureName("saltymod:blossom_planks");
     }
 }

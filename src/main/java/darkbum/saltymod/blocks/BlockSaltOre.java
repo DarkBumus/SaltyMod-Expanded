@@ -39,8 +39,8 @@ public class BlockSaltOre extends Block {
     @SideOnly(Side.CLIENT)
     @Override
     public void registerBlockIcons(IIconRegister par1) {
-        blockIcon = par1.registerIcon("saltmod:salt_ore");
-        SIDE = par1.registerIcon("saltmod:salt_ore_side");
+        blockIcon = par1.registerIcon("saltymod:salt_ore");
+        SIDE = par1.registerIcon("saltymod:salt_ore_side");
     }
 
     @Override

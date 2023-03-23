@@ -37,7 +37,7 @@ public class BlockBlossomWood extends BlockRotatedPillar {
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister icon) {
-        this.SIDE = icon.registerIcon("saltmod:blossom_log");
+        this.SIDE = icon.registerIcon("saltymod:blossom_log");
     }
 
     public boolean canSustainLeaves(IBlockAccess world, int x, int y, int z) {

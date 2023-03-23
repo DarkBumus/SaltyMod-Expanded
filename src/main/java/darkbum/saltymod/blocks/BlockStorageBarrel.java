@@ -89,13 +89,13 @@ public class BlockStorageBarrel extends Block {
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister icon) {
-        this.BOTTOM = icon.registerIcon("saltmod:storage_barrel_bottom");
-        this.SIDE = icon.registerIcon("saltmod:storage_barrel");
-        this.COD = icon.registerIcon("saltmod:storage_barrel_cod");
-        this.SALMON = icon.registerIcon("saltmod:storage_barrel_salmon");
-        this.CLOWNFISH = icon.registerIcon("saltmod:storage_barrel_clownfish");
-        this.TAILOR = icon.registerIcon("saltmod:storage_barrel_tailor");
-        this.PUFFERFISH = icon.registerIcon("saltmod:storage_barrel_pufferfish");
+        this.BOTTOM = icon.registerIcon("saltymod:storage_barrel_bottom");
+        this.SIDE = icon.registerIcon("saltymod:storage_barrel");
+        this.COD = icon.registerIcon("saltymod:storage_barrel_cod");
+        this.SALMON = icon.registerIcon("saltymod:storage_barrel_salmon");
+        this.CLOWNFISH = icon.registerIcon("saltymod:storage_barrel_clownfish");
+        this.TAILOR = icon.registerIcon("saltymod:storage_barrel_tailor");
+        this.PUFFERFISH = icon.registerIcon("saltymod:storage_barrel_pufferfish");
     }
 
     @Override
