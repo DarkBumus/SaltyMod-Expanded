@@ -263,6 +263,9 @@ public class ModItems {
 
     public static Item muffin = new ItemMuffin("muffin", tab).setTextureName("saltymod:muffin");
 
+    public static Item tough_jelly = new ItemSaltFood("tough_jelly", 1, 0.3F).setPotionEffect(Potion.confusion.id, 15, 0, 0.3F).setAlwaysEdible().setCreativeTab(tab).setTextureName("saltymod:tough_jelly");;
+
+
     public static Item mud_helmet = new ItemMudArmor("mud_helmet", CommonProxy.mudMaterial, 0);
 
     public static Item mud_chestplate = new ItemMudArmor("mud_chestplate", CommonProxy.mudMaterial, 1);
@@ -271,7 +274,7 @@ public class ModItems {
 
     public static Item mud_boots = new ItemMudArmor("mud_boots", CommonProxy.mudMaterial, 3);
 
-    public static Item tough_jelly = new ItemSaltFood("tough_jelly", 1, 0.3F).setPotionEffect(Potion.confusion.id, 15, 0, 0.3F).setAlwaysEdible().setCreativeTab(tab).setTextureName("saltymod:tough_jelly");;
+    public static Item salt_shard = new ItemSaltShard();
 
     public static Item rainmaker_star = new Item().setCreativeTab(tab).setUnlocalizedName("rainmaker_star").setTextureName("saltymod:rainmaker_star");
 
@@ -476,11 +479,12 @@ public class ModItems {
         GameRegistry.registerItem(tunneler_concoction, "tunneler_concoction");
         GameRegistry.registerItem(fizzy_drink, "fizzy_drink");
         GameRegistry.registerItem(muffin, "muffin");
+        GameRegistry.registerItem(tough_jelly, "tough_jelly");
         GameRegistry.registerItem(mud_helmet, "mud_helmet");
         GameRegistry.registerItem(mud_chestplate, "mud_chestplate");
         GameRegistry.registerItem(mud_leggings, "mud_leggings");
         GameRegistry.registerItem(mud_boots, "mud_boots");
-        GameRegistry.registerItem(tough_jelly, "tough_jelly");
+        GameRegistry.registerItem(salt_shard, "salt_shard");
         GameRegistry.registerItem(rainmaker_star, "rainmaker_star");
         GameRegistry.registerItem(rainmaker, "rainmaker");
         if(Loader.isModLoaded("etfuturum")) {
