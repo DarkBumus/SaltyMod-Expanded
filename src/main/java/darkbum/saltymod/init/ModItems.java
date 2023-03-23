@@ -276,7 +276,7 @@ public class ModItems {
 
     public static Item mud_boots = new ItemMudArmor("mud_boots", CommonProxy.mudMaterial, 3);
 
-    public static Item salt_shard = new ItemSaltShard();
+    public static Item salt_shard = new ItemSaltShard("salt_shard", tab).setTextureName("saltymod:salt_shard");
 
     public static Item rainmaker_star = new Item().setCreativeTab(tab).setUnlocalizedName("rainmaker_star").setTextureName("saltymod:rainmaker_star");
 

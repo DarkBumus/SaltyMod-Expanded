@@ -44,7 +44,7 @@ public class SaltMarshBiome extends BiomeGenBase {
     public void genTerrainBlocks(World world, Random random, Block[] blocks, byte[] bytes, int x, int z, double doub) {
         if(doub > -1.5D) {
             topBlock = ModBlocks.salt_grass;
-            fillerBlock = ModBlocks.lite_salt_dirt;
+            fillerBlock = ModBlocks.salt_dirt;
         } else {
             topBlock = Blocks.grass;
             fillerBlock = Blocks.dirt;

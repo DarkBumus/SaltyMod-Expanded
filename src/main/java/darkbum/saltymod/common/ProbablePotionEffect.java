@@ -25,13 +25,13 @@ public class ProbablePotionEffect {
         this(potionID, duration, 0, 1f);
     }
 
-    public String GenerateTooltip() {
+    public String generateTooltip() {
         String line = "";
-        if(Potion.potionTypes[effect.getPotionID()].isBadEffect()) {
+        if (Potion.potionTypes[effect.getPotionID()].isBadEffect()) {
             line += EnumChatFormatting.RED;
         }
         line += StatCollector.translateToLocal(effect.getEffectName()).trim();
-        switch(effect.getAmplifier()) {
+        switch (effect.getAmplifier()) {
             case 1:
                 line += " II";
                 break;
@@ -49,12 +49,12 @@ public class ProbablePotionEffect {
                 break;
         }
         line += EnumChatFormatting.GRAY;
-        if(effect.getDuration() > 20) {
+        if (effect.getDuration() > 20) {
             line += " (" + Potion.getDurationString(effect) + ") ";
         } else {
             line += " (<0:01) ";
         }
-        line += (int)(probability * 100f) + "%";
+        line += (int) (probability * 100f) + "%";
         line += EnumChatFormatting.RESET;
         return line;
     }
@@ -64,9 +64,4 @@ public class ProbablePotionEffect {
         player.addPotionEffect(new PotionEffect(effect));
         return apply;
     }
-
-    public PotionEffect getEffect() {
-        return effect;
-    }
-
 }

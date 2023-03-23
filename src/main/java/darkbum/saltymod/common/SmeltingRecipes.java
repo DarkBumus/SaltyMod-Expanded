@@ -19,7 +19,7 @@ public class SmeltingRecipes {
         if(ModBlocks.deepslate_salt_ore != null) {
             GameRegistry.addSmelting(new ItemStack(ModBlocks.deepslate_salt_ore), new ItemStack(ModItems.salt_pinch, 1), 0.7F);
         }
-        GameRegistry.addSmelting(new ItemStack(ModBlocks.salt_lake), new ItemStack(ModItems.salt, 1), 0.7F);
+        GameRegistry.addSmelting(new ItemStack(ModBlocks.salt_lake_ore), new ItemStack(ModItems.salt, 1), 0.7F);
         GameRegistry.addSmelting(new ItemStack(ModBlocks.salt_block, 1, 0), new ItemStack(ModBlocks.salt_block, 1, 6), 0.1F);
         GameRegistry.addSmelting(new ItemStack(ModBlocks.salt_block, 1, 5), new ItemStack(ModBlocks.salt_block, 1, 7), 0.1F);
 

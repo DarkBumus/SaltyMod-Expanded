@@ -23,37 +23,37 @@ public class DispenserBehaviorSaltPinch implements IBehaviorDispenseItem {
         Block blockFase = world.getBlock(x, y, z);
         Block soil = world.getBlock(x, y - 1, z);
         boolean chek = false;
-        if (blockFase == ModBlocks.lite_salt_dirt) {
+        if (blockFase == ModBlocks.salt_dirt) {
             int meta = world.getBlockMetadata(x, y, z);
             if (meta == 0 || meta > 2) {
-                world.setBlock(x, y, z, ModBlocks.lite_salt_dirt, 1, 3);
+                world.setBlock(x, y, z, ModBlocks.salt_dirt, 1, 3);
                 stack.splitStack(1);
                 chek = true;
             } else if (meta == 1) {
-                world.setBlock(x, y, z, ModBlocks.lite_salt_dirt, 2, 3);
+                world.setBlock(x, y, z, ModBlocks.salt_dirt, 2, 3);
                 stack.splitStack(1);
                 chek = true;
             } else if (meta == 2) {
-                world.setBlock(x, y, z, ModBlocks.salt_dirt);
+                world.setBlock(x, y, z, ModBlocks.salt_lake_dirt);
                 stack.splitStack(1);
                 chek = true;
             }
-        } else if (soil == ModBlocks.lite_salt_dirt && (world.isAirBlock(x, y, z) || blockFase == ModBlocks.saltworts)) {
+        } else if (soil == ModBlocks.salt_dirt && (world.isAirBlock(x, y, z) || blockFase == ModBlocks.saltworts)) {
             int meta = world.getBlockMetadata(x, y - 1, z);
             if (meta == 0 || meta > 2) {
-                world.setBlock(x, y - 1, z, ModBlocks.lite_salt_dirt, 1, 3);
+                world.setBlock(x, y - 1, z, ModBlocks.salt_dirt, 1, 3);
                 stack.splitStack(1);
                 chek = true;
             } else if (meta == 1) {
-                world.setBlock(x, y - 1, z, ModBlocks.lite_salt_dirt, 2, 3);
+                world.setBlock(x, y - 1, z, ModBlocks.salt_dirt, 2, 3);
                 stack.splitStack(1);
                 chek = true;
             } else if (meta == 2) {
-                world.setBlock(x, y - 1, z, ModBlocks.salt_dirt);
+                world.setBlock(x, y - 1, z, ModBlocks.salt_lake_dirt);
                 stack.splitStack(1);
                 chek = true;
             }
-        } else if (blockFase != ModBlocks.salt_dirt && (soil != ModBlocks.salt_dirt || (
+        } else if (blockFase != ModBlocks.salt_lake_dirt && (soil != ModBlocks.salt_lake_dirt || (
             !world.isAirBlock(x, y, z) && blockFase != ModBlocks.saltworts))) {
             BehaviorDefaultDispenseItem.doDispense(world, stack.splitStack(1), 1, enumfacing, iposition);
             chek = true;

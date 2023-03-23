@@ -25,14 +25,14 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockSaltLake extends Block {
+public class BlockSaltLakeOre extends Block {
     @SideOnly(Side.CLIENT)
     private IIcon TOP;
 
     @SideOnly(Side.CLIENT)
     private IIcon SIDE;
 
-    public BlockSaltLake(String name, CreativeTabs tab) {
+    public BlockSaltLakeOre(String name, CreativeTabs tab) {
         super(Material.rock);
         setTickRandomly(true);
         setBlockName(name);
@@ -119,7 +119,7 @@ public class BlockSaltLake extends Block {
                     for (int x1 = x - 1; x1 < x + 2; x1++) {
                         for (int z1 = z - 1; z1 < z + 2; z1++) {
                             if (world.getBlock(x1, y, z1) == ModBlocks.salt_block || world.getBlock(x1, y, z1) == ModBlocks.salt_lamp || world
-                                .getBlock(x1, y, z1) == ModBlocks.salt_lake || world.getBlock(x1, y, z1) == ModBlocks.salt_dirt || world
+                                .getBlock(x1, y, z1) == ModBlocks.salt_lake_ore || world.getBlock(x1, y, z1) == ModBlocks.salt_lake_dirt || world
                                 .getBlock(x1, y, z1) == ModBlocks.salt_brick_stairs || world.getBlock(x1, y, z1) == ModBlocks.salt_slab || world
                                 .getBlock(x1, y, z1) == ModBlocks.double_salt_slab)
                                 world.scheduleBlockUpdate(x1, y, z1, this, 10);

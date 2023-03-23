@@ -17,7 +17,9 @@ public class ModBlocks {
 
     public static Block deepslate_salt_ore;
 
-    public static Block salt_lake = new BlockSaltLake("salt_lake", tab);
+    public static Block salt_lake_ore = new BlockSaltLakeOre("salt_lake", tab);
+
+    public static Block salt_lake_dirt = new BlockSaltLakeDirt(tab);
 
     public static Block salt_block = new BlockSalt(tab);
 
@@ -29,9 +31,7 @@ public class ModBlocks {
 
     public static Block salt_lamp = new BlockSaltLamp("salt_lamp", tab);
 
-    public static Block salt_dirt = new BlockSaltDirt(tab);
-
-    public static Block lite_salt_dirt = new BlockLiteSaltDirt("lite_salt_dirt", tab);
+    public static Block salt_dirt = new BlockSaltDirt("lite_salt_dirt", tab);
 
     public static Block salt_grass = new BlockSaltGrass("salt_grass", tab);
 
@@ -120,14 +120,14 @@ public class ModBlocks {
             deepslate_salt_ore = new BlockSaltDeepslateOre(salt_ore);
             GameRegistry.registerBlock(deepslate_salt_ore, "deepslate_salt_ore");
         }
-        GameRegistry.registerBlock(salt_lake, "salt_lake");
+        GameRegistry.registerBlock(salt_lake_ore, "salt_lake");
         GameRegistry.registerBlock(salt_block, darkbum.saltymod.blockitems.ItemSaltBlock.class, "salt_block");
         GameRegistry.registerBlock(salt_brick_stairs, "salt_brick_stairs");
         GameRegistry.registerBlock(salt_slab, ItemSaltSlab.class, "salt_slab");
         GameRegistry.registerBlock(double_salt_slab, ItemSaltSlab.class, "double_salt_slab");
         GameRegistry.registerBlock(salt_lamp, "salt_lamp");
-        GameRegistry.registerBlock(salt_dirt, ItemSaltDirt.class, "salt_dirt");
-        GameRegistry.registerBlock(lite_salt_dirt, "lite_salt_dirt");
+        GameRegistry.registerBlock(salt_lake_dirt, ItemSaltDirt.class, "salt_dirt");
+        GameRegistry.registerBlock(salt_dirt, "lite_salt_dirt");
         GameRegistry.registerBlock(salt_grass, "salt_grass");
         GameRegistry.registerBlock(grass_top, "grass_top");
         GameRegistry.registerBlock(mineral_mud, "mineral_mud");

@@ -20,7 +20,7 @@ public class AchievSalt {
 
     public static Achievement saltWort = (new Achievement("saltWort", "saltWort", 2, 1, ModItems.saltwort, null)).registerStat();
 
-    public static Achievement saltWortFarm = (new Achievement("saltWortFarm", "saltWortFarm", 2, 3, ModBlocks.lite_salt_dirt, saltWort)).registerStat();
+    public static Achievement saltWortFarm = (new Achievement("saltWortFarm", "saltWortFarm", 2, 3, ModBlocks.salt_dirt, saltWort)).registerStat();
 
     public static Achievement fizzyDrink = (new Achievement("fizzyDrink", "fizzyDrink", 4, 1, ModItems.fizzy_drink, saltWort)).registerStat();
 
@@ -30,7 +30,7 @@ public class AchievSalt {
 
     public static Achievement saltCrystal = (new Achievement("saltCrystal", "saltCrystal", 0, 0, ModBlocks.salt_crystal, null)).setSpecial().registerStat();
 
-    public static Achievement saltLake = (new Achievement("saltLake", "saltLake", 2, 0, ModBlocks.salt_lake, null)).setSpecial().registerStat();
+    public static Achievement saltLake = (new Achievement("saltLake", "saltLake", 2, 0, ModBlocks.salt_lake_ore, null)).setSpecial().registerStat();
 
     public static Achievement saltCrystalGet = (new Achievement("saltCrystalGet", "saltCrystalGet", 0, 1, Items.iron_pickaxe, null)).registerStat();
 

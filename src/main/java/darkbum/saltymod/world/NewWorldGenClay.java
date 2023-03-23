@@ -36,7 +36,7 @@ public class NewWorldGenClay extends WorldGenerator
                         for (int i2 = y - b0; i2 <= y + b0; ++i2) {
                             Block block = world.getBlock(i1, i2, j1);
 
-                            if(block instanceof BlockDirt || block == Blocks.clay || block == ModBlocks.salt_dirt || block == ModBlocks.lite_salt_dirt) {
+                            if(block instanceof BlockDirt || block == Blocks.clay || block == ModBlocks.salt_lake_dirt || block == ModBlocks.salt_dirt) {
                                 world.setBlock(i1, i2, j1, this.clay, 0, 2);
                             }
                         }

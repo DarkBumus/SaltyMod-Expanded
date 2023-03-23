@@ -11,10 +11,6 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 public class ItemSaltFood extends ItemFood {
@@ -48,7 +44,7 @@ public class ItemSaltFood extends ItemFood {
         super.addInformation(is, player, list, flag);
         if(effects != null) {
             for(ProbablePotionEffect effect : effects) {
-                list.add(effect.GenerateTooltip());
+                list.add(effect.generateTooltip());
             }
         }
     }

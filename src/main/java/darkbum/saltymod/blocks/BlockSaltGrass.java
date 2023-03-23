@@ -90,14 +90,14 @@ public class BlockSaltGrass extends Block {
             }
             if(world.getBlockLightValue(x, y + 1, z) < 4 && world.getBlockLightOpacity(x, y + 1, z) > 2) {
                 int j = world.getBlockMetadata(x, y, z);
-                world.setBlock(x, y, z, ModBlocks.lite_salt_dirt, j, 3);
+                world.setBlock(x, y, z, ModBlocks.salt_dirt, j, 3);
             } else if (world.getBlockLightValue(x, y + 1, z) >= 9) {
                 for (int l = 0; l < 4; l++) {
                     int i1 = x + random.nextInt(3) - 1;
                     int j1 = y + random.nextInt(5) - 3;
                     int k1 = z + random.nextInt(3) - 1;
                     Block block = world.getBlock(i1, j1 + 1, k1);
-                    if(!block.isOpaqueCube() && world.getBlock(i1, j1, k1) == ModBlocks.lite_salt_dirt && world.getBlockMetadata(i1, j1, k1) == 0 && world
+                    if(!block.isOpaqueCube() && world.getBlock(i1, j1, k1) == ModBlocks.salt_dirt && world.getBlockMetadata(i1, j1, k1) == 0 && world
                         .getBlockLightValue(i1, j1 + 1, k1) >= 4 && world.getBlockLightOpacity(i1, j1 + 1, k1) <= 2) {
                         world.setBlock(i1, j1, k1, ModBlocks.salt_grass);
                     }
@@ -144,7 +144,7 @@ public class BlockSaltGrass extends Block {
 
     @Override
     public Item getItemDropped(int meta, Random random, int fortune) {
-        return ModBlocks.lite_salt_dirt.getItemDropped(0, random, fortune);
+        return ModBlocks.salt_dirt.getItemDropped(0, random, fortune);
     }
 
     @SideOnly(Side.CLIENT)

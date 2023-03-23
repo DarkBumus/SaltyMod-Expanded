@@ -37,9 +37,9 @@ public class ShapelessRecipes {
         GameRegistry.addShapelessRecipe(new ItemStack(Items.poisonous_potato, 9), new ItemStack(ModBlocks.storage_crate, 1, 2));
         GameRegistry.addShapelessRecipe(new ItemStack(Items.pumpkin_pie, 1), new ItemStack(Items.sugar), new ItemStack(Blocks.pumpkin), new ItemStack(ModItems.dough), new ItemStack(Items.egg));
 
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.salt_dirt), new ItemStack(ModItems.salt), new ItemStack(Blocks.dirt));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.salt_dirt), new ItemStack(ModBlocks.lite_salt_dirt), new ItemStack(ModItems.salt_pinch), new ItemStack(ModItems.salt_pinch), new ItemStack(ModItems.salt_pinch));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.salt_grass), new ItemStack(ModBlocks.lite_salt_dirt), new ItemStack(Items.wheat_seeds));
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.salt_lake_dirt), new ItemStack(ModItems.salt), new ItemStack(Blocks.dirt));
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.salt_lake_dirt), new ItemStack(ModBlocks.salt_dirt), new ItemStack(ModItems.salt_pinch), new ItemStack(ModItems.salt_pinch), new ItemStack(ModItems.salt_pinch));
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.salt_grass), new ItemStack(ModBlocks.salt_dirt), new ItemStack(Items.wheat_seeds));
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.blossom_planks, 4), new ItemStack(ModBlocks.blossom_log));
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.blossom_planks, 4), new ItemStack(ModBlocks.blossom_stripped_log));
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.blossom_planks, 4), new ItemStack(ModBlocks.blossom_wood));

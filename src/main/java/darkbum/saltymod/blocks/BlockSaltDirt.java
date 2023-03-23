@@ -2,40 +2,43 @@ package darkbum.saltymod.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
 
 import darkbum.saltymod.init.AchievSalt;
 import darkbum.saltymod.init.ModBlocks;
+import darkbum.saltymod.init.ModItems;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 public class BlockSaltDirt extends Block {
     @SideOnly(Side.CLIENT)
-    private IIcon TOP;
-
-    @SideOnly(Side.CLIENT)
     private IIcon SIDE;
 
-    public BlockSaltDirt(CreativeTabs tab) {
+    @SideOnly(Side.CLIENT)
+    private IIcon SIDE_L;
+
+    @SideOnly(Side.CLIENT)
+    private IIcon SIDE_R;
+
+    @SideOnly(Side.CLIENT)
+    private IIcon BOTTOM;
+
+    @SideOnly(Side.CLIENT)
+    private IIcon SIDE_1;
+
+    @SideOnly(Side.CLIENT)
+    private IIcon SIDE_2;
+
+    public BlockSaltDirt(String name, CreativeTabs tab) {
         super(Material.ground);
         setTickRandomly(true);
         setStepSound(soundTypeGravel);
+        setBlockName(name);
         setCreativeTab(tab);
         setHardness(0.5F);
         setResistance(1.0F);
@@ -44,92 +47,151 @@ public class BlockSaltDirt extends Block {
 
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-        if (meta > 1)
-            meta = 0;
-        return (meta == 1 && side == 1) ? this.TOP : ((meta == 1 && side > 1) ? this.SIDE : this.blockIcon);
+        return (meta == 1) ? this.SIDE_1 : ((meta == 2) ? this.SIDE_2 : ((side == 0 && meta >= 3) ? this.BOTTOM : (((side == 2 && (meta == 7 || meta == 11 || meta == 14 || meta == 15)) || (side == 5 && (meta == 8 || meta == 11 || meta == 12 || meta == 15)) || (side == 3 && (meta == 9 || meta == 12 || meta == 13 || meta == 15)) || (side == 4 && (meta == 10 || meta == 13 || meta == 14 || meta == 15))) ? this.SIDE : (((side == 2 && (meta == 3 || meta == 8 || meta == 12)) || (side == 5 && (meta == 4 || meta == 9 || meta == 13)) || (side == 3 && (meta == 5 || meta == 10 || meta == 14)) || (side == 4 && (meta == 6 || meta == 7 || meta == 11))) ? this.SIDE_L : (((side == 2 && (meta == 6 || meta == 10 || meta == 13)) || (side == 5 && (meta == 3 || meta == 7 || meta == 14)) || (side == 3 && (meta == 4 || meta == 8 || meta == 11)) || (side == 4 && (meta == 5 || meta == 9 || meta == 12))) ? this.SIDE_R : this.blockIcon)))));
     }
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1) {
-        this.blockIcon = par1.registerIcon("saltymod:saline_dirt");
-        this.TOP = par1.registerIcon("saltymod:saline_dirt_lake_top");
-        this.SIDE = par1.registerIcon("saltymod:saline_dirt_lake");
+        this.blockIcon = par1.registerIcon("saltymod:slightly_saline_dirt_0");
+        this.SIDE_1 = par1.registerIcon("saltymod:slightly_saline_dirt_1");
+        this.SIDE_2 = par1.registerIcon("saltymod:slightly_saline_dirt_2");
+        this.SIDE = par1.registerIcon("saltymod:slightly_saline_dirt_side_0");
+        this.SIDE_L = par1.registerIcon("saltymod:slightly_saline_dirt_side_1");
+        this.SIDE_R = par1.registerIcon("saltymod:slightly_saline_dirt_side_2");
+        this.BOTTOM = par1.registerIcon("saltymod:slightly_saline_dirt_bottom");
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tabs, List list) {
-        list.add(new ItemStack(item, 1, 1));
-        list.add(new ItemStack(item, 1, 0));
-    }
-
-    public void onEntityWalking(World world, int x, int y, int z, Entity entity) {
-        if (!world.isRemote && world
-            .getBlockMetadata(x, y, z) == 1) {
-            if (entity instanceof net.minecraft.entity.EntityLivingBase && EntityList.getEntityString(entity) != null && ((
-                EntityList.getEntityString(entity).toLowerCase().contains("slime") && !EntityList.getEntityString(entity).toLowerCase().contains("lava")) ||
-                EntityList.getEntityString(entity).toLowerCase().contains("witch")))
-                world.scheduleBlockUpdate(x, y, z, this, 0);
-            if (entity instanceof EntityPlayer)
-                ((EntityPlayer)entity).addStat(AchievSalt.saltLake, 1);
-        }
-    }
-
-    public void updateTick(World world, int x, int y, int z, Random random) {
-        if (!world.isRemote) {
-            if (world.getBlockLightValue(x, y + 1, z) < 4 && world.getBlockLightOpacity(x, y + 1, z) > 2) {
-                world.setBlock(x, y, z, ModBlocks.lite_salt_dirt, 0, 3);
-            } else if (world.getBlockLightValue(x, y + 1, z) >= 9) {
-                for (int l = 0; l < 4; ++l) {
-                    int i1 = x + random.nextInt(3) - 1;
-                    int j1 = y + random.nextInt(5) - 3;
-                    int k1 = z + random.nextInt(3) - 1;
-                    Block block = world.getBlock(i1, j1 + 1, k1);
-                    if (world.getBlock(i1, j1, k1) == ModBlocks.lite_salt_dirt && world.getBlockMetadata(i1, j1, k1) == 0 && world.getBlockLightValue(i1, j1 + 1, k1) >= 4 && world.getBlockLightOpacity(i1, j1 + 1, k1) <= 2) {
-                        world.setBlock(i1, j1, k1, ModBlocks.salt_grass);
-                    }
-                }
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx, float hity, float hitz) {
+        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == ModItems.salt_pinch) {
+            ItemStack current = player.getCurrentEquippedItem();
+            if (world.getBlock(x, y + 1, z) == ModBlocks.saltworts)
+                player.addStat(AchievSalt.saltWortFarm, 1);
+            int meta = world.getBlockMetadata(x, y, z);
+            if (meta == 0 || meta > 2) {
+                world.setBlock(x, y, z, this, 1, 3);
+                if (!player.capabilities.isCreativeMode)
+                    current.stackSize--;
+            } else if (meta == 1) {
+                world.setBlock(x, y, z, this, 2, 3);
+                if (!player.capabilities.isCreativeMode)
+                    current.stackSize--;
+            } else if (meta == 2) {
+                world.setBlock(x, y, z, ModBlocks.salt_lake_dirt);
+                if (!player.capabilities.isCreativeMode)
+                    current.stackSize--;
             }
-            if (world.getBlockMetadata(x, y, z) == 1) {
-                int d1 = 0;
-                double d0 = 0.0625D;
-                AxisAlignedBB axisalignedbb = AxisAlignedBB.getBoundingBox(x, y, z, (x + 1), (y + 1) + d0, (z + 1));
-                List<Entity> list = world.getEntitiesWithinAABB(Entity.class, axisalignedbb);
-                Iterator<Entity> iterator = list.iterator();
-                while (iterator.hasNext()) {
-                    Entity entity = iterator.next();
-                    if (entity instanceof EntityLivingBase && EntityList.getEntityString(entity) != null && ((
-                        EntityList.getEntityString(entity).toLowerCase().contains("slime") && !EntityList.getEntityString(entity).toLowerCase().contains("lava")) ||
-                        EntityList.getEntityString(entity).toLowerCase().contains("witch"))) {
-                        entity.attackEntityFrom(DamageSource.cactus, 1.0F);
-                        d1 = 3;
-                    }
-                    if (d1 > 0) {
-                        d1--;
-                        for (int x1 = x - 1; x1 < x + 2; x1++) {
-                            for (int z1 = z - 1; z1 < z + 2; z1++) {
-                                if (world.getBlock(x1, y, z1) == ModBlocks.salt_block || world.getBlock(x1, y, z1) == ModBlocks.salt_lamp || world
-                                    .getBlock(x1, y, z1) == ModBlocks.salt_lake || world.getBlock(x1, y, z1) == ModBlocks.salt_dirt || world
-                                    .getBlock(x1, y, z1) == ModBlocks.salt_brick_stairs || world.getBlock(x1, y, z1) == ModBlocks.salt_slab || world
-                                    .getBlock(x1, y, z1) == ModBlocks.double_salt_slab)
-                                    world.scheduleBlockUpdate(x1, y, z1, this, 10);
-                            }
-                        }
-                    }
-                }
-                if (world.getBlock(x, y + 1, z).getMaterial() == Material.craftedSnow || world
-                    .getBlock(x, y + 1, z).getMaterial() == Material.ice)
-                    world.setBlock(x, y + 1, z, Blocks.water);
-            }
-            if (world.getBlock(x, y + 1, z).getMaterial() == Material.snow)
-                world.setBlockToAir(x, y + 1, z);
+            return true;
         }
-    }
-
-    public MapColor getMapColor(int meta) {
-        MapColor color = MapColor.dirtColor;
-        if (meta == 1)
-            color = MapColor.quartzColor;
-        return color;
+        if (player.capabilities.isCreativeMode && player
+            .getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == ModItems.salt) {
+            int i = world.getBlockMetadata(x, y, z);
+            if (side <= 1)
+                if (i == 0) {
+                    i = 3;
+                } else if (i < 3 || i > 5) {
+                    i = 0;
+                } else {
+                    i++;
+                }
+            if (side == 2)
+                if (i == 4) {
+                    i = 11;
+                } else if (i == 5) {
+                    i = 14;
+                } else if (i < 7) {
+                    i = 7;
+                } else if (i == 7) {
+                    i = 0;
+                } else if (i == 8) {
+                    i = 11;
+                } else if (i == 9) {
+                    i = 15;
+                } else if (i == 10) {
+                    i = 14;
+                } else if (i == 11) {
+                    i = 8;
+                } else if (i == 14) {
+                    i = 10;
+                } else if (i < 15) {
+                    i = 15;
+                } else {
+                    i = 9;
+                }
+            if (side == 5)
+                if (i == 5) {
+                    i = 12;
+                } else if (i == 6) {
+                    i = 11;
+                } else if (i < 7) {
+                    i = 8;
+                } else if (i == 7) {
+                    i = 11;
+                } else if (i == 8) {
+                    i = 0;
+                } else if (i == 9) {
+                    i = 12;
+                } else if (i == 10) {
+                    i = 15;
+                } else if (i == 11) {
+                    i = 7;
+                } else if (i == 12) {
+                    i = 9;
+                } else if (i < 15) {
+                    i = 15;
+                } else {
+                    i = 10;
+                }
+            if (side == 3)
+                if (i == 3) {
+                    i = 12;
+                } else if (i == 6) {
+                    i = 13;
+                } else if (i < 7) {
+                    i = 9;
+                } else if (i == 7) {
+                    i = 15;
+                } else if (i == 8) {
+                    i = 12;
+                } else if (i == 9) {
+                    i = 0;
+                } else if (i == 10) {
+                    i = 13;
+                } else if (i == 12) {
+                    i = 8;
+                } else if (i == 13) {
+                    i = 10;
+                } else if (i < 15) {
+                    i = 15;
+                } else {
+                    i = 7;
+                }
+            if (side == 4)
+                if (i == 3) {
+                    i = 14;
+                } else if (i == 4) {
+                    i = 13;
+                } else if (i < 7) {
+                    i = 10;
+                } else if (i == 7) {
+                    i = 14;
+                } else if (i == 8) {
+                    i = 15;
+                } else if (i == 9) {
+                    i = 13;
+                } else if (i == 10) {
+                    i = 0;
+                } else if (i == 13) {
+                    i = 9;
+                } else if (i == 14) {
+                    i = 7;
+                } else if (i < 15) {
+                    i = 15;
+                } else {
+                    i = 8;
+                }
+            world.setBlock(x, y, z, this, i, 3);
+            return true;
+        }
+        return false;
     }
 }
