@@ -1,4 +1,4 @@
-/*package ru.liahim.saltmod.block;
+package darkbum.saltymod.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -11,11 +11,11 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class BlossomDoor extends BlockDoor {
+public class BlockBlossomDoor extends BlockDoor {
 
     private Item item;
 
-    public BlossomDoor(String name, CreativeTabs tab) {
+    public BlockBlossomDoor(String name, CreativeTabs tab) {
         super(Material.wood);
         setBlockName(name);
         setCreativeTab(tab);
@@ -65,4 +65,4 @@ public class BlossomDoor extends BlockDoor {
     public Item getItem() {
         return this.item;
     }
-}*/
+}

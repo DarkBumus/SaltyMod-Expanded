@@ -6,10 +6,12 @@ import darkbum.saltymod.blockitems.*;
 import darkbum.saltymod.blocks.*;
 import darkbum.saltymod.blocks.BlockSalt;
 import darkbum.saltymod.blocks.BlockSaltFlower;
+import darkbum.saltymod.tileentities.TileEntityBlossomSign;
 import net.minecraft.block.*;
 import net.minecraft.creativetab.CreativeTabs;
 import darkbum.saltymod.SaltyMod;
 import darkbum.saltymod.common.CommonProxy;
+import net.minecraft.tileentity.TileEntitySign;
 
 public class ModBlocks {
     static CreativeTabs tab = CommonProxy.tabSalt;
@@ -56,7 +58,7 @@ public class ModBlocks {
 
     public static Block blossom_planks = new BlockBlossomPlanks("blossom_planks", tab);
 
-//    public static Block blossom_sapling = new BlockBlossomSapling("blossom_sapling", tab);
+    public static Block blossom_sapling = new BlockBlossomSapling("blossom_sapling", tab);
 
     public static Block blossom_log = new BlockBlossomLog("blossom_log", tab);
 
@@ -74,7 +76,7 @@ public class ModBlocks {
 
     public static BlockSlab double_blossom_slab = new BlockBlossomSlab(true, "double_blossom_slab", null);
 
-//    public static BlockFence blossom_fence;
+    public static BlockFence blossom_fence;
 
     public static Block blossom_stairs = new BlockBlossomStairs("blossom_stairs", tab);
 
@@ -82,13 +84,13 @@ public class ModBlocks {
 
     public static Block blossom_button = new BlockBlossomButton();
 
-//    public static Block blossom_door = new BlockBlossomDoor("blossom_door", tab);
+    public static Block blossom_door = new BlockBlossomDoor("blossom_door", tab);
 
-//    public static Block blossom_trapdoor = new BlockBlossomTrapdoor("blossom_trapdoor", tab);
+    public static Block blossom_trapdoor = new BlockBlossomTrapdoor("blossom_trapdoor", tab);
 
-//    public static BlockFenceGate blossom_fence_gate;
+    public static BlockFenceGate blossom_fence_gate;
 
-//    public static Block blossom_sign = new BlockBlossomSign();
+    public static Block blossom_sign = new BlockBlossomSign(TileEntityBlossomSign.class, true);
 
 
     public static Block apiary = new BlockApiary("apiary", tab);
@@ -167,7 +169,7 @@ public class ModBlocks {
 //            GameRegistry.registerBlock(blossom_door, "blossom_door");
 //            GameRegistry.registerBlock(blossom_trapdoor, "blossom_trapdoor");
 //            GameRegistry.registerBlock(blossom_fence_gate, "blossom_fence_gate");
-//            GameRegistry.registerBlock(blossom_sign, "blossom_sign");
+            GameRegistry.registerBlock(blossom_sign, ItemBlossomSign.class, "blossom_sign");
         }
         GameRegistry.registerBlock(apiary, "apiary");
         GameRegistry.registerBlock(extractor, "extractor");

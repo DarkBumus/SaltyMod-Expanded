@@ -282,13 +282,11 @@ public class ModItems {
 
     public static Item rainmaker = new ItemRainmaker("rainmaker", tab).setTextureName("saltymod:rainmaker");
 
-//    public static Item blossom_boat = new ItemBlossomBoat();
+    public static Item blossom_boat = new ItemBlossomBoat();
 
-//    public static Item blossom_chest_boat = new ItemBlossomChestBoat();
+    public static Item blossom_chest_boat = new ItemBlossomChestBoat();
 
-//    public static Item blossom_sign = new ItemBlossomSign();
-
-//    public static Item blossom_hanging_sign = new ItemBlossomHangingSign();
+    public static Item blossom_hanging_sign = new ItemBlossomHangingSign();
 
     public static Item tf_salt_cooked_venison = new ItemSaltFood("tf_salt_cooked_venison", 9, 0.9F).setCreativeTab(tab).setTextureName("saltymod:tf/tf_saltwort_cooked_venison");
 

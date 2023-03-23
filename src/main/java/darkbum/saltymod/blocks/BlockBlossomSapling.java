@@ -1,4 +1,4 @@
-/*package darkbum.saltmod.block;
+package darkbum.saltymod.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -11,17 +11,16 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.util.ForgeDirection;
-import darkbum.saltmod.init.ModBlocks;
-import darkbum.saltmod.world.WorldGenBlossomTree;
+import darkbum.saltymod.world.WorldGenBlossomBigTree;
 
 import java.util.Random;
 
-public class BlossomSapling extends BlockSapling {
+public class BlockBlossomSapling extends BlockSapling {
 
     @SideOnly(Side.CLIENT)
     private IIcon MAIN;
 
-    public BlossomSapling(String name, CreativeTabs tab) {
+    public BlockBlossomSapling(String name, CreativeTabs tab) {
         setHardness(0.0F);
         setBlockName(name);
         setCreativeTab(tab);
@@ -64,7 +63,7 @@ public class BlossomSapling extends BlockSapling {
         Object obj = null;
         int rnd = random.nextInt(8);
         if (obj == null)
-            obj = new WorldGenBlossomTree(ModBlocks.blossomLog, ModBlocks.blossomLeaves, 0, 0);
+            obj = new WorldGenBlossomBigTree(true, false);
         if (obj != null) {
             world.setBlockToAir(x, y, z);
             if (!((WorldGenerator)obj).generate(world, random, x, y, z))
@@ -79,4 +78,4 @@ public class BlossomSapling extends BlockSapling {
     public int getDamageValue(World world, int x, int y, int z) {
         return world.getBlockMetadata(x, y, z) & 0xF;
     }
-}*/
+}
