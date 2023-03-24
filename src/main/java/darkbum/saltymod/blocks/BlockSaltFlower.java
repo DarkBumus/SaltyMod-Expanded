@@ -84,25 +84,28 @@ public class BlockSaltFlower extends BlockFlowerBase {
         return meta;
     }
 
+    @Override
     public ArrayList getDrops(World world, int x, int y, int z, int metadata, int fortune) {
         ArrayList drop = new ArrayList();
-        if (metadata == 0) {
-            drop.add(new ItemStack(this, 1, 0));
-        }
-        if (metadata == 1) {
-            drop.add(new ItemStack(this, 1, 0));
-            drop.add(new ItemStack(Items.carrot));
-        }
-        if (metadata == 2) {
-            drop.add(new ItemStack(this, 1, 2));
-        }
-        if (metadata == 3) {
-            drop.add(new ItemStack(this, 1, 2));
-            drop.add(new ItemStack(Items.potato));
-        }
-        if (metadata == 4) {
-            drop.add(new ItemStack(Blocks.red_flower, 1, 2));
-            drop.add(new ItemStack(ModItems.onion));
+        switch (metadata) {
+            case 0:
+                drop.add(new ItemStack(this, 1, 0));
+                break;
+            case 1:
+                drop.add(new ItemStack(this, 1, 0));
+                drop.add(new ItemStack(Items.carrot));
+                break;
+            case 2:
+                drop.add(new ItemStack(this, 1, 2));
+                break;
+            case 3:
+                drop.add(new ItemStack(this, 1, 2));
+                drop.add(new ItemStack(Items.potato));
+                break;
+            case 4:
+                drop.add(new ItemStack(Blocks.red_flower, 1, 2));
+                drop.add(new ItemStack(ModItems.onion));
+                break;
         }
         return drop;
     }

@@ -35,7 +35,7 @@ public class SaltMarshBiome extends BiomeGenBase {
         spawnableCreatureList.clear();
         spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntitySheep.class, 8, 4, 4));
 
-        BiomeDictionary.registerBiomeType(this, BiomeDictionary.Type.SWAMP, BiomeDictionary.Type.WET);
+        BiomeDictionary.registerBiomeType(this, BiomeDictionary.Type.SWAMP, BiomeDictionary.Type.WET, BiomeDictionary.Type.BEACH);
         BiomeManager.addSpawnBiome(this);
         BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeEntry(this, SaltConfig.SaltMarshBiomeWeight));
     }

@@ -16,10 +16,7 @@ import darkbum.saltymod.api.ExtractRegistry;
 import darkbum.saltymod.init.AchievSalt;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
-import darkbum.saltymod.world.BlossomTreeGenerator;
-import darkbum.saltymod.world.SaltCrystalGenerator;
-import darkbum.saltymod.world.SaltLakeGenerator;
-import darkbum.saltymod.world.SaltOreGenerator;
+import darkbum.saltymod.world.*;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -60,6 +57,8 @@ public class CommonProxy {
 
     public static BlossomTreeGenerator blossomTreeGenerator = new BlossomTreeGenerator();
 
+    public static SaltFlowerGenerator saltFlowerGenerator = new SaltFlowerGenerator();
+
     public static ItemArmor.ArmorMaterial mudMaterial = EnumHelper.addArmorMaterial("mudMaterial", 4, new int[]{1, 1, 1, 1}, 15);
 
     @SideOnly(Side.CLIENT)
@@ -97,6 +96,7 @@ public class CommonProxy {
 
         GameRegistry.registerWorldGenerator(saltOreGenerator, 0);
         GameRegistry.registerWorldGenerator(blossomTreeGenerator, 0);
+        GameRegistry.registerWorldGenerator(saltFlowerGenerator, 0);
         GameRegistry.registerWorldGenerator(saltCrystalGenerator, 10);
         GameRegistry.registerWorldGenerator(saltLakeGenerator, 15);
 

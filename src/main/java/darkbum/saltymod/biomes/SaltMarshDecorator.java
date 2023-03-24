@@ -5,6 +5,7 @@ import darkbum.saltymod.init.SaltConfig;
 import darkbum.saltymod.world.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenFlowers;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenReed;
 import net.minecraft.world.gen.feature.WorldGenWaterlily;
@@ -21,6 +22,7 @@ public class SaltMarshDecorator {
     private final SaltMarshPlantMix saltMarshPlantMix = new SaltMarshPlantMix(64);
     private final SaltWortMix saltWortMix = new SaltWortMix(32);
     private final AlliumPatch alliumPatch = new AlliumPatch(16);
+
     private final WorldGenWaterlily worldGenWaterlily = new WorldGenWaterlily();
     private final WorldGenReed worldGenReed = new WorldGenReed();
 
@@ -85,13 +87,11 @@ public class SaltMarshDecorator {
             );
         }
 
-        for(pass = 0; pass < 1; ++pass) {
-            passX = x + offsetXZ(rand);
-            passZ = z + offsetXZ(rand);
-            alliumPatch.generate(world, rand,
-                passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ
-            );
-        }
+        passX = x + offsetXZ(rand);
+        passZ = z + offsetXZ(rand);
+        alliumPatch.generate(world, rand,
+            passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ
+        );
 
         for(pass = 0; pass < 4; ++pass) {
             passX = x + offsetXZ(rand);

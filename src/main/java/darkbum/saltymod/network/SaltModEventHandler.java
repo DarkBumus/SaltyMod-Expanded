@@ -265,16 +265,4 @@ public class SaltModEventHandler {
             event.entityLiving.entityDropItem(new ItemStack(ModItems.onion, dropAmountZombie), dropped);
         }
     }
-
-    @SubscribeEvent
-    public void onDrops(BlockEvent.HarvestDropsEvent event) {
-
-        if (event.block == Blocks.red_flower &&
-            event.blockMetadata == 2 &&
-            event.harvester != null &&
-            event.harvester.getHeldItem() != null &&
-            event.harvester.getHeldItem().getItem() instanceof ItemHoe) {
-            event.drops.add(new ItemStack(ModItems.onion));
-        }
-    }
 }

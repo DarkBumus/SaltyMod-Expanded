@@ -92,6 +92,7 @@ public class BlockSaltCrystal extends BlockBush {
         }
     }
 
+    @Override
     public ArrayList getDrops(World world, int x, int y, int z, int metadata, int fortune) {
         ArrayList drop = new ArrayList();
         if (metadata == 0)

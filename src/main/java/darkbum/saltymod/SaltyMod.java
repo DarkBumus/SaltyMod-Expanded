@@ -266,18 +266,17 @@ public class SaltyMod {
 
         }
 /*        //TO-DO-LIST//
-            - Finish Refactoring
-                - Restructure/Merge Items?
-                - Change Salt Crystal Drop [Salt Shard/Crystal Item]
+            - Restructure/Merge Items?
+            - Restructure Config and Achiev file/class
+            - Change Salt Crystal Drop [Salt Shard/Crystal Item]
             - Potion Effect [Well Fed]
             - Add Blossom Wood to EFR's "Strippables"
             - Finish Salt Marsh
                 - Reeds/Water Grass
-                - Finish Salt Flowers
+                - Mix Salt Flower Patches
             - Create/Finish Brickmaker Camps [Schematica?]
             - Fix Fish Hunger Values [Probably set up Mixins in general?
             - Change Saltwort/Salt Dirt behavior
-            - Restructure Config and Achiev file/class
                 - Rainmaker behavior!!!
             - Finish Blossom Burrow/Tree
             - Finish Apiary [as a whole]
