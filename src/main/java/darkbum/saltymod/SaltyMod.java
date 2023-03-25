@@ -267,7 +267,6 @@ public class SaltyMod {
         }
 /*        //TO-DO-LIST//
             - Restructure/Merge Items?
-            - Birthday Pie (9Hung + 3/4Sat)
             - Restructure Config and Achiev file/class
             - Change Salt Crystal Drop [Salt Shard/Crystal Item]
             - Potion Effect [Well Fed]
@@ -278,7 +277,7 @@ public class SaltyMod {
             - Create/Finish Brickmaker Camps [Schematica?]
             - Fix Fish Hunger Values [Probably set up Mixins in general?
             - Change Saltwort/Salt Dirt behavior
-                - Rainmaker behavior!!!
+            - Rainmaker behavior!!!
             - Finish Blossom Burrow/Tree
             - Finish Apiary [as a whole]
             - Make Fish automatable [Fish Trap? Something else?]

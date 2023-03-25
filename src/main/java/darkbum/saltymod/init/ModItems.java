@@ -215,6 +215,8 @@ public class ModItems {
 
     public static Item chocolate_pie = new ItemSaltFood("chocolate_pie", 7, 0.9F, new ProbablePotionEffect(Potion.digSpeed.id, 900, 2)).setCreativeTab(tab).setTextureName("saltymod:chocolate_pie");
 
+    public static Item birthday_pie = new ItemSaltFood("birthday_pie", 9, 0.9F).setCreativeTab(tab).setTextureName("saltymod:birthday_pie");
+
     public static Item apple_pie = new ItemSaltFood("apple_pie", 8, 0.9F).setCreativeTab(tab).setTextureName("saltymod:apple_pie");
 
     public static Item sweetberry_pie = new ItemSaltFood("sweetberry_pie", 7, 0.9F).setCreativeTab(tab).setTextureName("saltymod:sweetberry_pie");
@@ -449,6 +451,7 @@ public class ModItems {
         }
         GameRegistry.registerItem(chocolate_bar, "chocolate_bar");
         GameRegistry.registerItem(chocolate_pie, "chocolate_pie");
+        GameRegistry.registerItem(birthday_pie, "birthday_pie");
         GameRegistry.registerItem(apple_pie, "apple_pie");
         if(Loader.isModLoaded("etfuturum")) {
             GameRegistry.registerItem(sweetberry_pie, "sweetberry_pie");

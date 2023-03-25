@@ -71,9 +71,6 @@ public class BlockSaltDirt extends Block {
     public IIcon getIcon(int side, int meta) {
         switch (meta) {
             case 0:
-            case 4:
-            case 5:
-            case 6:
                 switch (side) {
                     case 0:
                     case 1:
@@ -213,6 +210,9 @@ public class BlockSaltDirt extends Block {
                     case 5:
                         return SALTSIDE_R;
                 }
+            case 4:
+            case 5:
+            case 6:
             case 15:
                 switch (side) {
                     case 0:
