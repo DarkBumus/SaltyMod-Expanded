@@ -259,14 +259,15 @@ public class ModItems {
 
     public static Item berry_preserves = new ItemSaltFood("berry_preserves", 6, 0.8F, Items.glass_bottle, new ProbablePotionEffect(Potion.moveSpeed.id, 300, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:berry_preserves");
 
-    public static Item tunneler_concoction = new ItemTunnelerConcoction("tunneler_concoction", tab).setTextureName("saltymod:tunneler_concoction");
+    public static Item milk_bottle = new ItemMilkBottle("milk_bottle", tab).setMaxStackSize(1).setTextureName("saltymod:milk_bottle");
 
     public static Item fizzy_drink = new ItemFizzyDrink("fizzy_drink", tab).setTextureName("saltymod:fizzy_drink");
+
+    public static Item tunneler_concoction = new ItemTunnelerConcoction("tunneler_concoction", tab).setTextureName("saltymod:tunneler_concoction");
 
     public static Item muffin = new ItemMuffin("muffin", tab).setTextureName("saltymod:muffin");
 
     public static Item tough_jelly = new ItemSaltFood("tough_jelly", 1, 0.3F).setPotionEffect(Potion.confusion.id, 15, 0, 0.3F).setAlwaysEdible().setCreativeTab(tab).setTextureName("saltymod:tough_jelly");;
-
 
     public static Item mud_helmet = new ItemMudArmor("mud_helmet", CommonProxy.mudMaterial, 0);
 
@@ -476,8 +477,8 @@ public class ModItems {
         if(Loader.isModLoaded("etfuturum")) {
             GameRegistry.registerItem(berry_preserves, "berry_preserves");
         }
-        GameRegistry.registerItem(tunneler_concoction, "tunneler_concoction");
         GameRegistry.registerItem(fizzy_drink, "fizzy_drink");
+        GameRegistry.registerItem(tunneler_concoction, "tunneler_concoction");
         GameRegistry.registerItem(muffin, "muffin");
         GameRegistry.registerItem(tough_jelly, "tough_jelly");
         GameRegistry.registerItem(mud_helmet, "mud_helmet");

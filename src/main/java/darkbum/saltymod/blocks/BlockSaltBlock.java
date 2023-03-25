@@ -23,7 +23,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-public class BlockSalt extends Block {
+public class BlockSaltBlock extends Block {
     protected boolean crystal = true;
 
     @SideOnly(Side.CLIENT)
@@ -71,7 +71,7 @@ public class BlockSalt extends Block {
     @SideOnly(Side.CLIENT)
     private IIcon CHAPITERTOP;
 
-    public BlockSalt(CreativeTabs tab) {
+    public BlockSaltBlock(CreativeTabs tab) {
         super(Material.rock);
         setTickRandomly(true);
         setCreativeTab(tab);

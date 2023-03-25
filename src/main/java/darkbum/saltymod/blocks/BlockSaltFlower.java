@@ -85,9 +85,9 @@ public class BlockSaltFlower extends BlockFlowerBase {
     }
 
     @Override
-    public ArrayList getDrops(World world, int x, int y, int z, int metadata, int fortune) {
+    public ArrayList getDrops(World world, int x, int y, int z, int meta, int fortune) {
         ArrayList drop = new ArrayList();
-        switch (metadata) {
+        switch (meta) {
             case 0:
                 drop.add(new ItemStack(this, 1, 0));
                 break;

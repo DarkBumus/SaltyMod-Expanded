@@ -26,7 +26,7 @@ public class SaltMarshPlantMix extends WorldGenerator {
             if (world.isAirBlock(i1, j1, k1) && (world.getBlock(i1, j1 - 1, k1) instanceof BlockGrass || world.getBlock(i1, j1 - 1, k1) == ModBlocks.salt_grass)) {
                 if (varPlant <= 4) {
 //					Vanilla Saltwort Placement: world.setBlock(i1, j1, k1, ModBlocks.saltWort, random.nextInt(5), 2);
-                    world.setBlock(i1, j1, k1, ModBlocks.saltworts, random.nextInt(5), 2);
+                    world.setBlock(i1, j1, k1, ModBlocks.saltworts, random.nextInt(4), 2);
                 } else if (varPlant == 5) {
                     world.setBlock(i1, j1, k1, Blocks.tallgrass, 0, 2);
                 } else

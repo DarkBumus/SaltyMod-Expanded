@@ -31,22 +31,25 @@ public class BlockSaltGrass extends Block {
     public static final byte[] sideFive = {8, 8, 8, 8, 8, 12, 11, 11, 0, 12, 15, 7, 9, 15, 15, 10};
 
     @SideOnly(Side.CLIENT)
+    private IIcon BOTTOM0;
+
+    @SideOnly(Side.CLIENT)
+    private IIcon BOTTOM1;
+
+    @SideOnly(Side.CLIENT)
     private IIcon TOP;
 
     @SideOnly(Side.CLIENT)
     private IIcon SIDE;
 
     @SideOnly(Side.CLIENT)
-    private IIcon SIDE_L;
+    private IIcon SALTSIDE;
 
     @SideOnly(Side.CLIENT)
-    private IIcon SIDE_R;
+    private IIcon SALTSIDE_L;
 
     @SideOnly(Side.CLIENT)
-    private IIcon BOTTOM0;
-
-    @SideOnly(Side.CLIENT)
-    private IIcon BOTTOM1;
+    private IIcon SALTSIDE_R;
 
     public BlockSaltGrass(String name, CreativeTabs tab) {
         super(Material.grass);
@@ -64,28 +67,152 @@ public class BlockSaltGrass extends Block {
         return ClientProxy.saltGrassRenderType;
     }
 
+
     @SideOnly(Side.CLIENT)
     @Override
     public IIcon getIcon(int side, int meta) {
-        return (side == 1) ?
-            this.TOP : ((side == 0 && meta > 0) ?
-            this.BOTTOM1 : ((side == 0 && meta == 0) ?
-            this.BOTTOM0 : (((side == 2 && (meta == 7 || meta == 11 || meta == 14 || meta == 15)) || (side == 5 && (meta == 8 || meta == 11 || meta == 12 || meta == 15)) || (side == 3 && (meta == 9 || meta == 12 || meta == 13 || meta == 15)) || (side == 4 && (meta == 10 || meta == 13 || meta == 14 || meta == 15))) ?
-            this.SIDE : (((side == 2 && (meta == 3 || meta == 8 || meta == 12)) || (side == 5 && (meta == 4 || meta == 9 || meta == 13)) || (side == 3 && (meta == 5 || meta == 10 || meta == 14)) || (side == 4 && (meta == 6 || meta == 7 || meta == 11))) ?
-            this.SIDE_L : (((side == 2 && (meta == 6 || meta == 10 || meta == 13)) || (side == 5 && (meta == 3 || meta == 7 || meta == 14)) || (side == 3 && (meta == 4 || meta == 8 || meta == 11)) || (side == 4 && (meta == 5 || meta == 9 || meta == 12))) ?
-            this.SIDE_R : this.blockIcon)))));
+        switch (meta) {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+                switch (side) {
+                    case 0:
+                        return BOTTOM0;
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                        return SIDE;
+                }
+                break;
+            case 7:
+                switch (side) {
+                    case 0:
+                        return BOTTOM1;
+                    case 2:
+                        return SALTSIDE;
+                    case 3:
+                        return SIDE;
+                    case 4:
+                        return SALTSIDE_L;
+                    case 5:
+                        return SALTSIDE_R;
+                }
+            case 8:
+                switch (side) {
+                    case 0:
+                        return BOTTOM1;
+                    case 2:
+                        return SALTSIDE_L;
+                    case 3:
+                        return SALTSIDE_R;
+                    case 4:
+                        return SIDE;
+                    case 5:
+                        return SALTSIDE;
+                }
+            case 9:
+                switch (side) {
+                    case 0:
+                        return BOTTOM1;
+                    case 2:
+                        return SIDE;
+                    case 3:
+                        return SALTSIDE;
+                    case 4:
+                        return SALTSIDE_R;
+                    case 5:
+                        return SALTSIDE_L;
+                }
+            case 10:
+                switch (side) {
+                    case 0:
+                        return BOTTOM1;
+                    case 2:
+                        return SALTSIDE_R;
+                    case 3:
+                        return SALTSIDE_L;
+                    case 4:
+                        return SALTSIDE;
+                    case 5:
+                        return SIDE;
+                }
+            case 11:
+                switch (side) {
+                    case 0:
+                        return BOTTOM1;
+                    case 2:
+                    case 5:
+                        return SALTSIDE;
+                    case 3:
+                        return SALTSIDE_R;
+                    case 4:
+                        return SALTSIDE_L;
+                }
+            case 12:
+                switch (side) {
+                    case 0:
+                        return BOTTOM1;
+                    case 2:
+                        return SALTSIDE_L;
+                    case 3:
+                    case 5:
+                        return SALTSIDE;
+                    case 4:
+                        return SALTSIDE_R;
+                }
+            case 13:
+                switch (side) {
+                    case 0:
+                        return BOTTOM1;
+                    case 2:
+                        return SALTSIDE_R;
+                    case 3:
+                    case 4:
+                        return SALTSIDE;
+                    case 5:
+                        return SALTSIDE_L;
+                }
+            case 14:
+                switch (side) {
+                    case 0:
+                        return BOTTOM1;
+                    case 2:
+                    case 4:
+                        return SALTSIDE;
+                    case 3:
+                        return SALTSIDE_L;
+                    case 5:
+                        return SALTSIDE_R;
+                }
+            case 15:
+                switch (side) {
+                    case 0:
+                        return BOTTOM1;
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                        return SALTSIDE;
+                }
+        }
+        return TOP;
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public void registerBlockIcons(IIconRegister iconRegister) {
-        blockIcon = iconRegister.registerIcon("saltymod:slightly_saline_grass");
-        TOP = iconRegister.registerIcon("saltymod:slightly_saline_grass_top");
-        SIDE = iconRegister.registerIcon("saltymod:slightly_saline_grass_side_0");
-        SIDE_L = iconRegister.registerIcon("saltymod:slightly_saline_grass_side_1");
-        SIDE_R = iconRegister.registerIcon("saltymod:slightly_saline_grass_side_2");
-        BOTTOM0 = iconRegister.registerIcon("saltymod:slightly_saline_dirt_0");
-        BOTTOM1 = iconRegister.registerIcon("saltymod:slightly_saline_dirt_bottom");
+        BOTTOM0 = iconRegister.registerIcon("saltymod:salt_dirt_0");
+        BOTTOM1 = iconRegister.registerIcon("saltymod:salt_dirt_bottom");
+        TOP = iconRegister.registerIcon("saltymod:salt_grass_top");
+        SIDE = iconRegister.registerIcon("saltymod:salt_grass");
+        SALTSIDE = iconRegister.registerIcon("saltymod:salt_grass_saltside");
+        SALTSIDE_L = iconRegister.registerIcon("saltymod:salt_grass_saltside_l");
+        SALTSIDE_R = iconRegister.registerIcon("saltymod:salt_grass_saltside_r");
     }
 
     @Override
@@ -114,8 +241,8 @@ public class BlockSaltGrass extends Block {
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx, float hity, float hitz) {
-        ItemStack heldSTack = player.getCurrentEquippedItem();
-        if(heldSTack != null && heldSTack.getItem() == ModItems.salt) {
+        ItemStack heldStack = player.getCurrentEquippedItem();
+        if(heldStack != null && heldStack.getItem() == ModItems.salt) {
             int meta = world.getBlockMetadata(x, y, z);
             switch(side) {
                 case 0:
@@ -141,7 +268,6 @@ public class BlockSaltGrass extends Block {
                     meta = sideFive[meta];
                     break;
             }
-
             world.setBlock(x, y, z, this, meta, 3);
             return true;
         }

@@ -52,6 +52,7 @@ public class SaltFlowerGenerator implements IWorldGenerator {
             if (!ArrayUtils.contains(biomeList, Type.SNOWY) &&
                 !ArrayUtils.contains(biomeList, Type.SPARSE) &&
                 !ArrayUtils.contains(biomeList, Type.MOUNTAIN) &&
+                !ArrayUtils.contains(biomeList, Type.BEACH) &&
                 world.getHeightValue(x, z) > 0 &&
                 (ArrayUtils.contains(biomeList, Type.PLAINS) ||
                 ArrayUtils.contains(biomeList, Type.FOREST) ||
@@ -65,8 +66,9 @@ public class SaltFlowerGenerator implements IWorldGenerator {
             biome = world.getBiomeGenForCoords(x, z);
             biomeList = BiomeDictionary.getTypesForBiome(biome);
             if (!ArrayUtils.contains(biomeList, Type.SNOWY) &&
-                !ArrayUtils.contains(biomeList, Type.BEACH) &&
+                !ArrayUtils.contains(biomeList, Type.SPARSE) &&
                 !ArrayUtils.contains(biomeList, Type.MOUNTAIN) &&
+                !ArrayUtils.contains(biomeList, Type.BEACH) &&
                 world.getHeightValue(x, z) > 0 &&
                 (ArrayUtils.contains(biomeList, Type.PLAINS) ||
                 ArrayUtils.contains(biomeList, Type.FOREST) ||

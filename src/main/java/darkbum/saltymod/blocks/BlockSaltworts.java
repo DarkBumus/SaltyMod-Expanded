@@ -26,7 +26,11 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BlockSaltwort extends BlockBush implements IGrowable {
+public class BlockSaltworts extends BlockBush implements IGrowable {
+
+    @SideOnly(Side.CLIENT)
+    private IIcon STAGE_0;
+
     @SideOnly(Side.CLIENT)
     private IIcon STAGE_1;
 
@@ -40,9 +44,9 @@ public class BlockSaltwort extends BlockBush implements IGrowable {
     private IIcon STAGE_4;
 
     @SideOnly(Side.CLIENT)
-    private IIcon DEAD;
+    private IIcon STAGE_DEAD;
 
-    public BlockSaltwort(String name, CreativeTabs tab) {
+    public BlockSaltworts(String name, CreativeTabs tab) {
         setBlockName(name);
         setStepSound(soundTypeGrass);
         setCreativeTab(tab);
@@ -52,19 +56,29 @@ public class BlockSaltwort extends BlockBush implements IGrowable {
 
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-        if (meta < 0 || meta > 5)
-            meta = 0;
-        return (meta == 1) ? this.STAGE_1 : ((meta == 2) ? this.STAGE_2 : ((meta == 3) ? this.STAGE_3 : ((meta == 4) ? this.STAGE_4 : ((meta == 5) ? this.DEAD : this.blockIcon))));
+        switch(meta) {
+            case 1:
+                return STAGE_1;
+            case 2:
+                return STAGE_2;
+            case 3:
+                return STAGE_3;
+            case 4:
+                return STAGE_4;
+            case 5:
+                return STAGE_DEAD;
+        }
+        return STAGE_0;
     }
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1) {
-        this.blockIcon = par1.registerIcon(getTextureName() + "_0");
+        this.STAGE_0 = par1.registerIcon(getTextureName() + "_0");
         this.STAGE_1 = par1.registerIcon(getTextureName() + "_1");
         this.STAGE_2 = par1.registerIcon(getTextureName() + "_2");
         this.STAGE_3 = par1.registerIcon(getTextureName() + "_3");
         this.STAGE_4 = par1.registerIcon(getTextureName() + "_4");
-        this.DEAD = par1.registerIcon(getTextureName() + "_5");
+        this.STAGE_DEAD = par1.registerIcon(getTextureName() + "_5");
     }
 
     public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
@@ -96,13 +110,13 @@ public class BlockSaltwort extends BlockBush implements IGrowable {
 
     public boolean canBlockStay(World world, int x, int y, int z) {
         Block B = world.getBlock(x, y - 1, z);
-        return ((B.getMaterial() == Material.grass || (B.getMaterial() == Material.ground && B != ModBlocks.salt_lake_dirt) || B
+        return((B.getMaterial() == Material.grass || (B.getMaterial() == Material.ground && B != ModBlocks.salt_lake_dirt) || B
             .getMaterial() == Material.sand || B.getMaterial() == Material.clay || (B == ModBlocks.salt_lake_dirt && world
             .getBlockMetadata(x, y - 1, z) == 0)) && World.doesBlockHaveSolidTopSurface(world, x, y - 1, z));
     }
 
-    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int meta, int fortune) {
-        ArrayList<ItemStack> drop = new ArrayList<ItemStack>();
+    public ArrayList getDrops(World world, int x, int y, int z, int meta, int fortune) {
+        ArrayList drop = new ArrayList();
         Item seed = ModItems.saltwort;
         Random rand = new Random();
         if (meta <= 1)

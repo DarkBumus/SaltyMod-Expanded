@@ -4,27 +4,28 @@ import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import darkbum.saltymod.blockitems.*;
 import darkbum.saltymod.blocks.*;
-import darkbum.saltymod.blocks.BlockSalt;
+import darkbum.saltymod.blocks.BlockSaltBlock;
 import darkbum.saltymod.blocks.BlockSaltFlower;
 import darkbum.saltymod.tileentities.TileEntityBlossomSign;
 import net.minecraft.block.*;
 import net.minecraft.creativetab.CreativeTabs;
 import darkbum.saltymod.SaltyMod;
 import darkbum.saltymod.common.CommonProxy;
-import net.minecraft.tileentity.TileEntitySign;
 
 public class ModBlocks {
     static CreativeTabs tab = CommonProxy.tabSalt;
+
+    public static Block dev_block = new BlockDevBlock("dev_block", tab);
 
     public static Block salt_ore = new BlockSaltOre("salt_ore", tab);
 
     public static Block deepslate_salt_ore;
 
-    public static Block salt_lake_ore = new BlockSaltLakeOre("salt_lake", tab);
+    public static Block salt_lake_ore = new BlockSaltLakeOre("salt_lake_ore", tab);
 
-    public static Block salt_lake_dirt = new BlockSaltLakeDirt(tab);
+    public static Block salt_lake_dirt = new BlockSaltLakeDirt("salt_lake_dirt", tab);
 
-    public static Block salt_block = new BlockSalt(tab);
+    public static Block salt_block = new BlockSaltBlock(tab);
 
     public static BlockStairs salt_brick_stairs = new BlockSaltBrickStairs("salt_brick_stairs", tab);
 
@@ -34,9 +35,9 @@ public class ModBlocks {
 
     public static Block salt_lamp = new BlockSaltLamp("salt_lamp", tab);
 
-    public static Block salt_dirt = new BlockSaltDirt("lite_salt_dirt", tab);
-
     public static Block salt_grass = new BlockSaltGrass("salt_grass", tab);
+
+    public static Block salt_dirt = new BlockSaltDirt("salt_dirt", tab);
 
     public static Block grass_top = new BlockGrassTop("grass_top", null);
 
@@ -109,7 +110,7 @@ public class ModBlocks {
 
     public static Block salt_crystal = new BlockSaltCrystal("salt_crystal", tab);
 
-    public static Block saltworts = new BlockSaltwort("saltworts", null);
+    public static Block saltworts = new BlockSaltworts("saltworts", null);
 
     public static Block onions = new BlockOnions("onions", null);
 
@@ -120,20 +121,21 @@ public class ModBlocks {
     public static void init() {
         SaltyMod.logger.info("Start to initialize Blocks");
 
+        GameRegistry.registerBlock(dev_block, "dev_block");
         GameRegistry.registerBlock(salt_ore, "salt_ore");
         if(Loader.isModLoaded("etfuturum") && ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableDeepslate && ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableDeepslateOres) {
             deepslate_salt_ore = new BlockSaltDeepslateOre(salt_ore);
             GameRegistry.registerBlock(deepslate_salt_ore, "deepslate_salt_ore");
         }
-        GameRegistry.registerBlock(salt_lake_ore, "salt_lake");
+        GameRegistry.registerBlock(salt_lake_ore, "salt_lake_ore");
+        GameRegistry.registerBlock(salt_lake_dirt, "salt_lake_dirt");
         GameRegistry.registerBlock(salt_block, darkbum.saltymod.blockitems.ItemSaltBlock.class, "salt_block");
         GameRegistry.registerBlock(salt_brick_stairs, "salt_brick_stairs");
         GameRegistry.registerBlock(salt_slab, ItemSaltSlab.class, "salt_slab");
         GameRegistry.registerBlock(double_salt_slab, ItemSaltSlab.class, "double_salt_slab");
         GameRegistry.registerBlock(salt_lamp, "salt_lamp");
-        GameRegistry.registerBlock(salt_lake_dirt, ItemSaltDirt.class, "salt_dirt");
-        GameRegistry.registerBlock(salt_dirt, "lite_salt_dirt");
         GameRegistry.registerBlock(salt_grass, "salt_grass");
+        GameRegistry.registerBlock(salt_dirt, "salt_dirt");
         GameRegistry.registerBlock(grass_top, "grass_top");
         GameRegistry.registerBlock(mineral_mud, "mineral_mud");
         GameRegistry.registerBlock(wet_mud_brick, "wet_mud_brick");

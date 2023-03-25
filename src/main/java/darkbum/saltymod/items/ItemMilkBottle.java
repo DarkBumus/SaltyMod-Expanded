@@ -1,4 +1,4 @@
-/*package ru.liahim.saltmod.item;
+package darkbum.saltymod.items;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -8,12 +8,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class MilkBottle extends Item {
-    public MilkBottle(String name, CreativeTabs tab, String textureName) {
+public class ItemMilkBottle extends Item {
+    public ItemMilkBottle(String name, CreativeTabs tab) {
         setMaxStackSize(1);
         setUnlocalizedName(name);
         setCreativeTab(tab);
-        setTextureName("saltmod:" + textureName);
     }
 
     public ItemStack onEaten(ItemStack item, World world, EntityPlayer player) {
@@ -36,4 +35,4 @@ public class MilkBottle extends Item {
         player.setItemInUse(item, getMaxItemUseDuration(item));
         return item;
     }
-}*/
+}

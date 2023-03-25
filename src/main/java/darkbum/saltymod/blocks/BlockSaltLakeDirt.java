@@ -26,16 +26,21 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 public class BlockSaltLakeDirt extends Block {
+
+    @SideOnly(Side.CLIENT)
+    private IIcon BOTTOM;
+
     @SideOnly(Side.CLIENT)
     private IIcon TOP;
 
     @SideOnly(Side.CLIENT)
     private IIcon SIDE;
 
-    public BlockSaltLakeDirt(CreativeTabs tab) {
+    public BlockSaltLakeDirt(String name, CreativeTabs tab) {
         super(Material.ground);
         setTickRandomly(true);
         setStepSound(soundTypeGravel);
+        setBlockName(name);
         setCreativeTab(tab);
         setHardness(0.5F);
         setResistance(1.0F);
@@ -44,23 +49,20 @@ public class BlockSaltLakeDirt extends Block {
 
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-        if (meta > 1)
-            meta = 0;
-        return (meta == 1 && side == 1) ? this.TOP : ((meta == 1 && side > 1) ? this.SIDE : this.blockIcon);
+        switch(side) {
+            case 0:
+                return BOTTOM;
+            case 1:
+                return TOP;
+        }
+        return SIDE;
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister par1) {
-        this.blockIcon = par1.registerIcon("saltymod:saline_dirt");
-        this.TOP = par1.registerIcon("saltymod:saline_dirt_lake_top");
-        this.SIDE = par1.registerIcon("saltymod:saline_dirt_lake");
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tabs, List list) {
-        list.add(new ItemStack(item, 1, 1));
-        list.add(new ItemStack(item, 1, 0));
+    public void registerBlockIcons(IIconRegister iconRegister) {
+        this.BOTTOM = iconRegister.registerIcon("saltymod:salt_dirt_0");
+        this.TOP = iconRegister.registerIcon("saltymod:salt_lake_dirt_top");
+        this.SIDE = iconRegister.registerIcon("saltymod:salt_lake_dirt");
     }
 
     public void onEntityWalking(World world, int x, int y, int z, Entity entity) {
