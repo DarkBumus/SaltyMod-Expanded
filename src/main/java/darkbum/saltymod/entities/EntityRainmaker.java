@@ -2,7 +2,7 @@ package darkbum.saltymod.entities;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.items.ItemRainmaker;
+import darkbum.saltymod.item.ItemRainmaker;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;

@@ -3,8 +3,10 @@ package darkbum.saltymod.init;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import darkbum.saltymod.SaltyMod;
+import darkbum.saltymod.blockitem.ItemBlossomDoor;
+import darkbum.saltymod.blockitem.ItemBlossomSign;
 import darkbum.saltymod.common.ProbablePotionEffect;
-import darkbum.saltymod.items.*;
+import darkbum.saltymod.item.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -12,7 +14,6 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSeedFood;
 import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import darkbum.saltymod.common.CommonProxy;
 
 public class ModItems {
@@ -30,6 +31,14 @@ public class ModItems {
 //    field_76443_y = Saturation
 //    field_76444_x = Absorption
     public static Item testing_apple = new ItemSaltFood("testing_apple", 2, 0.3F, new ProbablePotionEffect(Potion.field_76443_y.id, 300)).setAlwaysEdible().setCreativeTab(null).setTextureName("saltymod:dev/test_food");
+
+    public static Item blossom_boat = new ItemBlossomBoat();
+
+    public static Item blossom_chest_boat = new ItemBlossomChestBoat();
+
+    public static Item item_blossom_sign = new ItemBlossomSign(ModBlocks.blossom_sign_wall, ModBlocks.blossom_sign_standing);
+
+    public static Item item_blossom_hanging_sign = new ItemBlossomHangingSign();
 
     public static Item blossom = new Item().setCreativeTab(tab).setUnlocalizedName("blossom").setTextureName("saltymod:blossom");
 
@@ -285,12 +294,6 @@ public class ModItems {
 
     public static Item rainmaker = new ItemRainmaker("rainmaker", tab).setTextureName("saltymod:rainmaker");
 
-    public static Item blossom_boat = new ItemBlossomBoat();
-
-    public static Item blossom_chest_boat = new ItemBlossomChestBoat();
-
-    public static Item blossom_hanging_sign = new ItemBlossomHangingSign();
-
     public static Item tf_salt_cooked_venison = new ItemSaltFood("tf_salt_cooked_venison", 9, 0.9F).setCreativeTab(tab).setTextureName("saltymod:tf/tf_saltwort_cooked_venison");
 
     public static Item tf_salt_meef_steak = new ItemSaltFood("tf_salt_meef_steak", 7, 0.7F).setCreativeTab(tab).setTextureName("saltymod:tf/tf_salt_meef_steak");
@@ -331,6 +334,12 @@ public class ModItems {
             GameRegistry.registerItem(effect_apple, "effect_apple");
             GameRegistry.registerItem(testing_apple, "testing_apple");
         }
+        if(Loader.isModLoaded("etfuturum")) {
+//            GameRegistry.registerItem(blossom_boat, "blossom_boat");
+//            GameRegistry.registerItem(blossom_chest_boat, "blossom_chest_boat");
+            GameRegistry.registerItem(item_blossom_sign, "item_blossom_sign");
+//            GameRegistry.registerItem(item_blossom_hanging_sign, "item_blossom_hanging_sign");
+        }
         GameRegistry.registerItem(blossom, "blossom");
         GameRegistry.registerItem(bee_larva, "bee_grub");
         GameRegistry.registerItem(carpenter_bee, "carpenter_bee");
@@ -358,15 +367,9 @@ public class ModItems {
             GameRegistry.registerItem(salt_cooked_rabbit, "salt_cooked_rabbit");
             GameRegistry.registerItem(salt_cooked_mutton, "salt_cooked_mutton");
         }
-        if(Loader.isModLoaded("etfuturum") && !Loader.isModLoaded("netherlicious")) {
-            GameRegistry.registerItem(strider, "strider");
-            GameRegistry.registerItem(cooked_strider, "cooked_strider");
-        }
-        if(Loader.isModLoaded("netherlicious")) {
-            GameRegistry.registerItem(salt_cooked_strider, "salt_cooked_strider");
-        } else if (Loader.isModLoaded("etfuturum") && !Loader.isModLoaded("netherlicious")) {
-            GameRegistry.registerItem(salt_cooked_strider, "salt_cooked_strider");
-        }
+        GameRegistry.registerItem(strider, "strider");
+        GameRegistry.registerItem(cooked_strider, "cooked_strider");
+        GameRegistry.registerItem(salt_cooked_strider, "salt_cooked_strider");
         GameRegistry.registerItem(haunch, "haunch");
         GameRegistry.registerItem(cooked_haunch, "cooked_haunch");
         GameRegistry.registerItem(salt_cooked_haunch, "salt_cooked_haunch");
@@ -419,14 +422,10 @@ public class ModItems {
         GameRegistry.registerItem(saltwort_cooked_porkchop, "saltwort_cooked_porkchop");
         GameRegistry.registerItem(saltwort_honey_porkchop, "saltwort_honey_porkchop");
         GameRegistry.registerItem(saltwort_cooked_beef, "saltwort_cooked_beef");
-        if(Loader.isModLoaded("netherlicious")) {
-            GameRegistry.registerItem(saltwort_cooked_strider, "saltwort_cooked_strider");
-        } else if (Loader.isModLoaded("etfuturum") && !Loader.isModLoaded("netherlicious")) {
-            GameRegistry.registerItem(saltwort_cooked_strider, "saltwort_cooked_strider");
-        }
         if(Loader.isModLoaded("etfuturum")) {
             GameRegistry.registerItem(saltwort_cooked_mutton, "saltwort_cooked_mutton");
         }
+        GameRegistry.registerItem(saltwort_cooked_strider, "saltwort_cooked_strider");
         GameRegistry.registerItem(saltwort_cooked_haunch, "saltwort_cooked_haunch");
         GameRegistry.registerItem(sugar_apple, "sugar_apple");
         GameRegistry.registerItem(sugar_melon, "sugar_melon");
@@ -491,12 +490,6 @@ public class ModItems {
 //        GameRegistry.registerItem(salt_shard, "salt_shard");
         GameRegistry.registerItem(rainmaker_star, "rainmaker_star");
         GameRegistry.registerItem(rainmaker, "rainmaker");
-        if(Loader.isModLoaded("etfuturum")) {
-//            GameRegistry.registerItem(blossom_boat, "blossom_boat");
-//            GameRegistry.registerItem(blossom_chest_boat, "blossom_chest_boat");
-//            GameRegistry.registerItem(blossom_sign, "blossom_sign");
-//            GameRegistry.registerItem(blossom_hanging_sign, "blossom_hanging_sign");
-        }
 
         if(Loader.isModLoaded("TwilightForest")) {
             GameRegistry.registerItem(tf_salt_cooked_venison, "tf_salt_cooked_venison");

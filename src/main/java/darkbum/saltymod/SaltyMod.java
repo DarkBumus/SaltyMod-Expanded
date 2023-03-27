@@ -50,7 +50,7 @@ public class SaltyMod {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        logger.info("Starting SaltyMod PreInitialization");
+        logger.info("Starting SaltyMod Expanded PreInitialization");
         event.getModMetadata().name = EnumChatFormatting.GOLD+ SaltyMod.NAME;
         event.getModMetadata().version = EnumChatFormatting.YELLOW+ SaltyMod.VERSION;
         event.getModMetadata().credits = EnumChatFormatting.AQUA + "Thanks to original author Liahim85 and contributors jss2a98aj, Roadhog360, DelirusCrux, AstroTibs, Just Moe";

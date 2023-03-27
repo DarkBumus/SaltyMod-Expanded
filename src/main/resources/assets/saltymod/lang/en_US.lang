@@ -81,6 +81,8 @@ tile.salt_flower_wild_carrot.name=Daucus
 tile.salt_flower_solanum.name=Solanum
 tile.salt_flower_wild_potato.name=Solanum
 tile.salt_flower_wild_onion.name=Allium
+tile.salt_flower_maritima.name=Maritima
+tile.salt_flower_wild_beet.name=Maritima
 
 
 ITEMS
@@ -248,6 +250,8 @@ item.tough_jelly.name=Tough Jelly
 item.rainmaker_star.name=Rainmaker Star
 item.rainmaker.name=Rainmaker
 item.rainmaker.tooltip=Should explode above the clouds
+
+item.blossom_sign.name=Blossom Sign
 
 
 MOD ITEMS

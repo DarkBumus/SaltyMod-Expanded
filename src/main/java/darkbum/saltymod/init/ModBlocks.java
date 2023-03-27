@@ -2,10 +2,10 @@ package darkbum.saltymod.init;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
-import darkbum.saltymod.blockitems.*;
-import darkbum.saltymod.blocks.*;
-import darkbum.saltymod.blocks.BlockSaltBlock;
-import darkbum.saltymod.blocks.BlockSaltFlower;
+import darkbum.saltymod.blockitem.*;
+import darkbum.saltymod.block.*;
+import darkbum.saltymod.block.BlockSaltBlock;
+import darkbum.saltymod.block.BlockSaltFlower;
 import darkbum.saltymod.tileentities.TileEntityBlossomSign;
 import net.minecraft.block.*;
 import net.minecraft.creativetab.CreativeTabs;
@@ -77,7 +77,7 @@ public class ModBlocks {
 
     public static BlockSlab double_blossom_slab = new BlockBlossomSlab(true, "double_blossom_slab", null);
 
-    public static BlockFence blossom_fence;
+    public static BlockFence blossom_fence = new BlockBlossomFence("blossom_fence", tab);
 
     public static Block blossom_stairs = new BlockBlossomStairs("blossom_stairs", tab);
 
@@ -89,9 +89,11 @@ public class ModBlocks {
 
     public static Block blossom_trapdoor = new BlockBlossomTrapdoor("blossom_trapdoor", tab);
 
-    public static BlockFenceGate blossom_fence_gate;
+    public static BlockFenceGate blossom_fence_gate = new BlockBlossomFenceGate("blossom_fence_gate", tab);
 
-    public static Block blossom_sign = new BlockBlossomSign(TileEntityBlossomSign.class, true);
+    public static Block blossom_sign_standing = new BlockBlossomSign(TileEntityBlossomSign.class, true);
+
+    public static Block blossom_sign_wall = new BlockBlossomSign(TileEntityBlossomSign.class, false);
 
 
     public static Block apiary = new BlockApiary("apiary", tab);
@@ -121,7 +123,7 @@ public class ModBlocks {
     public static void init() {
         SaltyMod.logger.info("Start to initialize Blocks");
 
-        GameRegistry.registerBlock(dev_block, "dev_block");
+//        GameRegistry.registerBlock(dev_block, "dev_block");
         GameRegistry.registerBlock(salt_ore, "salt_ore");
         if(Loader.isModLoaded("etfuturum") && ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableDeepslate && ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableDeepslateOres) {
             deepslate_salt_ore = new BlockSaltDeepslateOre(salt_ore);
@@ -129,7 +131,7 @@ public class ModBlocks {
         }
         GameRegistry.registerBlock(salt_lake_ore, "salt_lake_ore");
         GameRegistry.registerBlock(salt_lake_dirt, "salt_lake_dirt");
-        GameRegistry.registerBlock(salt_block, darkbum.saltymod.blockitems.ItemSaltBlock.class, "salt_block");
+        GameRegistry.registerBlock(salt_block, darkbum.saltymod.blockitem.ItemSaltBlock.class, "salt_block");
         GameRegistry.registerBlock(salt_brick_stairs, "salt_brick_stairs");
         GameRegistry.registerBlock(salt_slab, ItemSaltSlab.class, "salt_slab");
         GameRegistry.registerBlock(double_salt_slab, ItemSaltSlab.class, "double_salt_slab");
@@ -148,7 +150,7 @@ public class ModBlocks {
         }
         GameRegistry.registerBlock(salt_crusted_oak_log, "salt_crusted_oak_log");
         GameRegistry.registerBlock(blossom_planks, "blossom_planks");
-//        GameRegistry.registerBlock(blossom_sapling, "blossom_sapling");
+        GameRegistry.registerBlock(blossom_sapling, "blossom_sapling");
         GameRegistry.registerBlock(blossom_log, "blossom_log");
         GameRegistry.registerBlock(blossom_burrow, "blossom_burrow");
         if(Loader.isModLoaded("etfuturum")) {
@@ -160,7 +162,7 @@ public class ModBlocks {
         GameRegistry.registerBlock(blossom_slab, ItemBlossomSlab.class,"blossom_slab");
         GameRegistry.registerBlock(double_blossom_slab, ItemBlossomSlab.class,"double_blossom_slab");
         if(Loader.isModLoaded("etfuturum")) {
-//            GameRegistry.registerBlock(blossom_fence, "blossom_fence");
+            GameRegistry.registerBlock(blossom_fence, "blossom_fence");
         }
         GameRegistry.registerBlock(blossom_stairs, "blossom_stairs");
         if(Loader.isModLoaded("etfuturum") && ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableWoodRedstone) {
@@ -168,10 +170,11 @@ public class ModBlocks {
             GameRegistry.registerBlock(blossom_button, "blossom_button");
         }
         if(Loader.isModLoaded("etfuturum")) {
-//            GameRegistry.registerBlock(blossom_door, "blossom_door");
-//            GameRegistry.registerBlock(blossom_trapdoor, "blossom_trapdoor");
-//            GameRegistry.registerBlock(blossom_fence_gate, "blossom_fence_gate");
-            GameRegistry.registerBlock(blossom_sign, ItemBlossomSign.class, "blossom_sign");
+            GameRegistry.registerBlock(blossom_door, ItemBlossomDoor.class, "blossom_door");
+            GameRegistry.registerBlock(blossom_trapdoor, "blossom_trapdoor");
+            GameRegistry.registerBlock(blossom_fence_gate, "blossom_fence_gate");
+            GameRegistry.registerBlock(blossom_sign_standing, "blossom_sign_standing");
+            GameRegistry.registerBlock(blossom_sign_wall, "blossom_sign_wall");
         }
         GameRegistry.registerBlock(apiary, "apiary");
         GameRegistry.registerBlock(extractor, "extractor");

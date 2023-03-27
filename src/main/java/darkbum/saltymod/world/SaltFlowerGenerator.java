@@ -24,6 +24,8 @@ public class SaltFlowerGenerator implements IWorldGenerator {
         new WorldGenFlowers(ModBlocks.salt_flower),
         new WorldGenFlowers(ModBlocks.salt_flower),
         new WorldGenFlowers(ModBlocks.salt_flower),
+        new WorldGenFlowers(ModBlocks.salt_flower),
+        new WorldGenFlowers(ModBlocks.salt_flower),
         new WorldGenFlowers(ModBlocks.salt_flower)
     };
 
@@ -32,6 +34,8 @@ public class SaltFlowerGenerator implements IWorldGenerator {
         worldGenFlowers[2].func_150550_a(ModBlocks.salt_flower, 2);
         worldGenFlowers[3].func_150550_a(ModBlocks.salt_flower, 3);
         worldGenFlowers[4].func_150550_a(ModBlocks.salt_flower, 4);
+        worldGenFlowers[5].func_150550_a(ModBlocks.salt_flower, 5);
+        worldGenFlowers[6].func_150550_a(ModBlocks.salt_flower, 6);
     }
 
     @Override
@@ -49,7 +53,9 @@ public class SaltFlowerGenerator implements IWorldGenerator {
             z = chunkZ * 16 + random.nextInt(16) + 8;
             biome = world.getBiomeGenForCoords(x, z);
             biomeList = BiomeDictionary.getTypesForBiome(biome);
-            if (!ArrayUtils.contains(biomeList, Type.SNOWY) &&
+            if (!ArrayUtils.contains(biomeList, Type.COLD) &&
+                !ArrayUtils.contains(biomeList, Type.CONIFEROUS) &&
+                !ArrayUtils.contains(biomeList, Type.SNOWY) &&
                 !ArrayUtils.contains(biomeList, Type.SPARSE) &&
                 !ArrayUtils.contains(biomeList, Type.MOUNTAIN) &&
                 !ArrayUtils.contains(biomeList, Type.BEACH) &&
@@ -65,7 +71,9 @@ public class SaltFlowerGenerator implements IWorldGenerator {
             z = chunkZ * 16 + random.nextInt(16) + 8;
             biome = world.getBiomeGenForCoords(x, z);
             biomeList = BiomeDictionary.getTypesForBiome(biome);
-            if (!ArrayUtils.contains(biomeList, Type.SNOWY) &&
+            if (!ArrayUtils.contains(biomeList, Type.COLD) &&
+                !ArrayUtils.contains(biomeList, Type.CONIFEROUS) &&
+                !ArrayUtils.contains(biomeList, Type.SNOWY) &&
                 !ArrayUtils.contains(biomeList, Type.SPARSE) &&
                 !ArrayUtils.contains(biomeList, Type.MOUNTAIN) &&
                 !ArrayUtils.contains(biomeList, Type.BEACH) &&
@@ -114,6 +122,26 @@ public class SaltFlowerGenerator implements IWorldGenerator {
                 world.getHeightValue(x, z) > 0 &&
                 (ArrayUtils.contains(biomeList, Type.FOREST))) {
                 worldGenFlowers[4].generate(world, random, x, nextHeightInt(random, world.getHeightValue(x, z) * 2), z);
+            }
+
+            x = chunkX * 16 + random.nextInt(16) + 8;
+            z = chunkZ * 16 + random.nextInt(16) + 8;
+            biome = world.getBiomeGenForCoords(x, z);
+            biomeList = BiomeDictionary.getTypesForBiome(biome);
+            if (!ArrayUtils.contains(biomeList, Type.SNOWY) &&
+                world.getHeightValue(x, z) > 0 &&
+                ArrayUtils.contains(biomeList, Type.CONIFEROUS)) {
+                worldGenFlowers[5].generate(world, random, x, nextHeightInt(random, world.getHeightValue(x, z) * 2), z);
+            }
+
+            x = chunkX * 16 + random.nextInt(16) + 8;
+            z = chunkZ * 16 + random.nextInt(16) + 8;
+            biome = world.getBiomeGenForCoords(x, z);
+            biomeList = BiomeDictionary.getTypesForBiome(biome);
+            if (!ArrayUtils.contains(biomeList, Type.SNOWY) &&
+                world.getHeightValue(x, z) > 0 &&
+                ArrayUtils.contains(biomeList, Type.CONIFEROUS)) {
+                worldGenFlowers[6].generate(world, random, x, nextHeightInt(random, world.getHeightValue(x, z) * 2), z);
             }
         }
     }

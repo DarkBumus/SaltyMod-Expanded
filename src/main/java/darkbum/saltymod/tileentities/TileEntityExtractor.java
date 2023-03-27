@@ -3,7 +3,7 @@ package darkbum.saltymod.tileentities;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.api.ExtractRegistry;
-import darkbum.saltymod.blocks.BlockExtractor;
+import darkbum.saltymod.block.BlockExtractor;
 import darkbum.saltymod.init.SaltConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
