@@ -1,4 +1,4 @@
-package darkbum.saltymod.tileentities;
+package darkbum.saltymod.tileentity;
 
 import net.minecraft.tileentity.TileEntitySign;
 

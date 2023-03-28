@@ -1,4 +1,4 @@
-package darkbum.saltymod.common;
+package darkbum.saltymod.potion;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;

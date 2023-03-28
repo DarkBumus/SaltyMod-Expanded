@@ -1,4 +1,4 @@
-package darkbum.saltymod.entities;
+package darkbum.saltymod.entity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

@@ -3,9 +3,8 @@ package darkbum.saltymod.init;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import darkbum.saltymod.SaltyMod;
-import darkbum.saltymod.blockitem.ItemBlossomDoor;
 import darkbum.saltymod.blockitem.ItemBlossomSign;
-import darkbum.saltymod.common.ProbablePotionEffect;
+import darkbum.saltymod.potion.ProbablePotionEffect;
 import darkbum.saltymod.item.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -25,16 +24,14 @@ public class ModItems {
 
     public static Item stuffing_apple = new ItemStuffingApple("stuffing_apple", null).setAlwaysEdible().setTextureName("saltymod:dev/stuffing_apple");
 
-    public static Item effect_apple = new ItemEffectApple("effect_apple", null).setAlwaysEdible();
-
 //    field_76434_w = Health Boost
 //    field_76443_y = Saturation
 //    field_76444_x = Absorption
     public static Item testing_apple = new ItemSaltFood("testing_apple", 2, 0.3F, new ProbablePotionEffect(Potion.field_76443_y.id, 300)).setAlwaysEdible().setCreativeTab(null).setTextureName("saltymod:dev/test_food");
 
-    public static Item blossom_boat = new ItemBlossomBoat();
+    public static Item item_blossom_boat = new ItemBlossomBoat();
 
-    public static Item blossom_chest_boat = new ItemBlossomChestBoat();
+    public static Item item_blossom_chest_boat = new ItemBlossomChestBoat();
 
     public static Item item_blossom_sign = new ItemBlossomSign(ModBlocks.blossom_sign_wall, ModBlocks.blossom_sign_standing);
 
@@ -254,9 +251,9 @@ public class ModItems {
 
     public static Item fermented_saltwort = new ItemSaltFood("fermented_saltwort", 5, 0.7F, Items.glass_bottle, new ProbablePotionEffect(Potion.regeneration.id, 900, 2)).setItemUseAction(EnumAction.drink).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:fermented_saltwort");
 
-    public static Item pickled_fern = new ItemSaltFood("pickled_fern", 4, 0.7F, Items.glass_bottle, new ProbablePotionEffect(Potion.field_76434_w.id, 1200, 1), new ProbablePotionEffect(Potion.resistance.id, 900, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:pickled_fern");
+    public static Item fermented_fern = new ItemSaltFood("fermented_fern", 4, 0.7F, Items.glass_bottle, new ProbablePotionEffect(Potion.field_76434_w.id, 1200, 1), new ProbablePotionEffect(Potion.resistance.id, 900, 1)).setItemUseAction(EnumAction.drink).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:fermented_fern");
 
-    public static Item pickled_mushroom = new ItemSaltFood("pickled_mushroom", 4, 0.7F, Items.glass_bottle, new ProbablePotionEffect(Potion.field_76434_w.id, 1200, 1), new ProbablePotionEffect(Potion.damageBoost.id, 600, 1), new ProbablePotionEffect(Potion.blindness.id, 120, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:pickled_mushroom");
+    public static Item fermented_mushroom = new ItemSaltFood("fermented_mushroom", 4, 0.7F, Items.glass_bottle, new ProbablePotionEffect(Potion.field_76434_w.id, 1200, 1), new ProbablePotionEffect(Potion.damageBoost.id, 600, 1), new ProbablePotionEffect(Potion.blindness.id, 120, 0)).setItemUseAction(EnumAction.drink).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:fermented_mushroom");
 
     public static Item pickled_calamari = new ItemSaltFood("pickled_calamari", 6, 0.7F, Items.glass_bottle, new ProbablePotionEffect(Potion.field_76434_w.id, 1200, 1), new ProbablePotionEffect(Potion.waterBreathing.id, 600, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:pickled_calamari");
 
@@ -331,12 +328,11 @@ public class ModItems {
         if(SaltConfig.developerFoods) {
             GameRegistry.registerItem(void_apple, "void_apple");
             GameRegistry.registerItem(stuffing_apple, "stuffing_apple");
-            GameRegistry.registerItem(effect_apple, "effect_apple");
             GameRegistry.registerItem(testing_apple, "testing_apple");
         }
         if(Loader.isModLoaded("etfuturum")) {
-//            GameRegistry.registerItem(blossom_boat, "blossom_boat");
-//            GameRegistry.registerItem(blossom_chest_boat, "blossom_chest_boat");
+//            GameRegistry.registerItem(item_blossom_boat, "item_blossom_boat");
+//            GameRegistry.registerItem(item_blossom_chest_boat, "item_blossom_chest_boat");
             GameRegistry.registerItem(item_blossom_sign, "item_blossom_sign");
 //            GameRegistry.registerItem(item_blossom_hanging_sign, "item_blossom_hanging_sign");
         }
@@ -444,8 +440,8 @@ public class ModItems {
         GameRegistry.registerItem(sugar_melon_soup, "sugar_melon_soup");
         GameRegistry.registerItem(honey_porkchop, "honey_porkchop");
         GameRegistry.registerItem(honey_apple, "honey_apple");
-        GameRegistry.registerItem(honey_berries, "honey_berries");
         if(Loader.isModLoaded("etfuturum")) {
+            GameRegistry.registerItem(honey_berries, "honey_berries");
             GameRegistry.registerItem(chocolate_berries, "chocolate_berries");
         }
         GameRegistry.registerItem(chocolate_bar, "chocolate_bar");
@@ -467,8 +463,8 @@ public class ModItems {
         GameRegistry.registerItem(calamari_pie, "calamari_pie");
         GameRegistry.registerItem(saltwort_pie, "saltwort_pie");
         GameRegistry.registerItem(fermented_saltwort, "fermented_saltwort");
-        GameRegistry.registerItem(pickled_fern, "pickled_fern");
-        GameRegistry.registerItem(pickled_mushroom, "pickled_mushroom");
+        GameRegistry.registerItem(fermented_fern, "fermented_fern");
+        GameRegistry.registerItem(fermented_mushroom, "fermented_mushroom");
         GameRegistry.registerItem(pickled_calamari, "pickled_calamari");
         if(Loader.isModLoaded("etfuturum")) {
             GameRegistry.registerItem(pickled_beetroot, "pickled_beetroot");

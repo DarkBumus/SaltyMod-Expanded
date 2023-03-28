@@ -1,12 +1,12 @@
-﻿CREATIVE TAB
+﻿# CREATIVE TAB
 
 itemGroup.salt=SaltyMod Expanded
 
 
-BLOCKS
+# BLOCKS
 
 tile.salt_ore.name=Salt Ore
-tile.salt_deepslate_ore.name=Deepslate Salt Ore
+tile.deepslate_salt_ore.name=Deepslate Salt Ore
 tile.etfuturum.deepslate_saltore.name=Deepslate Salt Ore
 tile.salt_lake_ore.name=Salt Lake Bottom
 tile.salt_lake_dirt.name=Salt Lake Bottom
@@ -34,22 +34,24 @@ tile.dry_mud_brick_slab.name=Mud Brick Slab
 tile.dry_mud_brick_wall.name=Mud Brick Wall
 
 tile.salt_crusted_oak_log.name=Salt Crusted Oak Log
+tile.blossom_planks.name=Blossom Planks
+tile.blossom_sapling.name=Blossom Sapling
 tile.blossom_log.name=Blossom Log
+tile.blossom_burrow.name=Blossom Burrow
 tile.blossom_wood.name=Blossom Wood
 tile.blossom_stripped_log.name=Stripped Blossom Log
+tile.blossom_stripped_burrow.name=Stripped Blossom Burrow
 tile.blossom_stripped_wood.name=Stripped Blossom Wood
-tile.blossom_burrow.name=Blossom Burrow
-tile.blossom_planks.name=Blossom Planks
-tile.blossom_stairs.name=Blossom Stairs
+tile.blossom_leaves.name=Blossom Leaves
 tile.blossom_slab.name=Blossom Slab
+tile.blossom_stairs.name=Blossom Stairs
 tile.blossom_fence.name=Blossom Fence
 tile.blossom_fence_gate.name=Blossom Fence Gate
-tile.blossom_door.name=Blossom Door
-tile.blossom_trapdoor.name=Blossom Trapdoor
 tile.blossom_pressure_plate.name=Blossom Pressure Plate
 tile.blossom_button.name=Blossom Button
-tile.blossom_leaves.name=Blossom Leaves
-tile.blossom_sapling.name=Blossom Sapling
+tile.blossom_door.name=Blossom Door
+tile.blossom_trapdoor.name=Blossom Trapdoor
+tile.blossom_sign.name=Blossom Sign
 
 tile.apiary.name=Apiary
 tile.extractor.name=Evaporator
@@ -76,6 +78,7 @@ tile.storage_sack_beetrootseeds.name=Beetroot Seed Sack
 tile.salt_crystal.name=Salt Crystal
 tile.saltworts.name=Saltwort
 tile.onions.name=Onions
+tile.marsh_reeds.name=Marsh Reeds
 tile.salt_flower_daucus.name=Daucus
 tile.salt_flower_wild_carrot.name=Daucus
 tile.salt_flower_solanum.name=Solanum
@@ -85,7 +88,7 @@ tile.salt_flower_maritima.name=Maritima
 tile.salt_flower_wild_beet.name=Maritima
 
 
-ITEMS
+# ITEMS
 
 item.minecraft.fish.name=Raw Cod
 item.minecraft.cooked_fished.name=Cooked Cod
@@ -98,15 +101,17 @@ item.void_apple.name=§5Void Apple
 item.void_apple.tooltip=Drains the hunger bar
 item.stuffing_apple.name=§6Stuffing Apple
 item.stuffing_apple.tooltip=Fills up the hunger bar
-item.effect_apple.name=Effect Apple
-item.effect_apple.tooltip=Gives you potion effects
 item.testing_apple.name=§bTest Apple
 
+item.item_blossom_boat.name=Blossom Boat
+item.item_blossom_chest_boat.name=Blossom Chest Boat
+item.item_blossom_sign.name=Blossom Sign
+item.item_blossom_hanging_sign.name=Blossom Hanging Sign
 item.blossom.name=Blossom
+item.bee_larva.name=Bee Larva
 item.carpenter_bee.name=Carpenter Bee
 item.waxcomb.name=Wax Comb
 item.honeycomb.name=Honey Comb
-item.bee_larva.name=Bee Grub
 item.royal_jelly.name=Royal Jelly
 
 item.mineral_mud_ball.name=Mineral Mud Ball
@@ -161,8 +166,8 @@ item.stewed_vegetables.name=Stewed Vegetables
 item.salt_stewed_vegetables.name=Salted Stewed Vegetables
 item.potato_mushroom.name=Potato with Mushroom
 item.salt_potato_mushroom.name=Salted Potato with Mushroom
-item.golden_vegetables.name=Glistering Vegetables
-item.salt_golden_vegetables.name=Salted Glistering Vegetables
+item.golden_vegetables.name=Golden Vegetables
+item.salt_golden_vegetables.name=Salted Golden Vegetables
 item.fish_soup.name=Fish Soup
 item.salt_fish_soup.name=Salted Fish Soup
 item.dandelion_salad.name=Dandelion Salad
@@ -174,12 +179,12 @@ item.salt_beetroot_salad.name=Salted Beetroot Salad
 item.dressed_herring.name=Dressed Herring
 item.salt_dressed_herring.name=Salted Dressed Herring
 item.saltwort_salad.name=Saltwort Salad
-item.golden_saltwort_salad.name=Glistering Saltwort Salad
+item.golden_saltwort_salad.name=Golden Saltwort Salad
 item.saltwort_cooked_porkchop.name=Salted Cooked Porkchop with Saltwort
 item.saltwort_honey_porkchop.name=Honey Glazed Porkchop with Saltwort
 item.saltwort_cooked_beef.name=Salted Steak with Saltwort
-item.saltwort_cooked_strider.name=Salted Strider Steak with Saltwort
 item.saltwort_cooked_mutton.name=Salted Cooked Mutton with Saltwort
+item.saltwort_cooked_strider.name=Salted Strider Steak with Saltwort
 item.saltwort_cooked_haunch.name=Salted Cooked Haunch with Saltwort
 
 item.sugar_apple.name=Sugared Apple
@@ -187,15 +192,15 @@ item.sugar_melon.name=Sugared Melon Slice
 item.sugar_berries.name=Sugared Sweetberries
 item.fruit_salad.name=Fruit Salad
 item.sugar_fruit_salad.name=Sugared Fruit Salad
-item.golden_fruit_salad.name=Glistering Fruit Salad
-item.sugar_golden_fruit_salad.name=Sugared Glistering Fruit Salad
+item.golden_fruit_salad.name=Golden Fruit Salad
+item.sugar_golden_fruit_salad.name=Sugared Golden Fruit Salad
 item.grated_carrot.name=Grated Carrot
 item.sugar_grated_carrot.name=Sugared Grated Carrot
 item.melon_soup.name=Melon Soup
 item.sugar_melon_soup.name=Sugared Melon Soup
-item.honey_berries.name=Honey Glazed Sweetberries
-item.honey_apple.name=Honey Glazed Apple
 item.honey_porkchop.name=Honey Glazed Porkchop
+item.honey_apple.name=Honey Glazed Apple
+item.honey_berries.name=Honey Glazed Sweetberries
 item.chocolate_berries.name=Chocolate Laced Sweetberries
 item.chocolate_bar.name=Chocolate Bar
 item.chocolate_bar.tooltip=Don't eat too much of it!
@@ -221,40 +226,38 @@ item.calamari_pie.name=Calamari Pie
 item.saltwort_pie.name=Saltwort Pie
 
 item.fermented_saltwort.name=Fermented Saltwort
-item.pickled_fern.name=Pickled Fern
-item.pickled_mushroom.name=Pickled Mushroom
+item.fermented_fern.name=Fermented Fern
+item.fermented_mushroom.name=Fermented Mushroom
 item.pickled_calamari.name=Pickled Calamari
 item.pickled_beetroot.name=Pickled Beetroot
 item.pickled_onion.name=Pickled Onion
 item.apple_preserves.name=Apple Preserves
 item.melon_preserves.name=Melon Preserves
 item.berry_preserves.name=Sweetberry Preserves
-item.tunneler_concoction.name=Tunneler's Concoction
-item.tunneler_concoction.tooltip=Icky, but rather helpful
+
 item.fizzy_drink.name=Fizzy Drink
 item.fizzy_drink.tooltip=Removes effects and extinguishes fire
+item.tunneler_concoction.name=Tunneler's Concoction
+item.tunneler_concoction.tooltip=Icky, but rather helpful
 item.muffin.name=Muffin
 item.muffin.tooltip=For dessert!
 item.muffin.mess.0=Bon Appetit!
 item.muffin.mess.1=Mmm... So tasty!
 item.muffin.mess.2=Om Nom Nom
 item.muffin.mess.3=Yummy!
+item.tough_jelly.name=Tough Jelly
 
 item.mud_helmet.name=Head Mud Mask
 item.mud_chestplate.name=Body Mud Mask
 item.mud_leggings.name=Legs Mud Mask
 item.mud_boots.name=Foot Mud Mask
 
-item.tough_jelly.name=Tough Jelly
-
 item.rainmaker_star.name=Rainmaker Star
 item.rainmaker.name=Rainmaker
 item.rainmaker.tooltip=Should explode above the clouds
 
-item.blossom_sign.name=Blossom Sign
 
-
-MOD ITEMS
+# MOD ITEMS
 
 item.tf_salt_cooked_venison.name=Salted Venison Steak
 item.tf_salt_meef_steak.name=Salted Meef Steak
@@ -274,7 +277,7 @@ item.bop_salt_rice_bowl.name=Salted Bowl of Rice
 item.bop_pickled_turnip.name=Pickled Turnip
 
 
-ACHIEVEMENTS
+# ACHIEVEMENTS
 
 achievement.salt=Salt!
 achievement.salt.desc=Get salt
@@ -310,6 +313,6 @@ achievement.saltCrystal=Wonder of Nature
 achievement.saltCrystal.desc=Find a salt crystal in deep caves
 
 
-BIOMES/GENERATION
+# BIOMES/GENERATION
 
 generator.saltMarsh=Salt Marsh

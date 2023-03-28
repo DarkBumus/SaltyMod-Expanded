@@ -2,7 +2,7 @@ package darkbum.saltymod.item;
 
 import java.util.List;
 
-import darkbum.saltymod.common.ProbablePotionEffect;
+import darkbum.saltymod.potion.ProbablePotionEffect;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;

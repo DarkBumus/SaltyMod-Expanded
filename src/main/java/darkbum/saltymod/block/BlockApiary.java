@@ -3,7 +3,7 @@ package darkbum.saltymod.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.SaltyMod;
-import darkbum.saltymod.tileentities.TileEntityApiary;
+import darkbum.saltymod.tileentity.TileEntityApiary;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;

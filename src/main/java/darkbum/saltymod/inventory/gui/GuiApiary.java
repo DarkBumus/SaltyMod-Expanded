@@ -1,7 +1,7 @@
 package darkbum.saltymod.inventory.gui;
 
 import darkbum.saltymod.inventory.container.ContainerApiary;
-import darkbum.saltymod.tileentities.TileEntityApiary;
+import darkbum.saltymod.tileentity.TileEntityApiary;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;

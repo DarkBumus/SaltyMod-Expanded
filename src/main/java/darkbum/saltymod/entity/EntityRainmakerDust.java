@@ -1,4 +1,4 @@
-package darkbum.saltymod.entities;
+package darkbum.saltymod.entity;
 
 import darkbum.saltymod.api.RainMakerEvent;
 import darkbum.saltymod.init.SaltConfig;

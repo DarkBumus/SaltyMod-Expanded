@@ -5,7 +5,6 @@ import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -119,7 +118,7 @@ public class ShapelessRecipes {
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.calamari_pie), new ItemStack(ModItems.salt), new ItemStack(ModItems.calamari), new ItemStack(ModItems.dough), new ItemStack(Items.egg));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltwort_pie), new ItemStack(ModItems.saltwort), new ItemStack(ModItems.saltwort), new ItemStack(ModItems.dough), new ItemStack(Items.egg));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.fermented_saltwort), new ItemStack(Items.ghast_tear), new ItemStack(Items.glass_bottle), new ItemStack(ModItems.saltwort), new ItemStack(ModItems.saltwort), new ItemStack(ModItems.saltwort), new ItemStack(ModItems.saltwort), new ItemStack(ModItems.saltwort));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.pickled_fern), new ItemStack(ModItems.salt_pinch), new ItemStack(Items.potionitem), new ItemStack(Blocks.tallgrass, 1, 2), new ItemStack(Blocks.tallgrass, 1, 2));
+        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.fermented_fern), new ItemStack(Items.ghast_tear), new ItemStack(Items.glass_bottle), new ItemStack(Blocks.tallgrass, 1, 2), new ItemStack(Blocks.tallgrass, 1, 2), new ItemStack(Blocks.tallgrass, 1, 2), new ItemStack(Blocks.tallgrass, 1, 2), new ItemStack(Blocks.tallgrass, 1, 2));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.pickled_calamari), new ItemStack(ModItems.salt_pinch), new ItemStack(Items.potionitem), new ItemStack(ModItems.calamari), new ItemStack(ModItems.calamari));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.pickled_onion), new ItemStack(ModItems.salt_pinch), new ItemStack(Items.potionitem), new ItemStack(ModItems.onion), new ItemStack(ModItems.onion));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.melon_preserves), new ItemStack(ModItems.sugar_pinch), new ItemStack(Items.potionitem), new ItemStack(Items.melon), new ItemStack(Items.melon));

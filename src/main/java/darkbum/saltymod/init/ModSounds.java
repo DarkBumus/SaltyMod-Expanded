@@ -3,45 +3,35 @@ package darkbum.saltymod.init;
 import net.minecraft.block.Block;
 
 public class ModSounds {
-	public static final Block.SoundType soundfizz = new CustomSound("random.fizz", 0.3F, 2.0F, false);
 
-	public static final Block.SoundType soundTypeDeepslate = new Block.SoundType("SaltDeepslateOre", 1.0F, 1.0F) {
-		public String getBreakSound() {
-			return "saltmod:block.deepslate.break";
-		}
-		public String getStepResourcePath() {
-			return "saltmod:block.deepslate.step";
-		}
-		public String func_150496_b() {
-			return "saltmod:block.deepslate.place";
-		}
-	};
+	public static final Block.SoundType soundFizz = new CustomSound("random.fizz", 0.3F, 2.0F, false);
 
 	public static final Block.SoundType soundTypeMud = new Block.SoundType("MudBlock", 1.0F, 1.0F) {
 		public String getBreakSound() {
-			return "saltmod:block.mud.break";
+			return "saltymod:block.mud.break";
 		}
 		public String getStepResourcePath() {
-			return "saltmod:block.mud.step";
+			return "saltymod:block.mud.step";
 		}
 	};
 
 	public static final Block.SoundType soundTypeWetMudBrick = new Block.SoundType("MudBrickWet", 1.0F, 1.0F) {
 		public String getBreakSound() {
-			return "saltmod:block.wet_mud_bricks.break";
+			return "saltymod:block.wet_mud_bricks.break";
 		}
 		public String getStepResourcePath() {
-			return "saltmod:block.wet_mud_bricks.step";
+			return "saltymod:block.wet_mud_bricks.step";
 		}
+
 	};
 
 
 	public static final Block.SoundType soundTypeDryMudBrick = new Block.SoundType("MudBrickDry", 1.0F, 1.0F) {
 		public String getBreakSound() {
-			return "saltmod:block.dry_mud_bricks.break";
+			return "saltymod:block.dry_mud_bricks.break";
 		}
 		public String getStepResourcePath() {
-			return "saltmod:block.dry_mud_bricks.step";
+			return "saltymod:block.dry_mud_bricks.step";
 		}
 	};
 

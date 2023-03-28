@@ -1,6 +1,6 @@
 package darkbum.saltymod.inventory.container;
 
-import darkbum.saltymod.tileentities.TileEntityApiary;
+import darkbum.saltymod.tileentity.TileEntityApiary;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;

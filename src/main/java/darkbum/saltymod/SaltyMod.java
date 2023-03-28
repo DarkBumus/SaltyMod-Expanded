@@ -279,9 +279,12 @@ public class SaltyMod {
             - Change Saltwort/Salt Dirt behavior
             - Rainmaker behavior!!!
             - Finish Blossom Burrow/Tree
+                - Add "Angry Bees" potion effect
+                    - Change the color of hearts when under the "Angry Bees" effect
+                - "Not the bees!" Achievement
             - Finish Apiary [as a whole]
             - Make Fish automatable [Fish Trap? Something else?]
-            - Create/Finish Blossom Fence&Fence Gate&Door&Trapdoor&Sign [Later Boat&Chest Boat&Hanging Sign]
+            - Create/Finish Blossom Sign [Later Boat&Chest Boat&Hanging Sign]
             - Tackle Powdered Milk Recipe [Duplicating Bucket]
             - Underground Salt Lakes?
             - Underground Salt Caves/Tunnels/Mines?

@@ -7,9 +7,9 @@ import darkbum.saltymod.init.ModItems;
 import net.minecraft.client.renderer.entity.RenderSnowball;
 import darkbum.saltymod.block.render.ExtractorRenderer;
 import darkbum.saltymod.block.render.SaltGrassRenderer;
-import darkbum.saltymod.entities.EntityRainmaker;
-import darkbum.saltymod.entities.EntityRainmakerDust;
-import darkbum.saltymod.entities.render.RenderRainmakerDust;
+import darkbum.saltymod.entity.EntityRainmaker;
+import darkbum.saltymod.entity.EntityRainmakerDust;
+import darkbum.saltymod.entity.render.RenderRainmakerDust;
 
 public class ClientProxy extends CommonProxy {
     public static int saltGrassRenderType;

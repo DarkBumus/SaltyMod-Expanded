@@ -16,7 +16,7 @@ import darkbum.saltymod.api.ExtractRegistry;
 import darkbum.saltymod.init.AchievSalt;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
-import darkbum.saltymod.world.*;
+import darkbum.saltymod.world.generator.*;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -37,13 +37,13 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import darkbum.saltymod.dispenser.DispenserBehaviorRainmaker;
 import darkbum.saltymod.dispenser.DispenserBehaviorSaltPinch;
-import darkbum.saltymod.entities.EntityRainmaker;
-import darkbum.saltymod.entities.EntityRainmakerDust;
+import darkbum.saltymod.entity.EntityRainmaker;
+import darkbum.saltymod.entity.EntityRainmakerDust;
 import darkbum.saltymod.inventory.gui.GuiExtractorHandler;
 import darkbum.saltymod.network.ExtractorButtonMessage;
 import darkbum.saltymod.network.SaltModEventHandler;
 import darkbum.saltymod.network.SaltWortMessage;
-import darkbum.saltymod.tileentities.TileEntityExtractor;
+import darkbum.saltymod.tileentity.TileEntityExtractor;
 
 public class CommonProxy {
 

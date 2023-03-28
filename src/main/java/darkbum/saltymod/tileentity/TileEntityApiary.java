@@ -1,4 +1,4 @@
-package darkbum.saltymod.tileentities;
+package darkbum.saltymod.tileentity;
 
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;

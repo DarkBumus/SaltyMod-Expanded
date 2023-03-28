@@ -6,7 +6,7 @@ import darkbum.saltymod.blockitem.*;
 import darkbum.saltymod.block.*;
 import darkbum.saltymod.block.BlockSaltBlock;
 import darkbum.saltymod.block.BlockSaltFlower;
-import darkbum.saltymod.tileentities.TileEntityBlossomSign;
+import darkbum.saltymod.tileentity.TileEntityBlossomSign;
 import net.minecraft.block.*;
 import net.minecraft.creativetab.CreativeTabs;
 import darkbum.saltymod.SaltyMod;
@@ -65,9 +65,11 @@ public class ModBlocks {
 
     public static Block blossom_burrow = new BlockBlossomBurrow("blossom_burrow", tab);
 
+    public static Block blossom_wood = new BlockBlossomWood("blossom_wood", tab);
+
     public static Block blossom_stripped_log = new BlockBlossomStrippedLog("blossom_stripped_log", tab);
 
-    public static Block blossom_wood = new BlockBlossomWood("blossom_wood", tab);
+    public static Block blossom_stripped_burrow = new BlockBlossomStrippedBurrow("blossom_stripped_burrow", tab);
 
     public static Block blossom_stripped_wood = new BlockBlossomStrippedWood("blossom_stripped_wood", tab);
 
@@ -77,9 +79,11 @@ public class ModBlocks {
 
     public static BlockSlab double_blossom_slab = new BlockBlossomSlab(true, "double_blossom_slab", null);
 
+    public static Block blossom_stairs = new BlockBlossomStairs("blossom_stairs", tab);
+
     public static BlockFence blossom_fence = new BlockBlossomFence("blossom_fence", tab);
 
-    public static Block blossom_stairs = new BlockBlossomStairs("blossom_stairs", tab);
+    public static BlockFenceGate blossom_fence_gate = new BlockBlossomFenceGate("blossom_fence_gate", tab);
 
     public static Block blossom_pressure_plate = new BlockBlossomPressurePlate(0, tab);
 
@@ -88,8 +92,6 @@ public class ModBlocks {
     public static Block blossom_door = new BlockBlossomDoor("blossom_door", tab);
 
     public static Block blossom_trapdoor = new BlockBlossomTrapdoor("blossom_trapdoor", tab);
-
-    public static BlockFenceGate blossom_fence_gate = new BlockBlossomFenceGate("blossom_fence_gate", tab);
 
     public static Block blossom_sign_standing = new BlockBlossomSign(TileEntityBlossomSign.class, true);
 
@@ -155,6 +157,7 @@ public class ModBlocks {
         GameRegistry.registerBlock(blossom_burrow, "blossom_burrow");
         if(Loader.isModLoaded("etfuturum")) {
             GameRegistry.registerBlock(blossom_stripped_log, "blossom_stripped_log");
+            GameRegistry.registerBlock(blossom_stripped_burrow, "blossom_stripped_burrow");
             GameRegistry.registerBlock(blossom_wood, "blossom_wood");
             GameRegistry.registerBlock(blossom_stripped_wood, "blossom_stripped_wood");
         }

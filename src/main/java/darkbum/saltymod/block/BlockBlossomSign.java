@@ -28,7 +28,7 @@ public class BlockBlossomSign extends BlockSign {
     }
 
     public void registerBlockIcons(IIconRegister icon) {
-        blockIcon = icon.registerIcon("saltymod:blossom_sign");
+        blockIcon = icon.registerIcon("saltymod:blossom_planks");
     }
 
     @SideOnly(Side.CLIENT)

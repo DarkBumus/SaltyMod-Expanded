@@ -1,4 +1,4 @@
-package darkbum.saltymod.world;
+package darkbum.saltymod.world.biome;
 
 import java.util.Random;
 

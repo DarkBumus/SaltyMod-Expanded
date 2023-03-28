@@ -1,6 +1,6 @@
 package darkbum.saltymod.dispenser;
 
-import darkbum.saltymod.entities.EntityRainmaker;
+import darkbum.saltymod.entity.EntityRainmaker;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.dispenser.IBehaviorDispenseItem;
 import net.minecraft.dispenser.IBlockSource;

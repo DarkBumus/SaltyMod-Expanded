@@ -1,11 +1,11 @@
-package darkbum.saltymod.biomes;
+package darkbum.saltymod.world.biome;
 
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.SaltConfig;
 import darkbum.saltymod.world.*;
+import darkbum.saltymod.world.generator.SaltLakeGenerator;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenFlowers;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenReed;
 import net.minecraft.world.gen.feature.WorldGenWaterlily;

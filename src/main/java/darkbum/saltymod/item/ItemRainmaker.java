@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
-import darkbum.saltymod.entities.EntityRainmaker;
+import darkbum.saltymod.entity.EntityRainmaker;
 
 public class ItemRainmaker extends Item {
     public static NBTTagCompound tag = new NBTTagCompound();

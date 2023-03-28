@@ -1,4 +1,4 @@
-package darkbum.saltymod.biomes;
+package darkbum.saltymod.world.biome;
 
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.SaltConfig;

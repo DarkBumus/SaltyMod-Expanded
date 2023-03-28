@@ -61,6 +61,10 @@ public class SaltConfig extends Configuration {
 
     public static int brickmakerCampFrequency;
 
+    public static int beesID;
+
+    public static int wellFedID;
+
     private File file;
 
     public SaltConfig(File file) {
@@ -95,6 +99,8 @@ public class SaltConfig extends Configuration {
         saltOreBiome = getBoolean("Generate Additional Salt Ore", "Biome Generation", true, "If true, generates additional salt ore in Salt Marshes");
         enableBrickmakerCamp = getBoolean("Enables Brickmaker Camps", "Biome Generation", true, "If true, spawns Brickmaker Camps in the Salt Marshes");
         brickmakerCampFrequency = getInt("BrickmakerCampFrequency", "Biome Generation", 300, 10, 1000, "Changes the frequency of Brickmaker Camps in Salt Marshes");
+        beesID = getInt("BeesID", "Potions", 28, 0, Byte.MAX_VALUE, "Sets the Potion ID for the 'Bees!' Potion Effect");
+        wellFedID = getInt("WellFedID", "Potions", 29, 0, Byte.MAX_VALUE, "Sets the Potion ID for the 'Well Fed' Potion Effect");
         save();
     }
 

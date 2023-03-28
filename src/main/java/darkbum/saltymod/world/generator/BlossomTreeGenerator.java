@@ -1,6 +1,7 @@
-package darkbum.saltymod.world;
+package darkbum.saltymod.world.generator;
 
 import cpw.mods.fml.common.IWorldGenerator;
+import darkbum.saltymod.world.WorldGenBlossomBigTree;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 
