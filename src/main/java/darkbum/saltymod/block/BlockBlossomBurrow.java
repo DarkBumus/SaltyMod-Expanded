@@ -74,7 +74,7 @@ public class BlockBlossomBurrow extends Block {
             world.setBlock(x, y, z, ModBlocks.blossom_stripped_burrow);
             player.addPotionEffect(new PotionEffect(Potion.wither.id, 500,4));
 //            player.addPotionEffect(new PotionEffect(ModPotion.bees.id, 500, 4)); DOESN'T WORK YET
-//            world.playSoundEffect(x, y, z, "saltymod:block.blossom_burrow.bees", 1.0F, 1.0F); DOESN'T WORK YET
+            world.playSoundEffect(x, y, z, "saltymod:block.blossom_burrow.bees", 0.25F, 1.5F);
         }
         return false;
     }

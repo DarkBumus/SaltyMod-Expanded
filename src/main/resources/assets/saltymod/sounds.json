@@ -65,12 +65,12 @@
       "block/wet_mud_bricks/step6"
     ]
   },
-//"block.blossom_burrow.bees": {
-//	"category": "block",
-//	"sounds": [
-//	  "block/blossom_burrow/bees1",
-//	  "block/blossom_burrow/bees2",
-//	  "block/blossom_burrow/bees3"
-//	]
-//  },
+"block.blossom_burrow.bees": {
+	"category": "block",
+	"sounds": [
+	  "block/blossom_burrow/bees1",
+	  "block/blossom_burrow/bees2",
+	  "block/blossom_burrow/bees3"
+	]
+  }
 }
