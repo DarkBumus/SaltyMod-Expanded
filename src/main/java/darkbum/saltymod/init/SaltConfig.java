@@ -82,7 +82,7 @@ public class SaltConfig extends Configuration {
         saltCrystalGrowSpeed = getInt("SaltCrystalGrowRate", "Farm", 14, 1, 20, "The salt crystals growth rate (1 - fastly, 20 - slowly)");
         saltWortGrowSpeed = getInt("SaltWortGrowRate", "Farm", 7, 1, 20, "The saltwort growth rate (1 - fastly, 20 - slowly)");
         enableHoney = getBoolean("Enables Honey", "Farm", true, "If true, enables the Blossom Trees, Apiary and all the adjacent Items");
-        mudBrickComplex = getBoolean("Makes Mud Bricks complex [Currently doesn't do anything and only disables the recipe to get dry mud bricks]", "Blocks", false, "If true, makes Wet Mud Bricks dry when put on the ground, instead of in the furnace");
+        mudBrickComplex = getBoolean("Makes Mud Bricks complex [Currently doesn't do anything and only disables the recipe to get dry mud bricks]", "Blocks", true, "If true, makes Wet Mud Bricks dry when put on the ground, instead of in the furnace");
         extractorVolume = getInt("EvaporatorVolume", "Evaporator", 1, 1, 3, "The number of buckets in evaporator");
         fizzyEffect = getBoolean("FizzyEffect", "Effects", false, "Do Fizzy Drink removes all effects? (true - all effects, false - milk analogue)");
         mudArmorWaterDam = getBoolean("MudArmorWaterDamage", "Armor", true, "Mud Armor water damage");

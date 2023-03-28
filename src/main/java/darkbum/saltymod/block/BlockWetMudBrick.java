@@ -40,11 +40,7 @@ public class BlockWetMudBrick extends Block {
 		setHardness(1.0F);
 		setResistance(3.0F);
 		setHarvestLevel("shovel", 0);
-		if(SaltConfig.mudBrickComplex) {
-		setTickRandomly(true);
-		} else {
-		setTickRandomly(false);
-		}
+		setTickRandomly(SaltConfig.mudBrickComplex);
 	}
 
 	@SideOnly(Side.CLIENT)

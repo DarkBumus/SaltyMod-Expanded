@@ -5,7 +5,6 @@ import java.util.Random;
 import darkbum.saltymod.init.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -387,7 +386,7 @@ public class WorldGenBlossomBigTree extends WorldGenAbstractTree {
         int[] aint = new int[]{this.basePos[0], this.basePos[1], this.basePos[2]};
         int[] aint1 = new int[]{this.basePos[0], this.basePos[1] + this.heightLimit - 1, this.basePos[2]};
         Block block = this.worldObj.getBlock(this.basePos[0], this.basePos[1] - 1, this.basePos[2]);
-        boolean isSoil = block.canSustainPlant(this.worldObj, this.basePos[0], this.basePos[1] - 1, this.basePos[2], ForgeDirection.UP, (BlockSapling)Blocks.sapling);
+        boolean isSoil = block.canSustainPlant(this.worldObj, this.basePos[0], this.basePos[1] - 1, this.basePos[2], ForgeDirection.UP, (BlockSapling)ModBlocks.blossom_sapling);
         if (!isSoil) {
             return false;
         } else {

@@ -30,11 +30,11 @@ public class BlockBlossomFence extends BlockFence {
         return side == ForgeDirection.UP;
     }
 
-    @Override
+/*    @Override
     public boolean canConnectFenceTo(IBlockAccess world, int x, int y, int z) {
         Block block = world.getBlock(x, y, z);
         return super.canConnectFenceTo(world, x, y, z) || block instanceof BlockWoodFence || block instanceof BlockWoodFenceGate;
-    }
+    }*/
 
     @Override
     @SideOnly(Side.CLIENT)
