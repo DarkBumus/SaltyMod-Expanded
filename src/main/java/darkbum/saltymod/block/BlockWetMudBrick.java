@@ -63,6 +63,16 @@ public class BlockWetMudBrick extends Block {
     @Override
     public void updateTick(World world, int x, int y, int z, Random rand) {
         int meta = world.getBlockMetadata(x, y, z);
+        Block blockBelow = world.getBlock(x, y - 1, z);
+        //Advance the drying stage without any special math, the block below is fire/lava and should take precedent over all.
+        if(blockBelow.getMaterial() == Material.fire || blockBelow.getMaterial() == Material.lava) {
+            if(meta == 2) {
+                world.setBlock(x, y, z, ModBlocks.dry_mud_brick);//Tada! The drying stage was 2, so this one is promoted to a fully dried brick!
+            } else {
+                world.setBlock(x, y, z, this, meta + 1, 2);//Advance the drying stage.
+            }
+            return;
+        }
         if(world.isRaining() && world.canBlockSeeTheSky(x, y + 1, z)) { //It is raining or snowing on this mud block
             BiomeGenBase biome = world.getBiomeGenForCoords(x, z);
             if(biome.rainfall > 0) {
@@ -76,27 +86,27 @@ public class BlockWetMudBrick extends Block {
         int slowFactor = 0;
         int speedFactor = 0;
 
-        if(!world.isRemote && rand.nextFloat() < 0.75F && meta < 3) {
+        if(!world.isRemote && (world.provider.dimensionId == -1 || rand.nextFloat() < 0.75F) && meta < 3) {
             for(int i = 0; i < 6; i++) {//Iterate 6 times, 1 in each direction for each side of the block.
                 ForgeDirection dir = ForgeDirection.getOrientation(i);
-                Block block = world.getBlock(x + dir.offsetX, y + dir.offsetY, z + dir.offsetZ);
+                Block nearbyBlock = world.getBlock(x + dir.offsetX, y + dir.offsetY, z + dir.offsetZ);
                 if(dir != ForgeDirection.DOWN) {//If it's direction.DOWN we skip it because water below the block isn't touching it
-                    if(block.getMaterial() == Material.water) {//If it's water, we reset the brick to stage 0.
+                    if(nearbyBlock.getMaterial() == Material.water) {//If it's water, we reset the brick to stage 0.
                         if(meta > 0) {
                             world.setBlock(x, y, z, this, 0, 2);
                         }
                         return;
                     }
                     //Else if there's some sort of snow atop the block, we stop the drying without resetting the mud brick stage
-                    if(dir == ForgeDirection.UP && block.getMaterial() == Material.snow) {
+                    if(dir == ForgeDirection.UP && nearbyBlock.getMaterial() == Material.snow) {
                         return;
                     }
                 }
-                if(block instanceof BlockDryMudBrick) {
+                if(nearbyBlock instanceof BlockDryMudBrick) {
                     speedFactor++;//We don't need any of the below calculations; if it's a fully dry brick it must be ahead, add to the drying speed!
                     continue;
                 }
-                if(block instanceof BlockWetMudBrick) {
+                if(nearbyBlock instanceof BlockWetMudBrick) {
                     int nearbyMeta = world.getBlockMetadata(x + dir.offsetX, y + dir.offsetY, z + dir.offsetZ);
 
                     //If this one's outside of the drying range or is the same stage as this mud block, don't count it towards speeding or slowing the drying process.
