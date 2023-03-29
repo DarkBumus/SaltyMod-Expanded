@@ -1,4 +1,4 @@
-﻿# CREATIVE TAB
+# CREATIVE TAB
 
 itemGroup.salt=TuzluMod Yepyeni!
 
@@ -14,7 +14,7 @@ death.attack.taint.player=%1$s, %2$s kovalarken arılar sokarak öldürüldü!
 
 tile.salt_ore.name=Tuz Cevheri
 tile.deepslate_salt_ore.name=Kayrak Taşı Tuz Cevheri
-tile.etfuturum.deepslate_saltore.Kayrak Taşı Tuz Cevheri
+tile.etfuturum.deepslate_saltore.name=Kayrak Taşı Tuz Cevheri
 tile.salt_lake_ore.name=Tuz Gölü Dibi
 tile.salt_lake_dirt.name=Tuz Gölü Dibi
 tile.salt_block.name=Tuz Bloğu
