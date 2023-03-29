@@ -1,0 +1,327 @@
+﻿# CREATIVE TAB
+
+itemGroup.salt=TuzluMod Yepyeni!
+
+
+# POTION EFFECTS
+
+potion.bees=Bees!
+death.attack.beesDamage=%1$s arılar tarafından öldüresiye sokuldu.
+death.attack.taint.player=%1$s, %2$s kovalarken arılar sokarak öldürüldü!
+
+
+# BLOCKS
+
+tile.salt_ore.name=Tuz Cevheri
+tile.deepslate_salt_ore.name=Kayrak Taşı Tuz Cevheri
+tile.etfuturum.deepslate_saltore.Kayrak Taşı Tuz Cevheri
+tile.salt_lake_ore.name=Tuz Gölü Dibi
+tile.salt_lake_dirt.name=Tuz Gölü Dibi
+tile.salt_block.name=Tuz Bloğu
+tile.salt_chiseled_block.name=Oyulmuş Tuz Bloğu
+tile.salt_pillar.name=Tuz Sütun
+tile.salt_brick.name=Tuz Tuğla
+tile.salt_cracked_block.name=Çatlak Tuz Bloğu
+tile.salt_cracked_brick.name=Çatlak Tuz Tuğla
+tile.salt_chiseled_brick.name=Oyulmuş Tuz Tuğla
+tile.salt_chapiter.name=Tuz Başlık
+tile.salt_brick_stairs.name=Tuz Tuğla Merdiven
+tile.salt_slab.block.name=Tuz Basamak
+tile.salt_slab.brick.name=Tuz Tuğla Basamak
+tile.salt_slab.pillar.name=Tuz Sütun Basamak
+tile.salt_lamp.name=Tuz Lamba
+tile.salt_grass.name=Tuzlu Çimen
+tile.salt_dirt.name=Tuzlu Toprak
+tile.salt_dirt.mess=Biraz daha tuz at da fare zehrine dönsün...
+tile.mineral_mud.name=Mineralli Çamur
+tile.wet_mud_brick.name=Islak Çamur Tuğla
+tile.dry_mud_brick.name=Çamur Tuğla
+tile.dry_mud_brick_stairs.name=Çamur Tuğla Merdiven
+tile.dry_mud_brick_slab.name=Çamur Tuğla Basamak
+tile.dry_mud_brick_wall.name=Çamur Tuğla Duvar
+
+tile.salt_crusted_oak_log.name=Tuz Tortulu Mese Kütüğü
+tile.blossom_planks.name=Çiçekli Tahta
+tile.blossom_sapling.name=Çiçek Fidanı
+tile.blossom_log.name=Çiçek Kütüğü
+tile.blossom_burrow.name=Çiçek Oyuğu
+tile.blossom_wood.name=Çiçek Wood
+tile.blossom_stripped_log.name=Soyulmuş Çiçek Kütüğü
+tile.blossom_stripped_burrow.name=Soyulmuş Çiçek Oyuğu
+tile.blossom_stripped_wood.name=Soyulmuş Çiçek Wood
+tile.blossom_leaves.name=Çiçek Yaprakları
+tile.blossom_slab.name=Çiçek Basamağı
+tile.blossom_stairs.name=Çiçek Merdiven
+tile.blossom_fence.name=Çiçek Çit
+tile.blossom_fence_gate.name=Çiçek Çit Kapısı
+tile.blossom_pressure_plate.name=Çiçek Basınç Plakası
+tile.blossom_button.name=Çiçek Düğme
+tile.blossom_door.name=Çiçek Kapı
+tile.blossom_trapdoor.name=Çiçek Tuzak Kapısı
+tile.blossom_sign.name=Çiçek Tabela
+
+tile.apiary.name=Arı Kovanı
+tile.extractor.name=Buharlaştırıcı
+container.extractor=Buharlaştırıcı
+container.discard=İptal
+fluid.milk=Süt
+
+tile.storage_crate_carrot.name=Havuç Kasası
+tile.storage_crate_potato.name=Patates Kasası
+tile.storage_crate_poisonous_potato.name=Zehirli Patates Kasası
+tile.storage_crate_onion.name=Soğan Kasası
+tile.storage_crate_beetroot.name=Pancar Kasası
+tile.storage_barrel_cod.name=Morina Varili
+tile.storage_barrel_salmon.name=Somon Varili
+tile.storage_barrel_tropical_fish.name=Tropik Balık Varili
+tile.storage_barrel_tailor.name=Lüfer Varili
+tile.storage_barrel_pufferfish.name=Balon Balığı Varili
+tile.storage_sack_wheatseeds.name=Buğday Tohumu Çuvalı
+tile.storage_sack_melonseeds.name=Karpuz Tohumu Çuvalı
+tile.storage_sack_pumpkinseeds.name=Balkabağı Tohumu Çuvalı
+tile.storage_sack_saltwort.name=Salicornia Çuvalı
+tile.storage_sack_beetrootseeds.name=Pancar Tohumu Çuvalı
+
+tile.salt_crystal.name=Tuz Kristali
+tile.saltworts.name=Salicornia
+tile.onions.name=Soğan
+tile.marsh_reeds.name=Bataklık Sazları
+tile.salt_flower_daucus.name=Daucus
+tile.salt_flower_wild_carrot.name=Daucus
+tile.salt_flower_solanum.name=Solanum
+tile.salt_flower_wild_potato.name=Solanum
+tile.salt_flower_wild_onion.name=Alyum
+tile.salt_flower_maritima.name=Deniz Süt Otu
+tile.salt_flower_wild_beet.name=Deniz Süt Otu
+
+
+# ITEMS
+
+item.minecraft.fish.name=Çiğ Morina
+item.minecraft.cooked_fished.name=Pişmiş Morina
+
+item.etfuturum.rabbit_stew.name=Tavşan Yahnisi
+item.etfuturum.beetroot_soup.name=Pancar Çorbası
+item.etfuturum.sweet_berries.name=Tatlı Çilek
+
+item.void_apple.name=§5Boşluk Elması
+item.void_apple.tooltip=Tokluğu düşürür
+item.stuffing_apple.name=§6Şişiren Elma
+item.stuffing_apple.tooltip=Tokluğu arttırır.
+item.testing_apple.name=§bTest Elması
+
+item.item_blossom_boat.name=Çiçek Bot
+item.item_blossom_chest_boat.name=Çiçek Sandıklı Bot
+item.item_blossom_sign.name=Çiçek Tabela
+item.item_blossom_hanging_sign.name=Çiçek Asılı Tabela
+item.blossom.name=Çiçek
+item.bee_larva.name=Arı Larvası
+item.carpenter_bee.name=Marangoz Arı
+item.waxcomb.name=Balmumu Peteği
+item.honeycomb.name=Bal Peteği
+item.royal_jelly.name=Arı Sütü
+
+item.mineral_mud_ball.name=Mineralli Çamur Topu
+item.baking_soda.name=Karbonat
+item.powdered_milk.name=Süt Tozu
+item.powdered_milk.tooltip=Su Kovası&Kova ile karıştırılmış
+item.salt.name=Tuz
+item.salt_pinch.name=Bir Tutam Tuz
+item.sugar_pinch.name=Bir Tutam Şeker
+
+item.dough.name=Hamur
+item.onion.name=Soğan
+item.saltwort.name=Salicornia
+item.golden_saltwort.name=Altın Salicornia
+item.golden_potato.name=Altın Patates
+item.golden_berries.name=Altın Tatlı Çilek
+item.salt_cooked_porkchop.name=Tuzlanmış Pişmiş Domuz Pirzolası
+item.salt_cooked_beef.name=Tuzlanmış Biftek
+item.salt_cooked_chicken.name=Tuzlanmış Pişmiş Tavuk
+item.salt_cooked_rabbit.name=Tuzlanmış Pişmiş Tavşan
+item.salt_cooked_mutton.name=Tuzlanmış Pişmiş Koyun Eti
+item.strider.name=Çiğ LavGezer Kanatı
+item.cooked_strider.name=LavGezer Bifteği
+item.salt_cooked_strider.name=Tuzlanmış LavGezer Bifteği
+item.haunch.name=Çiğ But
+item.cooked_haunch.name=Pişmiş But
+item.salt_cooked_haunch.name=Tuzlanmış Pişmiş But
+item.cured_meat.name=İşlenmiş Et
+item.salt_cooked_cod.name=Tuzlanmış Pişmiş Morina
+item.salt_cooked_salmon.name=Tuzlanmış Pişmiş Somon
+item.cooked_tropical_fish.name=Pişmiş Tropik Somon
+item.salt_cooked_tropical_fish.name=Tuzlanmış Pişmiş Tropik Somon
+item.tailor.name=Çiğ Terzi Balığı
+item.cooked_tailor.name=Pişmiş Terzi Balığı
+item.salt_cooked_tailor.name=Tuzlanmış Pişmiş Terzi Balığı
+item.calamari.name=Çiğ Kalamar
+item.cooked_calamari.name=Pişmiş Kalamar
+item.salt_cooked_calamari.name=Tuzlanmış Pişmiş Kalamar
+item.salt_bread.name=Tuzlanmış Ekmek
+item.salt_baked_potato.name=Tuzlanmış Pişmiş Patates
+item.salt_beetroot.name=Tuzlanmış Pancar
+item.salt_egg.name=Haşlanmış Egg
+
+item.salt_mushroom_stew.name=Tuzlanmış Mantar Çorbası
+item.salt_rabbit_stew.name=Tuzlanmış Rabbit Yahnisi
+item.salt_beetroot_soup.name=Tuzlanmış Pancar Çorbası
+item.pumpkin_porridge.name=Kabak Lapası
+item.salt_pumpkin_porridge.name=Tuzlanmış Kabak Lapası
+item.cactus_stew.name=Kaktüs Çorbası
+item.salt_cactus_stew.name=Tuzlanmış Kaktüs Çorbası
+item.stewed_vegetables.name=Haşlanmış Sebzeler
+item.salt_stewed_vegetables.name=Tuzlanmış Haşlanmış Sebzeler
+item.potato_mushroom.name=Patates ve Mantar
+item.salt_potato_mushroom.name=Tuzlanmış Patates ve Mantar
+item.golden_vegetables.name=Altın Sebzeler
+item.salt_golden_vegetables.name=Tuzlanmış Altın Sebzeler
+item.fish_soup.name=Somon Çorbası
+item.salt_fish_soup.name=Tuzlanmış Somon Çorbası
+item.dandelion_salad.name=Karahindiba Salatası
+item.salt_dandelion_salad.name=Tuzlanmış Karahindiba Salatası
+item.wheat_sprouts.name=Buğday Tomurcukları
+item.salt_wheat_sprouts.name=Tuzlanmış Buğday Tomurcukları
+item.beetroot_salad.name=Pancar Salatası
+item.salt_beetroot_salad.name=Tuzlanmış Pancar Salatası
+item.dressed_herring.name=Soğan Kaplı Ringa Balığı
+item.salt_dressed_herring.name=Tuzlanmış Soğan Kaplı Ringa Balığı
+item.saltwort_salad.name=Salicornia Salatası
+item.golden_saltwort_salad.name=Altın Salicornia Salatası
+item.saltwort_cooked_porkchop.name=Tuzlanmış Pişmiş Domuz Pirzolası ve Salicornia
+item.saltwort_honey_porkchop.name=Bal Sırlanmış Domuz Pirzolası ve Salicornia
+item.saltwort_cooked_beef.name=Tuzlanmış Biftek ve Salicornia
+item.saltwort_cooked_mutton.name=Tuzlanmış Pişmiş Koyun Eti ve Salicornia
+item.saltwort_cooked_strider.name=Tuzlanmış LavGezer Bifteği ve Salicornia
+item.saltwort_cooked_haunch.name=Tuzlanmış Pişmiş But ve Salicornia
+
+item.sugar_apple.name=Şekerli Elma
+item.sugar_melon.name=Şekerli Karpuz Dilimi
+item.sugar_berries.name=Şekerli Tatlı Çilek
+item.fruit_salad.name=Meyve Salatası
+item.sugar_fruit_salad.name=Şekerli Meyve Salatası
+item.golden_fruit_salad.name=Altın Meyve Salatası
+item.sugar_golden_fruit_salad.name=Şekerli Altın Meyve Salatası
+item.grated_carrot.name=Rendelenmiş Havuç
+item.sugar_grated_carrot.name=Şekerli Rendelenmiş Havuç
+item.melon_soup.name=Karpuz Çorbası
+item.sugar_melon_soup.name=Şekerli Karpuz Çorbası
+item.honey_porkchop.name=Bal Sırlanmış Domuz Pirzolası
+item.honey_apple.name=Bal Sırlanmış Elma
+item.honey_berries.name=Bal Sırlanmış Tatlı Çilek
+item.chocolate_berries.name=Çikolata Kaplanmış Tatlı Çilek
+item.chocolate_bar.name=Çikolata
+item.chocolate_bar.tooltip=Çok Yeme!
+item.chocolate_bar.mess.0=Çok Fazla!
+item.chocolate_bar.mess.1=Şiştim!
+item.chocolate_bar.mess.2=Kesin Hasta Olacağım!
+item.chocolate_bar.mess.3=Öğk!
+
+item.chocolate_pie.name=Çikolata Turtası
+item.birthday_pie.name=Doğum Günü Turtası
+item.apple_pie.name=Elma Turtası
+item.sweetberry_pie.name=Tatlı Çilek Turtası
+item.carrot_pie.name=Havuç Turtası
+item.mushroom_pie.name=Mantar Turtası
+item.potato_pie.name=Patates Turtası
+item.onion_pie.name=Soğan Turtası
+item.shepherds_pie.name=Çoban Turtası
+item.cod_pie.name=Morina Turtası
+item.salmon_pie.name=Somon Turtası
+item.tropical_fish_pie.name=Tropik Somon Turtası
+item.tailor_pie.name=Terzi Balığı Turtası
+item.calamari_pie.name=Kalamar Turtası
+item.saltwort_pie.name=Salicornia Turtası
+
+item.fermented_saltwort.name=Fermente Salicornia
+item.fermented_fern.name=Fermente Eğrelti Otu
+item.fermented_mushroom.name=Fermente Mantar
+item.pickled_calamari.name=Turşulanmış Kalamar
+item.pickled_beetroot.name=Turşulanmış Pancar
+item.pickled_onion.name=Turşulanmış Soğan
+item.apple_preserves.name=Konserve Elma
+item.melon_preserves.name=Konserve Karpuz
+item.berry_preserves.name=Konserve Tatlı Çilek
+
+item.fizzy_drink.name=Gazlı İçecek
+item.fizzy_drink.tooltip=Etkileri kaldırır ve ateşleri söndürür.
+item.tunneler_concoction.name=Tünelci Karışımı
+item.tunneler_concoction.tooltip=Iyy, ama iş görür <,<
+item.muffin.name=Topkek
+item.muffin.tooltip=Tatlı İçin!
+item.muffin.mess.0=Afiyet Olsun!
+item.muffin.mess.1=Mmm... Lezzetli!
+item.muffin.mess.2=Ham yam
+item.muffin.mess.3=Leziz!
+item.tough_jelly.name=Sert Jelibon
+
+item.mud_helmet.name=Çamur Maskesi Kask
+item.mud_chestplate.name=Çamur Maskesi Göğüslük
+item.mud_leggings.name=Çamur Maskesi Tozluk
+item.mud_boots.name=Çamur Maskesi Çizme
+
+item.rainmaker_star.name=Yağmurdöker Yıldızı
+item.rainmaker.name=Yağmurdöker
+item.rainmaker.tooltip=Bulutlar üstünde patlar.
+
+
+# MOD ITEMS
+
+item.tf_salt_cooked_venison.name=Tuzlanmış Geyik Bifteği
+item.tf_salt_meef_steak.name=Tuzlanmış Meef Bifteği
+item.tf_salt_meef_stroganoff.name=Tuzlanmış Meef Stroganoff
+item.tf_salt_hydra_chop.name=Tuzlanmış Hydra Dilimi
+item.tf_pickled_mushgloom.name=Turşulanmış Mushgloom
+item.tf_saltwort_cooked_venison.name=Geyik Bifteği Ve Salicornia
+item.tf_saltwort_meef_steak.name=Meef Bifteği Ve Salicornia
+
+item.bop_hemoglobin.name=Hemoglobin
+item.bop_poison.name=Zehir
+item.bop_salt_shroom_powder.name=Tuzlanmış Mantar Tozu
+item.bop_sugar_fruit_salad.name=Şekerli Meyve Salatası
+item.bop_salt_veggie_salad.name=TuzlanmışSebze Salatası
+item.bop_salt_shroom_salad.name=Tuzlanmış Mantar Salatası
+item.bop_salt_rice_bowl.name=Tuzlanmış Pirinç Kasesi
+item.bop_pickled_turnip.name=Turşulanmış Turp
+
+
+# ACHIEVEMENTS
+
+achievement.salt=Tuz!
+achievement.salt.desc=Tuz elde et
+achievement.saltFarm=Tuzlu Çiftçi
+achievement.saltFarm.desc=Bir tuz yetiştir ve topla
+achievement.rain=Yağmurdöker
+achievement.rain.desc=Yağmuru çağır
+achievement.mineralMud=Koyu ve Katı Bir Şey
+achievement.mineralMud.desc=Mineral Çamur bul ve karıştır
+achievement.fullMud=Güzellik ve Sağlık
+achievement.fullMud.desc=Tüm vücuduna çamur maskesi yap
+achievement.discomfiture=Rahatsızlık
+achievement.discomfiture.desc=Çamur maskesini yıka
+achievement.saltWort=Tuzda Hayat mı Var?
+achievement.saltWort.desc=Salicornia bul.
+achievement.saltWortFarm=Tedavi Tanrısı
+achievement.saltWortFarm.desc=Salicornia ile bir toprağı zenginleştir.
+achievement.fizzyDrink=Ateşi Söndür!
+achievement.fizzyDrink.desc=Gazlı İçecek ile yan etkileri yok et.
+achievement.muffin=Tombiş
+achievement.muffin.desc=Bir topkek yedikten sonra doygunluk efekti kazan.
+achievement.moreBuckets=10,000 kova daha!
+achievement.moreBuckets.desc=Buharlaştırıcı ile tuz elde et.
+achievement.saltCrystalGet=Tuzdan daha fazlası
+achievement.saltCrystalGet.desc=Tuz kristali elde et
+achievement.saltWitch=Achillesin topuğu
+achievement.saltWitch.desc=Bir cadıyı tuz kristali ile öldür.
+achievement.saltSlime=Sert şeker
+achievement.saltSlime.desc=Bir balçığı tuz kristali ile öldür.
+achievement.saltLake=Yerler çıtırdıyor
+achievement.saltLake.desc=Kurumuş bir göl üzerinde yürü
+achievement.saltCrystal=Doğa harikaları
+achievement.saltCrystal.desc=Derin madenlerde tuz kristalleri bul
+achievement.beesStung=Arılar Olmaz!
+achievement.beesStung.desc=Bir Marangoz Arı sürüsü kışkırt.
+
+
+# BIOMES/GENERATION
+
+generator.saltMarsh=Tuz Bataklığı
