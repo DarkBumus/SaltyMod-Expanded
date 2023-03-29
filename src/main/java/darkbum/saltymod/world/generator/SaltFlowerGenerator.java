@@ -11,11 +11,7 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import org.apache.commons.lang3.ArrayUtils;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Random;
-
-import static net.minecraftforge.common.BiomeDictionary.Type.COLD;
 
 public class SaltFlowerGenerator implements IWorldGenerator {
 

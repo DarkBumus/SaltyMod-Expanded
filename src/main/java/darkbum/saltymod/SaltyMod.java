@@ -12,6 +12,7 @@ import cpw.mods.fml.common.versioning.ComparableVersion;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 import darkbum.saltymod.common.*;
+import darkbum.saltymod.potion.ModPotion;
 import darkbum.saltymod.structure.ChestLootHandler;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -56,6 +57,7 @@ public class SaltyMod {
         event.getModMetadata().credits = EnumChatFormatting.AQUA + "Thanks to original author Liahim85 and contributors jss2a98aj, Roadhog360, DelirusCrux, AstroTibs, Just Moe";
         config = new SaltConfig(event.getSuggestedConfigurationFile());
         config.preInit();
+        ModPotion.init();
         ModItems.init();
         ModBlocks.init();
         ModBiomes.SaltMod();

@@ -16,14 +16,12 @@ public class ModPotion extends Potion {
 
     private static final ResourceLocation POTION_ICONS = new ResourceLocation("saltymod:textures/gui/container/potions.png");
 
-    public static DamageSource beesDamage;
     public static Potion bees;
 
     public static Potion wellFed;
 
     public static void init() {
 
-        beesDamage = new DamageSource("bees").setDamageBypassesArmor().setFireDamage();
         bees = new PotionBees(SaltConfig.beesID, true, 0xFFD32D);
         wellFed = new PotionWellFed(SaltConfig.wellFedID, false, 0x7C402F);
     }

@@ -3,6 +3,11 @@
 itemGroup.salt=SaltyMod Expanded
 
 
+# POTION EFFECTS
+
+potion.bees=Bees!
+
+
 # BLOCKS
 
 tile.salt_ore.name=Salt Ore

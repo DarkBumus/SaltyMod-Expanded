@@ -2,11 +2,11 @@ package darkbum.saltymod.block;
 
 import java.util.Random;
 
+import cpw.mods.fml.common.Loader;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.init.ModSounds;
 import darkbum.saltymod.potion.ModPotion;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -16,7 +16,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -69,12 +68,13 @@ public class BlockBlossomBurrow extends Block {
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx, float hity, float hitz) {
-        ItemStack heldStack = player.getCurrentEquippedItem();
-        if(heldStack != null && heldStack.getItem() instanceof ItemAxe) {
-            world.setBlock(x, y, z, ModBlocks.blossom_stripped_burrow);
-            player.addPotionEffect(new PotionEffect(Potion.wither.id, 500,4));
-//            player.addPotionEffect(new PotionEffect(ModPotion.bees.id, 500, 4)); DOESN'T WORK YET
-            world.playSoundEffect(x, y, z, "saltymod:block.blossom_burrow.bees", 0.25F, 1.5F);
+        if (Loader.isModLoaded("etfuturum")) {
+            ItemStack heldStack = player.getCurrentEquippedItem();
+            if (heldStack != null && heldStack.getItem() instanceof ItemAxe) {
+                world.setBlock(x, y, z, ModBlocks.blossom_stripped_burrow);
+                player.addPotionEffect(new PotionEffect(ModPotion.bees.id, 500, 0));
+                world.playSoundEffect(x, y, z, "saltymod:block.blossom_burrow.bees", 1.0F, 1.5F);
+            }
         }
         return false;
     }

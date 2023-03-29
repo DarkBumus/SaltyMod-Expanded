@@ -6,7 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.common.CommonProxy;
 import darkbum.saltymod.init.ModItems;
-import ganymedes01.etfuturum.blocks.BlockFlowerBase;
+import net.minecraft.block.BlockFlower;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlockSaltFlower extends BlockFlowerBase {
+public class BlockSaltFlower extends BlockFlower {
 
     public static final String[] types = new String[] {"daucus", "wild_carrot", "solanum", "wild_potato", "wild_onion", "maritima", "wild_beet"};
 
@@ -46,7 +46,7 @@ public class BlockSaltFlower extends BlockFlowerBase {
     private IIcon WILD_BEET;
 
     public BlockSaltFlower() {
-        super();
+        super(1);
         setBlockName("salt_flower");
         setCreativeTab(CommonProxy.tabSalt);
     }

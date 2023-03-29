@@ -1,6 +1,7 @@
 package darkbum.saltymod.potion;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.DamageSource;
 
 public class PotionBees extends ModPotion {
 
@@ -12,6 +13,12 @@ public class PotionBees extends ModPotion {
     }
 
     public void performEffect(EntityLivingBase entity, int level) {
-        entity.attackEntityFrom(ModPotion.beesDamage, 1.0F);
+        if (!entity.isEntityUndead() && (entity instanceof net.minecraft.entity.player.EntityPlayer)) {
+            entity.attackEntityFrom(ModDamageSource.beesDamage, 1.0F);
+        }
+    }
+
+    public boolean isInstant() {
+        return false;
     }
 }

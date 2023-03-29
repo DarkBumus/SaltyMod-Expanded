@@ -67,7 +67,6 @@ public class BlockBlossomLog extends BlockRotatedPillar {
             if (heldStack != null && heldStack.getItem() instanceof ItemAxe) {
                 world.setBlock(x, y, z, ModBlocks.blossom_stripped_log);
             }
-            return false;
         }
         return false;
     }
