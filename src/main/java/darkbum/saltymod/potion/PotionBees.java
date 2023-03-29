@@ -1,11 +1,9 @@
 package darkbum.saltymod.potion;
 
-import darkbum.saltymod.SaltyMod;
-import net.minecraft.block.material.Material;
+import darkbum.saltymod.init.AchievSalt;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.ArrayList;
@@ -46,7 +44,10 @@ public class PotionBees extends ModPotion {
             }
             if  (!player.getEntityWorld().getBlock((int)player.posX, (int)player.posY + 1, (int)player.posZ).getMaterial().isLiquid() &&
                 (!player.isBurning())) {
-                entity.attackEntityFrom(ModDamageSource.beesDamage, 1.0F - beeResistance);
+                entity.attackEntityFrom(ModPotion.beesDamage, 1.0F - beeResistance);
+                if (player.getHealth() == 0) {
+                    player.addStat(AchievSalt.beesStung, 1);
+                }
             }
         }
     }

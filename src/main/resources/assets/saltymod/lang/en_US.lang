@@ -6,6 +6,8 @@ itemGroup.salt=SaltyMod Expanded
 # POTION EFFECTS
 
 potion.bees=Bees!
+death.attack.beesDamage=%1$s was stung to death by Bees
+death.attack.taint.player=%1$s was stung to death by Bees whilst trying to escape them and also %2$s
 
 
 # BLOCKS
@@ -316,6 +318,8 @@ achievement.saltLake=Crunching underfoot
 achievement.saltLake.desc=Walk on a dried salt lake
 achievement.saltCrystal=Wonder of Nature
 achievement.saltCrystal.desc=Find a salt crystal in deep caves
+achievement.beesStung=Not the Bees!
+achievement.beesStung.desc=Provoke a swarm of Carpenter Bees
 
 
 # BIOMES/GENERATION
