@@ -98,7 +98,7 @@ tile.salt_flower_wild_beet.name=Maritima
 # ITEMS
 
 item.minecraft.fish.name=Raw Cod
-item.minecraft.cooked_fished.name=Cooked Cod
+item.minecraft.cooked_fished.name=Cooked Cod
 
 item.etfuturum.rabbit_stew.name=Rabbit Ragout
 item.etfuturum.beetroot_soup.name=Borscht
@@ -259,6 +259,7 @@ item.mud_chestplate.name=Body Mud Mask
 item.mud_leggings.name=Legs Mud Mask
 item.mud_boots.name=Foot Mud Mask
 
+item.salt_shard.name=Salt Shard
 item.rainmaker_star.name=Rainmaker Star
 item.rainmaker.name=Rainmaker
 item.rainmaker.tooltip=Should explode above the clouds
