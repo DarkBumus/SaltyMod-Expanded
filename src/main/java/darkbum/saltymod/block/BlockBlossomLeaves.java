@@ -2,15 +2,19 @@ package darkbum.saltymod.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class BlockBlossomLeaves extends BlockLeaves {
 
@@ -61,6 +65,11 @@ public class BlockBlossomLeaves extends BlockLeaves {
     @Override
     public boolean shouldSideBeRendered(IBlockAccess worldIn, int x, int y, int z, int side) {
         return !worldIn.getBlock(x, y, z).isOpaqueCube();
+    }
+
+    @Override
+    public Item getItemDropped(int meta, Random random, int fortune) {
+        return Item.getItemFromBlock(ModBlocks.blossom_sapling);
     }
 
     @Override

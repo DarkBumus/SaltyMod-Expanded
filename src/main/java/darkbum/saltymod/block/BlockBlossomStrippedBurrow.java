@@ -3,12 +3,16 @@ package darkbum.saltymod.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.init.ModItems;
+import darkbum.saltymod.potion.ModPotion;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
 
 import java.util.Random;
 
@@ -56,5 +60,12 @@ public class BlockBlossomStrippedBurrow extends Block {
 
     protected boolean canSilkHarvest () {
         return false;
+    }
+
+    public void onBlockHarvested(World world, int x, int y, int z, int meta, EntityPlayer player) {
+        if (!player.capabilities.isCreativeMode) {
+            player.addPotionEffect(new PotionEffect(ModPotion.bees.id, 900, 0));
+            world.playSoundEffect(x, y, z, "saltymod:block.blossom_burrow.bees", 1.0F, 1.5F);
+        }
     }
 }

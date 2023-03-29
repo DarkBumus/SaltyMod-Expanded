@@ -62,7 +62,7 @@ public class SaltyMod {
         ModBlocks.init();
         ModBiomes.SaltMod();
         FishRegistry.registerItems();
-        OreDictionary.init();
+        ModOreDictionary.init();
         RecipeRemover.init();
         ShapedRecipes.init();
         ShapelessRecipes.init();

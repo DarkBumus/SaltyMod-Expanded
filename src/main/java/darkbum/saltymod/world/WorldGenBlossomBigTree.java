@@ -178,7 +178,7 @@ public class WorldGenBlossomBigTree extends WorldGenAbstractTree {
 
     }
 
-    void func_150530_a(int[] p_150530_1_, int[] p_150530_2_, Block p_150530_3_) {
+    void generateTrunkColumn(int[] p_150530_1_, int[] p_150530_2_, Block p_150530_3_) {
         int[] aint2 = new int[]{0, 0, 0};
         byte b0 = 0;
 
@@ -291,8 +291,8 @@ public class WorldGenBlossomBigTree extends WorldGenAbstractTree {
 
                 Block block = Blocks.log;
                 Block otherBlock = worldObj.getBlock(finalPos[0], finalPos[1] + 3, finalPos[2]);
-                if(otherBlock != block && otherBlock != ModBlocks.blossomBurrow && otherBlock.isOpaqueCube() && !otherBlock.isLeaves(worldObj, finalPos[0], finalPos[1] - 1, finalPos[2])) {
-                    block = ModBlocks.blossomBurrow;
+                if(otherBlock != block && otherBlock != ModBlocks.blossom_burrow && otherBlock.isOpaqueCube() && !otherBlock.isLeaves(worldObj, finalPos[0], finalPos[1] - 1, finalPos[2])) {
+                    block = ModBlocks.blossom_burrow;
                 }
 
                 setBlockAndNotifyAdequately(worldObj, finalPos[0], finalPos[1], finalPos[2], block, meta);
@@ -301,25 +301,24 @@ public class WorldGenBlossomBigTree extends WorldGenAbstractTree {
     }*/
 
     void generateTrunk() {
-        int i = this.basePos[0];
-        int j = this.basePos[1];
-        int k = this.basePos[1] + this.height;
-        int l = this.basePos[2];
+        int i = basePos[0];
+        int j = basePos[1];
+        int k = basePos[1] + height;
+        int l = basePos[2];
         int[] aint = new int[]{i, j, l};
         int[] aint1 = new int[]{i, k, l};
-        this.func_150530_a(aint, aint1, ModBlocks.blossom_log);
+        this.generateTrunkColumn(aint, aint1, ModBlocks.blossom_log);
         if (this.trunkSize == 2) {
             int var10002 = aint[0]++;
             var10002 = aint1[0]++;
-            this.func_150530_a(aint, aint1, ModBlocks.blossom_log);
+            this.generateTrunkColumn(aint, aint1, ModBlocks.blossom_log);
             var10002 = aint[2]++;
             var10002 = aint1[2]++;
-            this.func_150530_a(aint, aint1, ModBlocks.blossom_log);
+            this.generateTrunkColumn(aint, aint1, ModBlocks.blossom_log);
             aint[0] += -1;
             aint1[0] += -1;
-            this.func_150530_a(aint, aint1, ModBlocks.blossom_log);
+            this.generateTrunkColumn(aint, aint1, ModBlocks.blossom_log);
         }
-
     }
 
     void generateLeafNodeBases() {
@@ -332,10 +331,9 @@ public class WorldGenBlossomBigTree extends WorldGenAbstractTree {
             aint[1] = aint1[3];
             int k = aint[1] - this.basePos[1];
             if (this.leafNodeNeedsBase(k)) {
-                this.func_150530_a(aint, aint2, ModBlocks.blossom_log);
+                this.generateTrunkColumn(aint, aint2, ModBlocks.blossom_log);
             }
         }
-
     }
 
     int checkBlockLine(int[] p_76496_1_, int[] p_76496_2_) {
@@ -413,25 +411,25 @@ public class WorldGenBlossomBigTree extends WorldGenAbstractTree {
     }
 
     public boolean generate(World world, Random random, int x, int y, int z) {
-        this.worldObj = world;
+        worldObj = world;
         long l = random.nextLong();
-        this.rand.setSeed(l);
-        this.basePos[0] = x;
-        this.basePos[1] = y;
-        this.basePos[2] = z;
+        rand.setSeed(l);
+        basePos[0] = x;
+        basePos[1] = y;
+        basePos[2] = z;
         if (this.heightLimit == 0) {
             this.heightLimit = 5 + this.rand.nextInt(this.heightLimitLimit);
         }
 
         if (!this.validTreeLocation()) {
-            this.worldObj = null;
+            worldObj = null;
             return false;
         } else {
-            this.generateLeafNodeList();
-            this.generateLeaves();
-            this.generateTrunk();
-            this.generateLeafNodeBases();
-            this.worldObj = null;
+            generateLeafNodeList();
+            generateLeaves();
+            generateTrunk();
+            generateLeafNodeBases();
+            worldObj = null;
             return true;
         }
     }

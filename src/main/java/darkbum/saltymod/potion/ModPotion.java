@@ -5,7 +5,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.init.SaltConfig;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 
 public class ModPotion extends Potion {

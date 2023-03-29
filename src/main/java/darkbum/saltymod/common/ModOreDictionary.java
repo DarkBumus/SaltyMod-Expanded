@@ -7,19 +7,20 @@ import darkbum.saltymod.init.ModItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
-public class OreDictionary {
+public class ModOreDictionary {
 
     public static void init() {
 //Salty Mod Ore Dictionaries
-        net.minecraftforge.oredict.OreDictionary.registerOre("blockMushroom", Blocks.red_mushroom);
-        net.minecraftforge.oredict.OreDictionary.registerOre("blockMushroom", Blocks.brown_mushroom);
+        OreDictionary.registerOre("blockMushroom", Blocks.red_mushroom);
+        OreDictionary.registerOre("blockMushroom", Blocks.brown_mushroom);
         net.minecraftforge.oredict.OreDictionary.registerOre("oreSalt", ModBlocks.salt_ore);
-        net.minecraftforge.oredict.OreDictionary.registerOre("blockSalt", new ItemStack(ModBlocks.salt_block, net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE));
+        net.minecraftforge.oredict.OreDictionary.registerOre("blockSalt", new ItemStack(ModBlocks.salt_block, 1, net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE));
         net.minecraftforge.oredict.OreDictionary.registerOre("stairSalt", ModBlocks.salt_brick_stairs);
-        net.minecraftforge.oredict.OreDictionary.registerOre("slabSalt", new ItemStack(ModBlocks.salt_slab, net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE));
+        net.minecraftforge.oredict.OreDictionary.registerOre("slabSalt", new ItemStack(ModBlocks.salt_slab, 1, net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE));
         net.minecraftforge.oredict.OreDictionary.registerOre("blockMud", ModBlocks.mineral_mud);
         net.minecraftforge.oredict.OreDictionary.registerOre("blockMud", ModBlocks.wet_mud_brick);
         net.minecraftforge.oredict.OreDictionary.registerOre("blockMud", ModBlocks.dry_mud_brick);
@@ -54,7 +55,7 @@ public class OreDictionary {
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", Items.potato);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.onion);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.saltwort);
-        net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", new ItemStack(Items.fish, net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE));
+        net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", new ItemStack(Items.fish, 1, net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE));
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.calamari);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", Items.porkchop);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", Items.beef);
@@ -66,13 +67,13 @@ public class OreDictionary {
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", Items.poisonous_potato);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.dough);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.tough_jelly);
-        net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", new ItemStack(Items.golden_apple, net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE));
-        net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", new ItemStack(ModItems.golden_berries, net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE));
+        net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", new ItemStack(Items.golden_apple, 1, net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE));
+        net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", new ItemStack(ModItems.golden_berries, 1, net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE));
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", Items.golden_carrot);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.golden_potato);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.golden_saltwort);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", Items.baked_potato);
-        net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", new ItemStack(Items.cooked_fished, net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE));
+        net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", new ItemStack(Items.cooked_fished, 1, net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE));
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.cooked_tropical_fish);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.tailor);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.cooked_tailor);
@@ -174,6 +175,11 @@ public class OreDictionary {
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.mushroom_pie);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.saltwort_pie);
         net.minecraftforge.oredict.OreDictionary.registerOre("itemFood", ModItems.muffin);
+
+        OreDictionary.registerOre("beeResistant", new ItemStack(ModItems.mud_helmet, 1, net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("beeResistant", new ItemStack(ModItems.mud_chestplate, 1, net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("beeResistant", new ItemStack(ModItems.mud_leggings, 1, net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("beeResistant", new ItemStack(ModItems.mud_boots, 1, net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE));
 
 //HarvestCraft Ore Dictionaries
         if (Loader.isModLoaded("harvestcraft")) {
