@@ -5,7 +5,7 @@ itemGroup.salt=TuzluMod Yepyeni!
 
 # POTION EFFECTS
 
-potion.bees=Bees!
+potion.bees=Arılar!
 death.attack.beesDamage=%1$s arılar tarafından öldüresiye sokuldu.
 death.attack.taint.player=%1$s, %2$s kovalarken arılar sokarak öldürüldü!
 
