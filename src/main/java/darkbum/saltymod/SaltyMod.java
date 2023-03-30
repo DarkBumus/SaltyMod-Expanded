@@ -280,7 +280,7 @@ public class SaltyMod {
             - Change Saltwort/Salt Dirt behavior
             - Rainmaker behavior!!!
             - Finish Blossom Burrow/Tree
-                - Add "Angry Bees" potion effect
+                - Add "Angry Bees" potion effect [ALMOST DONE]
                     - Change the color of hearts when under the "Angry Bees" effect
             - Finish Apiary [as a whole]
             - Make Fish automatable [Fish Trap? Something else?]
