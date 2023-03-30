@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -126,22 +127,26 @@ public class BlockWetMudBrick extends Block {
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityPlayer, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
     {
         int meta = world.getBlockMetadata(x, y, z);
-        if(entityPlayer.getCurrentEquippedItem() != null && entityPlayer.getCurrentEquippedItem().getItem() == Items.potionitem && meta > 0 && meta < 3) {
-            final ItemStack bottle = new ItemStack(Items.glass_bottle);
-            if (!entityPlayer.capabilities.isCreativeMode) {
-                if (entityPlayer.getCurrentEquippedItem().stackSize <= 1) {
-                    entityPlayer.setCurrentItemOrArmor(0, bottle);
-                } else {
-                    entityPlayer.inventory.decrStackSize(entityPlayer.inventory.currentItem, 1);
-                    if (!entityPlayer.inventory.addItemStackToInventory(bottle)) {
-                        entityPlayer.dropPlayerItemWithRandomChoice(bottle, false);
+        ItemStack stack = entityPlayer.getCurrentEquippedItem();
+        if(meta > 0 && meta < 3 && stack != null) {
+            Item item = stack.getItem();
+            if (stack.getItemDamage() == 0 && item == Items.potionitem && (!stack.hasTagCompound() || !stack.getTagCompound().hasKey("CustomPotionEffects"))) {
+                final ItemStack bottle = new ItemStack(Items.glass_bottle);
+                if (!entityPlayer.capabilities.isCreativeMode) {
+                    if (entityPlayer.getCurrentEquippedItem().stackSize <= 1) {
+                        entityPlayer.setCurrentItemOrArmor(0, bottle);
+                    } else {
+                        entityPlayer.inventory.decrStackSize(entityPlayer.inventory.currentItem, 1);
+                        if (!entityPlayer.inventory.addItemStackToInventory(bottle)) {
+                            entityPlayer.dropPlayerItemWithRandomChoice(bottle, false);
+                        }
                     }
+                    world.playSound(x + 0.5D, y + 0.5D, z + 0.5D, "random.splash", 0.15F, 1.0F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.4F, false);
+                    world.setBlock(x, y, z, this, 0, 2);
+                    addWaterSplashes(world, x, y, z);
+                    return true;
                 }
             }
-            world.playSound(x + 0.5D, y + 0.5D, z + 0.5D, "random.splash", 0.15F, 1.0F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.4F, false);
-            world.setBlock(x, y, z, this, 0, 2);
-            addWaterSplashes(world, x, y, z);
-            return true;
         }
         return false;
     }
