@@ -3,7 +3,6 @@ package darkbum.saltymod.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.SaltyMod;
-import darkbum.saltymod.tileentity.TileEntityApiary;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -59,7 +58,7 @@ public class BlockApiary extends Block {
         setStepSound(soundTypeWood);
     }
 
-    public void breakBlock(World world, int x, int y, int z, Block block, int p_149749_6_) {
+/*    public void breakBlock(World world, int x, int y, int z, Block block, int p_149749_6_) {
         TileEntityApiary tileentityapiary;
         if (!field_149934_M && (
 
@@ -90,7 +89,7 @@ public class BlockApiary extends Block {
             world.func_147453_f(x, y, z, block);
         }
         super.breakBlock(world, x, y, z, block, p_149749_6_);
-    }
+    }*/
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float xCoord, float yCoord, float zCoord) {
         TileEntity tile = world.getTileEntity(x, y, z);
@@ -175,9 +174,9 @@ public class BlockApiary extends Block {
         return null;
     }
 
-    public TileEntity createNewTileEntity(World var1, int var2) {
+/*    public TileEntity createNewTileEntity(World var1, int var2) {
         return new TileEntityApiary();
-    }
+    }*/
 
     protected boolean canSilkHarvest() {
         return false;
