@@ -1,7 +1,7 @@
 package darkbum.saltymod.world.biome;
 
 import darkbum.saltymod.init.ModBlocks;
-import darkbum.saltymod.init.SaltConfig;
+import darkbum.saltymod.init.ModConfiguration;
 import darkbum.saltymod.world.*;
 import darkbum.saltymod.world.generator.SaltLakeGenerator;
 import net.minecraft.init.Blocks;
@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class SaltMarshDecorator {
 
-    private final WorldGenMinable worldGenSaltOre = new WorldGenMinable(ModBlocks.salt_ore, SaltConfig.saltOreSize, Blocks.stone);
+    private final WorldGenMinable worldGenSaltOre = new WorldGenMinable(ModBlocks.salt_ore, ModConfiguration.saltOreSize, Blocks.stone);
     private final SaltLakeGenerator saltLakeGenerator = new SaltLakeGenerator();
     private final NewWorldGenClay newWorldGenClay = new NewWorldGenClay(20);
     private final WorldGenSaltTree worldGenSaltTree = new WorldGenSaltTree(false, 3);
@@ -33,8 +33,8 @@ public class SaltMarshDecorator {
     public final void decorate(World world, Random rand, int x, int z) {
         int pass, passX, passZ;
 
-        if(SaltConfig.saltOreBiome) {
-            for(pass = 0; pass < SaltConfig.saltOreFrequencyBiome; ++pass) {
+        if(ModConfiguration.saltOreBiome) {
+            for(pass = 0; pass < ModConfiguration.saltOreFrequencyBiome; ++pass) {
                 worldGenSaltOre.generate(world, rand,
                     x + rand.nextInt(16),
                     rand.nextInt(96) + 1,

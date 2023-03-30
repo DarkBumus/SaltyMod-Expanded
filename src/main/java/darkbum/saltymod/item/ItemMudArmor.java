@@ -2,9 +2,9 @@ package darkbum.saltymod.item;
 
 import java.util.Random;
 
-import darkbum.saltymod.init.AchievSalt;
+import darkbum.saltymod.init.ModAchievementList;
 import darkbum.saltymod.init.ModItems;
-import darkbum.saltymod.init.SaltConfig;
+import darkbum.saltymod.init.ModConfiguration;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,7 +30,7 @@ public class ItemMudArmor extends ItemArmor {
     }
 
     public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
-        if (!world.isRemote && stack.getItem() != null && SaltConfig.mudArmorWaterDam) {
+        if (!world.isRemote && stack.getItem() != null && ModConfiguration.mudArmorWaterDam) {
             Random rand = new Random();
             if (stack.getItem() == ModItems.mud_helmet) {
                 if (((world.isRaining() && player.isWet() && !player.isInsideOfMaterial(Material.water)) || player
@@ -38,7 +38,7 @@ public class ItemMudArmor extends ItemArmor {
                     stack.damageItem(1, player);
                 if (stack.getItemDamage() >= stack.getMaxDamage()) {
                     player.setCurrentItemOrArmor(4, null);
-                    player.addStat(AchievSalt.discomfiture, 1);
+                    player.addStat(ModAchievementList.discomfort, 1);
                 }
             }
             if (stack.getItem() == ModItems.mud_chestplate) {
@@ -50,7 +50,7 @@ public class ItemMudArmor extends ItemArmor {
                     stack.damageItem(1, player);
                 if (stack.getItemDamage() >= stack.getMaxDamage()) {
                     player.setCurrentItemOrArmor(3, null);
-                    player.addStat(AchievSalt.discomfiture, 1);
+                    player.addStat(ModAchievementList.discomfort, 1);
                 }
             }
             if (stack.getItem() == ModItems.mud_leggings) {
@@ -60,7 +60,7 @@ public class ItemMudArmor extends ItemArmor {
                     stack.damageItem(1, player);
                 if (stack.getItemDamage() >= stack.getMaxDamage()) {
                     player.setCurrentItemOrArmor(2, null);
-                    player.addStat(AchievSalt.discomfiture, 1);
+                    player.addStat(ModAchievementList.discomfort, 1);
                 }
             }
             if (stack.getItem() == ModItems.mud_boots) {
@@ -70,7 +70,7 @@ public class ItemMudArmor extends ItemArmor {
                     stack.damageItem(1, player);
                 if (stack.getItemDamage() >= stack.getMaxDamage()) {
                     player.setCurrentItemOrArmor(1, null);
-                    player.addStat(AchievSalt.discomfiture, 1);
+                    player.addStat(ModAchievementList.discomfort, 1);
                 }
             }
         }

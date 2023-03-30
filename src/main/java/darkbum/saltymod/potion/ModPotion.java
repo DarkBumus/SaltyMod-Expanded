@@ -2,7 +2,7 @@ package darkbum.saltymod.potion;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.init.SaltConfig;
+import darkbum.saltymod.init.ModConfiguration;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -24,8 +24,8 @@ public class ModPotion extends Potion {
 
     public static void init() {
 
-        bees = new PotionBees(SaltConfig.beesID, true, 0xFFD32D);
-        wellFed = new PotionWellFed(SaltConfig.wellFedID, false, 0x7C402F);
+        bees = new PotionBees(ModConfiguration.beesID, true, 0xFFD32D);
+        wellFed = new PotionWellFed(ModConfiguration.wellFedID, false, 0x7C402F);
     }
 
     @SideOnly(Side.CLIENT)

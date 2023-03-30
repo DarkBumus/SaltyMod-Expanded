@@ -1,7 +1,7 @@
 package darkbum.saltymod.inventory.container;
 
 import darkbum.saltymod.api.ExtractRegistry;
-import darkbum.saltymod.init.AchievSalt;
+import darkbum.saltymod.init.ModAchievementList;
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
@@ -61,6 +61,6 @@ public class SlotExtractor extends Slot {
         }
         this.count = 0;
         if (stack.getItem() == ModItems.salt_pinch)
-            this.thePlayer.addStat(AchievSalt.moreBuckets, 1);
+            this.thePlayer.addStat(ModAchievementList.moreBuckets, 1);
     }
 }

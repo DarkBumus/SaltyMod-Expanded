@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 import net.minecraftforge.common.config.Configuration;
 import darkbum.saltymod.SaltyMod;
 
-public class SaltConfig extends Configuration {
+public class ModConfiguration extends Configuration {
 
     public static boolean developerFoods;
 
@@ -45,10 +45,6 @@ public class SaltConfig extends Configuration {
 
     private String[] loadedCloudLevel;
 
-    public static int TFDim;
-
-    public static boolean TFOreGen;
-
     public static int SaltMarshBiomeID;
 
     public static int SaltMarshBiomeWeight;
@@ -67,7 +63,7 @@ public class SaltConfig extends Configuration {
 
     private File file;
 
-    public SaltConfig(File file) {
+    public ModConfiguration(File file) {
         super(file);
         this.file = file;
     }
@@ -91,8 +87,7 @@ public class SaltConfig extends Configuration {
         fizzyEffect = getBoolean("FizzyEffect", "Effects", false, "Do Fizzy Drink removes all effects? (true - all effects, false - milk analogue)");
         mudArmorWaterDam = getBoolean("MudArmorWaterDamage", "Armor", true, "Mud Armor water damage");
         mudRegenSpeed = getInt("MudRegenSpeed", "Effects", 100, 10, 100, "Speed of Mud Armor & Block regeneration effect (10 - fastly, 100 - slowly)");
-        this.loadedCloudLevel = getStringList("DimCloudLevel", "Rainmaker", defaultCloudLevel, "The height of the clouds in a specific dimension (DimensionID=CloudLevel)");
-        TFOreGen = getBoolean("TFOreGen", "TwilightForest", true, "Salt ore generation in the Twilight Forest dimention");
+        loadedCloudLevel = getStringList("DimCloudLevel", "Rainmaker", defaultCloudLevel, "The height of the clouds in a specific dimension (DimensionID=CloudLevel)");
         SaltMarshBiomeID = get("Biome Generation", "SaltMarsh ID, set to -1 to completly disable the Biome", 40).getInt(40);
         SaltMarshBiomeWeight = get("Biome Generation", "SaltMarsh Weight, The spawn chance of this biome", 10).getInt(10);
         saltOreFrequencyBiome = getInt("Additional SaltOreFrequency", "Biome Generation", 4, 1, 10, "Additional Salt ore frequency in Salt Marshes");
@@ -105,9 +100,6 @@ public class SaltConfig extends Configuration {
     }
 
     public void init() {
-        Configuration configTF = new Configuration(new File("./config", "TwilightForest.cfg"));
-        configTF.load();
-        TFDim = configTF.get("dimension", "dimensionID", 7).getInt();
     }
 
     public void postInit() {

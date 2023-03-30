@@ -14,8 +14,8 @@ public class ModBiomes {
 
 	public static void initializeBiome(){
 
-		if (SaltConfig.SaltMarshBiomeID != -1) {
-		saltMarsh = new SaltMarshBiome(SaltConfig.SaltMarshBiomeID).setBiomeName("SaltMarsh");
+		if (ModConfiguration.SaltMarshBiomeID != -1) {
+		saltMarsh = new SaltMarshBiome(ModConfiguration.SaltMarshBiomeID).setBiomeName("SaltMarsh");
 		}
 	}
 }

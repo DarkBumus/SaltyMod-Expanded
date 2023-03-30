@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import darkbum.saltymod.init.AchievSalt;
+import darkbum.saltymod.init.ModAchievementList;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.block.Block;
@@ -61,7 +61,7 @@ public class BlockSaltLakeOre extends Block {
                 EntityList.getEntityString(entity).toLowerCase().contains("witch")))
                 world.scheduleBlockUpdate(x, y, z, this, 0);
             if (entity instanceof EntityPlayer)
-                ((EntityPlayer)entity).addStat(AchievSalt.saltLake, 1);
+                ((EntityPlayer)entity).addStat(ModAchievementList.saltLake, 1);
         }
     }
 

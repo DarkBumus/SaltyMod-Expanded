@@ -26,7 +26,7 @@ import org.apache.logging.log4j.Logger;
 import darkbum.saltymod.init.ModBiomes;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
-import darkbum.saltymod.init.SaltConfig;
+import darkbum.saltymod.init.ModConfiguration;
 import darkbum.saltymod.structure.ChestContent;
 
 @Mod(modid = SaltyMod.MODID, name = SaltyMod.NAME, version = SaltyMod.VERSION)
@@ -41,7 +41,7 @@ public class SaltyMod {
 
     public static ChestContent chestContent;
 
-    public static SaltConfig config;
+    public static ModConfiguration config;
 
     @Instance("saltymod")
     public static SaltyMod instance;
@@ -55,7 +55,7 @@ public class SaltyMod {
         event.getModMetadata().name = EnumChatFormatting.GOLD+ SaltyMod.NAME;
         event.getModMetadata().version = EnumChatFormatting.YELLOW+ SaltyMod.VERSION;
         event.getModMetadata().credits = EnumChatFormatting.AQUA + "Thanks to original author Liahim85 and contributors jss2a98aj, Roadhog360, DelirusCrux, AstroTibs, Just Moe";
-        config = new SaltConfig(event.getSuggestedConfigurationFile());
+        config = new ModConfiguration(event.getSuggestedConfigurationFile());
         config.preInit();
         ModPotion.init();
         ModItems.init();
@@ -67,7 +67,7 @@ public class SaltyMod {
         ShapedRecipes.init();
         ShapelessRecipes.init();
         SmeltingRecipes.init();
-        if(SaltConfig.enableBrickmakerCamp) {
+        if(ModConfiguration.enableBrickmakerCamp) {
             ChestLootHandler.campChest();
         }
         proxy.preInit(event);
@@ -77,7 +77,7 @@ public class SaltyMod {
     public void init(FMLInitializationEvent event) {
         config.init();
         proxy.init(event);
-    if(SaltConfig.enableBrickmakerCamp) {
+    if(ModConfiguration.enableBrickmakerCamp) {
     	ChestContent.addDungeonLoot();
     }
     }
@@ -270,7 +270,6 @@ public class SaltyMod {
 /*        //TO-DO-LIST//
             - Restructure/Merge Items?
             - Restructure Config and Achiev file/class
-            - Change Salt Crystal Drop [Salt Shard/Crystal Item]
             - Potion Effect [Well Fed]
             - Finish Salt Marsh
                 - Reeds/Water Grass

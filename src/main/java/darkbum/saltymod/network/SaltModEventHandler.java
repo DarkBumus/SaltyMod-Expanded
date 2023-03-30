@@ -11,32 +11,28 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import darkbum.saltymod.api.RainMakerEvent;
 import darkbum.saltymod.common.CommonProxy;
-import darkbum.saltymod.init.AchievSalt;
+import darkbum.saltymod.init.ModAchievementList;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
-import darkbum.saltymod.init.SaltConfig;
-import net.minecraft.block.Block;
-import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLivingBase;
+import darkbum.saltymod.init.ModConfiguration;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.Achievement;
+import net.minecraft.stats.AchievementList;
 import net.minecraft.tileentity.TileEntityFlowerPot;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.event.entity.player.AchievementEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -61,45 +57,6 @@ public class SaltModEventHandler {
     public static Random random;
 
     public static int dropped;
-
-    @SubscribeEvent
-    public void onPlayerAttack(AttackEntityEvent e) {
-        World world = e.entityPlayer.worldObj;
-        if (!world.isRemote && e.target instanceof EntityLivingBase) {
-            EntityPlayer player = e.entityPlayer;
-            EntityLivingBase target = (EntityLivingBase)e.target;
-            ItemStack is = player.getHeldItem();
-            Block block = null;
-            if (is != null && EntityList.getEntityString(target) != null && ((
-                EntityList.getEntityString(target).toLowerCase().contains("slime") &&
-                    !EntityList.getEntityString(target).toLowerCase().contains("lava")) ||
-                EntityList.getEntityString(target).toLowerCase().contains("witch"))) {
-                if (is.getItem() instanceof net.minecraft.item.ItemBlock && Block.getBlockFromItem(is.getItem()) != Blocks.air)
-                    block = Block.getBlockFromItem(is.getItem());
-                if (block != null && block == ModBlocks.salt_crystal) {
-                    target.attackEntityFrom(DamageSource.cactus, 30.0F);
-                    world.playSoundEffect(target.posX, target.posY, target.posZ, "dig.stone", 2.0F, 1.0F);
-                    world.playSoundEffect(target.posX, target.posY, target.posZ, "dig.glass", 2.0F, 2.0F);
-                    if (!player.capabilities.isCreativeMode) {
-                        is.stackSize--;
-                        if (is.stackSize == 0)
-                            player.setCurrentItemOrArmor(0, null);
-                        EntityItem EI = new EntityItem(world, target.posX, target.posY, target.posZ, new ItemStack(ModItems.salt_pinch));
-                        EI.delayBeforeCanPickup = 10;
-                        world.spawnEntityInWorld(EI);
-                        if (EntityList.getEntityString(target).toLowerCase().contains("witch"))
-                            player.addStat(AchievSalt.saltWitch, 1);
-                        if (target instanceof net.minecraft.entity.monster.EntitySlime) {
-                            EntityItem EIS = new EntityItem(world, target.posX, target.posY, target.posZ, new ItemStack(ModItems.tough_jelly));
-                            EI.delayBeforeCanPickup = 10;
-                            world.spawnEntityInWorld(EIS);
-                            player.addStat(AchievSalt.saltSlime, 1);
-                        }
-                    }
-                }
-            }
-        }
-    }
 
     @SubscribeEvent
     public void updatePlayerTick(TickEvent.PlayerTickEvent event) {
@@ -140,22 +97,22 @@ public class SaltModEventHandler {
                             player.setHealth(player.getMaxHealth());
                     }
                     if (player.getHealth() < player.getMaxHealth() && player.getFoodStats().getFoodLevel() > 0) {
-                        int chek = 0;
+                        int check = 0;
                         if (head != null && head.getItem() == ModItems.mud_helmet)
-                            chek++;
+                            check++;
                         if (body != null && body.getItem() == ModItems.mud_chestplate)
-                            chek += 2;
+                            check += 2;
                         if (legs != null && legs.getItem() == ModItems.mud_leggings)
-                            chek += 2;
+                            check += 2;
                         if ((feet != null && feet.getItem() == ModItems.mud_boots) || mud)
-                            chek++;
-                        if (chek > 0) {
-                            if (player.ticksExisted % (10 - chek) * SaltConfig.mudRegenSpeed == 0)
+                            check++;
+                        if (check > 0) {
+                            if (player.ticksExisted % (10 - check) * ModConfiguration.mudRegenSpeed == 0)
                                 player.heal(1.0F);
-                            if (chek == 6) {
+                            if (check == 6) {
                                 if (player.isBurning())
                                     player.extinguish();
-                                event.player.addStat(AchievSalt.fullMud, 1);
+                                event.player.addStat(ModAchievementList.fullMud, 1);
                             }
                         }
                     }
@@ -188,7 +145,7 @@ public class SaltModEventHandler {
                 event.world.getWorldInfo().setThundering(false);
             }
             if (event.player != null)
-                event.player.addStat(AchievSalt.rain, 1);
+                event.player.addStat(ModAchievementList.rain, 1);
         }
     }
 
@@ -197,6 +154,12 @@ public class SaltModEventHandler {
     public void registerIcons(TextureStitchEvent.Pre event) {
         if (event.map.getTextureType() == 0 && FluidRegistry.isFluidRegistered(CommonProxy.milk))
             CommonProxy.milkIcon = event.map.registerIcon("saltmod:milk");
+        if (event.map.getTextureType() == 1 && ModAchievementList.fullMud.isAchievement())
+            CommonProxy.fullMudIcon = event.map.registerIcon("saltmod:dev/achievement_icon_0");
+        if (event.map.getTextureType() == 1 && ModAchievementList.discomfort.isAchievement())
+            CommonProxy.discomfortIcon = event.map.registerIcon("saltmod:dev/achievement_1");
+        if (event.map.getTextureType() == 1 && ModAchievementList.saltWitch.isAchievement())
+            CommonProxy.saltWitchIcon = event.map.registerIcon("saltmod:dev/achievement_icon_2");
     }
 
     @SubscribeEvent
@@ -211,20 +174,20 @@ public class SaltModEventHandler {
         World world = event.entityPlayer.worldObj;
         if (!world.isRemote) {
             if (event.item.getEntityItem().getItem() == ModItems.salt)
-                event.entityPlayer.addStat(AchievSalt.salt, 1);
+                event.entityPlayer.addStat(ModAchievementList.salt, 1);
             if (event.item.getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.salt_crystal))
-                event.entityPlayer.addStat(AchievSalt.saltCrystalGet, 1);
+                event.entityPlayer.addStat(ModAchievementList.saltCrystalGet, 1);
             if (event.item.getEntityItem().getItem() == ModItems.mineral_mud_ball)
-                event.entityPlayer.addStat(AchievSalt.mineralMud, 1);
+                event.entityPlayer.addStat(ModAchievementList.mineralMud, 1);
             if (event.item.getEntityItem().getItem() == ModItems.saltwort)
-                event.entityPlayer.addStat(AchievSalt.saltWort, 1);
+                event.entityPlayer.addStat(ModAchievementList.saltWort, 1);
         }
     }
 
     @SubscribeEvent
     public void crafting(PlayerEvent.ItemCraftedEvent event) {
         if (event.crafting.getItem() == ModItems.mineral_mud_ball)
-            event.player.addStat(AchievSalt.mineralMud, 1);
+            event.player.addStat(ModAchievementList.mineralMud, 1);
     }
 
     @SubscribeEvent

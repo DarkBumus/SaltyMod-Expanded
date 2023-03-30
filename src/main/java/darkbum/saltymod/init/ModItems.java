@@ -324,8 +324,8 @@ public class ModItems {
     public static void init() {
         SaltyMod.logger.info("Start to initialize Items");
 
-        GameRegistry.registerItem(achievement_item, "achievement_item");
-        if(SaltConfig.developerFoods) {
+//        GameRegistry.registerItem(achievement_item, "achievement_item");
+        if(ModConfiguration.developerFoods) {
             GameRegistry.registerItem(void_apple, "void_apple");
             GameRegistry.registerItem(stuffing_apple, "stuffing_apple");
             GameRegistry.registerItem(testing_apple, "testing_apple");
@@ -337,7 +337,7 @@ public class ModItems {
 //            GameRegistry.registerItem(item_blossom_hanging_sign, "item_blossom_hanging_sign");
         }
         GameRegistry.registerItem(blossom, "blossom");
-        GameRegistry.registerItem(bee_larva, "bee_grub");
+        GameRegistry.registerItem(bee_larva, "bee_larva");
         GameRegistry.registerItem(carpenter_bee, "carpenter_bee");
         GameRegistry.registerItem(waxcomb, "waxcomb");
         GameRegistry.registerItem(honeycomb, "honeycomb");

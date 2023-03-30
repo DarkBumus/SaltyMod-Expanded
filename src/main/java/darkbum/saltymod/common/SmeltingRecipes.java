@@ -3,7 +3,7 @@ package darkbum.saltymod.common;
 import cpw.mods.fml.common.registry.GameRegistry;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
-import darkbum.saltymod.init.SaltConfig;
+import darkbum.saltymod.init.ModConfiguration;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
@@ -29,7 +29,7 @@ public class SmeltingRecipes {
         GameRegistry.addSmelting(new ItemStack(ModItems.tailor), new ItemStack(ModItems.cooked_tailor), 0.35F);
         GameRegistry.addSmelting(new ItemStack(ModItems.calamari), new ItemStack(ModItems.cooked_calamari), 0.35F);
 
-        if(!SaltConfig.mudBrickComplex) {
+        if(!ModConfiguration.mudBrickComplex) {
             GameRegistry.addSmelting(new ItemStack(ModBlocks.wet_mud_brick), new ItemStack(ModBlocks.dry_mud_brick), 0.1F);
         }
     }

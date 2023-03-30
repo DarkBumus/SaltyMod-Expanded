@@ -3,7 +3,7 @@ package darkbum.saltymod.world.generator;
 import java.util.Random;
 
 import darkbum.saltymod.init.ModBlocks;
-import darkbum.saltymod.init.SaltConfig;
+import darkbum.saltymod.init.ModConfiguration;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -30,14 +30,14 @@ public class SaltOreGenerator implements IWorldGenerator {
     }
 
     private void generateOverworld(World world, Random rand, int chunkX, int chunkZ) {
-        generateOre(ModBlocks.salt_ore, world, rand, chunkX, chunkZ, SaltConfig.saltOreSize, SaltConfig.saltOreFrequency, 1, 96, Blocks.stone);
+        generateOre(ModBlocks.salt_ore, world, rand, chunkX, chunkZ, ModConfiguration.saltOreSize, ModConfiguration.saltOreFrequency, 1, 96, Blocks.stone);
 
     }
 
     public void generateOre(Block block, World world, Random rand, int chunkX, int chunkZ, int veinSize, int chance, int minY, int maxY, Block generateIn) {
         int heightRange = maxY - minY;
         WorldGenMinable gen = new WorldGenMinable(block, veinSize, generateIn);
-        for (int i = 0; i < SaltConfig.saltOreFrequency; i++) {
+        for (int i = 0; i < ModConfiguration.saltOreFrequency; i++) {
             int randPosX = chunkX + rand.nextInt(16);
             int randPosY = rand.nextInt(heightRange) + minY;
             int randPosZ = chunkZ + rand.nextInt(16);

@@ -4,7 +4,7 @@ import cpw.mods.fml.common.IWorldGenerator;
 import java.util.Random;
 
 import darkbum.saltymod.init.ModBlocks;
-import darkbum.saltymod.init.SaltConfig;
+import darkbum.saltymod.init.ModConfiguration;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockGrass;
@@ -22,13 +22,13 @@ public class SaltLakeGenerator implements IWorldGenerator {
     }
 
     public void generateOverworld(World world, Random rand, int X1, int Z1) {
-        int radius = SaltConfig.saltLakeRadius;
+        int radius = ModConfiguration.saltLakeRadius;
         int originX = X1 + rand.nextInt(16);
         int originZ = Z1 + rand.nextInt(16);
-        if(rand.nextInt(SaltConfig.saltLakeGroupRarity) != 0 || world.getBiomeGenForCoords(originX, originZ) == BiomeGenBase.swampland) {
+        if(rand.nextInt(ModConfiguration.saltLakeGroupRarity) != 0 || world.getBiomeGenForCoords(originX, originZ) == BiomeGenBase.swampland) {
             return;
         }
-        for(int lake = 0; lake < SaltConfig.saltLakeQuantity; lake++) {
+        for(int lake = 0; lake < ModConfiguration.saltLakeQuantity; lake++) {
             for(int originY = 60; originY < 75; originY++) {
                 Block other = world.getBlock(originX, originY, originZ);
                 if((other instanceof BlockGrass || other == Blocks.stone || other == ModBlocks.salt_grass) &&
@@ -263,8 +263,8 @@ public class SaltLakeGenerator implements IWorldGenerator {
                     }
                 }
             }
-            originX = originX + rand.nextInt(SaltConfig.saltLakeDistance) - SaltConfig.saltLakeDistance / 2;
-            originZ = originZ + rand.nextInt(SaltConfig.saltLakeDistance) - SaltConfig.saltLakeDistance / 2;
+            originX = originX + rand.nextInt(ModConfiguration.saltLakeDistance) - ModConfiguration.saltLakeDistance / 2;
+            originZ = originZ + rand.nextInt(ModConfiguration.saltLakeDistance) - ModConfiguration.saltLakeDistance / 2;
         }
     }
 

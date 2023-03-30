@@ -3,7 +3,7 @@ package darkbum.saltymod.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import darkbum.saltymod.init.AchievSalt;
+import darkbum.saltymod.init.ModAchievementList;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.block.Block;
@@ -242,7 +242,7 @@ public class BlockSaltDirt extends Block {
         if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == ModItems.salt_pinch) {
             ItemStack current = player.getCurrentEquippedItem();
             if (world.getBlock(x, y + 1, z) == ModBlocks.saltworts)
-                player.addStat(AchievSalt.saltWortFarm, 1);
+                player.addStat(ModAchievementList.saltWortFarm, 1);
             int meta = world.getBlockMetadata(x, y, z);
             if (meta == 0 || meta > 3) {
                 world.setBlock(x, y, z, this, 1, 3);

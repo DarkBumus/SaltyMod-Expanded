@@ -4,7 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.api.ExtractRegistry;
 import darkbum.saltymod.block.BlockExtractor;
-import darkbum.saltymod.init.SaltConfig;
+import darkbum.saltymod.init.ModConfiguration;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -53,7 +53,7 @@ public class TileEntityExtractor extends TileEntity implements ISidedInventory, 
 
     public int pressure;
 
-    private int maxCap = 1000 * SaltConfig.extractorVolume;
+    private int maxCap = 1000 * ModConfiguration.extractorVolume;
 
     public FluidTank tank = new FluidTank(this.maxCap);
 

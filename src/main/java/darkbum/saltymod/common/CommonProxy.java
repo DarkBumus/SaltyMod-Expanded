@@ -13,7 +13,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.SaltyMod;
 import darkbum.saltymod.api.ExtractRegistry;
-import darkbum.saltymod.init.AchievSalt;
+import darkbum.saltymod.init.ModAchievementList;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 import darkbum.saltymod.world.generator.*;
@@ -64,6 +64,15 @@ public class CommonProxy {
     @SideOnly(Side.CLIENT)
     public static IIcon milkIcon;
 
+    @SideOnly(Side.CLIENT)
+    public static IIcon fullMudIcon;
+
+    @SideOnly(Side.CLIENT)
+    public static IIcon discomfortIcon;
+
+    @SideOnly(Side.CLIENT)
+    public static IIcon saltWitchIcon;
+
     public static Fluid milk;
 
     public static SimpleNetworkWrapper network;
@@ -80,7 +89,7 @@ public class CommonProxy {
 
     public void init(FMLInitializationEvent event) {
 
-        AchievSalt.init();
+        ModAchievementList.init();
         ClientProxy.setBlockRenderers();
         if (event.getSide().isClient()) {
             ClientProxy.setEntityRenderers();

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 import darkbum.saltymod.init.ModBlocks;
-import darkbum.saltymod.init.SaltConfig;
+import darkbum.saltymod.init.ModConfiguration;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -158,7 +158,7 @@ public class BlockSaltSlab extends BlockSlab {
                 .getBlock(x - 1, y + 1, z + 1).getMaterial() == Material.water && world
                 .getBlock(x - 1, y + 1, z - 1).getMaterial() == Material.water && world
                 .getFullBlockLightValue(x, y + 1, z) < 15 && world.getBlock(x, y, z) == ModBlocks.double_salt_slab) {
-                if (rand.nextInt(SaltConfig.saltCrystalGrowSpeed) == 0 && this.crystal)
+                if (rand.nextInt(ModConfiguration.saltCrystalGrowSpeed) == 0 && this.crystal)
                     if (world.getBlock(x, y + 1, z) == Blocks.air) {
                         world.setBlock(x, y + 1, z, ModBlocks.salt_crystal, 2, 3);
                     } else if (world.getBlock(x, y + 1, z) == ModBlocks.salt_crystal && world.getBlockMetadata(x, y + 1, z) == 2) {

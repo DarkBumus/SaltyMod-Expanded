@@ -7,7 +7,7 @@ import java.util.Random;
 
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
-import darkbum.saltymod.init.SaltConfig;
+import darkbum.saltymod.init.ModConfiguration;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
@@ -146,7 +146,7 @@ public class TestSaltworts extends BlockBush implements IGrowable {
             Block block = world.getBlock(x, y - 1, z);
             int meta = world.getBlockMetadata(x, y - 1, z);
             if ((block == ModBlocks.salt_dirt && (meta == 1 || meta == 2 || meta == 3))) {
-                if (rand.nextInt(SaltConfig.saltWortGrowSpeed) == 0)
+                if (rand.nextInt(ModConfiguration.saltWortGrowSpeed) == 0)
                     if (world.getBlockMetadata(x, y, z) == 0) {
                         world.setBlock(x, y, z, this, 1, 3);
                     } else if (world.getBlockMetadata(x, y, z) == 1 && world.getFullBlockLightValue(x, y, z) >= 12) {
@@ -206,7 +206,7 @@ public class TestSaltworts extends BlockBush implements IGrowable {
                                 }
                             }
                     }
-            } else if (rand.nextInt(SaltConfig.saltWortGrowSpeed + 1) == 0) {
+            } else if (rand.nextInt(ModConfiguration.saltWortGrowSpeed + 1) == 0) {
                 if (world.getBlockMetadata(x, y, z) == 0) {
                     world.setBlock(x, y, z, this, 1, 3);
                 } else if (world.getBlockMetadata(x, y, z) == 1) {

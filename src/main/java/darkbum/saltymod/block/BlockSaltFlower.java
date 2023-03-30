@@ -49,6 +49,7 @@ public class BlockSaltFlower extends BlockFlower {
         super(1);
         setBlockName("salt_flower");
         setCreativeTab(CommonProxy.tabSalt);
+        setStepSound(soundTypeGrass);
     }
 
     @Override

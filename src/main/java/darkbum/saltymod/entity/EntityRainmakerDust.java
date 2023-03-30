@@ -1,7 +1,7 @@
 package darkbum.saltymod.entity;
 
 import darkbum.saltymod.api.RainMakerEvent;
-import darkbum.saltymod.init.SaltConfig;
+import darkbum.saltymod.init.ModConfiguration;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -15,8 +15,7 @@ public class EntityRainmakerDust extends Entity {
 
     private EntityPlayer player;
 
-    private int cloud = SaltConfig.cloudLevel.containsKey(this.worldObj.provider.dimensionId) ? SaltConfig.cloudLevel
-        .get(this.worldObj.provider.dimensionId) : 128;
+    private int cloud = ModConfiguration.cloudLevel.getOrDefault(this.worldObj.provider.dimensionId, 128);
 
     public EntityRainmakerDust(World world) {
         super(world);

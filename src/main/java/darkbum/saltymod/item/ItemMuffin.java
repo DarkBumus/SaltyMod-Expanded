@@ -3,7 +3,7 @@ package darkbum.saltymod.item;
 import java.util.List;
 import java.util.Random;
 
-import darkbum.saltymod.init.AchievSalt;
+import darkbum.saltymod.init.ModAchievementList;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,7 +32,7 @@ public class ItemMuffin extends ItemFood {
             chek = true;
         if (!world.isRemote && chek) {
             player.addPotionEffect(new PotionEffect(Potion.field_76443_y.id, 2400));
-            player.addStat(AchievSalt.muffin, 1);
+            player.addStat(ModAchievementList.muffin, 1);
         }
         if (world.isRemote && player.getFoodStats().getFoodLevel() == 20) {
             Random rand = new Random();
