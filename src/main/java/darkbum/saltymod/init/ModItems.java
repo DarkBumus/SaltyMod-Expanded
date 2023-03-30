@@ -39,7 +39,7 @@ public class ModItems {
 
     public static Item blossom = new Item().setCreativeTab(tab).setUnlocalizedName("blossom").setTextureName("saltymod:blossom");
 
-    public static Item bee_larva = new Item().setCreativeTab(tab).setUnlocalizedName("bee_larva").setTextureName("saltymod:bee_larva");
+    public static Item bee_larva = new ItemBeeLarva("bee_larva", tab).setMaxStackSize(1).setMaxStackSize(18).setTextureName("saltymod:bee_larva");
 
     public static Item carpenter_bee = new ItemCarpenterBee("carpenter_bee", tab).setMaxStackSize(1).setMaxDamage(18).setTextureName("saltymod:carpenter_bee");
 

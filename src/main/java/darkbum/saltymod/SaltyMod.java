@@ -272,7 +272,6 @@ public class SaltyMod {
             - Restructure Config and Achiev file/class
             - Change Salt Crystal Drop [Salt Shard/Crystal Item]
             - Potion Effect [Well Fed]
-            - Add Blossom Wood to EFR's "Strippables"
             - Finish Salt Marsh
                 - Reeds/Water Grass
                 - Mix Salt Flower Patches
@@ -283,7 +282,6 @@ public class SaltyMod {
             - Finish Blossom Burrow/Tree
                 - Add "Angry Bees" potion effect
                     - Change the color of hearts when under the "Angry Bees" effect
-                - "Not the bees!" Achievement
             - Finish Apiary [as a whole]
             - Make Fish automatable [Fish Trap? Something else?]
             - Create/Finish Blossom Sign [Later Boat&Chest Boat&Hanging Sign]

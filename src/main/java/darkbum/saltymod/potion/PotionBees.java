@@ -42,12 +42,10 @@ public class PotionBees extends ModPotion {
             if (itemStack != null && validStacks.contains(itemStack)) {
                 beeResistance += 0.1F;
             }
-            if  (!player.getEntityWorld().getBlock((int)player.posX, (int)player.posY + 1, (int)player.posZ).getMaterial().isLiquid() &&
-                (!player.isBurning())) {
+            if (!player.getEntityWorld().getBlock((int)player.posX, (int)player.posY + 1, (int)player.posZ).getMaterial().isLiquid() &&
+               (!player.isBurning())) {
+                player.addStat(AchievSalt.beesStung, 1);
                 entity.attackEntityFrom(ModPotion.beesDamage, 1.0F - beeResistance);
-                if (player.getHealth() == 0) {
-                    player.addStat(AchievSalt.beesStung, 1);
-                }
             }
         }
     }

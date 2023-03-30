@@ -7,7 +7,7 @@ itemGroup.salt=SaltyMod Expanded
 
 potion.bees=Bees!
 death.attack.beesDamage=%1$s was stung to death by Bees
-death.attack.taint.player=%1$s was stung to death by Bees whilst trying to escape them and also %2$s
+death.attack.taint.player=%1$s was stung to death by Bees while trying to escape %2$s
 
 
 # BLOCKS
