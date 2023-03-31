@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import darkbum.saltymod.common.CommonProxy;
-import darkbum.saltymod.network.ExtractorButtonMessage;
-import darkbum.saltymod.tileentity.TileEntityExtractor;
+import darkbum.saltymod.network.EvaporatorButtonMessage;
+import darkbum.saltymod.tileentity.TileEntityEvaporator;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -20,24 +20,24 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import org.lwjgl.opengl.GL11;
-import darkbum.saltymod.inventory.container.ContainerExtractor;
+import darkbum.saltymod.inventory.container.ContainerEvaporator;
 
 @SideOnly(Side.CLIENT)
-public class GuiExtractor extends GuiContainer {
-    private static final ResourceLocation guiTextures = new ResourceLocation("saltmod:textures/gui/container/extractor.png");
+public class GuiEvaporator extends GuiContainer {
+    private static final ResourceLocation guiTextures = new ResourceLocation("saltymod:textures/gui/container/evaporator.png");
 
-    private TileEntityExtractor te;
+    private TileEntityEvaporator te;
 
-    private GuiExtractorButton button;
+    private GuiEvaporatorButton button;
 
-    public GuiExtractor(InventoryPlayer player, TileEntityExtractor tileEntity) {
-        super(new ContainerExtractor(player, tileEntity));
+    public GuiEvaporator(InventoryPlayer player, TileEntityEvaporator tileEntity) {
+        super(new ContainerEvaporator(player, tileEntity));
         this.te = tileEntity;
     }
 
     public void initGui() {
         super.initGui();
-        this.buttonList.add(this.button = new GuiExtractorButton(guiTextures, 1, this.guiLeft + 97, this.guiTop + 16));
+        this.buttonList.add(this.button = new GuiEvaporatorButton(guiTextures, 1, this.guiLeft + 97, this.guiTop + 16));
         this.button.enabled = false;
     }
 
@@ -47,7 +47,7 @@ public class GuiExtractor extends GuiContainer {
     }
 
     protected void actionPerformed(GuiButton button) {
-        CommonProxy.network.sendToServer(new ExtractorButtonMessage(this.te.xCoord, this.te.yCoord, this.te.zCoord));
+        CommonProxy.network.sendToServer(new EvaporatorButtonMessage(this.te.xCoord, this.te.yCoord, this.te.zCoord));
     }
 
     protected void drawGuiContainerForegroundLayer(int par_1, int par_2) {
@@ -67,7 +67,7 @@ public class GuiExtractor extends GuiContainer {
             drawTexturedModalRect(k + 71, l + 54 + 12 - i1, 176, 12 - i1, 14, i1 + 1);
         }
         if (this.te.liquidLevel > 0) {
-            int i1 = this.te.getExtractProgressScaled(17);
+            int i1 = this.te.getEvaporateProgressScaled(17);
             drawTexturedModalRect(k + 96, l + 36, 176, 14, i1 + 1, 10);
         }
         if (this.te.pressure > 0)

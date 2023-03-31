@@ -1,6 +1,6 @@
 package darkbum.saltymod.inventory.container;
 
-import darkbum.saltymod.api.ExtractRegistry;
+import darkbum.saltymod.api.EvaporateRegistry;
 import darkbum.saltymod.init.ModAchievementList;
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.entity.item.EntityXPOrb;
@@ -10,12 +10,12 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 
-public class SlotExtractor extends Slot {
+public class SlotEvaporator extends Slot {
     private EntityPlayer thePlayer;
 
     private int count;
 
-    public SlotExtractor(EntityPlayer player, IInventory inv, int x, int y, int z) {
+    public SlotEvaporator(EntityPlayer player, IInventory inv, int x, int y, int z) {
         super(inv, x, y, z);
         this.thePlayer = player;
     }
@@ -44,7 +44,7 @@ public class SlotExtractor extends Slot {
         stack.onCrafting(this.thePlayer.worldObj, this.thePlayer, this.count);
         if (!this.thePlayer.worldObj.isRemote) {
             int i = this.count;
-            float f = ExtractRegistry.instance().getExtractExperience(stack);
+            float f = EvaporateRegistry.instance().getEvaporateExperience(stack);
             if (f == 0.0F) {
                 i = 0;
             } else if (f < 1.0F) {
@@ -61,6 +61,6 @@ public class SlotExtractor extends Slot {
         }
         this.count = 0;
         if (stack.getItem() == ModItems.salt_pinch)
-            this.thePlayer.addStat(ModAchievementList.moreBuckets, 1);
+            this.thePlayer.addStat(ModAchievementList.farmEvaporator, 1);
     }
 }

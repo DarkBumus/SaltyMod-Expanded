@@ -5,8 +5,8 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFurnace;
 
-public class SlotExtractorFuel extends Slot {
-    public SlotExtractorFuel(IInventory inventoryIn, int slotIndex, int xPosition, int yPosition) {
+public class SlotEvaporatorFuel extends Slot {
+    public SlotEvaporatorFuel(IInventory inventoryIn, int slotIndex, int xPosition, int yPosition) {
         super(inventoryIn, slotIndex, xPosition, yPosition);
     }
 

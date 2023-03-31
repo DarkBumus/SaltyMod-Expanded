@@ -2,8 +2,8 @@ package darkbum.saltymod.tileentity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.api.ExtractRegistry;
-import darkbum.saltymod.block.BlockExtractor;
+import darkbum.saltymod.api.EvaporateRegistry;
+import darkbum.saltymod.block.BlockEvaporator;
 import darkbum.saltymod.init.ModConfiguration;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -24,7 +24,7 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
-public class TileEntityExtractor extends TileEntity implements ISidedInventory, IFluidHandler {
+public class TileEntityEvaporator extends TileEntity implements ISidedInventory, IFluidHandler {
     private static final int[] slotsBottom = new int[] { 0, 1 };
 
     private static final int[] slotsSides = new int[] { 1 };
@@ -35,7 +35,7 @@ public class TileEntityExtractor extends TileEntity implements ISidedInventory, 
 
     public int currentItemBurnTime;
 
-    public int extractTime;
+    public int evaporateTime;
 
     public int liquidID;
 
@@ -53,7 +53,7 @@ public class TileEntityExtractor extends TileEntity implements ISidedInventory, 
 
     public int pressure;
 
-    private int maxCap = 1000 * ModConfiguration.extractorVolume;
+    private int maxCap = 1000 * ModConfiguration.evaporatorVolume;
 
     public FluidTank tank = new FluidTank(this.maxCap);
 
@@ -89,14 +89,14 @@ public class TileEntityExtractor extends TileEntity implements ISidedInventory, 
             if (this.liquidLevel > 0 && this.liquidChange == 0) {
                 this.liquidChange = this.liquidLevel;
                 teUpdate = true;
-                if (canExtract())
-                    BlockExtractor.updateExtractorBlockState((this.burningTime > 0), true, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+                if (canEvaporate())
+                    BlockEvaporator.updateEvaporatorBlockState((this.burningTime > 0), true, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
             }
             if (this.liquidLevel == 0 && this.liquidChange > 0) {
                 this.liquidChange = 0;
-                this.extractTime = 0;
+                this.evaporateTime = 0;
                 teUpdate = true;
-                BlockExtractor.updateExtractorBlockState((this.burningTime > 0), false, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+                BlockEvaporator.updateEvaporatorBlockState((this.burningTime > 0), false, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
             }
             if (this.burningTime > 0)
                 this.burningTime--;
@@ -108,7 +108,7 @@ public class TileEntityExtractor extends TileEntity implements ISidedInventory, 
             this.liquidID = (this.tank.getFluid() != null) ? this.tank.getFluid().getFluidID() : 0;
             this.liquidLevel = (this.tank.getFluid() != null) ? this.tank.getFluidAmount() : 0;
             if (this.burningTime != 0 || (this.invSlots[1] != null && !isFluidTankEmpty())) {
-                if (this.burningTime == 0 && canExtract() && !liquid) {
+                if (this.burningTime == 0 && canEvaporate() && !liquid) {
                     this.currentItemBurnTime = this.burningTime = TileEntityFurnace.getItemBurnTime(this.invSlots[1]);
                     if (this.burningTime > 0) {
                         teUpdate = true;
@@ -119,13 +119,13 @@ public class TileEntityExtractor extends TileEntity implements ISidedInventory, 
                         }
                     }
                 }
-                if (isBurning() && canExtract()) {
+                if (isBurning() && canEvaporate()) {
                     if (clear && !liquid) {
-                        int vol = ExtractRegistry.instance().getExtractFluidVolum(this.tank.getFluid().getFluid());
-                        this.extractTime++;
-                        if (this.extractTime == vol) {
-                            this.extractTime = 0;
-                            extract();
+                        int vol = EvaporateRegistry.instance().getEvaporateFluidVolume(this.tank.getFluid().getFluid());
+                        this.evaporateTime++;
+                        if (this.evaporateTime == vol) {
+                            this.evaporateTime = 0;
+                            evaporate();
                             teUpdate = true;
                         }
                         this.tank.drain(1, true);
@@ -133,12 +133,12 @@ public class TileEntityExtractor extends TileEntity implements ISidedInventory, 
                         pressure();
                     }
                 } else {
-                    this.extractTime = 0;
+                    this.evaporateTime = 0;
                 }
             }
             if (burn != ((this.burningTime > 0))) {
                 teUpdate = true;
-                BlockExtractor.updateExtractorBlockState((this.burningTime > 0), canExtract(), this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+                BlockEvaporator.updateEvaporatorBlockState((this.burningTime > 0), canEvaporate(), this.worldObj, this.xCoord, this.yCoord, this.zCoord);
             }
             if ((this.steamLevel != 0 && clear) || (this.liquidLevel == 0 && !clear) || !isBurning()) {
                 this.pressure = 0;
@@ -155,15 +155,15 @@ public class TileEntityExtractor extends TileEntity implements ISidedInventory, 
     }
 
     public void pressure() {
-        int vol = ExtractRegistry.instance().getExtractFluidVolum(this.tank.getFluid().getFluid());
+        int vol = EvaporateRegistry.instance().getEvaporateFluidVolume(this.tank.getFluid().getFluid());
         this.pressure = this.steamLevel / (32 - getFluidAmountScaled(32) + 1) * 4;
         this.steamTime++;
         if (this.steamTime % (this.pressure + 1) == 0) {
-            this.extractTime++;
+            this.evaporateTime++;
             this.steamTime = 0;
-            if (this.extractTime == vol) {
-                this.extractTime = 0;
-                extract();
+            if (this.evaporateTime == vol) {
+                this.evaporateTime = 0;
+                evaporate();
                 markDirty();
             }
             this.tank.drain(1, true);
@@ -175,10 +175,10 @@ public class TileEntityExtractor extends TileEntity implements ISidedInventory, 
         }
     }
 
-    public boolean canExtract() {
+    public boolean canEvaporate() {
         if (isFluidTankEmpty())
             return false;
-        ItemStack itemstack = ExtractRegistry.instance().getExtractItemStack(this.tank.getFluid().getFluid());
+        ItemStack itemstack = EvaporateRegistry.instance().getEvaporateItemStack(this.tank.getFluid().getFluid());
         if (itemstack == null)
             return false;
         if (this.invSlots[0] == null)
@@ -189,9 +189,9 @@ public class TileEntityExtractor extends TileEntity implements ISidedInventory, 
         return (result <= getInventoryStackLimit() && result <= this.invSlots[0].getMaxStackSize());
     }
 
-    public void extract() {
-        if (canExtract()) {
-            ItemStack itemstack = ExtractRegistry.instance().getExtractItemStack(this.tank.getFluid().getFluid());
+    public void evaporate() {
+        if (canEvaporate()) {
+            ItemStack itemstack = EvaporateRegistry.instance().getEvaporateItemStack(this.tank.getFluid().getFluid());
             if (this.invSlots[0] == null) {
                 this.invSlots[0] = itemstack.copy();
             } else if (this.invSlots[0].isItemEqual(itemstack)) {
@@ -201,11 +201,11 @@ public class TileEntityExtractor extends TileEntity implements ISidedInventory, 
     }
 
     @SideOnly(Side.CLIENT)
-    public int getExtractProgressScaled(int scale) {
-        int vol = ExtractRegistry.instance().getExtractFluidVolum(FluidRegistry.getFluid(this.liquidID));
+    public int getEvaporateProgressScaled(int scale) {
+        int vol = EvaporateRegistry.instance().getEvaporateFluidVolume(FluidRegistry.getFluid(this.liquidID));
         if (vol == 0)
             vol = 1000;
-        return this.extractTime * scale / vol;
+        return this.evaporateTime * scale / vol;
     }
 
     @SideOnly(Side.CLIENT)
@@ -287,7 +287,7 @@ public class TileEntityExtractor extends TileEntity implements ISidedInventory, 
     }
 
     public String getInventoryName() {
-        return hasCustomInventoryName() ? this.inventoryName : "container.extractor";
+        return hasCustomInventoryName() ? this.inventoryName : "container.evaporator";
     }
 
     public boolean hasCustomInventoryName() {
@@ -309,7 +309,7 @@ public class TileEntityExtractor extends TileEntity implements ISidedInventory, 
                 this.invSlots[b0] = ItemStack.loadItemStackFromNBT(tag);
         }
         this.burningTime = nbt.getShort("BurnTime");
-        this.extractTime = nbt.getShort("CookTime");
+        this.evaporateTime = nbt.getShort("CookTime");
         this.currentItemBurnTime = nbt.getShort("ItemBurnTime");
         this.steamLevel = nbt.getShort("SteamLevel");
         readTankFromNBT(nbt);
@@ -325,7 +325,7 @@ public class TileEntityExtractor extends TileEntity implements ISidedInventory, 
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
         nbt.setShort("BurnTime", (short)this.burningTime);
-        nbt.setShort("CookTime", (short)this.extractTime);
+        nbt.setShort("CookTime", (short)this.evaporateTime);
         nbt.setShort("ItemBurnTime", (short)this.currentItemBurnTime);
         nbt.setShort("SteamLevel", (short)this.steamLevel);
         NBTTagList taglist = new NBTTagList();

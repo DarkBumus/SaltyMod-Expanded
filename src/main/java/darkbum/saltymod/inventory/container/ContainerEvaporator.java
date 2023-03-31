@@ -2,7 +2,7 @@ package darkbum.saltymod.inventory.container;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.tileentity.TileEntityExtractor;
+import darkbum.saltymod.tileentity.TileEntityEvaporator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -11,19 +11,19 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFurnace;
 
-public class ContainerExtractor extends Container {
-    private TileEntityExtractor te;
+public class ContainerEvaporator extends Container {
+    private TileEntityEvaporator te;
 
-    private int lastExtractTime;
+    private int lastEvaporateTime;
 
     private int lastBurnTime;
 
     private int lastItemBurnTime;
 
-    public ContainerExtractor(InventoryPlayer inv, TileEntityExtractor te) {
+    public ContainerEvaporator(InventoryPlayer inv, TileEntityEvaporator te) {
         this.te = te;
-        addSlotToContainer(new SlotExtractor(inv.player, te, 0, 116, 33));
-        addSlotToContainer(new SlotExtractorFuel(te, 1, 44, 53));
+        addSlotToContainer(new SlotEvaporator(inv.player, te, 0, 116, 33));
+        addSlotToContainer(new SlotEvaporatorFuel(te, 1, 44, 53));
         int i;
         for (i = 0; i < 3; i++) {
             for (int j = 0; j < 9; j++)
@@ -35,7 +35,7 @@ public class ContainerExtractor extends Container {
 
     public void addCraftingToCrafters(ICrafting iCrafting) {
         super.addCraftingToCrafters(iCrafting);
-        iCrafting.sendProgressBarUpdate(this, 0, this.te.extractTime);
+        iCrafting.sendProgressBarUpdate(this, 0, this.te.evaporateTime);
         iCrafting.sendProgressBarUpdate(this, 1, this.te.burningTime);
         iCrafting.sendProgressBarUpdate(this, 2, this.te.currentItemBurnTime);
         iCrafting.sendProgressBarUpdate(this, 3, this.te.liquidID);
@@ -47,8 +47,8 @@ public class ContainerExtractor extends Container {
         super.detectAndSendChanges();
         for (Object crafter : this.crafters) {
             ICrafting iCrafting = (ICrafting)crafter;
-            if (this.lastExtractTime != this.te.extractTime)
-                iCrafting.sendProgressBarUpdate(this, 0, this.te.extractTime);
+            if (this.lastEvaporateTime != this.te.evaporateTime)
+                iCrafting.sendProgressBarUpdate(this, 0, this.te.evaporateTime);
             if (this.lastBurnTime != this.te.burningTime)
                 iCrafting.sendProgressBarUpdate(this, 1, this.te.burningTime);
             if (this.lastItemBurnTime != this.te.currentItemBurnTime)
@@ -57,7 +57,7 @@ public class ContainerExtractor extends Container {
             iCrafting.sendProgressBarUpdate(this, 4, this.te.liquidLevel);
             iCrafting.sendProgressBarUpdate(this, 5, this.te.pressure);
         }
-        this.lastExtractTime = this.te.extractTime;
+        this.lastEvaporateTime = this.te.evaporateTime;
         this.lastBurnTime = this.te.burningTime;
         this.lastItemBurnTime = this.te.currentItemBurnTime;
     }
@@ -65,7 +65,7 @@ public class ContainerExtractor extends Container {
     @SideOnly(Side.CLIENT)
     public void updateProgressBar(int id, int v) {
         if (id == 0)
-            this.te.extractTime = v;
+            this.te.evaporateTime = v;
         if (id == 1)
             this.te.burningTime = v;
         if (id == 2)

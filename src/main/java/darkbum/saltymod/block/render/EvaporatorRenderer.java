@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
 import org.lwjgl.opengl.GL11;
 
-public class ExtractorRenderer implements ISimpleBlockRenderingHandler {
+public class EvaporatorRenderer implements ISimpleBlockRenderingHandler {
     public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
         Tessellator tessellator = Tessellator.instance;
         GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
@@ -49,6 +49,6 @@ public class ExtractorRenderer implements ISimpleBlockRenderingHandler {
     }
 
     public int getRenderId() {
-        return ClientProxy.extractorRenderType;
+        return ClientProxy.evaporatorRenderType;
     }
 }

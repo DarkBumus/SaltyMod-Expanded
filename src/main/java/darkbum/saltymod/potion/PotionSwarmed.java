@@ -9,11 +9,11 @@ import net.minecraftforge.oredict.OreDictionary;
 import java.util.ArrayList;
 
 
-public class PotionBees extends ModPotion {
+public class PotionSwarmed extends ModPotion {
 
-    protected PotionBees(int id, boolean isBad, int color) {
+    protected PotionSwarmed(int id, boolean isBad, int color) {
         super(id, isBad, color);
-        setPotionName("potion.bees");
+        setPotionName("potion.swarmed");
         setIconIndex(0, 0);
         setEffectiveness(0.25D);
     }
@@ -44,8 +44,8 @@ public class PotionBees extends ModPotion {
             }
             if (!player.getEntityWorld().getBlock((int)player.posX, (int)player.posY + 1, (int)player.posZ).getMaterial().isLiquid() &&
                (!player.isBurning())) {
-                player.addStat(ModAchievementList.beesStung, 1);
-                entity.attackEntityFrom(ModPotion.beesDamage, 1.0F - beeResistance);
+                player.addStat(ModAchievementList.stung, 1);
+                entity.attackEntityFrom(ModPotion.swarmedDamage, 1.0F - beeResistance);
             }
         }
     }

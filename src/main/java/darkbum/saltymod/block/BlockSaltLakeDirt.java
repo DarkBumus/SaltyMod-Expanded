@@ -71,7 +71,7 @@ public class BlockSaltLakeDirt extends Block {
                 EntityList.getEntityString(entity).toLowerCase().contains("witch")))
                 world.scheduleBlockUpdate(x, y, z, this, 0);
             if (entity instanceof EntityPlayer)
-                ((EntityPlayer)entity).addStat(ModAchievementList.saltLake, 1);
+                ((EntityPlayer)entity).addStat(ModAchievementList.navSaltLake, 1);
         }
     }
 

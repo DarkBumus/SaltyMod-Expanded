@@ -12,7 +12,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.SaltyMod;
-import darkbum.saltymod.api.ExtractRegistry;
+import darkbum.saltymod.api.EvaporateRegistry;
 import darkbum.saltymod.init.ModAchievementList;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
@@ -39,11 +39,11 @@ import darkbum.saltymod.dispenser.DispenserBehaviorRainmaker;
 import darkbum.saltymod.dispenser.DispenserBehaviorSaltPinch;
 import darkbum.saltymod.entity.EntityRainmaker;
 import darkbum.saltymod.entity.EntityRainmakerDust;
-import darkbum.saltymod.inventory.gui.GuiExtractorHandler;
-import darkbum.saltymod.network.ExtractorButtonMessage;
+import darkbum.saltymod.inventory.gui.GuiEvaporatorHandler;
+import darkbum.saltymod.network.EvaporatorButtonMessage;
 import darkbum.saltymod.network.SaltModEventHandler;
 import darkbum.saltymod.network.SaltWortMessage;
-import darkbum.saltymod.tileentity.TileEntityExtractor;
+import darkbum.saltymod.tileentity.TileEntityEvaporator;
 
 public class CommonProxy {
 
@@ -81,9 +81,9 @@ public class CommonProxy {
         SaltModEventHandler sEvent = new SaltModEventHandler();
         FMLCommonHandler.instance().bus().register(sEvent);
         MinecraftForge.EVENT_BUS.register(sEvent);
-        NetworkRegistry.INSTANCE.registerGuiHandler(SaltyMod.instance, new GuiExtractorHandler());
+        NetworkRegistry.INSTANCE.registerGuiHandler(SaltyMod.instance, new GuiEvaporatorHandler());
         network = NetworkRegistry.INSTANCE.newSimpleChannel("SaltMod");
-        network.registerMessage(ExtractorButtonMessage.Handler.class, ExtractorButtonMessage.class, 0, Side.SERVER);
+        network.registerMessage(EvaporatorButtonMessage.Handler.class, EvaporatorButtonMessage.class, 0, Side.SERVER);
         network.registerMessage(SaltWortMessage.Handler.class, SaltWortMessage.class, 1, Side.CLIENT);
     }
 
@@ -95,7 +95,7 @@ public class CommonProxy {
             ClientProxy.setEntityRenderers();
         }
 
-        GameRegistry.registerTileEntity(TileEntityExtractor.class, "tileEntityExtractor");
+        GameRegistry.registerTileEntity(TileEntityEvaporator.class, "tileEntityEvaporator");
 
         EntityRegistry.registerModEntity(EntityRainmaker.class, "entityRainmaker", 0, SaltyMod.instance, 64, 20, true);
         EntityRegistry.registerModEntity(EntityRainmakerDust.class, "entityRainmakerDust", 1, SaltyMod.instance, 64, 20, false);
@@ -109,7 +109,7 @@ public class CommonProxy {
         GameRegistry.registerWorldGenerator(saltCrystalGenerator, 10);
         GameRegistry.registerWorldGenerator(saltLakeGenerator, 15);
 
-        ExtractRegistry.instance().addExtracting(FluidRegistry.WATER, ModItems.salt_pinch, 1000, 0.0F);
+        EvaporateRegistry.instance().addEvaporating(FluidRegistry.WATER, ModItems.salt_pinch, 1000, 0.0F);
 
         ChestGenHooks.addItem("bonusChest", new WeightedRandomChestContent(new ItemStack(ModItems.salt), 2, 5, 5));
         ChestGenHooks.addItem("dungeonChest", new WeightedRandomChestContent(new ItemStack(ModItems.salt), 2, 5, 5));
@@ -143,29 +143,29 @@ public class CommonProxy {
 
         if (FluidRegistry.isFluidRegistered("milk")) {
             Fluid milk = FluidRegistry.getFluid("milk");
-            ExtractRegistry.instance().addExtracting(milk, ModItems.powdered_milk, 1000, 0.0F);
+            EvaporateRegistry.instance().addEvaporating(milk, ModItems.powdered_milk, 1000, 0.0F);
         } else {
             CommonProxy.milk = new Fluid("milk");
             FluidRegistry.registerFluid(CommonProxy.milk);
             FluidContainerRegistry.registerFluidContainer(new FluidStack(CommonProxy.milk, 1000), new ItemStack(Items.milk_bucket), FluidContainerRegistry.EMPTY_BUCKET);
-            ExtractRegistry.instance().addExtracting(CommonProxy.milk, ModItems.powdered_milk, 1000, 0.0F);
+            EvaporateRegistry.instance().addEvaporating(CommonProxy.milk, ModItems.powdered_milk, 1000, 0.0F);
         }
         if (FluidRegistry.isFluidRegistered("blood")) {
             Fluid blood = FluidRegistry.getFluid("blood");
             GameRegistry.registerItem(ModItems.bop_hemoglobin, "hemoglobin");
-            ExtractRegistry.instance().addExtracting(blood, ModItems.bop_hemoglobin, 1000, 1.0F);
+            EvaporateRegistry.instance().addEvaporating(blood, ModItems.bop_hemoglobin, 1000, 1.0F);
         }
         if (FluidRegistry.isFluidRegistered("hell_blood")) {
             Fluid blood = FluidRegistry.getFluid("hell_blood");
             GameRegistry.registerItem(ModItems.bop_hemoglobin, "hemoglobin");
-            ExtractRegistry.instance().addExtracting(blood, ModItems.bop_hemoglobin, 1000, 1.0F);
+            EvaporateRegistry.instance().addEvaporating(blood, ModItems.bop_hemoglobin, 1000, 1.0F);
         }
         Item bop_dart = GameRegistry.findItem("BiomesOPlenty", "dart");
         ItemStack bop_poisondart = new ItemStack(bop_dart, 1, 1);
         if (bop_dart != null && FluidRegistry.isFluidRegistered("poison")) {
             Fluid poisonFl = FluidRegistry.getFluid("poison");
             GameRegistry.registerItem(ModItems.bop_poison, "bop_poison");
-            ExtractRegistry.instance().addExtracting(poisonFl, ModItems.bop_poison, 1000, 1.0F);
+            EvaporateRegistry.instance().addEvaporating(poisonFl, ModItems.bop_poison, 1000, 1.0F);
             GameRegistry.addShapelessRecipe(bop_poisondart, new ItemStack(bop_dart), ModItems.bop_poison);
         }
 

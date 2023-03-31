@@ -5,7 +5,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.client.renderer.entity.RenderSnowball;
-import darkbum.saltymod.block.render.ExtractorRenderer;
+import darkbum.saltymod.block.render.EvaporatorRenderer;
 import darkbum.saltymod.block.render.SaltGrassRenderer;
 import darkbum.saltymod.entity.EntityRainmaker;
 import darkbum.saltymod.entity.EntityRainmakerDust;
@@ -14,13 +14,13 @@ import darkbum.saltymod.entity.render.RenderRainmakerDust;
 public class ClientProxy extends CommonProxy {
     public static int saltGrassRenderType;
 
-    public static int extractorRenderType;
+    public static int evaporatorRenderType;
 
     public static void setBlockRenderers() {
         saltGrassRenderType = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(new SaltGrassRenderer());
-        extractorRenderType = RenderingRegistry.getNextAvailableRenderId();
-        RenderingRegistry.registerBlockHandler(new ExtractorRenderer());
+        evaporatorRenderType = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new EvaporatorRenderer());
     }
 
     @SideOnly(Side.CLIENT)

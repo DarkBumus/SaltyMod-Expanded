@@ -8,19 +8,16 @@ import darkbum.saltymod.init.ModItems;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.potion.ModPotion;
-import darkbum.saltymod.tileentity.TileEntityExtractor;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class BlockBlossomBurrow extends Block {
@@ -108,7 +105,7 @@ public class BlockBlossomBurrow extends Block {
             ItemStack heldStack = player.getCurrentEquippedItem();
             if (heldStack != null && heldStack.getItem() instanceof ItemAxe) {
                 world.setBlock(x, y, z, ModBlocks.blossom_stripped_burrow);
-                player.addPotionEffect(new PotionEffect(ModPotion.bees.id, 600, 0));
+                player.addPotionEffect(new PotionEffect(ModPotion.swarmed.id, 600, 0));
                 world.playSoundEffect(x, y, z, "saltymod:block.blossom_burrow.bees", 1.0F, 1.5F);
             }
         }
@@ -117,7 +114,7 @@ public class BlockBlossomBurrow extends Block {
 
     public void onBlockHarvested(World world, int x, int y, int z, int meta, EntityPlayer player) {
         if(!player.capabilities.isCreativeMode) {
-            player.addPotionEffect(new PotionEffect(ModPotion.bees.id, 900, 0));
+            player.addPotionEffect(new PotionEffect(ModPotion.swarmed.id, 900, 0));
             world.playSoundEffect(x, y, z, "saltymod:block.blossom_burrow.bees", 1.0F, 1.5F);
         }
     }

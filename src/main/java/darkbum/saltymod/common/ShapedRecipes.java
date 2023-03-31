@@ -31,7 +31,7 @@ public class ShapedRecipes {
         GameRegistry.addRecipe(new ItemStack(ModBlocks.dry_mud_brick_slab), "xxx", 'x', new ItemStack(ModBlocks.dry_mud_brick));
         GameRegistry.addRecipe(new ItemStack(ModBlocks.blossom_stairs), "x  ", "xx ", "xxx", 'x', new ItemStack(ModBlocks.blossom_planks));
         GameRegistry.addRecipe(new ItemStack(ModBlocks.blossom_slab), "xxx", 'x', new ItemStack(ModBlocks.blossom_planks));
-        GameRegistry.addRecipe(new ItemStack(ModBlocks.extractor), "xyx", "x x", "xxx", 'x', Blocks.cobblestone, 'y', Items.cauldron);
+        GameRegistry.addRecipe(new ItemStack(ModBlocks.evaporator), "xyx", "x x", "xxx", 'x', Blocks.cobblestone, 'y', Items.cauldron);
         GameRegistry.addRecipe(new ItemStack(ModBlocks.storage_crate), "xxx", "xxx", "xxx", 'x', Items.carrot);
         GameRegistry.addRecipe(new ItemStack(ModBlocks.storage_crate, 1, 1), "xxx", "xxx", "xxx", 'x', Items.potato);
         GameRegistry.addRecipe(new ItemStack(ModBlocks.storage_crate, 1, 2), "xxx", "xxx", "xxx", 'x', Items.poisonous_potato);

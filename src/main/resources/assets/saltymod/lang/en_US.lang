@@ -5,9 +5,9 @@ itemGroup.salt=SaltyMod Expanded
 
 # POTION EFFECTS
 
-potion.bees=Bees!
-death.attack.beesDamage=%1$s was stung to death by Bees
-death.attack.taint.player=%1$s was stung to death by Bees while trying to escape %2$s
+potion.bees=Swarmed!
+death.attack.swarmedDamage=%1$s was stung to death by Bees
+death.attack.swarmedDamage.player=%1$s was stung to death by Bees while trying to escape %2$s
 
 
 # BLOCKS
@@ -61,8 +61,8 @@ tile.blossom_trapdoor.name=Blossom Trapdoor
 tile.blossom_sign.name=Blossom Sign
 
 tile.apiary.name=Apiary
-tile.extractor.name=Evaporator
-container.extractor=Evaporator
+tile.evaporator.name=Evaporator
+container.evaporator=Evaporator
 container.discard=Discard
 fluid.milk=Milk
 
@@ -287,40 +287,48 @@ item.bop_pickled_turnip.name=Pickled Turnip
 
 # ACHIEVEMENTS
 
-achievement.salt=Salt!
-achievement.salt.desc=Get salt
-achievement.saltFarm=Salty farmer
-achievement.saltFarm.desc=Gather the harvest from a salt farm
-achievement.rain=Rainmaker
-achievement.rain.desc=Call the rain
-achievement.mineralMud=Something black and viscous
-achievement.mineralMud.desc=Find or mix together mineral mud
-achievement.fullMud=Beauty and health
-achievement.fullMud.desc=Apply a mud mask on the whole body
+achievement.findSalt=Salt!
+achievement.findSalt.desc=Collect some salt
+achievement.farmSalt=Honest work
+achievement.farmSalt.desc=Gather the harvest from a salt farm
+achievement.farmEvaporator=And I would pour 500 buckets...
+achievement.farmEvaporator.desc=Obtain salt through the evaporator
+
+achievement.navSaltLake=Crunching underfoot
+achievement.navSaltLake.desc=Walk on a dried-out salt lake
+achievement.findMineralMud=Something viscous
+achievement.findMineralMud.desc=Get your hands on some mineral mud
+achievement.fullMudArmor=Health and beauty
+achievement.fullMudArmor.desc=Apply a mud mask on the whole body
 achievement.discomfort=Discomfort
 achievement.discomfort.desc=Rinse off the mud mask
-achievement.saltWort=Is there life on salt?
-achievement.saltWort.desc=Find saltwort
-achievement.saltWortFarm=God of melioration
-achievement.saltWortFarm.desc=Fertilize a block of soil with a growing saltwort
+
+achievement.rain=Rainmaker
+achievement.rain.desc=Call on Freyr!
+
+
+achievement.saltwort=Is there life on salt?
+achievement.saltwort.desc=Find saltwort
+achievement.saltwortFarm=God of melioration
+achievement.saltwortFarm.desc=Fertilize a block of soil with a growing saltwort
 achievement.fizzyDrink=Cool the zeal!
 achievement.fizzyDrink.desc=Extinguish yourself with Fizzy Drink
 achievement.muffin=Fed up
 achievement.muffin.desc=Get a saturation effect after eating a muffin
-achievement.moreBuckets=More 10,000 buckets!
-achievement.moreBuckets.desc=Obtain salt through the evaporator
+
 achievement.saltCrystalGet=More than salt
 achievement.saltCrystalGet.desc=Obtain a salt crystal
+achievement.saltCrystalKill=Break a thing, mend you luck
+achievement.saltCrystalKill.desc=Shove a witch or a slime on a salt crystal
 achievement.saltWitch=Achilles' heel
 achievement.saltWitch.desc=Kill the witch with a salt crystal in hand
 achievement.saltSlime=Tough Jelly
 achievement.saltSlime.desc=Kill the slime with a salt crystal in hand
-achievement.saltLake=Crunching underfoot
-achievement.saltLake.desc=Walk on a dried salt lake
+
 achievement.saltCrystal=Wonder of Nature
 achievement.saltCrystal.desc=Find a salt crystal in deep caves
-achievement.beesStung=Not the Bees!
-achievement.beesStung.desc=Provoke a swarm of Carpenter Bees
+achievement.stung=Not the Bees!
+achievement.stung.desc=Provoke a swarm of Carpenter Bees
 
 
 # BIOMES/GENERATION

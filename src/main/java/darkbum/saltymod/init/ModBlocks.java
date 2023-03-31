@@ -97,14 +97,13 @@ public class ModBlocks {
 
     public static Block blossom_sign_wall = new BlockBlossomSign(TileEntityBlossomSign.class, false);
 
-
     public static Block apiary = new BlockApiary("apiary", tab);
 
-    public static Block extractor = new BlockExtractor(false, false, "extractor", tab);
+    public static Block evaporator = new BlockEvaporator(false, false, "evaporator", tab);
 
-    public static Block lit_extractor = new BlockExtractor(true, false, "extractor", null);
+    public static Block lit_evaporator = new BlockEvaporator(true, false, "evaporator", null);
 
-    public static Block steam_extractor = new BlockExtractor(true, true, "extractor", null);
+    public static Block steam_evaporator = new BlockEvaporator(true, true, "evaporator", null);
 
     public static Block storage_crate = new BlockStorageCrate("storage_crate", tab);
 
@@ -180,9 +179,9 @@ public class ModBlocks {
             GameRegistry.registerBlock(blossom_sign_wall, "blossom_sign_wall");
         }
         GameRegistry.registerBlock(apiary, "apiary");
-        GameRegistry.registerBlock(extractor, "extractor");
-        GameRegistry.registerBlock(lit_extractor, "lit_extractor").setLightLevel(0.9F);
-        GameRegistry.registerBlock(steam_extractor, "steam_extractor").setLightLevel(0.9F);
+        GameRegistry.registerBlock(evaporator, "evaporator");
+        GameRegistry.registerBlock(lit_evaporator, "lit_evaporator").setLightLevel(0.9F);
+        GameRegistry.registerBlock(steam_evaporator, "steam_evaporator").setLightLevel(0.9F);
         GameRegistry.registerBlock(storage_crate, ItemStorageCrate.class, "storage_crate");
         GameRegistry.registerBlock(storage_barrel, ItemStorageBarrel.class, "storage_barrel");
         GameRegistry.registerBlock(storage_sack, ItemStorageSack.class, "storage_sack");

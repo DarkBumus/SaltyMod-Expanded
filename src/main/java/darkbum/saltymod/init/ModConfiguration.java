@@ -39,11 +39,15 @@ public class ModConfiguration extends Configuration {
 
     public static boolean mudBrickComplex;
 
-    public static int extractorVolume;
+    public static int evaporatorVolume;
 
     public static Map<Integer, Integer> cloudLevel;
 
     private String[] loadedCloudLevel;
+
+    public static int TFDim;
+
+    public static boolean TFOreGen;
 
     public static int SaltMarshBiomeID;
 
@@ -57,7 +61,7 @@ public class ModConfiguration extends Configuration {
 
     public static int brickmakerCampFrequency;
 
-    public static int beesID;
+    public static int swarmedID;
 
     public static int wellFedID;
 
@@ -83,23 +87,27 @@ public class ModConfiguration extends Configuration {
         saltWortGrowSpeed = getInt("SaltWortGrowRate", "Farm", 7, 1, 20, "The saltwort growth rate (1 - fastly, 20 - slowly)");
         enableHoney = getBoolean("Enables Honey", "Farm", true, "If true, enables the Blossom Trees, Apiary and all the adjacent Items");
         mudBrickComplex = getBoolean("Makes Mud Bricks complex [Currently doesn't do anything and only disables the recipe to get dry mud bricks]", "Blocks", true, "If true, makes Wet Mud Bricks dry when put on the ground, instead of in the furnace");
-        extractorVolume = getInt("EvaporatorVolume", "Evaporator", 1, 1, 3, "The number of buckets in evaporator");
+        evaporatorVolume = getInt("EvaporatorVolume", "Evaporator", 1, 1, 3, "The number of buckets in evaporator");
         fizzyEffect = getBoolean("FizzyEffect", "Effects", false, "Do Fizzy Drink removes all effects? (true - all effects, false - milk analogue)");
         mudArmorWaterDam = getBoolean("MudArmorWaterDamage", "Armor", true, "Mud Armor water damage");
         mudRegenSpeed = getInt("MudRegenSpeed", "Effects", 100, 10, 100, "Speed of Mud Armor & Block regeneration effect (10 - fastly, 100 - slowly)");
         loadedCloudLevel = getStringList("DimCloudLevel", "Rainmaker", defaultCloudLevel, "The height of the clouds in a specific dimension (DimensionID=CloudLevel)");
+        TFOreGen = getBoolean("TFOreGen", "TwilightForest", true, "Salt ore generation in the Twilight Forest dimention");
         SaltMarshBiomeID = get("Biome Generation", "SaltMarsh ID, set to -1 to completly disable the Biome", 40).getInt(40);
         SaltMarshBiomeWeight = get("Biome Generation", "SaltMarsh Weight, The spawn chance of this biome", 10).getInt(10);
         saltOreFrequencyBiome = getInt("Additional SaltOreFrequency", "Biome Generation", 4, 1, 10, "Additional Salt ore frequency in Salt Marshes");
         saltOreBiome = getBoolean("Generate Additional Salt Ore", "Biome Generation", true, "If true, generates additional salt ore in Salt Marshes");
         enableBrickmakerCamp = getBoolean("Enables Brickmaker Camps", "Biome Generation", true, "If true, spawns Brickmaker Camps in the Salt Marshes");
         brickmakerCampFrequency = getInt("BrickmakerCampFrequency", "Biome Generation", 300, 10, 1000, "Changes the frequency of Brickmaker Camps in Salt Marshes");
-        beesID = getInt("BeesID", "Potions", 28, 0, Byte.MAX_VALUE, "Sets the Potion ID for the 'Bees!' Potion Effect");
+        swarmedID = getInt("BeesID", "Potions", 28, 0, Byte.MAX_VALUE, "Sets the Potion ID for the 'Bees!' Potion Effect");
         wellFedID = getInt("WellFedID", "Potions", 29, 0, Byte.MAX_VALUE, "Sets the Potion ID for the 'Well Fed' Potion Effect");
         save();
     }
 
     public void init() {
+        Configuration configTF = new Configuration(new File("./config", "TwilightForest.cfg"));
+        configTF.load();
+        TFDim = configTF.get("dimension", "dimensionID", 7).getInt();
     }
 
     public void postInit() {

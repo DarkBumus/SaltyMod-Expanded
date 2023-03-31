@@ -23,16 +23,12 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.Achievement;
-import net.minecraft.stats.AchievementList;
 import net.minecraft.tileentity.TileEntityFlowerPot;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
-import net.minecraftforge.event.entity.player.AchievementEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -112,7 +108,7 @@ public class SaltModEventHandler {
                             if (check == 6) {
                                 if (player.isBurning())
                                     player.extinguish();
-                                event.player.addStat(ModAchievementList.fullMud, 1);
+                                event.player.addStat(ModAchievementList.fullMudArmor, 1);
                             }
                         }
                     }
@@ -153,13 +149,13 @@ public class SaltModEventHandler {
     @SideOnly(Side.CLIENT)
     public void registerIcons(TextureStitchEvent.Pre event) {
         if (event.map.getTextureType() == 0 && FluidRegistry.isFluidRegistered(CommonProxy.milk))
-            CommonProxy.milkIcon = event.map.registerIcon("saltmod:milk");
-        if (event.map.getTextureType() == 1 && ModAchievementList.fullMud.isAchievement())
-            CommonProxy.fullMudIcon = event.map.registerIcon("saltmod:dev/achievement_icon_0");
+            CommonProxy.milkIcon = event.map.registerIcon("saltymod:milk");
+        if (event.map.getTextureType() == 1 && ModAchievementList.fullMudArmor.isAchievement())
+            CommonProxy.fullMudIcon = event.map.registerIcon("saltymod:dev/achievement_icon_0");
         if (event.map.getTextureType() == 1 && ModAchievementList.discomfort.isAchievement())
-            CommonProxy.discomfortIcon = event.map.registerIcon("saltmod:dev/achievement_1");
+            CommonProxy.discomfortIcon = event.map.registerIcon("saltymod:dev/achievement_1");
         if (event.map.getTextureType() == 1 && ModAchievementList.saltWitch.isAchievement())
-            CommonProxy.saltWitchIcon = event.map.registerIcon("saltmod:dev/achievement_icon_2");
+            CommonProxy.saltWitchIcon = event.map.registerIcon("saltymod:dev/achievement_icon_2");
     }
 
     @SubscribeEvent
@@ -174,20 +170,20 @@ public class SaltModEventHandler {
         World world = event.entityPlayer.worldObj;
         if (!world.isRemote) {
             if (event.item.getEntityItem().getItem() == ModItems.salt)
-                event.entityPlayer.addStat(ModAchievementList.salt, 1);
-            if (event.item.getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.salt_crystal))
+                event.entityPlayer.addStat(ModAchievementList.findSalt, 1);
+            if (event.item.getEntityItem().getItem() == ModItems.salt_shard)
                 event.entityPlayer.addStat(ModAchievementList.saltCrystalGet, 1);
             if (event.item.getEntityItem().getItem() == ModItems.mineral_mud_ball)
-                event.entityPlayer.addStat(ModAchievementList.mineralMud, 1);
+                event.entityPlayer.addStat(ModAchievementList.findMineralMud, 1);
             if (event.item.getEntityItem().getItem() == ModItems.saltwort)
-                event.entityPlayer.addStat(ModAchievementList.saltWort, 1);
+                event.entityPlayer.addStat(ModAchievementList.saltwort, 1);
         }
     }
 
     @SubscribeEvent
     public void crafting(PlayerEvent.ItemCraftedEvent event) {
         if (event.crafting.getItem() == ModItems.mineral_mud_ball)
-            event.player.addStat(ModAchievementList.mineralMud, 1);
+            event.player.addStat(ModAchievementList.findMineralMud, 1);
     }
 
     @SubscribeEvent

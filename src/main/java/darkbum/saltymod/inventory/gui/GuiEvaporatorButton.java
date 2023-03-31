@@ -5,10 +5,10 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
-public class GuiExtractorButton extends GuiButton {
+public class GuiEvaporatorButton extends GuiButton {
     private final ResourceLocation res;
 
-    protected GuiExtractorButton(ResourceLocation res, int id, int xpos, int ypos) {
+    protected GuiEvaporatorButton(ResourceLocation res, int id, int xpos, int ypos) {
         super(id, xpos, ypos, 3, 3, "");
         this.res = res;
     }

@@ -6,18 +6,18 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import darkbum.saltymod.tileentity.TileEntityExtractor;
+import darkbum.saltymod.tileentity.TileEntityEvaporator;
 
-public class ExtractorButtonMessage implements IMessage {
+public class EvaporatorButtonMessage implements IMessage {
     int x;
 
     int y;
 
     int z;
 
-    public ExtractorButtonMessage() {}
+    public EvaporatorButtonMessage() {}
 
-    public ExtractorButtonMessage(int x, int y, int z) {
+    public EvaporatorButtonMessage(int x, int y, int z) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -35,12 +35,12 @@ public class ExtractorButtonMessage implements IMessage {
         buf.writeInt(this.z);
     }
 
-    public static class Handler implements IMessageHandler<ExtractorButtonMessage, IMessage> {
-        public IMessage onMessage(ExtractorButtonMessage message, MessageContext ctx) {
+    public static class Handler implements IMessageHandler<EvaporatorButtonMessage, IMessage> {
+        public IMessage onMessage(EvaporatorButtonMessage message, MessageContext ctx) {
             World world = (ctx.getServerHandler()).playerEntity.worldObj;
             TileEntity te = world.getTileEntity(message.x, message.y, message.z);
-            if (te instanceof TileEntityExtractor)
-                ((TileEntityExtractor)te).tank.setFluid(null);
+            if (te instanceof TileEntityEvaporator)
+                ((TileEntityEvaporator)te).tank.setFluid(null);
             return null;
         }
     }

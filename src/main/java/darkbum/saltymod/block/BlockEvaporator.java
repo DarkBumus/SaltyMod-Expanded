@@ -29,9 +29,9 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidHandler;
 import darkbum.saltymod.SaltyMod;
 import darkbum.saltymod.common.ClientProxy;
-import darkbum.saltymod.tileentity.TileEntityExtractor;
+import darkbum.saltymod.tileentity.TileEntityEvaporator;
 
-public class BlockExtractor extends BlockContainer {
+public class BlockEvaporator extends BlockContainer {
     @SideOnly(Side.CLIENT)
     private IIcon TOP;
 
@@ -47,12 +47,12 @@ public class BlockExtractor extends BlockContainer {
 
     private final boolean isActive;
 
-    private final boolean isExtract;
+    private final boolean isEvaporate;
 
-    public BlockExtractor(boolean act, boolean ext, String name, CreativeTabs tab) {
+    public BlockEvaporator(boolean act, boolean evap, String name, CreativeTabs tab) {
         super(Material.rock);
         this.isActive = act;
-        this.isExtract = ext;
+        this.isEvaporate = evap;
         setBlockName(name);
         setCreativeTab(tab);
         setHardness(5.0F);
@@ -60,7 +60,7 @@ public class BlockExtractor extends BlockContainer {
     }
 
     public int getRenderType() {
-        return ClientProxy.extractorRenderType;
+        return ClientProxy.evaporatorRenderType;
     }
 
     @SideOnly(Side.CLIENT)
@@ -71,13 +71,13 @@ public class BlockExtractor extends BlockContainer {
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1) {
         this.SIDE = par1.registerIcon("furnace_side");
-        this.blockIcon = par1.registerIcon(this.isActive ? "saltymod:extractor_front_on" : "saltymod:extractor_front_off");
-        this.TOP = par1.registerIcon("saltymod:extractor_top");
+        this.blockIcon = par1.registerIcon(this.isActive ? "saltymod:evaporator_front_on" : "saltymod:evaporator_front_off");
+        this.TOP = par1.registerIcon("saltymod:evaporator_top");
         this.BOTTOM = par1.registerIcon("furnace_top");
     }
 
     public Item getItemDropped(int par1, Random random, int par3) {
-        return Item.getItemFromBlock(ModBlocks.extractor);
+        return Item.getItemFromBlock(ModBlocks.evaporator);
     }
 
     public void onBlockAdded(World world, int x, int y, int z) {
@@ -107,7 +107,7 @@ public class BlockExtractor extends BlockContainer {
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
         if (world.isRemote)
             return true;
-        TileEntityExtractor te = (TileEntityExtractor)world.getTileEntity(x, y, z);
+        TileEntityEvaporator te = (TileEntityEvaporator)world.getTileEntity(x, y, z);
         if (te != null) {
             ItemStack itemstack = player.inventory.getCurrentItem();
             if (!fillTank(world, x, y, z, te, itemstack, player) &&
@@ -181,18 +181,18 @@ public class BlockExtractor extends BlockContainer {
         }
     }
 
-    public static void updateExtractorBlockState(boolean burning, boolean extracting, World world, int x, int y, int z) {
+    public static void updateEvaporatorBlockState(boolean burning, boolean evaporator, World world, int x, int y, int z) {
         int l = world.getBlockMetadata(x, y, z);
         TileEntity tileentity = world.getTileEntity(x, y, z);
         isBurning = true;
         if (burning) {
-            if (extracting) {
-                world.setBlock(x, y, z, ModBlocks.steam_extractor);
+            if (evaporator) {
+                world.setBlock(x, y, z, ModBlocks.steam_evaporator);
             } else {
-                world.setBlock(x, y, z, ModBlocks.lit_extractor);
+                world.setBlock(x, y, z, ModBlocks.lit_evaporator);
             }
         } else {
-            world.setBlock(x, y, z, ModBlocks.extractor);
+            world.setBlock(x, y, z, ModBlocks.evaporator);
         }
         isBurning = false;
         world.setBlockMetadataWithNotify(x, y, z, l, 2);
@@ -203,7 +203,7 @@ public class BlockExtractor extends BlockContainer {
     }
 
     public TileEntity createNewTileEntity(World world, int metadata) {
-        return new TileEntityExtractor();
+        return new TileEntityEvaporator();
     }
 
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack itemStack) {
@@ -217,15 +217,15 @@ public class BlockExtractor extends BlockContainer {
         if (l == 3)
             world.setBlockMetadataWithNotify(x, y, z, 4, 2);
         if (itemStack.hasDisplayName())
-            ((TileEntityExtractor)world.getTileEntity(x, y, z)).func_145951_a(itemStack.getDisplayName());
+            ((TileEntityEvaporator)world.getTileEntity(x, y, z)).func_145951_a(itemStack.getDisplayName());
     }
 
     public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
         if (!isBurning) {
-            TileEntityExtractor TileEntitySaltExtractor = (TileEntityExtractor)world.getTileEntity(x, y, z);
-            if (TileEntitySaltExtractor != null) {
-                for (int i1 = 0; i1 < TileEntitySaltExtractor.getSizeInventory(); i1++) {
-                    ItemStack itemstack = TileEntitySaltExtractor.getStackInSlot(i1);
+            TileEntityEvaporator TileEntitySaltEvaporator = (TileEntityEvaporator)world.getTileEntity(x, y, z);
+            if (TileEntitySaltEvaporator != null) {
+                for (int i1 = 0; i1 < TileEntitySaltEvaporator.getSizeInventory(); i1++) {
+                    ItemStack itemstack = TileEntitySaltEvaporator.getStackInSlot(i1);
                     if (itemstack != null) {
                         float f = this.random.nextFloat() * 0.8F + 0.1F;
                         float f1 = this.random.nextFloat() * 0.8F + 0.1F;
@@ -282,7 +282,7 @@ public class BlockExtractor extends BlockContainer {
             } else if (l == 1) {
                 world.spawnParticle("smoke", (f + f4), f1, (f2 + f3), 0.0D, 0.0D, 0.0D);
             }
-            if (this.isExtract && clear) {
+            if (this.isEvaporate && clear) {
                 world.spawnParticle("explode", f5, y + 1.1D, f6, 0.0D, 0.1D, 0.0D);
                 if (ceiling && random.nextInt(10) == 0)
                     world.spawnParticle("dripWater", f7, y + 1.95D, f8, 0.0D, 0.0D, 0.0D);
@@ -295,12 +295,12 @@ public class BlockExtractor extends BlockContainer {
     }
 
     public int getComparatorInputOverride(World world, int x, int y, int z, int side) {
-        TileEntityExtractor te = (TileEntityExtractor)world.getTileEntity(x, y, z);
+        TileEntityEvaporator te = (TileEntityEvaporator)world.getTileEntity(x, y, z);
         return (te.tank.getFluid() != null) ? te.getFluidAmountScaled(15) : 0;
     }
 
     @SideOnly(Side.CLIENT)
     public Item getItem(World world, int x, int y, int z) {
-        return Item.getItemFromBlock(ModBlocks.extractor);
+        return Item.getItemFromBlock(ModBlocks.evaporator);
     }
 }
