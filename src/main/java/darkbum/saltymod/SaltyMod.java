@@ -277,6 +277,7 @@ public class SaltyMod {
 
             Things I (might) need help with:
 
+            - Fix the "Bee Resistant" functionality in the "Swarmed" effect
             - Potion Effect [Well Fed]
             - Create/Finish Brickmaker Camps [Schematica?]
             - Rainmaker behavior!!!
