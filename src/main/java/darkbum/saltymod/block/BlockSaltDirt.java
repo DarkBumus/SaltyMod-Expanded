@@ -25,10 +25,10 @@ public class BlockSaltDirt extends Block {
     public static final byte[] sideFive = {8, 8, 8, 8, 8, 12, 11, 11, 0, 12, 15, 7, 9, 15, 15, 10};
 
     @SideOnly(Side.CLIENT)
-    private IIcon BOTTOM0;
+    private IIcon BOTTOM;
 
     @SideOnly(Side.CLIENT)
-    private IIcon BOTTOM1;
+    private IIcon SIDE_0;
 
     @SideOnly(Side.CLIENT)
     private IIcon SIDE_1;
@@ -76,7 +76,7 @@ public class BlockSaltDirt extends Block {
                     case 3:
                     case 4:
                     case 5:
-                        return BOTTOM0;
+                        return SIDE_0;
                 }
             case 1:
                 switch (side) {
@@ -111,11 +111,11 @@ public class BlockSaltDirt extends Block {
             case 7:
                 switch (side) {
                     case 0:
-                        return BOTTOM1;
+                        return BOTTOM;
                     case 2:
                         return SALTSIDE;
                     case 3:
-                        return BOTTOM0;
+                        return SIDE_0;
                     case 4:
                         return SALTSIDE_L;
                     case 5:
@@ -124,22 +124,22 @@ public class BlockSaltDirt extends Block {
             case 8:
                 switch (side) {
                     case 0:
-                        return BOTTOM1;
+                        return BOTTOM;
                     case 2:
                         return SALTSIDE_L;
                     case 3:
                         return SALTSIDE_R;
                     case 4:
-                        return BOTTOM0;
+                        return SIDE_0;
                     case 5:
                         return SALTSIDE;
                 }
             case 9:
                 switch (side) {
                     case 0:
-                        return BOTTOM1;
+                        return BOTTOM;
                     case 2:
-                        return BOTTOM0;
+                        return SIDE_0;
                     case 3:
                         return SALTSIDE;
                     case 4:
@@ -150,7 +150,7 @@ public class BlockSaltDirt extends Block {
             case 10:
                 switch (side) {
                     case 0:
-                        return BOTTOM1;
+                        return BOTTOM;
                     case 2:
                         return SALTSIDE_R;
                     case 3:
@@ -158,12 +158,12 @@ public class BlockSaltDirt extends Block {
                     case 4:
                         return SALTSIDE;
                     case 5:
-                        return BOTTOM0;
+                        return SIDE_0;
                 }
             case 11:
                 switch (side) {
                     case 0:
-                        return BOTTOM1;
+                        return BOTTOM;
                     case 2:
                     case 5:
                         return SALTSIDE;
@@ -175,7 +175,7 @@ public class BlockSaltDirt extends Block {
             case 12:
                 switch (side) {
                     case 0:
-                        return BOTTOM1;
+                        return BOTTOM;
                     case 2:
                         return SALTSIDE_L;
                     case 3:
@@ -187,7 +187,7 @@ public class BlockSaltDirt extends Block {
             case 13:
                 switch (side) {
                     case 0:
-                        return BOTTOM1;
+                        return BOTTOM;
                     case 2:
                         return SALTSIDE_R;
                     case 3:
@@ -199,7 +199,7 @@ public class BlockSaltDirt extends Block {
             case 14:
                 switch (side) {
                     case 0:
-                        return BOTTOM1;
+                        return BOTTOM;
                     case 2:
                     case 4:
                         return SALTSIDE;
@@ -208,27 +208,14 @@ public class BlockSaltDirt extends Block {
                     case 5:
                         return SALTSIDE_R;
                 }
-            case 4:
-            case 5:
-            case 6:
-            case 15:
-                switch (side) {
-                    case 0:
-                        return BOTTOM1;
-                    case 2:
-                    case 3:
-                    case 4:
-                    case 5:
-                        return SALTSIDE;
-                }
         }
-        return SALTSIDE;
+        return SIDE_0;
     }
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister) {
-        this.BOTTOM0 = iconRegister.registerIcon("saltymod:salt_dirt_0");
-        this.BOTTOM1 = iconRegister.registerIcon("saltymod:salt_dirt_bottom");
+        this.BOTTOM = iconRegister.registerIcon("saltymod:salt_dirt_bottom");
+        this.SIDE_0 = iconRegister.registerIcon("saltymod:salt_dirt_0");
         this.SIDE_1 = iconRegister.registerIcon("saltymod:salt_dirt_1");
         this.SIDE_2 = iconRegister.registerIcon("saltymod:salt_dirt_2");
         this.SIDE_3 = iconRegister.registerIcon("saltymod:salt_dirt_3");

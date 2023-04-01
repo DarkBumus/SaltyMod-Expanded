@@ -183,22 +183,6 @@ public class BlockSaltGrass extends Block {
                     case 5:
                         return SALTSIDE_R;
                 }
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-            case 15:
-                switch (side) {
-                    case 0:
-                        return BOTTOM1;
-                    case 2:
-                    case 3:
-                    case 4:
-                    case 5:
-                        return SALTSIDE;
-                }
         }
         return TOP;
     }
