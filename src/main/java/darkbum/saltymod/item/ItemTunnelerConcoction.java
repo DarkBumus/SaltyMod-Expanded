@@ -25,7 +25,7 @@ public class ItemTunnelerConcoction extends ItemSaltFood {
     }
 
     @Override
-    public void addInformation(ItemStack is, EntityPlayer player, List list, boolean flag) {
+    public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean flag) {
         list.add(I18n.format(getUnlocalizedName() + ".tooltip"));
     }
 

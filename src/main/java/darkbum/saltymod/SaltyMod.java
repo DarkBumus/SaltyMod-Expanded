@@ -279,6 +279,7 @@ public class SaltyMod {
 
             Things I (might) need help with:
 
+            - Achievement Textures (Texture Stitch event)
             - Fix Shadow Items (Salt Shard -> Slime/Witch)
             - Achievement "navelseSaltCrystal" (Cast?)
             - Fix up Evaporator behavior

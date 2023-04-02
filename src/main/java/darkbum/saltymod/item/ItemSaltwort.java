@@ -27,7 +27,7 @@ public class ItemSaltwort extends ItemFood {
     }
 
     @Override
-    public void addInformation(ItemStack is, EntityPlayer player, List list, boolean flag) {
+    public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean flag) {
         PotionEffect effect = new PotionEffect(Potion.regeneration.id, 60, 1);
         String mess = "";
         mess = mess + (Potion.potionTypes[effect.getPotionID()].isBadEffect() ? EnumChatFormatting.RED : EnumChatFormatting.GRAY);

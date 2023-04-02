@@ -302,7 +302,7 @@ public class ModItems {
 
     public static Item tf_salt_hydra_chop = new ItemSaltFood("tf_salt_hydra_chop", 19, 2.1F).setPotionEffect(Potion.regeneration.id, 5, 0, 1.0F).setCreativeTab(tab).setTextureName("saltymod:tf/tf_salt_hydra_chop");
 
-    public static Item tf_pickled_mushgloom = new ItemSaltFood("tf_pickled_mushgloom", 6, 0.8F, Items.glass_bottle, new ProbablePotionEffect(Potion.nightVision.id, 1200, 0), new ProbablePotionEffect(Potion.moveSlowdown.id, 100, 0)).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:tf/tf_pickled_mushgloom");
+    public static Item tf_pickled_mushgloom = new ItemSaltFood("tf_pickled_mushgloom", 6, 0.8F, Items.glass_bottle, new ProbablePotionEffect(Potion.nightVision.id, 1200, 0), new ProbablePotionEffect(Potion.moveSlowdown.id, 100, 0)).setItemUseAction(EnumAction.drink).setAlwaysEdible().setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:tf/tf_pickled_mushgloom");
 
     public static Item tf_saltwort_cooked_venison = new ItemSaltFood("tf_saltwort_cooked_venison", 10, 0.9F, Items.bowl, new ProbablePotionEffect(Potion.regeneration.id, 100, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:tf/tf_saltwort_cooked_venison");
 
@@ -322,7 +322,7 @@ public class ModItems {
 
     public static Item bop_salt_rice_bowl = new ItemSaltFood("bop_salt_rice_bowl", 3, 0.2F, Items.bowl).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:bop/bop_salt_rice_bowl");
 
-    public static Item bop_pickled_turnip = new ItemSaltFood("bop_pickled_turnip", 6, 0.8F, Items.glass_bottle).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:bop/bop_pickled_turnip");
+    public static Item bop_pickled_turnip = new ItemSaltFood("bop_pickled_turnip", 6, 0.8F, Items.glass_bottle).setItemUseAction(EnumAction.drink).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:bop/bop_pickled_turnip");
 
     public static void init() {
         SaltyMod.logger.info("Start to initialize Items");

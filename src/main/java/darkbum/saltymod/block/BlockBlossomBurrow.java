@@ -52,12 +52,22 @@ public class BlockBlossomBurrow extends Block {
         this.BURROW = icon.registerIcon("saltymod:blossom_burrow");
     }
 
-    @SideOnly(Side.CLIENT)
+    public IIcon getIcon(int side, int meta) {
+        if (side == 0)
+            return this.TOP;
+        if (side == 1)
+            return this.TOP;
+        if (side == 3)
+            return this.BURROW;
+        return this.SIDE;
+    }
+
+/*    @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
         return (side == 1) ? this.TOP : ((side == 0) ? this.TOP : ((side != meta) ? this.SIDE : this.BURROW));
     }
 
-/*    public void onBlockAdded(World world, int x, int y, int z) {
+    public void onBlockAdded(World world, int x, int y, int z) {
         super.onBlockAdded(world, x, y, z);
         direction(world, x, y, z);
     }

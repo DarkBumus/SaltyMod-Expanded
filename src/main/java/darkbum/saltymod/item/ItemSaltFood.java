@@ -40,8 +40,8 @@ public class ItemSaltFood extends ItemFood {
     }
 
     @Override
-    public void addInformation(ItemStack is, EntityPlayer player, List list, boolean flag) {
-        super.addInformation(is, player, list, flag);
+    public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean flag) {
+        super.addInformation(itemStack, player, list, flag);
         if(effects != null) {
             for(ProbablePotionEffect effect : effects) {
                 list.add(effect.generateTooltip());
