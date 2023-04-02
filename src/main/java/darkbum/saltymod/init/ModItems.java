@@ -4,6 +4,7 @@ import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import darkbum.saltymod.SaltyMod;
 import darkbum.saltymod.blockitem.ItemBlossomSign;
+import darkbum.saltymod.potion.ModPotion;
 import darkbum.saltymod.potion.ProbablePotionEffect;
 import darkbum.saltymod.item.*;
 import net.minecraft.creativetab.CreativeTabs;
@@ -27,7 +28,7 @@ public class ModItems {
 //    field_76434_w = Health Boost
 //    field_76443_y = Saturation
 //    field_76444_x = Absorption
-    public static Item testing_apple = new ItemSaltFood("testing_apple", 2, 0.3F, new ProbablePotionEffect(Potion.field_76443_y.id, 300)).setAlwaysEdible().setCreativeTab(null).setTextureName("saltymod:dev/test_food");
+    public static Item testing_apple = new ItemSaltFood("testing_apple", 2, 0.3F, new ProbablePotionEffect(ModPotion.wellFed.id, 72000)).setAlwaysEdible().setCreativeTab(null).setTextureName("saltymod:dev/test_food");
 
     public static Item item_blossom_boat = new ItemBlossomBoat();
 

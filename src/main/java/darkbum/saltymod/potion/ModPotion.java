@@ -24,8 +24,8 @@ public class ModPotion extends Potion {
 
     public static void init() {
 
-        swarmed = new PotionSwarmed(ModConfiguration.swarmedID, true, 0xFFD32D);
-        wellFed = new PotionWellFed(ModConfiguration.wellFedID, false, 0x7C402F);
+        swarmed = new PotionSwarmed(ModConfiguration.swarmedID, true, 0x000000);
+        wellFed = new PotionWellFed(ModConfiguration.wellFedID, false, 0xFFD32D);
     }
 
     @SideOnly(Side.CLIENT)

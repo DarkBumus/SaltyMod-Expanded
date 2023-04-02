@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import darkbum.saltymod.init.ModAchievementList;
+import darkbum.saltymod.potion.ModPotion;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -31,7 +32,7 @@ public class ItemMuffin extends ItemFood {
         if (player.getFoodStats().getFoodLevel() == 20)
             chek = true;
         if (!world.isRemote && chek) {
-            player.addPotionEffect(new PotionEffect(Potion.field_76443_y.id, 2400));
+            player.addPotionEffect(new PotionEffect(ModPotion.wellFed.id, 2400));
             player.addStat(ModAchievementList.consumeSpecMuffin, 1);
         }
         if (world.isRemote && player.getFoodStats().getFoodLevel() == 20) {

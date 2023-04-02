@@ -9,6 +9,8 @@ potion.swarmed=Swarmed!
 death.attack.swarmedDamage=%1$s was stung to death by Bees
 death.attack.swarmedDamage.player=%1$s was stung to death by Bees while trying to escape %2$s
 
+potion.wellFed=Well Fed
+
 
 # BLOCKS
 

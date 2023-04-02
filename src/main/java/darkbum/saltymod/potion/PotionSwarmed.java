@@ -8,9 +8,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.ArrayList;
 
-
 public class PotionSwarmed extends ModPotion {
-
     protected PotionSwarmed(int id, boolean isBad, int color) {
         super(id, isBad, color);
         setPotionName("potion.swarmed");
