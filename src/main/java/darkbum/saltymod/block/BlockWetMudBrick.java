@@ -33,7 +33,8 @@ public class BlockWetMudBrick extends Block {
 		setHardness(1.0F);
 		setResistance(3.0F);
 		setHarvestLevel("shovel", 0);
-		setTickRandomly(ModConfiguration.mudBrickComplex);
+//		setTickRandomly(ModConfiguration.mudBrickComplex);
+        setTickRandomly(true);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -124,8 +125,7 @@ public class BlockWetMudBrick extends Block {
     }
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityPlayer, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
-    {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityPlayer, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_) {
         int meta = world.getBlockMetadata(x, y, z);
         ItemStack stack = entityPlayer.getCurrentEquippedItem();
         if(meta > 0 && meta < 3 && stack != null) {
@@ -151,49 +151,34 @@ public class BlockWetMudBrick extends Block {
         return false;
     }
 
-    private void addWaterSplashes(World world, int x, int y, int z)
-    {
+    private void addWaterSplashes(World world, int x, int y, int z) {
         Random random = world.rand;
         double d0 = 0.0625D;
 
-        for (int l = 0; l < 32; ++l)
-        {
+        for (int l = 0; l < 32; ++l) {
             double d1 = (float)x + random.nextDouble();
             double d2 = (float)y + random.nextDouble();
             double d3 = (float)z + random.nextDouble();
 
-            if (l == 0 && !world.getBlock(x, y + 1, z).isOpaqueCube())
-            {
+            if (l == 0 && !world.getBlock(x, y + 1, z).isOpaqueCube()) {
                 d2 = (double)(y + 1) + d0;
             }
-
-            if (l == 1 && !world.getBlock(x, y - 1, z).isOpaqueCube())
-            {
+            if (l == 1 && !world.getBlock(x, y - 1, z).isOpaqueCube()) {
                 d2 = (double)(y) - d0;
             }
-
-            if (l == 2 && !world.getBlock(x, y, z + 1).isOpaqueCube())
-            {
+            if (l == 2 && !world.getBlock(x, y, z + 1).isOpaqueCube()) {
                 d3 = (double)(z + 1) + d0;
             }
-
-            if (l == 3 && !world.getBlock(x, y, z - 1).isOpaqueCube())
-            {
+            if (l == 3 && !world.getBlock(x, y, z - 1).isOpaqueCube()) {
                 d3 = (double)(z) - d0;
             }
-
-            if (l == 4 && !world.getBlock(x + 1, y, z).isOpaqueCube())
-            {
+            if (l == 4 && !world.getBlock(x + 1, y, z).isOpaqueCube()) {
                 d1 = (double)(x + 1) + d0;
             }
-
-            if (l == 5 && !world.getBlock(x - 1, y, z).isOpaqueCube())
-            {
+            if (l == 5 && !world.getBlock(x - 1, y, z).isOpaqueCube()) {
                 d1 = (double)(x) - d0;
             }
-
-            if (d1 < (double)x || d1 > (double)(x + 1) || d2 < 0.0D || d2 > (double)(y + 1) || d3 < (double)z || d3 > (double)(z + 1))
-            {
+            if (d1 < (double)x || d1 > (double)(x + 1) || d2 < 0.0D || d2 > (double)(y + 1) || d3 < (double)z || d3 > (double)(z + 1)) {
                 world.spawnParticle("splash", d1, d2, d3, 0.0D, 0.0D, 0.0D);
             }
         }

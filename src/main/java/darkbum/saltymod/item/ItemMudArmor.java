@@ -38,7 +38,7 @@ public class ItemMudArmor extends ItemArmor {
                     stack.damageItem(1, player);
                 if (stack.getItemDamage() >= stack.getMaxDamage()) {
                     player.setCurrentItemOrArmor(4, null);
-                    player.addStat(ModAchievementList.discomfort, 1);
+                    player.addStat(ModAchievementList.destroyMudArmor, 1);
                 }
             }
             if (stack.getItem() == ModItems.mud_chestplate) {
@@ -50,7 +50,7 @@ public class ItemMudArmor extends ItemArmor {
                     stack.damageItem(1, player);
                 if (stack.getItemDamage() >= stack.getMaxDamage()) {
                     player.setCurrentItemOrArmor(3, null);
-                    player.addStat(ModAchievementList.discomfort, 1);
+                    player.addStat(ModAchievementList.destroyMudArmor, 1);
                 }
             }
             if (stack.getItem() == ModItems.mud_leggings) {
@@ -60,7 +60,7 @@ public class ItemMudArmor extends ItemArmor {
                     stack.damageItem(1, player);
                 if (stack.getItemDamage() >= stack.getMaxDamage()) {
                     player.setCurrentItemOrArmor(2, null);
-                    player.addStat(ModAchievementList.discomfort, 1);
+                    player.addStat(ModAchievementList.destroyMudArmor, 1);
                 }
             }
             if (stack.getItem() == ModItems.mud_boots) {
@@ -70,7 +70,7 @@ public class ItemMudArmor extends ItemArmor {
                     stack.damageItem(1, player);
                 if (stack.getItemDamage() >= stack.getMaxDamage()) {
                     player.setCurrentItemOrArmor(1, null);
-                    player.addStat(ModAchievementList.discomfort, 1);
+                    player.addStat(ModAchievementList.destroyMudArmor, 1);
                 }
             }
         }

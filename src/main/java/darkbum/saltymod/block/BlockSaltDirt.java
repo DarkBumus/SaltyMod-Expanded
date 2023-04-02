@@ -229,7 +229,7 @@ public class BlockSaltDirt extends Block {
         if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == ModItems.salt_pinch) {
             ItemStack current = player.getCurrentEquippedItem();
             if (world.getBlock(x, y + 1, z) == ModBlocks.saltworts)
-                player.addStat(ModAchievementList.saltwortFarm, 1);
+                player.addStat(ModAchievementList.farmSaltwort, 1);
             int meta = world.getBlockMetadata(x, y, z);
             if (meta == 0 || meta > 3) {
                 world.setBlock(x, y, z, this, 1, 3);

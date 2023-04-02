@@ -32,7 +32,7 @@ public class ItemMuffin extends ItemFood {
             chek = true;
         if (!world.isRemote && chek) {
             player.addPotionEffect(new PotionEffect(Potion.field_76443_y.id, 2400));
-            player.addStat(ModAchievementList.muffin, 1);
+            player.addStat(ModAchievementList.consumeSpecMuffin, 1);
         }
         if (world.isRemote && player.getFoodStats().getFoodLevel() == 20) {
             Random rand = new Random();

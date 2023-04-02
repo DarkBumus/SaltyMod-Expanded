@@ -35,7 +35,7 @@ public class ItemFizzyDrink extends Item {
                 player.curePotionEffects(new ItemStack(Items.milk_bucket));
             }
             if (player.isBurning()) {
-                player.addStat(ModAchievementList.fizzyDrink, 1);
+                player.addStat(ModAchievementList.consumeFizzyDrink, 1);
                 player.extinguish();
             }
         }

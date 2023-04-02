@@ -249,23 +249,25 @@ public class ModItems {
 
     public static Item saltwort_pie = new ItemSaltFood("saltwort_pie", 7, 0.9F, new ProbablePotionEffect(Potion.regeneration.id, 600, 1)).setCreativeTab(tab).setTextureName("saltymod:saltwort_pie");
 
+    public static Item salt_pie = new ItemSaltPie("salt_pie", tab);
+
     public static Item fermented_saltwort = new ItemSaltFood("fermented_saltwort", 5, 0.7F, Items.glass_bottle, new ProbablePotionEffect(Potion.regeneration.id, 900, 2)).setItemUseAction(EnumAction.drink).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:fermented_saltwort");
 
     public static Item fermented_fern = new ItemSaltFood("fermented_fern", 4, 0.7F, Items.glass_bottle, new ProbablePotionEffect(Potion.field_76434_w.id, 1200, 1), new ProbablePotionEffect(Potion.resistance.id, 900, 1)).setItemUseAction(EnumAction.drink).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:fermented_fern");
 
     public static Item fermented_mushroom = new ItemSaltFood("fermented_mushroom", 4, 0.7F, Items.glass_bottle, new ProbablePotionEffect(Potion.field_76434_w.id, 1200, 1), new ProbablePotionEffect(Potion.damageBoost.id, 600, 1), new ProbablePotionEffect(Potion.blindness.id, 120, 0)).setItemUseAction(EnumAction.drink).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:fermented_mushroom");
 
-    public static Item pickled_calamari = new ItemSaltFood("pickled_calamari", 6, 0.7F, Items.glass_bottle, new ProbablePotionEffect(Potion.field_76434_w.id, 1200, 1), new ProbablePotionEffect(Potion.waterBreathing.id, 600, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:pickled_calamari");
+    public static Item pickled_calamari = new ItemSaltFood("pickled_calamari", 6, 0.7F, Items.glass_bottle, new ProbablePotionEffect(Potion.field_76434_w.id, 1200, 1), new ProbablePotionEffect(Potion.waterBreathing.id, 600, 0)).setItemUseAction(EnumAction.drink).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:pickled_calamari");
 
-    public static Item pickled_beetroot = new ItemSaltFood("pickled_beetroot", 5, 0.8F, Items.glass_bottle, new ProbablePotionEffect(Potion.field_76434_w.id, 1200, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:pickled_beetroot");
+    public static Item pickled_beetroot = new ItemSaltFood("pickled_beetroot", 5, 0.8F, Items.glass_bottle, new ProbablePotionEffect(Potion.field_76434_w.id, 1200, 1)).setItemUseAction(EnumAction.drink).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:pickled_beetroot");
 
-    public static Item pickled_onion = new ItemSaltFood("pickled_onion", 6, 0.8F, Items.glass_bottle, new ProbablePotionEffect(Potion.field_76434_w.id, 1200, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:pickled_onion");
+    public static Item pickled_onion = new ItemSaltFood("pickled_onion", 6, 0.8F, Items.glass_bottle, new ProbablePotionEffect(Potion.field_76434_w.id, 1200, 1)).setItemUseAction(EnumAction.drink).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:pickled_onion");
 
-    public static Item apple_preserves = new ItemSaltFood("apple_preserves", 8, 0.8F, Items.glass_bottle, new ProbablePotionEffect(Potion.moveSpeed.id, 300, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:apple_preserves");
+    public static Item apple_preserves = new ItemSaltFood("apple_preserves", 8, 0.8F, Items.glass_bottle, new ProbablePotionEffect(Potion.moveSpeed.id, 300, 1)).setItemUseAction(EnumAction.drink).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:apple_preserves");
 
-    public static Item melon_preserves = new ItemSaltFood("melon_preserves", 6, 0.8F, Items.glass_bottle, new ProbablePotionEffect(Potion.moveSpeed.id, 300, 1), new ProbablePotionEffect(Potion.jump.id, 600, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:melon_preserves");
+    public static Item melon_preserves = new ItemSaltFood("melon_preserves", 6, 0.8F, Items.glass_bottle, new ProbablePotionEffect(Potion.moveSpeed.id, 300, 1), new ProbablePotionEffect(Potion.jump.id, 600, 1)).setItemUseAction(EnumAction.drink).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:melon_preserves");
 
-    public static Item berry_preserves = new ItemSaltFood("berry_preserves", 6, 0.8F, Items.glass_bottle, new ProbablePotionEffect(Potion.moveSpeed.id, 300, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:berry_preserves");
+    public static Item berry_preserves = new ItemSaltFood("berry_preserves", 6, 0.8F, Items.glass_bottle, new ProbablePotionEffect(Potion.moveSpeed.id, 300, 1)).setItemUseAction(EnumAction.drink).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:berry_preserves");
 
     public static Item milk_bottle = new ItemMilkBottle("milk_bottle", tab).setMaxStackSize(1).setTextureName("saltymod:milk_bottle");
 
@@ -445,7 +447,7 @@ public class ModItems {
             GameRegistry.registerItem(chocolate_berries, "chocolate_berries");
         }
         GameRegistry.registerItem(chocolate_bar, "chocolate_bar");
-        GameRegistry.registerItem(chocolate_pie, "chocolate_pie");
+/*        GameRegistry.registerItem(chocolate_pie, "chocolate_pie");
         GameRegistry.registerItem(birthday_pie, "birthday_pie");
         GameRegistry.registerItem(apple_pie, "apple_pie");
         if(Loader.isModLoaded("etfuturum")) {
@@ -461,7 +463,8 @@ public class ModItems {
         GameRegistry.registerItem(tropical_fish_pie, "tropical_fish_pie");
         GameRegistry.registerItem(tailor_pie, "tailor_pie");
         GameRegistry.registerItem(calamari_pie, "calamari_pie");
-        GameRegistry.registerItem(saltwort_pie, "saltwort_pie");
+        GameRegistry.registerItem(saltwort_pie, "saltwort_pie");*/
+        GameRegistry.registerItem(salt_pie, "salt_pie");
         GameRegistry.registerItem(fermented_saltwort, "fermented_saltwort");
         GameRegistry.registerItem(fermented_fern, "fermented_fern");
         GameRegistry.registerItem(fermented_mushroom, "fermented_mushroom");

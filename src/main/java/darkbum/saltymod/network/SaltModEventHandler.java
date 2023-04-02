@@ -9,12 +9,11 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
+import darkbum.saltymod.SaltyMod;
 import darkbum.saltymod.api.RainMakerEvent;
 import darkbum.saltymod.common.CommonProxy;
-import darkbum.saltymod.init.ModAchievementList;
-import darkbum.saltymod.init.ModBlocks;
-import darkbum.saltymod.init.ModItems;
-import darkbum.saltymod.init.ModConfiguration;
+import darkbum.saltymod.init.*;
+import darkbum.saltymod.world.biome.SaltMarshBiome;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -141,7 +140,7 @@ public class SaltModEventHandler {
                 event.world.getWorldInfo().setThundering(false);
             }
             if (event.player != null)
-                event.player.addStat(ModAchievementList.rain, 1);
+                event.player.addStat(ModAchievementList.makeRain, 1);
         }
     }
 
@@ -152,9 +151,9 @@ public class SaltModEventHandler {
             CommonProxy.milkIcon = event.map.registerIcon("saltymod:milk");
         if (event.map.getTextureType() == 1 && ModAchievementList.fullMudArmor.isAchievement())
             CommonProxy.fullMudIcon = event.map.registerIcon("saltymod:dev/achievement_icon_0");
-        if (event.map.getTextureType() == 1 && ModAchievementList.discomfort.isAchievement())
+        if (event.map.getTextureType() == 1 && ModAchievementList.destroyMudArmor.isAchievement())
             CommonProxy.discomfortIcon = event.map.registerIcon("saltymod:dev/achievement_1");
-        if (event.map.getTextureType() == 1 && ModAchievementList.saltWitch.isAchievement())
+        if (event.map.getTextureType() == 1 && ModAchievementList.witchSaltCrystal.isAchievement())
             CommonProxy.saltWitchIcon = event.map.registerIcon("saltymod:dev/achievement_icon_2");
     }
 
@@ -172,11 +171,15 @@ public class SaltModEventHandler {
             if (event.item.getEntityItem().getItem() == ModItems.salt)
                 event.entityPlayer.addStat(ModAchievementList.findSalt, 1);
             if (event.item.getEntityItem().getItem() == ModItems.salt_shard)
-                event.entityPlayer.addStat(ModAchievementList.saltCrystalGet, 1);
+                event.entityPlayer.addStat(ModAchievementList.findSaltCrystal, 1);
             if (event.item.getEntityItem().getItem() == ModItems.mineral_mud_ball)
                 event.entityPlayer.addStat(ModAchievementList.findMineralMud, 1);
             if (event.item.getEntityItem().getItem() == ModItems.saltwort)
-                event.entityPlayer.addStat(ModAchievementList.saltwort, 1);
+                event.entityPlayer.addStat(ModAchievementList.findSaltwort, 1);
+            if (event.item.getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.dry_mud_brick))
+                event.entityPlayer.addStat(ModAchievementList.findMudBrick, 1);
+            if (event.item.getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.blossom_log))
+                event.entityPlayer.addStat(ModAchievementList.findBlossomLog, 1);
         }
     }
 
@@ -184,6 +187,8 @@ public class SaltModEventHandler {
     public void crafting(PlayerEvent.ItemCraftedEvent event) {
         if (event.crafting.getItem() == ModItems.mineral_mud_ball)
             event.player.addStat(ModAchievementList.findMineralMud, 1);
+        if (event.crafting.getItem() == Item.getItemFromBlock(ModBlocks.apiary))
+            event.player.addStat(ModAchievementList.craftApiary, 1);
     }
 
     @SubscribeEvent
@@ -194,6 +199,14 @@ public class SaltModEventHandler {
             if (te.getFlowerPotItem() == Item.getItemFromBlock(ModBlocks.saltworts))
                 event.drops.set(1, new ItemStack(ModItems.saltwort));
         }
+    }
+
+    @SubscribeEvent
+    public void navigateBiome(TickEvent.PlayerTickEvent event) {
+        int px = MathHelper.floor_double(event.player.posX);
+        int pz = MathHelper.floor_double(event.player.posZ);
+        if (event.player.worldObj.getBiomeGenForCoords(px, pz) == ModBiomes.saltMarsh)
+            event.player.addStat(ModAchievementList.navSaltMarsh, 1);
     }
 
     @SubscribeEvent

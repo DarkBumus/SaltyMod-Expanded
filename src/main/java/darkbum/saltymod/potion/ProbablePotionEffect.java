@@ -18,11 +18,11 @@ public class ProbablePotionEffect {
     }
 
     public ProbablePotionEffect(int potionID, int duration, int amplifier) {
-        this(potionID, duration, amplifier, 1f);
+        this(potionID, duration, amplifier, 1F);
     }
 
     public ProbablePotionEffect(int potionID, int duration) {
-        this(potionID, duration, 0, 1f);
+        this(potionID, duration, 0, 1F);
     }
 
     public String generateTooltip() {
@@ -54,7 +54,7 @@ public class ProbablePotionEffect {
         } else {
             line += " (<0:01) ";
         }
-        line += (int) (probability * 100f) + "%";
+        line += (int) (probability * 100F) + "%";
         line += EnumChatFormatting.RESET;
         return line;
     }

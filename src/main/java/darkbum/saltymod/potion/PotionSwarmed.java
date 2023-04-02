@@ -44,8 +44,8 @@ public class PotionSwarmed extends ModPotion {
             }
             if (!player.getEntityWorld().getBlock((int)player.posX, (int)player.posY + 1, (int)player.posZ).getMaterial().isLiquid() &&
                (!player.isBurning())) {
-                player.addStat(ModAchievementList.stung, 1);
-                entity.attackEntityFrom(ModPotion.swarmedDamage, 1.0F - beeResistance);
+                player.addStat(ModAchievementList.effectSwarmed, 1);
+                entity.attackEntityFrom(ModPotion.swarmedDamage, 1.0F/* - beeResistance*/);
             }
         }
     }
