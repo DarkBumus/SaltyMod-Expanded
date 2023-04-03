@@ -235,7 +235,11 @@ public class CommonProxy {
                 (sweet_berries != null) &&
                 (dye != null)) {
 
+                OreDictionary.registerOre("blockMushroom", Blocks.red_mushroom);
+                OreDictionary.registerOre("blockMushroom", Blocks.brown_mushroom);
+
                 OreDictionary.registerOre("itemRedmeat", mutton_cooked);
+                OreDictionary.registerOre("itemHoney", ModItems.honeycomb);
 
                 OreDictionary.registerOre("itemFood", new ItemStack(suspicious_stew, OreDictionary.WILDCARD_VALUE));
                 OreDictionary.registerOre("itemFood", mutton_raw);
@@ -277,9 +281,9 @@ public class CommonProxy {
                 GameRegistry.addRecipe(new ItemStack(ModItems.golden_berries), "xxx", "xyx", "xxx", 'x', Items.gold_nugget, 'y', new ItemStack(sweet_berries));
                 GameRegistry.addRecipe(new ItemStack(ModItems.golden_berries, 1, 1), "xxx", "xyx", "xxx", 'x', Blocks.gold_block, 'y', new ItemStack(sweet_berries));
 
-                GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.salt_rabbit_stew), new ItemStack(ModItems.salt_pinch), new ItemStack(Items.bowl), new ItemStack(rabbit_cooked), new ItemStack(Items.carrot), new ItemStack(Items.baked_potato), "Mushrooms"));
-                GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(rabbit_stew), new ItemStack(Items.bowl), new ItemStack(rabbit_cooked), new ItemStack(Items.carrot), new ItemStack(Items.baked_potato), "Mushrooms"));
-                GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.honey_berries), "Honeys", new ItemStack(sweet_berries)));
+                GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.salt_rabbit_stew), new ItemStack(ModItems.salt_pinch), new ItemStack(Items.bowl), new ItemStack(rabbit_cooked), new ItemStack(Items.carrot), new ItemStack(Items.baked_potato), "blockMushroom"));
+                GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(rabbit_stew), new ItemStack(Items.bowl), new ItemStack(rabbit_cooked), new ItemStack(Items.carrot), new ItemStack(Items.baked_potato), "blockMushroom"));
+                GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.honey_berries), "itemHoney", new ItemStack(sweet_berries)));
             } else {
                 GameRegistry.addShapelessRecipe(new ItemStack(ModItems.fruit_salad), new ItemStack(Items.bowl), new ItemStack(Items.apple), new ItemStack(Items.carrot), new ItemStack(Items.melon));
                 GameRegistry.addShapelessRecipe(new ItemStack(ModItems.sugar_fruit_salad), new ItemStack(ModItems.sugar_pinch), new ItemStack(Items.bowl), new ItemStack(Items.apple), new ItemStack(Items.carrot), new ItemStack(Items.melon));
