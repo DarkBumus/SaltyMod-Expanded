@@ -15,7 +15,7 @@ public class ModAchievementList {
 
     public static Achievement slimeSaltCrystal = new Achievement("achievement.slimeSaltCrystal", "slimeSaltCrystal", -5, -3, ModItems.tough_jelly, findSaltCrystal).setSpecial().registerStat();
 
-    public static Achievement witchSaltCrystal = new Achievement("achievement.witchSaltCrystal", "witchSaltCrystal", -3, -3, new ItemStack(ModItems.salt_shard), findSaltCrystal).setSpecial().registerStat();
+    public static Achievement witchSaltCrystal = new Achievement("achievement.witchSaltCrystal", "witchSaltCrystal", -3, -3, new ItemStack(ModItems.powdered_milk, 1, 3), findSaltCrystal).setSpecial().registerStat();
 
 
     public static Achievement farmSalt = new Achievement("achievement.farmSalt", "farmSalt", 2, -2, ModItems.salt_pinch, findSalt).registerStat();
@@ -31,9 +31,9 @@ public class ModAchievementList {
 
     public static Achievement findMineralMud = new Achievement("achievement.findMineralMud", "findMineralMud", 2, 2, ModItems.mineral_mud_ball, navSaltLake).registerStat();
 
-    public static Achievement fullMudArmor = new Achievement("achievement.fullMudArmor", "fullMudArmor", 4, 2, ModItems.mud_chestplate, findMineralMud).registerStat();
+    public static Achievement fullMudArmor = new Achievement("achievement.fullMudArmor", "fullMudArmor", 4, 2, new ItemStack(ModItems.powdered_milk, 1, 1), findMineralMud).registerStat();
 
-    public static Achievement destroyMudArmor = new Achievement("achievement.destroyMudArmor", "destroyMudArmor", 4, 4, Items.water_bucket, fullMudArmor).registerStat();
+    public static Achievement destroyMudArmor = new Achievement("achievement.destroyMudArmor", "destroyMudArmor", 4, 4, new ItemStack(ModItems.powdered_milk, 1, 2), fullMudArmor).registerStat();
 
     public static Achievement findSaltwort = new Achievement("achievement.findSaltwort", "findSaltwort", 6, 2, ModItems.saltwort, fullMudArmor).registerStat();
 

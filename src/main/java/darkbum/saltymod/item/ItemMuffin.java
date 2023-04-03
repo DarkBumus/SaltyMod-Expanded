@@ -40,4 +40,6 @@ public class ItemMuffin extends ItemFood {
             player.addChatMessage(new ChatComponentText(I18n.format(getUnlocalizedName() + ".mess." + rand.nextInt(4))));
         }
     }
+
+
 }

@@ -1,5 +1,6 @@
 package darkbum.saltymod.potion;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.init.ModConfiguration;

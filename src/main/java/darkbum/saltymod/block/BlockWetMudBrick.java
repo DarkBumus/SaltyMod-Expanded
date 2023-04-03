@@ -33,7 +33,7 @@ public class BlockWetMudBrick extends Block {
 		setHardness(1.0F);
 		setResistance(3.0F);
 		setHarvestLevel("shovel", 0);
-//		setTickRandomly(ModConfiguration.mudBrickComplex);
+//        setTickRandomly(ModConfiguration.mudBrickComplex);
         setTickRandomly(true);
 	}
 

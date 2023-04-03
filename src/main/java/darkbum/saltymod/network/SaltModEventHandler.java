@@ -149,12 +149,6 @@ public class SaltModEventHandler {
     public void registerIcons(TextureStitchEvent.Pre event) {
         if (event.map.getTextureType() == 0 && FluidRegistry.isFluidRegistered(CommonProxy.milk))
             CommonProxy.milkIcon = event.map.registerIcon("saltymod:milk");
-        if (event.map.getTextureType() == 1 && ModAchievementList.fullMudArmor.isAchievement())
-            CommonProxy.fullMudIcon = event.map.registerIcon("saltymod:dev/achievement_icon_0");
-        if (event.map.getTextureType() == 1 && ModAchievementList.destroyMudArmor.isAchievement())
-            CommonProxy.discomfortIcon = event.map.registerIcon("saltymod:dev/achievement_1");
-        if (event.map.getTextureType() == 1 && ModAchievementList.witchSaltCrystal.isAchievement())
-            CommonProxy.saltWitchIcon = event.map.registerIcon("saltymod:dev/achievement_icon_2");
     }
 
     @SubscribeEvent

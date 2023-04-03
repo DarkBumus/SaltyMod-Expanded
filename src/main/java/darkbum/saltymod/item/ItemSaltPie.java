@@ -53,9 +53,7 @@ public class ItemSaltPie extends ItemSaltFood {
         return saturation[itemStack.getItemDamage()];
     }
 
-/*    public ProbablePotionEffect(int potionID, int duration) {
-        this(potions[itemStack.getItemDamage()], duration[itemStack.getItemDamage()], amplifier[itemStack.getItemDamage()], 1F);
-    }*/
+
 
     public void getSubItems(Item item, CreativeTabs creativeTabs, List list) {
         for (int i = 0; i < types.length; i++) {

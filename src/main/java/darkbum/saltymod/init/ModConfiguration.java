@@ -86,7 +86,7 @@ public class ModConfiguration extends Configuration {
         saltCrystalGrowSpeed = getInt("SaltCrystalGrowRate", "Farm", 14, 1, 20, "The salt crystals growth rate (1 - fastly, 20 - slowly)");
         saltWortGrowSpeed = getInt("SaltWortGrowRate", "Farm", 7, 1, 20, "The saltwort growth rate (1 - fastly, 20 - slowly)");
         enableHoney = getBoolean("Enables Honey", "Farm", true, "If true, enables the Blossom Trees, Apiary and all the adjacent Items");
-        mudBrickComplex = getBoolean("Makes Mud Bricks complex [Currently doesn't do anything and only disables the recipe to get dry mud bricks]", "Blocks", true, "If true, makes Wet Mud Bricks dry when put on the ground, instead of in the furnace");
+        mudBrickComplex = getBoolean("Makes Mud Bricks complex", "Blocks", true, "If true, makes Wet Mud Bricks dry when put on the ground, instead of in the furnace");
         evaporatorVolume = getInt("EvaporatorVolume", "Evaporator", 1, 1, 3, "The number of buckets in evaporator");
         fizzyEffect = getBoolean("FizzyEffect", "Effects", false, "Do Fizzy Drink removes all effects? (true - all effects, false - milk analogue)");
         mudArmorWaterDam = getBoolean("MudArmorWaterDamage", "Armor", true, "Mud Armor water damage");
@@ -99,7 +99,7 @@ public class ModConfiguration extends Configuration {
         saltOreBiome = getBoolean("Generate Additional Salt Ore", "Biome Generation", true, "If true, generates additional salt ore in Salt Marshes");
         enableBrickmakerCamp = getBoolean("Enables Brickmaker Camps", "Biome Generation", true, "If true, spawns Brickmaker Camps in the Salt Marshes");
         brickmakerCampFrequency = getInt("BrickmakerCampFrequency", "Biome Generation", 300, 10, 1000, "Changes the frequency of Brickmaker Camps in Salt Marshes");
-        swarmedID = getInt("BeesID", "Potions", 28, 0, Byte.MAX_VALUE, "Sets the Potion ID for the 'Bees!' Potion Effect");
+        swarmedID = getInt("SwarmedID", "Potions", 28, 0, Byte.MAX_VALUE, "Sets the Potion ID for the 'Swarmed!' Potion Effect");
         wellFedID = getInt("WellFedID", "Potions", 29, 0, Byte.MAX_VALUE, "Sets the Potion ID for the 'Well Fed' Potion Effect");
         save();
     }

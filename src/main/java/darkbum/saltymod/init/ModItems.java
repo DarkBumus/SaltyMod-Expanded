@@ -17,9 +17,8 @@ import net.minecraft.potion.Potion;
 import darkbum.saltymod.common.CommonProxy;
 
 public class ModItems {
-    static CreativeTabs tab = CommonProxy.tabSalt;
 
-    public static Item achievement_item = new ItemAchievementItem("achievement_item", null);
+    static CreativeTabs tab = CommonProxy.tabSalt;
 
     public static Item void_apple = new ItemVoidApple("void_apple", null).setAlwaysEdible().setTextureName("saltymod:dev/void_apple");
 
@@ -28,7 +27,7 @@ public class ModItems {
 //    field_76434_w = Health Boost
 //    field_76443_y = Saturation
 //    field_76444_x = Absorption
-    public static Item testing_apple = new ItemSaltFood("testing_apple", 2, 0.3F, new ProbablePotionEffect(ModPotion.wellFed.id, 72000)).setAlwaysEdible().setCreativeTab(null).setTextureName("saltymod:dev/test_food");
+    public static Item testing_apple = new ItemSaltFood("testing_apple", 2, 0.3F, new ProbablePotionEffect(ModPotion.wellFed.id, 6000)).setAlwaysEdible().setCreativeTab(null).setTextureName("saltymod:dev/test_food");
 
     public static Item item_blossom_boat = new ItemBlossomBoat();
 
@@ -54,7 +53,7 @@ public class ModItems {
 
     public static Item baking_soda = new Item().setCreativeTab(tab).setUnlocalizedName("baking_soda").setTextureName("saltymod:baking_soda");
 
-    public static Item powdered_milk = new ItemPowderedMilk("powdered_milk", tab).setTextureName("saltymod:powdered_milk");
+    public static Item powdered_milk = new ItemPowderedMilk("powdered_milk", tab);
 
     public static Item salt = new ItemSalt("salt", tab).setTextureName("saltymod:salt");
 
@@ -327,7 +326,6 @@ public class ModItems {
     public static void init() {
         SaltyMod.logger.info("Start to initialize Items");
 
-//        GameRegistry.registerItem(achievement_item, "achievement_item");
         if(ModConfiguration.developerFoods) {
             GameRegistry.registerItem(void_apple, "void_apple");
             GameRegistry.registerItem(stuffing_apple, "stuffing_apple");

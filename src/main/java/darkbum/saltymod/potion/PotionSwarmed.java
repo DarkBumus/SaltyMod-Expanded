@@ -18,7 +18,7 @@ public class PotionSwarmed extends ModPotion {
 
     @Override
     public void performEffect(EntityLivingBase entity, int level) {
-        if (entity instanceof net.minecraft.entity.player.EntityPlayer) {
+        if (entity instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) entity;
 
             float beeResistance = 0F;

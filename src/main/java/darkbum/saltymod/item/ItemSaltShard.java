@@ -22,7 +22,7 @@ public class ItemSaltShard extends Item {
 
     public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
         World world = player.worldObj;
-        if (!player.capabilities.isCreativeMode) {
+        if (!world.isRemote && !player.capabilities.isCreativeMode) {
             stack.stackSize--;
             if (entity instanceof EntitySlime &&
                 !EntityList.getEntityString(entity).toLowerCase().contains("lava")) {

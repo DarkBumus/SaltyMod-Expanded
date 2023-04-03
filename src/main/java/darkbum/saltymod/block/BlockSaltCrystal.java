@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import darkbum.saltymod.init.ModAchievementList;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
+import ibxm.Player;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -93,6 +94,9 @@ public class BlockSaltCrystal extends BlockBush {
     }
 
     public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
+        if(world.isRemote) {
+            return;
+        }
         if((entity instanceof EntitySlime &&
             !EntityList.getEntityString(entity).toLowerCase().contains("lava")) ||
             entity instanceof EntityWitch) {
@@ -101,9 +105,11 @@ public class BlockSaltCrystal extends BlockBush {
             world.playSoundEffect(entity.posX, entity.posY, entity.posZ, "dig.stone", 2.0F, 1.0F);
             world.playSoundEffect(entity.posX, entity.posY, entity.posZ, "dig.glass", 2.0F, 2.0F);
             world.setBlock(x, y, z, Blocks.air, 0, 3);
-//            EntityPlayer player = (EntityPlayer) entity;
-//            player.addStat(ModAchievementList.saltCrystalKill, 1);
+            EntityPlayer player = world.getClosestPlayerToEntity(entity, 32D);
+            if (player != null) {
+                player.addStat(ModAchievementList.navelseSaltCrystal, 1);
             }
+        }
     }
 
     public MapColor getMapColor(int meta) {

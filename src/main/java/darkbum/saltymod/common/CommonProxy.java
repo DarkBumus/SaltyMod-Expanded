@@ -64,15 +64,6 @@ public class CommonProxy {
     @SideOnly(Side.CLIENT)
     public static IIcon milkIcon;
 
-    @SideOnly(Side.CLIENT)
-    public static IIcon fullMudIcon;
-
-    @SideOnly(Side.CLIENT)
-    public static IIcon discomfortIcon;
-
-    @SideOnly(Side.CLIENT)
-    public static IIcon saltWitchIcon;
-
     public static Fluid milk;
 
     public static SimpleNetworkWrapper network;

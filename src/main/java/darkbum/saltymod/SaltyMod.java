@@ -271,35 +271,32 @@ public class SaltyMod {
             Things I can do on my own (probably):
 
             - Restructure/Merge Items?
-                - Cast ItemStack to set potion effects to pies
-                - Set Sweetberry Pie to only register if EFR is loaded
             - Restructure Config file/class
             - At least think of a way to automate fishing
 
 
             Things I (might) need help with:
-
-            - Achievement Textures (Texture Stitch event)
-            - Fix Shadow Items (Salt Shard -> Slime/Witch)
-            - Achievement "navelseSaltCrystal" (Cast?)
-            - Fix up Evaporator behavior
-            - Fix the "Bee Resistant" functionality in the "Swarmed" effect
-            - Potion Effect [Well Fed]
-            - Create/Finish Brickmaker Camps [Schematica?]
+            - Why the fuck doesn't setTickRandomly(ModConfiguration.mudBrickComplex); work in BlockWetMudBrick?!?!?!?!?!?!?!
+            - Fix Mud Mask functionality -.-
+            - PROPERLY SET REFERENCES WITHOUT HARD DEPENDENCY
             - Rainmaker behavior!!!
             - Create/Finish Blossom Sign [Later Boat&Chest Boat&Hanging Sign]
             - Tackle Powdered Milk Recipe [Duplicating Bucket]
-            - Underground Salt Lakes?
-            - Underground Salt Caves/Tunnels/Mines?
-            - Mix Salt Flower Patches
-            - Fix Fish Hunger Values [Probably set up Mixins in general?
             - Change particles of the Swarmed effect
             - Change Heart texture of the Swarmed effect
+            - Mix Salt Flower Patches
+            - Fix Fish Hunger Values [Probably set up Mixins in general?]
+            - Cast ItemStack to set potion effects to pies
+            - Set Sweetberry Pie to only register if EFR is loaded
+            - Fix up Evaporator behavior
+            - Create/Finish Brickmaker Camps [Schematica?]
+            - Underground Salt Lakes?
+            - Underground Salt Caves/Tunnels/Mines?
             - Make the "automate fishing" idea work, lol
             - Recipe Book [LATER, ALSO MAYBE]
 
 
-            Things I probably have to outsource (sorted by order of importance):
+            Things I probably have to outsource (sorted by order of importance): ##################### HI JONATHAN :) ###########################
 
             - Fix Saltwort/Salt Dirt behavior (!!!)
                 - When Saltwort item is placed on Salt Dirt, it's supposed to tick down the meta value of the dirt from 3 down to 0, with every growth state (0 to 4)
@@ -363,5 +360,6 @@ public class SaltyMod {
                     - Hoppers could funnel in bees/larva and blossoms, depending on where they're being put in (like with the furnace, ore/meat goes in the top,
                       coal goes in the side), while all the "result" items (waxcomb, honeycomb, larvae (meta 0), royal jelly), can be pulled out from the bottom
                     - Comparators could register how many items are in there and put out a set redstone strength depending on the meta value/amount of items inside)
+            - Fix the "Bee Resistant" functionality in the "Swarmed" effect
             - (Maybe) Fix rendering of Blossom Trapdoor in inventory (low priority)*/
 }
