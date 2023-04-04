@@ -64,7 +64,7 @@ public class BlockBlossomStrippedBurrow extends Block {
 
     public void onBlockHarvested(World world, int x, int y, int z, int meta, EntityPlayer player) {
         if (!player.capabilities.isCreativeMode) {
-            player.addPotionEffect(new PotionEffect(ModPotion.swarmed.id, 900, 0));
+            player.addPotionEffect(new PotionEffect(ModPotion.swarmed.id, 900, 0, true));
             world.playSoundEffect(x, y, z, "saltymod:block.blossom_burrow.bees", 1.0F, 1.5F);
         }
     }

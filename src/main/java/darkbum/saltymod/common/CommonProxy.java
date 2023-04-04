@@ -235,12 +235,6 @@ public class CommonProxy {
                 (sweet_berries != null) &&
                 (dye != null)) {
 
-                OreDictionary.registerOre("blockMushroom", Blocks.red_mushroom);
-                OreDictionary.registerOre("blockMushroom", Blocks.brown_mushroom);
-
-                OreDictionary.registerOre("itemRedmeat", mutton_cooked);
-                OreDictionary.registerOre("itemHoney", ModItems.honeycomb);
-
                 OreDictionary.registerOre("itemFood", new ItemStack(suspicious_stew, OreDictionary.WILDCARD_VALUE));
                 OreDictionary.registerOre("itemFood", mutton_raw);
                 OreDictionary.registerOre("itemFood", mutton_cooked);

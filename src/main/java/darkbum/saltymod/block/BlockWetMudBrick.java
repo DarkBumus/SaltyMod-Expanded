@@ -20,6 +20,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.Random;
 
+import static darkbum.saltymod.SaltyMod.logger;
+
 public class BlockWetMudBrick extends Block {
 
 	@SideOnly(Side.CLIENT)
@@ -33,8 +35,9 @@ public class BlockWetMudBrick extends Block {
 		setHardness(1.0F);
 		setResistance(3.0F);
 		setHarvestLevel("shovel", 0);
-//        setTickRandomly(ModConfiguration.mudBrickComplex);
-        setTickRandomly(true);
+        setTickRandomly(ModConfiguration.mudBrickComplex);
+        logger.info("MUD BRICK TICKS RANDOMLY " + ModConfiguration.mudBrickComplex);
+//        setTickRandomly(true);
 	}
 
 	@SideOnly(Side.CLIENT)

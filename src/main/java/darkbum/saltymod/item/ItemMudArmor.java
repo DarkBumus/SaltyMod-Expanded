@@ -10,6 +10,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import darkbum.saltymod.common.CommonProxy;
 
@@ -22,56 +24,34 @@ public class ItemMudArmor extends ItemArmor {
     }
 
     public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
-        return "saltymod:textures/armor/mud_layer_" + ((this.armorType == 2) ? "2" : "1") + ".png";
+        return "saltymod:textures/armor/mud_layer_" + (armorType == 2 ? "2" : "1") + ".png";
     }
 
     public boolean getIsRepairable(ItemStack toRepair, ItemStack material) {
         return (material.getItem() == ModItems.mineral_mud_ball || super.getIsRepairable(toRepair, material));
     }
 
-    public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
-        if (!world.isRemote && stack.getItem() != null && ModConfiguration.mudArmorWaterDam) {
-            Random rand = new Random();
-            if (stack.getItem() == ModItems.mud_helmet) {
-                if (((world.isRaining() && player.isWet() && !player.isInsideOfMaterial(Material.water)) || player
-                    .isInsideOfMaterial(Material.water)) && rand.nextInt(100) == 0)
-                    stack.damageItem(1, player);
-                if (stack.getItemDamage() >= stack.getMaxDamage()) {
-                    player.setCurrentItemOrArmor(4, null);
-                    player.addStat(ModAchievementList.destroyMudArmor, 1);
+    public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
+        if (!world.isRemote) {
+            if (armorType == 0 &&
+                player.getEquipmentInSlot(1) != null &&
+                player.getEquipmentInSlot(1).getItem() instanceof ItemMudArmor &&
+                player.getEquipmentInSlot(2) != null &&
+                player.getEquipmentInSlot(2).getItem() instanceof ItemMudArmor &&
+                player.getEquipmentInSlot(3) != null &&
+                player.getEquipmentInSlot(3).getItem() instanceof ItemMudArmor) {
+                player.addStat(ModAchievementList.fullMudArmor, 1);
+                if(player.isPotionActive(Potion.field_76434_w.id)) {
+                    player.getActivePotionEffect(Potion.field_76434_w).duration = 2;
+                } else {
+                    player.addPotionEffect(new PotionEffect(Potion.field_76434_w.id, 2, ModConfiguration.mudArmorHealthBoost, true));
                 }
             }
-            if (stack.getItem() == ModItems.mud_chestplate) {
-                if ((world.isRaining() || (player.isInsideOfMaterial(Material.water) && player
-                    .isInWater())) && player.isWet() && rand.nextInt(100) == 0)
-                    stack.damageItem(1, player);
-                if (!world.isRaining() && !player.isInsideOfMaterial(Material.water) && player
-                    .isInWater() && player.isWet() && rand.nextInt(200) == 0)
-                    stack.damageItem(1, player);
-                if (stack.getItemDamage() >= stack.getMaxDamage()) {
-                    player.setCurrentItemOrArmor(3, null);
-                    player.addStat(ModAchievementList.destroyMudArmor, 1);
-                }
-            }
-            if (stack.getItem() == ModItems.mud_leggings) {
-                if (player.isInWater() && player.isWet() && rand.nextInt(100) == 0)
-                    stack.damageItem(1, player);
-                if (world.isRaining() && !player.isInWater() && player.isWet() && rand.nextInt(200) == 0)
-                    stack.damageItem(1, player);
-                if (stack.getItemDamage() >= stack.getMaxDamage()) {
-                    player.setCurrentItemOrArmor(2, null);
-                    player.addStat(ModAchievementList.destroyMudArmor, 1);
-                }
-            }
-            if (stack.getItem() == ModItems.mud_boots) {
-                if (player.isInWater() && player.isWet() && rand.nextInt(100) == 0)
-                    stack.damageItem(1, player);
-                if (!player.isInWater() && world.isRaining() && player.isWet() && rand.nextInt(200) == 0)
-                    stack.damageItem(1, player);
-                if (stack.getItemDamage() >= stack.getMaxDamage()) {
-                    player.setCurrentItemOrArmor(1, null);
-                    player.addStat(ModAchievementList.destroyMudArmor, 1);
-                }
+            if (ModConfiguration.mudArmorWaterDam && player.isWet() && itemRand.nextInt(100) == 0)
+                itemStack.damageItem(1, player);
+            if (itemStack.getItemDamage() >= itemStack.getMaxDamage()) {
+                player.setCurrentItemOrArmor(armorType, null);
+                player.addStat(ModAchievementList.destroyMudArmor, 1);
             }
         }
     }

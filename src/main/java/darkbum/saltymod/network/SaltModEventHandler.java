@@ -33,88 +33,10 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fluids.FluidRegistry;
 
 public class SaltModEventHandler {
-    private static final UUID uuid1 = UUID.fromString("ca3f8f85-df1e-4fe8-8cf6-e7030f33ed8e");
-
-    private static final UUID uuid2 = UUID.fromString("42e70891-8397-4cf0-aca3-1a1d237768eb");
-
-    private static final UUID uuid3 = UUID.fromString("b94a045b-f0e9-413a-86fe-2a8473f9ce9d");
-
-    private static final UUID uuid4 = UUID.fromString("8fc1c0b4-350a-45d8-83c7-c788ec55b501");
-
-    private static final AttributeModifier headModifierUP = new AttributeModifier(uuid1, "mudBoostUP", 4.0D, 0);
-
-    private static final AttributeModifier bodyModifierUP = new AttributeModifier(uuid2, "mudBoostUP", 6.0D, 0);
-
-    private static final AttributeModifier legsModifierUP = new AttributeModifier(uuid3, "mudBoostUP", 6.0D, 0);
-
-    private static final AttributeModifier feetModifierUP = new AttributeModifier(uuid4, "mudBoostUP", 4.0D, 0);
 
     public static Random random;
 
     public static int dropped;
-
-    @SubscribeEvent
-    public void updatePlayerTick(TickEvent.PlayerTickEvent event) {
-        if (event.phase == TickEvent.Phase.START && event.side == Side.SERVER) {
-            EntityPlayer player = event.player;
-            if (player != null) {
-                ItemStack head = player.getCurrentArmor(3);
-                ItemStack body = player.getCurrentArmor(2);
-                ItemStack legs = player.getCurrentArmor(1);
-                ItemStack feet = player.getCurrentArmor(0);
-                boolean mud = (player.worldObj.getBlock(MathHelper.floor_double(player.posX), MathHelper.floor_double(player.posY), MathHelper.floor_double(player.posZ)) == ModBlocks.mineral_mud);
-                IAttributeInstance boost = event.player.getEntityAttribute(SharedMonsterAttributes.maxHealth);
-                if (head != null && boost.getModifier(uuid1) == null && head.getItem() == ModItems.mud_helmet)
-                    boost.applyModifier(headModifierUP);
-                if ((head == null || head.getItem() != ModItems.mud_helmet) && boost.getModifier(uuid1) != null) {
-                    boost.removeModifier(headModifierUP);
-                    if (player.getHealth() > player.getMaxHealth())
-                        player.setHealth(player.getMaxHealth());
-                }
-                if (body != null && boost.getModifier(uuid2) == null && body.getItem() == ModItems.mud_chestplate)
-                    boost.applyModifier(bodyModifierUP);
-                if ((body == null || body.getItem() != ModItems.mud_chestplate) && boost.getModifier(uuid2) != null) {
-                    boost.removeModifier(bodyModifierUP);
-                    if (player.getHealth() > player.getMaxHealth())
-                        player.setHealth(player.getMaxHealth());
-                    if (legs != null && boost.getModifier(uuid3) == null && legs.getItem() == ModItems.mud_leggings)
-                        boost.applyModifier(legsModifierUP);
-                    if ((legs == null || legs.getItem() != ModItems.mud_leggings) && boost.getModifier(uuid3) != null) {
-                        boost.removeModifier(legsModifierUP);
-                        if (player.getHealth() > player.getMaxHealth())
-                            player.setHealth(player.getMaxHealth());
-                    }
-                    if (((feet != null && feet.getItem() == ModItems.mud_boots) || mud) && boost.getModifier(uuid4) == null)
-                        boost.applyModifier(feetModifierUP);
-                    if ((feet == null || feet.getItem() != ModItems.mud_boots) && !mud && boost.getModifier(uuid4) != null) {
-                        boost.removeModifier(feetModifierUP);
-                        if (player.getHealth() > player.getMaxHealth())
-                            player.setHealth(player.getMaxHealth());
-                    }
-                    if (player.getHealth() < player.getMaxHealth() && player.getFoodStats().getFoodLevel() > 0) {
-                        int check = 0;
-                        if (head != null && head.getItem() == ModItems.mud_helmet)
-                            check++;
-                        if (body != null && body.getItem() == ModItems.mud_chestplate)
-                            check += 2;
-                        if (legs != null && legs.getItem() == ModItems.mud_leggings)
-                            check += 2;
-                        if ((feet != null && feet.getItem() == ModItems.mud_boots) || mud)
-                            check++;
-                        if (check > 0) {
-                            if (player.ticksExisted % (10 - check) * ModConfiguration.mudRegenSpeed == 0)
-                                player.heal(1.0F);
-                            if (check == 6) {
-                                if (player.isBurning())
-                                    player.extinguish();
-                                event.player.addStat(ModAchievementList.fullMudArmor, 1);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
 
     @SubscribeEvent
     public void addTempt(EntityJoinWorldEvent event) {

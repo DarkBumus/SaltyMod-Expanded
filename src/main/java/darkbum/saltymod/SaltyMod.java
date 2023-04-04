@@ -269,15 +269,14 @@ public class SaltyMod {
         }
 /*        //TO-DO-LIST//
             Things I can do on my own (probably):
-
+            - Restructure ModItems/ModBlocks
             - Restructure/Merge Items?
             - Restructure Config file/class
             - At least think of a way to automate fishing
 
 
             Things I (might) need help with:
-            - Why the fuck doesn't setTickRandomly(ModConfiguration.mudBrickComplex); work in BlockWetMudBrick?!?!?!?!?!?!?!
-            - Fix Mud Mask functionality -.-
+            - Mud Armor now "regenerates" to full health after being depleted
             - PROPERLY SET REFERENCES WITHOUT HARD DEPENDENCY
             - Rainmaker behavior!!!
             - Create/Finish Blossom Sign [Later Boat&Chest Boat&Hanging Sign]
@@ -290,8 +289,8 @@ public class SaltyMod {
             - Set Sweetberry Pie to only register if EFR is loaded
             - Fix up Evaporator behavior
             - Create/Finish Brickmaker Camps [Schematica?]
-            - Underground Salt Lakes?
-            - Underground Salt Caves/Tunnels/Mines?
+            - Underground Salt Lakes? [MAYBE]
+            - Underground Salt Caves/Tunnels/Mines? [MAYBE]
             - Make the "automate fishing" idea work, lol
             - Recipe Book [LATER, ALSO MAYBE]
 
@@ -329,7 +328,6 @@ public class SaltyMod {
                     - Grow on Mineral Mud Blocks
                     - Grow underwater (one part underwater, one part above the surface, refer to BoP)
                     - [Undecided on Drops still]
-
             - Finish Apiary [as a whole]
                 - GUI texture is in textures/gui/container under "apiary" (Additional "explanation" will be provided in textures/gui/container/dev/apiary [EXPLANATION])
                 - Left top slot is supposed to house either the bee or the larva

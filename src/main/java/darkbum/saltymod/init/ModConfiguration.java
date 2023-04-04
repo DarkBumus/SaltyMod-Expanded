@@ -35,6 +35,8 @@ public class ModConfiguration extends Configuration {
 
     public static boolean mudArmorWaterDam;
 
+    public static int mudArmorHealthBoost;
+
     public static int mudRegenSpeed;
 
     public static boolean mudBrickComplex;
@@ -90,6 +92,7 @@ public class ModConfiguration extends Configuration {
         evaporatorVolume = getInt("EvaporatorVolume", "Evaporator", 1, 1, 3, "The number of buckets in evaporator");
         fizzyEffect = getBoolean("FizzyEffect", "Effects", false, "Do Fizzy Drink removes all effects? (true - all effects, false - milk analogue)");
         mudArmorWaterDam = getBoolean("MudArmorWaterDamage", "Armor", true, "Mud Armor water damage");
+        mudArmorHealthBoost = getInt("MudArmorHealthBoost", "Armor", 1, 0, 5, "Sets the amount of Health Boost the Mud Armor will give (0 = Health Boost I, 1 = Health Boost II, etc., double the value for the amount of hearts you'll get)");
         mudRegenSpeed = getInt("MudRegenSpeed", "Effects", 100, 10, 100, "Speed of Mud Armor & Block regeneration effect (10 - fastly, 100 - slowly)");
         loadedCloudLevel = getStringList("DimCloudLevel", "Rainmaker", defaultCloudLevel, "The height of the clouds in a specific dimension (DimensionID=CloudLevel)");
         TFOreGen = getBoolean("TFOreGen", "TwilightForest", true, "Salt ore generation in the Twilight Forest dimention");
