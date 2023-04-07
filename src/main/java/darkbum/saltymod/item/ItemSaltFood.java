@@ -70,5 +70,4 @@ public class ItemSaltFood extends ItemFood {
         }
         return container != null ? new ItemStack(container) : stack;
     }
-
 }

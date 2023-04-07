@@ -8,6 +8,7 @@ import darkbum.saltymod.init.ModConfiguration;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -31,6 +32,7 @@ public class ItemMudArmor extends ItemArmor {
         return (material.getItem() == ModItems.mineral_mud_ball || super.getIsRepairable(toRepair, material));
     }
 
+    @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
         if (!world.isRemote) {
             if (armorType == 0 &&
@@ -41,16 +43,17 @@ public class ItemMudArmor extends ItemArmor {
                 player.getEquipmentInSlot(3) != null &&
                 player.getEquipmentInSlot(3).getItem() instanceof ItemMudArmor) {
                 player.addStat(ModAchievementList.fullMudArmor, 1);
-                if(player.isPotionActive(Potion.field_76434_w.id)) {
+                if (player.isPotionActive(Potion.field_76434_w.id)) {
                     player.getActivePotionEffect(Potion.field_76434_w).duration = 2;
                 } else {
                     player.addPotionEffect(new PotionEffect(Potion.field_76434_w.id, 2, ModConfiguration.mudArmorHealthBoost, true));
                 }
             }
-            if (ModConfiguration.mudArmorWaterDam && player.isWet() && itemRand.nextInt(100) == 0)
+            if (ModConfiguration.mudArmorWaterDam && player.isWet() && itemRand.nextInt(100) == 0) {
                 itemStack.damageItem(1, player);
+            }
             if (itemStack.getItemDamage() >= itemStack.getMaxDamage()) {
-                player.setCurrentItemOrArmor(armorType, null);
+                player.inventory.setItemStack(null);
                 player.addStat(ModAchievementList.destroyMudArmor, 1);
             }
         }

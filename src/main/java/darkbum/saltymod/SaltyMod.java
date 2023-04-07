@@ -269,7 +269,6 @@ public class SaltyMod {
         }
 /*        //TO-DO-LIST//
             Things I can do on my own (probably):
-            - Restructure ModItems/ModBlocks
             - Restructure/Merge Items?
             - Restructure Config file/class
             - At least think of a way to automate fishing
@@ -308,8 +307,6 @@ public class SaltyMod {
                     - Salt Dirt: 1 | Saltwort: 3
                     - Salt Dirt: 0 | Saltwort: 4
             - Finish Blossom Burrow/Tree (!!)
-                - Roadhog wanted to consolidate BlockBlossomLog & BlockBlossomBurrow (and BlockBlossomStrippedLog & BlockBlossomStrippedBurrow, respectively),
-                  while making Burrows rotate properly (Burrows are not supposed to be BlockRotatedPillars)
                 - Just add the Burrow to the tree (just under the leaves, still visible) and have it choose a random Meta value out of 2, 3, 4, 5
             - Fix unused/undefined meta value of BlockSaltDirt and BlockSaltGrass from being used in Salt Lake generation (!!)
                 - Refer to the respective classes to see which meta values are actually being defined/used)

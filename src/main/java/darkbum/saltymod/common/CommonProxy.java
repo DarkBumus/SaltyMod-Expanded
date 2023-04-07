@@ -49,15 +49,15 @@ public class CommonProxy {
 
     public static CreativeTabs tabSalt = new TabSalt("salt");
 
-    public static SaltOreGenerator saltOreGenerator = new SaltOreGenerator();
+    public static SaltOreGenerator saltOreGenerator;
 
-    public static SaltCrystalGenerator saltCrystalGenerator = new SaltCrystalGenerator();
+    public static SaltCrystalGenerator saltCrystalGenerator;
 
-    public static SaltLakeGenerator saltLakeGenerator = new SaltLakeGenerator();
+    public static SaltLakeGenerator saltLakeGenerator;
 
-    public static BlossomTreeGenerator blossomTreeGenerator = new BlossomTreeGenerator();
+    public static BlossomTreeGenerator blossomTreeGenerator;
 
-    public static SaltFlowerGenerator saltFlowerGenerator = new SaltFlowerGenerator();
+    public static SaltFlowerGenerator saltFlowerGenerator;
 
     public static ItemArmor.ArmorMaterial mudMaterial = EnumHelper.addArmorMaterial("mudMaterial", 4, new int[]{1, 1, 1, 1}, 15);
 
@@ -94,11 +94,16 @@ public class CommonProxy {
         BlockDispenser.dispenseBehaviorRegistry.putObject(ModItems.rainmaker, new DispenserBehaviorRainmaker());
         BlockDispenser.dispenseBehaviorRegistry.putObject(ModItems.salt_pinch, new DispenserBehaviorSaltPinch());
 
+        saltOreGenerator = new SaltOreGenerator();
         GameRegistry.registerWorldGenerator(saltOreGenerator, 0);
-        GameRegistry.registerWorldGenerator(blossomTreeGenerator, 0);
-        GameRegistry.registerWorldGenerator(saltFlowerGenerator, 0);
+        saltCrystalGenerator = new SaltCrystalGenerator();
         GameRegistry.registerWorldGenerator(saltCrystalGenerator, 10);
+        saltLakeGenerator = new SaltLakeGenerator();
         GameRegistry.registerWorldGenerator(saltLakeGenerator, 15);
+        blossomTreeGenerator = new BlossomTreeGenerator();
+        GameRegistry.registerWorldGenerator(blossomTreeGenerator, 0);
+        saltFlowerGenerator = new SaltFlowerGenerator();
+        GameRegistry.registerWorldGenerator(saltFlowerGenerator, 0);
 
         EvaporateRegistry.instance().addEvaporating(FluidRegistry.WATER, ModItems.salt_pinch, 1000, 0.0F);
 
