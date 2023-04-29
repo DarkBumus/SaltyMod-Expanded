@@ -59,7 +59,7 @@ public class CommonProxy {
 
     public static SaltFlowerGenerator saltFlowerGenerator;
 
-    public static ItemArmor.ArmorMaterial mudMaterial = EnumHelper.addArmorMaterial("mudMaterial", 4, new int[]{1, 1, 1, 1}, 15);
+    public static ItemArmor.ArmorMaterial mudMaterial = EnumHelper.addArmorMaterial("mudMaterial", 5, new int[]{1, 3, 2, 1}, 15);
 
     @SideOnly(Side.CLIENT)
     public static IIcon milkIcon;

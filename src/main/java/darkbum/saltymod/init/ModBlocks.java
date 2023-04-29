@@ -124,7 +124,7 @@ public class ModBlocks {
     public static void init() {
         SaltyMod.logger.info("Start to initialize Blocks");
 
-//        dev_block = new BlockDevBlock("dev_block", tab);
+        dev_block = new BlockDevBlock("dev_block", tab);
 //        GameRegistry.registerBlock(dev_block, "dev_block");
         salt_ore = new BlockSaltOre("salt_ore", tab);
         GameRegistry.registerBlock(salt_ore, "salt_ore");
@@ -238,7 +238,7 @@ public class ModBlocks {
         GameRegistry.registerBlock(saltworts, "saltworts");
         onions = new BlockOnions("onions", null);
         GameRegistry.registerBlock(onions, "onions");
-//        marsh_reeds = new BlockMarshReeds("marsh_reeds", tab);
+        marsh_reeds = new BlockMarshReeds("marsh_reeds", tab);
 //        GameRegistry.registerBlock(marsh_reeds, "marsh_reeds");
         salt_flower = new BlockSaltFlower();
         GameRegistry.registerBlock(salt_flower, ItemSaltFlower.class, "salt_flower");

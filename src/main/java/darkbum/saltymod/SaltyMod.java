@@ -1,5 +1,6 @@
 package darkbum.saltymod;
 
+import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -62,6 +63,7 @@ public class SaltyMod {
         ModBlocks.init();
         ModBiomes.SaltMod();
         FishRegistry.registerItems();
+        GameRegistry.registerFuelHandler(new ModFuelHandler());
         ModOreDictionary.init();
         RecipeRemover.init();
         ShapedRecipes.init();
@@ -275,7 +277,6 @@ public class SaltyMod {
 
 
             Things I (might) need help with:
-            - Mud Armor now "regenerates" to full health after being depleted
             - PROPERLY SET REFERENCES WITHOUT HARD DEPENDENCY
             - Rainmaker behavior!!!
             - Create/Finish Blossom Sign [Later Boat&Chest Boat&Hanging Sign]
@@ -307,7 +308,7 @@ public class SaltyMod {
                     - Salt Dirt: 1 | Saltwort: 3
                     - Salt Dirt: 0 | Saltwort: 4
             - Finish Blossom Burrow/Tree (!!)
-                - Just add the Burrow to the tree (just under the leaves, still visible) and have it choose a random Meta value out of 2, 3, 4, 5
+                - Just add the Burrow to the tree (just under the leaves, still visible) and have it choose a random Meta value out of 0, 1, 2, 3.
             - Fix unused/undefined meta value of BlockSaltDirt and BlockSaltGrass from being used in Salt Lake generation (!!)
                 - Refer to the respective classes to see which meta values are actually being defined/used)
             - Finish Salt Marsh (!)
