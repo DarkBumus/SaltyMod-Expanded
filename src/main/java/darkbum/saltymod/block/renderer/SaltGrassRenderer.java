@@ -1,4 +1,4 @@
-package darkbum.saltymod.block.render;
+package darkbum.saltymod.block.renderer;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import darkbum.saltymod.common.ClientProxy;

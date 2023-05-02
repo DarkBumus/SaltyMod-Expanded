@@ -6,20 +6,13 @@ import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Random;
-import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
-import darkbum.saltymod.SaltyMod;
 import darkbum.saltymod.api.RainMakerEvent;
 import darkbum.saltymod.common.CommonProxy;
 import darkbum.saltymod.init.*;
-import darkbum.saltymod.world.biome.SaltMarshBiome;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAITempt;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFlowerPot;
@@ -32,7 +25,7 @@ import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fluids.FluidRegistry;
 
-public class SaltModEventHandler {
+public class SaltyModEventHandler {
 
     public static Random random;
 

@@ -77,9 +77,10 @@ public class ModAchievementList {
         navSaltMarsh,
         findMudBrick,
         findBlossomLog,
+        effectSwarmed,
         craftApiary,
-        consumeSpecMuffin,
-        effectSwarmed);
+        consumeSpecMuffin
+    );
 
     public static void init() {
         AchievementPage.registerAchievementPage(achievSaltPage);

@@ -4,6 +4,7 @@ import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import darkbum.saltymod.SaltyMod;
 import darkbum.saltymod.blockitem.ItemBlossomSign;
+import darkbum.saltymod.configuration.ModConfiguration;
 import darkbum.saltymod.potion.ModPotion;
 import darkbum.saltymod.potion.ProbablePotionEffect;
 import darkbum.saltymod.item.*;
@@ -76,8 +77,8 @@ public class ModItems {
     public static Item salt_beetroot_soup;
     public static Item pumpkin_porridge;
     public static Item salt_pumpkin_porridge;
-    public static Item cactus_stew;
-    public static Item salt_cactus_stew;
+    public static Item cactus_soup;
+    public static Item salt_cactus_soup;
     public static Item stewed_vegetables;
     public static Item salt_stewed_vegetables;
     public static Item potato_mushroom;
@@ -178,13 +179,13 @@ public class ModItems {
     public static void init() {
         SaltyMod.logger.info("Start to initialize Items");
 
-        if(ModConfiguration.developerFoods) {
+        if(ModConfiguration.enableDeveloperFoods) {
             void_apple = new ItemVoidApple("void_apple", null).setAlwaysEdible().setTextureName("saltymod:dev/void_apple");
             GameRegistry.registerItem(void_apple, "void_apple");
             stuffing_apple = new ItemStuffingApple("stuffing_apple", null).setAlwaysEdible().setTextureName("saltymod:dev/stuffing_apple");
             GameRegistry.registerItem(stuffing_apple, "stuffing_apple");
             testing_apple = new ItemSaltFood("testing_apple", 2, 0.3F, new ProbablePotionEffect(ModPotion.wellFed.id, 6000)).setAlwaysEdible().setCreativeTab(null).setTextureName("saltymod:dev/test_food");
-            GameRegistry.registerItem(testing_apple, "testing_apple");
+//            GameRegistry.registerItem(testing_apple, "testing_apple");
         }
         if(Loader.isModLoaded("etfuturum")) {
 //            item_blossom_boat = new ItemBlossomBoat();
@@ -302,10 +303,10 @@ public class ModItems {
         GameRegistry.registerItem(pumpkin_porridge, "pumpkin_porridge");
         salt_pumpkin_porridge = new ItemSaltFood("salt_pumpkin_porridge", 6, 0.8F, Items.bowl, new ProbablePotionEffect(Potion.field_76434_w.id, 120, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:salt_pumpkin_porridge");
         GameRegistry.registerItem(salt_pumpkin_porridge, "salt_pumpkin_porridge");
-        cactus_stew = new ItemSaltFood("cactus_stew", 5, 0.7F, Items.bowl, new ProbablePotionEffect(Potion.heal.id, 20, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:cactus_stew");
-        GameRegistry.registerItem(cactus_stew, "cactus_stew");
-        salt_cactus_stew = new ItemSaltFood("salt_cactus_stew", 6, 0.8F, Items.bowl, new ProbablePotionEffect(Potion.field_76434_w.id, 120, 0), new ProbablePotionEffect(Potion.heal.id, 20, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:salt_cactus_stew");
-        GameRegistry.registerItem(salt_cactus_stew, "salt_cactus_stew");
+        cactus_soup = new ItemSaltFood("cactus_soup", 5, 0.7F, Items.bowl, new ProbablePotionEffect(Potion.heal.id, 20, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:cactus_soup");
+        GameRegistry.registerItem(cactus_soup, "cactus_soup");
+        salt_cactus_soup = new ItemSaltFood("salt_cactus_soup", 6, 0.8F, Items.bowl, new ProbablePotionEffect(Potion.field_76434_w.id, 120, 0), new ProbablePotionEffect(Potion.heal.id, 20, 1)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:salt_cactus_soup");
+        GameRegistry.registerItem(salt_cactus_soup, "salt_cactus_soup");
         stewed_vegetables = new ItemSaltFood("stewed_vegetables", 6, 0.7F, Items.bowl, new ProbablePotionEffect(Potion.nightVision.id, 300, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:stewed_vegetables");
         GameRegistry.registerItem(stewed_vegetables, "stewed_vegetables");
         salt_stewed_vegetables = new ItemSaltFood("salt_stewed_vegetables", 7, 0.8F, Items.bowl, new ProbablePotionEffect(Potion.field_76434_w.id, 120, 0), new ProbablePotionEffect(Potion.nightVision.id, 600, 0)).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:salt_stewed_vegetables");
@@ -396,7 +397,7 @@ public class ModItems {
         }
         chocolate_bar = new ItemChocolateBar("chocolate_bar", tab).setTextureName("saltymod:chocolate_bar");
         GameRegistry.registerItem(chocolate_bar, "chocolate_bar");
-/*        chocolate_pie = new ItemSaltFood("chocolate_pie", 7, 0.9F, new ProbablePotionEffect(Potion.digSpeed.id, 900, 2)).setCreativeTab(tab).setTextureName("saltymod:chocolate_pie");
+        chocolate_pie = new ItemSaltFood("chocolate_pie", 7, 0.9F, new ProbablePotionEffect(Potion.digSpeed.id, 900, 2)).setCreativeTab(tab).setTextureName("saltymod:chocolate_pie");
         GameRegistry.registerItem(chocolate_pie, "chocolate_pie");
         birthday_pie = new ItemSaltFood("birthday_pie", 9, 0.9F).setCreativeTab(tab).setTextureName("saltymod:birthday_pie");
         GameRegistry.registerItem(birthday_pie, "birthday_pie");
@@ -427,9 +428,7 @@ public class ModItems {
         calamari_pie = new ItemSaltFood("calamari_pie", 7, 0.9F, new ProbablePotionEffect(Potion.waterBreathing.id, 300, 0)).setCreativeTab(tab).setTextureName("saltymod:calamari_pie");
         GameRegistry.registerItem(calamari_pie, "calamari_pie");
         saltwort_pie = new ItemSaltFood("saltwort_pie", 7, 0.9F, new ProbablePotionEffect(Potion.regeneration.id, 600, 1)).setCreativeTab(tab).setTextureName("saltymod:saltwort_pie");
-        GameRegistry.registerItem(saltwort_pie, "saltwort_pie");*/
-        salt_pie = new ItemSaltPie("salt_pie", tab);
-        GameRegistry.registerItem(salt_pie, "salt_pie");
+        GameRegistry.registerItem(saltwort_pie, "saltwort_pie");
         fermented_saltwort = new ItemSaltFood("fermented_saltwort", 5, 0.7F, Items.glass_bottle, new ProbablePotionEffect(Potion.regeneration.id, 900, 2)).setItemUseAction(EnumAction.drink).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:fermented_saltwort");
         GameRegistry.registerItem(fermented_saltwort, "fermented_saltwort");
         fermented_fern = new ItemSaltFood("fermented_fern", 4, 0.7F, Items.glass_bottle, new ProbablePotionEffect(Potion.field_76434_w.id, 1200, 1), new ProbablePotionEffect(Potion.resistance.id, 900, 1)).setItemUseAction(EnumAction.drink).setMaxStackSize(1).setCreativeTab(tab).setTextureName("saltymod:fermented_fern");

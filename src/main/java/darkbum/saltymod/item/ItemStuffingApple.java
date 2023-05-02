@@ -2,6 +2,7 @@ package darkbum.saltymod.item;
 
 import java.util.List;
 
+import darkbum.saltymod.potion.ModPotion;
 import darkbum.saltymod.potion.ProbablePotionEffect;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
@@ -11,7 +12,7 @@ import net.minecraft.potion.Potion;
 
 public class ItemStuffingApple extends ItemSaltFood {
     public ItemStuffingApple(String name, CreativeTabs tab) {
-        super(name, 20, 1.0F, new ProbablePotionEffect(Potion.field_76443_y.id, 20, 100));
+        super(name, 20, 1.0F, new ProbablePotionEffect(ModPotion.wellFed.id, 20, 99));
         setCreativeTab(tab);
     }
 

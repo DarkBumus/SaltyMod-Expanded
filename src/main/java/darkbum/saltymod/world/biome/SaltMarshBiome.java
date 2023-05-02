@@ -1,7 +1,7 @@
 package darkbum.saltymod.world.biome;
 
 import darkbum.saltymod.init.ModBlocks;
-import darkbum.saltymod.init.ModConfiguration;
+import darkbum.saltymod.configuration.ModConfiguration;
 
 import java.util.Random;
 
@@ -37,7 +37,7 @@ public class SaltMarshBiome extends BiomeGenBase {
 
         BiomeDictionary.registerBiomeType(this, BiomeDictionary.Type.SWAMP, BiomeDictionary.Type.WET, BiomeDictionary.Type.BEACH);
         BiomeManager.addSpawnBiome(this);
-        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeEntry(this, ModConfiguration.SaltMarshBiomeWeight));
+        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeEntry(this, ModConfiguration.saltMarshBiomeWeight));
     }
 
     @Override

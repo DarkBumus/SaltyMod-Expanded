@@ -4,7 +4,7 @@ import cpw.mods.fml.common.IWorldGenerator;
 import java.util.Random;
 
 import darkbum.saltymod.init.ModBlocks;
-import darkbum.saltymod.init.ModConfiguration;
+import darkbum.saltymod.configuration.ModConfiguration;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockGrass;
@@ -25,7 +25,7 @@ public class SaltLakeGenerator implements IWorldGenerator {
         int radius = ModConfiguration.saltLakeRadius;
         int originX = X1 + rand.nextInt(16);
         int originZ = Z1 + rand.nextInt(16);
-        if(rand.nextInt(ModConfiguration.saltLakeGroupRarity) != 0 || world.getBiomeGenForCoords(originX, originZ) == BiomeGenBase.swampland) {
+        if(rand.nextInt(ModConfiguration.saltLakeFrequency) != 0 || world.getBiomeGenForCoords(originX, originZ) == BiomeGenBase.swampland) {
             return;
         }
         for(int lake = 0; lake < ModConfiguration.saltLakeQuantity; lake++) {

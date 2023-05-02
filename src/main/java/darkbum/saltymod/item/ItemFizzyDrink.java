@@ -3,7 +3,7 @@ package darkbum.saltymod.item;
 import java.util.List;
 
 import darkbum.saltymod.init.ModAchievementList;
-import darkbum.saltymod.init.ModConfiguration;
+import darkbum.saltymod.configuration.ModConfiguration;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,7 +29,7 @@ public class ItemFizzyDrink extends Item {
         if (!player.capabilities.isCreativeMode)
             item.stackSize--;
         if (!world.isRemote) {
-            if (ModConfiguration.fizzyEffect) {
+            if (ModConfiguration.fizzyDrinkEffect) {
                 player.clearActivePotions();
             } else {
                 player.curePotionEffects(new ItemStack(Items.milk_bucket));

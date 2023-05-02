@@ -12,7 +12,7 @@ import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityFlowerPot;
 
-public class SaltWortMessage implements IMessage {
+public class SaltwortMessage implements IMessage {
     int x;
 
     int y;
@@ -21,9 +21,9 @@ public class SaltWortMessage implements IMessage {
 
     int i;
 
-    public SaltWortMessage() {}
+    public SaltwortMessage() {}
 
-    public SaltWortMessage(int x, int y, int z, int i) {
+    public SaltwortMessage(int x, int y, int z, int i) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -44,9 +44,9 @@ public class SaltWortMessage implements IMessage {
         buf.writeInt(this.i);
     }
 
-    public static class Handler implements IMessageHandler<SaltWortMessage, IMessage> {
-        public IMessage onMessage(SaltWortMessage message, MessageContext ctx) {
-            SaltWortMessage.act(message.x, message.y, message.z, message.i);
+    public static class Handler implements IMessageHandler<SaltwortMessage, IMessage> {
+        public IMessage onMessage(SaltwortMessage message, MessageContext ctx) {
+            SaltwortMessage.act(message.x, message.y, message.z, message.i);
             return null;
         }
     }

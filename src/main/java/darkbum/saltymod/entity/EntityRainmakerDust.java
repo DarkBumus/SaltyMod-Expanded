@@ -1,7 +1,7 @@
 package darkbum.saltymod.entity;
 
 import darkbum.saltymod.api.RainMakerEvent;
-import darkbum.saltymod.init.ModConfiguration;
+import darkbum.saltymod.configuration.ModConfiguration;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;

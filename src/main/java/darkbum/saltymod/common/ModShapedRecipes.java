@@ -7,12 +7,11 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-public class ShapedRecipes {
+public class ModShapedRecipes {
 
     public static void init() {
 
         GameRegistry.addRecipe(new ItemStack(Items.sugar), "xxx", "xxx", "xxx", 'x', ModItems.sugar_pinch);
-        GameRegistry.addRecipe(new ItemStack(Items.cake), " x ", "yzy", " a ", 'x', Items.milk_bucket, 'y', Items.sugar, 'z', Items.egg, 'a', ModItems.dough);
 
         GameRegistry.addRecipe(new ItemStack(ModBlocks.salt_block), "xxx", "xxx", "xxx", 'x', ModItems.salt);
         GameRegistry.addRecipe(new ItemStack(ModBlocks.salt_block, 4, 5), "xx", "xx", 'x', new ItemStack(ModBlocks.salt_block, 1, 0));

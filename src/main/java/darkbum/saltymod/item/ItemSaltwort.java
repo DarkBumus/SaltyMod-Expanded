@@ -16,7 +16,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import darkbum.saltymod.common.CommonProxy;
-import darkbum.saltymod.network.SaltWortMessage;
+import darkbum.saltymod.network.SaltwortMessage;
 
 public class ItemSaltwort extends ItemFood {
     public ItemSaltwort(String name, CreativeTabs tab) {
@@ -60,7 +60,7 @@ public class ItemSaltwort extends ItemFood {
                 if (!world.isRemote) {
                     int i = world.rand.nextInt(2);
                     te.func_145964_a(Item.getItemFromBlock(ModBlocks.saltworts), i);
-                    CommonProxy.network.sendToAllAround(new SaltWortMessage(x, y, z, i), new NetworkRegistry.TargetPoint(world.provider.dimensionId, x, y, z, 256.0D));
+                    CommonProxy.network.sendToAllAround(new SaltwortMessage(x, y, z, i), new NetworkRegistry.TargetPoint(world.provider.dimensionId, x, y, z, 256.0D));
                     te.markDirty();
                     world.markBlockForUpdate(x, y, z);
                 }

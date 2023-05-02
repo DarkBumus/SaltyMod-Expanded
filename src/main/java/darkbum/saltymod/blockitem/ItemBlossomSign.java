@@ -14,7 +14,7 @@ public class ItemBlossomSign extends ItemSign {
     public ItemBlossomSign(Block blossomSignWall, Block blossomSignStanding) {
         wall = (BlockBlossomSign)blossomSignWall;
         standing = (BlockBlossomSign)blossomSignStanding;
-        setUnlocalizedName("blossom_sign");
+        setUnlocalizedName("item_blossom_sign");
         setTextureName("saltymod:blossom_sign");
         setCreativeTab(CommonProxy.tabSalt);
         setMaxStackSize(16);

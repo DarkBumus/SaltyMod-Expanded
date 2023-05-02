@@ -4,7 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModSounds;
-import darkbum.saltymod.init.ModConfiguration;
+import darkbum.saltymod.configuration.ModConfiguration;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -35,9 +35,8 @@ public class BlockWetMudBrick extends Block {
 		setHardness(1.0F);
 		setResistance(3.0F);
 		setHarvestLevel("shovel", 0);
-        setTickRandomly(ModConfiguration.mudBrickComplex);
-        logger.info("MUD BRICK TICKS RANDOMLY " + ModConfiguration.mudBrickComplex);
-//        setTickRandomly(true);
+        setTickRandomly(ModConfiguration.complexMudBricks);
+        logger.info("MUD BRICK TICKS RANDOMLY " + ModConfiguration.complexMudBricks);
 	}
 
 	@SideOnly(Side.CLIENT)

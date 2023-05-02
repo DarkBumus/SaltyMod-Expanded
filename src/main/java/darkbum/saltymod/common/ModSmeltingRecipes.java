@@ -3,11 +3,11 @@ package darkbum.saltymod.common;
 import cpw.mods.fml.common.registry.GameRegistry;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
-import darkbum.saltymod.init.ModConfiguration;
+import darkbum.saltymod.configuration.ModConfiguration;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-public class SmeltingRecipes {
+public class ModSmeltingRecipes {
 
     public static void init() {
 
@@ -23,13 +23,12 @@ public class SmeltingRecipes {
         GameRegistry.addSmelting(new ItemStack(ModBlocks.salt_block, 1, 0), new ItemStack(ModBlocks.salt_block, 1, 6), 0.1F);
         GameRegistry.addSmelting(new ItemStack(ModBlocks.salt_block, 1, 5), new ItemStack(ModBlocks.salt_block, 1, 7), 0.1F);
 
-        GameRegistry.addSmelting(new ItemStack(ModItems.dough), new ItemStack(Items.bread), 0.35F);
         GameRegistry.addSmelting(new ItemStack(ModItems.saltwort), new ItemStack(ModItems.baking_soda, 1), 0.5F);
         GameRegistry.addSmelting(new ItemStack(ModItems.haunch), new ItemStack(ModItems.cooked_haunch), 0.35F);
         GameRegistry.addSmelting(new ItemStack(ModItems.tailor), new ItemStack(ModItems.cooked_tailor), 0.35F);
         GameRegistry.addSmelting(new ItemStack(ModItems.calamari), new ItemStack(ModItems.cooked_calamari), 0.35F);
 
-        if(!ModConfiguration.mudBrickComplex) {
+        if(!ModConfiguration.complexMudBricks) {
             GameRegistry.addSmelting(new ItemStack(ModBlocks.wet_mud_brick), new ItemStack(ModBlocks.dry_mud_brick), 0.1F);
         }
     }

@@ -6,13 +6,13 @@ import darkbum.saltymod.init.ModBlocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-public class SaltWortMix extends WorldGenerator
+public class SaltwortMix extends WorldGenerator
 {
 
 
     private int GroupSize;
 
-    public SaltWortMix(int size)
+    public SaltwortMix(int size)
     {
         this.GroupSize = size;
     }

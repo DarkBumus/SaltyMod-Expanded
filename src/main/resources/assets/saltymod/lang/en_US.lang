@@ -99,8 +99,9 @@ tile.salt_flower_wild_beet.name=Maritima
 
 # ITEMS
 
-item.minecraft.fish.name=Raw Cod
-item.minecraft.cooked_fished.name=Cooked Cod
+item.fish.cod.raw.name=Raw Cod
+item.fish.cod.cooked.name=Cooked Cod
+item.fish.clownfish.raw.name=Tropical Fish
 
 item.etfuturum.rabbit_stew.name=Rabbit Ragout
 item.etfuturum.beetroot_soup.name=Borscht
@@ -119,8 +120,8 @@ item.item_blossom_hanging_sign.name=Blossom Hanging Sign
 item.blossom.name=Blossom
 item.bee_larva.name=Bee Larva
 item.carpenter_bee.name=Carpenter Bee
-item.waxcomb.name=Wax Comb
-item.honeycomb.name=Honey Comb
+item.waxcomb.name=Waxcomb
+item.honeycomb.name=Honeycomb
 item.royal_jelly.name=Royal Jelly
 
 item.mineral_mud_ball.name=Mineral Mud Ball
@@ -169,8 +170,8 @@ item.salt_rabbit_stew.name=Salted Rabbit Ragout
 item.salt_beetroot_soup.name=Salted Borscht
 item.pumpkin_porridge.name=Pumpkin Porridge
 item.salt_pumpkin_porridge.name=Salted Pumpkin Porridge
-item.cactus_stew.name=Cactus Stew
-item.salt_cactus_stew.name=Salted Cactus Stew
+item.cactus_soup.name=Cactus Soup
+item.salt_cactus_soup.name=Salted Cactus Soup
 item.stewed_vegetables.name=Stewed Vegetables
 item.salt_stewed_vegetables.name=Salted Stewed Vegetables
 item.potato_mushroom.name=Potato with Mushroom
@@ -259,7 +260,7 @@ item.tough_jelly.name=Tough Jelly
 item.mud_helmet.name=Head Mud Mask
 item.mud_chestplate.name=Body Mud Mask
 item.mud_leggings.name=Legs Mud Mask
-item.mud_boots.name=Foot Mud Mask
+item.mud_boots.name=Feet Mud Mask
 
 item.salt_shard.name=Salt Shard
 item.rainmaker_star.name=Rainmaker Star
@@ -274,8 +275,8 @@ item.tf_salt_meef_steak.name=Salted Meef Steak
 item.tf_salt_meef_stroganoff.name=Salted Meef Stroganoff
 item.tf_salt_hydra_chop.name=Salted Hydra Chop
 item.tf_pickled_mushgloom.name=Pickled Mushgloom
-item.tf_saltwort_cooked_venison.name=Venison Steak With Saltwort
-item.tf_saltwort_meef_steak.name=Meef Steak With Saltwort
+item.tf_saltwort_cooked_venison.name=Venison Steak with Saltwort
+item.tf_saltwort_meef_steak.name=Meef Steak with Saltwort
 
 item.bop_hemoglobin.name=Hemoglobin
 item.bop_poison.name=Poison

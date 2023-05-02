@@ -1,19 +1,14 @@
 package darkbum.saltymod.item;
 
-import java.util.Random;
-
 import darkbum.saltymod.init.ModAchievementList;
 import darkbum.saltymod.init.ModItems;
-import darkbum.saltymod.init.ModConfiguration;
-import net.minecraft.block.material.Material;
+import darkbum.saltymod.configuration.ModConfiguration;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.stats.StatBase;
 import net.minecraft.world.World;
 import darkbum.saltymod.common.CommonProxy;
 
@@ -35,7 +30,7 @@ public class ItemMudArmor extends ItemArmor {
 
     public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
         if (!world.isRemote) {
-            if (stack.getItem() == ModItems.mud_helmet && ModConfiguration.mudArmorWaterDam) {
+            if (stack.getItem() == ModItems.mud_helmet && ModConfiguration.mudArmorWaterDamage) {
                 if (player.isWet() && itemRand.nextInt(100) == 0) {
                     stack.damageItem(1, player);
                     if (stack.getItemDamage() >= stack.getMaxDamage()) {
@@ -44,7 +39,7 @@ public class ItemMudArmor extends ItemArmor {
                     }
                 }
             }
-            if (stack.getItem() == ModItems.mud_chestplate && ModConfiguration.mudArmorWaterDam) {
+            if (stack.getItem() == ModItems.mud_chestplate && ModConfiguration.mudArmorWaterDamage) {
                 if (player.isWet() && itemRand.nextInt(100) == 0) {
                     stack.damageItem(1, player);
                     if (stack.getItemDamage() >= stack.getMaxDamage()) {
@@ -53,7 +48,7 @@ public class ItemMudArmor extends ItemArmor {
                     }
                 }
             }
-            if (stack.getItem() == ModItems.mud_leggings && ModConfiguration.mudArmorWaterDam) {
+            if (stack.getItem() == ModItems.mud_leggings && ModConfiguration.mudArmorWaterDamage) {
                 if (player.isWet() && itemRand.nextInt(100) == 0) {
                     stack.damageItem(1, player);
                     if (stack.getItemDamage() >= stack.getMaxDamage()) {
@@ -62,7 +57,7 @@ public class ItemMudArmor extends ItemArmor {
                     }
                 }
             }
-            if (stack.getItem() == ModItems.mud_boots && ModConfiguration.mudArmorWaterDam) {
+            if (stack.getItem() == ModItems.mud_boots && ModConfiguration.mudArmorWaterDamage) {
                 if (player.isWet() && itemRand.nextInt(100) == 0) {
                     stack.damageItem(1, player);
                     if (stack.getItemDamage() >= stack.getMaxDamage()) {
@@ -71,6 +66,7 @@ public class ItemMudArmor extends ItemArmor {
                     }
                 }
             }
+            //MOD CONFIG!!!
             if (armorType == 0 &&
                 player.getEquipmentInSlot(1) != null &&
                 player.getEquipmentInSlot(1).getItem() instanceof ItemMudArmor &&
@@ -82,7 +78,7 @@ public class ItemMudArmor extends ItemArmor {
                 if (player.isPotionActive(Potion.field_76434_w.id)) {
                     player.getActivePotionEffect(Potion.field_76434_w).duration = 2;
                 } else {
-                    player.addPotionEffect(new PotionEffect(Potion.field_76434_w.id, 2, ModConfiguration.mudArmorHealthBoost, true));
+                    player.addPotionEffect(new PotionEffect(Potion.field_76434_w.id, 2, ModConfiguration.mudArmorHealthBoostValue, true));
                 }
             }
         }

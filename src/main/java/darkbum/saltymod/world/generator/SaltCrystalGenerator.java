@@ -5,7 +5,7 @@ import cpw.mods.fml.common.Loader;
 import java.util.Random;
 
 import darkbum.saltymod.init.ModBlocks;
-import darkbum.saltymod.init.ModConfiguration;
+import darkbum.saltymod.configuration.ModConfiguration;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 
@@ -15,8 +15,8 @@ public class SaltCrystalGenerator implements IWorldGenerator {
 
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
         if (Loader.isModLoaded("TwilightForest"))
-            this.dimensionIDTwilightForest = ModConfiguration.TFDim;
-        if (world.provider.dimensionId == 0 || (world.provider.dimensionId == this.dimensionIDTwilightForest && ModConfiguration.TFOreGen)) {
+            this.dimensionIDTwilightForest = ModConfiguration.TFDimensionID;
+        if (world.provider.dimensionId == 0 || (world.provider.dimensionId == this.dimensionIDTwilightForest && ModConfiguration.enableTFSaltOre)) {
             generateOverworld(world, random, chunkX * 16, chunkZ * 16);
         }
     }

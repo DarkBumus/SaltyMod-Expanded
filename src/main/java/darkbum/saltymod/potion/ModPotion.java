@@ -1,9 +1,8 @@
 package darkbum.saltymod.potion;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.init.ModConfiguration;
+import darkbum.saltymod.configuration.ModConfiguration;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -25,8 +24,8 @@ public class ModPotion extends Potion {
 
     public static void init() {
 
-        swarmed = new PotionSwarmed(ModConfiguration.swarmedID, true, 0x000000);
-        wellFed = new PotionWellFed(ModConfiguration.wellFedID, false, 0xFFD32D);
+        swarmed = new PotionSwarmed(ModConfiguration.swarmedEffectID, true, 0x000000);
+        wellFed = new PotionWellFed(ModConfiguration.wellFedEffectID, false, 0xFFD32D);
     }
 
     @SideOnly(Side.CLIENT)

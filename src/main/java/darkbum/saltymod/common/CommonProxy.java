@@ -16,6 +16,7 @@ import darkbum.saltymod.api.EvaporateRegistry;
 import darkbum.saltymod.init.ModAchievementList;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
+import darkbum.saltymod.tileentity.TileEntityBlossomSign;
 import darkbum.saltymod.world.generator.*;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.creativetab.CreativeTabs;
@@ -41,8 +42,8 @@ import darkbum.saltymod.entity.EntityRainmaker;
 import darkbum.saltymod.entity.EntityRainmakerDust;
 import darkbum.saltymod.inventory.gui.GuiEvaporatorHandler;
 import darkbum.saltymod.network.EvaporatorButtonMessage;
-import darkbum.saltymod.network.SaltModEventHandler;
-import darkbum.saltymod.network.SaltWortMessage;
+import darkbum.saltymod.network.SaltyModEventHandler;
+import darkbum.saltymod.network.SaltwortMessage;
 import darkbum.saltymod.tileentity.TileEntityEvaporator;
 
 public class CommonProxy {
@@ -69,13 +70,13 @@ public class CommonProxy {
     public static SimpleNetworkWrapper network;
 
     public void preInit(FMLPreInitializationEvent event) {
-        SaltModEventHandler sEvent = new SaltModEventHandler();
+        SaltyModEventHandler sEvent = new SaltyModEventHandler();
         FMLCommonHandler.instance().bus().register(sEvent);
         MinecraftForge.EVENT_BUS.register(sEvent);
         NetworkRegistry.INSTANCE.registerGuiHandler(SaltyMod.instance, new GuiEvaporatorHandler());
-        network = NetworkRegistry.INSTANCE.newSimpleChannel("SaltMod");
+        network = NetworkRegistry.INSTANCE.newSimpleChannel("SaltyMod");
         network.registerMessage(EvaporatorButtonMessage.Handler.class, EvaporatorButtonMessage.class, 0, Side.SERVER);
-        network.registerMessage(SaltWortMessage.Handler.class, SaltWortMessage.class, 1, Side.CLIENT);
+        network.registerMessage(SaltwortMessage.Handler.class, SaltwortMessage.class, 1, Side.CLIENT);
     }
 
     public void init(FMLInitializationEvent event) {
@@ -87,6 +88,7 @@ public class CommonProxy {
         }
 
         GameRegistry.registerTileEntity(TileEntityEvaporator.class, "tileEntityEvaporator");
+        GameRegistry.registerTileEntity(TileEntityBlossomSign.class, "tileEntityBlossomSign");
 
         EntityRegistry.registerModEntity(EntityRainmaker.class, "entityRainmaker", 0, SaltyMod.instance, 64, 20, true);
         EntityRegistry.registerModEntity(EntityRainmakerDust.class, "entityRainmakerDust", 1, SaltyMod.instance, 64, 20, false);
@@ -130,8 +132,8 @@ public class CommonProxy {
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.apiary, 1, 5), new ItemStack(ModBlocks.apiary, 1, 4), stick);
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.apiary, 1, 6), new ItemStack(ModBlocks.apiary, 1, 5), stick);
 
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.salt_crusted_oak_log, 1, 1), new ItemStack(ModBlocks.salt_crusted_oak_log), stick);
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.salt_crusted_oak_log, 1, 2), new ItemStack(ModBlocks.salt_crusted_oak_log, 1, 1), stick);
+//        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.salt_crusted_oak_log, 1, 1), new ItemStack(ModBlocks.salt_crusted_oak_log), stick);
+//        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.salt_crusted_oak_log, 1, 2), new ItemStack(ModBlocks.salt_crusted_oak_log, 1, 1), stick);
 // D E B U G // T E S T I N G //
     }
 
@@ -286,6 +288,8 @@ public class CommonProxy {
             } else {
                 GameRegistry.addShapelessRecipe(new ItemStack(ModItems.fruit_salad), new ItemStack(Items.bowl), new ItemStack(Items.apple), new ItemStack(Items.carrot), new ItemStack(Items.melon));
                 GameRegistry.addShapelessRecipe(new ItemStack(ModItems.sugar_fruit_salad), new ItemStack(ModItems.sugar_pinch), new ItemStack(Items.bowl), new ItemStack(Items.apple), new ItemStack(Items.carrot), new ItemStack(Items.melon));
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.golden_fruit_salad), new ItemStack(Items.bowl), new ItemStack(Items.golden_apple), new ItemStack(Items.golden_carrot), new ItemStack(Items.speckled_melon));
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.sugar_golden_fruit_salad), new ItemStack(ModItems.sugar_pinch), new ItemStack(Items.bowl), new ItemStack(Items.golden_apple), new ItemStack(Items.golden_carrot), new ItemStack(Items.speckled_melon));
                 GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 15), new ItemStack(ModBlocks.salt_flower, 0));
             }
         }
