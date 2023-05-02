@@ -67,18 +67,20 @@ public class ItemMudArmor extends ItemArmor {
                 }
             }
             //MOD CONFIG!!!
-            if (armorType == 0 &&
-                player.getEquipmentInSlot(1) != null &&
-                player.getEquipmentInSlot(1).getItem() instanceof ItemMudArmor &&
-                player.getEquipmentInSlot(2) != null &&
-                player.getEquipmentInSlot(2).getItem() instanceof ItemMudArmor &&
-                player.getEquipmentInSlot(3) != null &&
-                player.getEquipmentInSlot(3).getItem() instanceof ItemMudArmor) {
-                player.addStat(ModAchievementList.fullMudArmor, 1);
-                if (player.isPotionActive(Potion.field_76434_w.id)) {
-                    player.getActivePotionEffect(Potion.field_76434_w).duration = 2;
-                } else {
-                    player.addPotionEffect(new PotionEffect(Potion.field_76434_w.id, 2, ModConfiguration.mudArmorHealthBoostValue, true));
+            if(ModConfiguration.mudArmorHealthBoost) {
+                if (armorType == 0 &&
+                    player.getEquipmentInSlot(1) != null &&
+                    player.getEquipmentInSlot(1).getItem() instanceof ItemMudArmor &&
+                    player.getEquipmentInSlot(2) != null &&
+                    player.getEquipmentInSlot(2).getItem() instanceof ItemMudArmor &&
+                    player.getEquipmentInSlot(3) != null &&
+                    player.getEquipmentInSlot(3).getItem() instanceof ItemMudArmor) {
+                    player.addStat(ModAchievementList.fullMudArmor, 1);
+                    if (player.isPotionActive(Potion.field_76434_w.id)) {
+                        player.getActivePotionEffect(Potion.field_76434_w).duration = 2;
+                    } else {
+                        player.addPotionEffect(new PotionEffect(Potion.field_76434_w.id, 2, ModConfiguration.mudArmorHealthBoostValue, true));
+                    }
                 }
             }
         }

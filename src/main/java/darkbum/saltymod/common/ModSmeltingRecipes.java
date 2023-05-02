@@ -7,11 +7,15 @@ import darkbum.saltymod.configuration.ModConfiguration;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
+import java.util.Objects;
+
 public class ModSmeltingRecipes {
 
     public static void init() {
 
-        GameRegistry.addSmelting(new ItemStack(Items.fish, 1, 2), new ItemStack(ModItems.cooked_tropical_fish), 0.35F);
+        if(ModConfiguration.enableTropicalFish) {
+            GameRegistry.addSmelting(new ItemStack(Items.fish, 1, 2), new ItemStack(ModItems.cooked_tropical_fish), 0.35F);
+        }
         GameRegistry.addSmelting(new ItemStack(Items.leather), new ItemStack(Items.slime_ball), 0.5F);
         GameRegistry.addSmelting(new ItemStack(Items.rotten_flesh), new ItemStack(Items.leather), 0.5F);
 

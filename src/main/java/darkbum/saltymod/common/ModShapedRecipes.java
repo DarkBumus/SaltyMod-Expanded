@@ -1,6 +1,7 @@
 package darkbum.saltymod.common;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import darkbum.saltymod.configuration.ModConfiguration;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.init.Blocks;
@@ -48,7 +49,11 @@ public class ModShapedRecipes {
         GameRegistry.addRecipe(new ItemStack(ModItems.golden_saltwort), "xxx", "xyx", "xxx", 'x', Items.gold_nugget, 'y', ModItems.saltwort);
         GameRegistry.addRecipe(new ItemStack(ModItems.golden_potato), "xxx", "xyx", "xxx", 'x', Items.gold_nugget, 'y', Items.potato);
         GameRegistry.addRecipe(new ItemStack(ModItems.cured_meat), "xxx", "xyx", "xxx", 'x', ModItems.salt_pinch, 'y', Items.rotten_flesh);
-        GameRegistry.addRecipe(new ItemStack(ModItems.chocolate_bar), "xyx", 'x', new ItemStack(Items.dye, 1, 3), 'y', ModItems.powdered_milk);
+        if(ModConfiguration.enableEvaporator) {
+            GameRegistry.addRecipe(new ItemStack(ModItems.chocolate_bar), "xyx", 'x', new ItemStack(Items.dye, 1, 3), 'y', ModItems.powdered_milk);
+        } else {
+            GameRegistry.addRecipe(new ItemStack(ModItems.chocolate_bar), "xyx", 'x', new ItemStack(Items.dye, 1, 3), 'y', Items.milk_bucket);
+        }
         GameRegistry.addRecipe(new ItemStack(ModItems.mud_helmet), "xxx", "x x", 'x', ModItems.mineral_mud_ball);
         GameRegistry.addRecipe(new ItemStack(ModItems.mud_chestplate), "x x", "xxx", "xxx", 'x', ModItems.mineral_mud_ball);
         GameRegistry.addRecipe(new ItemStack(ModItems.mud_leggings), "xxx", "x x", "x x", 'x', ModItems.mineral_mud_ball);

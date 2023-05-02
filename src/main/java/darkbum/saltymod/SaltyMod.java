@@ -61,13 +61,8 @@ public class SaltyMod {
         ModItems.init();
         ModBlocks.init();
         ModBiomes.SaltMod();
-        FishRegistry.registerItems();
+        ModFishRegistry.registerItems();
         GameRegistry.registerFuelHandler(new ModFuelHandler());
-        ModOreDictionary.init();
-        ModRecipeRemover.init();
-        ModShapedRecipes.init();
-        ModShapelessRecipes.init();
-        ModSmeltingRecipes.init();
         if (ModConfiguration.enableBrickmakerCamp) {
             ChestLootHandler.campChest();
         }
@@ -78,6 +73,11 @@ public class SaltyMod {
     public void init(FMLInitializationEvent event) {
         config.init();
         proxy.init(event);
+        ModOreDictionary.init();
+        ModRecipeRemover.init();
+        ModShapedRecipes.init();
+        ModShapelessRecipes.init();
+        ModSmeltingRecipes.init();
         if (ModConfiguration.enableBrickmakerCamp) {
             ChestContent.addDungeonLoot();
         }
@@ -87,8 +87,9 @@ public class SaltyMod {
     public void postInit(FMLPostInitializationEvent event) {
         config.postInit();
         proxy.postInit(event);
-        ExternalFoodValueRegistry.init();
-        if (Loader.isModLoaded("etfuturum") && new ComparableVersion(Loader.instance().getIndexedModList().get("etfuturum").getProcessedVersion().getVersionString()).compareTo(new ComparableVersion("2.4.5")) <= 0) {
+        ModExternalRecipes.init();
+        ModExternalFoodValueRegistry.init();
+        if(ModConfiguration.enableSaltOre && Loader.isModLoaded("etfuturum") && new ComparableVersion(Loader.instance().getIndexedModList().get("etfuturum").getProcessedVersion().getVersionString()).compareTo(new ComparableVersion("2.4.5")) <= 0) {
             System.out.println("deepslate ore registered");
             ganymedes01.etfuturum.core.utils.DeepslateOreRegistry.addOre(ModBlocks.salt_ore, ModBlocks.deepslate_salt_ore);
         }
@@ -99,6 +100,7 @@ public class SaltyMod {
             - Restructure/Merge Items?
             - Restructure Config file/class
             - At least think of a way to automate fishing
+            - Relocate Recipes to Init
 
 
             Things I (might) need help with:
@@ -119,6 +121,9 @@ public class SaltyMod {
             - Make the "automate fishing" idea work, lol
             - Recipe Book [LATER, ALSO MAYBE]
             - Change EFR's suspicious stew from giving Saturation to giving Well Fed
+            - Fix up the latest Config changes
+                - Specify singular blocks from Array Lists (Preventing Onion Alliums crashing the AlliumPatch.java when Salt Flowers are deactivated)
+                - Same as above, singleing out Onion Crates to deactivate without removing all storage blocks)
 
 
             Things I probably have to outsource (sorted by order of importance): ##################### HI JONATHAN :) ###########################

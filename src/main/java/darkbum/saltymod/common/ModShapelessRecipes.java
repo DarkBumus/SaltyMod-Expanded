@@ -1,6 +1,7 @@
 package darkbum.saltymod.common;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import darkbum.saltymod.configuration.ModConfiguration;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.init.Blocks;
@@ -104,17 +105,43 @@ public class ModShapelessRecipes {
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.melon_soup), new ItemStack(Items.bowl), new ItemStack(Items.melon), new ItemStack(Items.melon), new ItemStack(Items.melon));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.sugar_melon_soup), new ItemStack(ModItems.sugar_pinch), new ItemStack(Items.bowl), new ItemStack(Items.melon), new ItemStack(Items.melon), new ItemStack(Items.melon));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.sugar_melon_soup), new ItemStack(ModItems.sugar_pinch), new ItemStack(ModItems.melon_soup));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.chocolate_pie), new ItemStack(Items.dye, 1, 3), new ItemStack(Items.dye, 1, 3), new ItemStack(ModItems.dough), new ItemStack(Items.egg));
+        if(ModConfiguration.enableDough) {
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.chocolate_pie), new ItemStack(Items.dye, 1, 3), new ItemStack(Items.dye, 1, 3), new ItemStack(ModItems.dough), new ItemStack(Items.egg));
+        } else {
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.chocolate_pie), new ItemStack(Items.dye, 1, 3), new ItemStack(Items.dye, 1, 3), new ItemStack(Items.wheat), new ItemStack(Items.egg));
+        }
+        if(ModConfiguration.enableEvaporator) {
+            if(ModConfiguration.enableDough) {
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.birthday_pie), new ItemStack(Items.sugar), new ItemStack(ModItems.powdered_milk), new ItemStack(ModItems.dough), new ItemStack(Items.egg));
+            } else {
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.birthday_pie), new ItemStack(Items.sugar), new ItemStack(ModItems.powdered_milk), new ItemStack(Items.wheat), new ItemStack(Items.egg));
+            }
+        } else {
+            if(ModConfiguration.enableDough) {
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.birthday_pie), new ItemStack(Items.sugar), new ItemStack(Items.milk_bucket), new ItemStack(ModItems.dough), new ItemStack(Items.egg));
+            } else {
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.birthday_pie), new ItemStack(Items.sugar), new ItemStack(Items.milk_bucket), new ItemStack(Items.wheat), new ItemStack(Items.egg));
+            }
+        }
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.carrot_pie), new ItemStack(Items.sugar), new ItemStack(Items.carrot), new ItemStack(Items.carrot), new ItemStack(Items.egg));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.apple_pie), new ItemStack(Items.sugar), new ItemStack(Items.apple), new ItemStack(Items.apple), new ItemStack(Items.egg));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.potato_pie), new ItemStack(ModItems.salt), new ItemStack(Items.potato), new ItemStack(Items.potato), new ItemStack(Items.egg));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.onion_pie), new ItemStack(ModItems.salt), new ItemStack(ModItems.onion), new ItemStack(ModItems.onion), new ItemStack(Items.egg));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.cod_pie), new ItemStack(ModItems.salt), new ItemStack(Items.fish), new ItemStack(ModItems.dough), new ItemStack(Items.egg));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.salmon_pie), new ItemStack(ModItems.salt), new ItemStack(Items.fish, 1, 1), new ItemStack(ModItems.dough), new ItemStack(Items.egg));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.tropical_fish_pie), new ItemStack(ModItems.salt), new ItemStack(Items.fish, 1, 2), new ItemStack(ModItems.dough), new ItemStack(Items.egg));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.tailor_pie), new ItemStack(ModItems.salt), new ItemStack(ModItems.tailor), new ItemStack(ModItems.dough), new ItemStack(Items.egg));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.calamari_pie), new ItemStack(ModItems.salt), new ItemStack(ModItems.calamari), new ItemStack(ModItems.dough), new ItemStack(Items.egg));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltwort_pie), new ItemStack(ModItems.saltwort), new ItemStack(ModItems.saltwort), new ItemStack(ModItems.dough), new ItemStack(Items.egg));
+        if(ModConfiguration.enableDough) {
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.cod_pie), new ItemStack(ModItems.salt), new ItemStack(Items.fish), new ItemStack(ModItems.dough), new ItemStack(Items.egg));
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.salmon_pie), new ItemStack(ModItems.salt), new ItemStack(Items.fish, 1, 1), new ItemStack(ModItems.dough), new ItemStack(Items.egg));
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.tropical_fish_pie), new ItemStack(ModItems.salt), new ItemStack(Items.fish, 1, 2), new ItemStack(ModItems.dough), new ItemStack(Items.egg));
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.tailor_pie), new ItemStack(ModItems.salt), new ItemStack(ModItems.tailor), new ItemStack(ModItems.dough), new ItemStack(Items.egg));
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.calamari_pie), new ItemStack(ModItems.salt), new ItemStack(ModItems.calamari), new ItemStack(ModItems.dough), new ItemStack(Items.egg));
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltwort_pie), new ItemStack(ModItems.saltwort), new ItemStack(ModItems.saltwort), new ItemStack(ModItems.dough), new ItemStack(Items.egg));
+        } else {
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.cod_pie), new ItemStack(ModItems.salt), new ItemStack(Items.fish), new ItemStack(Items.wheat), new ItemStack(Items.egg));
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.salmon_pie), new ItemStack(ModItems.salt), new ItemStack(Items.fish, 1, 1), new ItemStack(Items.wheat), new ItemStack(Items.egg));
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.tropical_fish_pie), new ItemStack(ModItems.salt), new ItemStack(Items.fish, 1, 2), new ItemStack(Items.wheat), new ItemStack(Items.egg));
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.tailor_pie), new ItemStack(ModItems.salt), new ItemStack(ModItems.tailor), new ItemStack(Items.wheat), new ItemStack(Items.egg));
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.calamari_pie), new ItemStack(ModItems.salt), new ItemStack(ModItems.calamari), new ItemStack(Items.wheat), new ItemStack(Items.egg));
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.saltwort_pie), new ItemStack(ModItems.saltwort), new ItemStack(ModItems.saltwort), new ItemStack(Items.wheat), new ItemStack(Items.egg));
+        }
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.fermented_saltwort), new ItemStack(Items.ghast_tear), new ItemStack(Items.glass_bottle), new ItemStack(ModItems.saltwort), new ItemStack(ModItems.saltwort), new ItemStack(ModItems.saltwort), new ItemStack(ModItems.saltwort), new ItemStack(ModItems.saltwort));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.fermented_fern), new ItemStack(Items.ghast_tear), new ItemStack(Items.glass_bottle), new ItemStack(Blocks.tallgrass, 1, 2), new ItemStack(Blocks.tallgrass, 1, 2), new ItemStack(Blocks.tallgrass, 1, 2), new ItemStack(Blocks.tallgrass, 1, 2), new ItemStack(Blocks.tallgrass, 1, 2));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.pickled_calamari), new ItemStack(ModItems.salt_pinch), new ItemStack(Items.potionitem), new ItemStack(ModItems.calamari), new ItemStack(ModItems.calamari));

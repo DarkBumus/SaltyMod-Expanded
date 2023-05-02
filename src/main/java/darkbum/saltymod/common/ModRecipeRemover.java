@@ -1,6 +1,7 @@
 package darkbum.saltymod.common;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import darkbum.saltymod.configuration.ModConfiguration;
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -13,16 +14,23 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class ModRecipeRemover {
     public static void init() {
-        removeFirstRecipeFor(Items.mushroom_stew);
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Items.mushroom_stew), new ItemStack(Items.bowl), "blockMushroom", "blockMushroom"));
-        removeFirstRecipeFor(Items.bread);
-        GameRegistry.addSmelting(new ItemStack(ModItems.dough), new ItemStack(Items.bread), 0.35F);
-        removeFirstRecipeFor(Items.cake);
-        GameRegistry.addRecipe(new ItemStack(Items.cake), " x ", "yzy", " a ", 'x', Items.milk_bucket, 'y', Items.sugar, 'z', Items.egg, 'a', ModItems.dough);
-        removeFirstRecipeFor(Items.cookie);
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.cookie, 8), new ItemStack(ModItems.dough), new ItemStack(Items.dye, 1, 3));
-        removeFirstRecipeFor(Items.pumpkin_pie);
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.pumpkin_pie, 1), new ItemStack(Items.sugar), new ItemStack(Blocks.pumpkin), new ItemStack(ModItems.dough), new ItemStack(Items.egg));
+        if(ModConfiguration.enableRecipeChanges) {
+            removeFirstRecipeFor(Items.mushroom_stew);
+            GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Items.mushroom_stew), new ItemStack(Items.bowl), "blockMushroom", "blockMushroom"));
+            if (ModConfiguration.enableDough) {
+                removeFirstRecipeFor(Items.bread);
+                GameRegistry.addSmelting(new ItemStack(ModItems.dough), new ItemStack(Items.bread), 0.35F);
+                removeFirstRecipeFor(Items.cake);
+                GameRegistry.addRecipe(new ItemStack(Items.cake), " x ", "yzy", " a ", 'x', Items.milk_bucket, 'y', Items.sugar, 'z', Items.egg, 'a', ModItems.dough);
+                removeFirstRecipeFor(Items.cookie);
+                GameRegistry.addShapelessRecipe(new ItemStack(Items.cookie, 8), new ItemStack(ModItems.dough), new ItemStack(Items.dye, 1, 3));
+                removeFirstRecipeFor(Items.pumpkin_pie);
+                GameRegistry.addShapelessRecipe(new ItemStack(Items.pumpkin_pie, 1), new ItemStack(Items.sugar), new ItemStack(Blocks.pumpkin), new ItemStack(ModItems.dough), new ItemStack(Items.egg));
+            }
+        }
+        if(ModConfiguration.replaceCake) {
+            removeFirstRecipeFor(Items.cake);
+        }
     }
 
     private static void removeFirstRecipeFor(Block block) {

@@ -89,6 +89,8 @@ public class SaltyModEventHandler {
                 event.entityPlayer.addStat(ModAchievementList.findMudBrick, 1);
             if (event.item.getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.blossom_log))
                 event.entityPlayer.addStat(ModAchievementList.findBlossomLog, 1);
+            if (event.item.getEntityItem().getItem() == ModItems.onion)
+                event.entityPlayer.addStat(ModAchievementList.findOnion, 1);
         }
     }
 

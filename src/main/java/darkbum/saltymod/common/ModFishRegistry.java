@@ -9,7 +9,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FishRegistry {
+public class ModFishRegistry {
     public static void registerItems() {
         normalFishLoot(new ItemStack(ModItems.tailor, 1, 0), 100);
     }

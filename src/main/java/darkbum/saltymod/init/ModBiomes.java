@@ -13,7 +13,7 @@ public class ModBiomes {
 	public static BiomeGenBase saltMarsh;
 
 	public static void initializeBiome(){
-		if (ModConfiguration.saltMarshBiomeID != -1) {
+		if(ModConfiguration.enableSaltMarsh && ModConfiguration.saltMarshBiomeID != -1) {
 		saltMarsh = new SaltMarshBiome(ModConfiguration.saltMarshBiomeID).setBiomeName("Salt Marsh");
 		}
 	}

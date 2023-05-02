@@ -44,7 +44,9 @@ public class ModAchievementList {
 
     public static Achievement navSaltMarsh = new Achievement("achievement.navSaltMarsh", "navSaltMarsh", 2, 0, ModBlocks.salt_grass, null).registerStat();
 
-    public static Achievement findMudBrick = new Achievement("achievement.findMudBrick", "findMudBrick", 4, 0, ModBlocks.dry_mud_brick, navSaltMarsh).registerStat();
+    public static Achievement findOnion = new Achievement("achievement.findOnion", "findOnion", 4, 0, ModItems.onion, navSaltMarsh).registerStat();
+
+    public static Achievement findMudBrick = new Achievement("achievement.findMudBrick", "findMudBrick", 6, 0, ModBlocks.dry_mud_brick, findOnion).registerStat();
 
 
     public static Achievement findBlossomLog = new Achievement("achievement.findBlossomLog", "findBlossomLog", -2, 0, ModBlocks.blossom_log, null).registerStat();
@@ -75,6 +77,7 @@ public class ModAchievementList {
         farmSaltwort,
         consumeFizzyDrink,
         navSaltMarsh,
+        findOnion,
         findMudBrick,
         findBlossomLog,
         effectSwarmed,
