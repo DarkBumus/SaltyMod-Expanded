@@ -2,9 +2,8 @@ package darkbum.saltymod.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
+
+import java.util.*;
 
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.block.Block;
@@ -19,7 +18,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatBase;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
@@ -34,6 +32,9 @@ public class BlockSaltDirt extends Block {
 
     @SideOnly(Side.CLIENT)
     private IIcon SIDE;
+
+    private long lastMessageTime = -1 ;
+    private static final int COOLDOWN_TICKS = 20;
 
     public BlockSaltDirt(String name, CreativeTabs tab) {
         super(Material.ground);
@@ -68,8 +69,7 @@ public class BlockSaltDirt extends Block {
     }
 
     public void onEntityWalking(World world, int x, int y, int z, Entity entity) {
-        if (!world.isRemote && world
-            .getBlockMetadata(x, y, z) == 1) {
+        if (!world.isRemote && world.getBlockMetadata(x, y, z) == 1) {
             if (entity instanceof net.minecraft.entity.EntityLivingBase && EntityList.getEntityString(entity) != null && ((
                 EntityList.getEntityString(entity).toLowerCase().contains("slime") && !EntityList.getEntityString(entity).toLowerCase().contains("lava")) ||
                 EntityList.getEntityString(entity).toLowerCase().contains("witch")))
@@ -118,8 +118,16 @@ public class BlockSaltDirt extends Block {
     }
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx, float hity, float hitz) {
+        if(world.isRemote) return true;
+
+        long currentTick = world.getTotalWorldTime();
+
         if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == ModItems.salt_pinch) {
+            if (currentTick - lastMessageTime < COOLDOWN_TICKS) {
+                return false;
+            }
             player.addChatMessage(new ChatComponentText(I18n.format(getUnlocalizedName() + ".mess")));
+            lastMessageTime = currentTick;
         }
         return true;
     }
