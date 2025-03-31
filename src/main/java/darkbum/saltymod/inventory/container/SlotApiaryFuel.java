@@ -6,20 +6,20 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class SlotFishFarmFuel extends Slot {
+public class SlotApiaryFuel extends Slot {
     private EntityPlayer entityPlayer;
 
-    public SlotFishFarmFuel(EntityPlayer entityPlayer, IInventory iInventory, int slotIndex, int x, int y) {
+    public SlotApiaryFuel(EntityPlayer entityPlayer, IInventory iInventory, int slotIndex, int x, int y) {
         super(iInventory, slotIndex, x, y);
         setEntityPlayer(entityPlayer);
     }
 
     public boolean isItemValid(ItemStack itemStack) {
-        return (itemStack.getItem() == ModItems.fish_bait);
+        return (itemStack.getItem() == ModItems.carpenter_bee);
     }
 
     public int getSlotStackLimit() {
-        return 64;
+        return 1;
     }
 
     public void onPickupFromSlot(EntityPlayer entityPlayer, ItemStack itemStack) {

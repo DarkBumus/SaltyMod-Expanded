@@ -15,7 +15,7 @@ import darkbum.saltymod.api.EvaporateRegistry;
 import darkbum.saltymod.configuration.ModConfiguration;
 import darkbum.saltymod.init.ModAchievementList;
 import darkbum.saltymod.init.ModItems;
-//import darkbum.saltymod.tileentity.TileEntityBlossomSign;
+import darkbum.saltymod.tileentity.TileEntityApiary;
 import darkbum.saltymod.tileentity.TileEntityFishFarm;
 import darkbum.saltymod.world.generator.*;
 import net.minecraft.block.BlockDispenser;
@@ -53,8 +53,6 @@ public class CommonProxy {
 
     public static SaltLakeGenerator saltLakeGenerator;
 
-//    public static BlossomTreeGenerator blossomTreeGenerator;
-
     public static SaltFlowerGenerator saltFlowerGenerator;
 
     public static ItemArmor.ArmorMaterial mudMaterial = EnumHelper.addArmorMaterial("mudMaterial", 5, new int[]{1, 3, 2, 1}, 15);
@@ -86,7 +84,7 @@ public class CommonProxy {
 
         GameRegistry.registerTileEntity(TileEntityEvaporator.class, "tileEntityEvaporator");
         GameRegistry.registerTileEntity(TileEntityFishFarm.class, "tileEntityFishFarm");
-//        GameRegistry.registerTileEntity(TileEntityBlossomSign.class, "tileEntityBlossomSign");
+        GameRegistry.registerTileEntity(TileEntityApiary.class, "tileEntityApiary");
 
         EntityRegistry.registerModEntity(EntityRainmaker.class, "entityRainmaker", 0, SaltyMod.instance, 64, 20, true);
         EntityRegistry.registerModEntity(EntityRainmakerDust.class, "entityRainmakerDust", 1, SaltyMod.instance, 64, 20, false);
@@ -104,10 +102,6 @@ public class CommonProxy {
             saltLakeGenerator = new SaltLakeGenerator();
             GameRegistry.registerWorldGenerator(saltLakeGenerator, 15);
         }
-/*        if(ModConfiguration.enableBlossom) {
-            blossomTreeGenerator = new BlossomTreeGenerator();
-            GameRegistry.registerWorldGenerator(blossomTreeGenerator, 0);
-        }*/
         if(ModConfiguration.enableSaltFlowers) {
             saltFlowerGenerator = new SaltFlowerGenerator();
             GameRegistry.registerWorldGenerator(saltFlowerGenerator, 0);

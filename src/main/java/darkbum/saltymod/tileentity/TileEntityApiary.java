@@ -6,7 +6,6 @@ import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -17,7 +16,7 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class TileEntityFishFarm extends TileEntity implements IInventory {
+public class TileEntityApiary extends TileEntity implements IInventory {
     private ItemStack[] inventory = new ItemStack[19];
 
     public int runTime = 0;
@@ -103,33 +102,14 @@ public class TileEntityFishFarm extends TileEntity implements IInventory {
             for (int offsetZ = -radius; offsetZ <= radius; offsetZ++) {
                 if (offsetX * offsetX + offsetZ * offsetZ <= radius * radius && (offsetX != -(radius - 1) || offsetZ != -(radius - 1)) && (offsetX != radius - 1 || offsetZ != radius - 1) && (offsetX != radius - 1 || offsetZ != -(radius - 1)) && (offsetX != -(radius - 1) || offsetZ != radius - 1)) {
                     Block blockAtCoords = world.getBlock(varX + offsetX, varY, varZ + offsetZ);
-                    if (blockAtCoords instanceof net.minecraft.block.BlockLiquid)
+                    if (blockAtCoords instanceof net.minecraft.block.BlockFlower || blockAtCoords instanceof net.minecraft.block.BlockCrops)
                         speed = (int)(speed * 0.95D);
-                    if (world.getBlock(varX + offsetX, varY, varZ + offsetZ) == ModBlocks.fish_farm)
+                    if (world.getBlock(varX + offsetX, varY, varZ + offsetZ) == ModBlocks.apiary)
                         speed = (int)(speed / 0.85D);
                 }
             }
         }
         return speed;
-    }
-
-    public int currentSurroundings() {
-        byte radius = 2;
-        int count = 0;
-        World world = this.worldObj;
-        int varX = this.xCoord;
-        int varY = this.yCoord;
-        int varZ = this.zCoord;
-        for (int offsetX = -radius; offsetX <= radius; offsetX++) {
-            for (int offsetZ = -radius; offsetZ <= radius; offsetZ++) {
-                if (offsetX * offsetX + offsetZ * offsetZ <= radius * radius && (offsetX != -(radius - 1) || offsetZ != -(radius - 1)) && (offsetX != radius - 1 || offsetZ != radius - 1) && (offsetX != radius - 1 || offsetZ != -(radius - 1)) && (offsetX != -(radius - 1) || offsetZ != radius - 1)) {
-                    Block blockAtCoords = world.getBlock(varX + offsetX, varY, varZ + offsetZ);
-                    if (blockAtCoords instanceof net.minecraft.block.BlockLiquid)
-                        count++;
-                }
-            }
-        }
-        return count;
     }
 
     public void updateEntity() {
@@ -176,9 +156,10 @@ public class TileEntityFishFarm extends TileEntity implements IInventory {
 
     private boolean canRun() {
         if (this.inventory[18] != null) {
-            if (this.inventory[18].getItem() == ModItems.fish_bait)
-                if (currentSurroundings() >= 5)
-                    return true;
+            if (this.inventory[18].getItem() == ModItems.carpenter_bee &&
+                this.inventory[18].getItemDamage() != this.inventory[18]
+                    .getMaxDamage())
+                return true;
         } else {
             return false;
         }
@@ -187,31 +168,25 @@ public class TileEntityFishFarm extends TileEntity implements IInventory {
 
     public ItemStack getProduce() {
         Random rnd = new Random();
+        int rndnum = rnd.nextInt(100);
         if (this.inventory[18] != null) {
-            int i = rnd.nextInt(16);
-                switch (i) {
-                    case 0, 1, 2, 3, 4:
-                        return new ItemStack(Items.fish, 1, 0);
-                    case 5, 6, 7:
-                        return new ItemStack(Items.fish, 1, 1);
-                    case 8, 9:
-                        return new ItemStack(Items.fish, 1, 2);
-                    case 10:
-                        return new ItemStack(Items.fish, 1, 3);
-                    case 11, 12, 13:
-                        return new ItemStack(ModItems.tailor, 1, 0);
-                    case 14, 15:
-                        return new ItemStack(ModItems.calamari, 1, 0);
-                }
-            }
+            if (this.inventory[18].getItem() == ModItems.carpenter_bee &&
+                this.inventory[18].getItemDamage() == 17)
+                return new ItemStack(ModItems.bee_larva);
+            if (rndnum < 50)
+                return new ItemStack(ModItems.waxcomb);
+            if (rndnum >= 50 && rndnum < 95)
+                return new ItemStack(ModItems.honeycomb);
+            return new ItemStack(ModItems.bee_larva);
+        }
         return null;
     }
 
     public void run() {
+        this.inventory[18].attemptDamageItem(1, null);
         ItemStack itemProduced = getProduce();
         for (int i = 0; i < 18; i++) {
             if (this.inventory[i] == null) {
-                decrStackSize(18, 1);
                 this.inventory[i] = itemProduced.copy();
                 break;
             }
@@ -221,7 +196,7 @@ public class TileEntityFishFarm extends TileEntity implements IInventory {
     int getRunTime(ItemStack stack) {
         if (stack == null)
             return 0;
-        if (stack.getItem() == ModItems.fish_bait)
+        if (stack.getItem() == ModItems.carpenter_bee)
             return 3200;
         return 0;
     }

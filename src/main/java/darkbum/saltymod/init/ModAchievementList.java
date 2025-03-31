@@ -55,11 +55,9 @@ public class ModAchievementList {
     public static Achievement consumeSpecMuffin = new Achievement("achievement.consumeSpecMuffin", "consumeSpecMuffin", -2, 6, ModItems.muffin, findDough).setSpecial().registerStat();
 
 
-//    public static Achievement findBlossomLog = new Achievement("achievement.findBlossomLog", "findBlossomLog", -2, 0, ModBlocks.blossom_log, null).registerStat();
+    public static Achievement effectSwarmed = new Achievement("achievement.effectSwarmed", "effectSwarmed", 0, 6, ModItems.carpenter_bee, null).registerStat();
 
-//    public static Achievement effectSwarmed = new Achievement("achievement.effectSwarmed", "effectSwarmed", -2, 2, ModItems.carpenter_bee, findBlossomLog).registerStat();
-
-//    public static Achievement craftApiary = new Achievement("achievement.craftApiary", "craftApiary", -4, 0, ModBlocks.apiary, findBlossomLog).registerStat();
+    public static Achievement craftApiary = new Achievement("achievement.craftApiary", "craftApiary", 2, 6, ModBlocks.apiary, effectSwarmed).registerStat();
 
     public static AchievementPage achievSaltPage = new AchievementPage("SaltyMod Expanded",
         findSalt,
@@ -82,10 +80,9 @@ public class ModAchievementList {
         consumeSpecMuffin,
         navSaltMarsh,
         findOnion,
-        findMudBrick//,
-//        findBlossomLog,
-//        effectSwarmed,
-//        craftApiary,
+        findMudBrick,
+        effectSwarmed,
+        craftApiary
     );
 
     public static void init() {

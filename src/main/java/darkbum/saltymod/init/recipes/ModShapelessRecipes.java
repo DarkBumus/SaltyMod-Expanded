@@ -33,9 +33,6 @@ public class ModShapelessRecipes {
         GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 2), new ItemStack(ModItems.saltwort));
         GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 5), new ItemStack(ModBlocks.salt_flower, 1, 2));
         GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 10), new ItemStack(ModBlocks.salt_flower, 1, 5));
-/*        if(ModConfiguration.enableBlossom) {
-            GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 9), new ItemStack(ModItems.blossom));
-        }*/
         if(ModConfiguration.enableStorageBlocks) {
             GameRegistry.addShapelessRecipe(new ItemStack(Items.melon_seeds, 9), new ItemStack(ModBlocks.storage_sack, 1, 1));
             GameRegistry.addShapelessRecipe(new ItemStack(Items.pumpkin_seeds, 9), new ItemStack(ModBlocks.storage_sack, 1, 2));
@@ -48,16 +45,12 @@ public class ModShapelessRecipes {
             GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.salt_dirt), new ItemStack(ModItems.salt), new ItemStack(Blocks.dirt));
             GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.salt_dirt), new ItemStack(ModBlocks.salt_dirt), new ItemStack(ModItems.salt_pinch), new ItemStack(ModItems.salt_pinch), new ItemStack(ModItems.salt_pinch));
         }
-/*        if(ModConfiguration.enableBlossom) {
-            GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.blossom_planks, 4), new ItemStack(ModBlocks.blossom_log));
-            GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.blossom_planks, 4), new ItemStack(ModBlocks.blossom_stripped_log));
-            GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.blossom_planks, 4), new ItemStack(ModBlocks.blossom_wood));
-            GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.blossom_planks, 4), new ItemStack(ModBlocks.blossom_stripped_wood));
-        }*/
 
-/*        if(ModConfiguration.enableHoney) {
-            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.royal_jelly), new ItemStack(ModItems.bee_larva, 1, OreDictionary.WILDCARD_VALUE));
-        }*/
+        if(ModConfiguration.enableHoney) {
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.carpenter_bee, 1, 0), new ItemStack(ModItems.bee_larva), new ItemStack(ModItems.royal_jelly));
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.royal_jelly), new ItemStack(ModItems.carpenter_bee, 1, 18));
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.royal_jelly), new ItemStack(ModItems.bee_larva));
+        }
         if(ModConfiguration.enableMineralMud) {
             GameRegistry.addShapelessRecipe(new ItemStack(ModItems.mineral_mud_ball, 4), new ItemStack(ModBlocks.mineral_mud));
         }

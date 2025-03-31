@@ -1,23 +1,23 @@
 package darkbum.saltymod.inventory.gui;
 
-import darkbum.saltymod.inventory.container.ContainerFishFarm;
-import darkbum.saltymod.tileentity.TileEntityFishFarm;
+import darkbum.saltymod.inventory.container.ContainerApiary;
+import darkbum.saltymod.tileentity.TileEntityApiary;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
-public class GuiFishFarm extends GuiContainer {
+public class GuiApiary extends GuiContainer {
 
-    private static final ResourceLocation guiTextures = new ResourceLocation("saltymod:textures/gui/container/fish_farm.png");
+    private static final ResourceLocation guiTextures = new ResourceLocation("saltymod:textures/gui/container/apiary.png");
 
-    public GuiFishFarm(InventoryPlayer inventoryPlayer, TileEntityFishFarm tileEntityFishFarm) {
-        super(new ContainerFishFarm(inventoryPlayer, tileEntityFishFarm));
+    public GuiApiary(InventoryPlayer inventoryPlayer, TileEntityApiary tileEntityApiary) {
+        super(new ContainerApiary(inventoryPlayer, tileEntityApiary));
     }
 
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        this.fontRendererObj.drawString("Fish Farm", 8, 8, 4210752);
+        this.fontRendererObj.drawString("Apiary", 8, 8, 4210752);
         this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 4, 4210752);
     }
 

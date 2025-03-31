@@ -7,8 +7,7 @@ import darkbum.saltymod.init.ModItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-
-import java.util.Objects;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class ModShapedRecipes {
 
@@ -38,24 +37,14 @@ public class ModShapedRecipes {
             GameRegistry.addRecipe(new ItemStack(ModBlocks.dry_mud_brick_slab, 6), "xxx", 'x', new ItemStack(ModBlocks.dry_mud_brick));
             GameRegistry.addRecipe(new ItemStack(ModBlocks.dry_mud_brick_wall, 6), "xxx", "xxx", 'x', new ItemStack(ModBlocks.dry_mud_brick));
         }
-/*        if(ModConfiguration.enableBlossom) {
-            GameRegistry.addRecipe(new ItemStack(ModBlocks.blossom_wood), "xx", "xx", 'x', new ItemStack(ModBlocks.blossom_log));
-            GameRegistry.addRecipe(new ItemStack(ModBlocks.blossom_stripped_wood), "xx", "xx", 'x', new ItemStack(ModBlocks.blossom_stripped_log));
-            GameRegistry.addRecipe(new ItemStack(ModBlocks.blossom_slab, 6), "xxx", 'x', new ItemStack(ModBlocks.blossom_planks));
-            GameRegistry.addRecipe(new ItemStack(ModBlocks.blossom_stairs, 4), "x  ", "xx ", "xxx", 'x', new ItemStack(ModBlocks.blossom_planks));
-            GameRegistry.addRecipe(new ItemStack(ModBlocks.blossom_fence, 3), "xyx", "xyx", 'x', new ItemStack(ModBlocks.blossom_planks), 'y', new ItemStack(Items.stick));
-            GameRegistry.addRecipe(new ItemStack(ModBlocks.blossom_fence_gate), "xyx", "xyx", 'x', new ItemStack(Items.stick), 'y', new ItemStack(ModBlocks.blossom_planks));
-            GameRegistry.addRecipe(new ItemStack(ModBlocks.blossom_pressure_plate), "xx", 'x', new ItemStack(ModBlocks.blossom_planks));
-            GameRegistry.addRecipe(new ItemStack(ModBlocks.blossom_button), "x", 'x', new ItemStack(ModBlocks.blossom_planks));
-            if(ModConfiguration.blossomDoorCraftingRecipe) {
-                GameRegistry.addRecipe(new ItemStack(ModBlocks.blossom_door, 3), "xx", "xx", "xx", 'x', new ItemStack(ModBlocks.blossom_planks));
-            } else {
-                GameRegistry.addRecipe(new ItemStack(ModBlocks.blossom_door), "xx", "xx", "xx", 'x', new ItemStack(ModBlocks.blossom_planks));
-            }
-            GameRegistry.addRecipe(new ItemStack(ModBlocks.blossom_trapdoor, 2), "xxx", "xxx", 'x', new ItemStack(ModBlocks.blossom_planks));
-        }*/
         if(ModConfiguration.enableEvaporator) {
             GameRegistry.addRecipe(new ItemStack(ModBlocks.evaporator), "xyx", "x x", "xxx", 'x', Blocks.cobblestone, 'y', Items.cauldron);
+        }
+        if(ModConfiguration.enableFishFarm) {
+            GameRegistry.addRecipe(new ItemStack(ModBlocks.fish_farm), "xxx", "yzy", "xax", 'x', new ItemStack(Blocks.planks, 1, OreDictionary.WILDCARD_VALUE), 'y', Items.stick, 'z', Items.fishing_rod, 'a', Blocks.chest);
+        }
+        if(ModConfiguration.enableHoney) {
+            GameRegistry.addRecipe(new ItemStack(ModBlocks.apiary), "xxx", "yyy", "xzx", 'x', new ItemStack(Blocks.planks, 1, OreDictionary.WILDCARD_VALUE), 'y', Items.item_frame, 'z', Blocks.chest);
         }
         if(ModConfiguration.enableStorageBlocks) {
             GameRegistry.addRecipe(new ItemStack(ModBlocks.storage_crate), "xxx", "xxx", "xxx", 'x', Items.carrot);
@@ -73,9 +62,6 @@ public class ModShapedRecipes {
             GameRegistry.addRecipe(new ItemStack(ModBlocks.storage_sack, 1, 3), "xxx", "xxx", "xxx", 'x', ModItems.saltwort);
         }
 
-/*        if(ModConfiguration.enableBlossom) {
-            GameRegistry.addRecipe(new ItemStack(ModItems.item_blossom_sign, 3), "xxx", "xxx", " y ", 'x', new ItemStack(ModBlocks.blossom_planks), 'y', new ItemStack(Items.stick));
-        }*/
         GameRegistry.addRecipe(new ItemStack(ModItems.salt), "xxx", "xxx", "xxx", 'x', ModItems.salt_pinch);
         GameRegistry.addRecipe(new ItemStack(ModItems.golden_saltwort), "xxx", "xyx", "xxx", 'x', Items.gold_nugget, 'y', ModItems.saltwort);
         GameRegistry.addRecipe(new ItemStack(ModItems.golden_potato), "xxx", "xyx", "xxx", 'x', Items.gold_nugget, 'y', Items.potato);

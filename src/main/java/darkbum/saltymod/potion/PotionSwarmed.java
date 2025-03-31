@@ -1,4 +1,4 @@
-/*package darkbum.saltymod.potion;
+package darkbum.saltymod.potion;
 
 import darkbum.saltymod.init.ModAchievementList;
 import net.minecraft.entity.EntityLivingBase;
@@ -43,7 +43,7 @@ public class PotionSwarmed extends ModPotion {
             if (!player.getEntityWorld().getBlock((int)player.posX, (int)player.posY + 1, (int)player.posZ).getMaterial().isLiquid() &&
                (!player.isBurning())) {
                 player.addStat(ModAchievementList.effectSwarmed, 1);
-                entity.attackEntityFrom(ModPotion.swarmedDamage, 1.0F/* - beeResistance*//*);
+                entity.attackEntityFrom(ModPotion.swarmedDamage, 1.0F/* - beeResistance*/);
             }
         }
     }
@@ -60,4 +60,3 @@ public class PotionSwarmed extends ModPotion {
         return k > 0 ? p_76397_1_ % k == 0 : true;
     }
 }
-*/

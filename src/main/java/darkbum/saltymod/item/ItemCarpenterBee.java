@@ -10,6 +10,7 @@ import java.util.List;
 
 public class ItemCarpenterBee extends Item {
     public ItemCarpenterBee(String name, CreativeTabs tab) {
+        isDamageable();
         setUnlocalizedName(name);
         setCreativeTab(tab);
     }

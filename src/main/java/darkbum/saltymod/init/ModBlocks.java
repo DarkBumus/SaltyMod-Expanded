@@ -7,7 +7,6 @@ import darkbum.saltymod.block.*;
 import darkbum.saltymod.block.BlockSaltBlock;
 import darkbum.saltymod.block.BlockSaltFlower;
 import darkbum.saltymod.configuration.ModConfiguration;
-//import darkbum.saltymod.tileentity.TileEntityBlossomSign;
 import net.minecraft.block.*;
 import net.minecraft.creativetab.CreativeTabs;
 import darkbum.saltymod.SaltyMod;
@@ -58,46 +57,6 @@ public class ModBlocks {
 
     public static Block salt_crusted_oak_log;
 
-/*    public static Block blossom_planks;
-
-    public static Block blossom_sapling;
-
-    public static Block blossom_log;
-
-    public static Block blossom_burrow;
-
-    public static Block blossom_wood;
-
-    public static Block blossom_stripped_log;
-
-    public static Block blossom_stripped_burrow;
-
-    public static Block blossom_stripped_wood;
-
-    public static Block blossom_leaves;
-
-    public static BlockSlab blossom_slab;
-
-    public static BlockSlab double_blossom_slab;
-
-    public static Block blossom_stairs;
-
-    public static BlockFence blossom_fence;
-
-    public static BlockFenceGate blossom_fence_gate;
-
-    public static Block blossom_pressure_plate;
-
-    public static Block blossom_button;
-
-    public static Block blossom_door;
-
-    public static Block blossom_trapdoor;
-
-    public static Block blossom_sign_standing;
-
-    public static Block blossom_sign_wall;*/
-
     public static Block evaporator;
 
     public static Block lit_evaporator;
@@ -105,6 +64,10 @@ public class ModBlocks {
     public static Block steam_evaporator;
 
     public static Block fish_farm;
+
+//    public static Block blossom_burrow;
+
+//    public static Block stripped_blossom_burrow;
 
     public static Block apiary;
 
@@ -183,77 +146,6 @@ public class ModBlocks {
             salt_crusted_oak_log = new BlockSaltCrustedOakLog("salt_crusted_oak_log", tab);
             GameRegistry.registerBlock(salt_crusted_oak_log, "salt_crusted_oak_log");
         }
-/*        if(ModConfiguration.enableBlossom) {
-            blossom_planks = new BlockBlossomPlanks("blossom_planks", tab);
-            GameRegistry.registerBlock(blossom_planks, "blossom_planks");
-            blossom_sapling = new BlockBlossomSapling("blossom_sapling", tab);
-            GameRegistry.registerBlock(blossom_sapling, "blossom_sapling");
-            blossom_log = new BlockBlossomLog("blossom_log", tab);
-            GameRegistry.registerBlock(blossom_log, "blossom_log");
-            blossom_burrow = new BlockBlossomBurrow("blossom_burrow", tab);
-            GameRegistry.registerBlock(blossom_burrow, "blossom_burrow");
-            if(Loader.isModLoaded("etfuturum")) {
-                if(ModConfiguration.enableBlossomWood) {
-                    blossom_wood = new BlockBlossomWood("blossom_wood", tab);
-                    GameRegistry.registerBlock(blossom_wood, "blossom_wood");
-                }
-                if(ModConfiguration.enableStrippedBlossomLogs) {
-                    blossom_stripped_log = new BlockBlossomStrippedLog("blossom_stripped_log", tab);
-                    GameRegistry.registerBlock(blossom_stripped_log, "blossom_stripped_log");
-                }
-                blossom_stripped_burrow = new BlockBlossomStrippedBurrow("blossom_stripped_burrow", tab);
-                GameRegistry.registerBlock(blossom_stripped_burrow, "blossom_stripped_burrow");
-                if(ModConfiguration.enableStrippedBlossomWood) {
-                    blossom_stripped_wood = new BlockBlossomStrippedWood("blossom_stripped_wood", tab);
-                    GameRegistry.registerBlock(blossom_stripped_wood, "blossom_stripped_wood");
-                }
-            }
-            blossom_leaves = new BlockBlossomLeaves("blossom_leaves", tab);
-            GameRegistry.registerBlock(blossom_leaves, "blossom_leaves");
-            blossom_slab = new BlockBlossomSlab(false, "blossom_slab", tab);
-            GameRegistry.registerBlock(blossom_slab, ItemBlossomSlab.class, "blossom_slab");
-            double_blossom_slab = new BlockBlossomSlab(true, "double_blossom_slab", null);
-            GameRegistry.registerBlock(double_blossom_slab, ItemBlossomSlab.class, "double_blossom_slab");
-            blossom_stairs = new BlockBlossomStairs("blossom_stairs", tab);
-            GameRegistry.registerBlock(blossom_stairs, "blossom_stairs");
-            if(Loader.isModLoaded("etfuturum")) {
-                if(ModConfiguration.enableBlossomFence) {
-                    blossom_fence = new BlockBlossomFence("blossom_fence", tab);
-                    GameRegistry.registerBlock(blossom_fence, "blossom_fence");
-                }
-                if(ModConfiguration.enableBlossomFenceGate) {
-                    blossom_fence_gate = new BlockBlossomFenceGate("blossom_fence_gate", tab);
-                    GameRegistry.registerBlock(blossom_fence_gate, "blossom_fence_gate");
-                }
-            }
-            if(Loader.isModLoaded("etfuturum") && ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableWoodRedstone) {
-                if(ModConfiguration.enableBlossomPressurePlate) {
-                    blossom_pressure_plate = new BlockBlossomPressurePlate(0, tab);
-                    GameRegistry.registerBlock(blossom_pressure_plate, "blossom_pressure_plate");
-                }
-                if(ModConfiguration.enableBlossomButton) {
-                    blossom_button = new BlockBlossomButton();
-                    GameRegistry.registerBlock(blossom_button, "blossom_button");
-                }
-            }
-            if(Loader.isModLoaded("etfuturum")) {
-                if(ModConfiguration.enableBlossomDoor) {
-                    blossom_door = new BlockBlossomDoor("blossom_door", tab);
-                    GameRegistry.registerBlock(blossom_door, ItemBlossomDoor.class, "blossom_door");
-                }
-                if(ModConfiguration.enableBlossomTrapdoor) {
-                    blossom_trapdoor = new BlockBlossomTrapdoor("blossom_trapdoor", tab);
-                    GameRegistry.registerBlock(blossom_trapdoor, "blossom_trapdoor");
-                }
-                if(ModConfiguration.enableBlossomSign) {
-                    blossom_sign_standing = new BlockBlossomSign(TileEntityBlossomSign.class, true);
-                    GameRegistry.registerBlock(blossom_sign_standing, "blossom_sign_standing");
-                    blossom_sign_wall = new BlockBlossomSign(TileEntityBlossomSign.class, false);
-                    GameRegistry.registerBlock(blossom_sign_wall, "blossom_sign_wall");
-                }
-            }
-        }*/
-
         if(ModConfiguration.enableEvaporator) {
             evaporator = new BlockEvaporator(false, false, "evaporator", tab);
             GameRegistry.registerBlock(evaporator, "evaporator");
@@ -267,6 +159,10 @@ public class ModBlocks {
             GameRegistry.registerBlock(fish_farm, "fish_farm");
         }
         if(ModConfiguration.enableHoney) {
+//            blossom_burrow = new BlockBlossomBurrow("blossom_burrow", tab);
+//            GameRegistry.registerBlock(blossom_burrow, "blossom_burrow");
+//            stripped_blossom_burrow = new BlockBlossomStrippedBurrow("stripped_blossom_burrow", tab);
+//            GameRegistry.registerBlock(stripped_blossom_burrow, "stripped_blossom_burrow");
             apiary = new BlockApiary("apiary", tab);
             GameRegistry.registerBlock(apiary, "apiary");
         }

@@ -26,16 +26,6 @@ public class ModItems {
 
     public static Item testing_apple;
 
-//    public static Item item_blossom_boat;
-
-//    public static Item item_blossom_chest_boat;
-
-//    public static Item item_blossom_sign;
-
-//    public static Item item_blossom_hanging_sign;
-
-//    public static Item blossom;
-
     public static Item fish_bait;
 
     public static Item bee_larva;
@@ -331,31 +321,15 @@ public class ModItems {
             GameRegistry.registerItem(void_apple, "void_apple");
             stuffing_apple = new ItemStuffingApple("stuffing_apple", null).setAlwaysEdible().setTextureName("saltymod:dev/stuffing_apple");
             GameRegistry.registerItem(stuffing_apple, "stuffing_apple");
-            testing_apple = new ItemSaltFood("testing_apple", 2, 0.3F, new ProbablePotionEffect(ModPotion.wellFed.id, 6000)).setAlwaysEdible().setCreativeTab(null).setTextureName("saltymod:dev/test_food");
+//            testing_apple = new ItemSaltFood("testing_apple", 2, 0.3F, new ProbablePotionEffect(ModPotion.wellFed.id, 6000)).setAlwaysEdible().setCreativeTab(null).setTextureName("saltymod:dev/test_food");
 //            GameRegistry.registerItem(testing_apple, "testing_apple");
         }
-/*        if (ModConfiguration.enableBlossom) {
-            if (Loader.isModLoaded("etfuturum")) {
-                item_blossom_boat = new ItemBlossomBoat();
-                GameRegistry.registerItem(item_blossom_boat, "item_blossom_boat");
-                item_blossom_chest_boat = new ItemBlossomChestBoat();
-                GameRegistry.registerItem(item_blossom_chest_boat, "item_blossom_chest_boat");
-                if (ModConfiguration.enableBlossomSign) {
-                    item_blossom_sign = new ItemBlossomSign(ModBlocks.blossom_sign_wall, ModBlocks.blossom_sign_standing);
-                    GameRegistry.registerItem(item_blossom_sign, "item_blossom_sign");
-                }
-                item_blossom_hanging_sign = new ItemBlossomHangingSign();
-                GameRegistry.registerItem(item_blossom_hanging_sign, "item_blossom_hanging_sign");
-            }
-            blossom = new Item().setCreativeTab(tab).setUnlocalizedName("blossom").setTextureName("saltymod:blossom");
-            GameRegistry.registerItem(blossom, "blossom");
-        }*/
         if (ModConfiguration.enableFishFarm) {
             fish_bait = new Item().setCreativeTab(tab).setUnlocalizedName("fish_bait").setTextureName("saltymod:fish_bait");
             GameRegistry.registerItem(fish_bait, "fish_bait");
         }
         if (ModConfiguration.enableHoney) {
-            bee_larva = new ItemBeeLarva("bee_larva", tab).setMaxStackSize(1).setMaxStackSize(18).setTextureName("saltymod:bee_larva");
+            bee_larva = new Item().setCreativeTab(tab).setUnlocalizedName("bee_larva").setTextureName("saltymod:bee_larva");
             GameRegistry.registerItem(bee_larva, "bee_larva");
             carpenter_bee = new ItemCarpenterBee("carpenter_bee", tab).setMaxStackSize(1).setMaxDamage(18).setTextureName("saltymod:carpenter_bee");
             GameRegistry.registerItem(carpenter_bee, "carpenter_bee");

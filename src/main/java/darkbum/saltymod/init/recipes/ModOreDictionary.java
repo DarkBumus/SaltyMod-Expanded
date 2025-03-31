@@ -7,6 +7,7 @@ import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -25,13 +26,6 @@ public class ModOreDictionary {
         OreDictionary.registerOre("blockMud", ModBlocks.mineral_mud);
         OreDictionary.registerOre("blockMud", ModBlocks.wet_mud_brick);
         OreDictionary.registerOre("blockMud", ModBlocks.dry_mud_brick);
-/*        OreDictionary.registerOre("logWood", ModBlocks.blossom_log);
-        OreDictionary.registerOre("logWood", ModBlocks.blossom_stripped_log);
-        OreDictionary.registerOre("logWood", ModBlocks.blossom_wood);
-        OreDictionary.registerOre("plankWood", ModBlocks.blossom_planks);
-        OreDictionary.registerOre("stairWood", ModBlocks.blossom_stairs);
-        OreDictionary.registerOre("slabWood", ModBlocks.blossom_slab);
-        OreDictionary.registerOre("treeLeaves", ModBlocks.blossom_leaves);*/
 
         OreDictionary.registerOre("itemRedmeat", Items.cooked_beef);
         OreDictionary.registerOre("itemRedmeat", ModItems.cooked_haunch);
@@ -44,8 +38,8 @@ public class ModOreDictionary {
         OreDictionary.registerOre("itemMilk", ModItems.powdered_milk);
         OreDictionary.registerOre("materialWaxcomb", ModItems.waxcomb);
         OreDictionary.registerOre("itemSweetener", Items.sugar);
-/*        OreDictionary.registerOre("itemSweetener", ModItems.honeycomb);
-        OreDictionary.registerOre("itemHoney", ModItems.honeycomb);*/
+        OreDictionary.registerOre("itemSweetener", ModItems.honeycomb);
+        OreDictionary.registerOre("itemHoney", ModItems.honeycomb);
         OreDictionary.registerOre("itemRoyaljelly", ModItems.royal_jelly);
         OreDictionary.registerOre("itemIngredientBucket", Items.water_bucket);
         OreDictionary.registerOre("itemIngredientBucket", Items.milk_bucket);
@@ -207,10 +201,13 @@ public class ModOreDictionary {
             OreDictionary.registerOre("listAllsugar", ModItems.sugar_pinch);
             OreDictionary.registerOre("foodDough", ModItems.dough);
             OreDictionary.registerOre("listAllseeds", ModItems.saltwort);
-//            OreDictionary.registerOre("listAllsugar", ModItems.honeycomb);
+            OreDictionary.registerOre("listAllsugar", ModItems.honeycomb);
         }
 
 //Ore Recipes
+        if(ModConfiguration.enableFishFarm) {
+            GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.fish_bait, 4), "itemFish", new ItemStack(ModItems.saltwort), new ItemStack(Items.wheat), new ItemStack(Items.wheat)));
+        }
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.mineral_mud_ball), new ItemStack(ModItems.baking_soda), new ItemStack(ModItems.salt), "itemCoal", new ItemStack(Items.clay_ball)));
         if(ModConfiguration.enableDough) {
             GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.dough, 3), new ItemStack(ModItems.salt_pinch), new ItemStack(ModItems.sugar_pinch), new ItemStack(ModItems.baking_soda), new ItemStack(Items.wheat), new ItemStack(Items.wheat), new ItemStack(Items.wheat), "itemIngredientBucket"));
@@ -260,9 +257,5 @@ public class ModOreDictionary {
 
             }
         }
-
-/*        if(ModConfiguration.enableHoney) {
-            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.apiary), "xxx", "yyy", "xxx", 'x', "plankWood", 'y', Items.item_frame));
-        }*/
     }
 }

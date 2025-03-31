@@ -1,7 +1,9 @@
 package darkbum.saltymod.inventory.gui;
 
 import cpw.mods.fml.common.network.IGuiHandler;
+import darkbum.saltymod.inventory.container.ContainerApiary;
 import darkbum.saltymod.inventory.container.ContainerFishFarm;
+import darkbum.saltymod.tileentity.TileEntityApiary;
 import darkbum.saltymod.tileentity.TileEntityEvaporator;
 import darkbum.saltymod.tileentity.TileEntityFishFarm;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,6 +19,8 @@ public class GuiHandler implements IGuiHandler {
                 return new ContainerEvaporator(player.inventory, (TileEntityEvaporator)tile_entity);
             case 1:
                 return new ContainerFishFarm(player.inventory, (TileEntityFishFarm)tile_entity);
+            case 2:
+                return new ContainerApiary(player.inventory, (TileEntityApiary)tile_entity);
         }
         return null;
     }
@@ -28,6 +32,8 @@ public class GuiHandler implements IGuiHandler {
                 return new GuiEvaporator(player.inventory, (TileEntityEvaporator)tile_entity);
             case 1:
                 return new GuiFishFarm(player.inventory, (TileEntityFishFarm)tile_entity);
+            case 2:
+                return new GuiApiary(player.inventory, (TileEntityApiary)tile_entity);
         }
         return null;
     }
