@@ -56,7 +56,7 @@ public class SaltyMod {
         ModPotion.init();
         ModItems.init();
         ModBlocks.init();
-        ModBiomes.SaltMod();
+        ModBiomes.SaltyMod();
         ModFishRegistry.registerItems();
         GameRegistry.registerFuelHandler(new ModFuelHandler());
         if (ModConfiguration.enableBrickmakerCamp) {

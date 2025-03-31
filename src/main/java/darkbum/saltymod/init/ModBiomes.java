@@ -6,7 +6,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 
 public class ModBiomes {
 
-	public static void SaltMod(){
+	public static void SaltyMod(){
 		initializeBiome();
 	}
 

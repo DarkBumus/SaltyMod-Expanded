@@ -4,6 +4,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import darkbum.saltymod.configuration.ModConfiguration;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
+import darkbum.saltymod.item.ItemSaltShard;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -26,7 +27,8 @@ public class ModShapelessRecipes {
             GameRegistry.addShapelessRecipe(new ItemStack(Items.fish, 9), new ItemStack(ModBlocks.storage_barrel));
             GameRegistry.addShapelessRecipe(new ItemStack(Items.fish, 9, 1), new ItemStack(ModBlocks.storage_barrel, 1, 1));
             GameRegistry.addShapelessRecipe(new ItemStack(Items.fish, 9, 2), new ItemStack(ModBlocks.storage_barrel, 1, 2));
-            GameRegistry.addShapelessRecipe(new ItemStack(Items.fish, 9, 3), new ItemStack(ModBlocks.storage_barrel, 1, 3));
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.tailor, 9), new ItemStack(ModBlocks.storage_barrel, 1, 3));
+            GameRegistry.addShapelessRecipe(new ItemStack(Items.fish, 9, 3), new ItemStack(ModBlocks.storage_barrel, 1, 4));
         }
         GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 2), new ItemStack(ModItems.saltwort));
         GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 5), new ItemStack(ModBlocks.salt_flower, 1, 2));
