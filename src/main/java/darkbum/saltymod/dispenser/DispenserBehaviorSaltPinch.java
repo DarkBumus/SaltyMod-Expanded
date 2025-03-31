@@ -34,7 +34,7 @@ public class DispenserBehaviorSaltPinch implements IBehaviorDispenseItem {
                 stack.splitStack(1);
                 chek = true;
             } else if (meta == 2) {
-                world.setBlock(x, y, z, ModBlocks.salt_lake_dirt);
+                world.setBlock(x, y, z, ModBlocks.salt_dirt);
                 stack.splitStack(1);
                 chek = true;
             }
@@ -49,11 +49,11 @@ public class DispenserBehaviorSaltPinch implements IBehaviorDispenseItem {
                 stack.splitStack(1);
                 chek = true;
             } else if (meta == 2) {
-                world.setBlock(x, y - 1, z, ModBlocks.salt_lake_dirt);
+                world.setBlock(x, y - 1, z, ModBlocks.salt_dirt);
                 stack.splitStack(1);
                 chek = true;
             }
-        } else if (blockFase != ModBlocks.salt_lake_dirt && (soil != ModBlocks.salt_lake_dirt || (
+        } else if (blockFase != ModBlocks.salt_dirt && (soil != ModBlocks.salt_dirt || (
             !world.isAirBlock(x, y, z) && blockFase != ModBlocks.saltworts))) {
             BehaviorDefaultDispenseItem.doDispense(world, stack.splitStack(1), 1, enumfacing, iposition);
             chek = true;

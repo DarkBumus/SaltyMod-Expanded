@@ -1,4 +1,4 @@
-package darkbum.saltymod.block;
+/*package darkbum.saltymod.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -21,3 +21,4 @@ public class BlockBlossomButton extends BlockButton {
         return ModBlocks.blossom_planks.getBlockTextureFromSide(1);
     }
 }
+*/

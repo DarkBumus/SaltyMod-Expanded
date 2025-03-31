@@ -24,7 +24,7 @@ public class ModPotion extends Potion {
 
     public static void init() {
 
-        swarmed = new PotionSwarmed(ModConfiguration.swarmedEffectID, true, 0x000000);
+//        swarmed = new PotionSwarmed(ModConfiguration.swarmedEffectID, true, 0x000000);
         wellFed = new PotionWellFed(ModConfiguration.wellFedEffectID, false, 0xFFD32D);
     }
 

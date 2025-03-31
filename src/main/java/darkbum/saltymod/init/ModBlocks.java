@@ -22,9 +22,7 @@ public class ModBlocks {
 
     public static Block deepslate_salt_ore;
 
-    public static Block salt_lake_ore;
-
-    public static Block salt_lake_dirt;
+    public static Block salt_lake;
 
     public static Block salt_block;
 
@@ -37,6 +35,8 @@ public class ModBlocks {
     public static Block salt_lamp;
 
     public static Block salt_grass;
+
+    public static Block salt_dirt_lite;
 
     public static Block salt_dirt;
 
@@ -58,7 +58,7 @@ public class ModBlocks {
 
     public static Block salt_crusted_oak_log;
 
-    public static Block blossom_planks;
+/*    public static Block blossom_planks;
 
     public static Block blossom_sapling;
 
@@ -98,7 +98,7 @@ public class ModBlocks {
 
     public static Block blossom_sign_wall;
 
-    public static Block apiary;
+    public static Block apiary;*/
 
     public static Block evaporator;
 
@@ -118,15 +118,13 @@ public class ModBlocks {
 
     public static Block onions;
 
-    public static Block marsh_reeds;
-
     public static Block salt_flower;
 
     public static void init() {
         SaltyMod.logger.info("Start to initialize SaltyMod Blocks");
 
         dev_block = new BlockDevBlock("dev_block", tab);
-//        GameRegistry.registerBlock(dev_block, "dev_block");
+        GameRegistry.registerBlock(dev_block, "dev_block");
         salt_ore = new BlockSaltOre("salt_ore", tab);
         GameRegistry.registerBlock(salt_ore, "salt_ore");
         if (Loader.isModLoaded("etfuturum") && ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableDeepslate && ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableDeepslateOres) {
@@ -134,10 +132,8 @@ public class ModBlocks {
             GameRegistry.registerBlock(deepslate_salt_ore, "deepslate_salt_ore");
         }
         if(ModConfiguration.enableSaltLakes) {
-            salt_lake_ore = new BlockSaltLakeOre("salt_lake_ore", tab);
-            GameRegistry.registerBlock(salt_lake_ore, "salt_lake_ore");
-            salt_lake_dirt = new BlockSaltLakeDirt("salt_lake_dirt", tab);
-            GameRegistry.registerBlock(salt_lake_dirt, "salt_lake_dirt");
+            salt_lake = new BlockSaltLake("salt_lake", tab);
+            GameRegistry.registerBlock(salt_lake, "salt_lake");
         }
         if(ModConfiguration.enableSaltBlocks) {
             salt_block = new BlockSaltBlock(tab);
@@ -154,6 +150,8 @@ public class ModBlocks {
         if(ModConfiguration.enableSaltDirt) {
             salt_grass = new BlockSaltGrass("salt_grass", tab);
             GameRegistry.registerBlock(salt_grass, "salt_grass");
+            salt_dirt_lite = new BlockSaltDirtLite("salt_dirt_lite", tab);
+            GameRegistry.registerBlock(salt_dirt_lite, "salt_dirt_lite");
             salt_dirt = new BlockSaltDirt("salt_dirt", tab);
             GameRegistry.registerBlock(salt_dirt, "salt_dirt");
             grass_top = new BlockGrassTop("grass_top", null);
@@ -183,7 +181,7 @@ public class ModBlocks {
             salt_crusted_oak_log = new BlockSaltCrustedOakLog("salt_crusted_oak_log", tab);
             GameRegistry.registerBlock(salt_crusted_oak_log, "salt_crusted_oak_log");
         }
-        if(ModConfiguration.enableBlossom) {
+/*        if(ModConfiguration.enableBlossom) {
             blossom_planks = new BlockBlossomPlanks("blossom_planks", tab);
             GameRegistry.registerBlock(blossom_planks, "blossom_planks");
             blossom_sapling = new BlockBlossomSapling("blossom_sapling", tab);
@@ -256,7 +254,7 @@ public class ModBlocks {
         if(ModConfiguration.enableHoney) {
             apiary = new BlockApiary("apiary", tab);
             GameRegistry.registerBlock(apiary, "apiary");
-        }
+        }*/
         if(ModConfiguration.enableEvaporator) {
             evaporator = new BlockEvaporator(false, false, "evaporator", tab);
             GameRegistry.registerBlock(evaporator, "evaporator");
@@ -279,10 +277,10 @@ public class ModBlocks {
         }
         saltworts = new BlockSaltworts("saltworts", null);
         GameRegistry.registerBlock(saltworts, "saltworts");
-        onions = new BlockOnions("onions", null);
-        GameRegistry.registerBlock(onions, "onions");
-        marsh_reeds = new BlockMarshReeds("marsh_reeds", tab);
-//        GameRegistry.registerBlock(marsh_reeds, "marsh_reeds");
+        if(ModConfiguration.enableOnion) {
+            onions = new BlockOnions("onions", null);
+            GameRegistry.registerBlock(onions, "onions");
+        }
         if(ModConfiguration.enableSaltFlowers) {
             salt_flower = new BlockSaltFlower();
             GameRegistry.registerBlock(salt_flower, ItemSaltFlower.class, "salt_flower");

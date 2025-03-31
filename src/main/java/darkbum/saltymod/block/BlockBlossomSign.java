@@ -1,4 +1,4 @@
-package darkbum.saltymod.block;
+/*package darkbum.saltymod.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -47,3 +47,4 @@ public class BlockBlossomSign extends BlockSign {
         return ModItems.item_blossom_sign;
     }
 }
+*/

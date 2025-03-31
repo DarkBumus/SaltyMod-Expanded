@@ -14,7 +14,6 @@ import darkbum.saltymod.SaltyMod;
 import darkbum.saltymod.api.EvaporateRegistry;
 import darkbum.saltymod.configuration.ModConfiguration;
 import darkbum.saltymod.init.ModAchievementList;
-import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 import darkbum.saltymod.tileentity.TileEntityBlossomSign;
 import darkbum.saltymod.world.generator.*;
@@ -53,7 +52,7 @@ public class CommonProxy {
 
     public static SaltLakeGenerator saltLakeGenerator;
 
-    public static BlossomTreeGenerator blossomTreeGenerator;
+//    public static BlossomTreeGenerator blossomTreeGenerator;
 
     public static SaltFlowerGenerator saltFlowerGenerator;
 
@@ -103,14 +102,14 @@ public class CommonProxy {
             saltLakeGenerator = new SaltLakeGenerator();
             GameRegistry.registerWorldGenerator(saltLakeGenerator, 15);
         }
-        blossomTreeGenerator = new BlossomTreeGenerator();
-        GameRegistry.registerWorldGenerator(blossomTreeGenerator, 0);
+/*        if(ModConfiguration.enableBlossom) {
+            blossomTreeGenerator = new BlossomTreeGenerator();
+            GameRegistry.registerWorldGenerator(blossomTreeGenerator, 0);
+        }*/
         if(ModConfiguration.enableSaltFlowers) {
             saltFlowerGenerator = new SaltFlowerGenerator();
             GameRegistry.registerWorldGenerator(saltFlowerGenerator, 0);
         }
-
-        EvaporateRegistry.instance().addEvaporating(FluidRegistry.WATER, ModItems.salt_pinch, 1000, 0.0F);
 
         ChestGenHooks.addItem("bonusChest", new WeightedRandomChestContent(new ItemStack(ModItems.salt), 2, 5, 5));
         ChestGenHooks.addItem("dungeonChest", new WeightedRandomChestContent(new ItemStack(ModItems.salt), 2, 5, 5));
@@ -122,22 +121,7 @@ public class CommonProxy {
         ChestGenHooks.addItem("pyramidDesertyChest", new WeightedRandomChestContent(new ItemStack(ModItems.saltwort), 2, 3, 3));
         ChestGenHooks.addItem("pyramidJungleChest", new WeightedRandomChestContent(new ItemStack(ModItems.saltwort), 2, 5, 5));
 
-// D E B U G // T E S T I N G //
-        ItemStack stick = new ItemStack(Items.stick);
-
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.wet_mud_brick, 1, 1), new ItemStack(ModBlocks.wet_mud_brick), stick);
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.wet_mud_brick, 1, 2), new ItemStack(ModBlocks.wet_mud_brick, 1, 1), stick);
-
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.apiary, 1, 1), new ItemStack(ModBlocks.apiary), stick);
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.apiary, 1, 2), new ItemStack(ModBlocks.apiary, 1, 1), stick);
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.apiary, 1, 3), new ItemStack(ModBlocks.apiary, 1, 2), stick);
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.apiary, 1, 4), new ItemStack(ModBlocks.apiary, 1, 3), stick);
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.apiary, 1, 5), new ItemStack(ModBlocks.apiary, 1, 4), stick);
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.apiary, 1, 6), new ItemStack(ModBlocks.apiary, 1, 5), stick);
-
-//        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.salt_crusted_oak_log, 1, 1), new ItemStack(ModBlocks.salt_crusted_oak_log), stick);
-//        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.salt_crusted_oak_log, 1, 2), new ItemStack(ModBlocks.salt_crusted_oak_log, 1, 1), stick);
-// D E B U G // T E S T I N G //
+        EvaporateRegistry.instance().addEvaporating(FluidRegistry.WATER, ModItems.salt_pinch, 1000, 0.0F);
     }
 
     public void postInit(FMLPostInitializationEvent event) {
@@ -152,23 +136,25 @@ public class CommonProxy {
                 FluidContainerRegistry.registerFluidContainer(new FluidStack(CommonProxy.milk, 1000), new ItemStack(Items.milk_bucket), FluidContainerRegistry.EMPTY_BUCKET);
                 EvaporateRegistry.instance().addEvaporating(CommonProxy.milk, ModItems.powdered_milk, 1000, 0.0F);
             }
-            if (FluidRegistry.isFluidRegistered("blood")) {
-                Fluid blood = FluidRegistry.getFluid("blood");
-                GameRegistry.registerItem(ModItems.bop_hemoglobin, "hemoglobin");
-                EvaporateRegistry.instance().addEvaporating(blood, ModItems.bop_hemoglobin, 1000, 1.0F);
-            }
-            if (FluidRegistry.isFluidRegistered("hell_blood")) {
-                Fluid blood = FluidRegistry.getFluid("hell_blood");
-                GameRegistry.registerItem(ModItems.bop_hemoglobin, "hemoglobin");
-                EvaporateRegistry.instance().addEvaporating(blood, ModItems.bop_hemoglobin, 1000, 1.0F);
-            }
-            Item bop_dart = GameRegistry.findItem("BiomesOPlenty", "dart");
-            ItemStack bop_poisondart = new ItemStack(bop_dart, 1, 1);
-            if (bop_dart != null && FluidRegistry.isFluidRegistered("poison")) {
-                Fluid poisonFl = FluidRegistry.getFluid("poison");
-                GameRegistry.registerItem(ModItems.bop_poison, "bop_poison");
-                EvaporateRegistry.instance().addEvaporating(poisonFl, ModItems.bop_poison, 1000, 1.0F);
-                GameRegistry.addShapelessRecipe(bop_poisondart, new ItemStack(bop_dart), ModItems.bop_poison);
+            if (ModConfiguration.enableBOPFoods) {
+                if (FluidRegistry.isFluidRegistered("blood")) {
+                    Fluid blood = FluidRegistry.getFluid("blood");
+                    GameRegistry.registerItem(ModItems.bop_hemoglobin, "hemoglobin");
+                    EvaporateRegistry.instance().addEvaporating(blood, ModItems.bop_hemoglobin, 1000, 1.0F);
+                }
+                if (FluidRegistry.isFluidRegistered("hell_blood")) {
+                    Fluid blood = FluidRegistry.getFluid("hell_blood");
+                    GameRegistry.registerItem(ModItems.bop_hemoglobin, "hemoglobin");
+                    EvaporateRegistry.instance().addEvaporating(blood, ModItems.bop_hemoglobin, 1000, 1.0F);
+                }
+                Item bop_dart = GameRegistry.findItem("BiomesOPlenty", "dart");
+                ItemStack bop_poisondart = new ItemStack(bop_dart, 1, 1);
+                if (bop_dart != null && FluidRegistry.isFluidRegistered("poison")) {
+                    Fluid poisonFl = FluidRegistry.getFluid("poison");
+                    GameRegistry.registerItem(ModItems.bop_poison, "bop_poison");
+                    EvaporateRegistry.instance().addEvaporating(poisonFl, ModItems.bop_poison, 1000, 1.0F);
+                    GameRegistry.addShapelessRecipe(bop_poisondart, new ItemStack(bop_dart), ModItems.bop_poison);
+                }
             }
         }
     }

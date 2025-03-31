@@ -1,4 +1,4 @@
-package darkbum.saltymod.block;
+/*package darkbum.saltymod.block;
 
 import java.util.Random;
 
@@ -50,7 +50,7 @@ public class BlockBlossomBurrow extends Block {
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister icon) {
-        this.TOP = icon.registerIcon("saltymod:blossom_log_top");
+        this.TOP = icon.registerIcon("saltymod:blossom_burrow_top");
         this.SIDE = icon.registerIcon("saltymod:blossom_log");
         this.BURROW = icon.registerIcon("saltymod:blossom_burrow");
     }
@@ -139,3 +139,4 @@ public class BlockBlossomBurrow extends Block {
         }
     }
 }
+*/

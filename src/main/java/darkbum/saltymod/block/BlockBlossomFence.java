@@ -1,4 +1,4 @@
-package darkbum.saltymod.block;
+/*package darkbum.saltymod.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -31,7 +31,7 @@ public class BlockBlossomFence extends BlockFence {
     public boolean canConnectFenceTo(IBlockAccess world, int x, int y, int z) {
         Block block = world.getBlock(x, y, z);
         return super.canConnectFenceTo(world, x, y, z) || block instanceof BlockWoodFence || block instanceof BlockWoodFenceGate;
-    }*/
+    }*//*
 
     @Override
     @SideOnly(Side.CLIENT)
@@ -44,3 +44,4 @@ public class BlockBlossomFence extends BlockFence {
         return ModBlocks.blossom_planks.getIcon(side, 0);
     }
 }
+*/

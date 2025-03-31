@@ -3,7 +3,7 @@ package darkbum.saltymod.init;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import darkbum.saltymod.SaltyMod;
-import darkbum.saltymod.blockitem.ItemBlossomSign;
+//import darkbum.saltymod.blockitem.ItemBlossomSign;
 import darkbum.saltymod.configuration.ModConfiguration;
 import darkbum.saltymod.potion.ModPotion;
 import darkbum.saltymod.potion.ProbablePotionEffect;
@@ -18,157 +18,303 @@ import net.minecraft.potion.Potion;
 import darkbum.saltymod.common.CommonProxy;
 
 public class ModItems {
-
     static CreativeTabs tab = CommonProxy.tabSalt;
 
     public static Item void_apple;
+
     public static Item stuffing_apple;
+
     public static Item testing_apple;
-    public static Item item_blossom_boat;
-    public static Item item_blossom_chest_boat;
-    public static Item item_blossom_sign;
-    public static Item item_blossom_hanging_sign;
-    public static Item blossom;
-    public static Item bee_larva;
-    public static Item carpenter_bee;
+
+//    public static Item item_blossom_boat;
+
+//    public static Item item_blossom_chest_boat;
+
+//    public static Item item_blossom_sign;
+
+//    public static Item item_blossom_hanging_sign;
+
+//    public static Item blossom;
+
+//    public static Item bee_larva;
+
+//    public static Item carpenter_bee;
+
     public static Item waxcomb;
-    public static Item honeycomb;
+
+//    public static Item honeycomb;
+
     public static Item royal_jelly;
+
     public static Item mineral_mud_ball;
+
     public static Item baking_soda;
+
     public static Item powdered_milk;
+
     public static Item salt;
+
     public static Item salt_pinch;
+
     public static Item sugar_pinch;
+
     public static Item dough;
+
     public static Item onion;
+
     public static Item saltwort;
+
     public static Item golden_saltwort;
+
     public static Item golden_potato;
+
     public static Item golden_berries;
+
     public static Item salt_cooked_porkchop;
+
     public static Item salt_cooked_beef;
+
     public static Item salt_cooked_chicken;
+
     public static Item salt_cooked_rabbit;
+
     public static Item salt_cooked_mutton;
+
     public static Item strider;
+
     public static Item cooked_strider;
+
     public static Item salt_cooked_strider;
+
     public static Item haunch;
+
     public static Item cooked_haunch;
+
     public static Item salt_cooked_haunch;
+
     public static Item cured_meat;
+
     public static Item salt_cooked_cod;
+
     public static Item salt_cooked_salmon;
+
     public static Item cooked_tropical_fish;
+
     public static Item salt_cooked_tropical_fish;
+
     public static Item tailor;
+
     public static Item cooked_tailor;
+
     public static Item salt_cooked_tailor;
+
     public static Item calamari;
+
     public static Item cooked_calamari;
+
     public static Item salt_cooked_calamari;
+
     public static Item salt_bread;
+
     public static Item salt_baked_potato;
+
     public static Item salt_beetroot;
+
     public static Item salt_egg;
+
     public static Item salt_mushroom_stew;
+
     public static Item salt_rabbit_stew;
+
     public static Item salt_beetroot_soup;
+
     public static Item pumpkin_porridge;
+
     public static Item salt_pumpkin_porridge;
+
     public static Item cactus_soup;
+
     public static Item salt_cactus_soup;
+
     public static Item stewed_vegetables;
+
     public static Item salt_stewed_vegetables;
+
     public static Item potato_mushroom;
+
     public static Item salt_potato_mushroom;
+
     public static Item golden_vegetables;
+
     public static Item salt_golden_vegetables;
+
     public static Item fish_soup;
+
     public static Item salt_fish_soup;
+
     public static Item dandelion_salad;
+
     public static Item salt_dandelion_salad;
+
     public static Item wheat_sprouts;
+
     public static Item salt_wheat_sprouts;
+
     public static Item beetroot_salad;
+
     public static Item salt_beetroot_salad;
+
     public static Item dressed_herring;
+
     public static Item salt_dressed_herring;
+
     public static Item saltwort_salad;
+
     public static Item golden_saltwort_salad;
+
     public static Item saltwort_cooked_porkchop;
+
     public static Item saltwort_honey_porkchop;
+
     public static Item saltwort_cooked_beef;
+
     public static Item saltwort_cooked_mutton;
+
     public static Item saltwort_cooked_strider;
+
     public static Item saltwort_cooked_haunch;
+
     public static Item sugar_apple;
+
     public static Item sugar_melon;
+
     public static Item sugar_berries;
+
     public static Item fruit_salad;
+
     public static Item sugar_fruit_salad;
+
     public static Item golden_fruit_salad;
+
     public static Item sugar_golden_fruit_salad;
+
     public static Item grated_carrot;
+
     public static Item sugar_grated_carrot;
+
     public static Item melon_soup;
+
     public static Item sugar_melon_soup;
+
     public static Item honey_porkchop;
+
     public static Item honey_apple;
+
     public static Item honey_berries;
+
     public static Item chocolate_berries;
+
     public static Item chocolate_bar;
+
     public static Item chocolate_pie;
+
     public static Item birthday_pie;
+
     public static Item apple_pie;
+
     public static Item sweetberry_pie;
+
     public static Item carrot_pie;
+
     public static Item mushroom_pie;
+
     public static Item potato_pie;
+
     public static Item onion_pie;
+
     public static Item shepherds_pie;
+
     public static Item cod_pie;
+
     public static Item salmon_pie;
+
     public static Item tropical_fish_pie;
+
     public static Item tailor_pie;
+
     public static Item calamari_pie;
+
     public static Item saltwort_pie;
+
     public static Item fermented_saltwort;
+
     public static Item fermented_fern;
+
     public static Item fermented_mushroom;
+
     public static Item pickled_calamari;
+
     public static Item pickled_beetroot;
+
     public static Item pickled_onion;
+
     public static Item apple_preserves;
+
     public static Item melon_preserves;
+
     public static Item berry_preserves;
+
     public static Item fizzy_drink;
+
     public static Item tunneler_concoction;
+
     public static Item muffin;
+
     public static Item tough_jelly;
+
     public static Item mud_helmet;
+
     public static Item mud_chestplate;
+
     public static Item mud_leggings;
+
     public static Item mud_boots;
+
     public static Item salt_shard;
+
     public static Item rainmaker_star;
+
     public static Item rainmaker;
 
+
     public static Item tf_salt_cooked_venison;
+
     public static Item tf_salt_meef_steak;
+
     public static Item tf_salt_meef_stroganoff;
+
     public static Item tf_salt_hydra_chop;
+
     public static Item tf_pickled_mushgloom;
+
     public static Item tf_saltwort_cooked_venison;
+
     public static Item tf_saltwort_meef_steak;
+
     public static Item bop_hemoglobin;
+
     public static Item bop_poison;
+
     public static Item bop_salt_shroom_powder;
+
     public static Item bop_sugar_fruit_salad;
+
     public static Item bop_salt_veggie_salad;
+
     public static Item bop_salt_shroom_salad;
+
     public static Item bop_salt_rice_bowl;
+
     public static Item bop_pickled_turnip;
 
 //    field_76434_w = Health Boost
@@ -186,31 +332,31 @@ public class ModItems {
             testing_apple = new ItemSaltFood("testing_apple", 2, 0.3F, new ProbablePotionEffect(ModPotion.wellFed.id, 6000)).setAlwaysEdible().setCreativeTab(null).setTextureName("saltymod:dev/test_food");
 //            GameRegistry.registerItem(testing_apple, "testing_apple");
         }
-        if (ModConfiguration.enableBlossom) {
+/*        if (ModConfiguration.enableBlossom) {
             if (Loader.isModLoaded("etfuturum")) {
                 item_blossom_boat = new ItemBlossomBoat();
-//                GameRegistry.registerItem(item_blossom_boat, "item_blossom_boat");
+                GameRegistry.registerItem(item_blossom_boat, "item_blossom_boat");
                 item_blossom_chest_boat = new ItemBlossomChestBoat();
-//                GameRegistry.registerItem(item_blossom_chest_boat, "item_blossom_chest_boat");
+                GameRegistry.registerItem(item_blossom_chest_boat, "item_blossom_chest_boat");
                 if (ModConfiguration.enableBlossomSign) {
                     item_blossom_sign = new ItemBlossomSign(ModBlocks.blossom_sign_wall, ModBlocks.blossom_sign_standing);
                     GameRegistry.registerItem(item_blossom_sign, "item_blossom_sign");
                 }
                 item_blossom_hanging_sign = new ItemBlossomHangingSign();
-//                GameRegistry.registerItem(item_blossom_hanging_sign, "item_blossom_hanging_sign");
+                GameRegistry.registerItem(item_blossom_hanging_sign, "item_blossom_hanging_sign");
             }
             blossom = new Item().setCreativeTab(tab).setUnlocalizedName("blossom").setTextureName("saltymod:blossom");
             GameRegistry.registerItem(blossom, "blossom");
-        }
+        }*/
         if (ModConfiguration.enableHoney) {
-            bee_larva = new ItemBeeLarva("bee_larva", tab).setMaxStackSize(1).setMaxStackSize(18).setTextureName("saltymod:bee_larva");
+/*            bee_larva = new ItemBeeLarva("bee_larva", tab).setMaxStackSize(1).setMaxStackSize(18).setTextureName("saltymod:bee_larva");
             GameRegistry.registerItem(bee_larva, "bee_larva");
             carpenter_bee = new ItemCarpenterBee("carpenter_bee", tab).setMaxStackSize(1).setMaxDamage(18).setTextureName("saltymod:carpenter_bee");
-            GameRegistry.registerItem(carpenter_bee, "carpenter_bee");
+            GameRegistry.registerItem(carpenter_bee, "carpenter_bee");*/
             waxcomb = new Item().setCreativeTab(tab).setUnlocalizedName("waxcomb").setTextureName("saltymod:waxcomb");
             GameRegistry.registerItem(waxcomb, "waxcomb");
-            honeycomb = new Item().setCreativeTab(tab).setUnlocalizedName("honeycomb").setTextureName("saltymod:honeycomb");
-            GameRegistry.registerItem(honeycomb, "honeycomb");
+/*            honeycomb = new Item().setCreativeTab(tab).setUnlocalizedName("honeycomb").setTextureName("saltymod:honeycomb");
+            GameRegistry.registerItem(honeycomb, "honeycomb");*/
             royal_jelly = new Item().setCreativeTab(tab).setUnlocalizedName("royal_jelly").setTextureName("saltymod:royal_jelly");
             GameRegistry.registerItem(royal_jelly, "royal_jelly");
         }

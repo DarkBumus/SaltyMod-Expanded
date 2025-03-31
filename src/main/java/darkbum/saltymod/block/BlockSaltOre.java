@@ -3,8 +3,6 @@ package darkbum.saltymod.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Random;
-
-import darkbum.saltymod.init.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -15,6 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import darkbum.saltymod.init.ModItems;
 
 public class BlockSaltOre extends Block {
     @SideOnly(Side.CLIENT)
@@ -27,24 +26,20 @@ public class BlockSaltOre extends Block {
         setHardness(3.0F);
         setResistance(3.0F);
         setHarvestLevel("pickaxe", 1);
-        setBlockTextureName("SaltOre");
     }
 
     @SideOnly(Side.CLIENT)
-    @Override
     public IIcon getIcon(int side, int meta) {
-        return (side == 1 && meta > 0) ? Blocks.stone.getBlockTextureFromSide(side) : (((side == 2 && meta % 2 == 1) || (side == 5 && meta % 4 >= 2) || (side == 3 && meta % 8 >= 4) || (side == 4 && meta >= 8)) ? SIDE : blockIcon);
+        return (side == 1 && meta > 0) ? Blocks.stone.getBlockTextureFromSide(side) : (((side == 2 && meta % 2 == 1) || (side == 5 && meta % 4 >= 2) || (side == 3 && meta % 8 >= 4) || (side == 4 && meta >= 8)) ? this.SIDE : this.blockIcon);
     }
 
     @SideOnly(Side.CLIENT)
-    @Override
     public void registerBlockIcons(IIconRegister par1) {
-        blockIcon = par1.registerIcon("saltymod:salt_ore");
-        SIDE = par1.registerIcon("saltymod:salt_ore_side");
+        this.blockIcon = par1.registerIcon("saltymod:salt_ore");
+        this.SIDE = par1.registerIcon("saltymod:salt_ore_side");
     }
 
-    @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx, float hity, float hitz) {
         if (player.capabilities.isCreativeMode && side > 1 && player
             .getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == ModItems.salt) {
             int i = world.getBlockMetadata(x, y, z);
@@ -78,17 +73,14 @@ public class BlockSaltOre extends Block {
         return false;
     }
 
-    @Override
     public Item getItemDropped(int par1, Random random, int par2) {
         return ModItems.salt;
     }
 
-    @Override
     public int quantityDropped(Random random) {
         return 1 + random.nextInt(3);
     }
 
-    @Override
     public int quantityDroppedWithBonus(int fortune, Random random) {
         if (fortune > 0) {
             int j = random.nextInt(fortune + 1);
@@ -99,9 +91,7 @@ public class BlockSaltOre extends Block {
         return quantityDropped(random);
     }
 
-    @Override
     public int getExpDrop(IBlockAccess par1, int par2, int par3) {
         return 1;
     }
-
 }

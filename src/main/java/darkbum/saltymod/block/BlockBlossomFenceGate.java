@@ -1,4 +1,4 @@
-package darkbum.saltymod.block;
+/*package darkbum.saltymod.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -22,3 +22,4 @@ public class BlockBlossomFenceGate extends BlockFenceGate {
         return ModBlocks.blossom_planks.getIcon(side, 0);
     }
 }
+*/

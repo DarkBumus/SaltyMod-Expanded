@@ -1,4 +1,4 @@
-package darkbum.saltymod.item;
+/*package darkbum.saltymod.item;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -20,3 +20,4 @@ public class ItemBeeLarva extends Item {
         list.add(new ItemStack(item, 1, 18));
     }
 }
+*/

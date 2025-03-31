@@ -35,10 +35,12 @@ public class SaltyModEventHandler {
     public void addTempt(EntityJoinWorldEvent event) {
         if (event.entity instanceof EntityAnimal) {
             EntityAnimal animal = (EntityAnimal)event.entity;
-            if (animal instanceof net.minecraft.entity.passive.EntityCow || animal instanceof net.minecraft.entity.passive.EntityHorse)
+            if (animal instanceof net.minecraft.entity.passive.EntityCow || animal instanceof net.minecraft.entity.passive.EntityHorse) {
                 animal.tasks.addTask(3, new EntityAITempt(animal, 1.25D, ModItems.salt, false));
-            if (animal instanceof net.minecraft.entity.passive.EntityPig)
+            }
+            if (animal instanceof net.minecraft.entity.passive.EntityPig) {
                 animal.tasks.addTask(3, new EntityAITempt(animal, 1.25D, ModItems.onion, false));
+            }
         }
     }
 
@@ -54,52 +56,64 @@ public class SaltyModEventHandler {
             } else {
                 event.world.getWorldInfo().setThundering(false);
             }
-            if (event.player != null)
+            if (event.player != null) {
                 event.player.addStat(ModAchievementList.makeRain, 1);
+            }
         }
     }
 
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void registerIcons(TextureStitchEvent.Pre event) {
-        if (event.map.getTextureType() == 0 && FluidRegistry.isFluidRegistered(CommonProxy.milk))
+        if (event.map.getTextureType() == 0 && FluidRegistry.isFluidRegistered(CommonProxy.milk)) {
             CommonProxy.milkIcon = event.map.registerIcon("saltymod:milk");
+        }
     }
 
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void registerIcons(TextureStitchEvent.Post event) {
-        if (FluidRegistry.isFluidRegistered(CommonProxy.milk))
+        if (FluidRegistry.isFluidRegistered(CommonProxy.milk)) {
             CommonProxy.milk.setIcons(CommonProxy.milkIcon);
+        }
     }
 
     @SubscribeEvent
     public void itemPickup(EntityItemPickupEvent event) {
         World world = event.entityPlayer.worldObj;
         if (!world.isRemote) {
-            if (event.item.getEntityItem().getItem() == ModItems.salt)
+            if (event.item.getEntityItem().getItem() == ModItems.salt) {
                 event.entityPlayer.addStat(ModAchievementList.findSalt, 1);
-            if (event.item.getEntityItem().getItem() == ModItems.salt_shard)
+            }
+            if (event.item.getEntityItem().getItem() == ModItems.salt_shard) {
                 event.entityPlayer.addStat(ModAchievementList.findSaltCrystal, 1);
-            if (event.item.getEntityItem().getItem() == ModItems.mineral_mud_ball)
+            }
+            if (event.item.getEntityItem().getItem() == ModItems.mineral_mud_ball) {
                 event.entityPlayer.addStat(ModAchievementList.findMineralMud, 1);
-            if (event.item.getEntityItem().getItem() == ModItems.saltwort)
+            }
+            if (event.item.getEntityItem().getItem() == ModItems.saltwort) {
                 event.entityPlayer.addStat(ModAchievementList.findSaltwort, 1);
-            if (event.item.getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.dry_mud_brick))
+            }
+            if (event.item.getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.dry_mud_brick)) {
                 event.entityPlayer.addStat(ModAchievementList.findMudBrick, 1);
-            if (event.item.getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.blossom_log))
+            }
+/*            if (event.item.getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.blossom_log)) {
                 event.entityPlayer.addStat(ModAchievementList.findBlossomLog, 1);
-            if (event.item.getEntityItem().getItem() == ModItems.onion)
+            }*/
+            if (event.item.getEntityItem().getItem() == ModItems.onion) {
                 event.entityPlayer.addStat(ModAchievementList.findOnion, 1);
+            }
         }
     }
 
     @SubscribeEvent
     public void crafting(PlayerEvent.ItemCraftedEvent event) {
-        if (event.crafting.getItem() == ModItems.mineral_mud_ball)
+        if (event.crafting.getItem() == ModItems.mineral_mud_ball) {
             event.player.addStat(ModAchievementList.findMineralMud, 1);
-        if (event.crafting.getItem() == Item.getItemFromBlock(ModBlocks.apiary))
+        }
+/*        if (event.crafting.getItem() == Item.getItemFromBlock(ModBlocks.apiary)) {
             event.player.addStat(ModAchievementList.craftApiary, 1);
+        }*/
     }
 
     @SubscribeEvent
@@ -107,8 +121,9 @@ public class SaltyModEventHandler {
         if (event.world.getTileEntity(event.x, event.y, event.z) != null &&
             event.world.getTileEntity(event.x, event.y, event.z) instanceof TileEntityFlowerPot) {
             TileEntityFlowerPot te = (TileEntityFlowerPot)event.world.getTileEntity(event.x, event.y, event.z);
-            if (te.getFlowerPotItem() == Item.getItemFromBlock(ModBlocks.saltworts))
+            if (te.getFlowerPotItem() == Item.getItemFromBlock(ModBlocks.saltworts)) {
                 event.drops.set(1, new ItemStack(ModItems.saltwort));
+            }
         }
     }
 
@@ -116,8 +131,9 @@ public class SaltyModEventHandler {
     public void navigateBiome(TickEvent.PlayerTickEvent event) {
         int px = MathHelper.floor_double(event.player.posX);
         int pz = MathHelper.floor_double(event.player.posZ);
-        if (event.player.worldObj.getBiomeGenForCoords(px, pz) == ModBiomes.saltMarsh)
+        if (event.player.worldObj.getBiomeGenForCoords(px, pz) == ModBiomes.saltMarsh) {
             event.player.addStat(ModAchievementList.navSaltMarsh, 1);
+        }
     }
 
     @SubscribeEvent

@@ -1,4 +1,4 @@
-package darkbum.saltymod.block;
+/*package darkbum.saltymod.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -26,7 +26,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TestSaltworts extends BlockBush implements IGrowable {
+public class BlockSaltworts extends BlockBush implements IGrowable {
 
     @SideOnly(Side.CLIENT)
     private IIcon STAGE_0;
@@ -46,7 +46,7 @@ public class TestSaltworts extends BlockBush implements IGrowable {
     @SideOnly(Side.CLIENT)
     private IIcon STAGE_DEAD;
 
-    public TestSaltworts(String name, CreativeTabs tab) {
+    public BlockSaltworts(String name, CreativeTabs tab) {
         setBlockName(name);
         setStepSound(soundTypeGrass);
         setCreativeTab(tab);
@@ -110,14 +110,9 @@ public class TestSaltworts extends BlockBush implements IGrowable {
 
     public boolean canBlockStay(World world, int x, int y, int z) {
         Block B = world.getBlock(x, y - 1, z);
-        return ((B.getMaterial() == Material.grass ||
-            (B.getMaterial() == Material.ground &&
-                B != ModBlocks.salt_dirt) ||
-            B.getMaterial() == Material.sand ||
-            B.getMaterial() == Material.clay ||
-            (B == ModBlocks.salt_dirt &&
-                world.getBlockMetadata(x, y - 1, z) == 3)) &&
-            World.doesBlockHaveSolidTopSurface(world, x, y - 1, z));
+        return((B.getMaterial() == Material.grass || (B.getMaterial() == Material.ground && B != ModBlocks.salt_lake_dirt) || B
+            .getMaterial() == Material.sand || B.getMaterial() == Material.clay || (B == ModBlocks.salt_lake_dirt && world
+            .getBlockMetadata(x, y - 1, z) == 0)) && World.doesBlockHaveSolidTopSurface(world, x, y - 1, z));
     }
 
     public ArrayList getDrops(World world, int x, int y, int z, int meta, int fortune) {
@@ -143,19 +138,19 @@ public class TestSaltworts extends BlockBush implements IGrowable {
 
     public void updateTick(World world, int x, int y, int z, Random rand) {
         if (!world.isRemote) {
-            Block block = world.getBlock(x, y - 1, z);
-            int meta = world.getBlockMetadata(x, y - 1, z);
-            if ((block == ModBlocks.salt_dirt && (meta == 1 || meta == 2 || meta == 3))) {
+            Block B = world.getBlock(x, y - 1, z);
+            int M = world.getBlockMetadata(x, y - 1, z);
+            if ((B == ModBlocks.salt_lake_dirt && M == 0) || (B == ModBlocks.salt_dirt && (M == 1 || M == 2))) {
                 if (rand.nextInt(ModConfiguration.saltwortGrowthSpeed) == 0)
                     if (world.getBlockMetadata(x, y, z) == 0) {
                         world.setBlock(x, y, z, this, 1, 3);
                     } else if (world.getBlockMetadata(x, y, z) == 1 && world.getFullBlockLightValue(x, y, z) >= 12) {
                         world.setBlock(x, y, z, this, 2, 3);
-                        if (block == ModBlocks.salt_dirt && meta == 3) {
+                        if (B == ModBlocks.salt_lake_dirt) {
                             world.setBlock(x, y - 1, z, ModBlocks.salt_dirt, 2, 3);
-                        } else if (block == ModBlocks.salt_dirt && meta == 2) {
+                        } else if (B == ModBlocks.salt_dirt && M == 2) {
                             world.setBlock(x, y - 1, z, ModBlocks.salt_dirt, 1, 3);
-                        } else if (block == ModBlocks.salt_dirt && meta == 1) {
+                        } else if (B == ModBlocks.salt_dirt && M == 1) {
                             world.setBlock(x, y - 1, z, ModBlocks.salt_dirt);
                         }
                     } else if ((world.getBlockMetadata(x, y, z) >= 2 || world.getBlockMetadata(x, y, z) <= 4) && world.getFullBlockLightValue(x, y, z) >= 12) {
@@ -165,11 +160,11 @@ public class TestSaltworts extends BlockBush implements IGrowable {
                             } else if (world.getBlockMetadata(x, y, z) == 3) {
                                 world.setBlock(x, y, z, this, 4, 3);
                             }
-                            if (block == ModBlocks.salt_dirt && meta == 3) {
+                            if (B == ModBlocks.salt_lake_dirt) {
                                 world.setBlock(x, y - 1, z, ModBlocks.salt_dirt, 2, 3);
-                            } else if (block == ModBlocks.salt_dirt && meta == 2) {
+                            } else if (B == ModBlocks.salt_dirt && M == 2) {
                                 world.setBlock(x, y - 1, z, ModBlocks.salt_dirt, 1, 3);
-                            } else if (block == ModBlocks.salt_dirt && meta == 1) {
+                            } else if (B == ModBlocks.salt_dirt && M == 1) {
                                 world.setBlock(x, y - 1, z, ModBlocks.salt_dirt);
                             }
                         }
@@ -183,23 +178,23 @@ public class TestSaltworts extends BlockBush implements IGrowable {
                         if (S < 7)
                             for (int x2 = x - 1; x2 <= x + 1; x2++) {
                                 for (int z2 = z - 1; z2 <= z + 1; z2++) {
-                                    Block block2 = world.getBlock(x2, y - 1, z2);
-                                    int meta2 = world.getBlockMetadata(x2, y - 1, z2);
-                                    if (rand.nextInt(8) == 0 && world.isAirBlock(x2, y, z2) && ((block2 == ModBlocks.salt_dirt && (meta2 == 1 || meta2 == 2)) || (block2 == ModBlocks.salt_dirt && meta2 == 3)) && ((block == ModBlocks.salt_dirt && (meta == 1 || meta == 2)) || (block == ModBlocks.salt_dirt && meta2 == 3))) {
+                                    Block B2 = world.getBlock(x2, y - 1, z2);
+                                    int M2 = world.getBlockMetadata(x2, y - 1, z2);
+                                    if (rand.nextInt(8) == 0 && world.isAirBlock(x2, y, z2) && ((B2 == ModBlocks.salt_dirt && (M2 == 1 || M2 == 2)) || (B2 == ModBlocks.salt_lake_dirt && M2 == 0)) && ((B == ModBlocks.salt_dirt && (M == 1 || M == 2)) || (B == ModBlocks.salt_lake_dirt && M == 0))) {
                                         world.setBlock(x2, y, z2, ModBlocks.saltworts);
-                                        if (block2 == ModBlocks.salt_dirt && meta2 == 3) {
+                                        if (B2 == ModBlocks.salt_lake_dirt) {
                                             world.setBlock(x2, y - 1, z2, ModBlocks.salt_dirt, 2, 3);
-                                        } else if (block2 == ModBlocks.salt_dirt && meta2 == 2) {
+                                        } else if (B2 == ModBlocks.salt_dirt && M2 == 2) {
                                             world.setBlock(x2, y - 1, z2, ModBlocks.salt_dirt, 1, 3);
-                                        } else if (block2 == ModBlocks.salt_dirt && meta2 == 1) {
+                                        } else if (B2 == ModBlocks.salt_dirt && M2 == 1) {
                                             world.setBlock(x2, y - 1, z2, ModBlocks.salt_dirt);
                                         }
                                         if (world.getBlockMetadata(x, y, z) == 4)
-                                            if (block == ModBlocks.salt_dirt && meta2 == 3) {
+                                            if (B == ModBlocks.salt_lake_dirt) {
                                                 world.setBlock(x, y - 1, z, ModBlocks.salt_dirt, 2, 3);
-                                            } else if (block == ModBlocks.salt_dirt && meta == 2) {
+                                            } else if (B == ModBlocks.salt_dirt && M == 2) {
                                                 world.setBlock(x, y - 1, z, ModBlocks.salt_dirt, 1, 3);
-                                            } else if (block == ModBlocks.salt_dirt && meta == 1) {
+                                            } else if (B == ModBlocks.salt_dirt && M == 1) {
                                                 world.setBlock(x, y - 1, z, ModBlocks.salt_dirt);
                                             }
                                     }
@@ -245,11 +240,11 @@ public class TestSaltworts extends BlockBush implements IGrowable {
         boolean check = false;
         for (int x3 = x - 1; x3 <= x + 1; x3++) {
             for (int z3 = z - 1; z3 <= z + 1; z3++) {
-                Block block3 = world.getBlock(x3, y - 1, z3);
-                int meta3 = world.getBlockMetadata(x3, y - 1, z3);
+                Block B3 = world.getBlock(x3, y - 1, z3);
+                int M3 = world.getBlockMetadata(x3, y - 1, z3);
                 boolean P = false;
                 if (world.getBlock(x3, y, z3) == ModBlocks.saltworts && world.getBlockMetadata(x3, y, z3) < 4)
-                    if ((block3 == ModBlocks.salt_dirt && meta3 == 3) || (block3 == ModBlocks.salt_dirt && (meta3 == 1 || meta3 == 2))) {
+                    if ((B3 == ModBlocks.salt_lake_dirt && M3 == 0) || (B3 == ModBlocks.salt_dirt && (M3 == 1 || M3 == 2))) {
                         if (world.getBlockMetadata(x3, y, z3) == 0) {
                             world.setBlock(x3, y, z3, ModBlocks.saltworts, 1, 3);
                             check = true;
@@ -269,11 +264,11 @@ public class TestSaltworts extends BlockBush implements IGrowable {
                                 P = true;
                             }
                             if (world.getBlockMetadata(x3, y, z3) < 5)
-                                if (block3 == ModBlocks.salt_dirt && meta3 == 3) {
+                                if (B3 == ModBlocks.salt_lake_dirt) {
                                     world.setBlock(x3, y - 1, z3, ModBlocks.salt_dirt, 2, 3);
-                                } else if (block3 == ModBlocks.salt_dirt && meta3 == 2) {
+                                } else if (B3 == ModBlocks.salt_dirt && M3 == 2) {
                                     world.setBlock(x3, y - 1, z3, ModBlocks.salt_dirt, 1, 3);
-                                } else if (block3 == ModBlocks.salt_dirt && meta3 == 1) {
+                                } else if (B3 == ModBlocks.salt_dirt && M3 == 1) {
                                     world.setBlock(x3, y - 1, z3, ModBlocks.salt_dirt);
                                 }
                         }
@@ -314,3 +309,4 @@ public class TestSaltworts extends BlockBush implements IGrowable {
 
     public void func_149853_b(World world, Random rand, int x, int y, int z) {}
 }
+*/

@@ -1,4 +1,4 @@
-package darkbum.saltymod.world.generator;
+/*package darkbum.saltymod.world.generator;
 
 import cpw.mods.fml.common.IWorldGenerator;
 import darkbum.saltymod.world.WorldGenBlossomBigTree;
@@ -34,3 +34,4 @@ public class BlossomTreeGenerator implements IWorldGenerator {
         }
     }
 }
+*/

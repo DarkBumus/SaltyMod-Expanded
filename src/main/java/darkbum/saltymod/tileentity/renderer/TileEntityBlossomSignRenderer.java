@@ -1,4 +1,4 @@
-package darkbum.saltymod.tileentity.renderer;
+/*package darkbum.saltymod.tileentity.renderer;
 
 import darkbum.saltymod.block.BlockBlossomSign;
 import darkbum.saltymod.tileentity.TileEntityBlossomSign;
@@ -79,3 +79,4 @@ public class TileEntityBlossomSignRenderer extends TileEntitySpecialRenderer {
         GL11.glPopMatrix();
     }
 }
+*/

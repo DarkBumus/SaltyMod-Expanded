@@ -1,6 +1,7 @@
 package darkbum.saltymod.configuration;
 
 import darkbum.saltymod.SaltyMod;
+import darkbum.saltymod.init.ModBlocks;
 import net.minecraftforge.common.config.Configuration;
 
 import java.io.File;
@@ -34,27 +35,27 @@ public class ModConfiguration extends Configuration {
 
 
     // Config Options Blocks
-    public static boolean enableBlossom;
+    public static boolean enableSaltBlocks;
+
+    public static boolean enableSaltDirt;
+
     public static boolean enableMudBricks;
     public static boolean complexMudBricks;
+
+    public static boolean enableBlossom;
+    public static boolean blossomDoorCraftingRecipe;
 
     public static boolean enableEvaporator;
     public static int evaporatorVolume;
 
-    public static boolean enableSaltBlocks;
+    public static boolean enableStorageBlocks;
 
     public static boolean enableSaltCrystal;
     public static int saltCrystalGrowthSpeed;
 
     public static int saltwortGrowthSpeed;
 
-    public static boolean enableSaltOre;
-
-    public static boolean enableSaltDirt;
-
     public static boolean enableSaltFlowers;
-
-    public static boolean enableStorageBlocks;
 
 
     // Config Options Effects
@@ -247,7 +248,8 @@ public class ModConfiguration extends Configuration {
         this.file = file;
         setCategoryComment(categoryNotes, "This isn't a separate Configuration category, this is just a little \"Note Pad\" of sorts, where I put information that doesn't fit into the other categories and should be displayed right at the top of the file." +
             "\nDue to the way Forge set up Configuration files, all the settings will be sorted in alphabetical order. That's the only reason for the numbers that appear before the Configuration options." +
-            "\nAlso, keep in mind that there are multiple Configuration options that enable the same exact feature. You will have to enable all of them to have the feature be present.");
+            "\nAlso, keep in mind that there are multiple Configuration options that enable the same exact feature. You will have to enable all of them to have the feature be present." +
+            "\nThere are only a few features that cannot be deactivated. Salt Ore, Salt Deepslate Ore, Baking Soda, Salt, Salt Pinch, Sugar Pinch, Saltwort");
         setCategoryComment(categoryBlocks, "All the Blocks configuration that doesn't touch Mod Compatibility");
         setCategoryComment(categoryEffects, "All the Effects configuration");
         setCategoryComment(categoryItems, "All the Items configuration that doesn't touch Armor, Food or Mod Compatibility");
@@ -266,7 +268,38 @@ public class ModConfiguration extends Configuration {
     public void preInit() {
         String[] defaultCloudLevel = { "0=128", "7=160" }; //TOBEPHASEDOUT
         load();
-        enableBlossom = getBoolean("01-enableBlossom", categoryBlocks, true, enableFeatures +
+
+        enableSaltBlocks = getBoolean("01-enableSaltBlocks", categoryBlocks, true, enableFeatures +
+            "\nSalt Block" +
+            "\nChiseled Salt Block" +
+            "\nSalt Pillar" +
+            "\nSalt Bricks" +
+            "\nCracked Salt Block" +
+            "\nCracked Salt Bricks" +
+            "\nChiseled Salt Bricks" +
+            "\nSalt Chapiter" +
+            "\nSalt Brick Stairs" +
+            "\nSalt Slab" +
+            "\nSalt Brick Slab" +
+            "\nSalt Pillar Slab" +
+            "\nSalt Lamp" +
+            "\n");
+
+        enableSaltDirt = getBoolean("02-enableSaltDirt", categoryBlocks, true, enableFeatures +
+            "\nSalt Grass" +
+            "\nSalt Dirt" +
+            "\n");
+
+        enableMudBricks = getBoolean("03-enableMudBricks", categoryBlocks, true, enableFeatures +
+            "\nWet Mud Bricks" +
+            "\nMud Bricks" +
+            "\nMud Brick Stairs" +
+            "\nMud Brick Slab" +
+            "\nMud Brick Wall (Requires Et Futurum Requiem)" +
+            "\n");
+        complexMudBricks = getBoolean("04-complexMudBricks", categoryBlocks, true, "Enables the a complex drying mechanic on Wet Mud Bricks (by enabling their random tick functionality) and disables the furnace recipe");
+
+        enableBlossom = getBoolean("05-enableBlossom", categoryBlocks, true, enableFeatures +
             "\nBlossom Planks" +
             "\nBlossom Sapling" +
             "\nBlossom Log" +
@@ -287,61 +320,16 @@ public class ModConfiguration extends Configuration {
             "\nBlossom Sign (Requires Et Futurum Requiem)" +
             "\nBlossom" +
             "\n");
-        enableMudBricks = getBoolean("02-enableMudBricks", categoryBlocks, true, enableFeatures +
-            "\nWet Mud Bricks" +
-            "\nMud Bricks" +
-            "\nMud Brick Stairs" +
-            "\nMud Brick Slab" +
-            "\nMud Brick Wall (Requires Et Futurum Requiem)" +
-            "\n");
-        complexMudBricks = getBoolean("03-complexMudBricks", categoryBlocks, true, "Enables the a complex drying mechanic on Wet Mud Bricks (by enabling their random tick functionality) and disables the furnace recipe");
 
-        enableEvaporator = getBoolean("04-enableEvaporator", categoryBlocks, true, enableFeatures +
+        blossomDoorCraftingRecipe = getBoolean("06-blossomDoorCraftingRecipe", categoryBlocks, true, "Changes the Blossom Door Crafting Recipe to output 3 instead of 1 item");
+
+        enableEvaporator = getBoolean("06-enableEvaporator", categoryBlocks, true, enableFeatures +
             "\nEvaporator" +
             "\nPowdered Milk" +
             "\n");
-        evaporatorVolume = getInt("05-evaporatorVolume", categoryBlocks, 1, 1, 3, "Regulates the number of buckets that can be poured into an evaporator at once");
+        evaporatorVolume = getInt("07-evaporatorVolume", categoryBlocks, 1, 1, 3, "Regulates the number of buckets that can be poured into an evaporator at once");
 
-        enableSaltBlocks = getBoolean("06-enableSaltBlocks", categoryBlocks, true, enableFeatures +
-            "\nSalt Block" +
-            "\nChiseled Salt Block" +
-            "\nSalt Pillar" +
-            "\nSalt Bricks" +
-            "\nCracked Salt Block" +
-            "\nCracked Salt Bricks" +
-            "\nChiseled Salt Bricks" +
-            "\nSalt Chapiter" +
-            "\nSalt Brick Stairs" +
-            "\nSalt Slab" +
-            "\nSalt Brick Slab" +
-            "\nSalt Pillar Slab" +
-            "\nSalt Lamp" +
-            "\n");
-
-        enableSaltCrystal = getBoolean("07-enableSaltCrystal", categoryBlocks, true, enableFeatures +
-            "\nSalt Crystal" +
-            "\nSalt Shard" +
-            "\n");
-        saltCrystalGrowthSpeed = getInt("08-saltCrystalGrowthSpeed", categoryBlocks, 14, 1, 20, "Regulates the Salt Crystal growth speed (1 - faster, 20 - slower)");
-
-        saltwortGrowthSpeed = getInt("09-saltwortGrowthSpeed", categoryBlocks, 7, 1, 20, "Regulates the Saltwort growth speed (1 - faster, 20 - slower)");
-
-        enableSaltDirt = getBoolean("10-enableSaltDirt", categoryBlocks, true, enableFeatures +
-            "\nSalt Grass" +
-            "\nSalt Dirt" +
-            "\n");
-
-        enableSaltFlowers = getBoolean("11-enableSaltFlowers", categoryBlocks, true, enableFeatures +
-            "\nDaucus" +
-            "\nSuspicious Daucus" +
-            "\nSolanum" +
-            "\nSuspicious Solanum" +
-            "\nSuspicious Allium" +
-            "\nMaritima" +
-            "\nSuspicious Maritima (Requires Et Futurum Requiem)" +
-            "\n");
-
-        enableStorageBlocks = getBoolean("12-enableStorageBlocks", categoryBlocks, true, enableFeatures +
+        enableStorageBlocks = getBoolean("08-enableStorageBlocks", categoryBlocks, true, enableFeatures +
             "\nCarrot Crate" +
             "\nPotato Crate" +
             "\nPoisonous Potato Crate" +
@@ -357,6 +345,24 @@ public class ModConfiguration extends Configuration {
             "\nPumpkin Seed Sack" +
             "\nSaltwort Sack" +
             "\nBeetroot Seed Sack (Requires Et Futurum Requiem)" +
+            "\n");
+
+        enableSaltCrystal = getBoolean("09-enableSaltCrystal", categoryBlocks, true, enableFeatures +
+            "\nSalt Crystal" +
+            "\nSalt Shard" +
+            "\n");
+        saltCrystalGrowthSpeed = getInt("10-saltCrystalGrowthSpeed", categoryBlocks, 14, 1, 20, "Regulates the Salt Crystal growth speed (1 - faster, 20 - slower)");
+
+        saltwortGrowthSpeed = getInt("11-saltwortGrowthSpeed", categoryBlocks, 7, 1, 20, "Regulates the Saltwort growth speed (1 - faster, 20 - slower)");
+
+        enableSaltFlowers = getBoolean("12-enableSaltFlowers", categoryBlocks, true, enableFeatures +
+            "\nDaucus" +
+            "\nSuspicious Daucus" +
+            "\nSolanum" +
+            "\nSuspicious Solanum" +
+            "\nSuspicious Allium" +
+            "\nMaritima" +
+            "\nSuspicious Maritima (Requires Et Futurum Requiem)" +
             "\n");
 
 
@@ -593,7 +599,7 @@ public class ModConfiguration extends Configuration {
             "\nSugared Apple" +
             "\n");
         enableSugaredMelon = getBoolean("33-enableSugaredMelon", categoryItemsFood, true, enableFeatures +
-            "\nSugared Melon" +
+            "\nSugared Melon Slice" +
             "\n");
 
         enableFruitSalad = getBoolean("34-enableFruitSalad", categoryItemsFood, true, enableFeatures +
@@ -708,7 +714,7 @@ public class ModConfiguration extends Configuration {
             "\nChorus Fruit - 1 | 0.3F" +
             "\nSuspicious Stew - 5 | 0.7F" +
             "\nSweetberries - 1 | 0.3F" +
-            "\nNotes: The first value refers to the number of half hunger shanks the respective item returns. The second value refers to the saturation. For a more detailed understanding, refer to this table and halve the \"Saturation Ratio\" values depicted there: https://minecraft.fandom.com/wiki/Food#Foods" +
+            "\nNotes: The first value refers to the number of half hunger shanks the respective item returns. The second value refers to the saturation. For a more detailed understanding, refer to this table and halve the \"Saturation Ratio\" values depicted there: https://minecraft.wiki/w/Food#Foods" +
             "\n");
 
         enableTFSaltOre = getBoolean("02-enableTFSaltOre", categoryModCompatibility, true, "Enables Salt Ore Generation in the Twilight Forest Dimension");
@@ -867,7 +873,7 @@ public class ModConfiguration extends Configuration {
             "\nPoisonous Potato - 1 | 0.3F" +
             "\nGolden Carrot - 6 | 1.2F" +
             "\nPumpkin Pie - 7 | 0.9F" +
-            "\nNotes: The first value refers to the number of half hunger shanks the respective item returns. The second value refers to the saturation. For a more detailed understanding, refer to this table and halve the \"Saturation Ratio\" values depicted there: https://minecraft.fandom.com/wiki/Food#Foods" +
+            "\nNotes: The first value refers to the number of half hunger shanks the respective item returns. The second value refers to the saturation. For a more detailed understanding, refer to this table and halve the \"Saturation Ratio\" values depicted there: https://minecraft.wiki/w/Food#Foods" +
             "\n");
 
         enableRecipeChanges = getBoolean("02-enableRecipeChanges", categoryVanillaChanges, true, "Changes the following vanilla Crafting Recipes:" +
@@ -910,6 +916,7 @@ public class ModConfiguration extends Configuration {
 
         //TOBEPHASEDOUT
         loadedCloudLevel = getStringList("loadedCloudLevel", categoryTOBEPHASEDOUT, defaultCloudLevel, "The height of the clouds in a specific dimension (DimensionID=CloudLevel)");
+
         save();
     }
 

@@ -23,7 +23,7 @@ public class SaltMarshBiome extends BiomeGenBase {
     public SaltMarshBiome(int id) {
         super(id);
 
-        setHeight(new BiomeGenBase.Height(-0.1F, -0.025F));
+        setHeight(new BiomeGenBase.Height(-0.15F, -0.025F));
         setTemperatureRainfall(0.9F, 0.9F);
         waterColorMultiplier = 14745518;
 
@@ -44,7 +44,7 @@ public class SaltMarshBiome extends BiomeGenBase {
     public void genTerrainBlocks(World world, Random random, Block[] blocks, byte[] bytes, int x, int z, double doub) {
         if(doub > -1.5D) {
             topBlock = ModBlocks.salt_grass;
-            fillerBlock = ModBlocks.salt_dirt;
+            fillerBlock = ModBlocks.salt_dirt_lite;
         } else {
             topBlock = Blocks.grass;
             fillerBlock = Blocks.dirt;

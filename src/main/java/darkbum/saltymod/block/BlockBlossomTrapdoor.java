@@ -1,4 +1,4 @@
-package darkbum.saltymod.block;
+/*package darkbum.saltymod.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTrapDoor;
@@ -25,3 +25,4 @@ public class BlockBlossomTrapdoor extends BlockTrapDoor {
         return 0;
     }
 }
+*/

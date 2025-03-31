@@ -17,8 +17,7 @@ potion.wellFed=Well Fed
 tile.salt_ore.name=Salt Ore
 tile.deepslate_salt_ore.name=Deepslate Salt Ore
 tile.etfuturum.deepslate_saltore.name=Deepslate Salt Ore
-tile.salt_lake_ore.name=Salt Lake Bottom
-tile.salt_lake_dirt.name=Salt Lake Bottom
+tile.salt_lake.name=Salt Lake Bottom
 tile.salt_block.name=Salt Block
 tile.salt_chiseled_block.name=Chiseled Salt Block
 tile.salt_pillar.name=Salt Pillar
@@ -33,6 +32,7 @@ tile.salt_slab.brick.name=Salt Brick Slab
 tile.salt_slab.pillar.name=Salt Pillar Slab
 tile.salt_lamp.name=Salt Lamp
 tile.salt_grass.name=Salt Grass
+tile.salt_dirt_lite.name=Salt Dirt
 tile.salt_dirt.name=Salt Dirt
 tile.salt_dirt.mess=Any more salt and you might aswell sprinke rat poison on it...
 tile.mineral_mud.name=Mineral Mud
@@ -311,6 +311,13 @@ achievement.farmEvaporator.desc=Obtain salt through the evaporator
 achievement.explodeEvaporator=And I would pour 500 more
 achievement.explodeEvaporator.desc=Manage to blow up an evaporator
 
+achievement.navSaltMarsh=Flat is justice
+achievement.navSaltMarsh.desc=Find a salt marsh
+achievement.findOnion=They're found in Holes
+achievement.findOnion.desc=Collect an onion
+achievement.findMudBrick=It does §owhat§r?
+achievement.findMudBrick.desc=Collect a dried mud brick
+
 achievement.navSaltLake=Crunching underfoot
 achievement.navSaltLake.desc=Walk on a dried-out salt lake
 achievement.findMineralMud=Something black and viscous
@@ -319,28 +326,24 @@ achievement.fullMudArmor=Health and beauty
 achievement.fullMudArmor.desc=Apply a mud mask on the whole body
 achievement.destroyMudArmor=Discomfort
 achievement.destroyMudArmor.desc=Rinse off the mud mask
+
 achievement.findSaltwort=Life, uh... finds a way
 achievement.findSaltwort.desc=Collect some saltwort
 achievement.farmSaltwort=God of melioration
 achievement.farmSaltwort.desc=Fertilize a block of soil that's growing saltwort
 achievement.consumeFizzyDrink=Cool the zeal!
 achievement.consumeFizzyDrink.desc=Extinguish your burning body with a fizzy drink
-
-achievement.navSaltMarsh=Flat is justice
-achievement.navSaltMarsh.desc=Find a salt marsh
-achievement.findOnion=They're found in Holes
-achievement.findOnion.desc=Collect an onion
-achievement.findMudBrick=It does §owhat§r?
-achievement.findMudBrick.desc=Collect a dried mud brick
+achievement.findDough=Past(r)y Blob
+achievement.findDough.desc=Obtain a piece of dough
+achievement.consumeSpecMuffin=Fed up
+achievement.consumeSpecMuffin.desc=Get a saturation effect after eating a muffin
 
 achievement.findBlossomLog=Sweet and juicy!
 achievement.findBlossomLog.desc=Obtain a blossom tree's log
-achievement.craftApiary=I wonder what that does...
-achievement.craftApiary.desc=Build yourself an apiary
-achievement.consumeSpecMuffin=Fed up
-achievement.consumeSpecMuffin.desc=Get a saturation effect after eating a muffin
 achievement.effectSwarmed=Not the Bees!
 achievement.effectSwarmed.desc=Provoke a swarm of bees
+achievement.craftApiary=I wonder what that does...
+achievement.craftApiary.desc=Build yourself an apiary
 
 
 # BIOMES/GENERATION

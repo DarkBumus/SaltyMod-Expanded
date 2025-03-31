@@ -1,4 +1,4 @@
-package darkbum.saltymod.common;
+package darkbum.saltymod.init.recipes;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -25,13 +25,13 @@ public class ModOreDictionary {
         OreDictionary.registerOre("blockMud", ModBlocks.mineral_mud);
         OreDictionary.registerOre("blockMud", ModBlocks.wet_mud_brick);
         OreDictionary.registerOre("blockMud", ModBlocks.dry_mud_brick);
-        OreDictionary.registerOre("logWood", ModBlocks.blossom_log);
+/*        OreDictionary.registerOre("logWood", ModBlocks.blossom_log);
         OreDictionary.registerOre("logWood", ModBlocks.blossom_stripped_log);
         OreDictionary.registerOre("logWood", ModBlocks.blossom_wood);
         OreDictionary.registerOre("plankWood", ModBlocks.blossom_planks);
         OreDictionary.registerOre("stairWood", ModBlocks.blossom_stairs);
         OreDictionary.registerOre("slabWood", ModBlocks.blossom_slab);
-        OreDictionary.registerOre("treeLeaves", ModBlocks.blossom_leaves);
+        OreDictionary.registerOre("treeLeaves", ModBlocks.blossom_leaves);*/
 
         OreDictionary.registerOre("itemRedmeat", Items.cooked_beef);
         OreDictionary.registerOre("itemRedmeat", ModItems.cooked_haunch);
@@ -40,10 +40,12 @@ public class ModOreDictionary {
         OreDictionary.registerOre("itemFish", new ItemStack(Items.fish, 1, 1));
         OreDictionary.registerOre("itemFish", new ItemStack(Items.fish, 1, 2));
         OreDictionary.registerOre("itemFish", ModItems.tailor);
+        OreDictionary.registerOre("itemMilk", Items.milk_bucket);
+        OreDictionary.registerOre("itemMilk", ModItems.powdered_milk);
         OreDictionary.registerOre("materialWaxcomb", ModItems.waxcomb);
         OreDictionary.registerOre("itemSweetener", Items.sugar);
-        OreDictionary.registerOre("itemSweetener", ModItems.honeycomb);
-        OreDictionary.registerOre("itemHoney", ModItems.honeycomb);
+/*        OreDictionary.registerOre("itemSweetener", ModItems.honeycomb);
+        OreDictionary.registerOre("itemHoney", ModItems.honeycomb);*/
         OreDictionary.registerOre("itemRoyaljelly", ModItems.royal_jelly);
         OreDictionary.registerOre("itemIngredientBucket", Items.water_bucket);
         OreDictionary.registerOre("itemIngredientBucket", Items.milk_bucket);
@@ -205,12 +207,14 @@ public class ModOreDictionary {
             OreDictionary.registerOre("listAllsugar", ModItems.sugar_pinch);
             OreDictionary.registerOre("foodDough", ModItems.dough);
             OreDictionary.registerOre("listAllseeds", ModItems.saltwort);
-            OreDictionary.registerOre("listAllsugar", ModItems.honeycomb);
+//            OreDictionary.registerOre("listAllsugar", ModItems.honeycomb);
         }
 
 //Ore Recipes
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.mineral_mud_ball), new ItemStack(ModItems.baking_soda), new ItemStack(ModItems.salt), "itemCoal", new ItemStack(Items.clay_ball)));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.dough, 3), new ItemStack(ModItems.salt_pinch), new ItemStack(ModItems.sugar_pinch), new ItemStack(ModItems.baking_soda), new ItemStack(Items.wheat), new ItemStack(Items.wheat), new ItemStack(Items.wheat), "itemIngredientBucket"));
+        if(ModConfiguration.enableDough) {
+            GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.dough, 3), new ItemStack(ModItems.salt_pinch), new ItemStack(ModItems.sugar_pinch), new ItemStack(ModItems.baking_soda), new ItemStack(Items.wheat), new ItemStack(Items.wheat), new ItemStack(Items.wheat), "itemIngredientBucket"));
+        }
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.salt_mushroom_stew), new ItemStack(ModItems.salt_pinch), new ItemStack(Items.bowl), "blockMushroom", "blockMushroom"));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.stewed_vegetables), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), "blockMushroom"));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.salt_stewed_vegetables), new ItemStack(ModItems.salt_pinch), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), "blockMushroom"));
@@ -218,8 +222,23 @@ public class ModOreDictionary {
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.salt_potato_mushroom), new ItemStack(ModItems.salt_pinch), new ItemStack(Items.bowl), new ItemStack(Items.potato), new ItemStack(Items.potato), "blockMushroom"));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.fish_soup), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), "itemFish"));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.salt_fish_soup), new ItemStack(ModItems.salt_pinch), new ItemStack(Items.bowl), new ItemStack(Items.carrot), new ItemStack(Items.potato), "itemFish"));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.honey_apple), "itemHoney", new ItemStack(Items.apple)));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.honey_porkchop), "itemHoney", new ItemStack(Items.cooked_porkchop)));
+        if(ModConfiguration.enableHoney) {
+            GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.honey_apple), "itemHoney", new ItemStack(Items.apple)));
+            GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.honey_porkchop), "itemHoney", new ItemStack(Items.cooked_porkchop)));
+        }
+        if(ModConfiguration.enableEvaporator) {
+            if(ModConfiguration.enableDough) {
+                GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.birthday_pie), new ItemStack(Items.sugar), "itemMilk", new ItemStack(ModItems.dough), new ItemStack(Items.egg)));
+            } else {
+                GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.birthday_pie), new ItemStack(Items.sugar), "itemMilk", new ItemStack(Items.wheat), new ItemStack(Items.egg)));
+            }
+        } else {
+            if(ModConfiguration.enableDough) {
+                GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.birthday_pie), new ItemStack(Items.sugar), new ItemStack(Items.milk_bucket), new ItemStack(ModItems.dough), new ItemStack(Items.egg)));
+            } else {
+                GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.birthday_pie), new ItemStack(Items.sugar), new ItemStack(Items.milk_bucket), new ItemStack(Items.wheat), new ItemStack(Items.egg)));
+            }
+        }
         if(ModConfiguration.enableDough) {
             GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.shepherds_pie), new ItemStack(ModItems.salt), "itemRedmeat", new ItemStack(ModItems.dough), new ItemStack(Items.egg)));
         } else {
@@ -228,14 +247,22 @@ public class ModOreDictionary {
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.mushroom_pie), new ItemStack(ModItems.salt), "blockMushroom", "blockMushroom", new ItemStack(Items.egg)));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.fermented_mushroom), new ItemStack(Items.ghast_tear), new ItemStack(Items.glass_bottle), "blockMushroom", "blockMushroom", "blockMushroom", "blockMushroom", "blockMushroom"));
         if(ModConfiguration.enableHoney) {
-            GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.muffin), "itemRoyaljelly", new ItemStack(Items.dye, 1, 3), new ItemStack(ModItems.dough), new ItemStack(Items.egg)));
+            if(ModConfiguration.enableDough) {
+                GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.muffin), "itemRoyaljelly", new ItemStack(Items.dye, 1, 3), new ItemStack(ModItems.dough), new ItemStack(Items.egg)));
+            } else {
+                GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.muffin), "itemRoyaljelly", new ItemStack(Items.dye, 1, 3), new ItemStack(Items.wheat), new ItemStack(Items.egg)));
+            }
         } else {
-            GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.muffin), new ItemStack(Items.sugar), new ItemStack(Items.dye, 1, 3), new ItemStack(ModItems.dough), new ItemStack(Items.egg)));
+            if(ModConfiguration.enableDough) {
+                GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.muffin), new ItemStack(Items.sugar), new ItemStack(Items.dye, 1, 3), new ItemStack(ModItems.dough), new ItemStack(Items.egg)));
+            } else {
+                GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.muffin), new ItemStack(Items.sugar), new ItemStack(Items.dye, 1, 3), new ItemStack(Items.wheat), new ItemStack(Items.egg)));
+
+            }
         }
-//        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.muffin), "itemRoyaljelly", new ItemStack(Items.dye, 1, 3), new ItemStack(Items.wheat), new ItemStack(Items.egg)));
-//        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.muffin), new ItemStack(Items.sugar), new ItemStack(Items.dye, 1, 3), new ItemStack(Items.wheat), new ItemStack(Items.egg)));
 
-
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.apiary), "xxx", "yyy", "xxx", 'x', "plankWood", 'y', Items.item_frame));
+/*        if(ModConfiguration.enableHoney) {
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.apiary), "xxx", "yyy", "xxx", 'x', "plankWood", 'y', Items.item_frame));
+        }*/
     }
 }

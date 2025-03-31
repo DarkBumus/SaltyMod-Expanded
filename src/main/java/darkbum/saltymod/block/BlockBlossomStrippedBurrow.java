@@ -1,4 +1,4 @@
-package darkbum.saltymod.block;
+/*package darkbum.saltymod.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -8,10 +8,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -43,19 +46,69 @@ public class BlockBlossomStrippedBurrow extends Block {
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister icon) {
-        this.TOP = icon.registerIcon("saltymod:blossom_log_stripped_top");
+        this.TOP = icon.registerIcon("saltymod:blossom_burrow_stripped_top");
         this.SIDE = icon.registerIcon("saltymod:blossom_log_stripped");
         this.BURROW = icon.registerIcon("saltymod:blossom_burrow_stripped");
     }
 
+    @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-        if (side == 0)
-            return this.TOP;
-        if (side == 1)
-            return this.TOP;
-        if (side == 3)
-            return this.BURROW;
-        return this.SIDE;
+        switch (meta) {
+            case 0:
+                switch (side) {
+                    case 0:
+                    case 1:
+                        return TOP;
+                    case 2:
+                    case 4:
+                    case 5:
+                        return SIDE;
+                    case 3:
+                        return BURROW;
+                }
+            case 1:
+                switch (side) {
+                    case 0:
+                    case 1:
+                        return TOP;
+                    case 2:
+                    case 5:
+                    case 3:
+                        return SIDE;
+                    case 4:
+                        return BURROW;
+                }
+            case 2:
+                switch (side) {
+                    case 0:
+                    case 1:
+                        return TOP;
+                    case 2:
+                        return BURROW;
+                    case 4:
+                    case 5:
+                    case 3:
+                        return SIDE;
+                }
+            case 3:
+                switch (side) {
+                    case 0:
+                    case 1:
+                        return TOP;
+                    case 2:
+                    case 3:
+                    case 4:
+                        return SIDE;
+                    case 5:
+                        return BURROW;
+                }
+        }
+        return null;
+    }
+
+    public void onBlockPlacedBy(World worldIn, int x, int y, int z, EntityLivingBase placer, ItemStack itemIn) {
+        int l = MathHelper.floor_double((double)(placer.rotationYaw * 4.0F / 360.0F) + 2.5D) & 3;
+        worldIn.setBlockMetadataWithNotify(x, y, z, l, 2);
     }
 
     protected boolean canSilkHarvest () {
@@ -69,3 +122,4 @@ public class BlockBlossomStrippedBurrow extends Block {
         }
     }
 }
+*/

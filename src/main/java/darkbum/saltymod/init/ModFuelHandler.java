@@ -1,6 +1,7 @@
-package darkbum.saltymod.common;
+package darkbum.saltymod.init;
 
 import cpw.mods.fml.common.IFuelHandler;
+import darkbum.saltymod.configuration.ModConfiguration;
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.item.ItemStack;
 
@@ -10,8 +11,10 @@ public class ModFuelHandler implements IFuelHandler {
         if (itemStack == null) {
             return 0;
         }
-        if (itemStack.getItem() == ModItems.waxcomb) {
-            return 400;
+        if(ModConfiguration.enableHoney) {
+            if (itemStack.getItem() == ModItems.waxcomb) {
+                return 400;
+            }
         }
         return 0;
     }

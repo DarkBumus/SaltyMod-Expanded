@@ -1,4 +1,4 @@
-package darkbum.saltymod.block;
+/*package darkbum.saltymod.block;
 
 import darkbum.saltymod.init.ModBlocks;
 import net.minecraft.block.BlockStairs;
@@ -18,3 +18,4 @@ public class BlockBlossomStairs extends BlockStairs {
         this.useNeighborBrightness = true;
     }
 }
+*/

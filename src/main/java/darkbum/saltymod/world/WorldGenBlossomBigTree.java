@@ -1,4 +1,4 @@
-package darkbum.saltymod.world;
+/*package darkbum.saltymod.world;
 
 import java.util.Random;
 
@@ -298,7 +298,7 @@ public class WorldGenBlossomBigTree extends WorldGenAbstractTree {
                 setBlockAndNotifyAdequately(worldObj, finalPos[0], finalPos[1], finalPos[2], block, meta);
             }
         }
-    }*/
+    }*//*
 
     void generateTrunk() {
         int i = basePos[0];
@@ -434,3 +434,4 @@ public class WorldGenBlossomBigTree extends WorldGenAbstractTree {
         }
     }
 }
+*/

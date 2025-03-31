@@ -1,4 +1,4 @@
-package darkbum.saltymod.block;
+/*package darkbum.saltymod.block;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.relauncher.Side;
@@ -71,3 +71,4 @@ public class BlockBlossomLog extends BlockRotatedPillar {
         return false;
     }
 }
+*/

@@ -1,4 +1,4 @@
-package darkbum.saltymod.block;
+/*package darkbum.saltymod.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -15,3 +15,4 @@ public class BlockBlossomPlanks extends Block {
         setBlockTextureName("saltymod:blossom_planks");
     }
 }
+*/

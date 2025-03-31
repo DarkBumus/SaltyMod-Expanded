@@ -43,11 +43,11 @@ public class SaltMarshDecorator {
             }
         }
 
-        if(ModConfiguration.enableSaltLakes) {
+/*        if(ModConfiguration.enableSaltLakes) {
             for (pass = 0; pass < 7; ++pass) {
                 saltLakeGenerator.generateOverworld(world, rand, x + offsetXZ(rand), z + offsetXZ(rand));
             }
-        }
+        }*/
 
         for(pass = 0; pass < 5; ++pass) {
             passX = x + offsetXZ(rand);

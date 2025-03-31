@@ -1,4 +1,4 @@
-package darkbum.saltymod.common;
+package darkbum.saltymod.init.recipes;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import darkbum.saltymod.configuration.ModConfiguration;

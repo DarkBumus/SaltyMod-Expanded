@@ -9,6 +9,7 @@ public class ModAchievementList {
 
     public static Achievement findSalt = new Achievement("achievement.findSalt", "findSalt", 0, -1, ModItems.salt, null).registerStat();
 
+
     public static Achievement findSaltCrystal = new Achievement("achievement.findSaltCrystal", "findSaltCrystal", -4, -2, Items.iron_pickaxe, findSalt).registerStat();
 
     public static Achievement navelseSaltCrystal = new Achievement("achievement.navelseSaltCrystal", "navelseSaltCrystal", -4, -4, ModBlocks.salt_crystal, findSaltCrystal).setSpecial().registerStat();
@@ -27,21 +28,6 @@ public class ModAchievementList {
     public static Achievement explodeEvaporator = new Achievement("achievement.explodeEvaporator", "explodeEvaporator", 4, -4, ModBlocks.evaporator, farmEvaporator).setSpecial().registerStat();
 
 
-    public static Achievement navSaltLake = new Achievement("achievement.navSaltLake", "navSaltLake", 0, 1, ModBlocks.salt_lake_ore, null).registerStat();
-
-    public static Achievement findMineralMud = new Achievement("achievement.findMineralMud", "findMineralMud", 2, 2, ModItems.mineral_mud_ball, navSaltLake).registerStat();
-
-    public static Achievement fullMudArmor = new Achievement("achievement.fullMudArmor", "fullMudArmor", 4, 2, new ItemStack(ModItems.powdered_milk, 1, 1), findMineralMud).registerStat();
-
-    public static Achievement destroyMudArmor = new Achievement("achievement.destroyMudArmor", "destroyMudArmor", 4, 4, new ItemStack(ModItems.powdered_milk, 1, 2), fullMudArmor).registerStat();
-
-    public static Achievement findSaltwort = new Achievement("achievement.findSaltwort", "findSaltwort", 6, 2, ModItems.saltwort, fullMudArmor).registerStat();
-
-    public static Achievement farmSaltwort = new Achievement("achievement.farmSaltwort", "farmSaltwort", 6, 4, ModBlocks.salt_dirt, findSaltwort).registerStat();
-
-    public static Achievement consumeFizzyDrink = new Achievement("achievement.consumeFizzyDrink", "consumeFizzyDrink", 8, 2, ModItems.fizzy_drink, findSaltwort).registerStat();
-
-
     public static Achievement navSaltMarsh = new Achievement("achievement.navSaltMarsh", "navSaltMarsh", 2, 0, ModBlocks.salt_grass, null).registerStat();
 
     public static Achievement findOnion = new Achievement("achievement.findOnion", "findOnion", 4, 0, ModItems.onion, navSaltMarsh).registerStat();
@@ -49,15 +35,31 @@ public class ModAchievementList {
     public static Achievement findMudBrick = new Achievement("achievement.findMudBrick", "findMudBrick", 6, 0, ModBlocks.dry_mud_brick, findOnion).registerStat();
 
 
-    public static Achievement findBlossomLog = new Achievement("achievement.findBlossomLog", "findBlossomLog", -2, 0, ModBlocks.blossom_log, null).registerStat();
+    public static Achievement navSaltLake = new Achievement("achievement.navSaltLake", "navSaltLake", 0, 1, ModBlocks.salt_lake, null).registerStat();
 
-    public static Achievement effectSwarmed = new Achievement("achievement.effectSwarmed", "effectSwarmed", -2, 2, ModItems.carpenter_bee, findBlossomLog).registerStat();
+    public static Achievement findMineralMud = new Achievement("achievement.findMineralMud", "findMineralMud", 2, 2, ModItems.mineral_mud_ball, navSaltLake).registerStat();
+
+    public static Achievement fullMudArmor = new Achievement("achievement.fullMudArmor", "fullMudArmor", 4, 2, new ItemStack(ModItems.powdered_milk, 1, 1), findMineralMud).registerStat();
+
+    public static Achievement destroyMudArmor = new Achievement("achievement.destroyMudArmor", "destroyMudArmor", 6, 2, new ItemStack(ModItems.powdered_milk, 1, 2), fullMudArmor).registerStat();
 
 
-    public static Achievement craftApiary = new Achievement("achievement.craftApiary", "craftApiary", -4, 0, ModBlocks.apiary, findBlossomLog).registerStat();
+    public static Achievement findSaltwort = new Achievement("achievement.findSaltwort", "findSaltwort", -2, 0, ModItems.saltwort, null).registerStat();
 
-    public static Achievement consumeSpecMuffin = new Achievement("achievement.consumeSpecMuffin", "consumeSpecMuffin", -4, 2, ModItems.muffin, craftApiary).setSpecial().registerStat();
+    public static Achievement farmSaltwort = new Achievement("achievement.farmSaltwort", "farmSaltwort", -4, 0, ModBlocks.salt_dirt_lite, findSaltwort).registerStat();
 
+    public static Achievement consumeFizzyDrink = new Achievement("achievement.consumeFizzyDrink", "consumeFizzyDrink", -4, 2, ModItems.fizzy_drink, findSaltwort).registerStat();
+
+    public static Achievement findDough = new Achievement("achievement.findDough", "findDough", -2, 4, ModItems.dough, findSaltwort).registerStat();
+
+    public static Achievement consumeSpecMuffin = new Achievement("achievement.consumeSpecMuffin", "consumeSpecMuffin", -2, 6, ModItems.muffin, findDough).setSpecial().registerStat();
+
+
+//    public static Achievement findBlossomLog = new Achievement("achievement.findBlossomLog", "findBlossomLog", -2, 0, ModBlocks.blossom_log, null).registerStat();
+
+//    public static Achievement effectSwarmed = new Achievement("achievement.effectSwarmed", "effectSwarmed", -2, 2, ModItems.carpenter_bee, findBlossomLog).registerStat();
+
+//    public static Achievement craftApiary = new Achievement("achievement.craftApiary", "craftApiary", -4, 0, ModBlocks.apiary, findBlossomLog).registerStat();
 
     public static AchievementPage achievSaltPage = new AchievementPage("SaltyMod Expanded",
         findSalt,
@@ -76,13 +78,14 @@ public class ModAchievementList {
         findSaltwort,
         farmSaltwort,
         consumeFizzyDrink,
+        findDough,
+        consumeSpecMuffin,
         navSaltMarsh,
         findOnion,
-        findMudBrick,
-        findBlossomLog,
-        effectSwarmed,
-        craftApiary,
-        consumeSpecMuffin
+        findMudBrick//,
+//        findBlossomLog,
+//        effectSwarmed,
+//        craftApiary,
     );
 
     public static void init() {

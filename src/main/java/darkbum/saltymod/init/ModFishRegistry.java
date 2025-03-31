@@ -1,4 +1,4 @@
-package darkbum.saltymod.common;
+package darkbum.saltymod.init;
 
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.entity.projectile.EntityFishHook;

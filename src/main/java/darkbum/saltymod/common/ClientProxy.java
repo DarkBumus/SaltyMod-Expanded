@@ -6,7 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.init.ModItems;
 import darkbum.saltymod.tileentity.TileEntityBlossomSign;
-import darkbum.saltymod.tileentity.renderer.TileEntityBlossomSignRenderer;
+//import darkbum.saltymod.tileentity.renderer.TileEntityBlossomSignRenderer;
 import net.minecraft.client.renderer.entity.RenderSnowball;
 import darkbum.saltymod.block.renderer.EvaporatorRenderer;
 import darkbum.saltymod.block.renderer.SaltGrassRenderer;
@@ -24,7 +24,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerBlockHandler(new SaltGrassRenderer());
         evaporatorRenderType = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(new EvaporatorRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBlossomSign.class, new TileEntityBlossomSignRenderer());
+//        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBlossomSign.class, new TileEntityBlossomSignRenderer());
     }
 
     @SideOnly(Side.CLIENT)

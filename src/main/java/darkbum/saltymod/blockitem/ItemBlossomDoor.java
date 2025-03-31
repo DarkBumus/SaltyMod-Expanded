@@ -1,4 +1,4 @@
-package darkbum.saltymod.blockitem;
+/*package darkbum.saltymod.blockitem;
 
 import darkbum.saltymod.common.CommonProxy;
 import net.minecraft.block.Block;
@@ -30,3 +30,4 @@ public class ItemBlossomDoor extends ItemBlock {
         return false;
     }
 }
+*/

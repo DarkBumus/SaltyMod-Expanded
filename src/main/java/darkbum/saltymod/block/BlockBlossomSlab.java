@@ -1,4 +1,4 @@
-package darkbum.saltymod.block;
+/*package darkbum.saltymod.block;
 
 import java.util.Random;
 
@@ -44,3 +44,4 @@ public class BlockBlossomSlab extends BlockSlab {
         return stack;
     }
 }
+*/

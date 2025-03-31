@@ -1,4 +1,4 @@
-package darkbum.saltymod.blockitem;
+/*package darkbum.saltymod.blockitem;
 
 import darkbum.saltymod.init.ModBlocks;
 import net.minecraft.block.Block;
@@ -10,3 +10,4 @@ public class ItemBlossomSlab extends ItemSlab {
         setHasSubtypes(true);
     }
 }
+*/

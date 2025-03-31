@@ -1,4 +1,4 @@
-package darkbum.saltymod.blockitem;
+/*package darkbum.saltymod.blockitem;
 
 import darkbum.saltymod.block.BlockBlossomSign;
 import darkbum.saltymod.common.CommonProxy;
@@ -20,3 +20,4 @@ public class ItemBlossomSign extends ItemSign {
         setMaxStackSize(16);
     }
 }
+*/
