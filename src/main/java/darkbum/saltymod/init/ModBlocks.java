@@ -7,7 +7,7 @@ import darkbum.saltymod.block.*;
 import darkbum.saltymod.block.BlockSaltBlock;
 import darkbum.saltymod.block.BlockSaltFlower;
 import darkbum.saltymod.configuration.ModConfiguration;
-import darkbum.saltymod.tileentity.TileEntityBlossomSign;
+//import darkbum.saltymod.tileentity.TileEntityBlossomSign;
 import net.minecraft.block.*;
 import net.minecraft.creativetab.CreativeTabs;
 import darkbum.saltymod.SaltyMod;
@@ -96,15 +96,17 @@ public class ModBlocks {
 
     public static Block blossom_sign_standing;
 
-    public static Block blossom_sign_wall;
-
-    public static Block apiary;*/
+    public static Block blossom_sign_wall;*/
 
     public static Block evaporator;
 
     public static Block lit_evaporator;
 
     public static Block steam_evaporator;
+
+    public static Block fish_farm;
+
+    public static Block apiary;
 
     public static Block storage_crate;
 
@@ -153,7 +155,7 @@ public class ModBlocks {
             salt_dirt_lite = new BlockSaltDirtLite("salt_dirt_lite", tab);
             GameRegistry.registerBlock(salt_dirt_lite, "salt_dirt_lite");
             salt_dirt = new BlockSaltDirt("salt_dirt", tab);
-            GameRegistry.registerBlock(salt_dirt, "salt_dirt");
+            GameRegistry.registerBlock(salt_dirt, ItemSaltDirt.class, "salt_dirt");
             grass_top = new BlockGrassTop("grass_top", null);
             GameRegistry.registerBlock(grass_top, "grass_top");
         }
@@ -250,11 +252,8 @@ public class ModBlocks {
                     GameRegistry.registerBlock(blossom_sign_wall, "blossom_sign_wall");
                 }
             }
-        }
-        if(ModConfiguration.enableHoney) {
-            apiary = new BlockApiary("apiary", tab);
-            GameRegistry.registerBlock(apiary, "apiary");
         }*/
+
         if(ModConfiguration.enableEvaporator) {
             evaporator = new BlockEvaporator(false, false, "evaporator", tab);
             GameRegistry.registerBlock(evaporator, "evaporator");
@@ -262,6 +261,14 @@ public class ModBlocks {
             GameRegistry.registerBlock(lit_evaporator, "lit_evaporator").setLightLevel(0.9F);
             steam_evaporator = new BlockEvaporator(true, true, "evaporator", null);
             GameRegistry.registerBlock(steam_evaporator, "steam_evaporator").setLightLevel(0.9F);
+        }
+        if(ModConfiguration.enableFishFarm) {
+            fish_farm = new BlockFishFarm("fish_farm", tab);
+            GameRegistry.registerBlock(fish_farm, "fish_farm");
+        }
+        if(ModConfiguration.enableHoney) {
+            apiary = new BlockApiary("apiary", tab);
+            GameRegistry.registerBlock(apiary, "apiary");
         }
         if(ModConfiguration.enableStorageBlocks) {
             storage_crate = new BlockStorageCrate("storage_crate", tab);

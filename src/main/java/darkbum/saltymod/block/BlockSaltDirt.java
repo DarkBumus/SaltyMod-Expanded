@@ -33,7 +33,7 @@ public class BlockSaltDirt extends Block {
     @SideOnly(Side.CLIENT)
     private IIcon SIDE;
 
-    private long lastMessageTime = -1 ;
+    private long lastMessageTime = -1;
     private static final int COOLDOWN_TICKS = 20;
 
     public BlockSaltDirt(String name, CreativeTabs tab) {
@@ -66,6 +66,13 @@ public class BlockSaltDirt extends Block {
     public void getSubBlocks(Item item, CreativeTabs tabs, List list) {
         list.add(new ItemStack(item, 1, 1));
         list.add(new ItemStack(item, 1, 0));
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public ItemStack getPickBlock(net.minecraft.util.MovingObjectPosition target, World world, int x, int y, int z) {
+        int meta = world.getBlockMetadata(x, y, z);
+        return new ItemStack(this, 1, meta);
     }
 
     public void onEntityWalking(World world, int x, int y, int z, Entity entity) {
@@ -118,18 +125,23 @@ public class BlockSaltDirt extends Block {
     }
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx, float hity, float hitz) {
-        if(world.isRemote) return true;
+        if (world.isRemote) return true;
+
+        int meta = world.getBlockMetadata(x, y, z);
 
         long currentTick = world.getTotalWorldTime();
 
-        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == ModItems.salt_pinch) {
-            if (currentTick - lastMessageTime < COOLDOWN_TICKS) {
-                return false;
+        if (meta == 0) {
+            if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == ModItems.salt_pinch) {
+                if (currentTick - lastMessageTime < COOLDOWN_TICKS) {
+                    return false;
+                }
+                player.addChatMessage(new ChatComponentText(I18n.format(getUnlocalizedName() + ".mess")));
+                lastMessageTime = currentTick;
             }
-            player.addChatMessage(new ChatComponentText(I18n.format(getUnlocalizedName() + ".mess")));
-            lastMessageTime = currentTick;
+            return true;
         }
-        return true;
+        return false;
     }
 
     public MapColor getMapColor(int meta) {
@@ -139,4 +151,3 @@ public class BlockSaltDirt extends Block {
         return color;
     }
 }
-

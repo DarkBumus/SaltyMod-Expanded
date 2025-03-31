@@ -34,6 +34,7 @@ tile.salt_lamp.name=Salt Lamp
 tile.salt_grass.name=Salt Grass
 tile.salt_dirt_lite.name=Salt Dirt
 tile.salt_dirt.name=Salt Dirt
+tile.salt_dirt_lake.name=Salt Lake Bottom
 tile.salt_dirt.mess=Any more salt and you might aswell sprinke rat poison on it...
 tile.mineral_mud.name=Mineral Mud
 tile.wet_mud_brick.name=Wet Mud Bricks

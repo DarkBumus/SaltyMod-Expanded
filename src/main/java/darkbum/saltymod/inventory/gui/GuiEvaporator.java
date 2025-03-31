@@ -30,9 +30,9 @@ public class GuiEvaporator extends GuiContainer {
 
     private GuiEvaporatorButton button;
 
-    public GuiEvaporator(InventoryPlayer player, TileEntityEvaporator tileEntity) {
-        super(new ContainerEvaporator(player, tileEntity));
-        this.te = tileEntity;
+    public GuiEvaporator(InventoryPlayer player, TileEntityEvaporator tileEntityEvaporator) {
+        super(new ContainerEvaporator(player, tileEntityEvaporator));
+        this.te = tileEntityEvaporator;
     }
 
     public void initGui() {

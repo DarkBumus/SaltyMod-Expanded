@@ -15,7 +15,8 @@ import darkbum.saltymod.api.EvaporateRegistry;
 import darkbum.saltymod.configuration.ModConfiguration;
 import darkbum.saltymod.init.ModAchievementList;
 import darkbum.saltymod.init.ModItems;
-import darkbum.saltymod.tileentity.TileEntityBlossomSign;
+//import darkbum.saltymod.tileentity.TileEntityBlossomSign;
+import darkbum.saltymod.tileentity.TileEntityFishFarm;
 import darkbum.saltymod.world.generator.*;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.creativetab.CreativeTabs;
@@ -36,7 +37,7 @@ import darkbum.saltymod.dispenser.DispenserBehaviorRainmaker;
 import darkbum.saltymod.dispenser.DispenserBehaviorSaltPinch;
 import darkbum.saltymod.entity.EntityRainmaker;
 import darkbum.saltymod.entity.EntityRainmakerDust;
-import darkbum.saltymod.inventory.gui.GuiEvaporatorHandler;
+import darkbum.saltymod.inventory.gui.GuiHandler;
 import darkbum.saltymod.network.EvaporatorButtonMessage;
 import darkbum.saltymod.network.SaltyModEventHandler;
 import darkbum.saltymod.network.SaltwortMessage;
@@ -69,7 +70,7 @@ public class CommonProxy {
         SaltyModEventHandler sEvent = new SaltyModEventHandler();
         FMLCommonHandler.instance().bus().register(sEvent);
         MinecraftForge.EVENT_BUS.register(sEvent);
-        NetworkRegistry.INSTANCE.registerGuiHandler(SaltyMod.instance, new GuiEvaporatorHandler());
+        NetworkRegistry.INSTANCE.registerGuiHandler(SaltyMod.instance, new GuiHandler());
         network = NetworkRegistry.INSTANCE.newSimpleChannel("SaltyMod");
         network.registerMessage(EvaporatorButtonMessage.Handler.class, EvaporatorButtonMessage.class, 0, Side.SERVER);
         network.registerMessage(SaltwortMessage.Handler.class, SaltwortMessage.class, 1, Side.CLIENT);
@@ -84,7 +85,8 @@ public class CommonProxy {
         }
 
         GameRegistry.registerTileEntity(TileEntityEvaporator.class, "tileEntityEvaporator");
-        GameRegistry.registerTileEntity(TileEntityBlossomSign.class, "tileEntityBlossomSign");
+        GameRegistry.registerTileEntity(TileEntityFishFarm.class, "tileEntityFishFarm");
+//        GameRegistry.registerTileEntity(TileEntityBlossomSign.class, "tileEntityBlossomSign");
 
         EntityRegistry.registerModEntity(EntityRainmaker.class, "entityRainmaker", 0, SaltyMod.instance, 64, 20, true);
         EntityRegistry.registerModEntity(EntityRainmakerDust.class, "entityRainmakerDust", 1, SaltyMod.instance, 64, 20, false);

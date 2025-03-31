@@ -42,11 +42,13 @@ public class ModConfiguration extends Configuration {
     public static boolean enableMudBricks;
     public static boolean complexMudBricks;
 
-    public static boolean enableBlossom;
-    public static boolean blossomDoorCraftingRecipe;
+//    public static boolean enableBlossom;
+//    public static boolean blossomDoorCraftingRecipe;
 
     public static boolean enableEvaporator;
     public static int evaporatorVolume;
+
+    public static boolean enableFishFarm;
 
     public static boolean enableStorageBlocks;
 
@@ -299,7 +301,7 @@ public class ModConfiguration extends Configuration {
             "\n");
         complexMudBricks = getBoolean("04-complexMudBricks", categoryBlocks, true, "Enables the a complex drying mechanic on Wet Mud Bricks (by enabling their random tick functionality) and disables the furnace recipe");
 
-        enableBlossom = getBoolean("05-enableBlossom", categoryBlocks, true, enableFeatures +
+/*        enableBlossom = getBoolean("05-enableBlossom", categoryBlocks, true, enableFeatures +
             "\nBlossom Planks" +
             "\nBlossom Sapling" +
             "\nBlossom Log" +
@@ -321,13 +323,17 @@ public class ModConfiguration extends Configuration {
             "\nBlossom" +
             "\n");
 
-        blossomDoorCraftingRecipe = getBoolean("06-blossomDoorCraftingRecipe", categoryBlocks, true, "Changes the Blossom Door Crafting Recipe to output 3 instead of 1 item");
+        blossomDoorCraftingRecipe = getBoolean("06-blossomDoorCraftingRecipe", categoryBlocks, true, "Changes the Blossom Door Crafting Recipe to output 3 instead of 1 item");*/
 
-        enableEvaporator = getBoolean("06-enableEvaporator", categoryBlocks, true, enableFeatures +
+        enableEvaporator = getBoolean("05-enableEvaporator", categoryBlocks, true, enableFeatures +
             "\nEvaporator" +
             "\nPowdered Milk" +
             "\n");
-        evaporatorVolume = getInt("07-evaporatorVolume", categoryBlocks, 1, 1, 3, "Regulates the number of buckets that can be poured into an evaporator at once");
+        evaporatorVolume = getInt("06-evaporatorVolume", categoryBlocks, 1, 1, 3, "Regulates the number of buckets that can be poured into an evaporator at once");
+
+        enableFishFarm = getBoolean("07-enableFishFarm", categoryBlocks, true, enableFeatures +
+            "\nFish Farm" +
+            "\nBait");
 
         enableStorageBlocks = getBoolean("08-enableStorageBlocks", categoryBlocks, true, enableFeatures +
             "\nCarrot Crate" +

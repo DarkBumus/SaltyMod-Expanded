@@ -36,13 +36,15 @@ public class ModItems {
 
 //    public static Item blossom;
 
-//    public static Item bee_larva;
+    public static Item fish_bait;
 
-//    public static Item carpenter_bee;
+    public static Item bee_larva;
+
+    public static Item carpenter_bee;
 
     public static Item waxcomb;
 
-//    public static Item honeycomb;
+    public static Item honeycomb;
 
     public static Item royal_jelly;
 
@@ -348,15 +350,19 @@ public class ModItems {
             blossom = new Item().setCreativeTab(tab).setUnlocalizedName("blossom").setTextureName("saltymod:blossom");
             GameRegistry.registerItem(blossom, "blossom");
         }*/
+        if (ModConfiguration.enableFishFarm) {
+            fish_bait = new Item().setCreativeTab(tab).setUnlocalizedName("fish_bait").setTextureName("saltymod:fish_bait");
+            GameRegistry.registerItem(fish_bait, "fish_bait");
+        }
         if (ModConfiguration.enableHoney) {
-/*            bee_larva = new ItemBeeLarva("bee_larva", tab).setMaxStackSize(1).setMaxStackSize(18).setTextureName("saltymod:bee_larva");
+            bee_larva = new ItemBeeLarva("bee_larva", tab).setMaxStackSize(1).setMaxStackSize(18).setTextureName("saltymod:bee_larva");
             GameRegistry.registerItem(bee_larva, "bee_larva");
             carpenter_bee = new ItemCarpenterBee("carpenter_bee", tab).setMaxStackSize(1).setMaxDamage(18).setTextureName("saltymod:carpenter_bee");
-            GameRegistry.registerItem(carpenter_bee, "carpenter_bee");*/
+            GameRegistry.registerItem(carpenter_bee, "carpenter_bee");
             waxcomb = new Item().setCreativeTab(tab).setUnlocalizedName("waxcomb").setTextureName("saltymod:waxcomb");
             GameRegistry.registerItem(waxcomb, "waxcomb");
-/*            honeycomb = new Item().setCreativeTab(tab).setUnlocalizedName("honeycomb").setTextureName("saltymod:honeycomb");
-            GameRegistry.registerItem(honeycomb, "honeycomb");*/
+            honeycomb = new Item().setCreativeTab(tab).setUnlocalizedName("honeycomb").setTextureName("saltymod:honeycomb");
+            GameRegistry.registerItem(honeycomb, "honeycomb");
             royal_jelly = new Item().setCreativeTab(tab).setUnlocalizedName("royal_jelly").setTextureName("saltymod:royal_jelly");
             GameRegistry.registerItem(royal_jelly, "royal_jelly");
         }

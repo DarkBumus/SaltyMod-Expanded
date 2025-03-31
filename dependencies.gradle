@@ -25,9 +25,8 @@
  */
 
 dependencies {
-	compile deobf('https://github.com/Roadhog360/Et-Futurum-Requiem/releases/download/2.5.0/Et_Futurum_Requiem-2.5.0+nomixin.jar')
-	runtimeOnly('com.github.GTNewHorizons:NotEnoughItems:2.3.36-GTNH:dev')
+	compile deobf('https://github.com/Roadhog360/Et-Futurum-Requiem/releases/download/2.6.2/etfuturum-2.6.2.jar')
+	runtimeOnly('com.github.GTNewHorizons:NotEnoughItems:2.7.34-GTNH:dev')
 	runtimeOnly('com.github.GTNewHorizons:NaturesCompass:1.3.6-GTNH:dev')
 	runtimeOnly('com.github.GTNewHorizons:waila:1.5.24:dev')
-
 }
