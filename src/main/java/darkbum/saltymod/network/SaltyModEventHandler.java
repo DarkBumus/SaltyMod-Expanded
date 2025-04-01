@@ -97,9 +97,6 @@ public class SaltyModEventHandler {
             if (event.item.getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.dry_mud_brick)) {
                 event.entityPlayer.addStat(ModAchievementList.findMudBrick, 1);
             }
-/*            if (event.item.getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.blossom_log)) {
-                event.entityPlayer.addStat(ModAchievementList.findBlossomLog, 1);
-            }*/
             if (event.item.getEntityItem().getItem() == ModItems.onion) {
                 event.entityPlayer.addStat(ModAchievementList.findOnion, 1);
             }
@@ -111,9 +108,9 @@ public class SaltyModEventHandler {
         if (event.crafting.getItem() == ModItems.mineral_mud_ball) {
             event.player.addStat(ModAchievementList.findMineralMud, 1);
         }
-/*        if (event.crafting.getItem() == Item.getItemFromBlock(ModBlocks.apiary)) {
+        if (event.crafting.getItem() == Item.getItemFromBlock(ModBlocks.apiary)) {
             event.player.addStat(ModAchievementList.craftApiary, 1);
-        }*/
+        }
     }
 
     @SubscribeEvent

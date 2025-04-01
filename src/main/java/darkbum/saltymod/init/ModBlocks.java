@@ -8,6 +8,7 @@ import darkbum.saltymod.block.BlockSaltBlock;
 import darkbum.saltymod.block.BlockSaltFlower;
 import darkbum.saltymod.configuration.ModConfiguration;
 import net.minecraft.block.*;
+import net.minecraft.client.gui.GuiMerchant;
 import net.minecraft.creativetab.CreativeTabs;
 import darkbum.saltymod.SaltyMod;
 import darkbum.saltymod.common.CommonProxy;
@@ -65,9 +66,13 @@ public class ModBlocks {
 
     public static Block fish_farm;
 
-//    public static Block blossom_burrow;
+    public static Block bee_burrow_spruce;
 
-//    public static Block stripped_blossom_burrow;
+    public static Block bee_burrow_spruce_stripped;
+
+    public static Block bee_burrow_birch;
+
+    public static Block bee_burrow_birch_stripped;
 
     public static Block apiary;
 
@@ -158,11 +163,15 @@ public class ModBlocks {
             fish_farm = new BlockFishFarm("fish_farm", tab);
             GameRegistry.registerBlock(fish_farm, "fish_farm");
         }
-        if(ModConfiguration.enableHoney) {
-//            blossom_burrow = new BlockBlossomBurrow("blossom_burrow", tab);
-//            GameRegistry.registerBlock(blossom_burrow, "blossom_burrow");
-//            stripped_blossom_burrow = new BlockBlossomStrippedBurrow("stripped_blossom_burrow", tab);
-//            GameRegistry.registerBlock(stripped_blossom_burrow, "stripped_blossom_burrow");
+        if(ModConfiguration.enableApiary) {
+            bee_burrow_spruce = new BlockBeeBurrowSpruce("bee_burrow_spruce", tab);
+            GameRegistry.registerBlock(bee_burrow_spruce, "bee_burrow_spruce");
+            bee_burrow_spruce_stripped = new BlockBeeBurrowSpruceStripped("bee_burrow_spruce_stripped", tab);
+            GameRegistry.registerBlock(bee_burrow_spruce_stripped, "bee_burrow_spruce_stripped");
+            bee_burrow_birch = new BlockBeeBurrowBirch("bee_burrow_birch", tab);
+            GameRegistry.registerBlock(bee_burrow_birch, "bee_burrow_birch");
+            bee_burrow_birch_stripped = new BlockBeeBurrowBirchStripped("bee_burrow_birch_stripped", tab);
+            GameRegistry.registerBlock(bee_burrow_birch_stripped, "bee_burrow_birch_stripped");
             apiary = new BlockApiary("apiary", tab);
             GameRegistry.registerBlock(apiary, "apiary");
         }

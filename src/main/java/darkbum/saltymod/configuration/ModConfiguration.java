@@ -49,6 +49,10 @@ public class ModConfiguration extends Configuration {
     public static int evaporatorVolume;
 
     public static boolean enableFishFarm;
+    public static int fishFarmSpeed;
+
+    public static boolean enableApiary;
+    public static int apiarySpeed;
 
     public static boolean enableStorageBlocks;
 
@@ -289,6 +293,8 @@ public class ModConfiguration extends Configuration {
 
         enableSaltDirt = getBoolean("02-enableSaltDirt", categoryBlocks, true, enableFeatures +
             "\nSalt Grass" +
+            "\nLight Salt Dirt" +
+            "\nSalt Lake Bottom (Dirt)" +
             "\nSalt Dirt" +
             "\n");
 
@@ -301,30 +307,6 @@ public class ModConfiguration extends Configuration {
             "\n");
         complexMudBricks = getBoolean("04-complexMudBricks", categoryBlocks, true, "Enables the a complex drying mechanic on Wet Mud Bricks (by enabling their random tick functionality) and disables the furnace recipe");
 
-/*        enableBlossom = getBoolean("05-enableBlossom", categoryBlocks, true, enableFeatures +
-            "\nBlossom Planks" +
-            "\nBlossom Sapling" +
-            "\nBlossom Log" +
-            "\nBlossom Wood" +
-            "\nStripped Blossom Log" +
-            "\nStripped Blossom Wood (Requires Et Futurum Requiem)" +
-            "\nBlossom Leaves" +
-            "\nBlossom Slab" +
-            "\nBlossom Stairs" +
-            "\nBlossom Fence (Requires Et Futurum Requiem)" +
-            "\nBlossom Fence Gate (Requires Et Futurum Requiem)" +
-            "\nBlossom Pressure Plate (Requires Et Futurum Requiem)" +
-            "\nBlossom Button (Requires Et Futurum Requiem)" +
-            "\nBlossom Door (Requires Et Futurum Requiem)" +
-            "\nBlossom Trapdoor (Requires Et Futurum Requiem)" +
-            "\nBlossom Boat (Requires Et Futurum Requiem)" +
-            "\nBlossom Chest Boat (Requires Et Futurum Requiem)" +
-            "\nBlossom Sign (Requires Et Futurum Requiem)" +
-            "\nBlossom" +
-            "\n");
-
-        blossomDoorCraftingRecipe = getBoolean("06-blossomDoorCraftingRecipe", categoryBlocks, true, "Changes the Blossom Door Crafting Recipe to output 3 instead of 1 item");*/
-
         enableEvaporator = getBoolean("05-enableEvaporator", categoryBlocks, true, enableFeatures +
             "\nEvaporator" +
             "\nPowdered Milk" +
@@ -333,9 +315,18 @@ public class ModConfiguration extends Configuration {
 
         enableFishFarm = getBoolean("07-enableFishFarm", categoryBlocks, true, enableFeatures +
             "\nFish Farm" +
-            "\nBait");
+            "\nFish Bait" +
+            "\n");
+        fishFarmSpeed = getInt("08-fishFarmSpeed", categoryBlocks, 3500, 1, 999999, "Regulates the speed in ticks at which a Fish Farm will fill itself up");
 
-        enableStorageBlocks = getBoolean("08-enableStorageBlocks", categoryBlocks, true, enableFeatures +
+        enableApiary = getBoolean("09-enableApiary", categoryBlocks, true, enableFeatures +
+            "\nApiary" +
+            "\nBee Nest" +
+            "\nBee Burrow" +
+            "\n");
+        apiarySpeed = getInt("10-apiarySpeed", categoryBlocks, 3500, 1, 999999, "Regulates the speed in ticks at which an Apiary will fill itself up, not including the reduction bonuses from nearby apiaries and flowers");
+
+        enableStorageBlocks = getBoolean("11-enableStorageBlocks", categoryBlocks, true, enableFeatures +
             "\nCarrot Crate" +
             "\nPotato Crate" +
             "\nPoisonous Potato Crate" +
@@ -353,15 +344,15 @@ public class ModConfiguration extends Configuration {
             "\nBeetroot Seed Sack (Requires Et Futurum Requiem)" +
             "\n");
 
-        enableSaltCrystal = getBoolean("09-enableSaltCrystal", categoryBlocks, true, enableFeatures +
+        enableSaltCrystal = getBoolean("12-enableSaltCrystal", categoryBlocks, true, enableFeatures +
             "\nSalt Crystal" +
             "\nSalt Shard" +
             "\n");
-        saltCrystalGrowthSpeed = getInt("10-saltCrystalGrowthSpeed", categoryBlocks, 14, 1, 20, "Regulates the Salt Crystal growth speed (1 - faster, 20 - slower)");
+        saltCrystalGrowthSpeed = getInt("13-saltCrystalGrowthSpeed", categoryBlocks, 14, 1, 20, "Regulates the Salt Crystal growth speed (1 - faster, 20 - slower)");
 
-        saltwortGrowthSpeed = getInt("11-saltwortGrowthSpeed", categoryBlocks, 7, 1, 20, "Regulates the Saltwort growth speed (1 - faster, 20 - slower)");
+        saltwortGrowthSpeed = getInt("14-saltwortGrowthSpeed", categoryBlocks, 7, 1, 20, "Regulates the Saltwort growth speed (1 - faster, 20 - slower)");
 
-        enableSaltFlowers = getBoolean("12-enableSaltFlowers", categoryBlocks, true, enableFeatures +
+        enableSaltFlowers = getBoolean("15-enableSaltFlowers", categoryBlocks, true, enableFeatures +
             "\nDaucus" +
             "\nSuspicious Daucus" +
             "\nSolanum" +
@@ -383,9 +374,10 @@ public class ModConfiguration extends Configuration {
             "\n");
 
         enableHoney = getBoolean("02-enableHoney", categoryItems, true, enableFeatures +
-            "\nApiary" +
             "\nBee Larva" +
+            "\nHoney Bee" +
             "\nCarpenter Bee" +
+            "\nRegal Bee" +
             "\nWaxcomb" +
             "\nHoneycomb" +
             "\nRoyal Jelly" +
@@ -410,43 +402,7 @@ public class ModConfiguration extends Configuration {
             "\nFeet Mud Mask" +
             "\n");
 
-        enableFizzyDrink = getBoolean("04-enableFizzyDrink", categoryItems, true, enableFeatures +
-            "\nFizzy Drink" +
-            "\n");
-        fizzyDrinkEffect = getBoolean("05-fizzyDrinkEffect", categoryItems, false, "Regulates the capabilities of the Fizzy Drink (true - removes all effects, false - removes the same effects that milk removes)");
-        enableTunnelersConcoction = getBoolean("06-enableTunnelersConcoction", categoryItems, true, enableFeatures +
-            "\nTunneler's Concoction" +
-            "\n");
-
-        enableRainmaker = getBoolean("07-enableRainmaker", categoryItems, true, enableFeatures +
-            "\nRainmaker Star" +
-            "\nRainmaker" +
-            "\n");
-
-
-        enableMudArmor = getBoolean("01-enableMudArmor", categoryItemsArmor, true, enableFeatures +
-            "\nHead Mud Mask" +
-            "\nBody Mud Mask" +
-            "\nLegs Mud Mask" +
-            "\nFeet Mud Mask" +
-            "\n");
-        mudArmorWaterDamage = getBoolean("02-mudArmorWaterDamage", categoryItemsArmor, true, "Enables the Water Damage mechanic for the Mud Armor, slowly degrading it in water or in the rain");
-        mudArmorHealthBoost = getBoolean("03-mudArmorHealthBoost", categoryItemsArmor, true, "Enables the Health Boost, that the Mud Armor gives when worn");
-        mudArmorHealthBoostValue = getInt("04-mudArmorHealthBoostValue", categoryItemsArmor, 1, 0, 4, "Regulates the potency of the Health Boost effect of the Mud Armor (0 - Health Boost I, 1 - Health Boost II, etc., every level will give you 2 more hearts");
-        mudArmorBeeResistant = getBoolean("05-mudArmorBeeResistant", categoryItemsArmor, false, "Gives the Mud Armor a resistance against the \"Swarmed!\" Effect" +
-            "\nAdditionally, by using CraftTweaker, you can also add this resistance to other armor sets at your leisure" +
-            "\nTo achieve this, you open a new CraftTweaker document and input the following information:" +
-            "\n" +
-            "\nval beeResistant = <ore:beeResistant>;" +
-            "\nbeeResistant.add(<[MODID]:[HELMETID]>);" +
-            "\nbeeResistant.add(<[MODID]:[CHESTPLATEID]>);" +
-            "\nbeeResistant.add(<[MODID]:[LEGGINGSID]>);" +
-            "\nbeeResistant.add(<[MODID]:[BOOTSID]>);" +
-            "\n" +
-            "\n");
-
-
-        enableDough = getBoolean("01-enableDough", categoryItemsFood, true, enableFeatures +
+        enableDough = getBoolean("04-enableDough", categoryItemsFood, true, enableFeatures +
             "\nDough" +
             "\nAn alternative Crafting Recipe for the Chocolate Pie" +
             "\nAn alternative Crafting Recipe for the Birthday Pie" +
@@ -464,7 +420,7 @@ public class ModConfiguration extends Configuration {
             "\nAn alternative Crafting Recipe for the Pumpkin Pie" +
             "\n");
 
-        enableOnion = getBoolean("02-enableOnion", categoryItemsFood, true, enableFeatures +
+        enableOnion = getBoolean("05-enableOnion", categoryItemsFood, true, enableFeatures +
             "\nOnion" +
             "\nOnion Crate" +
             "\nDandelion Salad" +
@@ -475,7 +431,7 @@ public class ModConfiguration extends Configuration {
             "\nPickled Onion" +
             "\n");
 
-        enableGoldenFoods = getBoolean("03-enableGoldenFoods", categoryItemsFood, true, enableFeatures +
+        enableGoldenFoods = getBoolean("06-enableGoldenFoods", categoryItemsFood, true, enableFeatures +
             "\nGolden Saltwort" +
             "\nGolden Potato" +
             "\nGolden Sweetberries (Requires Et Futurum Requiem)" +
@@ -486,226 +442,261 @@ public class ModConfiguration extends Configuration {
             "\nSugared Golden Fruit Salad" +
             "\n");
 
-        enableSaltedPorkchop = getBoolean("04-enableSaltedPorkchop", categoryItemsFood, true, enableFeatures +
+        enableSaltedPorkchop = getBoolean("07-enableSaltedPorkchop", categoryItemsFood, true, enableFeatures +
             "\nSalted Cooked Porkchop" +
             "\nSalted Cooked Porkchop with Saltwort" +
             "\n");
-        enableSaltedBeef = getBoolean("05-enableSaltedBeef", categoryItemsFood, true, enableFeatures +
+        enableSaltedBeef = getBoolean("08-enableSaltedBeef", categoryItemsFood, true, enableFeatures +
             "\nSalted Steak" +
             "\nSalted Steak with Saltwort" +
             "\n");
-        enableSaltedChicken = getBoolean("06-enableSaltedChicken", categoryItemsFood, true, enableFeatures +
+        enableSaltedChicken = getBoolean("09-enableSaltedChicken", categoryItemsFood, true, enableFeatures +
             "\nSalted Chicken" +
             "\n");
-        enableStrider = getBoolean("07-enableStrider", categoryItemsFood, true, enableFeatures +
+        enableStrider = getBoolean("10-enableStrider", categoryItemsFood, true, enableFeatures +
             "\nRaw Strider Flank" +
             "\nStrider Steak" +
             "\nSalted Strider Steak" +
             "\nSalted Strider Steak with Saltwort" +
             "\nNotes: This idea has been shamelessly stolen from Netherlicious. Though, since Et Futurum Requiem currently doesn't add Striders, and Netherlicious already has Strider meat, this meat drops from Bats instead for now" +
             "\n");
-        enableHaunch = getBoolean("08-enableHaunch", categoryItemsFood, true, enableFeatures +
+        enableHaunch = getBoolean("11-enableHaunch", categoryItemsFood, true, enableFeatures +
             "\nRaw Haunch" +
             "\nCooked Haunch" +
             "\nSalted Cooked Haunch" +
             "\nSalted Cooked Haunch with Saltwort" +
             "\n");
-        enableCuredMeat = getBoolean("09-enableCuredMeat", categoryItemsFood, true, enableFeatures +
+        enableCuredMeat = getBoolean("12-enableCuredMeat", categoryItemsFood, true, enableFeatures +
             "\nCured Meat" +
             "\n");
-        enableSaltedCod = getBoolean("10-enableSaltedCod", categoryItemsFood, true, enableFeatures +
+        enableSaltedCod = getBoolean("13-enableSaltedCod", categoryItemsFood, true, enableFeatures +
             "\nSalted Cooked Cod" +
             "\nNotes: This is in line with the texture and localization changes this mod makes to the vanilla Fish (with the meta value of 0), to better reflect the modern Minecraft versions" +
             "\n");
-        enableSaltedSalmon = getBoolean("11-enableSaltedSalmon", categoryItemsFood, true, enableFeatures +
+        enableSaltedSalmon = getBoolean("14-enableSaltedSalmon", categoryItemsFood, true, enableFeatures +
             "\nSalted Cooked Salmon" +
             "\n");
-        enableTropicalFish = getBoolean("12-enableTropicalFish", categoryItemsFood, true, enableFeatures +
+        enableTropicalFish = getBoolean("15-enableTropicalFish", categoryItemsFood, true, enableFeatures +
             "\nCooked Tropical Fish" +
             "\nSalted Cooked Tropical Fish" +
             "\nNotes: This is in line with the localization changes this mod makes to the vanilla Fish (with the meta value of 2), to better reflect the modern Minecraft versions" +
             "\n");
-        enableTailor = getBoolean("13-enableTailor", categoryItemsFood, true, enableFeatures +
+        enableTailor = getBoolean("16-enableTailor", categoryItemsFood, true, enableFeatures +
             "\nTailor" +
             "\nCooked Tailor" +
             "\nSalted Cooked Tailor" +
             "\nTailor Pie" +
             "\nNotes: This replaces the vanilla Fish (with the meta value of 0) in texture, to better reflect the modern Minecraft versions" +
             "\n");
-        enableCalamari = getBoolean("14-enableCalamari", categoryItemsFood, true, enableFeatures +
+        enableCalamari = getBoolean("17-enableCalamari", categoryItemsFood, true, enableFeatures +
             "\nRaw Calamari" +
             "\nCooked Calamari" +
             "\nSalted Cooked Calamari" +
             "\nCalamari Pie" +
             "\nPickled Calamari" +
             "\n");
-        enableSaltedBread = getBoolean("15-enableSaltedBread", categoryItemsFood, true, enableFeatures +
+        enableSaltedBread = getBoolean("18-enableSaltedBread", categoryItemsFood, true, enableFeatures +
             "\nSalted Bread" +
             "\n");
-        enableSaltedPotato = getBoolean("16-enableSaltedPotato", categoryItemsFood, true, enableFeatures +
+        enableSaltedPotato = getBoolean("19-enableSaltedPotato", categoryItemsFood, true, enableFeatures +
             "\nSalted Baked Potato" +
             "\n");
-        enableEgg = getBoolean("17-enableEgg", categoryItemsFood, true, enableFeatures +
+        enableEgg = getBoolean("20-enableEgg", categoryItemsFood, true, enableFeatures +
             "\nSoft-Boiled Egg" +
             "\n");
 
-        enableSaltedMushroomStew = getBoolean("18-enableSaltedMushroomStew", categoryItemsFood, true, enableFeatures +
+        enableSaltedMushroomStew = getBoolean("21-enableSaltedMushroomStew", categoryItemsFood, true, enableFeatures +
             "\nSalted Mushroom Stew" +
             "\n");
 
-        enablePumpkinPorridge = getBoolean("19-enablePumpkinPorridge", categoryItemsFood, true, enableFeatures +
+        enablePumpkinPorridge = getBoolean("22-enablePumpkinPorridge", categoryItemsFood, true, enableFeatures +
             "\nPumpkin Porridge" +
             "\nSalted Pumpkin Porridge" +
             "\n");
-        enableCactusSoup = getBoolean("20-enableCactusSoup", categoryItemsFood, true, enableFeatures +
+        enableCactusSoup = getBoolean("23-enableCactusSoup", categoryItemsFood, true, enableFeatures +
             "\nCactus Soup" +
             "\nSalted Cactus Soup" +
             "\n");
-        enableStewedVegetables = getBoolean("21-enableStewedVegetables", categoryItemsFood, true, enableFeatures +
+        enableStewedVegetables = getBoolean("24-enableStewedVegetables", categoryItemsFood, true, enableFeatures +
             "\nStewed Vegetables" +
             "\nSalted Stewed Vegetables" +
             "\n");
-        enablePotatoMushroom = getBoolean("22-enablePotatoMushroom", categoryItemsFood, true, enableFeatures +
+        enablePotatoMushroom = getBoolean("25-enablePotatoMushroom", categoryItemsFood, true, enableFeatures +
             "\nPotato with Mushroom" +
             "\nSalted Potato with Mushroom" +
             "\n");
-        enableFishSoup = getBoolean("23-enableFishSoup", categoryItemsFood, true, enableFeatures +
+        enableFishSoup = getBoolean("26-enableFishSoup", categoryItemsFood, true, enableFeatures +
             "\nFish Soup" +
             "\nSalted Fish Soup" +
             "\n");
-        enableDandelionSalad = getBoolean("24-enableDandelionSalad", categoryItemsFood, true, enableFeatures +
+        enableDandelionSalad = getBoolean("27-enableDandelionSalad", categoryItemsFood, true, enableFeatures +
             "\nDandelion Salad" +
             "\nSalted Dandelion Salad" +
             "\n");
-        enableWheatSprouts = getBoolean("25-enableWheatSprouts", categoryItemsFood, true, enableFeatures +
+        enableWheatSprouts = getBoolean("28-enableWheatSprouts", categoryItemsFood, true, enableFeatures +
             "\nWheat Sprouts" +
             "\nSalted Wheat Sprouts" +
             "\n");
-        enableSaltwortSalad = getBoolean("26-enableSaltwortSalad", categoryItemsFood, true, enableFeatures +
+        enableSaltwortSalad = getBoolean("29-enableSaltwortSalad", categoryItemsFood, true, enableFeatures +
             "\nSaltwort Salad" +
             "\n");
 
-        enableSaltwortPorkchop = getBoolean("27-enableSaltwortPorkchop", categoryItemsFood, true, enableFeatures +
+        enableSaltwortPorkchop = getBoolean("30-enableSaltwortPorkchop", categoryItemsFood, true, enableFeatures +
             "\nSalted Cooked Porkchop with Saltwort" +
             "\n");
-        enableSaltwortHoneyPorkchop = getBoolean("28-enableSaltwortHoneyPorkchop", categoryItemsFood, true, enableFeatures +
+        enableSaltwortHoneyPorkchop = getBoolean("31-enableSaltwortHoneyPorkchop", categoryItemsFood, true, enableFeatures +
             "\nHoney Glazed Porkchop with Saltwort" +
             "\n");
-        enableSaltwortBeef = getBoolean("29-enableSaltwortBeef", categoryItemsFood, true, enableFeatures +
+        enableSaltwortBeef = getBoolean("32-enableSaltwortBeef", categoryItemsFood, true, enableFeatures +
             "\nSalted Steak with Saltwort" +
             "\n");
-        enableSaltwortStrider = getBoolean("30-enableSaltwortStrider", categoryItemsFood, true, enableFeatures +
+        enableSaltwortStrider = getBoolean("33-enableSaltwortStrider", categoryItemsFood, true, enableFeatures +
             "\nSalted Strider Steak with Saltwort" +
             "\n");
-        enableSaltwortHaunch = getBoolean("31-enableSaltwortHaunch", categoryItemsFood, true, enableFeatures +
+        enableSaltwortHaunch = getBoolean("34-enableSaltwortHaunch", categoryItemsFood, true, enableFeatures +
             "\nSalted Cooked Haunch with Saltwort" +
             "\n");
 
-        enableSugaredApple = getBoolean("32-enableSugaredApple", categoryItemsFood, true, enableFeatures +
+        enableSugaredApple = getBoolean("35-enableSugaredApple", categoryItemsFood, true, enableFeatures +
             "\nSugared Apple" +
             "\n");
-        enableSugaredMelon = getBoolean("33-enableSugaredMelon", categoryItemsFood, true, enableFeatures +
+        enableSugaredMelon = getBoolean("36-enableSugaredMelon", categoryItemsFood, true, enableFeatures +
             "\nSugared Melon Slice" +
             "\n");
 
-        enableFruitSalad = getBoolean("34-enableFruitSalad", categoryItemsFood, true, enableFeatures +
+        enableFruitSalad = getBoolean("37-enableFruitSalad", categoryItemsFood, true, enableFeatures +
             "\nFruit Salad" +
             "\nSugared Fruit Salad" +
             "\n");
-        enableGratedCarrot = getBoolean("35-enableGratedCarrot", categoryItemsFood, true, enableFeatures +
+        enableGratedCarrot = getBoolean("38-enableGratedCarrot", categoryItemsFood, true, enableFeatures +
             "\nGrated Carrot" +
             "\nSugared Grated Carrot" +
             "\n");
-        enableMelonSoup = getBoolean("36-enableMelonSoup", categoryItemsFood, true, enableFeatures +
+        enableMelonSoup = getBoolean("39-enableMelonSoup", categoryItemsFood, true, enableFeatures +
             "\nMelon Soup" +
             "\nSugared Melon Soup" +
             "\n");
 
-        enableHoneyPorkchop = getBoolean("37-enableHoneyPorkchop", categoryItemsFood, true, enableFeatures +
+        enableHoneyPorkchop = getBoolean("40-enableHoneyPorkchop", categoryItemsFood, true, enableFeatures +
             "\nHoney Glazed Porkchop" +
             "\n");
-        enableHoneyApple = getBoolean("38-enableHoneyApple", categoryItemsFood, true, enableFeatures +
+        enableHoneyApple = getBoolean("41-enableHoneyApple", categoryItemsFood, true, enableFeatures +
             "\nHoney Glazed Apple" +
             "\n");
-        enableChocolateBar = getBoolean("39-enableChocolateBar", categoryItemsFood, true, enableFeatures +
+        enableChocolateBar = getBoolean("42-enableChocolateBar", categoryItemsFood, true, enableFeatures +
             "\nChocolate Bar" +
             "\n");
 
-        enableChocolatePie = getBoolean("40-enableChocolatePie", categoryItemsFood, true, enableFeatures +
+        enableChocolatePie = getBoolean("43-enableChocolatePie", categoryItemsFood, true, enableFeatures +
             "\nChocolate Pie" +
             "\n");
-        enableBirthdayPie = getBoolean("41-enableBirthdayPie", categoryItemsFood, true, enableFeatures +
+        enableBirthdayPie = getBoolean("44-enableBirthdayPie", categoryItemsFood, true, enableFeatures +
             "\nBirthday Pie" +
             "\n");
-        replaceCake = getBoolean("42-replaceCake", categoryItemsFood, false, "Disables the Crafting Recipe for Cake, effectively replacing the Cake with the Birthday Pie");
-        enableApplePie = getBoolean("43-enableApplePie", categoryItemsFood, true, enableFeatures +
+        replaceCake = getBoolean("45-replaceCake", categoryItemsFood, false, "Disables the Crafting Recipe for Cake, effectively replacing the Cake with the Birthday Pie");
+
+        enableApplePie = getBoolean("46-enableApplePie", categoryItemsFood, true, enableFeatures +
             "\nApple Pie" +
             "\n");
-        enableCarrotPie = getBoolean("44-enableCarrotPie", categoryItemsFood, true, enableFeatures +
+        enableCarrotPie = getBoolean("47-enableCarrotPie", categoryItemsFood, true, enableFeatures +
             "\nCarrot Pie" +
             "\n");
-        enableMushroomPie = getBoolean("45-enableMushroomPie", categoryItemsFood, true, enableFeatures +
+        enableMushroomPie = getBoolean("48-enableMushroomPie", categoryItemsFood, true, enableFeatures +
             "\nMushroom Pie" +
             "\n");
-        enablePotatoPie = getBoolean("46-enablePotatoPie", categoryItemsFood, true, enableFeatures +
+        enablePotatoPie = getBoolean("49-enablePotatoPie", categoryItemsFood, true, enableFeatures +
             "\nPotato Pie" +
             "\n");
-        enableOnionPie = getBoolean("47-enableOnionPie", categoryItemsFood, true, enableFeatures +
+        enableOnionPie = getBoolean("50-enableOnionPie", categoryItemsFood, true, enableFeatures +
             "\nOnion Pie" +
             "\n");
-        enableShepherdsPie = getBoolean("48-enableShepherdsPie", categoryItemsFood, true, enableFeatures +
+        enableShepherdsPie = getBoolean("51-enableShepherdsPie", categoryItemsFood, true, enableFeatures +
             "\nShepherd's Pie" +
             "\n");
-        enableCodPie = getBoolean("49-enableCodPie", categoryItemsFood, true, enableFeatures +
+        enableCodPie = getBoolean("52-enableCodPie", categoryItemsFood, true, enableFeatures +
             "\nCod Pie" +
             "\nNotes: This is in line with the localization changes this mod makes to the vanilla Fish (with the meta value of 0), to better reflect the modern Minecraft versions" +
             "\n");
-        enableSalmonPie = getBoolean("50-enableSalmonPie", categoryItemsFood, true, enableFeatures +
+        enableSalmonPie = getBoolean("53-enableSalmonPie", categoryItemsFood, true, enableFeatures +
             "\nSalmon Pie" +
             "\n");
-        enableTropicalFishPie = getBoolean("51-enableTropicalFishPie", categoryItemsFood, true, enableFeatures +
+        enableTropicalFishPie = getBoolean("54-enableTropicalFishPie", categoryItemsFood, true, enableFeatures +
             "\nTropical Fish Pie" +
             "\nNotes: This is in line with the localization changes this mod makes to the vanilla Fish (with the meta value of 2), to better reflect the modern Minecraft versions" +
             "\n");
-        enableTailorPie = getBoolean("52-enableTailorPie", categoryItemsFood, true, enableFeatures +
+        enableTailorPie = getBoolean("55-enableTailorPie", categoryItemsFood, true, enableFeatures +
             "\nTailor Pie" +
             "\nNotes: This replaces an obligatory \"Fish Pie\" that would be named after the vanilla Fish (with the meta value of 0), to better reflect the modern Minecraft versions" +
             "\n");
-        enableCalamariPie = getBoolean("53-enableCalamariPie", categoryItemsFood, true, enableFeatures +
+        enableCalamariPie = getBoolean("56-enableCalamariPie", categoryItemsFood, true, enableFeatures +
             "\nCalamari Pie" +
             "\n");
-        enableSaltwortPie = getBoolean("54-enableSaltwortPie", categoryItemsFood, true, enableFeatures +
+        enableSaltwortPie = getBoolean("57-enableSaltwortPie", categoryItemsFood, true, enableFeatures +
             "\nSaltwort Pie" +
             "\n");
 
-        enableFermentedSaltwort = getBoolean("55-enableFermentedSaltwort", categoryItemsFood, true, enableFeatures +
+        enableFermentedSaltwort = getBoolean("58-enableFermentedSaltwort", categoryItemsFood, true, enableFeatures +
             "\nFermented Saltwort" +
             "\n");
-        enableFermentedFern = getBoolean("56-enableFermentedFern", categoryItemsFood, true, enableFeatures +
+        enableFermentedFern = getBoolean("59-enableFermentedFern", categoryItemsFood, true, enableFeatures +
             "\nFermented Fern" +
             "\n");
-        enableFermentedMushroom = getBoolean("57-enableFermentedMushroom", categoryItemsFood, true, enableFeatures +
+        enableFermentedMushroom = getBoolean("60-enableFermentedMushroom", categoryItemsFood, true, enableFeatures +
             "\nFermented Mushroom" +
             "\n");
-        enablePickledCalamari = getBoolean("58-enablePickledCalamari", categoryItemsFood, true, enableFeatures +
+        enablePickledCalamari = getBoolean("61-enablePickledCalamari", categoryItemsFood, true, enableFeatures +
             "\nPickled Calamari" +
             "\n");
-        enablePickledOnion = getBoolean("59-enablePickledOnion", categoryItemsFood, true, enableFeatures +
+        enablePickledOnion = getBoolean("62-enablePickledOnion", categoryItemsFood, true, enableFeatures +
             "\nPickled Onion" +
             "\n");
-        enableApplePreserves = getBoolean("60-enableApplePreserves", categoryItemsFood, true, enableFeatures +
+        enableApplePreserves = getBoolean("63-enableApplePreserves", categoryItemsFood, true, enableFeatures +
             "\nApple Preserves" +
             "\n");
-        enableMelonPreserves = getBoolean("61-enableMelonPreserves", categoryItemsFood, true, enableFeatures +
+        enableMelonPreserves = getBoolean("64-enableMelonPreserves", categoryItemsFood, true, enableFeatures +
             "\nMelon Preserves" +
             "\n");
 
-        enableMuffin = getBoolean("62-enableMuffin", categoryItemsFood, true, enableFeatures +
+        enableFizzyDrink = getBoolean("65-enableFizzyDrink", categoryItems, true, enableFeatures +
+            "\nFizzy Drink" +
+            "\n");
+        fizzyDrinkEffect = getBoolean("66-fizzyDrinkEffect", categoryItems, false, "Regulates the capabilities of the Fizzy Drink (true - removes all effects, false - removes the same effects that milk removes)");
+        enableTunnelersConcoction = getBoolean("06-enableTunnelersConcoction", categoryItems, true, enableFeatures +
+            "\nTunneler's Concoction" +
+            "\n");
+
+        enableMuffin = getBoolean("67-enableMuffin", categoryItemsFood, true, enableFeatures +
             "\nMuffin" +
             "\n");
 
-        enableToughJelly = getBoolean("63-enableToughJelly", categoryItemsFood, true, enableFeatures +
+        enableToughJelly = getBoolean("68-enableToughJelly", categoryItemsFood, true, enableFeatures +
             "\nTough Jelly" +
+            "\n");
+
+        enableMudArmor = getBoolean("69-enableMudArmor", categoryItemsArmor, true, enableFeatures +
+            "\nHead Mud Mask" +
+            "\nBody Mud Mask" +
+            "\nLegs Mud Mask" +
+            "\nFeet Mud Mask" +
+            "\n");
+        mudArmorWaterDamage = getBoolean("70-mudArmorWaterDamage", categoryItemsArmor, true, "Enables the Water Damage mechanic for the Mud Armor, slowly degrading it in water or in the rain");
+        mudArmorHealthBoost = getBoolean("71-mudArmorHealthBoost", categoryItemsArmor, true, "Enables the Health Boost, that the Mud Armor gives when worn");
+        mudArmorHealthBoostValue = getInt("72-mudArmorHealthBoostValue", categoryItemsArmor, 1, 0, 4, "Regulates the potency of the Health Boost effect of the Mud Armor (0 - Health Boost I, 1 - Health Boost II, etc., every level will give you 2 more hearts");
+        mudArmorBeeResistant = getBoolean("73-mudArmorBeeResistant", categoryItemsArmor, false, "Gives the Mud Armor a resistance against the \"Swarmed!\" Effect" +
+            "\nAdditionally, by using CraftTweaker, you can also add this resistance to other armor sets at your leisure" +
+            "\nTo achieve this, you open a new CraftTweaker document and input the following information:" +
+            "\n" +
+            "\nval beeResistant = <ore:beeResistant>;" +
+            "\nbeeResistant.add(<[MODID]:[HELMETID]>);" +
+            "\nbeeResistant.add(<[MODID]:[CHESTPLATEID]>);" +
+            "\nbeeResistant.add(<[MODID]:[LEGGINGSID]>);" +
+            "\nbeeResistant.add(<[MODID]:[BOOTSID]>);" +
+            "\n" +
+            "\n");
+
+        enableRainmaker = getBoolean("74-enableRainmaker", categoryItems, true, enableFeatures +
+            "\nRainmaker Star" +
+            "\nRainmaker" +
             "\n");
 
 
@@ -729,46 +720,6 @@ public class ModConfiguration extends Configuration {
         enableMudBrickWall = getBoolean("01-enableMudBrickWall", categoryModCompatibilityBlocks, true, enableFeatures +
             "\nMud Brick Wall" +
             "\n" + compatibilityString1 + "Mud Brick Wall" + compatibilityString2 +
-            "\n");
-        enableBlossomWood = getBoolean("02-enableBlossomWood", categoryModCompatibilityBlocks, true, enableFeatures +
-            "\nBlossom Wood" +
-            "\n" + compatibilityString1 + "Blossom Wood" + compatibilityString2 +
-            "\n");
-        enableStrippedBlossomLogs = getBoolean("03-enableStrippedBlossomLogs", categoryModCompatibilityBlocks, true, enableFeatures +
-            "\nStripped Blossom Logs" +
-            "\n" + compatibilityString1 + "Stripped Blossom Logs" + compatibilityString2 +
-            "\n");
-        enableStrippedBlossomWood = getBoolean("04-enableStrippedBlossomWood", categoryModCompatibilityBlocks, true, enableFeatures +
-            "\nStripped Blossom Wood" +
-            "\n" + compatibilityString1 + "Stripped Blossom Wood" + compatibilityString2 +
-            "\n");
-        enableBlossomFence = getBoolean("05-enableBlossomFence", categoryModCompatibilityBlocks, true, enableFeatures +
-            "\nBlossom Fence" +
-            "\n" + compatibilityString1 + "Blossom Fence" + compatibilityString2 +
-            "\n");
-        enableBlossomFenceGate = getBoolean("06-enableBlossomFenceGate", categoryModCompatibilityBlocks, true, enableFeatures +
-            "\nBlossom Fence Gate" +
-            "\n" + compatibilityString1 + "Blossom Fence Gate" + compatibilityString2 +
-            "\n");
-        enableBlossomPressurePlate = getBoolean("07-enableBlossomPressurePlate", categoryModCompatibilityBlocks, true, enableFeatures +
-            "\nBlossom Pressure Plate" +
-            "\n" + compatibilityString1 + "Blossom Pressure Plate" + compatibilityString2 +
-            "\n");
-        enableBlossomButton = getBoolean("08-enableBlossomButton", categoryModCompatibilityBlocks, true, enableFeatures +
-            "\nBlossom Button" +
-            "\n" + compatibilityString1 + "Blossom Button" + compatibilityString2 +
-            "\n");
-        enableBlossomDoor = getBoolean("09-enableBlossomDoor", categoryModCompatibilityBlocks, true, enableFeatures +
-            "\nBlossom Door" +
-            "\n" + compatibilityString1 + "Blossom Door" + compatibilityString2 +
-            "\n");
-        enableBlossomTrapdoor = getBoolean("10-enableBlossomTrapdoor", categoryModCompatibilityBlocks, true, enableFeatures +
-            "\nBlossom Trapdoor" +
-            "\n" + compatibilityString1 + "Blossom Trapdoor" + compatibilityString2 +
-            "\n");
-        enableBlossomSign = getBoolean("11-enableBlossomSign", categoryModCompatibilityBlocks, true, enableFeatures +
-            "\nBlossom Sign" +
-            "\n" + compatibilityString1 + "Blossom Sign" + compatibilityString2 +
             "\n");
 
 

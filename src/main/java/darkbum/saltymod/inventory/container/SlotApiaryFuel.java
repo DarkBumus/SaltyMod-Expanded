@@ -1,6 +1,7 @@
 package darkbum.saltymod.inventory.container;
 
 import darkbum.saltymod.init.ModItems;
+import darkbum.saltymod.item.ItemBee;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -15,7 +16,7 @@ public class SlotApiaryFuel extends Slot {
     }
 
     public boolean isItemValid(ItemStack itemStack) {
-        return (itemStack.getItem() == ModItems.carpenter_bee);
+        return (itemStack.getItem() instanceof ItemBee);
     }
 
     public int getSlotStackLimit() {

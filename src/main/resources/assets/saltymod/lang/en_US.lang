@@ -50,6 +50,8 @@ container.evaporator=Evaporator
 container.discard=Discard
 fluid.milk=Milk
 tile.fish_farm.name=Fish Farm
+tile.bee_burrow_spruce.name=Spruce Burrow
+tile.bee_burrow_spruce_stripped.name=Stripped Spruce Burrow
 tile.apiary.name=Apiary
 
 tile.storage_crate_carrot.name=Carrot Crate
@@ -99,7 +101,9 @@ item.testing_apple.name=§bTest Apple
 
 item.fish_bait.name=Fish Bait
 item.bee_larva.name=Bee Larva
+item.honey_bee.name=Honey Bee
 item.carpenter_bee.name=Carpenter Bee
+item.regal_bee.name=Regal Bee
 item.waxcomb.name=Waxcomb
 item.honeycomb.name=Honeycomb
 item.royal_jelly.name=Royal Jelly

@@ -2,6 +2,7 @@ package darkbum.saltymod.tileentity;
 
 import java.util.Random;
 
+import darkbum.saltymod.configuration.ModConfiguration;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.block.Block;
@@ -94,7 +95,7 @@ public class TileEntityFishFarm extends TileEntity implements IInventory {
 
     public int getRunTime() {
         byte radius = 2;
-        int speed = 3500;
+        int speed = ModConfiguration.fishFarmSpeed;
         World world = this.worldObj;
         int varX = this.xCoord;
         int varY = this.yCoord;

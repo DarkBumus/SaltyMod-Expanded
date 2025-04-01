@@ -47,9 +47,13 @@ public class ModShapelessRecipes {
         }
 
         if(ModConfiguration.enableHoney) {
-            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.carpenter_bee, 1, 0), new ItemStack(ModItems.bee_larva), new ItemStack(ModItems.royal_jelly));
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.honey_bee, 1, 0), new ItemStack(ModItems.bee_larva), new ItemStack(ModItems.royal_jelly));
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.carpenter_bee, 1, 0), new ItemStack(ModItems.bee_larva), new ItemStack(ModItems.royal_jelly), new ItemStack(Items.stick));
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.regal_bee, 1, 0), new ItemStack(ModItems.bee_larva), new ItemStack(ModItems.royal_jelly), new ItemStack(Items.gold_nugget));
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.royal_jelly), new ItemStack(ModItems.honey_bee, 1, 18));
             GameRegistry.addShapelessRecipe(new ItemStack(ModItems.royal_jelly), new ItemStack(ModItems.carpenter_bee, 1, 18));
-            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.royal_jelly), new ItemStack(ModItems.bee_larva));
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.royal_jelly), new ItemStack(ModItems.regal_bee, 1, 18));
+//            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.royal_jelly), new ItemStack(ModItems.bee_larva));
         }
         if(ModConfiguration.enableMineralMud) {
             GameRegistry.addShapelessRecipe(new ItemStack(ModItems.mineral_mud_ball, 4), new ItemStack(ModBlocks.mineral_mud));

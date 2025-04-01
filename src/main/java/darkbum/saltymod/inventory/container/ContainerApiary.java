@@ -1,6 +1,7 @@
 package darkbum.saltymod.inventory.container;
 
 import darkbum.saltymod.init.ModItems;
+import darkbum.saltymod.item.ItemBee;
 import darkbum.saltymod.tileentity.TileEntityApiary;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -62,7 +63,7 @@ public class ContainerApiary extends Container {
             ItemStack slotStack = slot.getStack();
             itemStack = slotStack.copy();
             if (slotIndex >= 19) {
-                if (slotStack.getItem() == ModItems.carpenter_bee) {
+                if (slotStack.getItem() instanceof ItemBee) {
                     if (!mergeItemStack(slotStack, 18, 19, false))
                         return null;
                 } else if (slotIndex >= 19 && slotIndex < 46) {

@@ -1,4 +1,4 @@
-/*package darkbum.saltymod.block;
+package darkbum.saltymod.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class BlockBlossomStrippedBurrow extends Block {
+public class BlockBeeBurrowBirchStripped extends Block {
 
     @SideOnly(Side.CLIENT)
     private IIcon TOP;
@@ -30,7 +30,7 @@ public class BlockBlossomStrippedBurrow extends Block {
     @SideOnly(Side.CLIENT)
     private IIcon BURROW;
 
-    public BlockBlossomStrippedBurrow(String name, CreativeTabs tab) {
+    public BlockBeeBurrowBirchStripped(String name, CreativeTabs tab) {
         super(Material.wood);
         setStepSound(soundTypeWood);
         setBlockName(name);
@@ -41,14 +41,14 @@ public class BlockBlossomStrippedBurrow extends Block {
     }
 
     public Item getItemDropped(int meta, Random random, int fortune) {
-        return ModItems.carpenter_bee;
+        return ModItems.regal_bee;
     }
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister icon) {
-        this.TOP = icon.registerIcon("saltymod:blossom_burrow_stripped_top");
-        this.SIDE = icon.registerIcon("saltymod:blossom_log_stripped");
-        this.BURROW = icon.registerIcon("saltymod:blossom_burrow_stripped");
+        this.TOP = icon.registerIcon("saltymod:bee_burrow_birch_stripped_top");
+        this.SIDE = icon.registerIcon("saltymod:bee_burrow_birch_stripped_side");
+        this.BURROW = icon.registerIcon("saltymod:bee_burrow_birch_stripped");
     }
 
     @SideOnly(Side.CLIENT)
@@ -118,8 +118,7 @@ public class BlockBlossomStrippedBurrow extends Block {
     public void onBlockHarvested(World world, int x, int y, int z, int meta, EntityPlayer player) {
         if (!player.capabilities.isCreativeMode) {
             player.addPotionEffect(new PotionEffect(ModPotion.swarmed.id, 900, 0, true));
-            world.playSoundEffect(x, y, z, "saltymod:block.blossom_burrow.bees", 1.0F, 1.5F);
+            world.playSoundEffect(x, y, z, "saltymod:block.bee_burrow.bees", 1.0F, 1.5F);
         }
     }
 }
-*/

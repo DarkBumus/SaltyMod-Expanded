@@ -8,8 +8,8 @@ import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
-public class ItemCarpenterBee extends Item {
-    public ItemCarpenterBee(String name, CreativeTabs tab) {
+public class ItemBee extends Item {
+    public ItemBee(String name, CreativeTabs tab) {
         isDamageable();
         setUnlocalizedName(name);
         setCreativeTab(tab);

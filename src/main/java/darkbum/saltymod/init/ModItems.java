@@ -5,7 +5,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import darkbum.saltymod.SaltyMod;
 //import darkbum.saltymod.blockitem.ItemBlossomSign;
 import darkbum.saltymod.configuration.ModConfiguration;
-import darkbum.saltymod.potion.ModPotion;
 import darkbum.saltymod.potion.ProbablePotionEffect;
 import darkbum.saltymod.item.*;
 import net.minecraft.creativetab.CreativeTabs;
@@ -30,7 +29,11 @@ public class ModItems {
 
     public static Item bee_larva;
 
+    public static Item honey_bee;
+
     public static Item carpenter_bee;
+
+    public static Item regal_bee;
 
     public static Item waxcomb;
 
@@ -331,8 +334,12 @@ public class ModItems {
         if (ModConfiguration.enableHoney) {
             bee_larva = new Item().setCreativeTab(tab).setUnlocalizedName("bee_larva").setTextureName("saltymod:bee_larva");
             GameRegistry.registerItem(bee_larva, "bee_larva");
-            carpenter_bee = new ItemCarpenterBee("carpenter_bee", tab).setMaxStackSize(1).setMaxDamage(18).setTextureName("saltymod:carpenter_bee");
+            honey_bee = new ItemBee("honey_bee", tab).setMaxStackSize(1).setMaxDamage(18).setTextureName("saltymod:honey_bee");
+            GameRegistry.registerItem(honey_bee, "honey_bee");
+            carpenter_bee = new ItemBee("carpenter_bee", tab).setMaxStackSize(1).setMaxDamage(18).setTextureName("saltymod:carpenter_bee");
             GameRegistry.registerItem(carpenter_bee, "carpenter_bee");
+            regal_bee = new ItemBee("regal_bee", tab).setMaxStackSize(1).setMaxDamage(18).setTextureName("saltymod:regal_bee");
+            GameRegistry.registerItem(regal_bee, "regal_bee");
             waxcomb = new Item().setCreativeTab(tab).setUnlocalizedName("waxcomb").setTextureName("saltymod:waxcomb");
             GameRegistry.registerItem(waxcomb, "waxcomb");
             honeycomb = new Item().setCreativeTab(tab).setUnlocalizedName("honeycomb").setTextureName("saltymod:honeycomb");

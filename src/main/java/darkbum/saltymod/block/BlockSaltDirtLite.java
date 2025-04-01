@@ -54,13 +54,13 @@ public class BlockSaltDirtLite extends Block {
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1) {
-        this.blockIcon = par1.registerIcon("saltymod:salt_dirt_0");
-        this.SIDE_1 = par1.registerIcon("saltymod:salt_dirt_1");
-        this.SIDE_2 = par1.registerIcon("saltymod:salt_dirt_2");
-        this.SIDE = par1.registerIcon("saltymod:salt_dirt_saltside");
-        this.SIDE_L = par1.registerIcon("saltymod:salt_dirt_saltside_l");
-        this.SIDE_R = par1.registerIcon("saltymod:salt_dirt_saltside_r");
-        this.BOTTOM = par1.registerIcon("saltymod:salt_dirt_bottom");
+        this.blockIcon = par1.registerIcon("saltymod:salt_dirt_lite_0");
+        this.SIDE_1 = par1.registerIcon("saltymod:salt_dirt_lite_1");
+        this.SIDE_2 = par1.registerIcon("saltymod:salt_dirt_lite_2");
+        this.SIDE = par1.registerIcon("saltymod:salt_dirt_lite_saltside");
+        this.SIDE_L = par1.registerIcon("saltymod:salt_dirt_lite_saltside_l");
+        this.SIDE_R = par1.registerIcon("saltymod:salt_dirt_lite_saltside_r");
+        this.BOTTOM = par1.registerIcon("saltymod:salt_dirt_lite_bottom");
     }
 
     public void updateTick(World world, int x, int y, int z, Random rand) {

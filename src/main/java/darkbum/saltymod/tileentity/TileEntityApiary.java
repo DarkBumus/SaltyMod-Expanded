@@ -2,8 +2,10 @@ package darkbum.saltymod.tileentity;
 
 import java.util.Random;
 
+import darkbum.saltymod.configuration.ModConfiguration;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
+import darkbum.saltymod.item.ItemBee;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -24,6 +26,8 @@ public class TileEntityApiary extends TileEntity implements IInventory {
     public int currentFuelRunTime = 0;
 
     public int produceTime = 0;
+
+    private boolean larvaProducedForBee = false;
 
     public int getSizeInventory() {
         return this.inventory.length;
@@ -69,12 +73,14 @@ public class TileEntityApiary extends TileEntity implements IInventory {
         this.runTime = nbt.getShort("RunTime");
         this.produceTime = nbt.getShort("ProduceTime");
         this.currentFuelRunTime = getRunTime(this.inventory[1]);
+        this.larvaProducedForBee = nbt.getBoolean("LarvaProducedForBee");
     }
 
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
         nbt.setShort("RunTime", (short)this.runTime);
         nbt.setShort("ProduceTime", (short)this.produceTime);
+        nbt.setBoolean("LarvaProducedForBee", this.larvaProducedForBee);
         NBTTagList intTag = new NBTTagList();
         for (int i = 0; i < this.inventory.length; i++) {
             if (this.inventory[i] != null) {
@@ -93,7 +99,7 @@ public class TileEntityApiary extends TileEntity implements IInventory {
 
     public int getRunTime() {
         byte radius = 2;
-        int speed = 3500;
+        int speed = ModConfiguration.apiarySpeed;
         World world = this.worldObj;
         int varX = this.xCoord;
         int varY = this.yCoord;
@@ -156,7 +162,7 @@ public class TileEntityApiary extends TileEntity implements IInventory {
 
     private boolean canRun() {
         if (this.inventory[18] != null) {
-            if (this.inventory[18].getItem() == ModItems.carpenter_bee &&
+            if (this.inventory[18].getItem() instanceof ItemBee/*== ModItems.carpenter_bee*/ &&
                 this.inventory[18].getItemDamage() != this.inventory[18]
                     .getMaxDamage())
                 return true;
@@ -166,7 +172,7 @@ public class TileEntityApiary extends TileEntity implements IInventory {
         return false;
     }
 
-    public ItemStack getProduce() {
+/*    public ItemStack getProduce() {
         Random rnd = new Random();
         int rndnum = rnd.nextInt(100);
         if (this.inventory[18] != null) {
@@ -175,14 +181,60 @@ public class TileEntityApiary extends TileEntity implements IInventory {
                 return new ItemStack(ModItems.bee_larva);
             if (rndnum < 50)
                 return new ItemStack(ModItems.waxcomb);
-            if (rndnum >= 50 && rndnum < 95)
+            if (rndnum >= 50 && rndnum < 98)
                 return new ItemStack(ModItems.honeycomb);
             return new ItemStack(ModItems.bee_larva);
         }
         return null;
+    }*/
+
+    public ItemStack getProduce() {
+        Random rnd = new Random();
+        int rndnum = rnd.nextInt(100);
+        if (this.inventory[18] != null) {
+            if (this.inventory[18].getItem() instanceof ItemBee &&
+                this.inventory[18].getItemDamage() == 17) {
+                return new ItemStack(ModItems.bee_larva);
+            }
+            if (this.inventory[18].getItem() == ModItems.honey_bee) {
+                return new ItemStack(
+                    rndnum <70 ? ModItems.honeycomb :
+                        rndnum <98 ? ModItems.waxcomb :
+                            ModItems.bee_larva
+                );
+            }
+            if (this.inventory[18].getItem() == ModItems.carpenter_bee) {
+                return new ItemStack(
+                    rndnum <20 ? ModItems.honeycomb :
+                        rndnum <98 ? ModItems.waxcomb :
+                            ModItems.bee_larva
+                );
+            }
+            if (this.inventory[18].getItem() == ModItems.regal_bee) {
+                return new ItemStack(
+                    rndnum <35 ? ModItems.honeycomb :
+                        rndnum <50 ? ModItems.royal_jelly :
+                            rndnum <85 ? ModItems.waxcomb :
+                                ModItems.bee_larva
+                );
+            }
+        }
+        return null;
     }
 
+
+
     public void run() {
+        boolean hasFreeSlot = false;
+        for (int i = 0; i < 18; i++) {
+            if (this.inventory[i] == null) {
+                hasFreeSlot = true;
+                break;
+            }
+        }
+        if (!hasFreeSlot) {
+            return;
+        }
         this.inventory[18].attemptDamageItem(1, null);
         ItemStack itemProduced = getProduce();
         for (int i = 0; i < 18; i++) {
@@ -196,7 +248,7 @@ public class TileEntityApiary extends TileEntity implements IInventory {
     int getRunTime(ItemStack stack) {
         if (stack == null)
             return 0;
-        if (stack.getItem() == ModItems.carpenter_bee)
+        if (stack.getItem() instanceof ItemBee/*== ModItems.carpenter_bee*/)
             return 3200;
         return 0;
     }

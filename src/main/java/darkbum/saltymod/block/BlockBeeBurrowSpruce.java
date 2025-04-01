@@ -1,4 +1,4 @@
-/*package darkbum.saltymod.block;
+package darkbum.saltymod.block;
 
 import java.util.Random;
 
@@ -9,7 +9,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.potion.ModPotion;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -23,7 +22,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class BlockBlossomBurrow extends Block {
+public class BlockBeeBurrowSpruce extends Block {
 
     @SideOnly(Side.CLIENT)
     private IIcon TOP;
@@ -34,7 +33,7 @@ public class BlockBlossomBurrow extends Block {
     @SideOnly(Side.CLIENT)
     private IIcon BURROW;
 
-    public BlockBlossomBurrow(String name, CreativeTabs tab) {
+    public BlockBeeBurrowSpruce(String name, CreativeTabs tab) {
         super(Material.wood);
         setStepSound(soundTypeWood);
         setBlockName(name);
@@ -50,9 +49,9 @@ public class BlockBlossomBurrow extends Block {
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister icon) {
-        this.TOP = icon.registerIcon("saltymod:blossom_burrow_top");
-        this.SIDE = icon.registerIcon("saltymod:blossom_log");
-        this.BURROW = icon.registerIcon("saltymod:blossom_burrow");
+        this.TOP = icon.registerIcon("saltymod:bee_burrow_spruce_top");
+        this.SIDE = icon.registerIcon("log_spruce");
+        this.BURROW = icon.registerIcon("saltymod:bee_burrow_spruce");
     }
 
     @SideOnly(Side.CLIENT)
@@ -123,10 +122,11 @@ public class BlockBlossomBurrow extends Block {
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx, float hity, float hitz) {
         if (Loader.isModLoaded("etfuturum")) {
             ItemStack heldStack = player.getCurrentEquippedItem();
+            int metadata = world.getBlockMetadata(x, y, z);
             if (heldStack != null && heldStack.getItem() instanceof ItemAxe) {
-                world.setBlock(x, y, z, ModBlocks.blossom_stripped_burrow);
+                world.setBlock(x, y, z, ModBlocks.bee_burrow_spruce_stripped, metadata, 3);
                 player.addPotionEffect(new PotionEffect(ModPotion.swarmed.id, 600, 0, true));
-                world.playSoundEffect(x, y, z, "saltymod:block.blossom_burrow.bees", 1.0F, 1.5F);
+                world.playSoundEffect(x, y, z, "saltymod:block.bee_burrow.bees", 1.0F, 1.5F);
             }
         }
         return false;
@@ -135,8 +135,7 @@ public class BlockBlossomBurrow extends Block {
     public void onBlockHarvested(World world, int x, int y, int z, int meta, EntityPlayer player) {
         if(!player.capabilities.isCreativeMode) {
             player.addPotionEffect(new PotionEffect(ModPotion.swarmed.id, 900, 0, true));
-            world.playSoundEffect(x, y, z, "saltymod:block.blossom_burrow.bees", 1.0F, 1.5F);
+            world.playSoundEffect(x, y, z, "saltymod:block.bee_burrow.bees", 1.0F, 1.5F);
         }
     }
 }
-*/
