@@ -2,8 +2,6 @@ package darkbum.saltymod.block;
 
 import java.util.Random;
 
-import darkbum.saltymod.init.ModItems;
-import darkbum.saltymod.init.ModSounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.MapColor;
@@ -17,7 +15,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import darkbum.saltymod.init.ModItems;
+import darkbum.saltymod.init.ModSounds;
+
 public class BlockMineralMud extends Block {
+
     public BlockMineralMud(String name, CreativeTabs tab) {
         super(Material.ground);
         setBlockName(name);
@@ -34,7 +36,8 @@ public class BlockMineralMud extends Block {
         return AxisAlignedBB.getBoundingBox(x, y, z, (x + 1), ((y + 1) - f), (z + 1));
     }
 
-    public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plantable) {
+    public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction,
+        IPlantable plantable) {
         Block plant = plantable.getPlant(world, x, y + 1, z);
         return plant != Blocks.cactus && !(plant instanceof BlockBush);
     }
@@ -50,6 +53,5 @@ public class BlockMineralMud extends Block {
     public MapColor getMapColor(int meta) {
         return MapColor.grayColor;
     }
-
 
 }

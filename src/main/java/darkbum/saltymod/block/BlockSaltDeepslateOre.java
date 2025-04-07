@@ -1,16 +1,17 @@
 package darkbum.saltymod.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.common.CommonProxy;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import darkbum.saltymod.common.CommonProxy;
+
 public class BlockSaltDeepslateOre extends Block {
 
-    //@SideOnly(Side.CLIENT)
-    //private IIcon SIDE;
+    // @SideOnly(Side.CLIENT)
+    // private IIcon SIDE;
 
     public BlockSaltDeepslateOre(Block block) {
         super(Material.rock);
@@ -25,6 +26,6 @@ public class BlockSaltDeepslateOre extends Block {
     @Override
     public void registerBlockIcons(IIconRegister par1) {
         blockIcon = par1.registerIcon("saltymod:deepslate_salt_ore");
-        //SIDE = par1.registerIcon("saltmod:deepslate_salt_ore_side");
+        // SIDE = par1.registerIcon("saltmod:deepslate_salt_ore_side");
     }
 }

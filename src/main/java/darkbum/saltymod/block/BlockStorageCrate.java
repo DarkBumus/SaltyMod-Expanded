@@ -1,7 +1,7 @@
 package darkbum.saltymod.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -11,10 +11,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 
-import java.util.List;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import darkbum.saltymod.configuration.configs.ModConfigurationItems;
 
 public class BlockStorageCrate extends Block {
-    public static final String[] types = new String[] {"carrot", "potato", "poisonous_potato", "onion", "beetroot"};
+
+    public static final String[] types = new String[] { "carrot", "potato", "poisonous_potato", "onion", "beetroot" };
 
     @SideOnly(Side.CLIENT)
     private IIcon BOTTOM;
@@ -49,7 +53,6 @@ public class BlockStorageCrate extends Block {
     @SideOnly(Side.CLIENT)
     private IIcon BEETROOTTOP;
 
-
     public BlockStorageCrate(String name, CreativeTabs tab) {
         super(Material.wood);
         setBlockName(name);
@@ -59,10 +62,22 @@ public class BlockStorageCrate extends Block {
         setStepSound(soundTypeWood);
     }
 
+    /*
+     * @Override
+     * public void getSubBlocks(Item block, CreativeTabs creativeTabs, List list) {
+     * for (int i = 0; i < types.length; ++i) {
+     * list.add(new ItemStack(block, 1, i));
+     * }
+     * }
+     */
+
     @Override
-    public void getSubBlocks(Item block, CreativeTabs creativeTabs, List list) {
-        for (int i = 0; i < types.length; ++i) {
-            list.add(new ItemStack(block, 1, i));
+    @SideOnly(Side.CLIENT)
+    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+        for (int i = 0; i < 5; ++i) {
+            if (i == 3 && !ModConfigurationItems.enableOnion) continue;
+            if (i == 4 && !Loader.isModLoaded("etfuturum")) continue;
+            list.add(new ItemStack(item, 1, i));
         }
     }
 
@@ -70,30 +85,25 @@ public class BlockStorageCrate extends Block {
 
         meta = MathHelper.clamp_int(meta, 0, 4);
 
-        if(side > 0) {
+        if (side > 0) {
             if (meta == 0) {
-                if (side == 1)
-                    return this.CARROTTOP;
+                if (side == 1) return this.CARROTTOP;
                 return this.CARROTSIDE;
             }
             if (meta == 1) {
-                if (side == 1)
-                    return this.POTATOTOP;
+                if (side == 1) return this.POTATOTOP;
                 return this.POTATOSIDE;
             }
             if (meta == 2) {
-                if (side == 1)
-                    return this.POIPOTATOTOP;
+                if (side == 1) return this.POIPOTATOTOP;
                 return this.POIPOTATOSIDE;
             }
             if (meta == 3) {
-                if (side == 1)
-                    return this.ONIONTOP;
+                if (side == 1) return this.ONIONTOP;
                 return this.ONIONSIDE;
             }
             if (meta == 4) {
-                if (side == 1)
-                    return this.BEETROOTTOP;
+                if (side == 1) return this.BEETROOTTOP;
                 return this.BEETROOTSIDE;
             }
         }

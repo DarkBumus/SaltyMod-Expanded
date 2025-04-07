@@ -1,19 +1,23 @@
 package darkbum.saltymod.init;
 
+import net.minecraft.block.*;
+import net.minecraft.creativetab.CreativeTabs;
+
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
-import darkbum.saltymod.blockitem.*;
+import darkbum.saltymod.SaltyMod;
 import darkbum.saltymod.block.*;
 import darkbum.saltymod.block.BlockSaltBlock;
 import darkbum.saltymod.block.BlockSaltFlower;
-import darkbum.saltymod.configuration.ModConfiguration;
-import net.minecraft.block.*;
-import net.minecraft.client.gui.GuiMerchant;
-import net.minecraft.creativetab.CreativeTabs;
-import darkbum.saltymod.SaltyMod;
+import darkbum.saltymod.blockitem.*;
 import darkbum.saltymod.common.CommonProxy;
+import darkbum.saltymod.configuration.configs.ModConfigurationBlocks;
+import darkbum.saltymod.configuration.configs.ModConfigurationItems;
+import darkbum.saltymod.configuration.configs.ModConfigurationModCompatibility;
+import darkbum.saltymod.configuration.configs.ModConfigurationWorldGeneration;
 
 public class ModBlocks {
+
     static CreativeTabs tab = CommonProxy.tabSalt;
 
     public static Block dev_block;
@@ -66,6 +70,10 @@ public class ModBlocks {
 
     public static Block fish_farm;
 
+    public static Block bee_nest_boreal;
+
+    public static Block bee_nest_temperate;
+
     public static Block bee_burrow_spruce;
 
     public static Block bee_burrow_spruce_stripped;
@@ -75,6 +83,10 @@ public class ModBlocks {
     public static Block bee_burrow_birch_stripped;
 
     public static Block apiary;
+
+    public static Block heater;
+
+    public static Block press;
 
     public static Block storage_crate;
 
@@ -97,15 +109,17 @@ public class ModBlocks {
         GameRegistry.registerBlock(dev_block, "dev_block");
         salt_ore = new BlockSaltOre("salt_ore", tab);
         GameRegistry.registerBlock(salt_ore, "salt_ore");
-        if (Loader.isModLoaded("etfuturum") && ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableDeepslate && ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableDeepslateOres) {
+        if (Loader.isModLoaded("etfuturum")
+            && ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableDeepslate
+            && ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableDeepslateOres) {
             deepslate_salt_ore = new BlockSaltDeepslateOre(salt_ore);
             GameRegistry.registerBlock(deepslate_salt_ore, "deepslate_salt_ore");
         }
-        if(ModConfiguration.enableSaltLakes) {
+        if (ModConfigurationWorldGeneration.enableSaltLakes) {
             salt_lake = new BlockSaltLake("salt_lake", tab);
             GameRegistry.registerBlock(salt_lake, "salt_lake");
         }
-        if(ModConfiguration.enableSaltBlocks) {
+        if (ModConfigurationBlocks.enableSaltBlocks) {
             salt_block = new BlockSaltBlock(tab);
             GameRegistry.registerBlock(salt_block, ItemSaltBlock.class, "salt_block");
             salt_brick_stairs = new BlockSaltBrickStairs("salt_brick_stairs", tab);
@@ -117,7 +131,7 @@ public class ModBlocks {
             salt_lamp = new BlockSaltLamp("salt_lamp", tab);
             GameRegistry.registerBlock(salt_lamp, "salt_lamp");
         }
-        if(ModConfiguration.enableSaltDirt) {
+        if (ModConfigurationBlocks.enableSaltDirt) {
             salt_grass = new BlockSaltGrass("salt_grass", tab);
             GameRegistry.registerBlock(salt_grass, "salt_grass");
             salt_dirt_lite = new BlockSaltDirtLite("salt_dirt_lite", tab);
@@ -127,10 +141,10 @@ public class ModBlocks {
             grass_top = new BlockGrassTop("grass_top", null);
             GameRegistry.registerBlock(grass_top, "grass_top");
         }
-        if(ModConfiguration.enableMineralMud) {
+        if (ModConfigurationItems.enableMineralMud) {
             mineral_mud = new BlockMineralMud("mineral_mud", tab);
             GameRegistry.registerBlock(mineral_mud, "mineral_mud");
-            if (ModConfiguration.enableMudBricks) {
+            if (ModConfigurationBlocks.enableMudBricks) {
                 wet_mud_brick = new BlockWetMudBrick("wet_mud_brick", tab);
                 GameRegistry.registerBlock(wet_mud_brick, "wet_mud_brick");
                 dry_mud_brick = new BlockDryMudBrick("dry_mud_brick", tab);
@@ -140,30 +154,37 @@ public class ModBlocks {
                 dry_mud_brick_slab = new BlockDryMudBrickSlab(false, "dry_mud_brick_slab", tab);
                 GameRegistry.registerBlock(dry_mud_brick_slab, ItemMudBrickDrySlab.class, "dry_mud_brick_slab");
                 double_dry_mud_brick_slab = new BlockDryMudBrickSlab(true, "double_dry_mud_brick_slab", null);
-                GameRegistry.registerBlock(double_dry_mud_brick_slab, ItemMudBrickDrySlab.class, "double_dry_mud_brick_slab");
-                if (Loader.isModLoaded("etfuturum") && ModConfiguration.enableMudBrickWall) {
+                GameRegistry
+                    .registerBlock(double_dry_mud_brick_slab, ItemMudBrickDrySlab.class, "double_dry_mud_brick_slab");
+                if (Loader.isModLoaded("etfuturum") && ModConfigurationModCompatibility.enableMudBrickWall) {
                     dry_mud_brick_wall = new BlockDryMudBrickWall(ModBlocks.dry_mud_brick, tab);
                     GameRegistry.registerBlock(dry_mud_brick_wall, "dry_mud_brick_wall");
                 }
             }
         }
-        if(ModConfiguration.enableSaltMarsh) {
+        if (ModConfigurationWorldGeneration.enableSaltMarsh) {
             salt_crusted_oak_log = new BlockSaltCrustedOakLog("salt_crusted_oak_log", tab);
             GameRegistry.registerBlock(salt_crusted_oak_log, "salt_crusted_oak_log");
         }
-        if(ModConfiguration.enableEvaporator) {
+        if (ModConfigurationBlocks.enableEvaporator) {
             evaporator = new BlockEvaporator(false, false, "evaporator", tab);
             GameRegistry.registerBlock(evaporator, "evaporator");
             lit_evaporator = new BlockEvaporator(true, false, "evaporator", null);
-            GameRegistry.registerBlock(lit_evaporator, "lit_evaporator").setLightLevel(0.9F);
+            GameRegistry.registerBlock(lit_evaporator, "lit_evaporator")
+                .setLightLevel(0.9F);
             steam_evaporator = new BlockEvaporator(true, true, "evaporator", null);
-            GameRegistry.registerBlock(steam_evaporator, "steam_evaporator").setLightLevel(0.9F);
+            GameRegistry.registerBlock(steam_evaporator, "steam_evaporator")
+                .setLightLevel(0.9F);
         }
-        if(ModConfiguration.enableFishFarm) {
+        if (ModConfigurationBlocks.enableFishFarm) {
             fish_farm = new BlockFishFarm("fish_farm", tab);
             GameRegistry.registerBlock(fish_farm, "fish_farm");
         }
-        if(ModConfiguration.enableApiary) {
+        if (ModConfigurationBlocks.enableApiary) {
+            bee_nest_temperate = new BlockBeeNestTemperate("bee_nest_temperate", tab);
+            GameRegistry.registerBlock(bee_nest_temperate, "bee_nest_temperate");
+            bee_nest_boreal = new BlockBeeNestBoreal("bee_nest_boreal", tab);
+            GameRegistry.registerBlock(bee_nest_boreal, "bee_nest_boreal");
             bee_burrow_spruce = new BlockBeeBurrowSpruce("bee_burrow_spruce", tab);
             GameRegistry.registerBlock(bee_burrow_spruce, "bee_burrow_spruce");
             bee_burrow_spruce_stripped = new BlockBeeBurrowSpruceStripped("bee_burrow_spruce_stripped", tab);
@@ -175,7 +196,13 @@ public class ModBlocks {
             apiary = new BlockApiary("apiary", tab);
             GameRegistry.registerBlock(apiary, "apiary");
         }
-        if(ModConfiguration.enableStorageBlocks) {
+        if (ModConfigurationBlocks.enableHeater) {
+            heater = new BlockHeater("heater", tab);
+            GameRegistry.registerBlock(heater, "heater");
+            press = new BlockPress("press", tab);
+            GameRegistry.registerBlock(press, "press");
+        }
+        if (ModConfigurationBlocks.enableStorageBlocks) {
             storage_crate = new BlockStorageCrate("storage_crate", tab);
             GameRegistry.registerBlock(storage_crate, ItemStorageCrate.class, "storage_crate");
             storage_barrel = new BlockStorageBarrel("storage_barrel", tab);
@@ -183,17 +210,17 @@ public class ModBlocks {
             storage_sack = new BlockStorageSack("storage_sack", tab);
             GameRegistry.registerBlock(storage_sack, ItemStorageSack.class, "storage_sack");
         }
-        if(ModConfiguration.enableSaltCrystal) {
+        if (ModConfigurationBlocks.enableSaltCrystal) {
             salt_crystal = new BlockSaltCrystal("salt_crystal", tab);
             GameRegistry.registerBlock(salt_crystal, "salt_crystal");
         }
         saltworts = new BlockSaltworts("saltworts", null);
         GameRegistry.registerBlock(saltworts, "saltworts");
-        if(ModConfiguration.enableOnion) {
+        if (ModConfigurationItems.enableOnion) {
             onions = new BlockOnions("onions", null);
             GameRegistry.registerBlock(onions, "onions");
         }
-        if(ModConfiguration.enableSaltFlowers) {
+        if (ModConfigurationBlocks.enableSaltFlowers) {
             salt_flower = new BlockSaltFlower();
             GameRegistry.registerBlock(salt_flower, ItemSaltFlower.class, "salt_flower");
         }

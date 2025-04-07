@@ -5,14 +5,15 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class SlotApiary extends Slot {
+public class SlotFarmOutput extends Slot {
+
     private EntityPlayer entityPlayer;
 
     public boolean isItemValid(ItemStack itemStack) {
         return false;
     }
 
-    public SlotApiary(EntityPlayer entityPlayer, IInventory iInventory, int slotIndex, int x, int y) {
+    public SlotFarmOutput(EntityPlayer entityPlayer, IInventory iInventory, int slotIndex, int x, int y) {
         super(iInventory, slotIndex, x, y);
         this.entityPlayer = entityPlayer;
     }

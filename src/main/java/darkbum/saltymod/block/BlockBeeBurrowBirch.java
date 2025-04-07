@@ -1,26 +1,28 @@
 package darkbum.saltymod.block;
 
+import java.util.ArrayList;
 import java.util.Random;
 
-import cpw.mods.fml.common.Loader;
-import darkbum.saltymod.init.ModBlocks;
-import darkbum.saltymod.init.ModItems;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.potion.ModPotion;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import darkbum.saltymod.init.ModBlocks;
+import darkbum.saltymod.init.ModItems;
+import darkbum.saltymod.potion.ModPotion;
 
 public class BlockBeeBurrowBirch extends Block {
 
@@ -43,8 +45,26 @@ public class BlockBeeBurrowBirch extends Block {
         setHarvestLevel("axe", 0);
     }
 
-    public Item getItemDropped(int meta, Random random, int fortune) {
-        return ModItems.regal_bee;
+    @Override
+    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int meta, int fortune) {
+        ArrayList<ItemStack> drops = new ArrayList<>();
+        drops.add(new ItemStack(ModItems.regal_bee));
+
+        Random random = new Random();
+
+        if (random.nextFloat() < 0.2f) {
+            int honeycombCount = random.nextInt(3);
+            if (honeycombCount > 0) {
+                drops.add(new ItemStack(ModItems.honeycomb, honeycombCount));
+            }
+        }
+        if (random.nextFloat() < 0.2f) {
+            int waxcombCount = random.nextInt(3);
+            if (waxcombCount > 0) {
+                drops.add(new ItemStack(ModItems.waxcomb, waxcombCount));
+            }
+        }
+        return drops;
     }
 
     @SideOnly(Side.CLIENT)
@@ -110,16 +130,17 @@ public class BlockBeeBurrowBirch extends Block {
     }
 
     public void onBlockPlacedBy(World worldIn, int x, int y, int z, EntityLivingBase placer, ItemStack itemIn) {
-        int l = MathHelper.floor_double((double)(placer.rotationYaw * 4.0F / 360.0F) + 2.5D) & 3;
+        int l = MathHelper.floor_double((double) (placer.rotationYaw * 4.0F / 360.0F) + 2.5D) & 3;
         worldIn.setBlockMetadataWithNotify(x, y, z, l, 2);
     }
 
-    protected boolean canSilkHarvest () {
+    protected boolean canSilkHarvest() {
         return false;
     }
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx, float hity, float hitz) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx,
+        float hity, float hitz) {
         if (Loader.isModLoaded("etfuturum")) {
             ItemStack heldStack = player.getCurrentEquippedItem();
             int metadata = world.getBlockMetadata(x, y, z);
@@ -133,9 +154,13 @@ public class BlockBeeBurrowBirch extends Block {
     }
 
     public void onBlockHarvested(World world, int x, int y, int z, int meta, EntityPlayer player) {
-        if(!player.capabilities.isCreativeMode) {
+        if (!player.capabilities.isCreativeMode) {
             player.addPotionEffect(new PotionEffect(ModPotion.swarmed.id, 900, 0, true));
             world.playSoundEffect(x, y, z, "saltymod:block.bee_burrow.bees", 1.0F, 1.5F);
         }
+    }
+
+    public boolean canSustainLeaves(IBlockAccess world, int x, int y, int z) {
+        return true;
     }
 }

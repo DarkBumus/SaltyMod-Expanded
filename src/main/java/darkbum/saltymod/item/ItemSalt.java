@@ -1,6 +1,7 @@
 package darkbum.saltymod.item;
 
 import java.util.Random;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityCow;
@@ -10,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class ItemSalt extends Item {
+
     public ItemSalt(String name, CreativeTabs tab) {
         setUnlocalizedName(name);
         setCreativeTab(tab);
@@ -17,7 +19,7 @@ public class ItemSalt extends Item {
 
     public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase entity) {
         if (entity instanceof EntityCow) {
-            EntityCow cow = (EntityCow)entity;
+            EntityCow cow = (EntityCow) entity;
             if (cow.isChild()) {
                 cow.addGrowth(10);
                 stack.stackSize--;
@@ -30,7 +32,7 @@ public class ItemSalt extends Item {
             }
         }
         if (entity instanceof EntityHorse) {
-            EntityHorse horse = (EntityHorse)entity;
+            EntityHorse horse = (EntityHorse) entity;
             boolean flag = false;
             if (horse.getHealth() < horse.getMaxHealth()) {
                 horse.heal(2.0F);
@@ -41,7 +43,11 @@ public class ItemSalt extends Item {
                 flag = true;
             }
             if (flag) {
-                horse.worldObj.playSoundAtEntity(horse, "eating", 1.0F, 1.0F + ((new Random()).nextFloat() - (new Random()).nextFloat()) * 0.2F);
+                horse.worldObj.playSoundAtEntity(
+                    horse,
+                    "eating",
+                    1.0F,
+                    1.0F + ((new Random()).nextFloat() - (new Random()).nextFloat()) * 0.2F);
                 stack.stackSize--;
                 return true;
             }

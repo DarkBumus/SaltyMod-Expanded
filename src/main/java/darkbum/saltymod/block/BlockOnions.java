@@ -1,16 +1,17 @@
 package darkbum.saltymod.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.init.ModItems;
-import net.minecraft.creativetab.CreativeTabs;
-
 import net.minecraft.block.BlockCrops;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import darkbum.saltymod.init.ModItems;
+
 public class BlockOnions extends BlockCrops {
+
     @SideOnly(Side.CLIENT)
     private IIcon[] icons;
 
@@ -25,8 +26,7 @@ public class BlockOnions extends BlockCrops {
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
         if (meta < 7) {
-            if (meta == 6)
-                meta = 5;
+            if (meta == 6) meta = 5;
             return this.icons[meta >> 1];
         }
         return this.icons[3];
@@ -43,7 +43,6 @@ public class BlockOnions extends BlockCrops {
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister reg) {
         this.icons = new IIcon[4];
-        for (int i = 0; i < this.icons.length; i++)
-            this.icons[i] = reg.registerIcon(getTextureName() + "_stage_" + i);
+        for (int i = 0; i < this.icons.length; i++) this.icons[i] = reg.registerIcon(getTextureName() + "_stage_" + i);
     }
 }

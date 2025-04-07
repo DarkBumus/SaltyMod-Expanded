@@ -4,12 +4,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 
 public class EvaporateRegistry {
+
     private static final EvaporateRegistry instance = new EvaporateRegistry();
 
     public static EvaporateRegistry instance() {
@@ -29,21 +31,21 @@ public class EvaporateRegistry {
         addEvaporating(fluid, Item.getItemFromBlock(block), vol, exp);
     }
 
-    private Map evaporatingList = new HashMap<Object, Object>();
+    // Verwendung von generischen Typen
+    private Map<Fluid, EvaporateResults> evaporatingList = new HashMap<>();
+    private Map<List<Object>, Experience> experienceList = new HashMap<>();
 
-    public Map getEvaporatingList() {
+    public Map<Fluid, EvaporateResults> getEvaporatingList() {
         return this.evaporatingList;
     }
 
-    private HashMap<List, Experience> experienceList = new HashMap<List, Experience>();
-
-    public Map<List, Experience> getExperienceList() {
+    public Map<List<Object>, Experience> getExperienceList() {
         return this.experienceList;
     }
 
     class EvaporateResults {
-        public final ItemStack s;
 
+        public final ItemStack s;
         public final int v;
 
         public EvaporateResults(ItemStack s, int v) {
@@ -53,29 +55,24 @@ public class EvaporateRegistry {
     }
 
     public EvaporateResults getEvaporateResults(Fluid fluid) {
-        if (fluid == null)
-            return null;
-        EvaporateResults ret = (EvaporateResults)this.evaporatingList.get(Arrays.asList(fluid));
-        if (ret != null)
-            return ret;
-        return (EvaporateResults)this.evaporatingList.get(fluid);
+        if (fluid == null) return null;
+        return this.evaporatingList.get(fluid);
     }
 
     public ItemStack getEvaporateItemStack(Fluid fluid) {
         EvaporateResults evaporateresults = getEvaporateResults(fluid);
-        if (fluid == null || evaporateresults == null)
-            return null;
+        if (fluid == null || evaporateresults == null) return null;
         return evaporateresults.s;
     }
 
     public int getEvaporateFluidVolume(Fluid fluid) {
         EvaporateResults evaporateresults = getEvaporateResults(fluid);
-        if (fluid == null || evaporateresults == null)
-            return 0;
+        if (fluid == null || evaporateresults == null) return 0;
         return evaporateresults.v;
     }
 
     class Experience {
+
         public final float e;
 
         public Experience(float e) {
@@ -84,18 +81,13 @@ public class EvaporateRegistry {
     }
 
     public Experience getExperience(ItemStack stack) {
-        if (stack == null)
-            return null;
-        Experience ret = this.experienceList.get(Arrays.asList(stack.getItem(), stack.getItemDamage()));
-        if (ret != null)
-            return ret;
-        return this.experienceList.get(stack);
+        if (stack == null) return null;
+        return this.experienceList.get(Arrays.asList(stack.getItem(), stack.getItemDamage()));
     }
 
     public float getEvaporateExperience(ItemStack stack) {
         Experience experiencecount = getExperience(stack);
-        if (stack == null || experiencecount == null)
-            return 0.0F;
+        if (stack == null || experiencecount == null) return 0.0F;
         return experiencecount.e;
     }
 }

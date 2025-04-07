@@ -1,22 +1,25 @@
 package darkbum.saltymod.world.generator;
 
-import cpw.mods.fml.common.IWorldGenerator;
-import cpw.mods.fml.common.Loader;
 import java.util.Random;
 
-import darkbum.saltymod.init.ModBlocks;
-import darkbum.saltymod.configuration.ModConfiguration;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
+
+import cpw.mods.fml.common.IWorldGenerator;
+import cpw.mods.fml.common.Loader;
+import darkbum.saltymod.configuration.configs.ModConfigurationModCompatibility;
+import darkbum.saltymod.init.ModBlocks;
 
 public class SaltCrystalGenerator implements IWorldGenerator {
 
     int dimensionIDTwilightForest = 0;
 
-    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator,
+        IChunkProvider chunkProvider) {
         if (Loader.isModLoaded("TwilightForest"))
-            this.dimensionIDTwilightForest = ModConfiguration.TFDimensionID;
-        if (world.provider.dimensionId == 0 || (world.provider.dimensionId == this.dimensionIDTwilightForest && ModConfiguration.enableTFSaltOre)) {
+            this.dimensionIDTwilightForest = ModConfigurationModCompatibility.TFDimensionID;
+        if (world.provider.dimensionId == 0 || (world.provider.dimensionId == this.dimensionIDTwilightForest
+            && ModConfigurationModCompatibility.enableTFSaltOre)) {
             generateOverworld(world, random, chunkX * 16, chunkZ * 16);
         }
     }
@@ -31,8 +34,8 @@ public class SaltCrystalGenerator implements IWorldGenerator {
         for (int y = 8; y < dimensionSpawnHeight; y++) {
             for (int x1 = x; x1 < x + 16; x1++) {
                 for (int z1 = z; z1 < z + 16; z1++) {
-                    if (world.getBlock(x1, y - 1, z1) == ModBlocks.salt_ore && world.isAirBlock(x1, y, z1) && world.getFullBlockLightValue(x1, y, z1) < 13)
-                        if (rand.nextInt(2) == 0) {
+                    if (world.getBlock(x1, y - 1, z1) == ModBlocks.salt_ore && world.isAirBlock(x1, y, z1)
+                        && world.getFullBlockLightValue(x1, y, z1) < 13) if (rand.nextInt(2) == 0) {
                             world.setBlock(x1, y, z1, ModBlocks.salt_crystal, 1, 3);
                         } else {
                             world.setBlock(x1, y, z1, ModBlocks.salt_crystal);

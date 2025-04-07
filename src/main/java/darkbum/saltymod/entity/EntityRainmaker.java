@@ -1,15 +1,17 @@
 package darkbum.saltymod.entity;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.item.ItemRainmaker;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import darkbum.saltymod.item.ItemRainmaker;
+
 public class EntityRainmaker extends Entity {
+
     private int fireworkAge;
 
     private int lifetime;
@@ -50,8 +52,8 @@ public class EntityRainmaker extends Entity {
         this.motionZ = z;
         if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
             float f = MathHelper.sqrt_double(x * x + z * z);
-            this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(x, z) * 180.0D / Math.PI);
-            this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(y, f) * 180.0D / Math.PI);
+            this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(x, z) * 180.0D / Math.PI);
+            this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(y, f) * 180.0D / Math.PI);
         }
     }
 
@@ -65,24 +67,32 @@ public class EntityRainmaker extends Entity {
         this.motionY += 0.04D;
         moveEntity(this.motionX, this.motionY, this.motionZ);
         float f = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
-        this.rotationYaw = (float)(Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
-        for (this.rotationPitch = (float)(Math.atan2(this.motionY, f) * 180.0D / Math.PI); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F);
-        while (this.rotationPitch - this.prevRotationPitch >= 180.0F)
-            this.prevRotationPitch += 360.0F;
-        while (this.rotationYaw - this.prevRotationYaw < -180.0F)
-            this.prevRotationYaw -= 360.0F;
-        while (this.rotationYaw - this.prevRotationYaw >= 180.0F)
-            this.prevRotationYaw += 360.0F;
+        this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
+        for (this.rotationPitch = (float) (Math.atan2(this.motionY, f) * 180.0D / Math.PI); this.rotationPitch
+            - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F);
+        while (this.rotationPitch - this.prevRotationPitch >= 180.0F) this.prevRotationPitch += 360.0F;
+        while (this.rotationYaw - this.prevRotationYaw < -180.0F) this.prevRotationYaw -= 360.0F;
+        while (this.rotationYaw - this.prevRotationYaw >= 180.0F) this.prevRotationYaw += 360.0F;
         this.rotationPitch = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * 0.2F;
         this.rotationYaw = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * 0.2F;
-        if (this.fireworkAge == 0)
-            this.worldObj.playSoundAtEntity(this, "fireworks.launch", 3.0F, 1.0F);
+        if (this.fireworkAge == 0) this.worldObj.playSoundAtEntity(this, "fireworks.launch", 3.0F, 1.0F);
         this.fireworkAge++;
-        if (this.worldObj.isRemote && this.fireworkAge % 2 < 2)
-            this.worldObj.spawnParticle("fireworksSpark", this.posX, this.posY - 0.3D, this.posZ, this.rand.nextGaussian() * 0.05D, -this.motionY * 0.5D, this.rand.nextGaussian() * 0.05D);
+        if (this.worldObj.isRemote && this.fireworkAge % 2 < 2) this.worldObj.spawnParticle(
+            "fireworksSpark",
+            this.posX,
+            this.posY - 0.3D,
+            this.posZ,
+            this.rand.nextGaussian() * 0.05D,
+            -this.motionY * 0.5D,
+            this.rand.nextGaussian() * 0.05D);
         if (!this.worldObj.isRemote && this.fireworkAge > this.lifetime) {
-            this.worldObj.setEntityState(this, (byte)17);
-            EntityRainmakerDust dust = new EntityRainmakerDust(this.worldObj, this.posX, this.posY, this.posZ, this.player);
+            this.worldObj.setEntityState(this, (byte) 17);
+            EntityRainmakerDust dust = new EntityRainmakerDust(
+                this.worldObj,
+                this.posX,
+                this.posY,
+                this.posZ,
+                this.player);
             this.worldObj.spawnEntityInWorld(dust);
             setDead();
         }
@@ -90,8 +100,14 @@ public class EntityRainmaker extends Entity {
 
     @SideOnly(Side.CLIENT)
     public void handleHealthUpdate(byte par_byte) {
-        if (par_byte == 17 && this.worldObj.isRemote)
-            this.worldObj.makeFireworks(this.posX, this.posY, this.posZ, this.motionX, this.motionY, this.motionZ, ItemRainmaker.tag);
+        if (par_byte == 17 && this.worldObj.isRemote) this.worldObj.makeFireworks(
+            this.posX,
+            this.posY,
+            this.posZ,
+            this.motionX,
+            this.motionY,
+            this.motionZ,
+            ItemRainmaker.tag);
         super.handleHealthUpdate(par_byte);
     }
 

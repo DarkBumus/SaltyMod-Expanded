@@ -5,6 +5,7 @@ import net.minecraft.item.ItemBlockWithMetadata;
 import net.minecraft.item.ItemStack;
 
 public class ItemSaltDirt extends ItemBlockWithMetadata {
+
     public ItemSaltDirt(Block block) {
         super(block, block);
     }

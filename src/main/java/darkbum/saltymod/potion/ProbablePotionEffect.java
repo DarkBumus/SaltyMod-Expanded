@@ -1,14 +1,15 @@
 package darkbum.saltymod.potion;
 
+import java.util.Random;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 
-import java.util.Random;
-
 public class ProbablePotionEffect {
+
     private final PotionEffect effect;
     private final float probability;
 
@@ -30,7 +31,8 @@ public class ProbablePotionEffect {
         if (Potion.potionTypes[effect.getPotionID()].isBadEffect()) {
             line += EnumChatFormatting.RED;
         }
-        line += StatCollector.translateToLocal(effect.getEffectName()).trim();
+        line += StatCollector.translateToLocal(effect.getEffectName())
+            .trim();
         switch (effect.getAmplifier()) {
             case 1:
                 line += " II";

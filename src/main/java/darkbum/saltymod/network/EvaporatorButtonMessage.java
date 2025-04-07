@@ -1,14 +1,16 @@
 package darkbum.saltymod.network;
 
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import io.netty.buffer.ByteBuf;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 import darkbum.saltymod.tileentity.TileEntityEvaporator;
+import io.netty.buffer.ByteBuf;
 
 public class EvaporatorButtonMessage implements IMessage {
+
     int x;
 
     int y;
@@ -36,11 +38,11 @@ public class EvaporatorButtonMessage implements IMessage {
     }
 
     public static class Handler implements IMessageHandler<EvaporatorButtonMessage, IMessage> {
+
         public IMessage onMessage(EvaporatorButtonMessage message, MessageContext ctx) {
             World world = (ctx.getServerHandler()).playerEntity.worldObj;
             TileEntity te = world.getTileEntity(message.x, message.y, message.z);
-            if (te instanceof TileEntityEvaporator)
-                ((TileEntityEvaporator)te).tank.setFluid(null);
+            if (te instanceof TileEntityEvaporator) ((TileEntityEvaporator) te).tank.setFluid(null);
             return null;
         }
     }

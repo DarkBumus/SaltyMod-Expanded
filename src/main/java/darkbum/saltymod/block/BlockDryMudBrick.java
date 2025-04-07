@@ -1,11 +1,13 @@
 package darkbum.saltymod.block;
 
-import darkbum.saltymod.init.ModSounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 
+import darkbum.saltymod.init.ModSounds;
+
 public class BlockDryMudBrick extends Block {
+
     public BlockDryMudBrick(String name, CreativeTabs tab) {
         super(Material.rock);
         setStepSound(ModSounds.soundTypeDryMudBrick);

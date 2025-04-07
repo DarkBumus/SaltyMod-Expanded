@@ -1,12 +1,13 @@
 package darkbum.saltymod.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.IIcon;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockDevBlock extends Block {
 
@@ -39,18 +40,12 @@ public class BlockDevBlock extends Block {
 
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-        if(side == 0)
-            return SIDE0BOTTOM;
-        if(side == 1)
-            return SIDE1TOP;
-        if(side == 2)
-            return SIDE2NORTH;
-        if(side == 3)
-            return SIDE3SOUTH;
-        if(side == 4)
-            return SIDE4WEST;
-        if(side == 5)
-            return SIDE5EAST;
+        if (side == 0) return SIDE0BOTTOM;
+        if (side == 1) return SIDE1TOP;
+        if (side == 2) return SIDE2NORTH;
+        if (side == 3) return SIDE3SOUTH;
+        if (side == 4) return SIDE4WEST;
+        if (side == 5) return SIDE5EAST;
         return null;
     }
 

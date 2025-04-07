@@ -1,10 +1,9 @@
 package darkbum.saltymod.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -21,11 +20,15 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.init.ModAchievementList;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 
 public class BlockSaltLake extends Block {
+
     @SideOnly(Side.CLIENT)
     private IIcon TOP;
 
@@ -44,7 +47,11 @@ public class BlockSaltLake extends Block {
 
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-        return (side == 1) ? this.TOP : ((side == 0) ? ModBlocks.salt_ore.getBlockTextureFromSide(side) : (((side == 2 && meta % 2 == 1) || (side == 5 && meta % 4 >= 2) || (side == 3 && meta % 8 >= 4) || (side == 4 && meta >= 8)) ? this.SIDE : this.blockIcon));
+        return (side == 1) ? this.TOP
+            : ((side == 0) ? ModBlocks.salt_ore.getBlockTextureFromSide(side)
+                : (((side == 2 && meta % 2 == 1) || (side == 5 && meta % 4 >= 2)
+                    || (side == 3 && meta % 8 >= 4)
+                    || (side == 4 && meta >= 8)) ? this.SIDE : this.blockIcon));
     }
 
     @SideOnly(Side.CLIENT)
@@ -56,43 +63,49 @@ public class BlockSaltLake extends Block {
 
     public void onEntityWalking(World world, int x, int y, int z, Entity entity) {
         if (!world.isRemote) {
-            if (entity instanceof net.minecraft.entity.EntityLivingBase && EntityList.getEntityString(entity) != null && ((
-                EntityList.getEntityString(entity).toLowerCase().contains("slime") && !EntityList.getEntityString(entity).toLowerCase().contains("lava")) ||
-                EntityList.getEntityString(entity).toLowerCase().contains("witch")))
+            if (entity instanceof net.minecraft.entity.EntityLivingBase && EntityList.getEntityString(entity) != null
+                && ((EntityList.getEntityString(entity)
+                    .toLowerCase()
+                    .contains("slime")
+                    && !EntityList.getEntityString(entity)
+                        .toLowerCase()
+                        .contains("lava"))
+                    || EntityList.getEntityString(entity)
+                        .toLowerCase()
+                        .contains("witch")))
                 world.scheduleBlockUpdate(x, y, z, this, 0);
             if (entity instanceof EntityPlayer)
-                ((EntityPlayer)entity).addStat((StatBase)ModAchievementList.navSaltLake, 1);
+                ((EntityPlayer) entity).addStat((StatBase) ModAchievementList.navSaltLake, 1);
         }
     }
 
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx, float hity, float hitz) {
-        if (player.capabilities.isCreativeMode && side > 1 && player
-            .getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == ModItems.salt) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx,
+        float hity, float hitz) {
+        if (player.capabilities.isCreativeMode && side > 1
+            && player.getCurrentEquippedItem() != null
+            && player.getCurrentEquippedItem()
+                .getItem() == ModItems.salt) {
             int i = world.getBlockMetadata(x, y, z);
-            if (side == 2)
-                if (i % 2 < 1) {
-                    i++;
-                } else {
-                    i--;
-                }
-            if (side == 5)
-                if (i % 4 < 2) {
-                    i += 2;
-                } else {
-                    i -= 2;
-                }
-            if (side == 3)
-                if (i % 8 < 4) {
-                    i += 4;
-                } else {
-                    i -= 4;
-                }
-            if (side == 4)
-                if (i < 8) {
-                    i += 8;
-                } else {
-                    i -= 8;
-                }
+            if (side == 2) if (i % 2 < 1) {
+                i++;
+            } else {
+                i--;
+            }
+            if (side == 5) if (i % 4 < 2) {
+                i += 2;
+            } else {
+                i -= 2;
+            }
+            if (side == 3) if (i % 8 < 4) {
+                i += 4;
+            } else {
+                i -= 4;
+            }
+            if (side == 4) if (i < 8) {
+                i += 8;
+            } else {
+                i -= 8;
+            }
             world.setBlock(x, y, z, this, i, 3);
             return true;
         }
@@ -108,9 +121,17 @@ public class BlockSaltLake extends Block {
             Iterator<Entity> iterator = list.iterator();
             while (iterator.hasNext()) {
                 Entity entity = iterator.next();
-                if (entity instanceof net.minecraft.entity.EntityLivingBase && EntityList.getEntityString(entity) != null && ((
-                    EntityList.getEntityString(entity).toLowerCase().contains("slime") && !EntityList.getEntityString(entity).toLowerCase().contains("lava")) ||
-                    EntityList.getEntityString(entity).toLowerCase().contains("witch"))) {
+                if (entity instanceof net.minecraft.entity.EntityLivingBase
+                    && EntityList.getEntityString(entity) != null
+                    && ((EntityList.getEntityString(entity)
+                        .toLowerCase()
+                        .contains("slime")
+                        && !EntityList.getEntityString(entity)
+                            .toLowerCase()
+                            .contains("lava"))
+                        || EntityList.getEntityString(entity)
+                            .toLowerCase()
+                            .contains("witch"))) {
                     entity.attackEntityFrom(DamageSource.cactus, 1.0F);
                     d1 = 3;
                 }
@@ -118,21 +139,27 @@ public class BlockSaltLake extends Block {
                     d1--;
                     for (int x1 = x - 1; x1 < x + 2; x1++) {
                         for (int z1 = z - 1; z1 < z + 2; z1++) {
-                            if (world.getBlock(x1, y, z1) == ModBlocks.salt_block || world.getBlock(x1, y, z1) == ModBlocks.salt_lamp || world
-                                .getBlock(x1, y, z1) == ModBlocks.salt_lake || world.getBlock(x1, y, z1) == ModBlocks.salt_dirt || world
-                                .getBlock(x1, y, z1) == ModBlocks.salt_brick_stairs || world.getBlock(x1, y, z1) == ModBlocks.salt_slab || world
-                                .getBlock(x1, y, z1) == ModBlocks.double_salt_slab)
+                            if (world.getBlock(x1, y, z1) == ModBlocks.salt_block
+                                || world.getBlock(x1, y, z1) == ModBlocks.salt_lamp
+                                || world.getBlock(x1, y, z1) == ModBlocks.salt_lake
+                                || world.getBlock(x1, y, z1) == ModBlocks.salt_dirt
+                                || world.getBlock(x1, y, z1) == ModBlocks.salt_brick_stairs
+                                || world.getBlock(x1, y, z1) == ModBlocks.salt_slab
+                                || world.getBlock(x1, y, z1) == ModBlocks.double_salt_slab)
                                 world.scheduleBlockUpdate(x1, y, z1, this, 10);
                         }
                     }
                 }
             }
-            if (world.getBlock(x, y + 1, z).getMaterial() == Material.snow) {
+            if (world.getBlock(x, y + 1, z)
+                .getMaterial() == Material.snow) {
                 world.setBlockToAir(x, y + 1, z);
-            } else if (world.getBlock(x, y + 1, z).getMaterial() == Material.craftedSnow || world
-                .getBlock(x, y + 1, z).getMaterial() == Material.ice) {
-                world.setBlock(x, y + 1, z, Blocks.water);
-            }
+            } else if (world.getBlock(x, y + 1, z)
+                .getMaterial() == Material.craftedSnow
+                || world.getBlock(x, y + 1, z)
+                    .getMaterial() == Material.ice) {
+                        world.setBlock(x, y + 1, z, Blocks.water);
+                    }
         }
     }
 
@@ -147,8 +174,7 @@ public class BlockSaltLake extends Block {
     public int quantityDroppedWithBonus(int fortune, Random random) {
         if (fortune > 0) {
             int j = random.nextInt(fortune + 1);
-            if (j > 2)
-                return 2;
+            if (j > 2) return 2;
             return quantityDropped(random) + j;
         }
         return quantityDropped(random);

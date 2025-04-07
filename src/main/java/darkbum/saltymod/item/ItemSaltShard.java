@@ -1,7 +1,5 @@
 package darkbum.saltymod.item;
 
-import darkbum.saltymod.init.ModAchievementList;
-import darkbum.saltymod.init.ModItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -12,6 +10,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+
+import darkbum.saltymod.init.ModAchievementList;
+import darkbum.saltymod.init.ModItems;
 
 public class ItemSaltShard extends Item {
 
@@ -24,8 +25,9 @@ public class ItemSaltShard extends Item {
         World world = player.worldObj;
         if (!world.isRemote && !player.capabilities.isCreativeMode) {
             stack.stackSize--;
-            if (entity instanceof EntitySlime &&
-                !EntityList.getEntityString(entity).toLowerCase().contains("lava")) {
+            if (entity instanceof EntitySlime && !EntityList.getEntityString(entity)
+                .toLowerCase()
+                .contains("lava")) {
                 entity.attackEntityFrom(DamageSource.generic, 30.0F);
                 entity.entityDropItem(new ItemStack(ModItems.tough_jelly, 1, 0), 0).delayBeforeCanPickup = 10;
                 world.playSoundEffect(entity.posX, entity.posY, entity.posZ, "dig.stone", 2.0F, 1.0F);
@@ -34,7 +36,8 @@ public class ItemSaltShard extends Item {
                 if (stack.stackSize == 0) {
                     player.setCurrentItemOrArmor(0, null);
                 }
-            } if (entity instanceof EntityWitch) {
+            }
+            if (entity instanceof EntityWitch) {
                 entity.attackEntityFrom(DamageSource.generic, 30.0F);
                 entity.entityDropItem(new ItemStack(ModItems.salt_pinch, 1, 0), 0).delayBeforeCanPickup = 10;
                 world.playSoundEffect(entity.posX, entity.posY, entity.posZ, "dig.stone", 2.0F, 1.0F);

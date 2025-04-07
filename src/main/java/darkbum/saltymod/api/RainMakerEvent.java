@@ -1,12 +1,14 @@
 package darkbum.saltymod.api;
 
-import cpw.mods.fml.common.eventhandler.Cancelable;
-import cpw.mods.fml.common.eventhandler.Event;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
+import cpw.mods.fml.common.eventhandler.Cancelable;
+import cpw.mods.fml.common.eventhandler.Event;
+
 @Cancelable
 public class RainMakerEvent extends Event {
+
     public final World world;
 
     public final double x;

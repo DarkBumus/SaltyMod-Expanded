@@ -2,14 +2,16 @@ package darkbum.saltymod.item;
 
 import java.util.List;
 
-import darkbum.saltymod.potion.ProbablePotionEffect;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 
+import darkbum.saltymod.potion.ProbablePotionEffect;
+
 public class ItemVoidApple extends ItemSaltFood {
+
     public ItemVoidApple(String name, CreativeTabs tab) {
         super(name, 0, 0.0F, new ProbablePotionEffect(Potion.hunger.id, 70, 100));
         setCreativeTab(tab);

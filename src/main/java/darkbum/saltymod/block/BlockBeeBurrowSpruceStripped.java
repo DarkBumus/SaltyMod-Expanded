@@ -1,23 +1,24 @@
 package darkbum.saltymod.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.init.ModItems;
-import darkbum.saltymod.potion.ModPotion;
+import java.util.ArrayList;
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import java.util.Random;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import darkbum.saltymod.init.ModItems;
+import darkbum.saltymod.potion.ModPotion;
 
 public class BlockBeeBurrowSpruceStripped extends Block {
 
@@ -40,8 +41,26 @@ public class BlockBeeBurrowSpruceStripped extends Block {
         setHarvestLevel("axe", 0);
     }
 
-    public Item getItemDropped(int meta, Random random, int fortune) {
-        return ModItems.carpenter_bee;
+    @Override
+    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int meta, int fortune) {
+        ArrayList<ItemStack> drops = new ArrayList<>();
+        drops.add(new ItemStack(ModItems.carpenter_bee));
+
+        Random random = new Random();
+
+        if (random.nextFloat() < 0.1f) {
+            int honeycombCount = random.nextInt(3);
+            if (honeycombCount > 0) {
+                drops.add(new ItemStack(ModItems.honeycomb, honeycombCount));
+            }
+        }
+        if (random.nextFloat() < 0.3f) {
+            int waxcombCount = random.nextInt(3);
+            if (waxcombCount > 0) {
+                drops.add(new ItemStack(ModItems.waxcomb, waxcombCount));
+            }
+        }
+        return drops;
     }
 
     @SideOnly(Side.CLIENT)
@@ -107,11 +126,11 @@ public class BlockBeeBurrowSpruceStripped extends Block {
     }
 
     public void onBlockPlacedBy(World worldIn, int x, int y, int z, EntityLivingBase placer, ItemStack itemIn) {
-        int l = MathHelper.floor_double((double)(placer.rotationYaw * 4.0F / 360.0F) + 2.5D) & 3;
+        int l = MathHelper.floor_double((double) (placer.rotationYaw * 4.0F / 360.0F) + 2.5D) & 3;
         worldIn.setBlockMetadataWithNotify(x, y, z, l, 2);
     }
 
-    protected boolean canSilkHarvest () {
+    protected boolean canSilkHarvest() {
         return false;
     }
 

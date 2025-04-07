@@ -1,6 +1,5 @@
 package darkbum.saltymod.dispenser;
 
-import darkbum.saltymod.init.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.dispenser.BehaviorDefaultDispenseItem;
@@ -12,7 +11,10 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
+import darkbum.saltymod.init.ModBlocks;
+
 public class DispenserBehaviorSaltPinch implements IBehaviorDispenseItem {
+
     public ItemStack dispense(IBlockSource source, ItemStack stack) {
         World world = source.getWorld();
         EnumFacing enumfacing = BlockDispenser.func_149937_b(source.getBlockMetadata());
@@ -53,17 +55,20 @@ public class DispenserBehaviorSaltPinch implements IBehaviorDispenseItem {
                 stack.splitStack(1);
                 chek = true;
             }
-        } else if (blockFase != ModBlocks.salt_dirt && (soil != ModBlocks.salt_dirt || (
-            !world.isAirBlock(x, y, z) && blockFase != ModBlocks.saltworts))) {
-            BehaviorDefaultDispenseItem.doDispense(world, stack.splitStack(1), 1, enumfacing, iposition);
-            chek = true;
-        }
+        } else if (blockFase != ModBlocks.salt_dirt
+            && (soil != ModBlocks.salt_dirt || (!world.isAirBlock(x, y, z) && blockFase != ModBlocks.saltworts))) {
+                BehaviorDefaultDispenseItem.doDispense(world, stack.splitStack(1), 1, enumfacing, iposition);
+                chek = true;
+            }
         if (chek) {
-            source.getWorld().playAuxSFX(1000, x, y, z, 0);
+            source.getWorld()
+                .playAuxSFX(1000, x, y, z, 0);
         } else {
-            source.getWorld().playAuxSFX(1001, x, y, z, 0);
+            source.getWorld()
+                .playAuxSFX(1001, x, y, z, 0);
         }
-        source.getWorld().playAuxSFX(2000, x, y, z, enumfacing.getFrontOffsetX() + 1 + (enumfacing.getFrontOffsetZ() + 1) * 3);
+        source.getWorld()
+            .playAuxSFX(2000, x, y, z, enumfacing.getFrontOffsetX() + 1 + (enumfacing.getFrontOffsetZ() + 1) * 3);
         return stack;
     }
 }

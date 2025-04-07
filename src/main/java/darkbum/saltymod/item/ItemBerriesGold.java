@@ -1,7 +1,7 @@
 package darkbum.saltymod.item;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -12,9 +12,11 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
-import java.util.List;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemBerriesGold extends ItemFood {
+
     public ItemBerriesGold(int amount, float saturation, boolean dogFood) {
         super(amount, saturation, dogFood);
         this.setHasSubtypes(true);
@@ -35,7 +37,7 @@ public class ItemBerriesGold extends ItemFood {
         }
         if (itemStack.getItemDamage() > 0) {
             if (!world.isRemote) {
-                player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 300,3));
+                player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 300, 3));
                 player.addPotionEffect(new PotionEffect(Potion.field_76444_x.id, 1200, 3));
                 player.addPotionEffect(new PotionEffect(Potion.resistance.id, 3000, 0));
                 player.addPotionEffect(new PotionEffect(Potion.fireResistance.id, 3000, 0));

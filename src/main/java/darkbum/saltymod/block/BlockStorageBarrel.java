@@ -1,7 +1,7 @@
 package darkbum.saltymod.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -11,10 +11,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 
-import java.util.List;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import darkbum.saltymod.configuration.configs.ModConfigurationItems;
 
 public class BlockStorageBarrel extends Block {
-    public static final String[] types = new String[] {"cod", "salmon", "clownfish", "tailor", "pufferfish"};
+
+    public static final String[] types = new String[] { "cod", "salmon", "clownfish", "tailor", "pufferfish" };
 
     @SideOnly(Side.CLIENT)
     private IIcon BOTTOM;
@@ -49,6 +52,7 @@ public class BlockStorageBarrel extends Block {
     @Override
     public void getSubBlocks(Item block, CreativeTabs creativeTabs, List list) {
         for (int i = 0; i < types.length; ++i) {
+            if (i == 3 && !ModConfigurationItems.enableTailor) continue;
             list.add(new ItemStack(block, 1, i));
         }
     }
@@ -57,30 +61,25 @@ public class BlockStorageBarrel extends Block {
 
         meta = MathHelper.clamp_int(meta, 0, 5);
 
-        if(side > 0) {
+        if (side > 0) {
             if (meta == 0) {
-                if (side == 1)
-                    return this.COD;
+                if (side == 1) return this.COD;
                 return this.SIDE;
             }
             if (meta == 1) {
-                if (side == 1)
-                    return this.SALMON;
+                if (side == 1) return this.SALMON;
                 return this.SIDE;
             }
             if (meta == 2) {
-                if (side == 1)
-                    return this.CLOWNFISH;
+                if (side == 1) return this.CLOWNFISH;
                 return this.SIDE;
             }
             if (meta == 3) {
-                if (side == 1)
-                    return this.TAILOR;
+                if (side == 1) return this.TAILOR;
                 return this.SIDE;
             }
             if (meta == 4) {
-                if (side == 1)
-                    return this.PUFFERFISH;
+                if (side == 1) return this.PUFFERFISH;
                 return this.SIDE;
             }
         }

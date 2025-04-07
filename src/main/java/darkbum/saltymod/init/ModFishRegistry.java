@@ -1,17 +1,21 @@
 package darkbum.saltymod.init;
 
-import darkbum.saltymod.init.ModItems;
-import net.minecraft.entity.projectile.EntityFishHook;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.WeightedRandomFishable;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.entity.projectile.EntityFishHook;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.WeightedRandomFishable;
+
+import darkbum.saltymod.configuration.configs.ModConfigurationItems;
+
 public class ModFishRegistry {
+
     public static void registerItems() {
-        normalFishLoot(new ItemStack(ModItems.tailor, 1, 0), 100);
+        if (ModConfigurationItems.enableTailor) {
+            normalFishLoot(new ItemStack(ModItems.tailor, 1, 0), 100);
+        }
     }
 
     public static void normalFishLoot(ItemStack item, int weight) {
@@ -30,7 +34,7 @@ public class ModFishRegistry {
         Field modifiers = Field.class.getDeclaredField("modifiers");
         modifiers.setAccessible(true);
         modifiers.setInt(field, field.getModifiers() & 0xFFFFFFEF);
-        return (List)field.get(field);
+        return (List) field.get(field);
     }
 
     private static void setStaticFinalList(Field field, Object object) throws Exception {

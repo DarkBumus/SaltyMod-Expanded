@@ -31,7 +31,7 @@ tile.salt_slab.block.name=Salt Slab
 tile.salt_slab.brick.name=Salt Brick Slab
 tile.salt_slab.pillar.name=Salt Pillar Slab
 tile.salt_lamp.name=Salt Lamp
-tile.salt_grass.name=Salt Grass
+tile.salt_grass.name=Salt Grass Block
 tile.salt_dirt_lite.name=Light Salt Dirt
 tile.salt_dirt_lake.name=Salt Lake Bottom
 tile.salt_dirt.name=Salt Dirt
@@ -50,9 +50,19 @@ container.evaporator=Evaporator
 container.discard=Discard
 fluid.milk=Milk
 tile.fish_farm.name=Fish Farm
+container.fish_farm=Fish Farm
+tile.bee_nest_temperate.name=Bee Nest
+tile.bee_nest_boreal.name=Bee Nest
 tile.bee_burrow_spruce.name=Spruce Burrow
 tile.bee_burrow_spruce_stripped.name=Stripped Spruce Burrow
+tile.bee_burrow_birch.name=Birch Burrow
+tile.bee_burrow_birch_stripped.name=Stripped Birch Burrow
 tile.apiary.name=Apiary
+container.apiary=Apiary
+
+tile.heater.name=Heater
+tile.press.name=Press
+container.press=Press
 
 tile.storage_crate_carrot.name=Carrot Crate
 tile.storage_crate_potato.name=Potato Crate
@@ -104,8 +114,10 @@ item.bee_larva.name=Bee Larva
 item.honey_bee.name=Honey Bee
 item.carpenter_bee.name=Carpenter Bee
 item.regal_bee.name=Regal Bee
+item.boreal_bee.name=Boreal Bee
 item.waxcomb.name=Waxcomb
 item.honeycomb.name=Honeycomb
+item.frozen_honey.name=Frozen Honey
 item.royal_jelly.name=Royal Jelly
 
 item.mineral_mud_ball.name=Mineral Mud Ball
@@ -270,6 +282,11 @@ item.bop_salt_veggie_salad.name=Salted Veggie Salad
 item.bop_salt_shroom_salad.name=Salted Shroom Salad
 item.bop_salt_rice_bowl.name=Salted Bowl of Rice
 item.bop_pickled_turnip.name=Pickled Turnip
+
+
+# ENTITIES
+
+
 
 
 # ACHIEVEMENTS

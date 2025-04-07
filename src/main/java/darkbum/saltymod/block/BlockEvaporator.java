@@ -1,10 +1,7 @@
 package darkbum.saltymod.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Random;
 
-import darkbum.saltymod.init.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -27,11 +24,16 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidHandler;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.SaltyMod;
 import darkbum.saltymod.common.ClientProxy;
+import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.tileentity.TileEntityEvaporator;
 
 public class BlockEvaporator extends BlockContainer {
+
     @SideOnly(Side.CLIENT)
     private IIcon TOP;
 
@@ -71,7 +73,8 @@ public class BlockEvaporator extends BlockContainer {
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1) {
         this.SIDE = par1.registerIcon("furnace_side");
-        this.blockIcon = par1.registerIcon(this.isActive ? "saltymod:evaporator_front_on" : "saltymod:evaporator_front_off");
+        this.blockIcon = par1
+            .registerIcon(this.isActive ? "saltymod:evaporator_front_on" : "saltymod:evaporator_front_off");
         this.TOP = par1.registerIcon("saltymod:evaporator_top");
         this.BOTTOM = par1.registerIcon("furnace_top");
     }
@@ -92,38 +95,35 @@ public class BlockEvaporator extends BlockContainer {
             Block block2 = world.getBlock(x - 1, y, z);
             Block block3 = world.getBlock(x + 1, y, z);
             byte b0 = 3;
-            if (block.func_149730_j() && !block1.func_149730_j())
-                b0 = 3;
-            if (block1.func_149730_j() && !block.func_149730_j())
-                b0 = 2;
-            if (block2.func_149730_j() && !block3.func_149730_j())
-                b0 = 5;
-            if (block3.func_149730_j() && !block2.func_149730_j())
-                b0 = 4;
+            if (block.func_149730_j() && !block1.func_149730_j()) b0 = 3;
+            if (block1.func_149730_j() && !block.func_149730_j()) b0 = 2;
+            if (block2.func_149730_j() && !block3.func_149730_j()) b0 = 5;
+            if (block3.func_149730_j() && !block2.func_149730_j()) b0 = 4;
             world.setBlockMetadataWithNotify(x, y, z, b0, 2);
         }
     }
 
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
-        if (world.isRemote)
-            return true;
-        TileEntityEvaporator te = (TileEntityEvaporator)world.getTileEntity(x, y, z);
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7,
+        float par8, float par9) {
+        if (world.isRemote) return true;
+        TileEntityEvaporator te = (TileEntityEvaporator) world.getTileEntity(x, y, z);
         if (te != null) {
             ItemStack itemstack = player.inventory.getCurrentItem();
-            if (!fillTank(world, x, y, z, te, itemstack, player) &&
-                !drainTank(world, x, y, z, te, itemstack, player))
+            if (!fillTank(world, x, y, z, te, itemstack, player) && !drainTank(world, x, y, z, te, itemstack, player))
                 player.openGui(SaltyMod.instance, 0, world, x, y, z);
         }
         return true;
     }
 
-    public static boolean fillTank(World world, int x, int y, int z, IFluidHandler tank, ItemStack held, EntityPlayer player) {
+    public static boolean fillTank(World world, int x, int y, int z, IFluidHandler tank, ItemStack held,
+        EntityPlayer player) {
         if (held != null) {
             FluidStack heldContents = FluidContainerRegistry.getFluidForFilledItem(held);
             if (heldContents != null && held.getItem() != Items.potionitem) {
                 int used = tank.fill(ForgeDirection.UNKNOWN, heldContents, true);
                 if (used > 0) {
-                    ItemStack consumed = held.getItem().getContainerItem(held);
+                    ItemStack consumed = held.getItem()
+                        .getContainerItem(held);
                     if (consumed != null && !player.capabilities.isCreativeMode)
                         playerInvChange(world, x, y, z, held, player, consumed);
                     return true;
@@ -141,22 +141,23 @@ public class BlockEvaporator extends BlockContainer {
         return false;
     }
 
-    private boolean drainTank(World world, int x, int y, int z, IFluidHandler tank, ItemStack held, EntityPlayer player) {
+    private boolean drainTank(World world, int x, int y, int z, IFluidHandler tank, ItemStack held,
+        EntityPlayer player) {
         if (held != null) {
             FluidStack heldContents = FluidContainerRegistry.getFluidForFilledItem(held);
             FluidStack available = tank.drain(ForgeDirection.UNKNOWN, 2147483647, false);
             if (available != null) {
                 ItemStack filled = FluidContainerRegistry.fillFluidContainer(available, held);
                 heldContents = FluidContainerRegistry.getFluidForFilledItem(filled);
-                if (available.getFluid() == FluidRegistry.WATER && held.getItem() == Items.glass_bottle && available.amount >= 333) {
+                if (available.getFluid() == FluidRegistry.WATER && held.getItem() == Items.glass_bottle
+                    && available.amount >= 333) {
                     if (!player.capabilities.isCreativeMode)
                         playerInvChange(world, x, y, z, held, player, new ItemStack(Items.potionitem));
                     tank.drain(ForgeDirection.UNKNOWN, 333, true);
                     return true;
                 }
                 if (heldContents != null) {
-                    if (!player.capabilities.isCreativeMode)
-                        playerInvChange(world, x, y, z, held, player, filled);
+                    if (!player.capabilities.isCreativeMode) playerInvChange(world, x, y, z, held, player, filled);
                     tank.drain(ForgeDirection.UNKNOWN, heldContents.amount, true);
                     return true;
                 }
@@ -165,23 +166,24 @@ public class BlockEvaporator extends BlockContainer {
         return false;
     }
 
-    private static void playerInvChange(World world, int x, int y, int z, ItemStack held, EntityPlayer player, ItemStack stack) {
-        if (--held.stackSize <= 0)
-            player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+    private static void playerInvChange(World world, int x, int y, int z, ItemStack held, EntityPlayer player,
+        ItemStack stack) {
+        if (--held.stackSize <= 0) player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
         if (player.inventory.getCurrentItem() != null) {
             if (!player.inventory.addItemStackToInventory(stack)) {
                 world.spawnEntityInWorld(new EntityItem(world, x + 0.5D, y + 1.5D, z + 0.5D, stack));
             } else if (player instanceof EntityPlayerMP) {
-                ((EntityPlayerMP)player).sendContainerToPlayer(player.inventoryContainer);
+                ((EntityPlayerMP) player).sendContainerToPlayer(player.inventoryContainer);
             }
         } else {
             player.inventory.setInventorySlotContents(player.inventory.currentItem, stack);
             if (player instanceof EntityPlayerMP)
-                ((EntityPlayerMP)player).sendContainerToPlayer(player.inventoryContainer);
+                ((EntityPlayerMP) player).sendContainerToPlayer(player.inventoryContainer);
         }
     }
 
-    public static void updateEvaporatorBlockState(boolean burning, boolean evaporator, World world, int x, int y, int z) {
+    public static void updateEvaporatorBlockState(boolean burning, boolean evaporator, World world, int x, int y,
+        int z) {
         int l = world.getBlockMetadata(x, y, z);
         TileEntity tileentity = world.getTileEntity(x, y, z);
         isBurning = true;
@@ -208,21 +210,17 @@ public class BlockEvaporator extends BlockContainer {
 
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack itemStack) {
         int l = MathHelper.floor_double((entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 0x3;
-        if (l == 0)
-            world.setBlockMetadataWithNotify(x, y, z, 2, 2);
-        if (l == 1)
-            world.setBlockMetadataWithNotify(x, y, z, 5, 2);
-        if (l == 2)
-            world.setBlockMetadataWithNotify(x, y, z, 3, 2);
-        if (l == 3)
-            world.setBlockMetadataWithNotify(x, y, z, 4, 2);
+        if (l == 0) world.setBlockMetadataWithNotify(x, y, z, 2, 2);
+        if (l == 1) world.setBlockMetadataWithNotify(x, y, z, 5, 2);
+        if (l == 2) world.setBlockMetadataWithNotify(x, y, z, 3, 2);
+        if (l == 3) world.setBlockMetadataWithNotify(x, y, z, 4, 2);
         if (itemStack.hasDisplayName())
-            ((TileEntityEvaporator)world.getTileEntity(x, y, z)).func_145951_a(itemStack.getDisplayName());
+            ((TileEntityEvaporator) world.getTileEntity(x, y, z)).func_145951_a(itemStack.getDisplayName());
     }
 
     public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
         if (!isBurning) {
-            TileEntityEvaporator TileEntitySaltEvaporator = (TileEntityEvaporator)world.getTileEntity(x, y, z);
+            TileEntityEvaporator TileEntitySaltEvaporator = (TileEntityEvaporator) world.getTileEntity(x, y, z);
             if (TileEntitySaltEvaporator != null) {
                 for (int i1 = 0; i1 < TileEntitySaltEvaporator.getSizeInventory(); i1++) {
                     ItemStack itemstack = TileEntitySaltEvaporator.getStackInSlot(i1);
@@ -232,16 +230,22 @@ public class BlockEvaporator extends BlockContainer {
                         float f2 = this.random.nextFloat() * 0.8F + 0.1F;
                         while (itemstack.stackSize > 0) {
                             int j1 = this.random.nextInt(21) + 10;
-                            if (j1 > itemstack.stackSize)
-                                j1 = itemstack.stackSize;
+                            if (j1 > itemstack.stackSize) j1 = itemstack.stackSize;
                             itemstack.stackSize -= j1;
-                            EntityItem entityitem = new EntityItem(world, (x + f), (y + f1), (z + f2), new ItemStack(itemstack.getItem(), j1, itemstack.getItemDamage()));
-                            if (itemstack.hasTagCompound())
-                                entityitem.getEntityItem().setTagCompound((NBTTagCompound)itemstack.getTagCompound().copy());
+                            EntityItem entityitem = new EntityItem(
+                                world,
+                                (x + f),
+                                (y + f1),
+                                (z + f2),
+                                new ItemStack(itemstack.getItem(), j1, itemstack.getItemDamage()));
+                            if (itemstack.hasTagCompound()) entityitem.getEntityItem()
+                                .setTagCompound(
+                                    (NBTTagCompound) itemstack.getTagCompound()
+                                        .copy());
                             float f3 = 0.05F;
-                            entityitem.motionX = ((float)this.random.nextGaussian() * f3);
-                            entityitem.motionY = ((float)this.random.nextGaussian() * f3 + 0.2F);
-                            entityitem.motionZ = ((float)this.random.nextGaussian() * f3);
+                            entityitem.motionX = ((float) this.random.nextGaussian() * f3);
+                            entityitem.motionY = ((float) this.random.nextGaussian() * f3 + 0.2F);
+                            entityitem.motionZ = ((float) this.random.nextGaussian() * f3);
                             world.spawnEntityInWorld(entityitem);
                         }
                     }
@@ -265,7 +269,8 @@ public class BlockEvaporator extends BlockContainer {
             double f6 = (z + random.nextFloat() * 0.4F + 0.3F);
             double f7 = (x + random.nextFloat());
             double f8 = (z + random.nextFloat());
-            boolean clear = (!world.isSideSolid(x, y + 1, z, ForgeDirection.DOWN) && FluidRegistry.lookupFluidForBlock(world.getBlock(x, y + 1, z)) == null);
+            boolean clear = (!world.isSideSolid(x, y + 1, z, ForgeDirection.DOWN)
+                && FluidRegistry.lookupFluidForBlock(world.getBlock(x, y + 1, z)) == null);
             boolean ceiling = world.isSideSolid(x, y + 2, z, ForgeDirection.DOWN);
             if (l == 4) {
                 world.spawnParticle("smoke", (f - f3), f1, (f2 + f4), 0.0D, 0.0D, 0.0D);
@@ -295,7 +300,7 @@ public class BlockEvaporator extends BlockContainer {
     }
 
     public int getComparatorInputOverride(World world, int x, int y, int z, int side) {
-        TileEntityEvaporator te = (TileEntityEvaporator)world.getTileEntity(x, y, z);
+        TileEntityEvaporator te = (TileEntityEvaporator) world.getTileEntity(x, y, z);
         return (te.tank.getFluid() != null) ? te.getFluidAmountScaled(15) : 0;
     }
 

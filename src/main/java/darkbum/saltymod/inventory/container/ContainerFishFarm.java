@@ -1,13 +1,14 @@
 package darkbum.saltymod.inventory.container;
 
-import darkbum.saltymod.init.ModItems;
-import darkbum.saltymod.tileentity.TileEntityFishFarm;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+
+import darkbum.saltymod.init.ModItems;
+import darkbum.saltymod.tileentity.TileEntityFishFarm;
 
 public class ContainerFishFarm extends Container {
 
@@ -22,8 +23,8 @@ public class ContainerFishFarm extends Container {
     public ContainerFishFarm(InventoryPlayer inventoryPlayer, TileEntityFishFarm tileEntityFishFarm) {
         this.fishfarm = tileEntityFishFarm;
         for (int x = 0; x < 6; x++) {
-            for (int y = 0; y < 3; y++)
-                addSlotToContainer(new SlotFishFarm(inventoryPlayer.player, tileEntityFishFarm, y + x * 3, 62 + 18 * x, 17 + 18 * y));
+            for (int y = 0; y < 3; y++) addSlotToContainer(
+                new SlotFarmOutput(inventoryPlayer.player, tileEntityFishFarm, y + x * 3, 62 + 18 * x, 17 + 18 * y));
         }
         addSlotToContainer(new SlotFishFarmFuel(inventoryPlayer.player, tileEntityFishFarm, 18, 26, 35));
         int i;
@@ -31,8 +32,7 @@ public class ContainerFishFarm extends Container {
             for (int j = 0; j < 9; j++)
                 addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
         }
-        for (i = 0; i < 9; i++)
-            addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 142));
+        for (i = 0; i < 9; i++) addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 142));
     }
 
     public boolean canInteractWith(EntityPlayer player) {
@@ -63,11 +63,9 @@ public class ContainerFishFarm extends Container {
             itemStack = slotStack.copy();
             if (slotIndex >= 19) {
                 if (slotStack.getItem() == ModItems.fish_bait) {
-                    if (!mergeItemStack(slotStack, 18, 19, false))
-                        return null;
+                    if (!mergeItemStack(slotStack, 18, 19, false)) return null;
                 } else if (slotIndex >= 19 && slotIndex < 46) {
-                    if (!mergeItemStack(slotStack, 46, 55, false))
-                        return null;
+                    if (!mergeItemStack(slotStack, 46, 55, false)) return null;
                 } else if (slotIndex >= 46 && slotIndex < 55 && !mergeItemStack(slotStack, 19, 46, false)) {
                     return null;
                 }
@@ -79,8 +77,7 @@ public class ContainerFishFarm extends Container {
             } else {
                 slot.onSlotChanged();
             }
-            if (slotStack.stackSize == itemStack.stackSize)
-                return null;
+            if (slotStack.stackSize == itemStack.stackSize) return null;
             slot.onPickupFromSlot(entityPlayer, slotStack);
         }
         return itemStack;

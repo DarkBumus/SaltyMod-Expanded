@@ -1,12 +1,13 @@
 package darkbum.saltymod.potion;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.configuration.ModConfiguration;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import darkbum.saltymod.configuration.configs.ModConfigurationEffects;
 
 public class ModPotion extends Potion {
 
@@ -14,7 +15,8 @@ public class ModPotion extends Potion {
         super(id, isBad, color);
     }
 
-    private static final ResourceLocation POTION_ICONS = new ResourceLocation("saltymod:textures/gui/container/potions.png");
+    private static final ResourceLocation POTION_ICONS = new ResourceLocation(
+        "saltymod:textures/gui/container/potions.png");
 
     public static final DamageSource swarmedDamage = new DamageSource("beesDamage").setDamageBypassesArmor();
 
@@ -24,8 +26,8 @@ public class ModPotion extends Potion {
 
     public static void init() {
 
-        swarmed = new PotionSwarmed(ModConfiguration.swarmedEffectID, true, 0x000000);
-        wellFed = new PotionWellFed(ModConfiguration.wellFedEffectID, false, 0xFFD32D);
+        swarmed = new PotionSwarmed(ModConfigurationEffects.swarmedEffectID, true, 0x000000);
+        wellFed = new PotionWellFed(ModConfigurationEffects.wellFedEffectID, false, 0xFFD32D);
     }
 
     @SideOnly(Side.CLIENT)
@@ -35,7 +37,8 @@ public class ModPotion extends Potion {
 
     @SideOnly(Side.CLIENT)
     public void renderInventoryEffect(int x, int y, PotionEffect effect, net.minecraft.client.Minecraft mc) {
-        mc.getTextureManager().bindTexture(POTION_ICONS);
+        mc.getTextureManager()
+            .bindTexture(POTION_ICONS);
         int l = getStatusIconIndex();
         mc.currentScreen.drawTexturedModalRect(x + 6, y + 7, l % 14 * 18, l / 14 * 18, 18, 18);
     }

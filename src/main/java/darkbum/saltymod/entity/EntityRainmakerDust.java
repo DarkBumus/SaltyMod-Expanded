@@ -1,21 +1,23 @@
 package darkbum.saltymod.entity;
 
-import darkbum.saltymod.api.RainMakerEvent;
-import darkbum.saltymod.configuration.ModConfiguration;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 
+import darkbum.saltymod.api.RainMakerEvent;
+import darkbum.saltymod.configuration.configs.ModConfigurationOther;
+
 public class EntityRainmakerDust extends Entity {
+
     private int lifeTime;
 
     private boolean rain = false;
 
     private EntityPlayer player;
 
-    private int cloud = ModConfiguration.cloudLevel.getOrDefault(this.worldObj.provider.dimensionId, 128);
+    private int cloud = ModConfigurationOther.cloudLevel.getOrDefault(this.worldObj.provider.dimensionId, 128);
 
     public EntityRainmakerDust(World world) {
         super(world);
@@ -38,11 +40,17 @@ public class EntityRainmakerDust extends Entity {
             double z = this.posZ + this.rand.nextGaussian() * this.lifeTime / 25.0D;
             this.worldObj.spawnParticle("fireworksSpark", x, y, z, 0.0D, 0.0D, 0.0D);
         }
-        if (!this.worldObj.isRemote && this.lifeTime > 200 && this.posY >= this.cloud && !this.rain && !this.worldObj.getWorldInfo().isThundering()) {
+        if (!this.worldObj.isRemote && this.lifeTime > 200
+            && this.posY >= this.cloud
+            && !this.rain
+            && !this.worldObj.getWorldInfo()
+                .isThundering()) {
             if (this.rand.nextInt(5) == 0 || this.worldObj.isRaining()) {
-                MinecraftForge.EVENT_BUS.post(new RainMakerEvent(this.worldObj, this.posX, this.posY, this.posZ, this.player, true));
+                MinecraftForge.EVENT_BUS
+                    .post(new RainMakerEvent(this.worldObj, this.posX, this.posY, this.posZ, this.player, true));
             } else {
-                MinecraftForge.EVENT_BUS.post(new RainMakerEvent(this.worldObj, this.posX, this.posY, this.posZ, this.player, false));
+                MinecraftForge.EVENT_BUS
+                    .post(new RainMakerEvent(this.worldObj, this.posX, this.posY, this.posZ, this.player, false));
             }
             this.rain = true;
         }

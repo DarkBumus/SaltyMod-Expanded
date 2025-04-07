@@ -1,7 +1,7 @@
 package darkbum.saltymod.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -11,10 +11,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 
-import java.util.List;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockStorageSack extends Block {
-    public static final String[] types = new String[] {"wheatseeds", "melonseeds", "pumpkinseeds", "saltwort", "beetrootseeds"};
+
+    public static final String[] types = new String[] { "wheatseeds", "melonseeds", "pumpkinseeds", "saltwort",
+        "beetrootseeds" };
 
     @SideOnly(Side.CLIENT)
     private IIcon BOTTOM;
@@ -37,7 +41,6 @@ public class BlockStorageSack extends Block {
     @SideOnly(Side.CLIENT)
     private IIcon BEETROOTSEEDS;
 
-
     public BlockStorageSack(String name, CreativeTabs tab) {
         super(Material.cloth);
         setBlockName(name);
@@ -48,9 +51,11 @@ public class BlockStorageSack extends Block {
     }
 
     @Override
-    public void getSubBlocks(Item block, CreativeTabs creativeTabs, List list) {
-        for (int i = 0; i < types.length; ++i) {
-            list.add(new ItemStack(block, 1, i));
+    @SideOnly(Side.CLIENT)
+    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+        for (int i = 0; i < 5; ++i) {
+            if (i == 4 && !Loader.isModLoaded("etfuturum")) continue;
+            list.add(new ItemStack(item, 1, i));
         }
     }
 
@@ -58,30 +63,25 @@ public class BlockStorageSack extends Block {
 
         meta = MathHelper.clamp_int(meta, 0, 4);
 
-        if(side > 0) {
+        if (side > 0) {
             if (meta == 0) {
-                if (side == 1)
-                    return this.WHEATSEEDS;
+                if (side == 1) return this.WHEATSEEDS;
                 return this.SIDE;
             }
             if (meta == 1) {
-                if (side == 1)
-                    return this.MELONSEEDS;
+                if (side == 1) return this.MELONSEEDS;
                 return this.SIDE;
             }
             if (meta == 2) {
-                if (side == 1)
-                    return this.PUMPKINSEEDS;
+                if (side == 1) return this.PUMPKINSEEDS;
                 return this.SIDE;
             }
             if (meta == 3) {
-                if (side == 1)
-                    return this.SALTWORT;
+                if (side == 1) return this.SALTWORT;
                 return this.SIDE;
             }
             if (meta == 4) {
-                if (side == 1)
-                    return this.BEETROOTSEEDS;
+                if (side == 1) return this.BEETROOTSEEDS;
                 return this.SIDE;
             }
         }

@@ -1,15 +1,18 @@
 package darkbum.saltymod.block.renderer;
 
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import darkbum.saltymod.common.ClientProxy;
-import darkbum.saltymod.init.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
+
 import org.lwjgl.opengl.GL11;
 
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import darkbum.saltymod.common.ClientProxy;
+import darkbum.saltymod.init.ModBlocks;
+
 public class SaltGrassRenderer implements ISimpleBlockRenderingHandler {
+
     public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
         Tessellator tessellator = Tessellator.instance;
         GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
@@ -40,7 +43,8 @@ public class SaltGrassRenderer implements ISimpleBlockRenderingHandler {
         GL11.glTranslatef(0.5F, 0.5F, 0.5F);
     }
 
-    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+        RenderBlocks renderer) {
         renderer.renderStandardBlock(block, x, y, z);
         renderer.renderStandardBlock(ModBlocks.grass_top, x, y, z);
         return true;

@@ -1,18 +1,20 @@
 package darkbum.saltymod.init;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import darkbum.saltymod.configuration.ModConfiguration;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFishFood;
 import net.minecraft.item.ItemFood;
 import net.minecraft.potion.Potion;
 
+import cpw.mods.fml.common.registry.GameRegistry;
+import darkbum.saltymod.configuration.configs.ModConfigurationModCompatibility;
+import darkbum.saltymod.configuration.configs.ModConfigurationVanillaChanges;
+
 public class ModExternalFoodValueRegistry {
 
     public static void init() {
 
-        if(ModConfiguration.enableVanillaFoodValueChanges) {
+        if (ModConfigurationVanillaChanges.enableVanillaFoodValueChanges) {
 
             ItemFood apple = (ItemFood) Items.apple;
             apple.healAmount = 2;
@@ -105,7 +107,7 @@ public class ModExternalFoodValueRegistry {
             pumpkin_pie.saturationModifier = 0.9F;
         }
 
-        if(ModConfiguration.enableEFRFoodValueChanges) {
+        if (ModConfigurationModCompatibility.enableEFRFoodValueChanges) {
 
             Item raw_mutton = GameRegistry.findItem("etfuturum", "raw_mutton");
             if (raw_mutton instanceof ItemFood) {

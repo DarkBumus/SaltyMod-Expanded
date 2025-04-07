@@ -2,9 +2,6 @@ package darkbum.saltymod.tileentity;
 
 import java.util.Random;
 
-import darkbum.saltymod.configuration.ModConfiguration;
-import darkbum.saltymod.init.ModBlocks;
-import darkbum.saltymod.init.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -18,7 +15,14 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import darkbum.saltymod.configuration.configs.ModConfigurationBlocks;
+import darkbum.saltymod.init.ModBlocks;
+import darkbum.saltymod.init.ModItems;
+
 public class TileEntityFishFarm extends TileEntity implements IInventory {
+
+    private String inventoryName;
+
     private ItemStack[] inventory = new ItemStack[19];
 
     public int runTime = 0;
@@ -26,6 +30,14 @@ public class TileEntityFishFarm extends TileEntity implements IInventory {
     public int currentFuelRunTime = 0;
 
     public int produceTime = 0;
+
+    public String getInventoryName() {
+        return hasCustomInventoryName() ? this.inventoryName : "container.fish_farm";
+    }
+
+    public boolean hasCustomInventoryName() {
+        return (this.inventoryName != null && !this.inventoryName.isEmpty());
+    }
 
     public int getSizeInventory() {
         return this.inventory.length;
@@ -46,16 +58,14 @@ public class TileEntityFishFarm extends TileEntity implements IInventory {
             return itemStack;
         }
         ItemStack stack = this.inventory[slot].splitStack(amount);
-        if ((this.inventory[slot]).stackSize <= 0)
-            setInventorySlotContents(slot, null);
+        if ((this.inventory[slot]).stackSize <= 0) setInventorySlotContents(slot, null);
         markDirty();
         return stack;
     }
 
     public void setInventorySlotContents(int slot, ItemStack stack) {
         this.inventory[slot] = stack;
-        if (stack != null && stack.stackSize > getInventoryStackLimit())
-            stack.stackSize = getInventoryStackLimit();
+        if (stack != null && stack.stackSize > getInventoryStackLimit()) stack.stackSize = getInventoryStackLimit();
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
@@ -75,13 +85,13 @@ public class TileEntityFishFarm extends TileEntity implements IInventory {
 
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
-        nbt.setShort("RunTime", (short)this.runTime);
-        nbt.setShort("ProduceTime", (short)this.produceTime);
+        nbt.setShort("RunTime", (short) this.runTime);
+        nbt.setShort("ProduceTime", (short) this.produceTime);
         NBTTagList intTag = new NBTTagList();
         for (int i = 0; i < this.inventory.length; i++) {
             if (this.inventory[i] != null) {
                 NBTTagCompound stackTag = new NBTTagCompound();
-                stackTag.setByte("Slot", (byte)i);
+                stackTag.setByte("Slot", (byte) i);
                 this.inventory[i].writeToNBT(stackTag);
                 intTag.appendTag(stackTag);
             }
@@ -95,19 +105,22 @@ public class TileEntityFishFarm extends TileEntity implements IInventory {
 
     public int getRunTime() {
         byte radius = 2;
-        int speed = ModConfiguration.fishFarmSpeed;
+        int speed = ModConfigurationBlocks.fishFarmSpeed;
         World world = this.worldObj;
         int varX = this.xCoord;
         int varY = this.yCoord;
         int varZ = this.zCoord;
         for (int offsetX = -radius; offsetX <= radius; offsetX++) {
             for (int offsetZ = -radius; offsetZ <= radius; offsetZ++) {
-                if (offsetX * offsetX + offsetZ * offsetZ <= radius * radius && (offsetX != -(radius - 1) || offsetZ != -(radius - 1)) && (offsetX != radius - 1 || offsetZ != radius - 1) && (offsetX != radius - 1 || offsetZ != -(radius - 1)) && (offsetX != -(radius - 1) || offsetZ != radius - 1)) {
+                if (offsetX * offsetX + offsetZ * offsetZ <= radius * radius
+                    && (offsetX != -(radius - 1) || offsetZ != -(radius - 1))
+                    && (offsetX != radius - 1 || offsetZ != radius - 1)
+                    && (offsetX != radius - 1 || offsetZ != -(radius - 1))
+                    && (offsetX != -(radius - 1) || offsetZ != radius - 1)) {
                     Block blockAtCoords = world.getBlock(varX + offsetX, varY, varZ + offsetZ);
-                    if (blockAtCoords instanceof net.minecraft.block.BlockLiquid)
-                        speed = (int)(speed * 0.95D);
+                    if (blockAtCoords instanceof net.minecraft.block.BlockLiquid) speed = (int) (speed * 0.95D);
                     if (world.getBlock(varX + offsetX, varY, varZ + offsetZ) == ModBlocks.fish_farm)
-                        speed = (int)(speed / 0.85D);
+                        speed = (int) (speed / 0.85D);
                 }
             }
         }
@@ -123,10 +136,13 @@ public class TileEntityFishFarm extends TileEntity implements IInventory {
         int varZ = this.zCoord;
         for (int offsetX = -radius; offsetX <= radius; offsetX++) {
             for (int offsetZ = -radius; offsetZ <= radius; offsetZ++) {
-                if (offsetX * offsetX + offsetZ * offsetZ <= radius * radius && (offsetX != -(radius - 1) || offsetZ != -(radius - 1)) && (offsetX != radius - 1 || offsetZ != radius - 1) && (offsetX != radius - 1 || offsetZ != -(radius - 1)) && (offsetX != -(radius - 1) || offsetZ != radius - 1)) {
+                if (offsetX * offsetX + offsetZ * offsetZ <= radius * radius
+                    && (offsetX != -(radius - 1) || offsetZ != -(radius - 1))
+                    && (offsetX != radius - 1 || offsetZ != radius - 1)
+                    && (offsetX != radius - 1 || offsetZ != -(radius - 1))
+                    && (offsetX != -(radius - 1) || offsetZ != radius - 1)) {
                     Block blockAtCoords = world.getBlock(varX + offsetX, varY, varZ + offsetZ);
-                    if (blockAtCoords instanceof net.minecraft.block.BlockLiquid)
-                        count++;
+                    if (blockAtCoords instanceof net.minecraft.block.BlockLiquid) count++;
                 }
             }
         }
@@ -136,23 +152,23 @@ public class TileEntityFishFarm extends TileEntity implements IInventory {
     public void updateEntity() {
         boolean isRunning = (this.runTime > 0);
         boolean needsUpdate = false;
-        if (isRunning)
-            this.runTime--;
+        if (isRunning) this.runTime--;
         ItemStack farmFuel = this.inventory[18];
         if (!this.worldObj.isRemote) {
             if (this.runTime == 0 && canRun()) {
-                this
-                    .currentFuelRunTime = this.runTime = getRunTime(farmFuel);
+                this.currentFuelRunTime = this.runTime = getRunTime(farmFuel);
                 if (this.runTime > 0) {
                     needsUpdate = true;
                     if (farmFuel != null) {
-                        if (farmFuel.getItem().getContainerItem() != null) {
-                            farmFuel = new ItemStack(farmFuel.getItem().setFull3D());
+                        if (farmFuel.getItem()
+                            .getContainerItem() != null) {
+                            farmFuel = new ItemStack(
+                                farmFuel.getItem()
+                                    .setFull3D());
                         } else {
                             farmFuel.stackSize -= 0;
                         }
-                        if (farmFuel.stackSize == 0)
-                            farmFuel = null;
+                        if (farmFuel.stackSize == 0) farmFuel = null;
                     }
                 }
             }
@@ -166,8 +182,7 @@ public class TileEntityFishFarm extends TileEntity implements IInventory {
             } else {
                 this.produceTime = 0;
             }
-            if (isRunning != ((this.runTime > 0)))
-                needsUpdate = true;
+            if (isRunning != ((this.runTime > 0))) needsUpdate = true;
         }
         if (needsUpdate) {
             markDirty();
@@ -177,9 +192,7 @@ public class TileEntityFishFarm extends TileEntity implements IInventory {
 
     private boolean canRun() {
         if (this.inventory[18] != null) {
-            if (this.inventory[18].getItem() == ModItems.fish_bait)
-                if (currentSurroundings() >= 5)
-                    return true;
+            if (this.inventory[18].getItem() == ModItems.fish_bait) if (currentSurroundings() >= 5) return true;
         } else {
             return false;
         }
@@ -190,21 +203,21 @@ public class TileEntityFishFarm extends TileEntity implements IInventory {
         Random rnd = new Random();
         if (this.inventory[18] != null) {
             int i = rnd.nextInt(16);
-                switch (i) {
-                    case 0, 1, 2, 3, 4:
-                        return new ItemStack(Items.fish, 1, 0);
-                    case 5, 6, 7:
-                        return new ItemStack(Items.fish, 1, 1);
-                    case 8, 9:
-                        return new ItemStack(Items.fish, 1, 2);
-                    case 10:
-                        return new ItemStack(Items.fish, 1, 3);
-                    case 11, 12, 13:
-                        return new ItemStack(ModItems.tailor, 1, 0);
-                    case 14, 15:
-                        return new ItemStack(ModItems.calamari, 1, 0);
-                }
+            switch (i) {
+                case 0, 1, 2, 3, 4:
+                    return new ItemStack(Items.fish, 1, 0);
+                case 5, 6, 7:
+                    return new ItemStack(Items.fish, 1, 1);
+                case 8, 9:
+                    return new ItemStack(Items.fish, 1, 2);
+                case 10:
+                    return new ItemStack(Items.fish, 1, 3);
+                case 11, 12, 13:
+                    return new ItemStack(ModItems.tailor, 1, 0);
+                case 14, 15:
+                    return new ItemStack(ModItems.calamari, 1, 0);
             }
+        }
         return null;
     }
 
@@ -220,45 +233,21 @@ public class TileEntityFishFarm extends TileEntity implements IInventory {
     }
 
     int getRunTime(ItemStack stack) {
-        if (stack == null)
-            return 0;
-        if (stack.getItem() == ModItems.fish_bait)
-            return 3200;
+        if (stack == null) return 0;
+        if (stack.getItem() == ModItems.fish_bait) return 3200;
         return 0;
     }
 
     public boolean isUseableByPlayer(EntityPlayer player) {
-        if (this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this)
-            return false;
-        return
-            (player.getDistanceSq(this.xCoord + 0.5D, this.yCoord + 0.5D, this.zCoord + 0.5D) <= 64.0D);
+        if (this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this) return false;
+        return (player.getDistanceSq(this.xCoord + 0.5D, this.yCoord + 0.5D, this.zCoord + 0.5D) <= 64.0D);
     }
-
-    public void openChest() {}
-
-    public void closeChest() {}
 
     public ItemStack getStackInSlotOnClosing(int slot) {
         return null;
     }
 
-    public boolean isInvNameLocalized() {
-        return false;
-    }
-
-    public boolean isStackValidForSlot(int slot, ItemStack stack) {
-        return false;
-    }
-
     public boolean isItemValidForSlot(int slot, ItemStack stack) {
-        return false;
-    }
-
-    public String getInventoryName() {
-        return null;
-    }
-
-    public boolean hasCustomInventoryName() {
         return false;
     }
 

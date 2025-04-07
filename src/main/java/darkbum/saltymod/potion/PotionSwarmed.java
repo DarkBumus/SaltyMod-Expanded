@@ -1,14 +1,16 @@
 package darkbum.saltymod.potion;
 
-import darkbum.saltymod.init.ModAchievementList;
+import java.util.ArrayList;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-import java.util.ArrayList;
+import darkbum.saltymod.init.ModAchievementList;
 
 public class PotionSwarmed extends ModPotion {
+
     protected PotionSwarmed(int id, boolean isBad, int color) {
         super(id, isBad, color);
         setPotionName("potion.swarmed");
@@ -23,27 +25,27 @@ public class PotionSwarmed extends ModPotion {
 
             float beeResistance = 0F;
             ArrayList<ItemStack> validStacks = OreDictionary.getOres("beeResistant");
-            ItemStack itemStack = player.getCurrentArmor(0);
 
-            if (itemStack != null && validStacks.contains(itemStack)) {
-                beeResistance += 0.4F;
+            float[] resistanceValues = { 0.4F, 0.3F, 0.2F, 0.1F };
+
+            for (int i = 0; i < 4; i++) {
+                ItemStack itemStack = player.getCurrentArmor(i);
+                if (itemStack != null) {
+                    for (ItemStack validStack : validStacks) {
+                        if (OreDictionary.itemMatches(validStack, itemStack, false)) {
+                            beeResistance += resistanceValues[i];
+                            break;
+                        }
+                    }
+                }
             }
-            itemStack = player.getCurrentArmor(1);
-            if (itemStack != null && validStacks.contains(itemStack)) {
-                beeResistance += 0.3F;
-            }
-            itemStack = player.getCurrentArmor(2);
-            if (itemStack != null && validStacks.contains(itemStack)) {
-                beeResistance += 0.2F;
-            }
-            itemStack = player.getCurrentArmor(3);
-            if (itemStack != null && validStacks.contains(itemStack)) {
-                beeResistance += 0.1F;
-            }
-            if (!player.getEntityWorld().getBlock((int)player.posX, (int)player.posY + 1, (int)player.posZ).getMaterial().isLiquid() &&
-               (!player.isBurning())) {
+
+            // Bedingung für den Schaden
+            if (!player.worldObj.getBlock((int) player.posX, (int) player.posY + 1, (int) player.posZ)
+                .getMaterial()
+                .isLiquid() && (!player.isBurning())) {
                 player.addStat(ModAchievementList.effectSwarmed, 1);
-                entity.attackEntityFrom(ModPotion.swarmedDamage, 1.0F/* - beeResistance*/);
+                entity.attackEntityFrom(ModPotion.swarmedDamage, Math.max(0.0F, 1.0F - beeResistance));
             }
         }
     }

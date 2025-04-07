@@ -2,8 +2,6 @@ package darkbum.saltymod.block;
 
 import java.util.Random;
 
-import darkbum.saltymod.init.ModBlocks;
-import darkbum.saltymod.init.ModSounds;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -12,6 +10,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+
+import darkbum.saltymod.init.ModBlocks;
+import darkbum.saltymod.init.ModSounds;
 
 public class BlockDryMudBrickSlab extends BlockSlab {
 
@@ -41,7 +42,7 @@ public class BlockDryMudBrickSlab extends BlockSlab {
     }
 
     public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
-        ItemStack stack = new ItemStack(this, 1, world.getBlockMetadata(x,y,z));
+        ItemStack stack = new ItemStack(this, 1, world.getBlockMetadata(x, y, z));
         return stack;
     }
 }

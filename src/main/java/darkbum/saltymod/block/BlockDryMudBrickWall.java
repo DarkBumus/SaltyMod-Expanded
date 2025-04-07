@@ -1,9 +1,8 @@
 package darkbum.saltymod.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.init.ModBlocks;
-import darkbum.saltymod.init.ModSounds;
+import java.util.List;
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockWall;
 import net.minecraft.creativetab.CreativeTabs;
@@ -14,22 +13,24 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
-import java.util.List;
-import java.util.Random;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import darkbum.saltymod.init.ModBlocks;
+import darkbum.saltymod.init.ModSounds;
 
 public class BlockDryMudBrickWall extends BlockWall {
 
-	public BlockDryMudBrickWall(Block block, CreativeTabs tab) {
-		super(block);
-		setTickRandomly(false);
-		setBlockName("dry_mud_brick_wall");
-		setCreativeTab(tab);
-		setHardness(1.5F);
-		setResistance(3.0F);
+    public BlockDryMudBrickWall(Block block, CreativeTabs tab) {
+        super(block);
+        setTickRandomly(false);
+        setBlockName("dry_mud_brick_wall");
+        setCreativeTab(tab);
+        setHardness(1.5F);
+        setResistance(3.0F);
         setStepSound(ModSounds.soundTypeDryMudBrick);
         setHarvestLevel("pickaxe", 0);
         this.useNeighborBrightness = true;
-		setBlockTextureName("saltymod:mud_bricks");
+        setBlockTextureName("saltymod:mud_bricks");
     }
 
     @SideOnly(Side.CLIENT)
@@ -47,7 +48,7 @@ public class BlockDryMudBrickWall extends BlockWall {
     }
 
     public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
-        ItemStack stack = new ItemStack(this, 1, world.getBlockMetadata(x,y,z));
+        ItemStack stack = new ItemStack(this, 1, world.getBlockMetadata(x, y, z));
         return stack;
     }
 

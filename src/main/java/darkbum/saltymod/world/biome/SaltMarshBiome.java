@@ -1,12 +1,7 @@
 package darkbum.saltymod.world.biome;
 
-import darkbum.saltymod.init.ModBlocks;
-import darkbum.saltymod.configuration.ModConfiguration;
-
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.init.Blocks;
@@ -15,6 +10,11 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import darkbum.saltymod.configuration.configs.ModConfigurationWorldGeneration;
+import darkbum.saltymod.init.ModBlocks;
 
 public class SaltMarshBiome extends BiomeGenBase {
 
@@ -35,14 +35,17 @@ public class SaltMarshBiome extends BiomeGenBase {
         spawnableCreatureList.clear();
         spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntitySheep.class, 8, 4, 4));
 
-        BiomeDictionary.registerBiomeType(this, BiomeDictionary.Type.SWAMP, BiomeDictionary.Type.WET, BiomeDictionary.Type.BEACH);
+        BiomeDictionary
+            .registerBiomeType(this, BiomeDictionary.Type.SWAMP, BiomeDictionary.Type.WET, BiomeDictionary.Type.BEACH);
         BiomeManager.addSpawnBiome(this);
-        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeEntry(this, ModConfiguration.saltMarshBiomeWeight));
+        BiomeManager.addBiome(
+            BiomeManager.BiomeType.WARM,
+            new BiomeEntry(this, ModConfigurationWorldGeneration.saltMarshBiomeWeight));
     }
 
     @Override
     public void genTerrainBlocks(World world, Random random, Block[] blocks, byte[] bytes, int x, int z, double doub) {
-        if(doub > -1.5D) {
+        if (doub > -1.5D) {
             topBlock = ModBlocks.salt_grass;
             fillerBlock = ModBlocks.salt_dirt_lite;
         } else {
@@ -56,14 +59,14 @@ public class SaltMarshBiome extends BiomeGenBase {
     @SideOnly(Side.CLIENT)
     @Override
     public int getBiomeGrassColor(int x, int y, int z) {
-        double noise = plantNoise.func_151601_a((double)x * 0.0225D, (double)z * 0.0225D);
+        double noise = plantNoise.func_151601_a((double) x * 0.0225D, (double) z * 0.0225D);
         return noise < -0.01D ? 6331695 : 8953651;
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public int getBiomeFoliageColor(int x, int y, int z) {
-        double noise = plantNoise.func_151601_a((double)x * 0.0225D, (double)z * 0.0225D);
+        double noise = plantNoise.func_151601_a((double) x * 0.0225D, (double) z * 0.0225D);
         return noise < -0.01D ? 6331695 : 8953651;
     }
 

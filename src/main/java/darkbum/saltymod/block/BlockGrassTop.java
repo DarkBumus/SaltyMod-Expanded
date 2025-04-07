@@ -1,8 +1,7 @@
 package darkbum.saltymod.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockGrass;
 import net.minecraft.block.material.Material;
@@ -13,7 +12,11 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.IBlockAccess;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class BlockGrassTop extends Block {
+
     public BlockGrassTop(String name, CreativeTabs tab) {
         super(Material.grass);
         setBlockName(name);
@@ -58,7 +61,8 @@ public class BlockGrassTop extends Block {
         int j = 0;
         for (int k1 = -1; k1 <= 1; k1++) {
             for (int l1 = -1; l1 <= 1; l1++) {
-                int i2 = world.getBiomeGenForCoords(x + l1, z + k1).getBiomeGrassColor(x + l1, y, z + k1);
+                int i2 = world.getBiomeGenForCoords(x + l1, z + k1)
+                    .getBiomeGrassColor(x + l1, y, z + k1);
                 l += (i2 & 0xFF0000) >> 16;
                 i += (i2 & 0xFF00) >> 8;
                 j += i2 & 0xFF;

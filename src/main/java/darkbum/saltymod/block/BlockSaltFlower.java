@@ -1,11 +1,8 @@
 package darkbum.saltymod.block;
 
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.common.CommonProxy;
-import darkbum.saltymod.init.ModItems;
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.block.BlockFlower;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -17,12 +14,17 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
-import java.util.List;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import darkbum.saltymod.common.CommonProxy;
+import darkbum.saltymod.init.ModItems;
 
 public class BlockSaltFlower extends BlockFlower {
 
-    public static final String[] types = new String[] {"daucus", "wild_carrot", "solanum", "wild_potato", "wild_onion", "maritima", "wild_beet"};
+    public static final String[] types = new String[] { "daucus", "wild_carrot", "solanum", "wild_potato", "wild_onion",
+        "maritima", "wild_beet" };
 
     @SideOnly(Side.CLIENT)
     private IIcon DAUCUS;
@@ -121,8 +123,8 @@ public class BlockSaltFlower extends BlockFlower {
                 break;
             case 6:
                 drop.add(new ItemStack(this, 1, 5));
-                if (Loader.isModLoaded("etfuturum") &&
-                    ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableBeetroot) {
+                if (Loader.isModLoaded("etfuturum")
+                    && ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableBeetroot) {
                     Item beetroot = GameRegistry.findItem("etfuturum", "beetroot");
                     if (beetroot != null) {
                         drop.add(new ItemStack(beetroot));

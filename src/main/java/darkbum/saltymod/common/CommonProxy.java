@@ -1,25 +1,10 @@
 package darkbum.saltymod.common;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.SaltyMod;
-import darkbum.saltymod.api.EvaporateRegistry;
-import darkbum.saltymod.configuration.ModConfiguration;
-import darkbum.saltymod.init.ModAchievementList;
-import darkbum.saltymod.init.ModItems;
-import darkbum.saltymod.tileentity.TileEntityApiary;
-import darkbum.saltymod.tileentity.TileEntityFishFarm;
-import darkbum.saltymod.world.generator.*;
+import darkbum.saltymod.tileentity.TileEntityPress;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
@@ -33,15 +18,36 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import darkbum.saltymod.SaltyMod;
+import darkbum.saltymod.api.EvaporateRegistry;
+import darkbum.saltymod.configuration.configs.ModConfigurationBlocks;
+import darkbum.saltymod.configuration.configs.ModConfigurationModCompatibility;
+import darkbum.saltymod.configuration.configs.ModConfigurationWorldGeneration;
 import darkbum.saltymod.dispenser.DispenserBehaviorRainmaker;
 import darkbum.saltymod.dispenser.DispenserBehaviorSaltPinch;
 import darkbum.saltymod.entity.EntityRainmaker;
 import darkbum.saltymod.entity.EntityRainmakerDust;
+import darkbum.saltymod.init.ModAchievementList;
+import darkbum.saltymod.init.ModItems;
 import darkbum.saltymod.inventory.gui.GuiHandler;
 import darkbum.saltymod.network.EvaporatorButtonMessage;
-import darkbum.saltymod.network.SaltyModEventHandler;
 import darkbum.saltymod.network.SaltwortMessage;
+import darkbum.saltymod.network.events.*;
+import darkbum.saltymod.tileentity.TileEntityApiary;
 import darkbum.saltymod.tileentity.TileEntityEvaporator;
+import darkbum.saltymod.tileentity.TileEntityFishFarm;
+import darkbum.saltymod.world.generator.*;
 
 public class CommonProxy {
 
@@ -55,7 +61,10 @@ public class CommonProxy {
 
     public static SaltFlowerGenerator saltFlowerGenerator;
 
-    public static ItemArmor.ArmorMaterial mudMaterial = EnumHelper.addArmorMaterial("mudMaterial", 5, new int[]{1, 3, 2, 1}, 15);
+    public static ItemArmor.ArmorMaterial mudMaterial = EnumHelper
+        .addArmorMaterial("mudMaterial", 5, new int[] { 1, 3, 2, 1 }, 15);
+
+    static int startEntityId = 600;
 
     @SideOnly(Side.CLIENT)
     public static IIcon milkIcon;
@@ -65,9 +74,57 @@ public class CommonProxy {
     public static SimpleNetworkWrapper network;
 
     public void preInit(FMLPreInitializationEvent event) {
-        SaltyModEventHandler sEvent = new SaltyModEventHandler();
-        FMLCommonHandler.instance().bus().register(sEvent);
-        MinecraftForge.EVENT_BUS.register(sEvent);
+        AddTemptEventHandler adTeEvent = new AddTemptEventHandler();
+        MinecraftForge.EVENT_BUS.register(adTeEvent);
+        FMLCommonHandler.instance()
+            .bus()
+            .register(adTeEvent);
+        AddRainEventHandler adRaEvent = new AddRainEventHandler();
+        MinecraftForge.EVENT_BUS.register(adRaEvent);
+        FMLCommonHandler.instance()
+            .bus()
+            .register(adRaEvent);
+        RegisterIconsEventHandler reIcEvent = new RegisterIconsEventHandler();
+        MinecraftForge.EVENT_BUS.register(reIcEvent);
+        FMLCommonHandler.instance()
+            .bus()
+            .register(reIcEvent);
+        ItemPickupEventHandler itPiEvent = new ItemPickupEventHandler();
+        MinecraftForge.EVENT_BUS.register(itPiEvent);
+        FMLCommonHandler.instance()
+            .bus()
+            .register(itPiEvent);
+        CraftingEventHandler crafEvent = new CraftingEventHandler();
+        MinecraftForge.EVENT_BUS.register(crafEvent);
+        FMLCommonHandler.instance()
+            .bus()
+            .register(crafEvent);
+        BreakBlockEventHandler brBlEvent = new BreakBlockEventHandler();
+        MinecraftForge.EVENT_BUS.register(brBlEvent);
+        FMLCommonHandler.instance()
+            .bus()
+            .register(brBlEvent);
+        NavigateBiomeEventHandler naBiEvent = new NavigateBiomeEventHandler();
+        MinecraftForge.EVENT_BUS.register(naBiEvent);
+        FMLCommonHandler.instance()
+            .bus()
+            .register(naBiEvent);
+        OnEntityDropEventHandler onEnDEvent = new OnEntityDropEventHandler();
+        MinecraftForge.EVENT_BUS.register(onEnDEvent);
+        FMLCommonHandler.instance()
+            .bus()
+            .register(onEnDEvent);
+        OnChunkPopulateEventHandler onChEvent = new OnChunkPopulateEventHandler();
+        MinecraftForge.EVENT_BUS.register(onChEvent);
+        FMLCommonHandler.instance()
+            .bus()
+            .register(onChEvent);
+        /*
+         * OnEntitySpawnEventHandler onEnSEvent = new OnEntitySpawnEventHandler();
+         * MinecraftForge.EVENT_BUS.register(onEnSEvent);
+         * FMLCommonHandler.instance().bus().register(onEnSEvent);
+         */
+
         NetworkRegistry.INSTANCE.registerGuiHandler(SaltyMod.instance, new GuiHandler());
         network = NetworkRegistry.INSTANCE.newSimpleChannel("SaltyMod");
         network.registerMessage(EvaporatorButtonMessage.Handler.class, EvaporatorButtonMessage.class, 0, Side.SERVER);
@@ -78,80 +135,114 @@ public class CommonProxy {
 
         ModAchievementList.init();
         ClientProxy.setBlockRenderers();
-        if (event.getSide().isClient()) {
+        if (event.getSide()
+            .isClient()) {
             ClientProxy.setEntityRenderers();
         }
 
         GameRegistry.registerTileEntity(TileEntityEvaporator.class, "tileEntityEvaporator");
         GameRegistry.registerTileEntity(TileEntityFishFarm.class, "tileEntityFishFarm");
         GameRegistry.registerTileEntity(TileEntityApiary.class, "tileEntityApiary");
+        GameRegistry.registerTileEntity(TileEntityPress.class, "tileEntityPress");
 
-        EntityRegistry.registerModEntity(EntityRainmaker.class, "entityRainmaker", 0, SaltyMod.instance, 64, 20, true);
-        EntityRegistry.registerModEntity(EntityRainmakerDust.class, "entityRainmakerDust", 1, SaltyMod.instance, 64, 20, false);
+        EntityRegistry.registerModEntity(EntityRainmaker.class, "rainmaker", 0, SaltyMod.instance, 64, 20, true);
+        EntityRegistry
+            .registerModEntity(EntityRainmakerDust.class, "rainmaker_dust", 1, SaltyMod.instance, 64, 20, false);
+        // EntityRegistry.registerModEntity(EntityHornedSheep.class, "horned_sheep", 2, SaltyMod.instance, 64, 3, true);
+        // registerEntityEgg(EntityHornedSheep.class, 15198183, 16758197);
 
         BlockDispenser.dispenseBehaviorRegistry.putObject(ModItems.rainmaker, new DispenserBehaviorRainmaker());
         BlockDispenser.dispenseBehaviorRegistry.putObject(ModItems.salt_pinch, new DispenserBehaviorSaltPinch());
 
         saltOreGenerator = new SaltOreGenerator();
         GameRegistry.registerWorldGenerator(saltOreGenerator, 0);
-        if(ModConfiguration.enableSaltCrystal) {
+        if (ModConfigurationBlocks.enableSaltCrystal) {
             saltCrystalGenerator = new SaltCrystalGenerator();
             GameRegistry.registerWorldGenerator(saltCrystalGenerator, 10);
         }
-        if(ModConfiguration.enableSaltLakes) {
+        if (ModConfigurationWorldGeneration.enableSaltLakes) {
             saltLakeGenerator = new SaltLakeGenerator();
             GameRegistry.registerWorldGenerator(saltLakeGenerator, 15);
         }
-        if(ModConfiguration.enableSaltFlowers) {
+        if (ModConfigurationBlocks.enableSaltFlowers) {
             saltFlowerGenerator = new SaltFlowerGenerator();
             GameRegistry.registerWorldGenerator(saltFlowerGenerator, 0);
         }
 
         ChestGenHooks.addItem("bonusChest", new WeightedRandomChestContent(new ItemStack(ModItems.salt), 2, 5, 5));
         ChestGenHooks.addItem("dungeonChest", new WeightedRandomChestContent(new ItemStack(ModItems.salt), 2, 5, 5));
-        ChestGenHooks.addItem("dungeonChest", new WeightedRandomChestContent(new ItemStack(ModItems.saltwort), 2, 3, 3));
-        ChestGenHooks.addItem("strongholdCorridor", new WeightedRandomChestContent(new ItemStack(ModItems.salt), 2, 5, 5));
-        ChestGenHooks.addItem("strongholdCrossing", new WeightedRandomChestContent(new ItemStack(ModItems.saltwort), 2, 5, 5));
-        ChestGenHooks.addItem("mineshaftCorridor", new WeightedRandomChestContent(new ItemStack(ModItems.salt), 2, 5, 10));
-        ChestGenHooks.addItem("villageBlacksmith", new WeightedRandomChestContent(new ItemStack(ModItems.salt), 2, 5, 10));
-        ChestGenHooks.addItem("pyramidDesertyChest", new WeightedRandomChestContent(new ItemStack(ModItems.saltwort), 2, 3, 3));
-        ChestGenHooks.addItem("pyramidJungleChest", new WeightedRandomChestContent(new ItemStack(ModItems.saltwort), 2, 5, 5));
+        ChestGenHooks
+            .addItem("dungeonChest", new WeightedRandomChestContent(new ItemStack(ModItems.saltwort), 2, 3, 3));
+        ChestGenHooks
+            .addItem("strongholdCorridor", new WeightedRandomChestContent(new ItemStack(ModItems.salt), 2, 5, 5));
+        ChestGenHooks
+            .addItem("strongholdCrossing", new WeightedRandomChestContent(new ItemStack(ModItems.saltwort), 2, 5, 5));
+        ChestGenHooks
+            .addItem("mineshaftCorridor", new WeightedRandomChestContent(new ItemStack(ModItems.salt), 2, 5, 10));
+        ChestGenHooks
+            .addItem("villageBlacksmith", new WeightedRandomChestContent(new ItemStack(ModItems.salt), 2, 5, 10));
+        ChestGenHooks
+            .addItem("pyramidDesertyChest", new WeightedRandomChestContent(new ItemStack(ModItems.saltwort), 2, 3, 3));
+        ChestGenHooks
+            .addItem("pyramidJungleChest", new WeightedRandomChestContent(new ItemStack(ModItems.saltwort), 2, 5, 5));
 
-        EvaporateRegistry.instance().addEvaporating(FluidRegistry.WATER, ModItems.salt_pinch, 1000, 0.0F);
+        EvaporateRegistry.instance()
+            .addEvaporating(FluidRegistry.WATER, ModItems.salt_pinch, 1000, 0.0F);
     }
 
     public void postInit(FMLPostInitializationEvent event) {
 
-        if (ModConfiguration.enableEvaporator) {
+        if (ModConfigurationBlocks.enableEvaporator) {
             if (FluidRegistry.isFluidRegistered("milk")) {
                 Fluid milk = FluidRegistry.getFluid("milk");
-                EvaporateRegistry.instance().addEvaporating(milk, ModItems.powdered_milk, 1000, 0.0F);
+                EvaporateRegistry.instance()
+                    .addEvaporating(milk, ModItems.powdered_milk, 1000, 0.0F);
             } else {
                 CommonProxy.milk = new Fluid("milk");
                 FluidRegistry.registerFluid(CommonProxy.milk);
-                FluidContainerRegistry.registerFluidContainer(new FluidStack(CommonProxy.milk, 1000), new ItemStack(Items.milk_bucket), FluidContainerRegistry.EMPTY_BUCKET);
-                EvaporateRegistry.instance().addEvaporating(CommonProxy.milk, ModItems.powdered_milk, 1000, 0.0F);
+                FluidContainerRegistry.registerFluidContainer(
+                    new FluidStack(CommonProxy.milk, 1000),
+                    new ItemStack(Items.milk_bucket),
+                    FluidContainerRegistry.EMPTY_BUCKET);
+                EvaporateRegistry.instance()
+                    .addEvaporating(CommonProxy.milk, ModItems.powdered_milk, 1000, 0.0F);
             }
-            if (ModConfiguration.enableBOPFoods) {
+            if (ModConfigurationModCompatibility.enableBOPFoods) {
                 if (FluidRegistry.isFluidRegistered("blood")) {
                     Fluid blood = FluidRegistry.getFluid("blood");
                     GameRegistry.registerItem(ModItems.bop_hemoglobin, "hemoglobin");
-                    EvaporateRegistry.instance().addEvaporating(blood, ModItems.bop_hemoglobin, 1000, 1.0F);
+                    EvaporateRegistry.instance()
+                        .addEvaporating(blood, ModItems.bop_hemoglobin, 1000, 1.0F);
                 }
                 if (FluidRegistry.isFluidRegistered("hell_blood")) {
                     Fluid blood = FluidRegistry.getFluid("hell_blood");
                     GameRegistry.registerItem(ModItems.bop_hemoglobin, "hemoglobin");
-                    EvaporateRegistry.instance().addEvaporating(blood, ModItems.bop_hemoglobin, 1000, 1.0F);
+                    EvaporateRegistry.instance()
+                        .addEvaporating(blood, ModItems.bop_hemoglobin, 1000, 1.0F);
                 }
                 Item bop_dart = GameRegistry.findItem("BiomesOPlenty", "dart");
                 ItemStack bop_poisondart = new ItemStack(bop_dart, 1, 1);
                 if (bop_dart != null && FluidRegistry.isFluidRegistered("poison")) {
                     Fluid poisonFl = FluidRegistry.getFluid("poison");
                     GameRegistry.registerItem(ModItems.bop_poison, "bop_poison");
-                    EvaporateRegistry.instance().addEvaporating(poisonFl, ModItems.bop_poison, 1000, 1.0F);
+                    EvaporateRegistry.instance()
+                        .addEvaporating(poisonFl, ModItems.bop_poison, 1000, 1.0F);
                     GameRegistry.addShapelessRecipe(bop_poisondart, new ItemStack(bop_dart), ModItems.bop_poison);
                 }
             }
         }
+    }
+
+    public static int getUniqueEntityId() {
+        while (true) {
+            startEntityId++;
+            if (EntityList.getStringFromID(startEntityId) == null) return startEntityId;
+        }
+    }
+
+    public static void registerEntityEgg(Class<? extends Entity> entity, int primaryColor, int secondaryColor) {
+        int id = getUniqueEntityId();
+        EntityList.IDtoClassMapping.put(Integer.valueOf(id), entity);
+        EntityList.entityEggs.put(Integer.valueOf(id), new EntityList.EntityEggInfo(id, primaryColor, secondaryColor));
     }
 }

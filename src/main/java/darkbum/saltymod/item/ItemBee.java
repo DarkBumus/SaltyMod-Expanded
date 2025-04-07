@@ -1,14 +1,16 @@
 package darkbum.saltymod.item;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import java.util.List;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemBee extends Item {
+
     public ItemBee(String name, CreativeTabs tab) {
         isDamageable();
         setUnlocalizedName(name);
