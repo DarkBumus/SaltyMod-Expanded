@@ -1,9 +1,9 @@
 package darkbum.saltymod.init;
 
+import darkbum.saltymod.world.biome.BiomeGenSaltMarsh;
 import net.minecraft.world.biome.BiomeGenBase;
 
 import darkbum.saltymod.configuration.configs.ModConfigurationWorldGeneration;
-import darkbum.saltymod.world.biome.SaltMarshBiome;
 
 public class ModBiomes {
 
@@ -15,7 +15,7 @@ public class ModBiomes {
 
     public static void initializeBiome() {
         if (ModConfigurationWorldGeneration.enableSaltMarsh && ModConfigurationWorldGeneration.saltMarshBiomeID != -1) {
-            saltMarsh = new SaltMarshBiome(ModConfigurationWorldGeneration.saltMarshBiomeID).setBiomeName("Salt Marsh");
+            saltMarsh = new BiomeGenSaltMarsh(ModConfigurationWorldGeneration.saltMarshBiomeID).setBiomeName("Salt Marsh");
         }
     }
 }

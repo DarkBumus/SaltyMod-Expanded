@@ -9,10 +9,10 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 
-public class BreakBlockEventHandler {
+public class BreakHarvestDropsEventHandler {
 
     @SubscribeEvent
-    public void breakBlock(BlockEvent.HarvestDropsEvent event) {
+    public void blockHarvestDrops1(BlockEvent.HarvestDropsEvent event) {
         if (event.world.getTileEntity(event.x, event.y, event.z) != null
             && event.world.getTileEntity(event.x, event.y, event.z) instanceof TileEntityFlowerPot) {
             TileEntityFlowerPot te = (TileEntityFlowerPot) event.world.getTileEntity(event.x, event.y, event.z);

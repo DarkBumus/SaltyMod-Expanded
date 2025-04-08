@@ -10,7 +10,6 @@ import net.minecraft.world.gen.feature.WorldGenWaterlily;
 
 import darkbum.saltymod.configuration.configs.ModConfigurationWorldGeneration;
 import darkbum.saltymod.init.ModBlocks;
-import darkbum.saltymod.world.*;
 import darkbum.saltymod.world.generator.SaltLakeGenerator;
 
 public class SaltMarshDecorator {
@@ -20,13 +19,14 @@ public class SaltMarshDecorator {
         ModConfigurationWorldGeneration.saltoreVeinSize,
         Blocks.stone);
     private final SaltLakeGenerator saltLakeGenerator = new SaltLakeGenerator();
-    private final NewWorldGenClay newWorldGenClay = new NewWorldGenClay(20);
+    private final WorldGenClayMod worldGenClayMod = new WorldGenClayMod(20);
     private final WorldGenSaltTree worldGenSaltTree = new WorldGenSaltTree(false, 3);
     private final WorldGenSaltLogs worldGenSaltLogs = new WorldGenSaltLogs(false, 3);
     private final WorldGenSaltBigTree worldGenSaltBigTree = new WorldGenSaltBigTree(false, false);
-    private final SaltMarshPlantMix saltMarshPlantMix = new SaltMarshPlantMix(64);
-    private final SaltwortMix saltWortMix = new SaltwortMix(32);
-    private final AlliumPatch alliumPatch = new AlliumPatch(16);
+    private final WorldGenSaltMarshPlants worldGenSaltMarshPlants = new WorldGenSaltMarshPlants(64);
+    private final WorldGenSaltwort worldGenSaltwort = new WorldGenSaltwort(32);
+    private final WorldGenAlliumMod worldGenAlliumMod = new WorldGenAlliumMod(16);
+    private final WorldGenMarshReeds worldGenMarshReeds = new WorldGenMarshReeds();
 
     private final WorldGenWaterlily worldGenWaterlily = new WorldGenWaterlily();
     private final WorldGenReed worldGenReed = new WorldGenReed();
@@ -55,7 +55,7 @@ public class SaltMarshDecorator {
         for (pass = 0; pass < 5; ++pass) {
             passX = x + offsetXZ(rand);
             passZ = z + offsetXZ(rand);
-            newWorldGenClay.generate(world, rand, passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ);
+            worldGenClayMod.generate(world, rand, passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ);
         }
 
         passX = x + offsetXZ(rand);
@@ -79,23 +79,28 @@ public class SaltMarshDecorator {
         for (pass = 0; pass < 5; ++pass) {
             passX = x + offsetXZ(rand);
             passZ = z + offsetXZ(rand);
-            saltMarshPlantMix.generate(world, rand, passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ);
+            worldGenSaltMarshPlants.generate(world, rand, passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ);
         }
 
         for (pass = 0; pass < 5; ++pass) {
             passX = x + offsetXZ(rand);
             passZ = z + offsetXZ(rand);
-            saltWortMix.generate(world, rand, passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ);
+            worldGenSaltwort.generate(world, rand, passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ);
         }
 
         passX = x + offsetXZ(rand);
         passZ = z + offsetXZ(rand);
-        alliumPatch.generate(world, rand, passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ);
+        worldGenAlliumMod.generate(world, rand, passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ);
 
         for (pass = 0; pass < 4; ++pass) {
             passX = x + offsetXZ(rand);
             passZ = z + offsetXZ(rand);
             worldGenWaterlily.generate(world, rand, passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ);
+        }
+        for (pass = 0; pass < 4; ++pass) {
+            passX = x + offsetXZ(rand);
+            passZ = z + offsetXZ(rand);
+            worldGenMarshReeds.generate(world, rand, passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ);
         }
 
         for (pass = 0; pass < 3; ++pass) {

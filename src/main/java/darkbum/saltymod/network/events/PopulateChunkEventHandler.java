@@ -11,12 +11,12 @@ import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import darkbum.saltymod.init.ModBlocks;
 
-public class OnChunkPopulateEventHandler {
+public class PopulateChunkEventHandler {
 
     private static final Random rand = new Random();
 
     @SubscribeEvent
-    public void onChunkPopulate(PopulateChunkEvent.Post event) {
+    public void populateChunkPost1(PopulateChunkEvent.Post event) {
         World world = event.world;
 
         int chunkX = event.chunkX * 16;

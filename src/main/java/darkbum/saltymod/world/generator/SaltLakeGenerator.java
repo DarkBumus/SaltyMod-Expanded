@@ -18,10 +18,8 @@ public class SaltLakeGenerator implements IWorldGenerator {
 
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator,
         IChunkProvider chunkProvider) {
-        switch (world.provider.dimensionId) {
-            case 0:
-                generateOverworld(world, random, chunkX * 16, chunkZ * 16);
-                break;
+        if (world.provider.dimensionId == 0) {
+            generateOverworld(world, random, chunkX * 16, chunkZ * 16);
         }
     }
 

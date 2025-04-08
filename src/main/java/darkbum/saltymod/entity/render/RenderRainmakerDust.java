@@ -1,4 +1,4 @@
-package darkbum.saltymod.entity.renderer;
+package darkbum.saltymod.entity.render;
 
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;

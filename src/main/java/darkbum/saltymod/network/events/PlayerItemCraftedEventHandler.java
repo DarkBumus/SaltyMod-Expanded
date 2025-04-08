@@ -8,10 +8,10 @@ import darkbum.saltymod.init.ModAchievementList;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 
-public class CraftingEventHandler {
+public class PlayerItemCraftedEventHandler {
 
     @SubscribeEvent
-    public void crafting(PlayerEvent.ItemCraftedEvent event) {
+    public void playerItemCrafted1(PlayerEvent.ItemCraftedEvent event) {
         if (event.crafting.getItem() == ModItems.mineral_mud_ball) {
             event.player.addStat(ModAchievementList.findMineralMud, 1);
         }

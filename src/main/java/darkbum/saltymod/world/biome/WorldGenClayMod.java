@@ -11,12 +11,12 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 import darkbum.saltymod.init.ModBlocks;
 
-public class NewWorldGenClay extends WorldGenerator {
+public class WorldGenClayMod extends WorldGenerator {
 
     private Block clay;
     private int numberOfBlocks;
 
-    public NewWorldGenClay(int number) {
+    public WorldGenClayMod(int number) {
         this.clay = ModBlocks.mineral_mud;
         this.numberOfBlocks = number;
     }

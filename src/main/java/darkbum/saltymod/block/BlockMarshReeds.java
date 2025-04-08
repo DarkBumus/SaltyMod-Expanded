@@ -1,115 +1,141 @@
-/*
- * package darkbum.saltymod.block;
- * public class BlockMarshReeds extends BlockDoublePlant {
- * @SideOnly(Side.CLIENT)
- * private IIcon[] doublePlantBottomIcons;
- * @SideOnly(Side.CLIENT)
- * private IIcon[] doublePlantTopIcons;
- * public BlockMarshReeds(String name, CreativeTabs tab) {
- * super();
- * setBlockName(name);
- * setCreativeTab(tab);
- * setHardness(0.0F);
- * setStepSound(Block.soundTypeGrass);
- * setBlockTextureName("saltymod:marsh_reeds");
- * }
- * public int getRenderType() {
- * return 40;
- * }
- * public boolean canPlaceBlockAt(World worldIn, int x, int y, int z) {
- * return super.canPlaceBlockAt(worldIn, x, y, z) && worldIn.isAirBlock(x, y + 1, z);
- * }
- * protected void checkAndDropBlock(World worldIn, int x, int y, int z) {
- * if (!this.canBlockStay(worldIn, x, y, z)) {
- * int l = worldIn.getBlockMetadata(x, y, z);
- * if (!func_149887_c(l)) {
- * this.dropBlockAsItem(worldIn, x, y, z, l, 0);
- * if (worldIn.getBlock(x, y + 1, z) == this) {
- * worldIn.setBlock(x, y + 1, z, Blocks.air, 0, 2);
- * }
- * }
- * worldIn.setBlock(x, y, z, Blocks.air, 0, 2);
- * }
- * }
- * public boolean canBlockStay(World worldIn, int x, int y, int z) {
- * if (worldIn.getBlock(x, y, z) != this) return super.canBlockStay(worldIn, x, y, z); //Forge: This function is called
- * during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.
- * int l = worldIn.getBlockMetadata(x, y, z);
- * return func_149887_c(l) ? worldIn.getBlock(x, y - 1, z) == this : worldIn.getBlock(x, y + 1, z) == this &&
- * super.canBlockStay(worldIn, x, y, z);
- * }
- * public Item getItemDropped(int meta, Random random, int fortune) {
- * if (func_149887_c(meta)) {
- * return null;
- * } else {
- * int k = func_149890_d(meta);
- * return k != 3 && k != 2 ? Item.getItemFromBlock(this) : null;
- * }
- * }
- * @SideOnly(Side.CLIENT)
- * public IIcon getIcon(int side, int meta) {
- * return func_149887_c(meta) ? this.doublePlantBottomIcons[0] : this.doublePlantBottomIcons[meta & 7];
- * }
- * @SideOnly(Side.CLIENT)
- * public IIcon func_149888_a(boolean p_149888_1_, int p_149888_2_) {
- * return p_149888_1_ ? this.doublePlantTopIcons[p_149888_2_] : this.doublePlantBottomIcons[p_149888_2_];
- * }
- * public void harvestBlock(World worldIn, EntityPlayer player, int x, int y, int z, int meta) {
- * if (worldIn.isRemote || player.getCurrentEquippedItem() == null || player.getCurrentEquippedItem().getItem() !=
- * Items.shears || func_149887_c(meta) || !this.func_149886_b(worldIn, x, y, z, meta, player)) {
- * super.harvestBlock(worldIn, player, x, y, z, meta);
- * }
- * }
- * public void onBlockHarvested(World worldIn, int x, int y, int z, int meta, EntityPlayer player) {
- * if (func_149887_c(meta)) {
- * if (worldIn.getBlock(x, y - 1, z) == this) {
- * if (!player.capabilities.isCreativeMode) {
- * int i1 = worldIn.getBlockMetadata(x, y - 1, z);
- * int j1 = func_149890_d(i1);
- * if (j1 != 3 && j1 != 2) {
- * worldIn.func_147480_a(x, y - 1, z, true);
- * } else {
- * if (!worldIn.isRemote && player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() ==
- * Items.shears) {
- * this.func_149886_b(worldIn, x, y, z, i1, player);
- * }
- * worldIn.setBlockToAir(x, y - 1, z);
- * }
- * } else {
- * worldIn.setBlockToAir(x, y - 1, z);
- * }
- * }
- * } else if (player.capabilities.isCreativeMode && worldIn.getBlock(x, y + 1, z) == this) {
- * worldIn.setBlock(x, y + 1, z, Blocks.air, 0, 2);
- * }
- * super.onBlockHarvested(worldIn, x, y, z, meta, player);
- * }
- * private boolean func_149886_b(World p_149886_1_, int p_149886_2_, int p_149886_3_, int p_149886_4_, int p_149886_5_,
- * EntityPlayer p_149886_6_) {
- * int i1 = func_149890_d(p_149886_5_);
- * if (i1 != 3 && i1 != 2) {
- * return false;
- * } else {
- * p_149886_6_.addStat(StatList.mineBlockStatArray[Block.getIdFromBlock(this)], 1);
- * byte b0 = 1;
- * if (i1 == 3) {
- * b0 = 2;
- * }
- * this.dropBlockAsItem(p_149886_1_, p_149886_2_, p_149886_3_, p_149886_4_, new ItemStack(Blocks.tallgrass, 2, b0));
- * return true;
- * }
- * }
- * @SideOnly(Side.CLIENT)
- * public void registerBlockIcons(IIconRegister reg) {
- * this.doublePlantBottomIcons = new IIcon[field_149892_a.length];
- * this.doublePlantTopIcons = new IIcon[field_149892_a.length];
- * for (int i = 0; i < this.doublePlantBottomIcons.length; ++i) {
- * this.doublePlantBottomIcons[i] = reg.registerIcon("double_plant_" + field_149892_a[i] + "_bottom");
- * this.doublePlantTopIcons[i] = reg.registerIcon("double_plant_" + field_149892_a[i] + "_top");
- * }
- * this.sunflowerIcons = new IIcon[2];
- * this.sunflowerIcons[0] = reg.registerIcon("double_plant_sunflower_front");
- * this.sunflowerIcons[1] = reg.registerIcon("double_plant_sunflower_back");
- * }
- * }
- */
+package darkbum.saltymod.block;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import darkbum.saltymod.common.ClientProxy;
+import darkbum.saltymod.configuration.configs.ModConfigurationWorldGeneration;
+import darkbum.saltymod.init.ModBlocks;
+import darkbum.saltymod.init.ModItems;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.common.IShearable;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+public class BlockMarshReeds extends BlockBush implements IShearable {
+
+    @SideOnly(Side.CLIENT)
+    public IIcon UPPER;
+
+    @SideOnly(Side.CLIENT)
+    public IIcon LOWER;
+
+    public BlockMarshReeds(String name, CreativeTabs tab) {
+        super(Material.plants);
+        setBlockName(name);
+        setCreativeTab(tab);
+        setHardness(0.0F);
+        setStepSound(soundTypeGrass);
+        setTickRandomly(true);
+        setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+    }
+
+    public void registerBlockIcons(IIconRegister icon) {
+        this.UPPER = icon.registerIcon("saltymod:marsh_reeds_top");
+        this.LOWER = icon.registerIcon("saltymod:marsh_reeds_bottom");
+    }
+
+    public IIcon getIcon(int side, int meta) {
+        return UPPER;
+    }
+
+    public int getRenderType() {
+        return ClientProxy.marshReedsRenderType;
+    }
+
+    public boolean canPlaceBlockAt(World world, int x, int y, int z) {
+        Block blockBelow = world.getBlock(x, y - 1, z);
+        Block blockTwoBelow = world.getBlock(x, y - 2, z);
+        return blockBelow == Blocks.water && blockTwoBelow == ModBlocks.mineral_mud;
+    }
+
+    @Override
+    public void updateTick(World world, int x, int y, int z, Random random) {
+        int chanceValue = ModConfigurationWorldGeneration.marshReedUpdateFrequency;
+        int maxChance = 100;
+        int checkChance = Math.min(maxChance, chanceValue);
+
+        if (random.nextInt(100) < checkChance) {
+            if (!canPlaceBlockAt(world, x, y, z)) {
+                dropIfCantStay(world, x, y, z, new ItemStack(this, 1, world.getBlockMetadata(x, y, z)));
+            }
+        }
+    }
+
+    @Override
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block neighborBlock) {
+        if (world.getBlock(x, y, z) != null && !canPlaceBlockAt(world, x, y, z)) {
+            dropIfCantStay(world, x, y, z, new ItemStack(world.getBlock(x, y, z), 1, world.getBlockMetadata(x, y, z)));
+        }
+    }
+
+    public void dropIfCantStay(World world, int x, int y, int z, ItemStack stack) {
+        if (!canPlaceBlockAt(world, x, y, z)) {
+            ArrayList<ItemStack> drops = this.getDrops(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+
+            for (ItemStack drop : drops) {
+                world.spawnEntityInWorld(new EntityItem(world, x + 0.5D, y + 1.0D, z + 0.5D, drop));
+
+                world.setBlockToAir(x, y, z);
+                world.playSoundEffect(x + 0.5D, y + 2.0D, z + 0.5D, "dig.grass", 1.0F, 1.0F);
+            }
+        }
+    }
+
+    @Override
+    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
+        return new ItemStack(ModItems.marsh_reeds_grass);
+    }
+
+    @Override
+    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
+        ArrayList<ItemStack> drops = new ArrayList<>();
+
+        Random rand = world.rand;
+
+        if (rand.nextInt(8) == 0) {
+            drops.add(new ItemStack(Items.wheat_seeds, getFortuneAmount(fortune, rand)));
+        }
+
+        if (rand.nextInt(8) == 0) {
+            drops.add(new ItemStack(ModItems.salt_pinch, getFortuneAmount(fortune, rand)));
+        }
+        return drops;
+    }
+
+    private int getFortuneAmount(int fortune, Random rand) {
+        switch (fortune) {
+            case 3: return 1 + rand.nextInt(7); // 1–7
+            case 2: return 1 + rand.nextInt(5); // 1–5
+            case 1: return 1 + rand.nextInt(3); // 1–3
+            default: return 1;
+        }
+    }
+
+    @Override
+    public boolean isShearable(ItemStack item, IBlockAccess world, int x, int y, int z) {
+        return true;
+    }
+
+    @Override
+    public ArrayList<ItemStack> onSheared(ItemStack item, IBlockAccess world, int x, int y, int z, int fortune) {
+        ArrayList<ItemStack> ret = new ArrayList<>();
+        ret.add(new ItemStack(ModItems.marsh_reeds_grass, 1, world.getBlockMetadata(x, y, z)));
+        return ret;
+    }
+}
+
+

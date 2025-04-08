@@ -1,4 +1,4 @@
-package darkbum.saltymod.world;
+package darkbum.saltymod.world.biome;
 
 import java.util.Random;
 
@@ -7,11 +7,11 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 import darkbum.saltymod.init.ModBlocks;
 
-public class SaltwortMix extends WorldGenerator {
+public class WorldGenSaltwort extends WorldGenerator {
 
     private int GroupSize;
 
-    public SaltwortMix(int size) {
+    public WorldGenSaltwort(int size) {
         this.GroupSize = size;
     }
 

@@ -107,7 +107,7 @@ public class SaltyMod {
         if (Loader.isModLoaded("NotEnoughItems")) {
             new NEIConfig().loadConfig();
         }
-        ModRecipeRemover.init();
+        ModRemovedRecipes.init();
     }
 }
 
@@ -123,11 +123,4 @@ public class SaltyMod {
  * - Underground Salt Caves/Tunnels/Mines? [MAYBE]
  * - Recipe Book [LATER, ALSO MAYBE]
  * - Fix up the latest Config changes
- * - Same as above, singleing out Onion Crates to deactivate without removing all storage blocks)
- * Things I probably have to outsource (sorted by order of importance):
- * - Reeds/Water Grass
- * - Two blocks high
- * - Grow on Mineral Mud Blocks
- * - Grow underwater (one part underwater, one part above the surface, refer to BoP)
- * - [Undecided on Drops still]
  */

@@ -96,11 +96,13 @@ public class ModBlocks {
 
     public static Block salt_crystal;
 
-    public static Block saltworts;
-
     public static Block onions;
 
+    public static Block saltworts;
+
     public static Block salt_flower;
+
+    public static Block marsh_reeds;
 
     public static void init() {
         SaltyMod.logger.info("Start to initialize SaltyMod Blocks");
@@ -214,15 +216,19 @@ public class ModBlocks {
             salt_crystal = new BlockSaltCrystal("salt_crystal", tab);
             GameRegistry.registerBlock(salt_crystal, "salt_crystal");
         }
-        saltworts = new BlockSaltworts("saltworts", null);
-        GameRegistry.registerBlock(saltworts, "saltworts");
         if (ModConfigurationItems.enableOnion) {
             onions = new BlockOnions("onions", null);
             GameRegistry.registerBlock(onions, "onions");
         }
+        saltworts = new BlockSaltworts("saltworts", null);
+        GameRegistry.registerBlock(saltworts, "saltworts");
         if (ModConfigurationBlocks.enableSaltFlowers) {
             salt_flower = new BlockSaltFlower();
             GameRegistry.registerBlock(salt_flower, ItemSaltFlower.class, "salt_flower");
+        }
+        if (ModConfigurationWorldGeneration.enableSaltMarsh) {
+            marsh_reeds = new BlockMarshReeds("marsh_reeds", null);
+            GameRegistry.registerBlock(marsh_reeds, "marsh_reeds");
         }
 
         SaltyMod.logger.info("Finished initializing SaltyMod Blocks");

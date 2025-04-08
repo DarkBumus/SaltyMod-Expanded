@@ -1,4 +1,4 @@
-package darkbum.saltymod.block.renderer;
+package darkbum.saltymod.block.render;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -9,8 +9,9 @@ import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import darkbum.saltymod.common.ClientProxy;
+import darkbum.saltymod.init.ModBlocks;
 
-public class EvaporatorRenderer implements ISimpleBlockRenderingHandler {
+public class SaltGrassRenderer implements ISimpleBlockRenderingHandler {
 
     public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
         Tessellator tessellator = Tessellator.instance;
@@ -37,7 +38,7 @@ public class EvaporatorRenderer implements ISimpleBlockRenderingHandler {
         tessellator.draw();
         tessellator.startDrawingQuads();
         tessellator.setNormal(1.0F, 0.0F, 0.0F);
-        renderer.renderFaceXPos(block, 0.0D, 0.0D, 0.0D, renderer.getBlockIconFromSideAndMetadata(block, 5, 5));
+        renderer.renderFaceXPos(block, 0.0D, 0.0D, 0.0D, renderer.getBlockIconFromSide(block, 5));
         tessellator.draw();
         GL11.glTranslatef(0.5F, 0.5F, 0.5F);
     }
@@ -45,6 +46,7 @@ public class EvaporatorRenderer implements ISimpleBlockRenderingHandler {
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
         RenderBlocks renderer) {
         renderer.renderStandardBlock(block, x, y, z);
+        renderer.renderStandardBlock(ModBlocks.grass_top, x, y, z);
         return true;
     }
 
@@ -53,6 +55,6 @@ public class EvaporatorRenderer implements ISimpleBlockRenderingHandler {
     }
 
     public int getRenderId() {
-        return ClientProxy.evaporatorRenderType;
+        return ClientProxy.saltGrassRenderType;
     }
 }

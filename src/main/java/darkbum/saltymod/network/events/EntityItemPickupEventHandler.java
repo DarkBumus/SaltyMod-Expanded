@@ -9,10 +9,10 @@ import darkbum.saltymod.init.ModAchievementList;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 
-public class ItemPickupEventHandler {
+public class EntityItemPickupEventHandler {
 
     @SubscribeEvent
-    public void itemPickup(EntityItemPickupEvent event) {
+    public void entityItemPickup1(EntityItemPickupEvent event) {
         World world = event.entityPlayer.worldObj;
         if (!world.isRemote) {
             if (event.item.getEntityItem()

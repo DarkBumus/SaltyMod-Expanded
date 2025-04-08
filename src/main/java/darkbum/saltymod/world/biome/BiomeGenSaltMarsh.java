@@ -16,11 +16,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.configuration.configs.ModConfigurationWorldGeneration;
 import darkbum.saltymod.init.ModBlocks;
 
-public class SaltMarshBiome extends BiomeGenBase {
+public class BiomeGenSaltMarsh extends BiomeGenBase {
 
     private final SaltMarshDecorator decorator = new SaltMarshDecorator();
 
-    public SaltMarshBiome(int id) {
+    public BiomeGenSaltMarsh(int id) {
         super(id);
 
         setHeight(new BiomeGenBase.Height(-0.15F, -0.025F));

@@ -74,56 +74,51 @@ public class CommonProxy {
     public static SimpleNetworkWrapper network;
 
     public void preInit(FMLPreInitializationEvent event) {
-        AddTemptEventHandler adTeEvent = new AddTemptEventHandler();
-        MinecraftForge.EVENT_BUS.register(adTeEvent);
+        BreakHarvestDropsEventHandler breakHarvestDropsEventHandler = new BreakHarvestDropsEventHandler();
+        MinecraftForge.EVENT_BUS.register(breakHarvestDropsEventHandler);
         FMLCommonHandler.instance()
             .bus()
-            .register(adTeEvent);
-        AddRainEventHandler adRaEvent = new AddRainEventHandler();
-        MinecraftForge.EVENT_BUS.register(adRaEvent);
+            .register(breakHarvestDropsEventHandler);
+        EntityItemPickupEventHandler entityItemPickupEventHandler = new EntityItemPickupEventHandler();
+        MinecraftForge.EVENT_BUS.register(entityItemPickupEventHandler);
         FMLCommonHandler.instance()
             .bus()
-            .register(adRaEvent);
-        RegisterIconsEventHandler reIcEvent = new RegisterIconsEventHandler();
-        MinecraftForge.EVENT_BUS.register(reIcEvent);
+            .register(entityItemPickupEventHandler);
+        EntityJoinWorldEventHandler entityJoinWorldEventHandler = new EntityJoinWorldEventHandler();
+        MinecraftForge.EVENT_BUS.register(entityJoinWorldEventHandler);
         FMLCommonHandler.instance()
             .bus()
-            .register(reIcEvent);
-        ItemPickupEventHandler itPiEvent = new ItemPickupEventHandler();
-        MinecraftForge.EVENT_BUS.register(itPiEvent);
+            .register(entityJoinWorldEventHandler);
+        LivingDropsEventHandler livingDropsEventHandler = new LivingDropsEventHandler();
+        MinecraftForge.EVENT_BUS.register(livingDropsEventHandler);
         FMLCommonHandler.instance()
             .bus()
-            .register(itPiEvent);
-        CraftingEventHandler crafEvent = new CraftingEventHandler();
-        MinecraftForge.EVENT_BUS.register(crafEvent);
+            .register(livingDropsEventHandler);
+        PlayerItemCraftedEventHandler playerItemCraftedEventHandler = new PlayerItemCraftedEventHandler();
+        MinecraftForge.EVENT_BUS.register(playerItemCraftedEventHandler);
         FMLCommonHandler.instance()
             .bus()
-            .register(crafEvent);
-        BreakBlockEventHandler brBlEvent = new BreakBlockEventHandler();
-        MinecraftForge.EVENT_BUS.register(brBlEvent);
+            .register(playerItemCraftedEventHandler);
+        PopulateChunkEventHandler populateChunkEventHandler = new PopulateChunkEventHandler();
+        MinecraftForge.EVENT_BUS.register(populateChunkEventHandler);
         FMLCommonHandler.instance()
             .bus()
-            .register(brBlEvent);
-        NavigateBiomeEventHandler naBiEvent = new NavigateBiomeEventHandler();
-        MinecraftForge.EVENT_BUS.register(naBiEvent);
+            .register(populateChunkEventHandler);
+        RainMakerEventHandler rainMakerEventHandler = new RainMakerEventHandler();
+        MinecraftForge.EVENT_BUS.register(rainMakerEventHandler);
         FMLCommonHandler.instance()
             .bus()
-            .register(naBiEvent);
-        OnEntityDropEventHandler onEnDEvent = new OnEntityDropEventHandler();
-        MinecraftForge.EVENT_BUS.register(onEnDEvent);
+            .register(rainMakerEventHandler);
+        TextureStitchEventHandler textureStitchEventHandler = new TextureStitchEventHandler();
+        MinecraftForge.EVENT_BUS.register(textureStitchEventHandler);
         FMLCommonHandler.instance()
             .bus()
-            .register(onEnDEvent);
-        OnChunkPopulateEventHandler onChEvent = new OnChunkPopulateEventHandler();
-        MinecraftForge.EVENT_BUS.register(onChEvent);
+            .register(textureStitchEventHandler);
+        TickPlayerTickEventHandler tickPlayerTickEventHandler = new TickPlayerTickEventHandler();
+        MinecraftForge.EVENT_BUS.register(tickPlayerTickEventHandler);
         FMLCommonHandler.instance()
             .bus()
-            .register(onChEvent);
-        /*
-         * OnEntitySpawnEventHandler onEnSEvent = new OnEntitySpawnEventHandler();
-         * MinecraftForge.EVENT_BUS.register(onEnSEvent);
-         * FMLCommonHandler.instance().bus().register(onEnSEvent);
-         */
+            .register(tickPlayerTickEventHandler);
 
         NetworkRegistry.INSTANCE.registerGuiHandler(SaltyMod.instance, new GuiHandler());
         network = NetworkRegistry.INSTANCE.newSimpleChannel("SaltyMod");

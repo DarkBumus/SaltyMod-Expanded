@@ -10,7 +10,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 import darkbum.saltymod.init.ModBlocks;
 
-public class AlliumPatch extends WorldGenerator {
+public class WorldGenAlliumMod extends WorldGenerator {
 
     private static final Block[] flowers = { Blocks.red_flower, ModBlocks.salt_flower };
 
@@ -18,7 +18,7 @@ public class AlliumPatch extends WorldGenerator {
 
     private int groupSize;
 
-    public AlliumPatch(int size) {
+    public WorldGenAlliumMod(int size) {
         groupSize = size;
     }
 

@@ -9,11 +9,11 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 import darkbum.saltymod.init.ModBlocks;
 
-public class SaltMarshPlantMix extends WorldGenerator {
+public class WorldGenSaltMarshPlants extends WorldGenerator {
 
     private int groupsize;
 
-    public SaltMarshPlantMix(int size) {
+    public WorldGenSaltMarshPlants(int size) {
         groupsize = size;
     }
 

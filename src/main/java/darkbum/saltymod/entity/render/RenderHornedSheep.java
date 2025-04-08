@@ -1,4 +1,4 @@
-package darkbum.saltymod.entity.renderer;
+package darkbum.saltymod.entity.render;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderSheep;

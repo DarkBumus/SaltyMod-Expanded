@@ -1,5 +1,6 @@
 package darkbum.saltymod.init;
 
+import darkbum.saltymod.configuration.configs.ModConfigurationWorldGeneration;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -51,6 +52,8 @@ public class ModItems {
     public static Item royal_jelly;
 
     public static Item mineral_mud_ball;
+
+    public static Item marsh_reeds_grass;
 
     public static Item baking_soda;
 
@@ -284,6 +287,8 @@ public class ModItems {
 
     public static Item mud_boots;
 
+    public static Item salt_pickaxe;
+
     public static Item salt_shard;
 
     public static Item rainmaker_star;
@@ -381,6 +386,11 @@ public class ModItems {
                 .setUnlocalizedName("royal_jelly")
                 .setTextureName("saltymod:royal_jelly");
             GameRegistry.registerItem(royal_jelly, "royal_jelly");
+        }
+        if (ModConfigurationWorldGeneration.enableSaltMarsh) {
+            marsh_reeds_grass = new ItemMarshReedsGrass("marsh_reeds_grass", tab)
+                .setTextureName("saltymod:marsh_reeds_grass");
+            GameRegistry.registerItem(marsh_reeds_grass, "marsh_reeds_grass");
         }
         if (ModConfigurationItems.enableMineralMud) {
             mineral_mud_ball = new Item().setCreativeTab(tab)
@@ -1358,6 +1368,8 @@ public class ModItems {
             mud_boots = new ItemMudArmor("mud_boots", CommonProxy.mudMaterial, 3);
             GameRegistry.registerItem(mud_boots, "mud_boots");
         }
+        salt_pickaxe = new ItemSaltPickaxe("salt_pickaxe", tab);
+        GameRegistry.registerItem(salt_pickaxe, "salt_pickaxe");
         if (ModConfigurationBlocks.enableSaltCrystal) {
             salt_shard = new ItemSaltShard("salt_shard", tab).setTextureName("saltymod:salt_shard");
             GameRegistry.registerItem(salt_shard, "salt_shard");

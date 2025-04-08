@@ -6,10 +6,10 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import darkbum.saltymod.api.RainMakerEvent;
 import darkbum.saltymod.init.ModAchievementList;
 
-public class AddRainEventHandler {
+public class RainMakerEventHandler {
 
     @SubscribeEvent
-    public void addRain(RainMakerEvent event) {
+    public void rainMaker1(RainMakerEvent event) {
         if (!event.world.isRemote) {
             int i = (300 + (new Random()).nextInt(600)) * 20;
             event.world.getWorldInfo()
