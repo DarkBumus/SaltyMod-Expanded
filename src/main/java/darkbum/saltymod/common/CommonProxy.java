@@ -1,5 +1,7 @@
 package darkbum.saltymod.common;
 
+import darkbum.saltymod.configuration.configs.ModConfigurationEntities;
+import darkbum.saltymod.entity.EntityHornedSheep;
 import darkbum.saltymod.tileentity.TileEntityPress;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.creativetab.CreativeTabs;
@@ -143,8 +145,10 @@ public class CommonProxy {
         EntityRegistry.registerModEntity(EntityRainmaker.class, "rainmaker", 0, SaltyMod.instance, 64, 20, true);
         EntityRegistry
             .registerModEntity(EntityRainmakerDust.class, "rainmaker_dust", 1, SaltyMod.instance, 64, 20, false);
-        // EntityRegistry.registerModEntity(EntityHornedSheep.class, "horned_sheep", 2, SaltyMod.instance, 64, 3, true);
-        // registerEntityEgg(EntityHornedSheep.class, 15198183, 16758197);
+        if (ModConfigurationEntities.enableHornedSheep) {
+            EntityRegistry.registerModEntity(EntityHornedSheep.class, "horned_sheep", 2, SaltyMod.instance, 64, 3, true);
+            registerEntityEgg(EntityHornedSheep.class, 15198183, 9663326);
+        }
 
         BlockDispenser.dispenseBehaviorRegistry.putObject(ModItems.rainmaker, new DispenserBehaviorRainmaker());
         BlockDispenser.dispenseBehaviorRegistry.putObject(ModItems.salt_pinch, new DispenserBehaviorSaltPinch());

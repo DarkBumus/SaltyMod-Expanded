@@ -2,6 +2,7 @@ package darkbum.saltymod.world.biome;
 
 import java.util.Random;
 
+import darkbum.saltymod.entity.EntityHornedSheep;
 import net.minecraft.block.Block;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.init.Blocks;
@@ -34,6 +35,7 @@ public class BiomeGenSaltMarsh extends BiomeGenBase {
 
         spawnableCreatureList.clear();
         spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntitySheep.class, 8, 4, 4));
+        spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityHornedSheep.class, 8, 4, 4));
 
         BiomeDictionary
             .registerBiomeType(this, BiomeDictionary.Type.SWAMP, BiomeDictionary.Type.WET, BiomeDictionary.Type.BEACH);

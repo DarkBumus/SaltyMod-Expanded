@@ -2,9 +2,14 @@ package darkbum.saltymod.entity;
 
 import java.util.Random;
 
+import darkbum.saltymod.init.ModItems;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class EntityHornedSheep extends EntitySheep {
@@ -12,11 +17,6 @@ public class EntityHornedSheep extends EntitySheep {
     public EntityHornedSheep(World world) {
         super(world);
         setSize(0.9F, 1.3F);
-    }
-
-    public EntityHornedSheep(World world, double x, double y, double z) {
-        this(world);
-        setPosition(x, y, z);
     }
 
     public static int getRandomFleeceColor(Random random) {
@@ -30,7 +30,7 @@ public class EntityHornedSheep extends EntitySheep {
         return iEntityLivingData;
     }
 
-    public EntitySheep createChild(EntityAgeable entityanimal) {
+    public EntityHornedSheep createChild(EntityAgeable entityanimal) {
         EntityHornedSheep otherParent = (EntityHornedSheep) entityanimal;
         EntityHornedSheep babySheep = new EntityHornedSheep(this.worldObj);
         if (this.rand.nextBoolean()) {
@@ -39,5 +39,31 @@ public class EntityHornedSheep extends EntitySheep {
             babySheep.setFleeceColor(otherParent.getFleeceColor());
         }
         return babySheep;
+    }
+
+/*    protected String getLivingSound() {
+        return "saltymod:mob.horned_sheep.say";
+    }
+
+
+    protected String getHurtSound() {
+        return "saltymod:mob.horned_sheep.say";
+    }
+
+
+    protected String getDeathSound() {
+        return "saltymod:mob.horned_sheep.say";
+    }*/
+
+    @Override
+    protected void dropFewItems(boolean wasRecentlyHit, int lootingLevel) {
+        if (!this.getSheared()) {
+            this.entityDropItem(new ItemStack(Item.getItemFromBlock(Blocks.wool), 1, this.getFleeceColor()),
+                0.0F
+            );
+            if (this.rand.nextFloat() < 0.5F) {
+                this.dropItem(ModItems.horn, 1);
+            }
+        }
     }
 }

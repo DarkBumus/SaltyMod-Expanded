@@ -2,6 +2,8 @@ package darkbum.saltymod;
 
 import java.io.File;
 
+import net.minecraft.block.BlockLilyPad;
+import net.minecraft.item.ItemLilyPad;
 import net.minecraft.util.EnumChatFormatting;
 
 import org.apache.logging.log4j.LogManager;

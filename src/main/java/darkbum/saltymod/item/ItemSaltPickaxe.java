@@ -2,6 +2,7 @@ package darkbum.saltymod.item;
 
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.block.Block;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,6 +10,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class ItemSaltPickaxe extends ItemPickaxe {
 
@@ -53,5 +56,10 @@ public class ItemSaltPickaxe extends ItemPickaxe {
             entityItem.delayBeforeCanPickup = 10;
             world.spawnEntityInWorld(entityItem);
         }
+    }
+
+    @Override
+    public void addInformation(ItemStack is, EntityPlayer player, List list, boolean flag) {
+        list.add(I18n.format(getUnlocalizedName() + ".tooltip"));
     }
 }

@@ -11,6 +11,7 @@ public class ModConfigurationBase extends Configuration {
 
     public static Configuration blocksConfig;
     public static Configuration effectsConfig;
+    public static Configuration entitiesConfig;
     public static Configuration itemsConfig;
     public static Configuration modCompatConfig;
     public static Configuration vanillaChangesConfig;
@@ -29,6 +30,7 @@ public class ModConfigurationBase extends Configuration {
 
         blocksConfig = new Configuration(new File(subDir, "blocks.cfg"));
         effectsConfig = new Configuration(new File(subDir, "effects.cfg"));
+        entitiesConfig = new Configuration(new File(subDir, "entities.cfg"));
         itemsConfig = new Configuration(new File(subDir, "items.cfg"));
         modCompatConfig = new Configuration(new File(subDir, "mod_compatibility.cfg"));
         vanillaChangesConfig = new Configuration(new File(subDir, "vanilla_changes.cfg"));
@@ -37,7 +39,7 @@ public class ModConfigurationBase extends Configuration {
     }
 
     public void preInit() {
-        Configuration[] configs = { blocksConfig, effectsConfig, itemsConfig, modCompatConfig, vanillaChangesConfig,
+        Configuration[] configs = { blocksConfig, effectsConfig, entitiesConfig, itemsConfig, modCompatConfig, vanillaChangesConfig,
             worldGenConfig};
 
         for (Configuration config : configs) {
@@ -46,6 +48,7 @@ public class ModConfigurationBase extends Configuration {
 
         ModConfigurationBlocks.init(blocksConfig);
         ModConfigurationEffects.init(effectsConfig);
+        ModConfigurationEntities.init(entitiesConfig);
         ModConfigurationItems.init(itemsConfig);
         ModConfigurationModCompatibility.init(modCompatConfig);
         ModConfigurationVanillaChanges.init(vanillaChangesConfig);

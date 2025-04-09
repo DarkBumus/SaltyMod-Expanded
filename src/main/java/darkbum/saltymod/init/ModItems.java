@@ -1,6 +1,6 @@
 package darkbum.saltymod.init;
 
-import darkbum.saltymod.configuration.configs.ModConfigurationWorldGeneration;
+import darkbum.saltymod.configuration.configs.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -14,9 +14,6 @@ import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import darkbum.saltymod.SaltyMod;
 import darkbum.saltymod.common.CommonProxy;
-import darkbum.saltymod.configuration.configs.ModConfigurationBlocks;
-import darkbum.saltymod.configuration.configs.ModConfigurationItems;
-import darkbum.saltymod.configuration.configs.ModConfigurationModCompatibility;
 import darkbum.saltymod.item.*;
 import darkbum.saltymod.potion.ProbablePotionEffect;
 import net.minecraftforge.common.util.EnumHelper;
@@ -52,6 +49,8 @@ public class ModItems {
     public static Item royal_jelly;
 
     public static Item mineral_mud_ball;
+
+    public static Item horn;
 
     public static Item marsh_reeds_grass;
 
@@ -397,6 +396,12 @@ public class ModItems {
                 .setUnlocalizedName("mineral_mud_ball")
                 .setTextureName("saltymod:mineral_mud_ball");
             GameRegistry.registerItem(mineral_mud_ball, "mineral_mud_ball");
+        }
+        if (ModConfigurationEntities.enableHornedSheep) {
+            horn = new Item().setCreativeTab(tab)
+                .setUnlocalizedName("horn")
+                .setTextureName("saltymod:horn");
+            GameRegistry.registerItem(horn, "horn");
         }
         baking_soda = new Item().setCreativeTab(tab)
             .setUnlocalizedName("baking_soda")
@@ -1368,7 +1373,7 @@ public class ModItems {
             mud_boots = new ItemMudArmor("mud_boots", CommonProxy.mudMaterial, 3);
             GameRegistry.registerItem(mud_boots, "mud_boots");
         }
-        salt_pickaxe = new ItemSaltPickaxe("salt_pickaxe", tab);
+        salt_pickaxe = new ItemSaltPickaxe("salt_pickaxe", tab).setTextureName("saltymod:salt_pickaxe");
         GameRegistry.registerItem(salt_pickaxe, "salt_pickaxe");
         if (ModConfigurationBlocks.enableSaltCrystal) {
             salt_shard = new ItemSaltShard("salt_shard", tab).setTextureName("saltymod:salt_shard");

@@ -1,6 +1,5 @@
 package darkbum.saltymod.common;
 
-//import darkbum.saltymod.block.render.MarshReedsRenderer;
 import darkbum.saltymod.block.render.MarshReedsRenderer;
 import net.minecraft.client.renderer.entity.RenderSnowball;
 
@@ -12,8 +11,8 @@ import darkbum.saltymod.block.render.SaltGrassRenderer;
 import darkbum.saltymod.entity.EntityHornedSheep;
 import darkbum.saltymod.entity.EntityRainmaker;
 import darkbum.saltymod.entity.EntityRainmakerDust;
-import darkbum.saltymod.entity.model.ModelHornedSheep;
-import darkbum.saltymod.entity.model.ModelHornedSheepFur;
+import darkbum.saltymod.entity.model.ModelHornedSheep1;
+import darkbum.saltymod.entity.model.ModelHornedSheep2;
 import darkbum.saltymod.entity.render.RenderHornedSheep;
 import darkbum.saltymod.entity.render.RenderRainmakerDust;
 import darkbum.saltymod.init.ModItems;
@@ -41,6 +40,6 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityRainmakerDust.class, new RenderRainmakerDust());
         RenderingRegistry.registerEntityRenderingHandler(
             EntityHornedSheep.class,
-            new RenderHornedSheep(new ModelHornedSheep(), new ModelHornedSheepFur(), 0.7F));
+            new RenderHornedSheep(new ModelHornedSheep2(), new ModelHornedSheep1(), 0.7F));
     }
 }
