@@ -41,6 +41,7 @@ public class ItemSaltPickaxe extends ItemPickaxe {
             if (player.worldObj.getBlock(x, y, z) == Blocks.ice) {
                 player.worldObj.setBlockToAir(x, y, z);
                 dropStack(player.worldObj, x, y, z, new ItemStack(Blocks.ice));
+                stack.damageItem(1, player);
                 return true;
             }
         return false;

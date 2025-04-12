@@ -1,6 +1,5 @@
 package darkbum.saltymod.api;
 
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import java.util.*;
@@ -20,30 +19,43 @@ public class PressingRecipe {
         public final ItemStack output1;
         public final ItemStack output2;
         public final boolean requiresHeater;
-        public final boolean requiresFuel;
+        public final boolean requiresMill; // Neues Flag für "Mühle erforderlich"
+        public final ItemStack vesselItem;
 
-        public PressRecipe(ItemStack input, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresFuel) {
+        public PressRecipe(ItemStack input, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill, ItemStack vesselItem) {
             this.input = input;
             this.output1 = output1;
             this.output2 = output2;
             this.requiresHeater = requiresHeater;
-            this.requiresFuel = requiresFuel;
+            this.requiresMill = requiresMill; // Mill setzen
+            this.vesselItem = vesselItem;
+        }
+
+        public PressRecipe(ItemStack input, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill) {
+            this(input, output1, output2, requiresHeater, requiresMill, null);
+        }
+
+        public boolean requiresVessel() {
+            return vesselItem != null;
         }
     }
 
-    public void registerBlockRecipe(Item blockItem, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresFuel) {
-        registerItemRecipe(blockItem, output1, output2, requiresHeater, requiresFuel);
+    public void registerRecipe(ItemStack input, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill, ItemStack vesselItem) {
+        recipes.put(input, new PressRecipe(input, output1, output2, requiresHeater, requiresMill, vesselItem));
     }
 
-    public void registerItemRecipe(Item item, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresFuel) {
-        ItemStack input = new ItemStack(item, 1, 32767);
-        recipes.put(input, new PressRecipe(input, output1, output2, requiresHeater, requiresFuel));
+    public void registerRecipe(ItemStack input, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill) {
+        recipes.put(input, new PressRecipe(input, output1, output2, requiresHeater, requiresMill));
     }
 
-    public PressRecipe getRecipeFor(ItemStack input) {
+    public PressRecipe getRecipeFor(ItemStack input, ItemStack vessel) {
         for (Map.Entry<ItemStack, PressRecipe> entry : recipes.entrySet()) {
+            PressRecipe recipe = entry.getValue();
             if (areStacksEqual(input, entry.getKey())) {
-                return entry.getValue();
+                if (recipe.requiresVessel() && (vessel == null || !PressingRecipeVesselRegistry.isValidVessel(vessel))) {
+                    return null;
+                }
+                return recipe;
             }
         }
         return null;

@@ -125,4 +125,12 @@ public class SaltyMod {
  * - Underground Salt Caves/Tunnels/Mines? [MAYBE]
  * - Recipe Book [LATER, ALSO MAYBE]
  * - Fix up the latest Config changes
+ *
+ * NEW:
+ *
+ * - Try to set up Marsh Reeds as a two-tall plant?
+ * - Cooking Pot / Clay Brick Furnace
+ * - Apiary + Fish Farm Hopper/Comparator interaction
+ * - Add Heat/Milling indicators to Press GUI
+ * - Adding Press/Cooking Pot to NEI > Look at Pam's?
  */

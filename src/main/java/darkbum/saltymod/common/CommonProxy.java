@@ -1,9 +1,11 @@
 package darkbum.saltymod.common;
 
+import cpw.mods.fml.common.Loader;
 import darkbum.saltymod.configuration.configs.ModConfigurationEntities;
 import darkbum.saltymod.entity.EntityHornedSheep;
-import darkbum.saltymod.tileentity.TileEntityPress;
+import darkbum.saltymod.tileentity.*;
 import net.minecraft.block.BlockDispenser;
+import net.minecraft.block.BlockLiquid;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -46,9 +48,6 @@ import darkbum.saltymod.inventory.gui.GuiHandler;
 import darkbum.saltymod.network.EvaporatorButtonMessage;
 import darkbum.saltymod.network.SaltwortMessage;
 import darkbum.saltymod.network.events.*;
-import darkbum.saltymod.tileentity.TileEntityApiary;
-import darkbum.saltymod.tileentity.TileEntityEvaporator;
-import darkbum.saltymod.tileentity.TileEntityFishFarm;
 import darkbum.saltymod.world.generator.*;
 
 public class CommonProxy {
@@ -137,10 +136,17 @@ public class CommonProxy {
             ClientProxy.setEntityRenderers();
         }
 
-        GameRegistry.registerTileEntity(TileEntityEvaporator.class, "tileEntityEvaporator");
-        GameRegistry.registerTileEntity(TileEntityFishFarm.class, "tileEntityFishFarm");
-        GameRegistry.registerTileEntity(TileEntityApiary.class, "tileEntityApiary");
+        if(ModConfigurationBlocks.enableEvaporator) {
+            GameRegistry.registerTileEntity(TileEntityEvaporator.class, "tileEntityEvaporator");
+        }
+        if(ModConfigurationBlocks.enableFishFarm) {
+            GameRegistry.registerTileEntity(TileEntityFishFarm.class, "tileEntityFishFarm");
+        }
+        if(ModConfigurationBlocks.enableApiary) {
+            GameRegistry.registerTileEntity(TileEntityApiary.class, "tileEntityApiary");
+        }
         GameRegistry.registerTileEntity(TileEntityPress.class, "tileEntityPress");
+        GameRegistry.registerTileEntity(TileEntityCookingPot.class, "tileEntityCookingPot");
 
         EntityRegistry.registerModEntity(EntityRainmaker.class, "rainmaker", 0, SaltyMod.instance, 64, 20, true);
         EntityRegistry
@@ -206,7 +212,7 @@ public class CommonProxy {
                 EvaporateRegistry.instance()
                     .addEvaporating(CommonProxy.milk, ModItems.powdered_milk, 1000, 0.0F);
             }
-            if (ModConfigurationModCompatibility.enableBOPFoods) {
+            if (Loader.isModLoaded("BiomesOPlenty") && ModConfigurationModCompatibility.enableBOPFoods) {
                 if (FluidRegistry.isFluidRegistered("blood")) {
                     Fluid blood = FluidRegistry.getFluid("blood");
                     GameRegistry.registerItem(ModItems.bop_hemoglobin, "hemoglobin");

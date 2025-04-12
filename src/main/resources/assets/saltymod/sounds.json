@@ -72,5 +72,70 @@
 	  "block/bee_burrow/bees2",
 	  "block/bee_burrow/bees3"
 	]
+  },
+  "mob.horned_sheep.say": {
+	"category": "neutral",
+	"sounds": [
+	  "mob/horned_sheep/say1",
+	  "mob/horned_sheep/say2",
+	  "mob/horned_sheep/say3"
+	]
+  },
+  "item.horn.ponder": {
+	"category": "player",
+	"sounds": [
+	  "item/horn/ponder"
+	]
+  },
+  "item.horn.sing": {
+	"category": "player",
+	"sounds": [
+	  "item/horn/sing"
+	]
+  },
+  "item.horn.seek": {
+	"category": "player",
+	"sounds": [
+	  "item/horn/seek"
+	]
+  },
+  "item.horn.feel": {
+	"category": "player",
+	"sounds": [
+	  "item/horn/feel"
+	]
+  },
+  "item.horn.admire": {
+	"category": "player",
+	"sounds": [
+	  "item/horn/admire"
+	]
+  },
+  "item.horn.call": {
+	"category": "player",
+	"sounds": [
+	  "item/horn/call"
+	]
+  },
+  "item.horn.yearn": {
+	"category": "player",
+	"sounds": [
+	  "item/horn/yearn"
+	]
+  },
+  "item.horn.dream": {
+	"category": "player",
+	"sounds": [
+	  "item/horn/dream"
+	]
+  },
+  "item.axe.strip": {
+	"category": "block",
+	"sounds": [
+	  "item/axe/strip1",
+	  "item/axe/strip2",
+	  "item/axe/strip3",
+	  "item/axe/strip4"
+	]
   }
 }

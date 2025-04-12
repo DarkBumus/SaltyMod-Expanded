@@ -38,8 +38,8 @@ public class GuiPress extends GuiContainer {
         int y = (this.height - this.ySize) / 2;
         drawTexturedModalRect(x, y, 0, 0, this.xSize, this.ySize);
         if (this.tileEntityPress.isRunning()) {
-            int progress = this.tileEntityPress.getCookProgressScaled(24);
-            drawTexturedModalRect(x + 76, y + 38, 176, 18, progress + 1, 16);
+            int progress = this.tileEntityPress.getPressProgressScale(24);
+            drawTexturedModalRect(x + 76, y + 36, 176, 0, progress + 1, 16);
         }
     }
 }

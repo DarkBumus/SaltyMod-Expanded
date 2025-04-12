@@ -2,11 +2,10 @@ package darkbum.saltymod.tileentity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import darkbum.saltymod.api.PressingRecipeVesselRegistry;
 import darkbum.saltymod.init.ModBlocks;
-import darkbum.saltymod.init.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -16,6 +15,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import darkbum.saltymod.api.PressingRecipe;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileEntityPress extends TileEntity implements ISidedInventory {
 
@@ -27,9 +27,11 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
 
     private boolean isHeaterNearby = false;
 
-    private static final int[] slotsTop = new int[] { 0 };
-    private static final int[] slotsBottom = new int[] { 1, 2 };
-    private static final int[] slotsFuel = new int[] { 3 };
+    private boolean isMillNearby = false;
+
+    private static final int[] slotsTop = new int[]{0};
+    private static final int[] slotsBottom = new int[]{1, 2};
+    private static final int[] slotVessel = new int[]{3};
 
     public String getInventoryName() {
         return hasCustomInventoryName() ? this.inventoryName : "container.press";
@@ -86,19 +88,19 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
     }
 
     @Override
-    public void openInventory() {}
+    public void openInventory() {
+    }
 
     @Override
-    public void closeInventory() {}
+    public void closeInventory() {
+    }
 
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack) {
         if (index == 0) {
-            return stack.getItem() == ModItems.honeycomb
-                || stack.getItem() == ModItems.frozen_honey
-                || stack.getItem() == ModItems.mineral_mud_ball;
+            return true;
         } else if (index == 3) {
-            return stack.getItem() == Items.glass_bottle;
+            return PressingRecipeVesselRegistry.isValidVessel(stack);
         }
         return false;
     }
@@ -107,16 +109,13 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
     public int[] getAccessibleSlotsFromSide(int side) {
         if (side == 0) {
             return slotsBottom;
-        }
-        else if (side == 1) {
+        } else if (side == 1) {
             return slotsTop;
-        }
-        else return slotsFuel;
+        } else return slotVessel;
     }
 
 
-    public boolean canInsertItem(int index, ItemStack itemstack, int side)
-    {
+    public boolean canInsertItem(int index, ItemStack itemstack, int side) {
         return this.isItemValidForSlot(index, itemstack);
     }
 
@@ -136,7 +135,7 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
     }
 
     @SideOnly(Side.CLIENT)
-    public int getCookProgressScaled(int scale) {
+    public int getPressProgressScale(int scale) {
         return pressingTime * scale / 125;
     }
 
@@ -148,6 +147,7 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
     public void updateEntity() {
         boolean updated = false;
         checkForHeater();
+        checkForMill();
 
         if (!worldObj.isRemote) {
             if (canRun()) {
@@ -172,50 +172,50 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
         ItemStack input = inventory[0];
         if (input == null) return false;
 
-        PressingRecipe.PressRecipe recipe = PressingRecipe.pressing().getRecipeFor(input);
+        ItemStack vessel = inventory[3];
+        PressingRecipe.PressRecipe recipe = PressingRecipe.pressing().getRecipeFor(input, vessel);
         if (recipe == null) return false;
 
-        // Prüfen, ob Heizbedingung erfüllt ist
-        if (recipe.requiresHeater) {
-            if (!isHeaterNearby) return false; // Wenn der Heizer erforderlich ist, aber nicht vorhanden, abbrechen
-        } else {
-            if (isHeaterNearby) return false; // Wenn der Heizer nicht erforderlich ist, aber vorhanden, abbrechen
-        }
-
-        // Prüfen, ob Fuel-Bedingung erfüllt ist
-        if (recipe.requiresFuel) {
-            if (inventory[3] == null || inventory[3].getItem() != Items.glass_bottle) return false;
-        }
-
-        // Prüfen, ob Output1 passt
-        if (recipe.output1 != null) {
-            ItemStack output1 = inventory[1];
-            if (output1 != null) {
-                if (!output1.isItemEqual(recipe.output1)) return false;
-                if (output1.stackSize + recipe.output1.stackSize > output1.getMaxStackSize()) return false;
-            }
-        }
-
-        // Prüfen, ob Output2 passt
-        if (recipe.output2 != null) {
-            ItemStack output2 = inventory[2];
-            if (output2 != null) {
-                if (!output2.isItemEqual(recipe.output2)) return false;
-                if (output2.stackSize + recipe.output2.stackSize > output2.getMaxStackSize()) return false;
-            }
-        }
+        if (!isHeaterRequirementMet(recipe)) return false;
+        if (!isMillRequirementMet(recipe)) return false;
+        if (!isVesselRequirementMet(recipe, vessel)) return false;
+        if (!canAcceptOutput(inventory[1], recipe.output1)) return false;
+        if (!canAcceptOutput(inventory[2], recipe.output2)) return false;
 
         return true;
     }
 
+    private boolean isHeaterRequirementMet(PressingRecipe.PressRecipe recipe) {
+        return recipe.requiresHeater == isHeaterNearby;
+    }
+
+    private boolean isMillRequirementMet(PressingRecipe.PressRecipe recipe) {
+        return recipe.requiresMill == isMillNearby;
+    }
+
+    private boolean isVesselRequirementMet(PressingRecipe.PressRecipe recipe, ItemStack vessel) {
+        if (recipe.vesselItem == null) return true;
+        if (vessel == null) return false;
+        return PressingRecipeVesselRegistry.isValidVessel(vessel) && vessel.getItem() == recipe.vesselItem.getItem();
+    }
+
+    private boolean canAcceptOutput(ItemStack currentStack, ItemStack output) {
+        if (output == null) return true;
+        if (currentStack == null) return true;
+
+        if (!currentStack.isItemEqual(output)) return false;
+        return currentStack.stackSize + output.stackSize <= currentStack.getMaxStackSize();
+    }
+
     public void pressItems() {
-        if (!canRun()) return;
-
         ItemStack input = inventory[0];
-        PressingRecipe.PressRecipe recipe = PressingRecipe.pressing().getRecipeFor(input);
-        if (recipe == null) return; // Sollte nicht passieren, aber zur Sicherheit
+        if (input == null) return;
 
-        // Output 1 verarbeiten
+        ItemStack vessel = inventory[3];
+        PressingRecipe.PressRecipe recipe = PressingRecipe.pressing().getRecipeFor(input, vessel);
+        if (recipe == null) return;
+
+        // Ausgabe 1
         if (recipe.output1 != null) {
             if (inventory[1] == null) {
                 inventory[1] = recipe.output1.copy();
@@ -224,7 +224,7 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
             }
         }
 
-        // Output 2 verarbeiten
+        // Ausgabe 2
         if (recipe.output2 != null) {
             if (inventory[2] == null) {
                 inventory[2] = recipe.output2.copy();
@@ -233,15 +233,16 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
             }
         }
 
-        // Input verbrauchen
+        // Eingabeware verringern
         inventory[0].stackSize--;
         if (inventory[0].stackSize <= 0) inventory[0] = null;
 
-        // Fuel verbrauchen, falls notwendig
-        if (recipe.requiresFuel && inventory[3] != null && inventory[3].getItem() == Items.glass_bottle) {
-            inventory[3].stackSize--;
-            if (inventory[3].stackSize <= 0) {
-                inventory[3] = null;
+        if (recipe.vesselItem != null && inventory[3] != null && PressingRecipeVesselRegistry.isValidVessel(inventory[3])) {
+            if (inventory[3].getItem() == recipe.vesselItem.getItem()) {
+                inventory[3].stackSize--;
+                if (inventory[3].stackSize <= 0) {
+                    inventory[3] = null;
+                }
             }
         }
     }
@@ -264,9 +265,57 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
             int dz = dir[2];
 
             Block neighborBlock = worldObj.getBlock(xCoord + dx, yCoord + dy, zCoord + dz);
-            if (neighborBlock != null && neighborBlock == ModBlocks.heater) {
+            if (neighborBlock != null && neighborBlock == ModBlocks.lit_heater) {
                 isHeaterNearby = true;
                 return;
+            }
+        }
+    }
+
+    private void checkForMill() {
+        isMillNearby = false;
+
+        // Bestimme den Meta-Wert des aktuellen BlockPress
+        int blockMeta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+
+        // Positionen für die Seiten des Blocks, abhängig vom Meta-Wert
+        int targetSide = -1;
+
+        // Definiere die Zielseite basierend auf dem Meta-Wert von BlockPress
+        switch (blockMeta) {
+            case 0:
+                targetSide = 2; // Meta:0 -> Seite 2
+                break;
+            case 1:
+                targetSide = 5; // Meta:1 -> Seite 5
+                break;
+            case 2:
+                targetSide = 3; // Meta:2 -> Seite 3
+                break;
+            case 3:
+                targetSide = 4; // Meta:3 -> Seite 4
+                break;
+        }
+
+        // Nun suchen wir nach einem BlockMill auf der bestimmten Seite
+        if (targetSide != -1) {
+            Block neighborBlock = worldObj.getBlock(xCoord + ForgeDirection.VALID_DIRECTIONS[targetSide].offsetX,
+                yCoord + ForgeDirection.VALID_DIRECTIONS[targetSide].offsetY,
+                zCoord + ForgeDirection.VALID_DIRECTIONS[targetSide].offsetZ);
+
+            // Überprüfen, ob es BlockMill ist und den richtigen Meta-Wert hat
+            if (neighborBlock != null && neighborBlock == ModBlocks.mill) {
+                int neighborMeta = worldObj.getBlockMetadata(xCoord + ForgeDirection.VALID_DIRECTIONS[targetSide].offsetX,
+                    yCoord + ForgeDirection.VALID_DIRECTIONS[targetSide].offsetY,
+                    zCoord + ForgeDirection.VALID_DIRECTIONS[targetSide].offsetZ);
+
+                // Vergleiche den Meta-Wert des BlockMill mit dem erforderlichen Wert
+                if ((blockMeta == 0 && neighborMeta == 4) ||
+                    (blockMeta == 1 && neighborMeta == 5) ||
+                    (blockMeta == 2 && neighborMeta == 6) ||
+                    (blockMeta == 3 && neighborMeta == 7)) {
+                    isMillNearby = true;
+                }
             }
         }
     }
@@ -302,7 +351,6 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
                 itemList.appendTag(itemTag);
             }
         }
-
         tag.setTag("Items", itemList);
     }
 
@@ -318,4 +366,3 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
         readFromNBT(packet.func_148857_g());
     }
 }
-

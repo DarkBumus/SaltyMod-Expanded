@@ -40,6 +40,7 @@ public class ModShapelessRecipes {
             GameRegistry
                 .addShapelessRecipe(new ItemStack(Items.fish, 9, 3), new ItemStack(ModBlocks.storage_barrel, 1, 4));
         }
+
         GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 2), new ItemStack(ModItems.saltwort));
         GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 5), new ItemStack(ModBlocks.salt_flower, 1, 2));
         GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 10), new ItemStack(ModBlocks.salt_flower, 1, 5));

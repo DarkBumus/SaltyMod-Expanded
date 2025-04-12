@@ -32,21 +32,22 @@ public class BlockPress extends BlockContainer {
     private IIcon TOP;
 
     @SideOnly(Side.CLIENT)
-    private IIcon SIDE;
+    private IIcon SIDES;
 
     @SideOnly(Side.CLIENT)
     private IIcon FRONT;
 
-    private final Random random = new Random();
+    @SideOnly(Side.CLIENT)
+    private IIcon BACK;
 
-    private static boolean isBurning;
+    private final Random random = new Random();
 
     public BlockPress(String name, CreativeTabs tab) {
         super(Material.wood);
         setBlockName(name);
         setCreativeTab(tab);
-        setHardness(0.6F);
-        setResistance(0.6F);
+        setHardness(2.5F);
+        setResistance(2.5F);
         setStepSound(soundTypeWood);
     }
 
@@ -54,8 +55,9 @@ public class BlockPress extends BlockContainer {
     public void registerBlockIcons(IIconRegister icon) {
         this.BOTTOM = icon.registerIcon("saltymod:press_bottom");
         this.TOP = icon.registerIcon("saltymod:press_top");
-        this.SIDE = icon.registerIcon("saltymod:press_side");
+        this.SIDES = icon.registerIcon("saltymod:press_side");
         this.FRONT = icon.registerIcon("saltymod:press_front");
+        this.BACK = icon.registerIcon("saltymod:press_back");
     }
 
     @SideOnly(Side.CLIENT)
@@ -68,11 +70,12 @@ public class BlockPress extends BlockContainer {
                     case 1:
                         return TOP;
                     case 2:
-                    case 4:
-                    case 5:
-                        return SIDE;
+                        return BACK;
                     case 3:
                         return FRONT;
+                    case 4:
+                    case 5:
+                        return SIDES;
                 }
             case 1:
                 switch (side) {
@@ -81,11 +84,12 @@ public class BlockPress extends BlockContainer {
                     case 1:
                         return TOP;
                     case 2:
-                    case 5:
                     case 3:
-                        return SIDE;
+                        return SIDES;
                     case 4:
                         return FRONT;
+                    case 5:
+                        return BACK;
                 }
             case 2:
                 switch (side) {
@@ -95,10 +99,11 @@ public class BlockPress extends BlockContainer {
                         return TOP;
                     case 2:
                         return FRONT;
+                    case 3:
+                        return BACK;
                     case 4:
                     case 5:
-                    case 3:
-                        return SIDE;
+                        return SIDES;
                 }
             case 3:
                 switch (side) {
@@ -108,8 +113,9 @@ public class BlockPress extends BlockContainer {
                         return TOP;
                     case 2:
                     case 3:
+                        return SIDES;
                     case 4:
-                        return SIDE;
+                        return BACK;
                     case 5:
                         return FRONT;
                 }

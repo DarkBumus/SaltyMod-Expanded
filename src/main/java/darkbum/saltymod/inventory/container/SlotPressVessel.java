@@ -1,25 +1,23 @@
 package darkbum.saltymod.inventory.container;
 
-import darkbum.saltymod.init.ModItems;
+import darkbum.saltymod.api.PressingRecipeVesselRegistry;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-import darkbum.saltymod.item.ItemBee;
 
-public class SlotPressFuel extends Slot {
+public class SlotPressVessel extends Slot {
 
     private EntityPlayer entityPlayer;
 
-    public SlotPressFuel(EntityPlayer entityPlayer, IInventory iInventory, int slotIndex, int x, int y) {
+    public SlotPressVessel(EntityPlayer entityPlayer, IInventory iInventory, int slotIndex, int x, int y) {
         super(iInventory, slotIndex, x, y);
         setEntityPlayer(entityPlayer);
     }
 
     public boolean isItemValid(ItemStack itemStack) {
-        return itemStack.getItem() == Items.glass_bottle;
+        return PressingRecipeVesselRegistry.isValidVessel(itemStack);
     }
 
     public int getSlotStackLimit() {

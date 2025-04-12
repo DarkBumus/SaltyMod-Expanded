@@ -121,7 +121,16 @@ item.frozen_honey.name=Frozen Honey
 item.royal_jelly.name=Royal Jelly
 
 item.horn.name=Horn
+item.horn.ponder.tooltip=Ponder
+item.horn.sing.tooltip=Sing
+item.horn.seek.tooltip=Seek
+item.horn.feel.tooltip=Feel
+item.horn.admire.tooltip=Admire
+item.horn.call.tooltip=Call
+item.horn.yearn.tooltip=Yearn
+item.horn.dream.tooltip=Dream
 item.marsh_reeds_grass.name=Marsh Reeds
+
 item.mineral_mud_ball.name=Mineral Mud Ball
 item.baking_soda.name=Baking Soda
 item.powdered_milk.name=Powdered Milk

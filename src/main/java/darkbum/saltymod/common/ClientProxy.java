@@ -1,6 +1,8 @@
 package darkbum.saltymod.common;
 
+import darkbum.saltymod.block.render.MarshGrassRenderer;
 import darkbum.saltymod.block.render.MarshReedsRenderer;
+import darkbum.saltymod.configuration.configs.ModConfigurationBlocks;
 import net.minecraft.client.renderer.entity.RenderSnowball;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -25,13 +27,21 @@ public class ClientProxy extends CommonProxy {
 
     public static int marshReedsRenderType;
 
+    public static int marshGrassRenderType;
+
     public static void setBlockRenderers() {
-        evaporatorRenderType = RenderingRegistry.getNextAvailableRenderId();
-        RenderingRegistry.registerBlockHandler(new EvaporatorRenderer());
-        saltGrassRenderType = RenderingRegistry.getNextAvailableRenderId();
-        RenderingRegistry.registerBlockHandler(new SaltGrassRenderer());
+        if (ModConfigurationBlocks.enableSaltDirt) {
+            saltGrassRenderType = RenderingRegistry.getNextAvailableRenderId();
+            RenderingRegistry.registerBlockHandler(new SaltGrassRenderer());
+        }
+        if(ModConfigurationBlocks.enableEvaporator) {
+            evaporatorRenderType = RenderingRegistry.getNextAvailableRenderId();
+            RenderingRegistry.registerBlockHandler(new EvaporatorRenderer());
+        }
         marshReedsRenderType = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(new MarshReedsRenderer());
+        marshGrassRenderType = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new MarshGrassRenderer());
     }
 
     @SideOnly(Side.CLIENT)

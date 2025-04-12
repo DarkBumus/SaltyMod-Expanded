@@ -21,7 +21,7 @@ public class EntityJoinWorldEventHandler {
                 animal.tasks.addTask(3, new EntityAITempt(animal, 1.25D, ModItems.salt, false));
             }
             if (animal instanceof net.minecraft.entity.passive.EntityPig) {
-                animal.tasks.addTask(3, new EntityAITempt(animal, 1.25D, ModItems.onion, false));
+                animal.tasks.addTask(4, new EntityAITempt(animal, 1.25D, ModItems.onion, false));
             }
         }
     }

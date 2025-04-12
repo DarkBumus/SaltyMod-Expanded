@@ -1,12 +1,12 @@
-package darkbum.saltymod.blockitem;
+package darkbum.saltymod.itemblock;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlockWithMetadata;
 import net.minecraft.item.ItemStack;
 
-public class ItemSaltBlock extends ItemBlockWithMetadata {
+public class ItemBlockSaltBlock extends ItemBlockWithMetadata {
 
-    public ItemSaltBlock(Block block) {
+    public ItemBlockSaltBlock(Block block) {
         super(block, block);
     }
 

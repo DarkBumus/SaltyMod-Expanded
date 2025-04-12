@@ -204,18 +204,16 @@ public class TileEntityFishFarm extends TileEntity implements IInventory {
         if (this.inventory[18] != null) {
             int i = rnd.nextInt(16);
             switch (i) {
-                case 0, 1, 2, 3, 4:
+                case 0, 1, 2, 3, 4 ,5:
                     return new ItemStack(Items.fish, 1, 0);
-                case 5, 6, 7:
+                case 6, 7, 8:
                     return new ItemStack(Items.fish, 1, 1);
-                case 8, 9:
+                case 9, 10:
                     return new ItemStack(Items.fish, 1, 2);
-                case 10:
+                case 11, 12:
                     return new ItemStack(Items.fish, 1, 3);
-                case 11, 12, 13:
+                case 13, 14, 15:
                     return new ItemStack(ModItems.tailor, 1, 0);
-                case 14, 15:
-                    return new ItemStack(ModItems.calamari, 1, 0);
             }
         }
         return null;

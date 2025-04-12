@@ -1,15 +1,14 @@
-package darkbum.saltymod.blockitem;
+package darkbum.saltymod.itemblock;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlockWithMetadata;
 import net.minecraft.item.ItemStack;
 
-public class ItemSaltFlower extends ItemBlockWithMetadata {
+public class ItemBlockStorageBarrel extends ItemBlockWithMetadata {
 
-    public static final String[] types = new String[] { "daucus", "wild_carrot", "solanum", "wild_potato", "wild_onion",
-        "maritima", "wild_beet" };
+    private static final String[] types = new String[] { "cod", "salmon", "tropical_fish", "tailor", "pufferfish" };
 
-    public ItemSaltFlower(Block block) {
+    public ItemBlockStorageBarrel(Block block) {
         super(block, block);
         setHasSubtypes(true);
     }

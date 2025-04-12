@@ -31,7 +31,6 @@ public class EvaporateRegistry {
         addEvaporating(fluid, Item.getItemFromBlock(block), vol, exp);
     }
 
-    // Verwendung von generischen Typen
     private Map<Fluid, EvaporateResults> evaporatingList = new HashMap<>();
     private Map<List<Object>, Experience> experienceList = new HashMap<>();
 

@@ -67,8 +67,8 @@ public class ModConfigurationWorldGeneration {
             "02-saltMarshBiomeID",
             categoryNameWorBio,
             40,
-            40,
-            40,
+            0,
+            255,
             "Sets the Biome ID of the Salt Marsh Biome, setting this to \"-1\" completely disables the Biome");
         saltMarshBiomeWeight = config.getInt(
             "03-saltMarshBiomeWeight",

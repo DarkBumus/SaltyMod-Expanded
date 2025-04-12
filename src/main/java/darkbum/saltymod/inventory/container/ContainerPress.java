@@ -12,27 +12,27 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerPress extends Container {
 
-    private final TileEntityPress press;
+    private final TileEntityPress tileEntityPress;
 
     private int lastPressingTime = 0;
 
     private static final int SLOT_INPUT = 0;
     private static final int SLOT_OUTPUT_1 = 1;
     private static final int SLOT_OUTPUT_2 = 2;
-    private static final int SLOT_FUEL = 3;
+    private static final int SLOT_VESSEL = 3;
     private static final int SLOT_COUNT_MACHINE = 4;
 
     private static final int SLOT_PLAYER_INV_START = SLOT_COUNT_MACHINE;
     private static final int SLOT_HOTBAR_START = SLOT_PLAYER_INV_START + 27;
     private static final int SLOT_TOTAL = SLOT_HOTBAR_START + 9;
 
-    public ContainerPress(InventoryPlayer playerInventory, TileEntityPress press) {
-        this.press = press;
+    public ContainerPress(InventoryPlayer playerInventory, TileEntityPress tileEntityPress) {
+        this.tileEntityPress = tileEntityPress;
 
-        addSlotToContainer(new SlotPressInput(playerInventory.player, press, SLOT_INPUT, 80, 21));
-        addSlotToContainer(new SlotFarmOutput(playerInventory.player, press, SLOT_OUTPUT_1, 62, 53));
-        addSlotToContainer(new SlotFarmOutput(playerInventory.player, press, SLOT_OUTPUT_2, 98, 53));
-        addSlotToContainer(new SlotPressFuel(playerInventory.player, press, SLOT_FUEL, 26, 53));
+        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityPress, SLOT_INPUT, 80, 17));
+        addSlotToContainer(new SlotFarmOutput(playerInventory.player, tileEntityPress, SLOT_OUTPUT_1, 62, 53));
+        addSlotToContainer(new SlotFarmOutput(playerInventory.player, tileEntityPress, SLOT_OUTPUT_2, 98, 53));
+        addSlotToContainer(new SlotPressVessel(playerInventory.player, tileEntityPress, SLOT_VESSEL, 26, 53));
 
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 9; col++) {
@@ -53,11 +53,11 @@ public class ContainerPress extends Container {
     public void detectAndSendChanges() {
         super.detectAndSendChanges();
 
-        if (this.lastPressingTime != this.press.pressingTime) {
+        if (this.lastPressingTime != this.tileEntityPress.pressingTime) {
             for (ICrafting crafter : this.crafters) {
-                crafter.sendProgressBarUpdate(this, 0, this.press.pressingTime);
+                crafter.sendProgressBarUpdate(this, 0, this.tileEntityPress.pressingTime);
             }
-            this.lastPressingTime = this.press.pressingTime;
+            this.lastPressingTime = this.tileEntityPress.pressingTime;
         }
     }
 
@@ -65,13 +65,13 @@ public class ContainerPress extends Container {
     @Override
     public void updateProgressBar(int id, int value) {
         if (id == 0) {
-            this.press.pressingTime = value;
+            this.tileEntityPress.pressingTime = value;
         }
     }
 
     @Override
     public boolean canInteractWith(EntityPlayer player) {
-        return this.press.isUseableByPlayer(player);
+        return this.tileEntityPress.isUseableByPlayer(player);
     }
 
     @Override
@@ -83,21 +83,16 @@ public class ContainerPress extends Container {
             ItemStack stackInSlot = slot.getStack();
             itemStack = stackInSlot.copy();
 
-            // Wenn der Slot der Block-Slots (Fuel, Input, Output) ist, verschiebe das Item ins Inventar
-            if (slotIndex == SLOT_INPUT || slotIndex == SLOT_OUTPUT_1 || slotIndex == SLOT_OUTPUT_2 || slotIndex == SLOT_FUEL) {
-                // Verschieben des Items in das Inventar (zwischen 3 und 39, Hotbar und Inventar)
+            if (slotIndex == SLOT_INPUT || slotIndex == SLOT_OUTPUT_1 || slotIndex == SLOT_OUTPUT_2 || slotIndex == SLOT_VESSEL) {
                 if (!mergeItemStack(stackInSlot, SLOT_PLAYER_INV_START, SLOT_TOTAL, true)) {
                     return null;
                 }
             } else {
-                // Wenn der Slot nicht der Block-Slot ist, verschieben wir die Items zwischen Hotbar und Inventar
                 if (slotIndex < SLOT_PLAYER_INV_START) {
-                    // Verschieben zwischen Inventar und Hotbar
                     if (!mergeItemStack(stackInSlot, SLOT_PLAYER_INV_START, SLOT_TOTAL, true)) {
                         return null;
                     }
                 } else {
-                    // Verschieben zwischen Hotbar und Inventar
                     if (slotIndex < SLOT_HOTBAR_START) {
                         if (!mergeItemStack(stackInSlot, SLOT_HOTBAR_START, SLOT_TOTAL, false)) {
                             return null;
@@ -109,7 +104,6 @@ public class ContainerPress extends Container {
                     }
                 }
             }
-
             if (stackInSlot.stackSize == 0) {
                 slot.putStack(null);
             } else {
@@ -119,13 +113,8 @@ public class ContainerPress extends Container {
             if (stackInSlot.stackSize == itemStack.stackSize) {
                 return null;
             }
-
             slot.onPickupFromSlot(player, stackInSlot);
         }
-
         return itemStack;
     }
-
-
 }
-

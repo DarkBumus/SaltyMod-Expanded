@@ -2,13 +2,11 @@ package darkbum.saltymod.block;
 
 import java.util.Random;
 
-import darkbum.saltymod.init.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
@@ -25,8 +23,8 @@ public class BlockMineralMud extends Block {
     public BlockMineralMud(String name, CreativeTabs tab) {
         super(Material.ground);
         setBlockName(name);
-        setStepSound(ModSounds.soundTypeMud);
         setCreativeTab(tab);
+        setStepSound(ModSounds.soundTypeMud);
         setHardness(0.5F);
         setResistance(0.5F);
         setHarvestLevel("shovel", 0);

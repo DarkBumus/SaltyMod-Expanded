@@ -2,17 +2,26 @@ package darkbum.saltymod.block;
 
 import java.util.Random;
 
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.registry.GameRegistry;
+import darkbum.saltymod.init.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemAxe;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockSaltCrustedOakLog extends Block {
 
@@ -111,18 +120,6 @@ public class BlockSaltCrustedOakLog extends Block {
         return null;
     }
 
-    /*
-     * public IIcon getIcon(int side, int meta) {
-     * switch (side) {
-     * case 0:
-     * return BOTTOM;
-     * case 1:
-     * return TOP;
-     * }
-     * return SIDE;
-     * }
-     */
-
     public int onBlockPlaced(World worldIn, int x, int y, int z, int side, float subX, float subY, float subZ,
         int meta) {
         int j1 = meta & 3;
@@ -149,6 +146,44 @@ public class BlockSaltCrustedOakLog extends Block {
     }
 
     protected boolean canSilkHarvest() {
+        return false;
+    }
+
+    public boolean isFlammable(IBlockAccess aWorld, int aX, int aY, int aZ, ForgeDirection aSide) {
+        return true;
+    }
+
+    public int getFlammability(IBlockAccess aWorld, int aX, int aY, int aZ, ForgeDirection aSide) {
+        return 5;
+    }
+
+    public int getFireSpreadSpeed(IBlockAccess aWorld, int aX, int aY, int aZ, ForgeDirection aSide) {
+        return 5;
+    }
+
+    @Override
+    public boolean onBlockActivated(World worldIn, int x, int y, int z, EntityPlayer player, int side, float subX, float subY, float subZ) {
+        if (Loader.isModLoaded("etfuturum")) {
+            Block log_stripped = GameRegistry.findBlock("etfuturum", "log_stripped");
+            if ((log_stripped != null)) {
+                ItemStack heldItem = player.getHeldItem();
+
+                if (heldItem != null && heldItem.getItem() instanceof ItemAxe) {
+                    int meta = worldIn.getBlockMetadata(x, y, z);
+
+                    if (meta == 0 || meta == 4 || meta == 8) {
+                        if (!worldIn.isRemote) {
+                            worldIn.setBlock(x, y, z, log_stripped, meta, 3);
+                            worldIn.spawnEntityInWorld(new EntityItem(worldIn, x + 0.5, y + 1.0, z + 0.5, new ItemStack(ModItems.salt_pinch)));
+                            worldIn.playSoundEffect(x, y, z, "saltymod:item.axe.strip", 1.0F, 1.5F);
+                            heldItem.damageItem(2, player);
+                        }
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
         return false;
     }
 }

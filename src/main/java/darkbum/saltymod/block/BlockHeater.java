@@ -2,11 +2,17 @@ package darkbum.saltymod.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import darkbum.saltymod.init.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityFireball;
+import net.minecraft.entity.projectile.EntitySmallFireball;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
@@ -28,12 +34,11 @@ public class BlockHeater extends Block {
 
     public BlockHeater(String name, CreativeTabs tab) {
         super(Material.rock);
-        setTickRandomly(true);
+        setTickRandomly(false);
         setBlockName(name);
         setCreativeTab(tab);
         setHardness(2.0F);
         setResistance(6.0F);
-        setLightLevel(0.8667F);
         setStepSound(soundTypeStone);
     }
 
@@ -107,5 +112,41 @@ public class BlockHeater extends Block {
     public void onBlockPlacedBy(World worldIn, int x, int y, int z, EntityLivingBase placer, ItemStack itemIn) {
         int l = MathHelper.floor_double((double) (placer.rotationYaw * 4.0F / 360.0F) + 2.5D) & 3;
         worldIn.setBlockMetadataWithNotify(x, y, z, l, 2);
+    }
+
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player,
+                                    int side, float hitX, float hitY, float hitZ) {
+
+        ItemStack heldItem = player.getCurrentEquippedItem();
+        if (heldItem == null) return false;
+
+        int meta = world.getBlockMetadata(x, y, z);
+
+        if (heldItem.getItem() == Items.fire_charge || heldItem.getItem() == Items.flint_and_steel) {
+
+            if (!world.isRemote) {
+                world.setBlock(x, y, z, ModBlocks.lit_heater, meta, 3);
+
+                if (heldItem.getItem() == Items.fire_charge) {
+                    world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "mob.ghast.fireball", 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
+                    if (!player.capabilities.isCreativeMode) {
+                        heldItem.stackSize--;
+                        if (heldItem.stackSize <= 0) {
+                            player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+                        }
+                    }
+                } else if (heldItem.getItem() == Items.flint_and_steel) {
+                    world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "fire.ignite", 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
+                    if (!player.capabilities.isCreativeMode) {
+                        heldItem.damageItem(1, player);
+                        if (heldItem.getItemDamage() >= heldItem.getMaxDamage()) {
+                            player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
     }
 }

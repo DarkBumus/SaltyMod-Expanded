@@ -5,7 +5,9 @@ import java.util.Random;
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIMate;
+import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -16,7 +18,13 @@ public class EntityHornedSheep extends EntitySheep {
 
     public EntityHornedSheep(World world) {
         super(world);
-        setSize(0.9F, 1.3F);
+        this.tasks.addTask(2, new EntityAIMate(this, 1.0D));
+        this.tasks.addTask(3, new EntityAITempt(this, 1.1D, ModItems.marsh_reeds_grass, false));
+    }
+
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);
     }
 
     public static int getRandomFleeceColor(Random random) {
@@ -30,6 +38,11 @@ public class EntityHornedSheep extends EntitySheep {
         return iEntityLivingData;
     }
 
+    @Override
+    public boolean isBreedingItem(ItemStack itemStack) {
+        return itemStack != null && itemStack.getItem() == ModItems.marsh_reeds_grass;
+    }
+
     public EntityHornedSheep createChild(EntityAgeable entityanimal) {
         EntityHornedSheep otherParent = (EntityHornedSheep) entityanimal;
         EntityHornedSheep babySheep = new EntityHornedSheep(this.worldObj);
@@ -41,7 +54,7 @@ public class EntityHornedSheep extends EntitySheep {
         return babySheep;
     }
 
-/*    protected String getLivingSound() {
+    protected String getLivingSound() {
         return "saltymod:mob.horned_sheep.say";
     }
 
@@ -53,7 +66,7 @@ public class EntityHornedSheep extends EntitySheep {
 
     protected String getDeathSound() {
         return "saltymod:mob.horned_sheep.say";
-    }*/
+    }
 
     @Override
     protected void dropFewItems(boolean wasRecentlyHit, int lootingLevel) {
