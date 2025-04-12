@@ -135,7 +135,7 @@ public class TileEntityCookingPot extends TileEntity implements ISidedInventory 
     }
 
     @SideOnly(Side.CLIENT)
-    public int getCookProgressScaled(int scale) {
+    public int getCookProgressScale(int scale) {
         return cookingTime * scale / 125;
     }
 

@@ -96,6 +96,7 @@ public class SaltyMod {
         config.postInit();
         proxy.postInit(event);
         ModPressRecipes.init();
+        ModCookingPotRecipes.init();
         ModExternalRecipes.init();
         ModExternalFoodValueRegistry.init();
         if (Loader.isModLoaded(

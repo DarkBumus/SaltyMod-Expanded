@@ -19,7 +19,7 @@ public class PotcookingRecipe {
         public final ItemStack output1;
         public final ItemStack output2;
         public final boolean requiresHeater;
-        public final boolean requiresMill; // Neues Flag für "Mühle erforderlich"
+        public final boolean requiresMill;
         public final ItemStack pinchItem;
 
         public PotRecipe(ItemStack input, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill, ItemStack pinchItem) {
@@ -27,7 +27,7 @@ public class PotcookingRecipe {
             this.output1 = output1;
             this.output2 = output2;
             this.requiresHeater = requiresHeater;
-            this.requiresMill = requiresMill; // Mill setzen
+            this.requiresMill = requiresMill;
             this.pinchItem = pinchItem;
         }
 

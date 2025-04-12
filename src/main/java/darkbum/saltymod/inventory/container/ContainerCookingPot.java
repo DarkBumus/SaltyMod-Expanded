@@ -16,7 +16,7 @@ public class ContainerCookingPot extends Container {
 
     private int lastCookingTime = 0;
 
-    private static final int SLOT_INPUT = 0;
+    private static final int SLOT_INGRED = 0;
     private static final int SLOT_OUTPUT_1 = 1;
     private static final int SLOT_OUTPUT_2 = 2;
     private static final int SLOT_PINCH = 3;
@@ -29,7 +29,7 @@ public class ContainerCookingPot extends Container {
     public ContainerCookingPot(InventoryPlayer playerInventory, TileEntityCookingPot TileEntityCookingPot) {
         this.tileEntityCookingPot = TileEntityCookingPot;
 
-        addSlotToContainer(new SlotCookingPotIngred(playerInventory.player, TileEntityCookingPot, SLOT_INPUT, 30, 17));
+        addSlotToContainer(new SlotCookingPotIngred(playerInventory.player, TileEntityCookingPot, SLOT_INGRED, 30, 17));
         addSlotToContainer(new SlotFarmOutput(playerInventory.player, TileEntityCookingPot, SLOT_OUTPUT_1, 124, 26));
         addSlotToContainer(new SlotFarmOutput(playerInventory.player, TileEntityCookingPot, SLOT_OUTPUT_2, 151, 26));
         addSlotToContainer(new SlotCookingPotPinch(playerInventory.player, TileEntityCookingPot, SLOT_PINCH, 8, 17));
@@ -83,7 +83,7 @@ public class ContainerCookingPot extends Container {
             ItemStack stackInSlot = slot.getStack();
             itemStack = stackInSlot.copy();
 
-            if (slotIndex == SLOT_INPUT || slotIndex == SLOT_OUTPUT_1 || slotIndex == SLOT_OUTPUT_2 || slotIndex == SLOT_PINCH) {
+            if (slotIndex == SLOT_INGRED || slotIndex == SLOT_OUTPUT_1 || slotIndex == SLOT_OUTPUT_2 || slotIndex == SLOT_PINCH) {
                 if (!mergeItemStack(stackInSlot, SLOT_PLAYER_INV_START, SLOT_TOTAL, true)) {
                     return null;
                 }
