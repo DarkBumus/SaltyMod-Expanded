@@ -52,7 +52,7 @@ public class PressingRecipe {
         for (Map.Entry<ItemStack, PressRecipe> entry : recipes.entrySet()) {
             PressRecipe recipe = entry.getValue();
             if (areStacksEqual(input, entry.getKey())) {
-                if (recipe.requiresVessel() && (vessel == null || !PressingRecipeVesselRegistry.isValidVessel(vessel))) {
+                if (recipe.requiresVessel() && (vessel == null || !MachineUtilRegistry.isValidVessel(vessel))) {
                     return null;
                 }
                 return recipe;

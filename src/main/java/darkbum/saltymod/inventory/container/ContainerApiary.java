@@ -24,7 +24,7 @@ public class ContainerApiary extends Container {
         this.apiary = tileEntityApiary;
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 3; y++) addSlotToContainer(
-                new SlotFarmOutput(inventoryPlayer.player, tileEntityApiary, y + x * 3, 62 + 18 * x, 17 + 18 * y));
+                new SlotMachineOutput(inventoryPlayer.player, tileEntityApiary, y + x * 3, 62 + 18 * x, 17 + 18 * y));
         }
         addSlotToContainer(new SlotApiaryFuel(inventoryPlayer.player, tileEntityApiary, 18, 26, 35));
         int i;

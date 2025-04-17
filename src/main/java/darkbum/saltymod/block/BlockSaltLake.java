@@ -75,7 +75,7 @@ public class BlockSaltLake extends Block {
                         .contains("witch")))
                 world.scheduleBlockUpdate(x, y, z, this, 0);
             if (entity instanceof EntityPlayer)
-                ((EntityPlayer) entity).addStat((StatBase) ModAchievementList.navSaltLake, 1);
+                ((EntityPlayer) entity).addStat((StatBase) ModAchievementList.nav_salt_lake, 1);
         }
     }
 

@@ -1,15 +1,12 @@
 package darkbum.saltymod.common;
 
-import darkbum.saltymod.block.render.MarshGrassRenderer;
-import darkbum.saltymod.block.render.MarshReedsRenderer;
+import darkbum.saltymod.block.render.*;
 import darkbum.saltymod.configuration.configs.ModConfigurationBlocks;
 import net.minecraft.client.renderer.entity.RenderSnowball;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.block.render.EvaporatorRenderer;
-import darkbum.saltymod.block.render.SaltGrassRenderer;
 import darkbum.saltymod.entity.EntityHornedSheep;
 import darkbum.saltymod.entity.EntityRainmaker;
 import darkbum.saltymod.entity.EntityRainmakerDust;
@@ -21,9 +18,11 @@ import darkbum.saltymod.init.ModItems;
 
 public class ClientProxy extends CommonProxy {
 
+    public static int saltGrassRenderType;
+
     public static int evaporatorRenderType;
 
-    public static int saltGrassRenderType;
+    public static int cookingPotRenderType;
 
     public static int marshReedsRenderType;
 
@@ -38,6 +37,8 @@ public class ClientProxy extends CommonProxy {
             evaporatorRenderType = RenderingRegistry.getNextAvailableRenderId();
             RenderingRegistry.registerBlockHandler(new EvaporatorRenderer());
         }
+        cookingPotRenderType = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new CookingPotRenderer());
         marshReedsRenderType = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(new MarshReedsRenderer());
         marshGrassRenderType = RenderingRegistry.getNextAvailableRenderId();

@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8.7-unimixins",
+  "package": "darkbum.saltymod.mixins.early",
+  "refmap": "mixins.saltymod.refmap.json",
+  "target": "@env(DEFAULT)",
+  "compatibilityLevel": "JAVA_8",
+  "client": [
+  ],
+  "server": [
+  ],
+  "mixins": [
+  ]
+}

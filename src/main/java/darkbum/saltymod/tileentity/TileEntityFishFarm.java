@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -19,11 +20,14 @@ import darkbum.saltymod.configuration.configs.ModConfigurationBlocks;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 
-public class TileEntityFishFarm extends TileEntity implements IInventory {
+public class TileEntityFishFarm extends TileEntity implements /*Sided*/IInventory {
 
     private String inventoryName;
 
     private ItemStack[] inventory = new ItemStack[19];
+
+    private static final int[] slotsOutput = new int[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17};
+    private static final int[] slotBait = new int[] {18};
 
     public int runTime = 0;
 
@@ -262,4 +266,25 @@ public class TileEntityFishFarm extends TileEntity implements IInventory {
     }
 
     public void closeInventory() {}
+
+/*    @Override
+    public int[] getAccessibleSlotsFromSide(int side) {
+        if (side == 0) { // Unten
+            return slotOutput;
+        } else { // Oben und Seiten
+            return slotBait;
+        }
+    }
+
+    @Override
+    public boolean canInsertItem(int slot, ItemStack stack, int side) {
+        // Nur Slot 0 darf befüllt werden, egal ob oben oder seitlich
+        return slot == 0;
+    }
+
+    @Override
+    public boolean canExtractItem(int slot, ItemStack stack, int side) {
+        // Nur Slots 1-18 dürfen von unten entnommen werden
+        return side == 0 && slot >= 1 && slot <= 18;
+    }*/
 }

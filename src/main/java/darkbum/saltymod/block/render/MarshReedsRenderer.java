@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
 
 public class MarshReedsRenderer implements ISimpleBlockRenderingHandler {
+
     public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {}
 
     @Override

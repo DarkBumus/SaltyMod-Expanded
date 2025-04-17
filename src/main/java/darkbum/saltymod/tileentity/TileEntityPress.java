@@ -2,7 +2,7 @@ package darkbum.saltymod.tileentity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.api.PressingRecipeVesselRegistry;
+import darkbum.saltymod.api.MachineUtilRegistry;
 import darkbum.saltymod.init.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,9 +25,9 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
 
     public int pressingTime = 0;
 
-    private boolean isHeaterNearby = false;
+    public boolean isHeaterNearby = false;
 
-    private boolean isMillNearby = false;
+    public boolean isMillNearby = false;
 
     private static final int[] slotsTop = new int[]{0};
     private static final int[] slotsBottom = new int[]{1, 2};
@@ -100,7 +100,7 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
         if (index == 0) {
             return true;
         } else if (index == 3) {
-            return PressingRecipeVesselRegistry.isValidVessel(stack);
+            return MachineUtilRegistry.isValidVessel(stack);
         }
         return false;
     }
@@ -113,7 +113,6 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
             return slotsTop;
         } else return slotVessel;
     }
-
 
     public boolean canInsertItem(int index, ItemStack itemstack, int side) {
         return this.isItemValidForSlot(index, itemstack);
@@ -196,7 +195,7 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
     private boolean isVesselRequirementMet(PressingRecipe.PressRecipe recipe, ItemStack vessel) {
         if (recipe.vesselItem == null) return true;
         if (vessel == null) return false;
-        return PressingRecipeVesselRegistry.isValidVessel(vessel) && vessel.getItem() == recipe.vesselItem.getItem();
+        return MachineUtilRegistry.isValidVessel(vessel) && vessel.getItem() == recipe.vesselItem.getItem();
     }
 
     private boolean canAcceptOutput(ItemStack currentStack, ItemStack output) {
@@ -237,7 +236,7 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
         inventory[0].stackSize--;
         if (inventory[0].stackSize <= 0) inventory[0] = null;
 
-        if (recipe.vesselItem != null && inventory[3] != null && PressingRecipeVesselRegistry.isValidVessel(inventory[3])) {
+        if (recipe.vesselItem != null && inventory[3] != null && MachineUtilRegistry.isValidVessel(inventory[3])) {
             if (inventory[3].getItem() == recipe.vesselItem.getItem()) {
                 inventory[3].stackSize--;
                 if (inventory[3].stackSize <= 0) {
@@ -265,7 +264,7 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
             int dz = dir[2];
 
             Block neighborBlock = worldObj.getBlock(xCoord + dx, yCoord + dy, zCoord + dz);
-            if (neighborBlock != null && neighborBlock == ModBlocks.lit_heater) {
+            if (MachineUtilRegistry.isValidHeater(neighborBlock)) {
                 isHeaterNearby = true;
                 return;
             }

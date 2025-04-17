@@ -13,10 +13,10 @@ public class PlayerItemCraftedEventHandler {
     @SubscribeEvent
     public void playerItemCrafted1(PlayerEvent.ItemCraftedEvent event) {
         if (event.crafting.getItem() == ModItems.mineral_mud_ball) {
-            event.player.addStat(ModAchievementList.findMineralMud, 1);
+            event.player.addStat(ModAchievementList.find_mineral_mud, 1);
         }
         if (event.crafting.getItem() == Item.getItemFromBlock(ModBlocks.apiary)) {
-            event.player.addStat(ModAchievementList.craftApiary, 1);
+            event.player.addStat(ModAchievementList.craft_apiary, 1);
         }
     }
 }

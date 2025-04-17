@@ -75,7 +75,7 @@ public class BlockSaltCrystal extends BlockBush {
             if (player.getCurrentEquippedItem() != null && silk > 0) silkdrop = true;
             if (world.getBlockMetadata(x, y, z) == 0 && (world.getBlock(x, y - 1, z) == ModBlocks.salt_block
                 || world.getBlock(x, y - 1, z) == ModBlocks.double_salt_slab))
-                player.addStat(ModAchievementList.farmSalt, 1);
+                player.addStat(ModAchievementList.farm_salt, 1);
         }
     }
 
@@ -105,7 +105,7 @@ public class BlockSaltCrystal extends BlockBush {
             world.setBlock(x, y, z, Blocks.air, 0, 3);
             EntityPlayer player = world.getClosestPlayerToEntity(entity, 32D);
             if (player != null) {
-                player.addStat(ModAchievementList.navelseSaltCrystal, 1);
+                player.addStat(ModAchievementList.navelse_salt_crystal, 1);
             }
         }
     }

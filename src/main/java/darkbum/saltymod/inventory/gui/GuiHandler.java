@@ -18,6 +18,7 @@ public class GuiHandler implements IGuiHandler {
             case 2 -> new ContainerApiary(player.inventory, (TileEntityApiary) tile_entity);
             case 3 -> new ContainerPress(player.inventory, (TileEntityPress) tile_entity);
             case 4 -> new ContainerCookingPot(player.inventory, (TileEntityCookingPot) tile_entity);
+            case 5 -> new ContainerClayOven(player.inventory, (TileEntityClayOven) tile_entity);
             default -> null;
         };
     }
@@ -30,6 +31,7 @@ public class GuiHandler implements IGuiHandler {
             case 2 -> new GuiApiary(player.inventory, (TileEntityApiary) tile_entity);
             case 3 -> new GuiPress(player.inventory, (TileEntityPress) tile_entity);
             case 4 -> new GuiCookingPot(player.inventory, (TileEntityCookingPot) tile_entity);
+            case 5 -> new GuiClayOven(player.inventory, (TileEntityClayOven) tile_entity);
             default -> null;
         };
     }

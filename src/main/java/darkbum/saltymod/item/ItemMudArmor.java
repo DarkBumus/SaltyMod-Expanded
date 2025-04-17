@@ -37,7 +37,7 @@ public class ItemMudArmor extends ItemArmor {
                     stack.damageItem(1, player);
                     if (stack.getItemDamage() >= stack.getMaxDamage()) {
                         player.setCurrentItemOrArmor(4, null);
-                        player.addStat(ModAchievementList.destroyMudArmor, 1);
+                        player.addStat(ModAchievementList.destroy_mud_armor, 1);
                     }
                 }
             }
@@ -46,7 +46,7 @@ public class ItemMudArmor extends ItemArmor {
                     stack.damageItem(1, player);
                     if (stack.getItemDamage() >= stack.getMaxDamage()) {
                         player.setCurrentItemOrArmor(3, null);
-                        player.addStat(ModAchievementList.destroyMudArmor, 1);
+                        player.addStat(ModAchievementList.destroy_mud_armor, 1);
                     }
                 }
             }
@@ -55,7 +55,7 @@ public class ItemMudArmor extends ItemArmor {
                     stack.damageItem(1, player);
                     if (stack.getItemDamage() >= stack.getMaxDamage()) {
                         player.setCurrentItemOrArmor(2, null);
-                        player.addStat(ModAchievementList.destroyMudArmor, 1);
+                        player.addStat(ModAchievementList.destroy_mud_armor, 1);
                     }
                 }
             }
@@ -64,7 +64,7 @@ public class ItemMudArmor extends ItemArmor {
                     stack.damageItem(1, player);
                     if (stack.getItemDamage() >= stack.getMaxDamage()) {
                         player.setCurrentItemOrArmor(1, null);
-                        player.addStat(ModAchievementList.destroyMudArmor, 1);
+                        player.addStat(ModAchievementList.destroy_mud_armor, 1);
                     }
                 }
             }
@@ -78,7 +78,7 @@ public class ItemMudArmor extends ItemArmor {
                     && player.getEquipmentInSlot(3) != null
                     && player.getEquipmentInSlot(3)
                         .getItem() instanceof ItemMudArmor) {
-                    player.addStat(ModAchievementList.fullMudArmor, 1);
+                    player.addStat(ModAchievementList.full_mud_armor, 1);
                     if (player.isPotionActive(Potion.field_76434_w.id)) {
                         player.getActivePotionEffect(Potion.field_76434_w).duration = 2;
                     } else {

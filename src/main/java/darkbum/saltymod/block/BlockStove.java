@@ -9,15 +9,13 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class BlockHeaterLit extends Block {
+public class BlockStove extends Block {
 
     @SideOnly(Side.CLIENT)
     private IIcon BOTTOM;
@@ -31,23 +29,22 @@ public class BlockHeaterLit extends Block {
     @SideOnly(Side.CLIENT)
     private IIcon FRONT;
 
-    public BlockHeaterLit(String name, CreativeTabs tab) {
+    public BlockStove(String name, CreativeTabs tab) {
         super(Material.rock);
-        setTickRandomly(true);
+        setTickRandomly(false);
         setBlockName(name);
         setCreativeTab(tab);
         setHardness(2.0F);
         setResistance(6.0F);
-        setLightLevel(0.8667F);
         setStepSound(soundTypeStone);
     }
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister icon) {
-        this.TOP = icon.registerIcon("saltymod:heater_top_lit");
-        this.BOTTOM = icon.registerIcon("saltymod:heater_bottom");
-        this.SIDE = icon.registerIcon("saltymod:heater_side");
-        this.FRONT = icon.registerIcon("saltymod:heater_front_lit");
+        this.TOP = icon.registerIcon("saltymod:stove_top");
+        this.BOTTOM = icon.registerIcon("saltymod:stove_bottom");
+        this.SIDE = icon.registerIcon("saltymod:stove_side");
+        this.FRONT = icon.registerIcon("saltymod:stove_front");
     }
 
     @SideOnly(Side.CLIENT)
@@ -118,23 +115,25 @@ public class BlockHeaterLit extends Block {
                                     int side, float hitX, float hitY, float hitZ) {
 
         ItemStack heldItem = player.getCurrentEquippedItem();
-
         if (heldItem == null) return false;
+
         int meta = world.getBlockMetadata(x, y, z);
 
-        if (heldItem.getItem() == Items.water_bucket || heldItem.getItem() instanceof ItemSpade) {
+        if (heldItem.getItem() == Items.fire_charge || heldItem.getItem() == Items.flint_and_steel) {
+
             if (!world.isRemote) {
-                world.setBlock(x, y, z, ModBlocks.heater, meta, 3);
-                if (heldItem.getItem() == Items.water_bucket) {
-                    world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "random.fizz", 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
+                world.setBlock(x, y, z, ModBlocks.lit_stove, meta, 3);
+
+                if (heldItem.getItem() == Items.fire_charge) {
+                    world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "mob.ghast.fireball", 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
                     if (!player.capabilities.isCreativeMode) {
-                        player.setCurrentItemOrArmor(0, new ItemStack(Items.bucket));
+                        heldItem.stackSize--;
                         if (heldItem.stackSize <= 0) {
                             player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
                         }
                     }
-                } else if (heldItem.getItem() instanceof ItemSpade) {
-                    world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "random.fizz", 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
+                } else if (heldItem.getItem() == Items.flint_and_steel) {
+                    world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "fire.ignite", 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
                     if (!player.capabilities.isCreativeMode) {
                         heldItem.damageItem(1, player);
                         if (heldItem.getItemDamage() >= heldItem.getMaxDamage()) {
@@ -146,26 +145,5 @@ public class BlockHeaterLit extends Block {
             return true;
         }
         return false;
-    }
-
-    @Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, Block neighborBlock) {
-        if (world.isRemote) return;
-
-        if (isWater(world, x + 1, y, z) ||
-            isWater(world, x - 1, y, z) ||
-            isWater(world, x, y + 1, z) ||
-            isWater(world, x, y - 1, z) ||
-            isWater(world, x, y, z + 1) ||
-            isWater(world, x, y, z - 1)) {
-
-            int meta = world.getBlockMetadata(x, y, z);
-            world.setBlock(x, y, z, ModBlocks.heater, meta, 3);
-            world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "random.fizz", 0.5F, 2.6F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);
-        }
-    }
-    private boolean isWater(World world, int x, int y, int z) {
-        Block block = world.getBlock(x, y, z);
-        return block == Blocks.water || block == Blocks.flowing_water;
     }
 }

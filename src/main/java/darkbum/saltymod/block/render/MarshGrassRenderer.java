@@ -2,7 +2,6 @@ package darkbum.saltymod.block.render;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import darkbum.saltymod.block.BlockMarshGrass;
-import darkbum.saltymod.block.BlockMarshReeds;
 import darkbum.saltymod.common.ClientProxy;
 import darkbum.saltymod.init.ModBlocks;
 import net.minecraft.block.Block;

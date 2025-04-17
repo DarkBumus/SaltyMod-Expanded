@@ -2,16 +2,18 @@ package darkbum.saltymod.block;
 
 import java.util.Random;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockGrass;
-import net.minecraft.block.IGrowable;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemHoe;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
@@ -116,7 +118,7 @@ public class BlockSaltGrass extends Block implements IGrowable {
         }
     }
 
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx,
+/*    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx,
         float hity, float hitz) {
         if (player.capabilities.isCreativeMode && player.getCurrentEquippedItem() != null
             && player.getCurrentEquippedItem()
@@ -225,6 +227,106 @@ public class BlockSaltGrass extends Block implements IGrowable {
             return true;
         }
         return false;
+    }*/
+
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+        ItemStack heldItem = player.getCurrentEquippedItem();
+
+        // Neue Interaktion: Hoe -> Farmland + Salz-Pinch
+        if (heldItem != null && heldItem.getItem() instanceof ItemHoe) {
+            if (!world.isRemote) {
+                world.setBlock(x, y, z, Blocks.farmland);
+                world.spawnEntityInWorld(new EntityItem(world, x + 0.5, y + 1, z + 0.5, new ItemStack(ModItems.salt_pinch)));
+            }
+            return true;
+        }
+        if (player.capabilities.isCreativeMode && heldItem != null && heldItem.getItem() == ModItems.salt) {
+            int meta = world.getBlockMetadata(x, y, z);
+
+            if (side == 0 || side == 1) {
+                if (meta == 0) meta = 3;
+                else if (meta < 3 || meta > 5) meta = 0;
+                else meta++;
+            }
+
+            else if (side == 2) {
+                switch (meta) {
+                    case 4: meta = 11; break;
+                    case 5: meta = 14; break;
+                    case 7: meta = 0; break;
+                    case 8: meta = 11; break;
+                    case 9: meta = 15; break;
+                    case 10: meta = 14; break;
+                    case 11: meta = 8; break;
+                    case 14: meta = 10; break;
+                    default:
+                        if (meta < 7) meta = 7;
+                        else if (meta < 15) meta = 15;
+                        else meta = 9;
+                        break;
+                }
+            }
+
+            else if (side == 5) {
+                switch (meta) {
+                    case 5: meta = 12; break;
+                    case 6: meta = 11; break;
+                    case 7: meta = 11; break;
+                    case 8: meta = 0; break;
+                    case 9: meta = 12; break;
+                    case 10: meta = 15; break;
+                    case 11: meta = 7; break;
+                    case 12: meta = 9; break;
+                    default:
+                        if (meta < 7) meta = 8;
+                        else if (meta < 15) meta = 15;
+                        else meta = 10;
+                        break;
+                }
+            }
+
+            else if (side == 3) {
+                switch (meta) {
+                    case 3: meta = 12; break;
+                    case 6: meta = 13; break;
+                    case 7: meta = 15; break;
+                    case 8: meta = 12; break;
+                    case 9: meta = 0; break;
+                    case 10: meta = 13; break;
+                    case 12: meta = 8; break;
+                    case 13: meta = 10; break;
+                    default:
+                        if (meta < 7) meta = 9;
+                        else if (meta < 15) meta = 15;
+                        else meta = 7;
+                        break;
+                }
+            }
+
+            else if (side == 4) {
+                switch (meta) {
+                    case 3: meta = 14; break;
+                    case 4: meta = 13; break;
+                    case 7: meta = 14; break;
+                    case 8: meta = 15; break;
+                    case 9: meta = 13; break;
+                    case 10: meta = 0; break;
+                    case 13: meta = 9; break;
+                    case 14: meta = 7; break;
+                    default:
+                        if (meta < 7) meta = 10;
+                        else if (meta < 15) meta = 15;
+                        else meta = 8;
+                        break;
+                }
+            }
+
+            world.setBlock(x, y, z, this, meta, 3);
+            return true;
+        }
+
+        return false;
     }
 
     public Item getItemDropped(int meta, Random random, int fortune) {
@@ -283,9 +385,17 @@ public class BlockSaltGrass extends Block implements IGrowable {
     }
 
     @SideOnly(Side.CLIENT)
+    public int getBlockColor()
+    {
+        double d0 = 0.5D;
+        double d1 = 1.0D;
+        return ColorizerGrass.getGrassColor(d0, d1);
+    }
+
+/*    @SideOnly(Side.CLIENT)
     public int getBlockColor() {
         return 16777215;
-    }
+    }*/
 
     @SideOnly(Side.CLIENT)
     public int colorMultiplier(IBlockAccess p_149720_1_, int p_149720_2_, int p_149720_3_, int p_149720_4_) {
@@ -293,12 +403,16 @@ public class BlockSaltGrass extends Block implements IGrowable {
     }
 
     @Override
-    public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction,
-        IPlantable plantable) {
+    public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plantable) {
         if (plantable == Blocks.reeds || plantable == Blocks.cactus || plantable == Blocks.deadbush) {
             return false;
         }
 
+        Block plant = plantable.getPlant(world, x, y + 1, z);
+
+        if (plant instanceof BlockCrops || plant instanceof BlockStem || plant instanceof BlockNetherWart) {
+            return false;
+        }
         return true;
     }
 }

@@ -1,6 +1,6 @@
 package darkbum.saltymod.inventory.container;
 
-import darkbum.saltymod.api.PressingRecipeVesselRegistry;
+import darkbum.saltymod.api.MachineUtilRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -17,7 +17,7 @@ public class SlotPressVessel extends Slot {
     }
 
     public boolean isItemValid(ItemStack itemStack) {
-        return PressingRecipeVesselRegistry.isValidVessel(itemStack);
+        return MachineUtilRegistry.isValidVessel(itemStack);
     }
 
     public int getSlotStackLimit() {

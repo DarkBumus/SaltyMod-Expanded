@@ -88,7 +88,7 @@ public class BlockSaltDirt extends Block {
                         .toLowerCase()
                         .contains("witch")))
                 world.scheduleBlockUpdate(x, y, z, this, 0);
-            if (entity instanceof EntityPlayer) ((EntityPlayer) entity).addStat(ModAchievementList.navSaltLake, 1);
+            if (entity instanceof EntityPlayer) ((EntityPlayer) entity).addStat(ModAchievementList.nav_salt_lake, 1);
         }
     }
 

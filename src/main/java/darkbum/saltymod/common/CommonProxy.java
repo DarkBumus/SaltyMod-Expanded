@@ -2,11 +2,15 @@ package darkbum.saltymod.common;
 
 import cpw.mods.fml.common.Loader;
 import darkbum.saltymod.configuration.configs.ModConfigurationEntities;
+import darkbum.saltymod.dispenser.DispenserBehaviorBottle;
+import darkbum.saltymod.dispenser.DispenserBehaviorPotion;
 import darkbum.saltymod.entity.EntityHornedSheep;
 import darkbum.saltymod.tileentity.*;
+import ganymedes01.etfuturum.items.ItemLingeringPotion;
 import net.minecraft.block.BlockDispenser;
-import net.minecraft.block.BlockLiquid;
+import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.dispenser.IBehaviorDispenseItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.init.Items;
@@ -75,6 +79,11 @@ public class CommonProxy {
     public static SimpleNetworkWrapper network;
 
     public void preInit(FMLPreInitializationEvent event) {
+        AchievementEventHandler achievementEventHandler = new AchievementEventHandler();
+        MinecraftForge.EVENT_BUS.register(achievementEventHandler);
+        FMLCommonHandler.instance()
+            .bus()
+            .register(achievementEventHandler);
         BreakHarvestDropsEventHandler breakHarvestDropsEventHandler = new BreakHarvestDropsEventHandler();
         MinecraftForge.EVENT_BUS.register(breakHarvestDropsEventHandler);
         FMLCommonHandler.instance()
@@ -125,6 +134,11 @@ public class CommonProxy {
         network = NetworkRegistry.INSTANCE.newSimpleChannel("SaltyMod");
         network.registerMessage(EvaporatorButtonMessage.Handler.class, EvaporatorButtonMessage.class, 0, Side.SERVER);
         network.registerMessage(SaltwortMessage.Handler.class, SaltwortMessage.class, 1, Side.CLIENT);
+
+        BlockDispenser.dispenseBehaviorRegistry.putObject(Items.potionitem, new DispenserBehaviorPotion());
+        BlockDispenser.dispenseBehaviorRegistry.putObject(Items.glass_bottle, new DispenserBehaviorBottle());
+        BlockDispenser.dispenseBehaviorRegistry.putObject(ModItems.rainmaker, new DispenserBehaviorRainmaker());
+        BlockDispenser.dispenseBehaviorRegistry.putObject(ModItems.salt_pinch, new DispenserBehaviorSaltPinch());
     }
 
     public void init(FMLInitializationEvent event) {
@@ -147,6 +161,7 @@ public class CommonProxy {
         }
         GameRegistry.registerTileEntity(TileEntityPress.class, "tileEntityPress");
         GameRegistry.registerTileEntity(TileEntityCookingPot.class, "tileEntityCookingPot");
+        GameRegistry.registerTileEntity(TileEntityClayOven.class, "tileEntityClayOven");
 
         EntityRegistry.registerModEntity(EntityRainmaker.class, "rainmaker", 0, SaltyMod.instance, 64, 20, true);
         EntityRegistry
@@ -155,9 +170,6 @@ public class CommonProxy {
             EntityRegistry.registerModEntity(EntityHornedSheep.class, "horned_sheep", 2, SaltyMod.instance, 64, 3, true);
             registerEntityEgg(EntityHornedSheep.class, 15198183, 9663326);
         }
-
-        BlockDispenser.dispenseBehaviorRegistry.putObject(ModItems.rainmaker, new DispenserBehaviorRainmaker());
-        BlockDispenser.dispenseBehaviorRegistry.putObject(ModItems.salt_pinch, new DispenserBehaviorSaltPinch());
 
         saltOreGenerator = new SaltOreGenerator();
         GameRegistry.registerWorldGenerator(saltOreGenerator, 0);

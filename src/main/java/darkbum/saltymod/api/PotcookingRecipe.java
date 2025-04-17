@@ -1,67 +1,119 @@
 package darkbum.saltymod.api;
 
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.*;
 
 public class PotcookingRecipe {
-
     private static final PotcookingRecipe potBase = new PotcookingRecipe();
-
     private final Map<ItemStack, PotRecipe> recipes = new HashMap<>();
+
+    public interface IIngredientMatcher {
+        boolean matches(ItemStack stack);
+    }
+
+    public static class StackIngredient implements IIngredientMatcher {
+        private final ItemStack stack;
+
+        public StackIngredient(ItemStack stack) {
+            this.stack = stack;
+        }
+
+        @Override
+        public boolean matches(ItemStack input) {
+            return areStacksEqual(stack, input);
+        }
+    }
+
+    public static class OreIngredient implements IIngredientMatcher {
+        private final String oreName;
+
+        public OreIngredient(String oreName) {
+            this.oreName = oreName;
+        }
+
+        @Override
+        public boolean matches(ItemStack input) {
+            List<ItemStack> ores = OreDictionary.getOres(oreName);
+            for (ItemStack oreStack : ores) {
+                if (input != null && areStacksEqual(oreStack, input)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    public static StackIngredient stack(ItemStack stack) {
+        return new StackIngredient(stack);
+    }
+
+    public static OreIngredient ore(String name) {
+        return new OreIngredient(name);
+    }
 
     public static PotcookingRecipe cooking() {
         return potBase;
     }
 
     public static class PotRecipe {
-        public final ItemStack input;
-        public final ItemStack output1;
-        public final ItemStack output2;
+        public final ItemStack output;
         public final boolean requiresHeater;
-        public final boolean requiresMill;
-        public final ItemStack pinchItem;
+        public final List<IIngredientMatcher> ingreds;
 
-        public PotRecipe(ItemStack input, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill, ItemStack pinchItem) {
-            this.input = input;
-            this.output1 = output1;
-            this.output2 = output2;
+        // Reihenfolge geändert: Output, Heater?, Inputs
+        public PotRecipe(ItemStack output, boolean requiresHeater, List<IIngredientMatcher> ingreds) {
+            this.output = output;
             this.requiresHeater = requiresHeater;
-            this.requiresMill = requiresMill;
-            this.pinchItem = pinchItem;
-        }
-
-        public PotRecipe(ItemStack input, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill) {
-            this(input, output1, output2, requiresHeater, requiresMill, null);
-        }
-
-        public boolean requiresPinch() {
-            return pinchItem != null;
+            this.ingreds = ingreds;
         }
     }
 
-    public void registerRecipe(ItemStack input, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill, ItemStack pinchItem) {
-        recipes.put(input, new PotRecipe(input, output1, output2, requiresHeater, requiresMill, pinchItem));
+    // Rezeptregistrierung ohne Pinch
+    public void registerRecipe(ItemStack output, boolean requiresHeater, IIngredientMatcher... ingredMatchers) {
+        // Zutaten von Varargs in eine Liste umwandeln
+        List<IIngredientMatcher> ingredList = Arrays.asList(ingredMatchers);
+        recipes.put(output, new PotRecipe(output, requiresHeater, ingredList));
     }
 
-    public void registerRecipe(ItemStack input, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill) {
-        recipes.put(input, new PotRecipe(input, output1, output2, requiresHeater, requiresMill));
-    }
-
-    public PotRecipe getRecipeFor(ItemStack input, ItemStack pinch) {
+    // Rezeptsuche ohne Pinch
+    public PotRecipe getRecipeFor(List<ItemStack> ingreds) {
         for (Map.Entry<ItemStack, PotRecipe> entry : recipes.entrySet()) {
             PotRecipe recipe = entry.getValue();
-            if (areStacksEqual(input, entry.getKey())) {
-                if (recipe.requiresPinch() && (pinch == null || !PotcookingRecipePinchRegistry.isValidPinch(pinch))) {
-                    return null;
+
+            // Rezept muss die gleiche Anzahl an Zutaten wie die Eingabewerte haben
+            if (recipe.ingreds.size() != ingreds.size()) {
+                continue;
+            }
+
+            boolean[] matchedIngreds = new boolean[recipe.ingreds.size()];
+            boolean matchFound = true;
+
+            for (ItemStack ingred : ingreds) {
+                boolean ingredMatched = false;
+                for (int j = 0; j < recipe.ingreds.size(); j++) {
+                    if (!matchedIngreds[j] && recipe.ingreds.get(j).matches(ingred)) {
+                        matchedIngreds[j] = true;
+                        ingredMatched = true;
+                        break;
+                    }
                 }
+                if (!ingredMatched) {
+                    matchFound = false;
+                    break;
+                }
+            }
+
+            if (matchFound) {
                 return recipe;
             }
         }
         return null;
     }
 
-    private boolean areStacksEqual(ItemStack stack1, ItemStack stack2) {
+    private static boolean areStacksEqual(ItemStack stack1, ItemStack stack2) {
+        if (stack1 == null || stack2 == null) return false;
         return stack2.getItem() == stack1.getItem() &&
             (stack2.getItemDamage() == 32767 || stack2.getItemDamage() == stack1.getItemDamage());
     }

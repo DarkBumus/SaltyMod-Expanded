@@ -425,12 +425,12 @@ public class ModItems {
             dough = new ItemDough("dough", tab).setTextureName("saltymod:dough");
             GameRegistry.registerItem(dough, "dough");
         }
-        if (ModConfigurationItems.enableOnion) {
+//        if (ModConfigurationItems.enableOnion) {
             onion = new ItemSeedFood(2, 0.3F, ModBlocks.onions, Blocks.farmland).setUnlocalizedName("onion")
                 .setCreativeTab(tab)
                 .setTextureName("saltymod:onion");
             GameRegistry.registerItem(onion, "onion");
-        }
+//        }
         saltwort = new ItemSaltwort("saltwort", tab).setTextureName("saltymod:saltwort");
         GameRegistry.registerItem(saltwort, "saltwort");
         if (ModConfigurationItems.enableGoldenFoods) {
@@ -570,7 +570,7 @@ public class ModItems {
             GameRegistry.registerItem(salt_cooked_tropical_fish, "salt_cooked_tropical_fish");
         }
         if (ModConfigurationItems.enableTailor) {
-            tailor = new ItemSaltFood("tailor", 1, 0.5F, new ProbablePotionEffect(Potion.waterBreathing.id, 3, 0))
+            tailor = new ItemSaltFood("tailor", 1, 0.5F, new ProbablePotionEffect(Potion.waterBreathing.id, 60, 0))
                 .setCreativeTab(tab)
                 .setTextureName("saltymod:tailor");
             GameRegistry.registerItem(tailor, "tailor");
@@ -691,7 +691,7 @@ public class ModItems {
                 0.7F,
                 Items.bowl,
                 new ProbablePotionEffect(Potion.heal.id, 20, 0)).setMaxStackSize(1)
-                    .setCreativeTab(tab)
+                    .setCreativeTab(tab).setMaxStackSize(16)
                     .setTextureName("saltymod:cactus_soup");
             GameRegistry.registerItem(cactus_soup, "cactus_soup");
             salt_cactus_soup = new ItemSaltFood(

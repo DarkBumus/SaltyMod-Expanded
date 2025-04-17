@@ -2,8 +2,7 @@ package darkbum.saltymod;
 
 import java.io.File;
 
-import net.minecraft.block.BlockLilyPad;
-import net.minecraft.item.ItemLilyPad;
+import net.minecraft.potion.Potion;
 import net.minecraft.util.EnumChatFormatting;
 
 import org.apache.logging.log4j.LogManager;
@@ -67,8 +66,9 @@ public class SaltyMod {
         config = new ModConfigurationBase(configDir);
         config.preInit();
         ModPotion.init();
-        ModItems.init();
         ModBlocks.init();
+        ModItems.init();
+        ModOreDictionary.init();
         ModBiomes.SaltyMod();
         ModFishRegistry.registerItems();
         GameRegistry.registerFuelHandler(new ModFuelHandler());
@@ -82,10 +82,6 @@ public class SaltyMod {
     public void init(FMLInitializationEvent event) {
         config.init();
         proxy.init(event);
-        ModOreDictionary.init();
-        ModShapedRecipes.init();
-        ModShapelessRecipes.init();
-        ModSmeltingRecipes.init();
         if (ModConfigurationWorldGeneration.enableBrickmakerCamp) {
             ChestContent.addDungeonLoot();
         }
@@ -95,10 +91,15 @@ public class SaltyMod {
     public void postInit(FMLPostInitializationEvent event) {
         config.postInit();
         proxy.postInit(event);
+        ModRemovedRecipes.init();
+        ModShapedRecipes.init();
+        ModShapelessRecipes.init();
+        ModSmeltingRecipes.init();
         ModPressRecipes.init();
         ModCookingPotRecipes.init();
+        ModClayOvenRecipes.init();
         ModExternalRecipes.init();
-        ModExternalFoodValueRegistry.init();
+        ModExternalValueRegistry.init();
         if (Loader.isModLoaded(
             "etfuturum")/*
                          * && new ComparableVersion(Loader.instance().getIndexedModList().get("etfuturum").
@@ -110,9 +111,9 @@ public class SaltyMod {
         if (Loader.isModLoaded("NotEnoughItems")) {
             new NEIConfig().loadConfig();
         }
-        ModRemovedRecipes.init();
     }
 }
+
 
 /*
  * //TO-DO-LIST//
@@ -130,8 +131,15 @@ public class SaltyMod {
  * NEW:
  *
  * - Try to set up Marsh Reeds as a two-tall plant?
- * - Cooking Pot / Clay Brick Furnace
- * - Apiary + Fish Farm Hopper/Comparator interaction
- * - Add Heat/Milling indicators to Press GUI
- * - Adding Press/Cooking Pot to NEI > Look at Pam's?
+ * - Clay Brick Furnace
+ * - Apiary + Fish Farm Hopper interaction
+ * - Add Press/Cooking Pot to NEI
+ * - Sounds to Mill
+ * - Slimes! [LATER]
+ * - Apiary + Fish Farm time-based rather than set time.
+ * - Refactoring Salt Food
+ * - Inspired effect
+ * - Item/Block tab
+ * - Farmer's Delight foods?
+ * - Clay Oven Stack block indictor
  */

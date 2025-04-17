@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 import net.minecraftforge.oredict.OreDictionary;
 
 import darkbum.saltymod.init.ModAchievementList;
@@ -40,13 +41,22 @@ public class PotionSwarmed extends ModPotion {
                 }
             }
 
-            // Bedingung für den Schaden
-            if (!player.worldObj.getBlock((int) player.posX, (int) player.posY + 1, (int) player.posZ)
-                .getMaterial()
-                .isLiquid() && (!player.isBurning())) {
-                player.addStat(ModAchievementList.effectSwarmed, 1);
+            int x = MathHelper.floor_double(player.posX);
+            int y = MathHelper.floor_double(player.posY + player.getEyeHeight());
+            int z = MathHelper.floor_double(player.posZ);
+
+            if (!player.worldObj.getBlock(x, y, z).getMaterial().isLiquid() && !player.isBurning()) {
+                player.addStat(ModAchievementList.effect_swarmed, 1);
                 entity.attackEntityFrom(ModPotion.swarmedDamage, Math.max(0.0F, 1.0F - beeResistance));
             }
+
+            // Bedingung für den Schaden
+/*            if (!player.worldObj.getBlock((int) player.posX, (int) player.posY + 2, (int) player.posZ)
+                .getMaterial()
+                .isLiquid() && (!player.isBurning())) {
+                player.addStat(ModAchievementList.effect_swarmed, 1);
+                entity.attackEntityFrom(ModPotion.swarmedDamage, Math.max(0.0F, 1.0F - beeResistance));
+            }*/
         }
     }
 

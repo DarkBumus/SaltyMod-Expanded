@@ -67,6 +67,6 @@ public class SlotEvaporator extends Slot {
             }
         }
         this.count = 0;
-        if (stack.getItem() == ModItems.salt_pinch) this.thePlayer.addStat(ModAchievementList.farmEvaporator, 1);
+        if (stack.getItem() == ModItems.salt_pinch) this.thePlayer.addStat(ModAchievementList.farm_evaporator, 1);
     }
 }

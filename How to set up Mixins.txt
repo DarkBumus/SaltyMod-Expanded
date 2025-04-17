@@ -1,0 +1,14 @@
+gradle.properties:
+Change "usesMixins = true" und "mixinsPackage = mixins"
+
+
+Inside your package structure:
+Package "mixins/early/minecraft"
+Package "mixins/late/minecraftforge"
+Package "core"
+Class "core/EarlyMixinLoader.java"	(Refer to SaltyMod Expanded's Repo)
+
+
+Inside your resources folder:
+Datei "mixins.MODID.early.json"		(Refer to SaltyMod Expanded's Repo)
+Datei "mixins.MODID.json"			(Refer to SaltyMod Expanded's Repo)

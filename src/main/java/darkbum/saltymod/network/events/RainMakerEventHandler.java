@@ -26,7 +26,7 @@ public class RainMakerEventHandler {
                     .setThundering(false);
             }
             if (event.player != null) {
-                event.player.addStat(ModAchievementList.makeRain, 1);
+                event.player.addStat(ModAchievementList.make_rain, 1);
             }
         }
     }

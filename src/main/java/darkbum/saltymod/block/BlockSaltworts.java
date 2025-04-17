@@ -19,6 +19,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -285,6 +286,11 @@ public class BlockSaltworts extends BlockBush implements IGrowable {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
+        return new ItemStack(ModItems.saltwort);
     }
 
     public int getFlammability(IBlockAccess world, int x, int y, int z, ForgeDirection face) {

@@ -86,15 +86,17 @@ public class ModBlocks {
 
     public static Block apiary;
 
-    public static Block heater;
+    public static Block stove;
 
-    public static Block lit_heater;
+    public static Block lit_stove;
 
     public static Block mill;
 
     public static Block press;
 
     public static Block cooking_pot;
+
+    public static Block clay_oven;
 
     public static Block storage_crate;
 
@@ -211,16 +213,18 @@ public class ModBlocks {
             GameRegistry.registerBlock(apiary, "apiary");
         }
         if (ModConfigurationBlocks.enableHeater) {
-            heater = new BlockHeater("heater", tab);
-            GameRegistry.registerBlock(heater, "heater");
-            lit_heater = new BlockHeaterLit("heater", null);
-            GameRegistry.registerBlock(lit_heater, "lit_heater");
+            stove = new BlockStove("stove", tab);
+            GameRegistry.registerBlock(stove, "stove");
+            lit_stove = new BlockStoveLit("stove", null);
+            GameRegistry.registerBlock(lit_stove, "lit_stove");
             press = new BlockPress("press", tab);
             GameRegistry.registerBlock(press, "press");
             mill = new BlockMill("mill", tab);
             GameRegistry.registerBlock(mill, "mill");
             cooking_pot = new BlockCookingPot("cooking_pot", tab);
-            GameRegistry.registerBlock(cooking_pot, "cooking_pot");
+            GameRegistry.registerBlock(cooking_pot, ItemBlockCookingPot.class, "cooking_pot");
+            clay_oven = new BlockClayOven("clay_oven", tab);
+            GameRegistry.registerBlock(clay_oven, ItemBlockClayOven.class, "clay_oven");
         }
         if (ModConfigurationBlocks.enableStorageBlocks) {
             storage_crate = new BlockStorageCrate("storage_crate", tab);
@@ -234,10 +238,10 @@ public class ModBlocks {
             salt_crystal = new BlockSaltCrystal("salt_crystal", tab);
             GameRegistry.registerBlock(salt_crystal, "salt_crystal");
         }
-        if (ModConfigurationItems.enableOnion) {
+//        if (ModConfigurationItems.enableOnion) {
             onions = new BlockOnions("onions", null);
             GameRegistry.registerBlock(onions, "onions");
-        }
+//        }
         saltworts = new BlockSaltworts("saltworts", null);
         GameRegistry.registerBlock(saltworts, "saltworts");
         if (ModConfigurationBlocks.enableSaltFlowers) {

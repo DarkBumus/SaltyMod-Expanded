@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -57,8 +58,8 @@ public class BlockEvaporator extends BlockContainer {
         this.isEvaporate = evap;
         setBlockName(name);
         setCreativeTab(tab);
-        setHardness(5.0F);
-        setResistance(10.0F);
+        setHardness(3.5F);
+        setResistance(3.5F);
     }
 
     public int getRenderType() {
@@ -83,7 +84,7 @@ public class BlockEvaporator extends BlockContainer {
         return Item.getItemFromBlock(ModBlocks.evaporator);
     }
 
-    public void onBlockAdded(World world, int x, int y, int z) {
+/*    public void onBlockAdded(World world, int x, int y, int z) {
         super.onBlockAdded(world, x, y, z);
         direction(world, x, y, z);
     }
@@ -101,7 +102,7 @@ public class BlockEvaporator extends BlockContainer {
             if (block3.func_149730_j() && !block2.func_149730_j()) b0 = 4;
             world.setBlockMetadataWithNotify(x, y, z, b0, 2);
         }
-    }
+    }*/
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7,
         float par8, float par9) {

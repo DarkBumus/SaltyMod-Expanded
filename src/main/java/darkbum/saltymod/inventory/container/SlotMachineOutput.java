@@ -5,7 +5,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class SlotFarmOutput extends Slot {
+public class SlotMachineOutput extends Slot {
 
     private EntityPlayer entityPlayer;
 
@@ -13,7 +13,7 @@ public class SlotFarmOutput extends Slot {
         return false;
     }
 
-    public SlotFarmOutput(EntityPlayer entityPlayer, IInventory iInventory, int slotIndex, int x, int y) {
+    public SlotMachineOutput(EntityPlayer entityPlayer, IInventory iInventory, int slotIndex, int x, int y) {
         super(iInventory, slotIndex, x, y);
         this.entityPlayer = entityPlayer;
     }

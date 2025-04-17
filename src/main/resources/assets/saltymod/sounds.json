@@ -73,6 +73,54 @@
 	  "block/bee_burrow/bees3"
 	]
   },
+"block.stove.crackle": {
+	"category": "block",
+	"sounds": [
+	  "block/stove/crackle1",
+	  "block/stove/crackle2",
+	  "block/stove/crackle3",
+	  "block/stove/crackle4",
+	  "block/stove/crackle5",
+	  "block/stove/crackle6"
+    ]
+  },
+"block.cooking_pot.break": {
+	"category": "block",
+	"sounds": [
+	  "block/cooking_pot/break1",
+	  "block/cooking_pot/break2",
+	  "block/cooking_pot/break3",
+	  "block/cooking_pot/break4",
+	  "block/cooking_pot/break5",
+	  "block/cooking_pot/break6"
+	  ]
+  },
+"block.cooking_pot.step": {
+	"category": "block",
+	"sounds": [
+	  "block/cooking_pot/step1",
+	  "block/cooking_pot/step2",
+	  "block/cooking_pot/step3",
+	  "block/cooking_pot/step4",
+	  "block/cooking_pot/step5",
+	  "block/cooking_pot/step6"
+	]
+  },
+"block.cooking_pot.boil_full": {
+	"category": "block",
+	"sounds": [
+	  "block/cooking_pot/boil_full1",
+	  "block/cooking_pot/boil_full2",
+	  "block/cooking_pot/boil_full3"
+    ]
+  },
+"block.cooking_pot.boil_empty": {
+	"category": "block",
+	"sounds": [
+	  "block/cooking_pot/boil_empty1",
+	  "block/cooking_pot/boil_empty2"
+    ]
+  },
   "mob.horned_sheep.say": {
 	"category": "neutral",
 	"sounds": [

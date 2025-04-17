@@ -60,9 +60,14 @@ tile.bee_burrow_birch_stripped.name=Stripped Birch Burrow
 tile.apiary.name=Apiary
 container.apiary=Apiary
 
-tile.heater.name=Heater
+tile.stove.name=Stove
 tile.press.name=Press
 container.press=Press
+tile.mill.name=Mill
+tile.cooking_pot.name=Cooking Pot
+container.cooking_pot=Cooking Pot
+tile.clay_oven.name=Clay Oven
+container.clay_oven=Clay Oven
 
 tile.storage_crate_carrot.name=Carrot Crate
 tile.storage_crate_potato.name=Potato Crate
@@ -305,60 +310,59 @@ entity.saltymod.horned_sheep.name=Horned Sheep
 
 # ACHIEVEMENTS
 
-achievement.findSalt=Salt!
-achievement.findSalt.desc=Collect some salt
+achievement.find_salt=Salt!
+achievement.find_salt.desc=Collect some salt
 
-achievement.findSaltCrystal=More than salt
-achievement.findSaltCrystal.desc=Obtain a salt shard
-achievement.navelseSaltCrystal=Break a thing, mend your luck
-achievement.navelseSaltCrystal.desc=Shove a witch or a slime on a salt crystal
-achievement.slimeSaltCrystal=Tough Jelly
-achievement.slimeSaltCrystal.desc=Kill a slime with a salt shard in hand
-achievement.witchSaltCrystal=Achilles' heel
-achievement.witchSaltCrystal.desc=Kill a witch with a salt shard in hand
+achievement.find_salt_crystal=More than salt
+achievement.find_salt_crystal.desc=Obtain a salt shard
+achievement.navelse_salt_crystal=Break a thing, mend your luck
+achievement.navelse_salt_crystal.desc=Shove a witch or a slime on a salt crystal
+achievement.slime_salt_crystal=Tough Jelly
+achievement.slime_salt_crystal.desc=Kill a slime with a salt shard in hand
+achievement.witch_salt_crystal=Achilles' heel
+achievement.witch_salt_crystal.desc=Kill a witch with a salt shard in hand
 
-achievement.farmSalt=Honest work
-achievement.farmSalt.desc=Gather the harvest from a salt farm
-achievement.makeRain=Rainmaker
-achievement.makeRain.desc=Call upon Freyr!
-achievement.farmEvaporator=And I would pour 500 buckets...
-achievement.farmEvaporator.desc=Obtain salt through the evaporator
-achievement.explodeEvaporator=And I would pour 500 more
-achievement.explodeEvaporator.desc=Manage to blow up an evaporator
+achievement.farm_salt=Honest work
+achievement.farm_salt.desc=Gather the harvest from a salt farm
+achievement.make_rain=Rainmaker
+achievement.make_rain.desc=Call upon Freyr!
+achievement.farm_evaporator=And I would pour 500 buckets...
+achievement.farm_evaporator.desc=Obtain salt through the evaporator
+achievement.explode_evaporator=And I would pour 500 more
+achievement.explode_evaporator.desc=Manage to blow up an evaporator
 
-achievement.navSaltMarsh=Flat is justice
-achievement.navSaltMarsh.desc=Find a salt marsh
-achievement.findOnion=They're found in Holes
-achievement.findOnion.desc=Collect an onion
-achievement.findMudBrick=It does §owhat§r?
-achievement.findMudBrick.desc=Collect a dried mud brick
+achievement.nav_salt_marsh=Flat is justice
+achievement.nav_salt_marsh.desc=Find a salt marsh
+achievement.find_onion=They're found in Holes
+achievement.find_onion.desc=Collect an onion
+achievement.find_mud_brick=It does §owhat§r?
+achievement.find_mud_brick.desc=Collect a dried mud brick
 
-achievement.navSaltLake=Crunching underfoot
-achievement.navSaltLake.desc=Walk on a dried-out salt lake
-achievement.findMineralMud=Something black and viscous
-achievement.findMineralMud.desc=Get your hands on some mineral mud
-achievement.fullMudArmor=Health and beauty
-achievement.fullMudArmor.desc=Apply a mud mask on the whole body
-achievement.destroyMudArmor=Discomfort
-achievement.destroyMudArmor.desc=Rinse off the mud mask
+achievement.nav_salt_lake=Crunching underfoot
+achievement.nav_salt_lake.desc=Walk on a dried-out salt lake
+achievement.find_mineral_mud=Something black and viscous
+achievement.find_mineral_mud.desc=Get your hands on some mineral mud
+achievement.full_mud_armor=Health and beauty
+achievement.full_mud_armor.desc=Apply a mud mask on the whole body
+achievement.destroy_mud_armor=Discomfort
+achievement.destroy_mud_armor.desc=Rinse off the mud mask
 
-achievement.findSaltwort=Life, uh... finds a way
-achievement.findSaltwort.desc=Collect some saltwort
-achievement.farmSaltwort=God of melioration
-achievement.farmSaltwort.desc=Fertilize a block of soil that's growing saltwort
-achievement.consumeFizzyDrink=Cool the zeal!
-achievement.consumeFizzyDrink.desc=Extinguish your burning body with a fizzy drink
-achievement.findDough=Past(r)y Blob
-achievement.findDough.desc=Obtain a piece of dough
-achievement.consumeSpecMuffin=Fed up
-achievement.consumeSpecMuffin.desc=Get a saturation effect after eating a muffin
+achievement.find_saltwort=Life, uh... finds a way
+achievement.find_saltwort.desc=Collect some saltwort
+achievement.farm_saltwort=God of melioration
+achievement.farm_saltwort.desc=Fertilize a block of soil that's growing saltwort
+achievement.consume_fizzy_drink=Cool the zeal!
+achievement.consume_fizzy_drink.desc=Extinguish your burning body with a fizzy drink
+achievement.find_dough=Past(r)y Blob
+achievement.find_dough.desc=Obtain a piece of dough
+achievement.consumespec_muffin=Fed up
+achievement.consumespecMuffin.desc=Get a saturation effect after eating a muffin
 
-achievement.findBlossomLog=Sweet and juicy!
-achievement.findBlossomLog.desc=Obtain a blossom tree's log
-achievement.effectSwarmed=Not the Bees!
-achievement.effectSwarmed.desc=Provoke a swarm of bees
-achievement.craftApiary=I wonder what that does...
-achievement.craftApiary.desc=Build yourself an apiary
+achievement.effect_swarmed=Not the Bees!
+achievement.effect_swarmed.desc=Provoke a swarm of bees
+achievementevent.effect_swarmed.mess=§4§lQuick! Hide in deep water if you want to live!§r§r
+achievement.craft_apiary=I wonder what that does...
+achievement.craft_apiary.desc=Build yourself an apiary
 
 
 # BIOMES/GENERATION

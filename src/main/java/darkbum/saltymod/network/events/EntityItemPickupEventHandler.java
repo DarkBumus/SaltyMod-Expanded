@@ -17,27 +17,27 @@ public class EntityItemPickupEventHandler {
         if (!world.isRemote) {
             if (event.item.getEntityItem()
                 .getItem() == ModItems.salt) {
-                event.entityPlayer.addStat(ModAchievementList.findSalt, 1);
+                event.entityPlayer.addStat(ModAchievementList.find_salt, 1);
             }
             if (event.item.getEntityItem()
                 .getItem() == ModItems.salt_shard) {
-                event.entityPlayer.addStat(ModAchievementList.findSaltCrystal, 1);
+                event.entityPlayer.addStat(ModAchievementList.find_salt_crystal, 1);
             }
             if (event.item.getEntityItem()
                 .getItem() == ModItems.mineral_mud_ball) {
-                event.entityPlayer.addStat(ModAchievementList.findMineralMud, 1);
+                event.entityPlayer.addStat(ModAchievementList.find_mineral_mud, 1);
             }
             if (event.item.getEntityItem()
                 .getItem() == ModItems.saltwort) {
-                event.entityPlayer.addStat(ModAchievementList.findSaltwort, 1);
+                event.entityPlayer.addStat(ModAchievementList.find_saltwort, 1);
             }
             if (event.item.getEntityItem()
                 .getItem() == Item.getItemFromBlock(ModBlocks.dry_mud_brick)) {
-                event.entityPlayer.addStat(ModAchievementList.findMudBrick, 1);
+                event.entityPlayer.addStat(ModAchievementList.find_mud_brick, 1);
             }
             if (event.item.getEntityItem()
                 .getItem() == ModItems.onion) {
-                event.entityPlayer.addStat(ModAchievementList.findOnion, 1);
+                event.entityPlayer.addStat(ModAchievementList.find_onion, 1);
             }
         }
     }

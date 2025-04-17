@@ -2,8 +2,8 @@ package darkbum.saltymod.tileentity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.api.PotcookingRecipePinchRegistry;
-import darkbum.saltymod.init.ModBlocks;
+import darkbum.saltymod.api.PotcookingRecipe;
+import darkbum.saltymod.api.MachineUtilRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
@@ -14,24 +14,24 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import darkbum.saltymod.api.PotcookingRecipe;
-import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TileEntityCookingPot extends TileEntity implements ISidedInventory {
 
     private String inventoryName;
 
-    private ItemStack[] inventory = new ItemStack[4];
+    private ItemStack[] inventory = new ItemStack[9];
 
     public int cookingTime = 0;
 
-    private boolean isHeaterNearby = false;
+    public boolean isHeaterBelow = false;
 
-    private boolean isMillNearby = false;
-
-    private static final int[] slotsTop = new int[]{0};
-    private static final int[] slotsBottom = new int[]{1, 2};
-    private static final int[] slotPinch = new int[]{3};
+    private static final int[] slotsIngred = new int[]{0, 1, 2, 3, 4, 5};
+    public static final int[] slotOutput = new int[]{6};
+    private static final int[] slotPinch = new int[]{7};
+    private static final int[] slotBowl = new int[]{8};
 
     public String getInventoryName() {
         return hasCustomInventoryName() ? this.inventoryName : "container.cooking_pot";
@@ -96,35 +96,6 @@ public class TileEntityCookingPot extends TileEntity implements ISidedInventory 
     }
 
     @Override
-    public boolean isItemValidForSlot(int index, ItemStack stack) {
-        if (index == 0) {
-            return true;
-        } else if (index == 3) {
-            return PotcookingRecipePinchRegistry.isValidPinch(stack);
-        }
-        return false;
-    }
-
-    @Override
-    public int[] getAccessibleSlotsFromSide(int side) {
-        if (side == 0) {
-            return slotsBottom;
-        } else if (side == 1) {
-            return slotsTop;
-        } else return slotPinch;
-    }
-
-
-    public boolean canInsertItem(int index, ItemStack itemstack, int side) {
-        return this.isItemValidForSlot(index, itemstack);
-    }
-
-    @Override
-    public boolean canExtractItem(int index, ItemStack itemstack, int side) {
-        return index != 0;
-    }
-
-    @Override
     public ItemStack getStackInSlotOnClosing(int index) {
         if (inventory[index] != null) {
             ItemStack stack = inventory[index];
@@ -147,14 +118,13 @@ public class TileEntityCookingPot extends TileEntity implements ISidedInventory 
     public void updateEntity() {
         boolean updated = false;
         checkForHeater();
-        checkForMill();
 
         if (!worldObj.isRemote) {
             if (canRun()) {
                 cookingTime++;
                 if (cookingTime >= 125) {
                     cookingTime = 0;
-                    potItems();
+                    cookItems();
                     updated = true;
                 }
             } else {
@@ -169,34 +139,28 @@ public class TileEntityCookingPot extends TileEntity implements ISidedInventory 
     }
 
     private boolean canRun() {
-        ItemStack input = inventory[0];
-        if (input == null) return false;
+        List<ItemStack> ingreds = new ArrayList<>();
 
-        ItemStack pinch = inventory[3];
-        PotcookingRecipe.PotRecipe recipe = PotcookingRecipe.cooking().getRecipeFor(input, pinch);
+        for (int i = 0; i < 6; i++) {
+            if (inventory[i] != null) {
+                ingreds.add(inventory[i]);
+            }
+        }
+
+        if (inventory[7] != null) {
+            ingreds.add(inventory[7]);
+        }
+
+        if (ingreds.isEmpty()) return false;
+
+        PotcookingRecipe.PotRecipe recipe = PotcookingRecipe.cooking().getRecipeFor(ingreds);
         if (recipe == null) return false;
 
-        if (!isHeaterRequirementMet(recipe)) return false;
-        if (!isMillRequirementMet(recipe)) return false;
-        if (!isPinchRequirementMet(recipe, pinch)) return false;
-        if (!canAcceptOutput(inventory[1], recipe.output1)) return false;
-        if (!canAcceptOutput(inventory[2], recipe.output2)) return false;
-
-        return true;
+        return isHeaterRequirementMet(recipe) && canAcceptOutput(inventory[6], recipe.output);
     }
 
     private boolean isHeaterRequirementMet(PotcookingRecipe.PotRecipe recipe) {
-        return recipe.requiresHeater == isHeaterNearby;
-    }
-
-    private boolean isMillRequirementMet(PotcookingRecipe.PotRecipe recipe) {
-        return recipe.requiresMill == isMillNearby;
-    }
-
-    private boolean isPinchRequirementMet(PotcookingRecipe.PotRecipe recipe, ItemStack pinch) {
-        if (recipe.pinchItem == null) return true;
-        if (pinch == null) return false;
-        return PotcookingRecipePinchRegistry.isValidPinch(pinch) && pinch.getItem() == recipe.pinchItem.getItem();
+        return recipe.requiresHeater == isHeaterBelow;
     }
 
     private boolean canAcceptOutput(ItemStack currentStack, ItemStack output) {
@@ -207,111 +171,61 @@ public class TileEntityCookingPot extends TileEntity implements ISidedInventory 
         return currentStack.stackSize + output.stackSize <= currentStack.getMaxStackSize();
     }
 
-    public void potItems() {
-        ItemStack input = inventory[0];
-        if (input == null) return;
+/*    private boolean canAcceptOutput(ItemStack currentStack, ItemStack output) {
+        if (output == null) return true;
+        if (currentStack == null) return true;
 
-        ItemStack pinch = inventory[3];
-        PotcookingRecipe.PotRecipe recipe = PotcookingRecipe.cooking().getRecipeFor(input, pinch);
+        if (!currentStack.isItemEqual(output)) return false;
+
+        // Hier erlauben wir das "Stapelverhalten", auch wenn das Item normalerweise nicht stackbar ist
+        int maxCustomStackSize = 16; // Oder ein Wert, den du pro Slot selbst definieren willst
+        return currentStack.stackSize + output.stackSize <= maxCustomStackSize;
+    }*/
+
+    public void cookItems() {
+        List<ItemStack> ingreds = new ArrayList<>();
+
+        for (int i = 0; i < 6; i++) {
+            if (inventory[i] != null) {
+                ingreds.add(inventory[i]);
+            }
+        }
+
+        if (inventory[7] != null) {
+            ingreds.add(inventory[7]);
+        }
+
+        PotcookingRecipe.PotRecipe recipe = PotcookingRecipe.cooking().getRecipeFor(ingreds);
         if (recipe == null) return;
 
-        // Ausgabe 1
-        if (recipe.output1 != null) {
-            if (inventory[1] == null) {
-                inventory[1] = recipe.output1.copy();
+        if (recipe.output != null) {
+            if (inventory[6] == null) {
+                inventory[6] = recipe.output.copy();
             } else {
-                inventory[1].stackSize += recipe.output1.stackSize;
+                inventory[6].stackSize += recipe.output.stackSize;
             }
         }
 
-        // Ausgabe 2
-        if (recipe.output2 != null) {
-            if (inventory[2] == null) {
-                inventory[2] = recipe.output2.copy();
-            } else {
-                inventory[2].stackSize += recipe.output2.stackSize;
-            }
-        }
-
-        // Eingabeware verringern
-        inventory[0].stackSize--;
-        if (inventory[0].stackSize <= 0) inventory[0] = null;
-
-        if (recipe.pinchItem != null && inventory[3] != null && PotcookingRecipePinchRegistry.isValidPinch(inventory[3])) {
-            if (inventory[3].getItem() == recipe.pinchItem.getItem()) {
-                inventory[3].stackSize--;
-                if (inventory[3].stackSize <= 0) {
-                    inventory[3] = null;
+        for (int i = 0; i < 6; i++) {
+            if (inventory[i] != null) {
+                inventory[i].stackSize--;
+                if (inventory[i].stackSize <= 0) {
+                    inventory[i] = null;
                 }
+            }
+        }
+
+        if (inventory[7] != null) {
+            inventory[7].stackSize--;
+            if (inventory[7].stackSize <= 0) {
+                inventory[7] = null;
             }
         }
     }
 
     private void checkForHeater() {
-        isHeaterNearby = false;
-
-        int[][] directions = {
-            {0, 1, 0},
-            {0, -1, 0},
-            {1, 0, 0},
-            {-1, 0, 0},
-            {0, 0, 1},
-            {0, 0, -1}
-        };
-
-        for (int[] dir : directions) {
-            int dx = dir[0];
-            int dy = dir[1];
-            int dz = dir[2];
-
-            Block neighborBlock = worldObj.getBlock(xCoord + dx, yCoord + dy, zCoord + dz);
-            if (neighborBlock != null && neighborBlock == ModBlocks.lit_heater) {
-                isHeaterNearby = true;
-                return;
-            }
-        }
-    }
-
-    private void checkForMill() {
-        isMillNearby = false;
-
-        int blockMeta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-
-        int targetSide = -1;
-
-        switch (blockMeta) {
-            case 0:
-                targetSide = 2;
-                break;
-            case 1:
-                targetSide = 5;
-                break;
-            case 2:
-                targetSide = 3;
-                break;
-            case 3:
-                targetSide = 4;
-                break;
-        }
-
-        if (targetSide != -1) {
-            Block neighborBlock = worldObj.getBlock(xCoord + ForgeDirection.VALID_DIRECTIONS[targetSide].offsetX,
-                yCoord + ForgeDirection.VALID_DIRECTIONS[targetSide].offsetY,
-                zCoord + ForgeDirection.VALID_DIRECTIONS[targetSide].offsetZ);
-
-            if (neighborBlock != null && neighborBlock == ModBlocks.mill) {
-                int neighborMeta = worldObj.getBlockMetadata(xCoord + ForgeDirection.VALID_DIRECTIONS[targetSide].offsetX,
-                    yCoord + ForgeDirection.VALID_DIRECTIONS[targetSide].offsetY,
-                    zCoord + ForgeDirection.VALID_DIRECTIONS[targetSide].offsetZ);
-
-                if ((blockMeta == 0 && neighborMeta == 4) ||
-                    (blockMeta == 1 && neighborMeta == 5) ||
-                    (blockMeta == 2 && neighborMeta == 6) ||
-                    (blockMeta == 3 && neighborMeta == 7)) {
-                    isMillNearby = true;
-                }
-            }
-        }
+        Block blockBelow = worldObj.getBlock(xCoord, yCoord - 1, zCoord);
+        isHeaterBelow = MachineUtilRegistry.isValidHeater(blockBelow);
     }
 
     @Override
@@ -358,5 +272,25 @@ public class TileEntityCookingPot extends TileEntity implements ISidedInventory 
     @Override
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
         readFromNBT(packet.func_148857_g());
+    }
+
+    @Override
+    public boolean isItemValidForSlot(int index, ItemStack stack) {
+        return false;
+    }
+
+    @Override
+    public int[] getAccessibleSlotsFromSide(int side) {
+        return new int[0];
+    }
+
+
+    public boolean canInsertItem(int index, ItemStack itemstack, int side) {
+        return false;
+    }
+
+    @Override
+    public boolean canExtractItem(int index, ItemStack itemstack, int side) {
+        return false;
     }
 }

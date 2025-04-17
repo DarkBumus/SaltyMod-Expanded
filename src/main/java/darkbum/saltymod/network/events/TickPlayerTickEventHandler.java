@@ -14,7 +14,7 @@ public class TickPlayerTickEventHandler {
         int px = MathHelper.floor_double(event.player.posX);
         int pz = MathHelper.floor_double(event.player.posZ);
         if (event.player.worldObj.getBiomeGenForCoords(px, pz) == ModBiomes.saltMarsh) {
-            event.player.addStat(ModAchievementList.navSaltMarsh, 1);
+            event.player.addStat(ModAchievementList.nav_salt_marsh, 1);
         }
     }
 }

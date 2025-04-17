@@ -1,16 +1,18 @@
 package darkbum.saltymod.init;
 
+import cpw.mods.fml.common.Loader;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFishFood;
 import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemSoup;
 import net.minecraft.potion.Potion;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import darkbum.saltymod.configuration.configs.ModConfigurationModCompatibility;
 import darkbum.saltymod.configuration.configs.ModConfigurationVanillaChanges;
 
-public class ModExternalFoodValueRegistry {
+public class ModExternalValueRegistry {
 
     public static void init() {
 
@@ -41,13 +43,27 @@ public class ModExternalFoodValueRegistry {
             golden_apple.saturationModifier = 0.6F;
 
             ItemFishFood fish = (ItemFishFood) Items.fish;
-            fish.healAmount = 1;
-            fish.saturationModifier = 0.5F;
-            fish.setPotionEffect(Potion.waterBreathing.id, 3, 0, 1.0F);
+            ItemFishFood.FishType.COD.field_150991_j = 1;
+            ItemFishFood.FishType.COD.field_150992_k = 0.5F;
+            ItemFishFood.FishType.COD.field_150989_l = 3;
+            ItemFishFood.FishType.COD.field_150990_m = 0.5F;
 
-            ItemFishFood cooked_fished = (ItemFishFood) Items.cooked_fished;
-            cooked_fished.healAmount = 3;
-            cooked_fished.saturationModifier = 0.5F;
+            ItemFishFood.FishType.SALMON.field_150991_j = 1;
+            ItemFishFood.FishType.SALMON.field_150992_k = 0.5F;
+            ItemFishFood.FishType.SALMON.field_150989_l = 3;
+            ItemFishFood.FishType.SALMON.field_150990_m = 0.5F;
+
+            ItemFishFood.FishType.CLOWNFISH.field_150991_j = 1;
+            ItemFishFood.FishType.CLOWNFISH.field_150992_k = 0.5F;
+            ItemFishFood.FishType.CLOWNFISH.field_150989_l = 0;
+            ItemFishFood.FishType.CLOWNFISH.field_150990_m = 0.0F;
+
+            ItemFishFood.FishType.PUFFERFISH.field_150991_j = 1;
+            ItemFishFood.FishType.PUFFERFISH.field_150992_k = 0.5F;
+            ItemFishFood.FishType.PUFFERFISH.field_150989_l = 0;
+            ItemFishFood.FishType.PUFFERFISH.field_150990_m = 0.0F;
+
+            fish.setPotionEffect(Potion.waterBreathing.id, 3, 0, 1.0F);
 
             ItemFood cookie = (ItemFood) Items.cookie;
             cookie.healAmount = 2;
@@ -107,77 +123,94 @@ public class ModExternalFoodValueRegistry {
             pumpkin_pie.saturationModifier = 0.9F;
         }
 
-        if (ModConfigurationModCompatibility.enableEFRFoodValueChanges) {
+        if (Loader.isModLoaded("etfuturum") && ModConfigurationModCompatibility.enableEFRFoodValueChanges) {
 
             Item raw_mutton = GameRegistry.findItem("etfuturum", "raw_mutton");
-            if (raw_mutton instanceof ItemFood) {
-                ItemFood ItemMuttonRaw = (ItemFood) raw_mutton;
+            if (raw_mutton instanceof ItemFood ItemMuttonRaw) {
                 ItemMuttonRaw.healAmount = 2;
                 ItemMuttonRaw.saturationModifier = 0.6F;
             }
 
             Item mutton_cooked = GameRegistry.findItem("etfuturum", "mutton_cooked");
-            if (mutton_cooked instanceof ItemFood) {
-                ItemFood ItemMuttonCooked = (ItemFood) mutton_cooked;
+            if (mutton_cooked instanceof ItemFood ItemMuttonCooked) {
                 ItemMuttonCooked.healAmount = 4;
                 ItemMuttonCooked.saturationModifier = 0.6F;
             }
 
             Item rabbit_raw = GameRegistry.findItem("etfuturum", "rabbit_raw");
-            if (rabbit_raw instanceof ItemFood) {
-                ItemFood ItemRabbitRaw = (ItemFood) rabbit_raw;
+            if (rabbit_raw instanceof ItemFood ItemRabbitRaw) {
                 ItemRabbitRaw.healAmount = 1;
                 ItemRabbitRaw.saturationModifier = 0.6F;
             }
 
             Item rabbit_cooked = GameRegistry.findItem("etfuturum", "rabbit_cooked");
-            if (rabbit_cooked instanceof ItemFood) {
-                ItemFood ItemRabbitCooked = (ItemFood) rabbit_cooked;
+            if (rabbit_cooked instanceof ItemFood ItemRabbitCooked) {
                 ItemRabbitCooked.healAmount = 3;
                 ItemRabbitCooked.saturationModifier = 0.6F;
             }
 
             Item rabbit_stew = GameRegistry.findItem("etfuturum", "rabbit_stew");
-            if (rabbit_stew instanceof ItemFood) {
-                ItemFood ItemRabbitStew = (ItemFood) rabbit_stew;
+            if (rabbit_stew instanceof ItemFood ItemRabbitStew) {
                 ItemRabbitStew.healAmount = 7;
                 ItemRabbitStew.saturationModifier = 0.7F;
             }
 
             Item beetroot = GameRegistry.findItem("etfuturum", "beetroot");
-            if (beetroot instanceof ItemFood) {
-                ItemFood ItemBeetroot = (ItemFood) beetroot;
+            if (beetroot instanceof ItemFood ItemBeetroot) {
                 ItemBeetroot.healAmount = 1;
                 ItemBeetroot.saturationModifier = 0.3F;
             }
 
             Item beetroot_soup = GameRegistry.findItem("etfuturum", "beetroot_soup");
-            if (beetroot_soup instanceof ItemFood) {
-                ItemFood ItemBeetrootSoup = (ItemFood) beetroot_soup;
+            if (beetroot_soup instanceof ItemFood ItemBeetrootSoup) {
                 ItemBeetrootSoup.healAmount = 5;
                 ItemBeetrootSoup.saturationModifier = 0.7F;
             }
 
             Item chorus_fruit = GameRegistry.findItem("etfuturum", "chorus_fruit");
-            if (chorus_fruit instanceof ItemFood) {
-                ItemFood ItemChorusFruit = (ItemFood) chorus_fruit;
+            if (chorus_fruit instanceof ItemFood ItemChorusFruit) {
                 ItemChorusFruit.healAmount = 1;
                 ItemChorusFruit.saturationModifier = 0.3F;
             }
 
             Item suspicious_stew = GameRegistry.findItem("etfuturum", "suspicious_stew");
-            if (suspicious_stew instanceof ItemFood) {
-                ItemFood ItemSuspiciousStew = (ItemFood) suspicious_stew;
+            if (suspicious_stew instanceof ItemFood ItemSuspiciousStew) {
                 ItemSuspiciousStew.healAmount = 5;
                 ItemSuspiciousStew.saturationModifier = 0.7F;
             }
 
             Item sweet_berries = GameRegistry.findItem("etfuturum", "sweet_berries");
-            if (sweet_berries instanceof ItemFood) {
-                ItemFood ItemSweetBerries = (ItemFood) sweet_berries;
+            if (sweet_berries instanceof ItemFood ItemSweetBerries) {
                 ItemSweetBerries.healAmount = 1;
                 ItemSweetBerries.saturationModifier = 0.3F;
             }
         }
+
+        if (ModConfigurationVanillaChanges.enableMushroomStewStacksize16) {
+
+            Item mushroom_stew = GameRegistry.findItem("minecraft", "mushroom_stew");
+            mushroom_stew.setMaxStackSize(16);
+        }
+
+        if (Loader.isModLoaded("etfuturum") && ModConfigurationModCompatibility.enableEFRStewsStacksize16) {
+
+            Item rabbit_stew = GameRegistry.findItem("etfuturum", "rabbit_stew");
+            if (rabbit_stew instanceof ItemSoup ItemRabbitStew) {
+                ItemRabbitStew.setMaxStackSize(16);
+            }
+
+            Item beetroot_soup = GameRegistry.findItem("etfuturum", "beetroot_soup");
+            if (beetroot_soup instanceof ItemSoup ItemBeetrootSoup) {
+                ItemBeetrootSoup.setMaxStackSize(16);
+            }
+
+            Item suspicious_stew = GameRegistry.findItem("etfuturum", "suspicious_stew");
+            if (suspicious_stew instanceof ItemSoup ItemSuspiciousStew) {
+                ItemSuspiciousStew.setMaxStackSize(16);
+            }
+        }
+
+        Item woodenShovel = GameRegistry.findItem("minecraft", "wooden_shovel");
+            woodenShovel.setMaxDamage(64);
     }
 }

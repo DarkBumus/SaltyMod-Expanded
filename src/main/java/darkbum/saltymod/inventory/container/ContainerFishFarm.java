@@ -24,7 +24,7 @@ public class ContainerFishFarm extends Container {
         this.fishfarm = tileEntityFishFarm;
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 3; y++) addSlotToContainer(
-                new SlotFarmOutput(inventoryPlayer.player, tileEntityFishFarm, y + x * 3, 62 + 18 * x, 17 + 18 * y));
+                new SlotMachineOutput(inventoryPlayer.player, tileEntityFishFarm, y + x * 3, 62 + 18 * x, 17 + 18 * y));
         }
         addSlotToContainer(new SlotFishFarmFuel(inventoryPlayer.player, tileEntityFishFarm, 18, 26, 35));
         int i;

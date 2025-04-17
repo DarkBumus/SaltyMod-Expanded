@@ -40,6 +40,13 @@ public class ModSounds {
         }
     };
 
+    public static final Block.SoundType soundTypeCookingPot = new Block.SoundType("CookingPot", 1.0F, 1.0F) {
+
+        public String getBreakSound() { return "saltymod:block.cooking_pot.break"; }
+
+        public String getStepResourcePath() { return "saltymod:block.cooking_pot.step"; }
+    };
+
     private static final class CustomSound extends Block.SoundType {
 
         private final boolean useDefaults;

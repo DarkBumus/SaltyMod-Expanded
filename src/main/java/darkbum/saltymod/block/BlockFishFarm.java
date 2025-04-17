@@ -9,6 +9,8 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -107,5 +109,19 @@ public class BlockFishFarm extends BlockContainer {
             }
         }
         super.breakBlock(world, x, y, z, block, meta);
+    }
+
+    @Override
+    public boolean hasComparatorInputOverride() {
+        return true;
+    }
+
+    @Override
+    public int getComparatorInputOverride(World world, int x, int y, int z, int side) {
+        TileEntity tile = world.getTileEntity(x, y, z);
+        if (tile instanceof IInventory) {
+            return Container.calcRedstoneFromInventory((IInventory) tile);
+        }
+        return 0;
     }
 }

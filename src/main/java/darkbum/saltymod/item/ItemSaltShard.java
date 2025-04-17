@@ -32,7 +32,7 @@ public class ItemSaltShard extends Item {
                 entity.entityDropItem(new ItemStack(ModItems.tough_jelly, 1, 0), 0).delayBeforeCanPickup = 10;
                 world.playSoundEffect(entity.posX, entity.posY, entity.posZ, "dig.stone", 2.0F, 1.0F);
                 world.playSoundEffect(entity.posX, entity.posY, entity.posZ, "dig.glass", 2.0F, 2.0F);
-                player.addStat(ModAchievementList.slimeSaltCrystal, 1);
+                player.addStat(ModAchievementList.slime_salt_crystal, 1);
                 if (stack.stackSize == 0) {
                     player.setCurrentItemOrArmor(0, null);
                 }
@@ -42,7 +42,7 @@ public class ItemSaltShard extends Item {
                 entity.entityDropItem(new ItemStack(ModItems.salt_pinch, 1, 0), 0).delayBeforeCanPickup = 10;
                 world.playSoundEffect(entity.posX, entity.posY, entity.posZ, "dig.stone", 2.0F, 1.0F);
                 world.playSoundEffect(entity.posX, entity.posY, entity.posZ, "dig.glass", 2.0F, 2.0F);
-                player.addStat(ModAchievementList.witchSaltCrystal, 1);
+                player.addStat(ModAchievementList.witch_salt_crystal, 1);
                 if (stack.stackSize == 0) {
                     player.setCurrentItemOrArmor(0, null);
                 }

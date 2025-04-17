@@ -18,6 +18,8 @@ public class ModConfigurationVanillaChanges {
 
     public static boolean enableRecipeChanges;
 
+    public static boolean enableMushroomStewStacksize16;
+
     public static void init(Configuration config) {
         config.setCategoryComment(categoryNameVan, categoryDescriptionVan);
 
@@ -60,6 +62,14 @@ public class ModConfigurationVanillaChanges {
                 + "\nCake - Now gets crafted with only one Milk Bucket in the upper row and one Dough in the lower row, instead of three pieces of Wheat"
                 + "\nCookie - Now gets crafted with Dough and Cocoa Beans, instead of two pieces of Wheat"
                 + "\nPumpkin Pie - Now also needs Dough in addition to Pumpkin, Sugar and an Egg"
+                + "\n");
+
+        enableMushroomStewStacksize16 = config.getBoolean(
+            "03-enableItemSoupStacksize16",
+            categoryNameVan,
+            true,
+            "Changes the maximum stacksize of Mushroom Stew to 16."
+                + "\nThis only changes the stacksize of Mushroom Stew. For modded food items that extends from ItemSoup, see mod_compatibility.cfg."
                 + "\n");
     }
 }

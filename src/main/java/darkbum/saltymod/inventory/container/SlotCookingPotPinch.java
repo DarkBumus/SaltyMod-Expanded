@@ -1,6 +1,7 @@
 package darkbum.saltymod.inventory.container;
 
-import darkbum.saltymod.api.PotcookingRecipePinchRegistry;
+import darkbum.saltymod.api.MachineUtilRegistry;
+import darkbum.saltymod.init.ModItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -16,8 +17,15 @@ public class SlotCookingPotPinch extends Slot {
         setEntityPlayer(entityPlayer);
     }
 
-    public boolean isItemValid(ItemStack itemStack) {
-        return PotcookingRecipePinchRegistry.isValidPinch(itemStack);
+/*    @Override
+    public boolean isItemValid(ItemStack stack) {
+        if (stack == null) return false;
+        return stack.getItem() == ModItems.salt_pinch || stack.getItem() == ModItems.sugar_pinch;
+    }*/
+
+    @Override
+    public boolean isItemValid(ItemStack stack) {
+        return MachineUtilRegistry.isValidPinch(stack);
     }
 
     public int getSlotStackLimit() {

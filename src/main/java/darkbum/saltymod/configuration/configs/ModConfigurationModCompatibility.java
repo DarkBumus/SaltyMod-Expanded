@@ -21,6 +21,7 @@ public class ModConfigurationModCompatibility {
 
     // Mod Compatibility Config Options
     public static boolean enableEFRFoodValueChanges;
+    public static boolean enableEFRStewsStacksize16;
 
     public static int TFDimensionID;
     public static boolean enableTFSaltOre;
@@ -71,8 +72,16 @@ public class ModConfigurationModCompatibility {
                 + "\nNotes: The first value refers to the number of half hunger shanks the respective item returns. The second value refers to the saturation. For a more detailed understanding, refer to this table and halve the \"Saturation Ratio\" values depicted there: https://minecraft.wiki/w/Food#Foods"
                 + "\n");
 
+        enableEFRStewsStacksize16 = config.getBoolean(
+            "02-enableEFRStewsStacksize16",
+            categoryNameMod,
+            true,
+            "Changes the maximum stacksize of Et Futurum Requiem's Stews to 16."
+                + "\nThis only changes the stacksize of Et Futurum Requiem's stews. For Mushroom Stew, see vanilla_changes.cfg."
+                + "\n");
+
         enableTFSaltOre = config.getBoolean(
-            "02-enableTFSaltOre",
+            "03-enableTFSaltOre",
             categoryNameMod,
             true,
             "Enables Salt Ore Generation in the Twilight Forest Dimension");

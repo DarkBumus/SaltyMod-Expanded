@@ -1,5 +1,6 @@
 package darkbum.saltymod.init.recipes;
 
+import darkbum.saltymod.configuration.configs.ModConfigurationVanillaChanges;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
@@ -13,6 +14,11 @@ public class ModSmeltingRecipes {
 
     public static void init() {
 
+        if (ModConfigurationVanillaChanges.enableRecipeChanges) {
+            if (ModConfigurationItems.enableDough) {
+                GameRegistry.addSmelting(new ItemStack(ModItems.dough), new ItemStack(Items.bread), 0.35F);
+            }
+        }
         GameRegistry.addSmelting(new ItemStack(Items.leather), new ItemStack(Items.slime_ball), 0.5F);
         GameRegistry.addSmelting(new ItemStack(Items.rotten_flesh), new ItemStack(Items.leather), 0.5F);
 

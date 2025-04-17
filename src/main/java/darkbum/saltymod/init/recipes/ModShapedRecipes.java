@@ -1,5 +1,6 @@
 package darkbum.saltymod.init.recipes;
 
+import darkbum.saltymod.configuration.configs.ModConfigurationVanillaChanges;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -16,6 +17,23 @@ public class ModShapedRecipes {
     public static void init() {
 
         GameRegistry.addRecipe(new ItemStack(Items.sugar), "xxx", "xxx", "xxx", 'x', ModItems.sugar_pinch);
+        if (ModConfigurationVanillaChanges.enableRecipeChanges) {
+            if (ModConfigurationItems.enableDough) {
+                GameRegistry.addRecipe(
+                    new ItemStack(Items.cake),
+                    " x ",
+                    "yzy",
+                    " a ",
+                    'x',
+                    Items.milk_bucket,
+                    'y',
+                    Items.sugar,
+                    'z',
+                    Items.egg,
+                    'a',
+                    ModItems.dough);
+            }
+        }
 
         if (ModConfigurationBlocks.enableSaltBlocks) {
             GameRegistry.addRecipe(new ItemStack(ModBlocks.salt_block), "xxx", "xxx", "xxx", 'x', ModItems.salt);

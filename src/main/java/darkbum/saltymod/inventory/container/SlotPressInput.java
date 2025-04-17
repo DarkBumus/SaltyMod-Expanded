@@ -18,6 +18,7 @@ public class SlotPressInput extends Slot {
     public void onPickupFromSlot(EntityPlayer player, ItemStack itemStack) {
         super.onPickupFromSlot(player, itemStack);
     }
+
     public EntityPlayer getPlayer() {
         return this.player;
     }

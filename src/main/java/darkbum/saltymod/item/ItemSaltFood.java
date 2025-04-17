@@ -5,10 +5,7 @@ import java.util.List;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.item.EnumAction;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.world.World;
 
 import darkbum.saltymod.init.ModItems;
@@ -21,39 +18,32 @@ public class ItemSaltFood extends ItemFood {
     private EnumAction action = EnumAction.eat;
 
     public ItemSaltFood(String name, int amount, float saturation, Item container,
-        ProbablePotionEffect... potionEffects) {
+                        ProbablePotionEffect... potionEffects) {
         super(amount, saturation, false);
         setUnlocalizedName(name);
         this.container = container;
-        this.effects = potionEffects;
+        this.effects = potionEffects != null ? potionEffects : new ProbablePotionEffect[0];
     }
 
     public ItemSaltFood(String name, int amount, float saturation, ProbablePotionEffect... potionEffects) {
-        super(amount, saturation, false);
-        setUnlocalizedName(name);
-        this.container = null;
-        this.effects = potionEffects;
+        this(name, amount, saturation, null, potionEffects);
     }
 
     public ItemSaltFood(String name, int amount, float saturation) {
-        super(amount, saturation, false);
-        setUnlocalizedName(name);
-        this.container = null;
-        this.effects = null;
+        this(name, amount, saturation, null, new ProbablePotionEffect[0]);
     }
 
     @Override
     public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean flag) {
         super.addInformation(itemStack, player, list, flag);
-        if (effects != null) {
-            for (ProbablePotionEffect effect : effects) {
-                list.add(effect.generateTooltip());
-            }
+        for (ProbablePotionEffect effect : effects) {
+            list.add(effect.generateTooltip());
         }
     }
 
-    public EnumAction getItemUseAction(ItemStack item) {
-        return action;
+    @Override
+    public EnumAction getItemUseAction(ItemStack stack) {
+        return this.action;
     }
 
     public ItemSaltFood setItemUseAction(EnumAction action) {
@@ -61,17 +51,34 @@ public class ItemSaltFood extends ItemFood {
         return this;
     }
 
+    @Override
     public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player) {
         super.onEaten(stack, world, player);
-        if (effects != null && !world.isRemote) {
+
+        if (!world.isRemote) {
             for (ProbablePotionEffect effect : effects) {
                 effect.procEffect(player, itemRand);
             }
+
+            // Sonderverhalten für Salz-Ei
+            if (stack.getItem() == ModItems.salt_egg) {
+                world.spawnEntityInWorld(new EntityItem(
+                    world, player.posX, player.posY, player.posZ,
+                    new ItemStack(Items.dye, 1, 15) // Knochenmehl
+                ));
+            }
+
+            // Container zurückgeben, ohne Stapel zu zerstören
+            if (container != null) {
+                ItemStack containerStack = new ItemStack(container);
+                if (!player.inventory.addItemStackToInventory(containerStack)) {
+                    world.spawnEntityInWorld(new EntityItem(
+                        world, player.posX, player.posY, player.posZ, containerStack
+                    ));
+                }
+            }
         }
-        if (!world.isRemote && getUnlocalizedName().equals(ModItems.salt_egg.getUnlocalizedName())) {
-            world.spawnEntityInWorld(
-                new EntityItem(world, player.posX, player.posY, player.posZ, new ItemStack(Items.dye, 1, 15)));
-        }
-        return container != null ? new ItemStack(container) : stack;
+
+        return stack;
     }
 }

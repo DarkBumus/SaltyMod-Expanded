@@ -36,10 +36,22 @@ public class GuiPress extends GuiContainer {
         this.mc.getTextureManager().bindTexture(resourceLocation);
         int x = (this.width - this.xSize) / 2;
         int y = (this.height - this.ySize) / 2;
+
         drawTexturedModalRect(x, y, 0, 0, this.xSize, this.ySize);
+
         if (this.tileEntityPress.isRunning()) {
             int progress = this.tileEntityPress.getPressProgressScale(24);
-            drawTexturedModalRect(x + 76, y + 36, 176, 0, progress + 1, 16);
+            drawTexturedModalRect(x + 76, y + 36, 176, 14, progress + 1, 16);
+        }
+
+        if (this.tileEntityPress.isHeaterNearby) {
+            // Zeichnen des Overlays an der Position 63, 18
+            drawTexturedModalRect(x + 63, y + 18, 176, 0, 14, 14);
+        }
+
+        if (this.tileEntityPress.isMillNearby) {
+            // Zeichnen des Overlays an der Position 63, 18
+            drawTexturedModalRect(x + 99, y + 18, 190, 0, 14, 14); // Anpassen der Größe und Position nach Bedarf
         }
     }
 }

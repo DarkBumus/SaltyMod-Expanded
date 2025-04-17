@@ -34,7 +34,7 @@ public class ItemMuffin extends ItemFood {
             .getFoodLevel() == 20) chek = true;
         if (!world.isRemote && chek) {
             player.addPotionEffect(new PotionEffect(ModPotion.wellFed.id, 2400));
-            player.addStat(ModAchievementList.consumeSpecMuffin, 1);
+            player.addStat(ModAchievementList.consumespec_muffin, 1);
         }
         if (world.isRemote && player.getFoodStats()
             .getFoodLevel() == 20) {
