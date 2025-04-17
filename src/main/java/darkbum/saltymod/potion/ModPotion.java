@@ -24,10 +24,13 @@ public class ModPotion extends Potion {
 
     public static Potion wellFed;
 
+    public static Potion inspired;
+
     public static void init() {
 
         swarmed = new PotionSwarmed(ModConfigurationEffects.swarmedEffectID, true, 0x000000);
         wellFed = new PotionWellFed(ModConfigurationEffects.wellFedEffectID, false, 0xFFD32D);
+        inspired = new PotionInspired(ModConfigurationEffects.inspiredEffectID, false, 0x3FB314);
     }
 
     @SideOnly(Side.CLIENT)

@@ -6,11 +6,8 @@ import darkbum.saltymod.dispenser.DispenserBehaviorBottle;
 import darkbum.saltymod.dispenser.DispenserBehaviorPotion;
 import darkbum.saltymod.entity.EntityHornedSheep;
 import darkbum.saltymod.tileentity.*;
-import ganymedes01.etfuturum.items.ItemLingeringPotion;
 import net.minecraft.block.BlockDispenser;
-import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.dispenser.IBehaviorDispenseItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.init.Items;
@@ -56,7 +53,8 @@ import darkbum.saltymod.world.generator.*;
 
 public class CommonProxy {
 
-    public static CreativeTabs tabSalt = new TabSalt("salt");
+    public static CreativeTabs tabSaltItems = new TabSaltItems("salt_items");
+    public static CreativeTabs tabSaltBlocks = new TabSaltBlocks("salt_blocks");
 
     public static SaltOreGenerator saltOreGenerator;
 
@@ -109,6 +107,11 @@ public class CommonProxy {
         FMLCommonHandler.instance()
             .bus()
             .register(playerItemCraftedEventHandler);
+        PlayerPickupXpEventHandler playerPickupXpEventHandler = new PlayerPickupXpEventHandler();
+        MinecraftForge.EVENT_BUS.register(playerPickupXpEventHandler);
+        FMLCommonHandler.instance()
+            .bus()
+            .register(playerPickupXpEventHandler);
         PopulateChunkEventHandler populateChunkEventHandler = new PopulateChunkEventHandler();
         MinecraftForge.EVENT_BUS.register(populateChunkEventHandler);
         FMLCommonHandler.instance()

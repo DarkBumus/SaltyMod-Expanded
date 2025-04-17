@@ -18,6 +18,9 @@ public class ModConfigurationEffects {
 
     public static int wellFedEffectID;
 
+    public static int inspiredEffectID;
+    public static float inspiredEffectStrength;
+
     public static void init(Configuration config) {
         config.setCategoryComment(categoryNameEff, categoryDescriptionEff);
 
@@ -36,5 +39,21 @@ public class ModConfigurationEffects {
             0,
             Byte.MAX_VALUE,
             "Sets the Potion ID for the \"Well Fed\" Potion Effect");
+
+        inspiredEffectID = config.getInt(
+            "03-inspiredEffectID",
+            categoryNameEff,
+            30,
+            0,
+            Byte.MAX_VALUE,
+            "Sets the Potion ID for the \"Inspired\" Potion Effect");
+        inspiredEffectStrength = config.getFloat(
+            "04-inspiredEffectStrength",
+            categoryNameEff,
+            0.3f,
+            0.0f,
+            1000.0f,
+            "Changes the strength of the \"Inspired\" Potion Effect. This float value will be multiplied with the effect level."
+            + "\nSetting the value to 0.0f will negate the effect of \"Inspired\" fully.");
     }
 }

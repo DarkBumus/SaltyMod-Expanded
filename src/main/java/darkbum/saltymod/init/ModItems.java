@@ -4,10 +4,7 @@ import darkbum.saltymod.configuration.configs.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.EnumAction;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemSeedFood;
-import net.minecraft.item.ItemTool;
+import net.minecraft.item.*;
 import net.minecraft.potion.Potion;
 
 import cpw.mods.fml.common.Loader;
@@ -20,7 +17,9 @@ import net.minecraftforge.common.util.EnumHelper;
 
 public class ModItems {
 
-    static CreativeTabs tab = CommonProxy.tabSalt;
+    public static CreativeTabs tab = CommonProxy.tabSaltItems;
+
+    public static Item developer_foods;
 
     public static Item void_apple;
 
@@ -133,6 +132,10 @@ public class ModItems {
     public static Item salt_rabbit_stew;
 
     public static Item salt_beetroot_soup;
+
+    public static Item bone_marrow_soup;
+
+    public static Item salt_bone_marrow_soup;
 
     public static Item pumpkin_porridge;
 
@@ -335,13 +338,14 @@ public class ModItems {
             void_apple = new ItemVoidApple("void_apple", null).setAlwaysEdible()
                 .setTextureName("saltymod:dev/void_apple");
             GameRegistry.registerItem(void_apple, "void_apple");
-            stuffing_apple = new ItemStuffingApple("stuffing_apple", null).setAlwaysEdible()
+           stuffing_apple = new ItemStuffingApple("stuffing_apple", null).setAlwaysEdible()
                 .setTextureName("saltymod:dev/stuffing_apple");
             GameRegistry.registerItem(stuffing_apple, "stuffing_apple");
             // testing_apple = new ItemSaltFood("testing_apple", 2, 0.3F, new ProbablePotionEffect(ModPotion.wellFed.id,
             // 6000)).setAlwaysEdible().setCreativeTab(null).setTextureName("saltymod:dev/test_food");
             // GameRegistry.registerItem(testing_apple, "testing_apple");
         }
+
         if (ModConfigurationBlocks.enableFishFarm) {
             fish_bait = new Item().setCreativeTab(tab)
                 .setUnlocalizedName("fish_bait")
@@ -433,7 +437,7 @@ public class ModItems {
 //        }
         saltwort = new ItemSaltwort("saltwort", tab).setTextureName("saltymod:saltwort");
         GameRegistry.registerItem(saltwort, "saltwort");
-        if (ModConfigurationItems.enableGoldenFoods) {
+       if (ModConfigurationItems.enableGoldenFoods) {
             golden_saltwort = new ItemSaltFood(
                 "golden_saltwort",
                 6,
@@ -684,6 +688,7 @@ public class ModItems {
                     .setTextureName("saltymod:salt_pumpkin_porridge");
             GameRegistry.registerItem(salt_pumpkin_porridge, "salt_pumpkin_porridge");
         }
+
         if (ModConfigurationItems.enableCactusSoup) {
             cactus_soup = new ItemSaltFood(
                 "cactus_soup",
@@ -691,7 +696,7 @@ public class ModItems {
                 0.7F,
                 Items.bowl,
                 new ProbablePotionEffect(Potion.heal.id, 20, 0)).setMaxStackSize(1)
-                    .setCreativeTab(tab).setMaxStackSize(16)
+                    .setCreativeTab(tab)
                     .setTextureName("saltymod:cactus_soup");
             GameRegistry.registerItem(cactus_soup, "cactus_soup");
             salt_cactus_soup = new ItemSaltFood(
@@ -705,6 +710,17 @@ public class ModItems {
                     .setTextureName("saltymod:salt_cactus_soup");
             GameRegistry.registerItem(salt_cactus_soup, "salt_cactus_soup");
         }
+
+        bone_marrow_soup = new ItemSaltFood("bone_marrow_soup", 6, 0.7f, Items.bowl).setMaxStackSize(1)
+            .setCreativeTab(tab)
+            .setTextureName("saltymod:bone_marrow_soup");
+        GameRegistry.registerItem(bone_marrow_soup, "bone_marrow_soup");
+        salt_bone_marrow_soup = new ItemSaltFood("salt_bone_marrow_soup", 7, 0.8f, Items.bowl,
+            new ProbablePotionEffect(Potion.field_76434_w.id, 120, 0)).setMaxStackSize(1)
+            .setCreativeTab(tab)
+            .setTextureName("saltymod:salt_bone_marrow_soup");
+        GameRegistry.registerItem(salt_bone_marrow_soup, "salt_bone_marrow_soup");
+
         if (ModConfigurationItems.enableStewedVegetables) {
             stewed_vegetables = new ItemSaltFood(
                 "stewed_vegetables",

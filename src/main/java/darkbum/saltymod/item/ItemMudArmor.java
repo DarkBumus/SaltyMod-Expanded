@@ -18,7 +18,7 @@ public class ItemMudArmor extends ItemArmor {
     public ItemMudArmor(String name, ItemArmor.ArmorMaterial material, int type) {
         super(material, 0, type);
         setUnlocalizedName(name);
-        setCreativeTab(CommonProxy.tabSalt);
+        setCreativeTab(CommonProxy.tabSaltItems);
         setTextureName("saltymod:" + name);
     }
 

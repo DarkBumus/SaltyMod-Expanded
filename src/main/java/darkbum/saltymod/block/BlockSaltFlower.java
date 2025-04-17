@@ -50,7 +50,7 @@ public class BlockSaltFlower extends BlockFlower {
     public BlockSaltFlower() {
         super(1);
         setBlockName("salt_flower");
-        setCreativeTab(CommonProxy.tabSalt);
+        setCreativeTab(CommonProxy.tabSaltBlocks);
         setStepSound(soundTypeGrass);
     }
 

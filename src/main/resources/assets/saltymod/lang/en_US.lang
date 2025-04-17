@@ -1,6 +1,7 @@
-﻿# CREATIVE TAB
+﻿# CREATIVE TABS
 
-itemGroup.salt=SaltyMod Expanded
+itemGroup.salt_items=SaltyMod Expanded Items
+itemGroup.salt_blocks=SaltyMod Expanded Blocks
 
 
 # POTION EFFECTS
@@ -8,8 +9,8 @@ itemGroup.salt=SaltyMod Expanded
 potion.swarmed=Swarmed!
 death.attack.swarmedDamage=%1$s was stung to death by Bees
 death.attack.swarmedDamage.player=%1$s was stung to death by Bees while trying to escape %2$s
-
-potion.wellFed=Well Fed
+potion.well_fed=Well Fed
+potion.inspired=Inspired
 
 
 # BLOCKS
@@ -184,6 +185,8 @@ item.pumpkin_porridge.name=Pumpkin Porridge
 item.salt_pumpkin_porridge.name=Salted Pumpkin Porridge
 item.cactus_soup.name=Cactus Soup
 item.salt_cactus_soup.name=Salted Cactus Soup
+item.bone_marrow_soup.name=Bone Marrow Soup
+item.salt_bone_marrow_soup.name=Salted Bone Marrow Soup
 item.stewed_vegetables.name=Stewed Vegetables
 item.salt_stewed_vegetables.name=Salted Stewed Vegetables
 item.potato_mushroom.name=Potato with Mushroom

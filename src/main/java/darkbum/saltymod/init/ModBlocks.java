@@ -18,7 +18,7 @@ import darkbum.saltymod.configuration.configs.ModConfigurationWorldGeneration;
 
 public class ModBlocks {
 
-    static CreativeTabs tab = CommonProxy.tabSalt;
+    static CreativeTabs tab = CommonProxy.tabSaltBlocks;
 
     public static Block dev_block;
 

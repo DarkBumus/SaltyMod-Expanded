@@ -9,7 +9,7 @@ public class PotionWellFed extends ModPotion {
 
     public PotionWellFed(int id, boolean isBad, int color) {
         super(id, isBad, color);
-        setPotionName("potion.wellFed");
+        setPotionName("potion.well_fed");
         setIconIndex(1, 0);
     }
 

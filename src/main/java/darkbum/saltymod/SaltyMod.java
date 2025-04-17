@@ -131,15 +131,12 @@ public class SaltyMod {
  * NEW:
  *
  * - Try to set up Marsh Reeds as a two-tall plant?
- * - Clay Brick Furnace
  * - Apiary + Fish Farm Hopper interaction
  * - Add Press/Cooking Pot to NEI
  * - Sounds to Mill
  * - Slimes! [LATER]
  * - Apiary + Fish Farm time-based rather than set time.
  * - Refactoring Salt Food
- * - Inspired effect
- * - Item/Block tab
  * - Farmer's Delight foods?
  * - Clay Oven Stack block indictor
  */

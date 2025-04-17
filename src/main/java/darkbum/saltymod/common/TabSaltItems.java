@@ -7,9 +7,9 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.init.ModItems;
 
-public class TabSalt extends CreativeTabs {
+public class TabSaltItems extends CreativeTabs {
 
-    public TabSalt(String label) {
+    public TabSaltItems(String label) {
         super(label);
     }
 
