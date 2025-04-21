@@ -112,6 +112,11 @@ public class CommonProxy {
         FMLCommonHandler.instance()
             .bus()
             .register(playerPickupXpEventHandler);
+        PlayerUseItemEventHandler playerUseItemEventHandler = new PlayerUseItemEventHandler();
+        MinecraftForge.EVENT_BUS.register(playerUseItemEventHandler);
+        FMLCommonHandler.instance()
+            .bus()
+            .register(playerUseItemEventHandler);
         PopulateChunkEventHandler populateChunkEventHandler = new PopulateChunkEventHandler();
         MinecraftForge.EVENT_BUS.register(populateChunkEventHandler);
         FMLCommonHandler.instance()
@@ -230,13 +235,13 @@ public class CommonProxy {
             if (Loader.isModLoaded("BiomesOPlenty") && ModConfigurationModCompatibility.enableBOPFoods) {
                 if (FluidRegistry.isFluidRegistered("blood")) {
                     Fluid blood = FluidRegistry.getFluid("blood");
-                    GameRegistry.registerItem(ModItems.bop_hemoglobin, "hemoglobin");
+                    GameRegistry.registerItem(ModItems.bop_hemoglobin, "bop_hemoglobin");
                     EvaporateRegistry.instance()
                         .addEvaporating(blood, ModItems.bop_hemoglobin, 1000, 1.0F);
                 }
                 if (FluidRegistry.isFluidRegistered("hell_blood")) {
                     Fluid blood = FluidRegistry.getFluid("hell_blood");
-                    GameRegistry.registerItem(ModItems.bop_hemoglobin, "hemoglobin");
+                    GameRegistry.registerItem(ModItems.bop_hemoglobin, "bop_hemoglobin");
                     EvaporateRegistry.instance()
                         .addEvaporating(blood, ModItems.bop_hemoglobin, 1000, 1.0F);
                 }

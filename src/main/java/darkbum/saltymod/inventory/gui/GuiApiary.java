@@ -27,9 +27,8 @@ public class GuiApiary extends GuiContainer {
     protected void drawGuiContainerForegroundLayer(int par_1, int par_2) {
         String s = this.tileEntityApiary.hasCustomInventoryName() ? this.tileEntityApiary.getInventoryName()
             : I18n.format(this.tileEntityApiary.getInventoryName());
-        this.fontRendererObj
-            .drawString(s, 8, 6, 4210752);
-        this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
+        this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
+        this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 4, 4210752);
     }
 
 /*    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {

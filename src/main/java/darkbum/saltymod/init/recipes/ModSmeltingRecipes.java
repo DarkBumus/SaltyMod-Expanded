@@ -44,12 +44,12 @@ public class ModSmeltingRecipes {
         }
 
         GameRegistry.addSmelting(new ItemStack(ModItems.saltwort), new ItemStack(ModItems.baking_soda, 1), 0.5F);
-        GameRegistry.addSmelting(new ItemStack(ModItems.haunch), new ItemStack(ModItems.cooked_haunch), 0.35F);
+        GameRegistry.addSmelting(new ItemStack(ModItems.haunch), new ItemStack(ModItems.haunch, 1, 1), 0.35F);
         if (ModConfigurationItems.enableTropicalFish) {
             GameRegistry
                 .addSmelting(new ItemStack(Items.fish, 1, 2), new ItemStack(ModItems.cooked_tropical_fish), 0.35F);
         }
-        GameRegistry.addSmelting(new ItemStack(ModItems.tailor), new ItemStack(ModItems.cooked_tailor), 0.35F);
-        GameRegistry.addSmelting(new ItemStack(ModItems.calamari), new ItemStack(ModItems.cooked_calamari), 0.35F);
+        GameRegistry.addSmelting(new ItemStack(ModItems.tailor), new ItemStack(ModItems.tailor, 1, 1), 0.35F);
+        GameRegistry.addSmelting(new ItemStack(ModItems.calamari), new ItemStack(ModItems.calamari, 1, 1), 0.35F);
     }
 }

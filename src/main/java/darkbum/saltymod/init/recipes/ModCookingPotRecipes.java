@@ -63,7 +63,7 @@ public class ModCookingPotRecipes {
             }
         }
 
-        pot.registerRecipe(new ItemStack(ModItems.salt_mushroom_stew),          ///!
+        pot.registerRecipe(new ItemStack(ModItems.salt_mushroom_stew),
             true,
             stack(new ItemStack(ModItems.salt_pinch)),
             ore("blockMushroom"),
@@ -82,7 +82,7 @@ public class ModCookingPotRecipes {
                     ore("blockMushroom"));
             }
             if ((beetroot != null)) {
-                pot.registerRecipe(new ItemStack(ModItems.salt_beetroot_soup),          ///!
+                pot.registerRecipe(new ItemStack(ModItems.salt_beetroot_soup),
                     true,
                     stack(new ItemStack(ModItems.salt_pinch)),
                     stack(new ItemStack(beetroot)),
@@ -97,7 +97,7 @@ public class ModCookingPotRecipes {
         pot.registerRecipe(new ItemStack(ModItems.pumpkin_porridge),
             true,
             stack(new ItemStack(Blocks.pumpkin)));
-        pot.registerRecipe(new ItemStack(ModItems.salt_pumpkin_porridge),           ///!
+        pot.registerRecipe(new ItemStack(ModItems.pumpkin_porridge, 1, 1),
             true,
             stack(new ItemStack(ModItems.salt_pinch)),
             stack(new ItemStack(Blocks.pumpkin)));
@@ -107,7 +107,7 @@ public class ModCookingPotRecipes {
             stack(new ItemStack(Blocks.cactus)),
             stack(new ItemStack(Blocks.cactus)),
             stack(new ItemStack(Blocks.cactus)));
-        pot.registerRecipe(new ItemStack(ModItems.salt_cactus_soup),
+        pot.registerRecipe(new ItemStack(ModItems.cactus_soup, 1, 1),
             true,
             stack(new ItemStack(ModItems.salt_pinch)),
             stack(new ItemStack(Blocks.cactus)),
@@ -119,7 +119,7 @@ public class ModCookingPotRecipes {
             stack(new ItemStack(Items.carrot)),
             stack(new ItemStack(Items.potato)),
             ore("blockMushroom"));
-        pot.registerRecipe(new ItemStack(ModItems.salt_stewed_vegetables),          ///!
+        pot.registerRecipe(new ItemStack(ModItems.stewed_vegetables, 1, 1),
             true,
             stack(new ItemStack(ModItems.salt_pinch)),
             stack(new ItemStack(Items.carrot)),
@@ -131,7 +131,7 @@ public class ModCookingPotRecipes {
             stack(new ItemStack(Items.potato)),
             stack(new ItemStack(Items.potato)),
             ore("blockMushroom"));
-        pot.registerRecipe(new ItemStack(ModItems.salt_potato_mushroom),            ///!
+        pot.registerRecipe(new ItemStack(ModItems.potato_mushroom, 1, 1),
             true,
             stack(new ItemStack(ModItems.salt_pinch)),
             stack(new ItemStack(Items.potato)),
@@ -143,7 +143,7 @@ public class ModCookingPotRecipes {
             stack(new ItemStack(Items.golden_carrot)),
             stack(new ItemStack(ModItems.golden_potato)),
             stack(new ItemStack(ModItems.golden_saltwort)));
-        pot.registerRecipe(new ItemStack(ModItems.salt_golden_vegetables),
+        pot.registerRecipe(new ItemStack(ModItems.golden_vegetables, 1, 1),
             true,
             stack(new ItemStack(ModItems.salt_pinch)),
             stack(new ItemStack(Items.golden_carrot)),
@@ -155,7 +155,7 @@ public class ModCookingPotRecipes {
             stack(new ItemStack(Items.carrot)),
             stack(new ItemStack(Items.potato)),
             ore("itemFish"));
-        pot.registerRecipe(new ItemStack(ModItems.salt_fish_soup),
+        pot.registerRecipe(new ItemStack(ModItems.fish_soup, 1, 1),
             true,
             stack(new ItemStack(ModItems.salt_pinch)),
             stack(new ItemStack(Items.carrot)),
@@ -168,7 +168,7 @@ public class ModCookingPotRecipes {
                 stack(new ItemStack(Blocks.tallgrass, 1, 2)),
                 stack(new ItemStack(Blocks.yellow_flower)),
                 stack(new ItemStack(ModItems.onion)));
-            pot.registerRecipe(new ItemStack(ModItems.salt_dandelion_salad),
+            pot.registerRecipe(new ItemStack(ModItems.dandelion_salad, 1, 1),
                 false,
                 stack(new ItemStack(ModItems.salt_pinch)),
                 stack(new ItemStack(Blocks.tallgrass, 1, 2)),
@@ -184,7 +184,7 @@ public class ModCookingPotRecipes {
             stack(new ItemStack(Items.wheat_seeds)),
             stack(new ItemStack(Items.wheat_seeds)),
             stack(new ItemStack(Items.wheat_seeds)));
-        pot.registerRecipe(new ItemStack(ModItems.salt_wheat_sprouts),          ///!
+        pot.registerRecipe(new ItemStack(ModItems.wheat_sprouts, 1, 1),
             false,
             stack(new ItemStack(ModItems.salt_pinch)),
             stack(new ItemStack(Items.wheat_seeds)),
@@ -202,7 +202,7 @@ public class ModCookingPotRecipes {
                     stack(new ItemStack(Items.carrot)),
                     stack(new ItemStack(Items.potato)),
                     stack(new ItemStack(beetroot)));
-                pot.registerRecipe(new ItemStack(ModItems.salt_beetroot_salad),
+                pot.registerRecipe(new ItemStack(ModItems.beetroot_salad, 1, 1),
                     false,
                     stack(new ItemStack(ModItems.salt_pinch)),
                     stack(new ItemStack(Items.carrot)),
@@ -218,7 +218,7 @@ public class ModCookingPotRecipes {
                         stack(new ItemStack(beetroot)),
                         stack(new ItemStack(Items.egg)),
                         ore("itemFish"));
-                    pot.registerRecipe(new ItemStack(ModItems.salt_dressed_herring),            ///!
+                    pot.registerRecipe(new ItemStack(ModItems.dressed_herring, 1, 1),
                         false,
                         stack(new ItemStack(ModItems.salt_pinch)),
                         stack(new ItemStack(Items.carrot)),
@@ -272,12 +272,12 @@ public class ModCookingPotRecipes {
             stack(new ItemStack(ModItems.saltwort)));
         pot.registerRecipe(new ItemStack(ModItems.saltwort_cooked_strider),
             false,
-            stack(new ItemStack(ModItems.salt_cooked_strider)),
+            stack(new ItemStack(ModItems.strider, 1, 2)),
             stack(new ItemStack(ModItems.saltwort)),
             stack(new ItemStack(ModItems.saltwort)));
         pot.registerRecipe(new ItemStack(ModItems.saltwort_cooked_haunch),
             false,
-            stack(new ItemStack(ModItems.salt_cooked_haunch)),
+            stack(new ItemStack(ModItems.haunch, 1, 2)),
             stack(new ItemStack(ModItems.saltwort)),
             stack(new ItemStack(ModItems.saltwort)));
 
@@ -289,7 +289,7 @@ public class ModCookingPotRecipes {
                     stack(new ItemStack(Items.apple)),
                     stack(new ItemStack(sweet_berries)),
                     stack(new ItemStack(Items.melon)));
-                pot.registerRecipe(new ItemStack(ModItems.sugar_fruit_salad),
+                pot.registerRecipe(new ItemStack(ModItems.fruit_salad, 1, 1),
                     false,
                     stack(new ItemStack(ModItems.sugar_pinch)),
                     stack(new ItemStack(Items.apple)),
@@ -303,7 +303,7 @@ public class ModCookingPotRecipes {
             stack(new ItemStack(Items.golden_apple, 1, 0)),
             stack(new ItemStack(ModItems.golden_berries, 1, 0)),
             stack(new ItemStack(Items.speckled_melon)));
-        pot.registerRecipe(new ItemStack(ModItems.sugar_golden_fruit_salad),            ///!
+        pot.registerRecipe(new ItemStack(ModItems.golden_fruit_salad, 1, 1),
             false,
             stack(new ItemStack(ModItems.sugar_pinch)),
             stack(new ItemStack(Items.golden_apple, 1, 0)),
@@ -315,7 +315,7 @@ public class ModCookingPotRecipes {
             stack(new ItemStack(Items.carrot)),
             stack(new ItemStack(Items.carrot)),
             stack(new ItemStack(Items.carrot)));
-        pot.registerRecipe(new ItemStack(ModItems.sugar_grated_carrot),         ///!
+        pot.registerRecipe(new ItemStack(ModItems.grated_carrot, 1, 1),
             false,
             stack(new ItemStack(ModItems.sugar_pinch)),
             stack(new ItemStack(Items.carrot)),
@@ -327,7 +327,7 @@ public class ModCookingPotRecipes {
             stack(new ItemStack(Items.melon)),
             stack(new ItemStack(Items.melon)),
             stack(new ItemStack(Items.melon)));
-        pot.registerRecipe(new ItemStack(ModItems.melon_soup),          ///!
+        pot.registerRecipe(new ItemStack(ModItems.melon_soup),
             true,
             stack(new ItemStack(ModItems.sugar_pinch)),
             stack(new ItemStack(Items.melon)),

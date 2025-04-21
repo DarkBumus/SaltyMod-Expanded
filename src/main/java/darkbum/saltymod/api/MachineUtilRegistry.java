@@ -8,11 +8,11 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.oredict.OreDictionary;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class MachineUtilRegistry {
 
@@ -158,6 +158,112 @@ public class MachineUtilRegistry {
 
     public static Set<ItemStack> getSpadePinchItems() {
         return new HashSet<>(validSpadeItems);
+    }
+
+    // === Apiary Enum Methods ===
+
+    public enum BeeType {
+        HONEY_BEE(new int[]{70, 98}, new ItemStack[]{new ItemStack(ModItems.honeycomb), new ItemStack(ModItems.waxcomb), new ItemStack(ModItems.bee_larva)}),
+        CARPENTER_BEE(new int[]{20, 98}, new ItemStack[]{new ItemStack(ModItems.honeycomb), new ItemStack(ModItems.waxcomb), new ItemStack(ModItems.bee_larva)}),
+        REGAL_BEE(new int[]{35, 50, 85}, new ItemStack[]{new ItemStack(ModItems.honeycomb), new ItemStack(ModItems.royal_jelly), new ItemStack(ModItems.waxcomb), new ItemStack(ModItems.bee_larva)}),
+        BOREAL_BEE(new int[]{70, 98}, new ItemStack[]{new ItemStack(ModItems.frozen_honey), new ItemStack(ModItems.waxcomb), new ItemStack(ModItems.bee_larva)});
+
+        private final int[] thresholds;
+        private final ItemStack[] items;
+
+        BeeType(int[] thresholds, ItemStack[] items) {
+            this.thresholds = thresholds;
+            this.items = items;
+        }
+
+        public static BeeType getByBeeItem(ItemStack beeItem) {
+            if (beeItem == null) return null;
+            if (beeItem.getItem() == ModItems.honey_bee) return HONEY_BEE;
+            if (beeItem.getItem() == ModItems.carpenter_bee) return CARPENTER_BEE;
+            if (beeItem.getItem() == ModItems.regal_bee) return REGAL_BEE;
+            if (beeItem.getItem() == ModItems.boreal_bee) return BOREAL_BEE;
+            return null;
+        }
+
+        public ItemStack getProduce(Random rnd) {
+            int rndNum = rnd.nextInt(100);
+            for (int i = 0; i < thresholds.length; i++) {
+                if (rndNum < thresholds[i]) {
+                    return items[i];
+                }
+            }
+            return items[items.length - 1];
+        }
+    }
+
+    // === Fish Farm Enum Methods ===
+
+    public enum FishType {
+        COD(20, new ItemStack(Items.fish, 1, 0)),
+        SALMON(20, new ItemStack(Items.fish, 1, 1)),
+        CLOWNFISH(20, new ItemStack(Items.fish, 1, 2)),
+        PUFFERFISH(20, new ItemStack(Items.fish, 1, 3)),
+        TAILOR(20, new ItemStack(ModItems.tailor, 1, 0));
+
+        private final int baseChance;
+        private final ItemStack item;
+
+        FishType(int baseChance, ItemStack item) {
+            this.baseChance = baseChance;
+            this.item = item;
+        }
+
+        public int getBaseChance() {
+            return baseChance;
+        }
+
+        public ItemStack getItem() {
+            return item;
+        }
+
+        public int getAdjustedChance(BiomeGenBase biome) {
+            int adjustedChance = this.baseChance;
+
+            if (biome == BiomeGenBase.river || biome == BiomeGenBase.frozenRiver) {
+                if (this == COD || this == SALMON || this == TAILOR) {
+                    adjustedChance += 10;
+                }
+                if ( this == CLOWNFISH || this == PUFFERFISH) {
+                    adjustedChance -= 15;
+                }
+            }
+
+            if (biome == BiomeGenBase.ocean || biome == BiomeGenBase.frozenOcean || biome == BiomeGenBase.deepOcean) {
+                if ( this == CLOWNFISH || this == PUFFERFISH) {
+                    adjustedChance += 10;
+                }
+                if (this == COD || this == SALMON || this == TAILOR) {
+                    adjustedChance -= 7;
+                }
+            }
+            return adjustedChance;
+        }
+
+        public static FishType getRandomFish(World world, int x, int z, Random rnd) {
+            BiomeGenBase biome = world.getBiomeGenForCoords(x, z);
+
+            int totalChance = 0;
+            for (FishType type : values()) {
+                totalChance += type.getAdjustedChance(biome);
+            }
+
+            int rndNum = rnd.nextInt(totalChance);
+            int cumulativeChance = 0;
+
+            for (FishType type : values()) {
+                cumulativeChance += type.getAdjustedChance(biome);
+                if (rndNum < cumulativeChance) {
+                    return type;
+                }
+            }
+
+            return TAILOR;
+        }
     }
 
     // === Utility ===

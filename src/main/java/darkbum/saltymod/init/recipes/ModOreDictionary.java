@@ -25,8 +25,8 @@ public class ModOreDictionary {
         OreDictionary.registerOre("blockMud", ModBlocks.dry_mud_brick);
 
         OreDictionary.registerOre("itemRedmeat", Items.cooked_beef);
-        OreDictionary.registerOre("itemRedmeat", ModItems.cooked_haunch);
-        OreDictionary.registerOre("itemRedmeat", ModItems.cooked_strider);
+        OreDictionary.registerOre("itemRedmeat", new ItemStack(ModItems.haunch, 1, 1));
+        OreDictionary.registerOre("itemRedmeat", new ItemStack(ModItems.strider, 1, 1));
         OreDictionary.registerOre("itemFish", new ItemStack(Items.fish, 1, 0));
         OreDictionary.registerOre("itemFish", new ItemStack(Items.fish, 1, 1));
         OreDictionary.registerOre("itemFish", new ItemStack(Items.fish, 1, 2));
@@ -69,18 +69,18 @@ public class ModOreDictionary {
         OreDictionary.registerOre("itemFood", Items.baked_potato);
         OreDictionary.registerOre("itemFood", new ItemStack(Items.cooked_fished, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("itemFood", ModItems.cooked_tropical_fish);
-        OreDictionary.registerOre("itemFood", ModItems.tailor);
-        OreDictionary.registerOre("itemFood", ModItems.cooked_tailor);
-        OreDictionary.registerOre("itemFood", ModItems.salt_cooked_tailor);
-        OreDictionary.registerOre("itemFood", ModItems.cooked_calamari);
+        OreDictionary.registerOre("itemFood", new ItemStack(ModItems.tailor, 1, 0));
+        OreDictionary.registerOre("itemFood", new ItemStack(ModItems.tailor, 1, 1));
+        OreDictionary.registerOre("itemFood", new ItemStack(ModItems.tailor, 1, 2));
+        OreDictionary.registerOre("itemFood", new ItemStack(ModItems.calamari, 1, 1));
         OreDictionary.registerOre("itemFood", Items.cooked_porkchop);
         OreDictionary.registerOre("itemFood", Items.cooked_beef);
         OreDictionary.registerOre("itemFood", Items.cooked_chicken);
-        OreDictionary.registerOre("itemFood", ModItems.cooked_haunch);
-        OreDictionary.registerOre("itemFood", ModItems.cooked_strider);
+        OreDictionary.registerOre("itemFood", new ItemStack(ModItems.haunch, 1, 1));
+        OreDictionary.registerOre("itemFood", new ItemStack(ModItems.strider, 1, 1));
         OreDictionary.registerOre("itemFood", Items.bread);
         OreDictionary.registerOre("itemFood", ModItems.sugar_apple);
-        OreDictionary.registerOre("itemFood", ModItems.sugar_melon_soup);
+        OreDictionary.registerOre("itemFood", new ItemStack(ModItems.melon_soup, 1, 1));
         OreDictionary.registerOre("itemFood", ModItems.sugar_berries);
         OreDictionary.registerOre("itemFood", ModItems.honey_apple);
         OreDictionary.registerOre("itemFood", ModItems.honey_berries);
@@ -89,15 +89,15 @@ public class ModOreDictionary {
         OreDictionary.registerOre("itemFood", ModItems.salt_beetroot);
         OreDictionary.registerOre("itemFood", ModItems.salt_cooked_cod);
         OreDictionary.registerOre("itemFood", ModItems.salt_cooked_salmon);
-        OreDictionary.registerOre("itemFood", ModItems.salt_cooked_tropical_fish);
-        OreDictionary.registerOre("itemFood", ModItems.salt_cooked_calamari);
+        OreDictionary.registerOre("itemFood", new ItemStack(ModItems.cooked_tropical_fish, 1, 1));
+        OreDictionary.registerOre("itemFood", new ItemStack(ModItems.calamari, 1, 2));
         OreDictionary.registerOre("itemFood", ModItems.salt_cooked_porkchop);
         OreDictionary.registerOre("itemFood", ModItems.salt_cooked_beef);
         OreDictionary.registerOre("itemFood", ModItems.salt_cooked_chicken);
         OreDictionary.registerOre("itemFood", ModItems.salt_cooked_rabbit);
         OreDictionary.registerOre("itemFood", ModItems.salt_cooked_mutton);
-        OreDictionary.registerOre("itemFood", ModItems.salt_cooked_haunch);
-        OreDictionary.registerOre("itemFood", ModItems.salt_cooked_strider);
+        OreDictionary.registerOre("itemFood", new ItemStack(ModItems.haunch, 1, 2));
+        OreDictionary.registerOre("itemFood", new ItemStack(ModItems.strider, 1, 2));
         OreDictionary.registerOre("itemFood", ModItems.cured_meat);
         OreDictionary.registerOre("itemFood", ModItems.honey_porkchop);
         OreDictionary.registerOre("itemFood", ModItems.salt_bread);
@@ -134,26 +134,26 @@ public class ModOreDictionary {
         OreDictionary.registerOre("itemFood", ModItems.salt_mushroom_stew);
         OreDictionary.registerOre("itemFood", ModItems.salt_rabbit_stew);
         OreDictionary.registerOre("itemFood", ModItems.salt_beetroot_soup);
-        OreDictionary.registerOre("itemFood", ModItems.salt_pumpkin_porridge);
-        OreDictionary.registerOre("itemFood", ModItems.salt_cactus_soup);
-        OreDictionary.registerOre("itemFood", ModItems.salt_stewed_vegetables);
-        OreDictionary.registerOre("itemFood", ModItems.salt_potato_mushroom);
-        OreDictionary.registerOre("itemFood", ModItems.salt_golden_vegetables);
-        OreDictionary.registerOre("itemFood", ModItems.salt_fish_soup);
-        OreDictionary.registerOre("itemFood", ModItems.salt_dandelion_salad);
-        OreDictionary.registerOre("itemFood", ModItems.salt_wheat_sprouts);
-        OreDictionary.registerOre("itemFood", ModItems.salt_beetroot_salad);
-        OreDictionary.registerOre("itemFood", ModItems.salt_dressed_herring);
+        OreDictionary.registerOre("itemFood", new ItemStack(ModItems.pumpkin_porridge, 1, 1));
+        OreDictionary.registerOre("itemFood", new ItemStack(ModItems.cactus_soup, 1, 1));
+        OreDictionary.registerOre("itemFood", new ItemStack(ModItems.stewed_vegetables, 1, 1));
+        OreDictionary.registerOre("itemFood", new ItemStack(ModItems.potato_mushroom, 1, 1));
+        OreDictionary.registerOre("itemFood", new ItemStack(ModItems.golden_vegetables, 1, 1));
+        OreDictionary.registerOre("itemFood", new ItemStack(ModItems.fish_soup, 1, 1));
+        OreDictionary.registerOre("itemFood", new ItemStack(ModItems.dandelion_salad, 1, 1));
+        OreDictionary.registerOre("itemFood", new ItemStack(ModItems.wheat_sprouts, 1, 1));
+        OreDictionary.registerOre("itemFood", new ItemStack(ModItems.beetroot_salad, 1, 1));
+        OreDictionary.registerOre("itemFood", new ItemStack(ModItems.dressed_herring, 1, 1));
         OreDictionary.registerOre("itemFood", ModItems.saltwort_cooked_beef);
         OreDictionary.registerOre("itemFood", ModItems.saltwort_cooked_porkchop);
         OreDictionary.registerOre("itemFood", ModItems.saltwort_honey_porkchop);
         OreDictionary.registerOre("itemFood", ModItems.saltwort_cooked_strider);
         OreDictionary.registerOre("itemFood", ModItems.saltwort_cooked_mutton);
         OreDictionary.registerOre("itemFood", ModItems.saltwort_cooked_haunch);
-        OreDictionary.registerOre("itemFood", ModItems.sugar_fruit_salad);
-        OreDictionary.registerOre("itemFood", ModItems.sugar_golden_fruit_salad);
-        OreDictionary.registerOre("itemFood", ModItems.sugar_grated_carrot);
-        OreDictionary.registerOre("itemFood", ModItems.sugar_melon_soup);
+        OreDictionary.registerOre("itemFood", new ItemStack(ModItems.fruit_salad, 1, 1));
+        OreDictionary.registerOre("itemFood", new ItemStack(ModItems.golden_fruit_salad, 1, 1));
+        OreDictionary.registerOre("itemFood", new ItemStack(ModItems.grated_carrot, 1, 1));
+        OreDictionary.registerOre("itemFood", new ItemStack(ModItems.melon_soup, 1, 1));
         OreDictionary.registerOre("itemFood", Items.pumpkin_pie);
         OreDictionary.registerOre("itemFood", ModItems.chocolate_pie);
         OreDictionary.registerOre("itemFood", ModItems.carrot_pie);
@@ -179,30 +179,6 @@ public class ModOreDictionary {
                 .registerOre("beeResistant", new ItemStack(ModItems.mud_leggings, 1, OreDictionary.WILDCARD_VALUE));
             OreDictionary
                 .registerOre("beeResistant", new ItemStack(ModItems.mud_boots, 1, OreDictionary.WILDCARD_VALUE));
-        }
-
-        // HarvestCraft Ore Dictionaries
-        if (Loader.isModLoaded("harvestcraft")) {
-            OreDictionary.registerOre("listAllfishraw", ModItems.tailor);
-            OreDictionary.registerOre("listAllfishcooked", ModItems.cooked_tropical_fish);
-            OreDictionary.registerOre("listAllfishcooked", ModItems.cooked_tailor);
-            OreDictionary.registerOre("listAllmeatraw", ModItems.strider);
-            OreDictionary.registerOre("listAllmeatcooked", ModItems.cooked_strider);
-            OreDictionary.registerOre("listAllmeatraw", ModItems.haunch);
-            OreDictionary.registerOre("listAllmeatcooked", ModItems.cooked_haunch);
-            OreDictionary.registerOre("listAllfishraw", ModItems.calamari);
-            OreDictionary.registerOre("listAllfishcooked", ModItems.cooked_calamari);
-            OreDictionary.registerOre("listAllmilk", ModItems.powdered_milk);
-            OreDictionary.registerOre("foodSalt", ModItems.salt);
-            OreDictionary.registerOre("foodSalt", ModItems.salt_pinch);
-            OreDictionary.registerOre("dustSalt", ModItems.salt);
-            OreDictionary.registerOre("dustSalt", ModItems.salt_pinch);
-            OreDictionary.registerOre("itemSalt", ModItems.salt);
-            OreDictionary.registerOre("itemSalt", ModItems.salt_pinch);
-            OreDictionary.registerOre("listAllsugar", ModItems.sugar_pinch);
-            OreDictionary.registerOre("foodDough", ModItems.dough);
-            OreDictionary.registerOre("listAllseeds", ModItems.saltwort);
-            OreDictionary.registerOre("listAllsugar", ModItems.honeycomb);
         }
     }
 }

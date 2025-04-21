@@ -1,7 +1,12 @@
 package darkbum.saltymod.tileentity;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
+import darkbum.saltymod.api.MachineUtilRegistry;
+import darkbum.saltymod.item.ItemBee;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -20,7 +25,7 @@ import darkbum.saltymod.configuration.configs.ModConfigurationBlocks;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 
-public class TileEntityFishFarm extends TileEntity implements /*Sided*/IInventory {
+public class TileEntityFishFarm extends TileEntity implements IInventory {
 
     private String inventoryName;
 
@@ -107,28 +112,26 @@ public class TileEntityFishFarm extends TileEntity implements /*Sided*/IInventor
         return 64;
     }
 
-    public int getRunTime() {
-        byte radius = 2;
-        int speed = ModConfigurationBlocks.fishFarmSpeed;
-        World world = this.worldObj;
-        int varX = this.xCoord;
-        int varY = this.yCoord;
-        int varZ = this.zCoord;
-        for (int offsetX = -radius; offsetX <= radius; offsetX++) {
-            for (int offsetZ = -radius; offsetZ <= radius; offsetZ++) {
-                if (offsetX * offsetX + offsetZ * offsetZ <= radius * radius
-                    && (offsetX != -(radius - 1) || offsetZ != -(radius - 1))
-                    && (offsetX != radius - 1 || offsetZ != radius - 1)
-                    && (offsetX != radius - 1 || offsetZ != -(radius - 1))
-                    && (offsetX != -(radius - 1) || offsetZ != radius - 1)) {
-                    Block blockAtCoords = world.getBlock(varX + offsetX, varY, varZ + offsetZ);
-                    if (blockAtCoords instanceof net.minecraft.block.BlockLiquid) speed = (int) (speed * 0.95D);
-                    if (world.getBlock(varX + offsetX, varY, varZ + offsetZ) == ModBlocks.fish_farm)
-                        speed = (int) (speed / 0.85D);
+    private int getEffectiveTickChance(int baseChance) {
+        float modifier = 1.0f;
+
+        int radius = 3;
+
+        if (this.worldObj.isRaining()) {
+            modifier *= 0.90f; // 10% schneller
+        }
+        for (int dx = -radius; dx <= radius; dx++) {
+            for (int dy = -1; dy <= 1; dy++) {
+                for (int dz = -radius; dz <= radius; dz++) {
+                    Block block = this.worldObj.getBlock(this.xCoord + dx, this.yCoord + dy, this.zCoord + dz);
+                    if (block != null && block.getUnlocalizedName().toLowerCase().contains("hopper")) {
+                        modifier *= 1.15f;
+                    }
                 }
             }
         }
-        return speed;
+
+        return Math.round(baseChance * modifier);
     }
 
     public int currentSurroundings() {
@@ -154,40 +157,19 @@ public class TileEntityFishFarm extends TileEntity implements /*Sided*/IInventor
     }
 
     public void updateEntity() {
-        boolean isRunning = (this.runTime > 0);
         boolean needsUpdate = false;
-        if (isRunning) this.runTime--;
-        ItemStack farmFuel = this.inventory[18];
+
         if (!this.worldObj.isRemote) {
-            if (this.runTime == 0 && canRun()) {
-                this.currentFuelRunTime = this.runTime = getRunTime(farmFuel);
-                if (this.runTime > 0) {
-                    needsUpdate = true;
-                    if (farmFuel != null) {
-                        if (farmFuel.getItem()
-                            .getContainerItem() != null) {
-                            farmFuel = new ItemStack(
-                                farmFuel.getItem()
-                                    .setFull3D());
-                        } else {
-                            farmFuel.stackSize -= 0;
-                        }
-                        if (farmFuel.stackSize == 0) farmFuel = null;
-                    }
-                }
-            }
             if (canRun()) {
-                this.produceTime++;
-                if (this.produceTime >= Math.floor(getRunTime())) {
-                    this.produceTime = 0;
+                final int BASE_CHANCE = ModConfigurationBlocks.fishFarmSpeed;
+                int effectiveChance = getEffectiveTickChance(BASE_CHANCE);
+                if (this.worldObj.rand.nextInt(effectiveChance) == 0) {
                     run();
                     needsUpdate = true;
                 }
-            } else {
-                this.produceTime = 0;
             }
-            if (isRunning != ((this.runTime > 0))) needsUpdate = true;
         }
+
         if (needsUpdate) {
             markDirty();
             this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
@@ -204,32 +186,32 @@ public class TileEntityFishFarm extends TileEntity implements /*Sided*/IInventor
     }
 
     public ItemStack getProduce() {
-        Random rnd = new Random();
-        if (this.inventory[18] != null) {
-            int i = rnd.nextInt(16);
-            switch (i) {
-                case 0, 1, 2, 3, 4 ,5:
-                    return new ItemStack(Items.fish, 1, 0);
-                case 6, 7, 8:
-                    return new ItemStack(Items.fish, 1, 1);
-                case 9, 10:
-                    return new ItemStack(Items.fish, 1, 2);
-                case 11, 12:
-                    return new ItemStack(Items.fish, 1, 3);
-                case 13, 14, 15:
-                    return new ItemStack(ModItems.tailor, 1, 0);
-            }
+        if (this.inventory[18] != null && this.worldObj != null) {
+            int x = this.xCoord;
+            int z = this.zCoord;
+            Random rnd = new Random();
+
+            return MachineUtilRegistry.FishType.getRandomFish(this.worldObj, x, z, rnd).getItem();
         }
         return null;
     }
 
     public void run() {
-        ItemStack itemProduced = getProduce();
+        List<Integer> slotOrder = new ArrayList<>();
         for (int i = 0; i < 18; i++) {
-            if (this.inventory[i] == null) {
-                decrStackSize(18, 1);
-                this.inventory[i] = itemProduced.copy();
-                break;
+            slotOrder.add(i);
+        }
+
+        Collections.shuffle(slotOrder);
+
+        ItemStack itemProduced = getProduce();
+        if (itemProduced != null) {
+            for (int slotIndex : slotOrder) {
+                if (this.inventory[slotIndex] == null) {
+                    decrStackSize(18, 1);
+                    this.inventory[slotIndex] = itemProduced.copy();
+                    break;
+                }
             }
         }
     }
@@ -243,6 +225,16 @@ public class TileEntityFishFarm extends TileEntity implements /*Sided*/IInventor
     public boolean isUseableByPlayer(EntityPlayer player) {
         if (this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this) return false;
         return (player.getDistanceSq(this.xCoord + 0.5D, this.yCoord + 0.5D, this.zCoord + 0.5D) <= 64.0D);
+    }
+
+    public int getComparatorInputOverride() {
+        int filled = 0;
+        for (int i = 0; i < 18; i++) {
+            if (this.inventory[i] != null) {
+                filled++;
+            }
+        }
+        return Math.round((filled / 18.0f) * 15);
     }
 
     public ItemStack getStackInSlotOnClosing(int slot) {
@@ -266,25 +258,4 @@ public class TileEntityFishFarm extends TileEntity implements /*Sided*/IInventor
     }
 
     public void closeInventory() {}
-
-/*    @Override
-    public int[] getAccessibleSlotsFromSide(int side) {
-        if (side == 0) { // Unten
-            return slotOutput;
-        } else { // Oben und Seiten
-            return slotBait;
-        }
-    }
-
-    @Override
-    public boolean canInsertItem(int slot, ItemStack stack, int side) {
-        // Nur Slot 0 darf befüllt werden, egal ob oben oder seitlich
-        return slot == 0;
-    }
-
-    @Override
-    public boolean canExtractItem(int slot, ItemStack stack, int side) {
-        // Nur Slots 1-18 dürfen von unten entnommen werden
-        return side == 0 && slot >= 1 && slot <= 18;
-    }*/
 }

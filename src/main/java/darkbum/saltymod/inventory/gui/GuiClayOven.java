@@ -10,7 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
-import static darkbum.saltymod.inventory.container.ContainerCookingPot.SLOT_OUTPUT;
+import static darkbum.saltymod.inventory.container.ContainerClayOven.SLOT_OUTPUT;
 
 public class GuiClayOven extends GuiContainer {
 

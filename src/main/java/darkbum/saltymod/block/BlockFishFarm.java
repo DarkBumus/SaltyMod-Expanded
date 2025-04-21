@@ -2,6 +2,7 @@ package darkbum.saltymod.block;
 
 import java.util.Random;
 
+import darkbum.saltymod.tileentity.TileEntityApiary;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -120,7 +121,7 @@ public class BlockFishFarm extends BlockContainer {
     public int getComparatorInputOverride(World world, int x, int y, int z, int side) {
         TileEntity tile = world.getTileEntity(x, y, z);
         if (tile instanceof IInventory) {
-            return Container.calcRedstoneFromInventory((IInventory) tile);
+            return ((TileEntityFishFarm) tile).getComparatorInputOverride();
         }
         return 0;
     }

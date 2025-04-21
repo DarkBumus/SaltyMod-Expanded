@@ -163,9 +163,9 @@ public class ModShapelessRecipes {
             new ItemStack(ModItems.salt_pinch),
             new ItemStack(Items.cooked_chicken));
         GameRegistry.addShapelessRecipe(
-            new ItemStack(ModItems.salt_cooked_haunch),
+            new ItemStack(ModItems.haunch, 1, 2),
             new ItemStack(ModItems.salt_pinch),
-            new ItemStack(ModItems.cooked_haunch));
+            new ItemStack(ModItems.haunch, 1, 1));
         GameRegistry.addShapelessRecipe(
             new ItemStack(ModItems.salt_baked_potato),
             new ItemStack(ModItems.salt_pinch),
@@ -179,7 +179,7 @@ public class ModShapelessRecipes {
             new ItemStack(ModItems.salt_pinch),
             new ItemStack(Items.cooked_fished, 1, 1));
         GameRegistry.addShapelessRecipe(
-            new ItemStack(ModItems.salt_cooked_tropical_fish),
+            new ItemStack(ModItems.cooked_tropical_fish, 1, 1),
             new ItemStack(ModItems.salt_pinch),
             new ItemStack(ModItems.cooked_tropical_fish));
         if (ModConfigurationBlocks.enableStorageBlocks) {
@@ -190,13 +190,13 @@ public class ModShapelessRecipes {
             }
         }
         GameRegistry.addShapelessRecipe(
-            new ItemStack(ModItems.salt_cooked_tailor),
+            new ItemStack(ModItems.tailor, 1, 2),
             new ItemStack(ModItems.salt_pinch),
-            new ItemStack(ModItems.cooked_tailor));
+            new ItemStack(ModItems.tailor, 1, 1));
         GameRegistry.addShapelessRecipe(
-            new ItemStack(ModItems.salt_cooked_calamari),
+            new ItemStack(ModItems.calamari, 1, 2),
             new ItemStack(ModItems.salt_pinch),
-            new ItemStack(ModItems.cooked_calamari));
+            new ItemStack(ModItems.calamari, 1, 1));
         GameRegistry.addShapelessRecipe(
             new ItemStack(ModItems.salt_bread),
             new ItemStack(ModItems.salt_pinch),

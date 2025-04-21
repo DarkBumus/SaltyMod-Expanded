@@ -13,6 +13,8 @@ public class NEIConfig implements IConfigureNEI {
         API.addItemListEntry(new ItemStack(Blocks.tallgrass, 1, 0));
         API.addItemListEntry(new ItemStack(Blocks.tallgrass, 1, 1));
         API.addItemListEntry(new ItemStack(Blocks.tallgrass, 1, 2));
+
+        API.registerRecipeHandler(new NEIPotcookingRecipeHandler());
     }
 
     @Override

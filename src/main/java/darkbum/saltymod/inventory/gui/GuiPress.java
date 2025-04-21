@@ -24,10 +24,8 @@ public class GuiPress extends GuiContainer {
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         String s = this.tileEntityPress.hasCustomInventoryName() ? this.tileEntityPress.getInventoryName()
             : I18n.format(this.tileEntityPress.getInventoryName());
-        this.fontRendererObj
-            .drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
-        this.fontRendererObj
-            .drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 4, 4210752);
+        this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
+        this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 4, 4210752);
     }
 
     @Override

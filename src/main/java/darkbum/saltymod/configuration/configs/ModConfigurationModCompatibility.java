@@ -47,9 +47,11 @@ public class ModConfigurationModCompatibility {
 
     public static boolean enableEFRHoneyCompatibility;
 
+    public static boolean enableTFFoods;
+
     public static boolean enableBOPFoods;
 
-    public static boolean enableTFFoods;
+    public static boolean enableWMFoods;
 
     public static void init(Configuration config) {
         config.setCategoryComment(categoryNameMod, categoryDescriptionMod);
@@ -282,6 +284,19 @@ public class ModConfigurationModCompatibility {
                 + "\nPickled Turnip"
                 + "\nNotes: This is for when you have Biomes O'Plenty installed, but for some reason, don't want the respective Foods to be present"
                 + "\n");
+
+        enableWMFoods = config.getBoolean(
+            "17-enableWMFoods",
+            categoryNameModIte,
+            true,
+            enableFeatures + "\nSalted Cooked Bison"
+            + "\nSalted Cooked Calamario (Wild Mobs)"
+            + "\nSalted Cooked Chevon"
+            + "\nSalted Cooked Goose"
+            + "\nSalted Cooked Mouse"
+            + "\nSalted Cooked Venison"
+            + "\nNotes: This is for when you have Wild Mobs installed, but for some reason, don't want the respective Foods to be present"
+            + "\n");
 
         Configuration configTF = new Configuration(new File("./config", "TwilightForest.cfg"));
         configTF.load();

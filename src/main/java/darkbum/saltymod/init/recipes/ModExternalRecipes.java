@@ -60,7 +60,7 @@ public class ModExternalRecipes {
                 OreDictionary.registerOre("itemFood", StriderFlankCooked);
 
                 GameRegistry.addShapelessRecipe(
-                    new ItemStack(ModItems.salt_cooked_strider),
+                    new ItemStack(ModItems.strider, 1, 2),
                     new ItemStack(ModItems.salt_pinch),
                     new ItemStack(StriderFlankCooked));
             }
@@ -68,11 +68,11 @@ public class ModExternalRecipes {
 
         if (Loader.isModLoaded("etfuturum") && !Loader.isModLoaded("netherlicious")) {
             GameRegistry.addShapelessRecipe(
-                new ItemStack(ModItems.salt_cooked_strider),
+                new ItemStack(ModItems.strider, 1, 2),
                 new ItemStack(ModItems.salt_pinch),
-                new ItemStack(ModItems.cooked_strider));
+                new ItemStack(ModItems.strider, 1, 1));
 
-            GameRegistry.addSmelting(new ItemStack(ModItems.strider), new ItemStack(ModItems.cooked_strider), 0.35F);
+            GameRegistry.addSmelting(new ItemStack(ModItems.strider, 1, 0), new ItemStack(ModItems.strider, 1, 1), 0.35F);
         }
 
 
@@ -152,7 +152,7 @@ public class ModExternalRecipes {
                         new ItemStack(Items.potato),
                         new ItemStack(beetroot));
                     GameRegistry.addShapelessRecipe(
-                        new ItemStack(ModItems.salt_beetroot_salad),
+                        new ItemStack(ModItems.beetroot_salad, 1, 1),
                         new ItemStack(ModItems.salt_pinch),
                         new ItemStack(Items.bowl),
                         new ItemStack(Items.carrot),
@@ -169,7 +169,7 @@ public class ModExternalRecipes {
                             new ItemStack(Items.fish),
                             new ItemStack(ModItems.onion));
                         GameRegistry.addShapelessRecipe(
-                            new ItemStack(ModItems.salt_dressed_herring),
+                            new ItemStack(ModItems.dressed_herring, 1, 1),
                             new ItemStack(ModItems.salt_pinch),
                             new ItemStack(Items.bowl),
                             new ItemStack(Items.carrot),
@@ -261,7 +261,7 @@ public class ModExternalRecipes {
                     new ItemStack(sweet_berries),
                     new ItemStack(Items.melon));
                 GameRegistry.addShapelessRecipe(
-                    new ItemStack(ModItems.sugar_fruit_salad),
+                    new ItemStack(ModItems.fruit_salad, 1, 1),
                     new ItemStack(ModItems.sugar_pinch),
                     new ItemStack(Items.bowl),
                     new ItemStack(Items.apple),
@@ -274,7 +274,7 @@ public class ModExternalRecipes {
                     new ItemStack(ModItems.golden_berries),
                     new ItemStack(Items.speckled_melon));
                 GameRegistry.addShapelessRecipe(
-                    new ItemStack(ModItems.sugar_golden_fruit_salad),
+                    new ItemStack(ModItems.golden_fruit_salad, 1, 1),
                     new ItemStack(ModItems.sugar_pinch),
                     new ItemStack(Items.bowl),
                     new ItemStack(Items.golden_apple),
@@ -349,7 +349,7 @@ public class ModExternalRecipes {
                 new ItemStack(Items.carrot),
                 new ItemStack(Items.melon));
             GameRegistry.addShapelessRecipe(
-                new ItemStack(ModItems.sugar_fruit_salad),
+                new ItemStack(ModItems.fruit_salad, 1, 1),
                 new ItemStack(ModItems.sugar_pinch),
                 new ItemStack(Items.bowl),
                 new ItemStack(Items.apple),
@@ -362,7 +362,7 @@ public class ModExternalRecipes {
                 new ItemStack(Items.golden_carrot),
                 new ItemStack(Items.speckled_melon));
             GameRegistry.addShapelessRecipe(
-                new ItemStack(ModItems.sugar_golden_fruit_salad),
+                new ItemStack(ModItems.golden_fruit_salad, 1, 1),
                 new ItemStack(ModItems.sugar_pinch),
                 new ItemStack(Items.bowl),
                 new ItemStack(Items.golden_apple),

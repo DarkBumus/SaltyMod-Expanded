@@ -22,7 +22,7 @@ public class ContainerClayOven extends Container {
     private static final int SLOT_INGRED_2 = 1;
     private static final int SLOT_INGRED_3 = 2;
     private static final int SLOT_INGRED_4 = 3;
-    private static final int SLOT_OUTPUT = 4;
+    public static final int SLOT_OUTPUT = 4;
     private static final int SLOT_SPADE = 5;
     private static final int SLOT_COUNT_MACHINE = 6;
 

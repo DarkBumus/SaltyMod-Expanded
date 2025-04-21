@@ -20,19 +20,67 @@ public class ContainerFishFarm extends Container {
 
     private int lastFuelRunTime = 0;
 
-    public ContainerFishFarm(InventoryPlayer inventoryPlayer, TileEntityFishFarm tileEntityFishFarm) {
+    private static final int SLOT_OUTPUT_0 = 0;
+    private static final int SLOT_OUTPUT_1 = 1;
+    private static final int SLOT_OUTPUT_2 = 2;
+    private static final int SLOT_OUTPUT_3 = 3;
+    private static final int SLOT_OUTPUT_4 = 4;
+    private static final int SLOT_OUTPUT_5 = 5;
+    private static final int SLOT_OUTPUT_6 = 6;
+    private static final int SLOT_OUTPUT_7 = 7;
+    private static final int SLOT_OUTPUT_8 = 8;
+    private static final int SLOT_OUTPUT_9 = 9;
+    private static final int SLOT_OUTPUT_10 = 10;
+    private static final int SLOT_OUTPUT_11 = 11;
+    private static final int SLOT_OUTPUT_12 = 12;
+    private static final int SLOT_OUTPUT_13 = 13;
+    private static final int SLOT_OUTPUT_14 = 14;
+    private static final int SLOT_OUTPUT_15 = 15;
+    private static final int SLOT_OUTPUT_16 = 16;
+    private static final int SLOT_OUTPUT_17 = 17;
+    private static final int SLOT_INPUT = 18;
+    private static final int SLOT_COUNT_MACHINE = 19;
+
+    private static final int SLOT_PLAYER_INV_START = SLOT_COUNT_MACHINE;
+    private static final int SLOT_HOTBAR_START = SLOT_PLAYER_INV_START + 27;
+    private static final int SLOT_TOTAL = SLOT_HOTBAR_START + 9;
+
+    public ContainerFishFarm(InventoryPlayer playerInventory, TileEntityFishFarm tileEntityFishFarm) {
         this.fishfarm = tileEntityFishFarm;
-        for (int x = 0; x < 6; x++) {
-            for (int y = 0; y < 3; y++) addSlotToContainer(
-                new SlotMachineOutput(inventoryPlayer.player, tileEntityFishFarm, y + x * 3, 62 + 18 * x, 17 + 18 * y));
+
+        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_0, 8, 17));
+        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_1, 8, 35));
+        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_2, 8, 53));
+        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_3, 26, 17));
+        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_4, 26, 35));
+        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_5, 26, 53));
+        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_6, 44, 17));
+        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_7, 44, 35));
+        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_8, 44, 53));
+        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_9, 116, 17));
+        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_10, 116, 35));
+        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_11, 116, 53));
+        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_12, 134, 17));
+        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_13, 134, 35));
+        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_14, 134, 53));
+        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_15, 152, 17));
+        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_16, 152, 35));
+        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_17, 152, 53));
+        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_INPUT, 80, 35));
+
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 9; col++) {
+                int index = col + row * 9 + 9;
+                int x = 8 + col * 18;
+                int y = 84 + row * 18;
+                addSlotToContainer(new Slot(playerInventory, index, x, y));
+            }
         }
-        addSlotToContainer(new SlotFishFarmFuel(inventoryPlayer.player, tileEntityFishFarm, 18, 26, 35));
-        int i;
-        for (i = 0; i < 3; i++) {
-            for (int j = 0; j < 9; j++)
-                addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+
+        for (int col = 0; col < 9; col++) {
+            int x = 8 + col * 18;
+            addSlotToContainer(new Slot(playerInventory, col, x, 142));
         }
-        for (i = 0; i < 9; i++) addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 142));
     }
 
     public boolean canInteractWith(EntityPlayer player) {

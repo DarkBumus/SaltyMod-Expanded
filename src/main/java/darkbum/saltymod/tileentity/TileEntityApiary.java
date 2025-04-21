@@ -1,11 +1,15 @@
 package darkbum.saltymod.tileentity;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
+import darkbum.saltymod.configuration.configs.ModConfigurationBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -13,14 +17,12 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 
-import darkbum.saltymod.configuration.configs.ModConfigurationBlocks;
-import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 import darkbum.saltymod.item.ItemBee;
+import darkbum.saltymod.api.MachineUtilRegistry;
 
-public class TileEntityApiary extends TileEntity implements /*Sided*/IInventory {
+public class TileEntityApiary extends TileEntity implements IInventory {
 
     private String inventoryName;
 
@@ -84,16 +86,12 @@ public class TileEntityApiary extends TileEntity implements /*Sided*/IInventory 
             if (slot >= 0 && slot < this.inventory.length)
                 this.inventory[slot] = ItemStack.loadItemStackFromNBT(stackTag);
         }
-        this.runTime = nbt.getShort("RunTime");
-        this.produceTime = nbt.getShort("ProduceTime");
         this.currentFuelRunTime = getRunTime(this.inventory[1]);
         this.larvaProducedForBee = nbt.getBoolean("LarvaProducedForBee");
     }
 
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
-        nbt.setShort("RunTime", (short) this.runTime);
-        nbt.setShort("ProduceTime", (short) this.produceTime);
         nbt.setBoolean("LarvaProducedForBee", this.larvaProducedForBee);
         NBTTagList intTag = new NBTTagList();
         for (int i = 0; i < this.inventory.length; i++) {
@@ -111,66 +109,58 @@ public class TileEntityApiary extends TileEntity implements /*Sided*/IInventory 
         return 64;
     }
 
-    public int getRunTime() {
-        byte radius = 2;
-        int speed = ModConfigurationBlocks.apiarySpeed;
-        World world = this.worldObj;
-        int varX = this.xCoord;
-        int varY = this.yCoord;
-        int varZ = this.zCoord;
-        for (int offsetX = -radius; offsetX <= radius; offsetX++) {
-            for (int offsetZ = -radius; offsetZ <= radius; offsetZ++) {
-                if (offsetX * offsetX + offsetZ * offsetZ <= radius * radius
-                    && (offsetX != -(radius - 1) || offsetZ != -(radius - 1))
-                    && (offsetX != radius - 1 || offsetZ != radius - 1)
-                    && (offsetX != radius - 1 || offsetZ != -(radius - 1))
-                    && (offsetX != -(radius - 1) || offsetZ != radius - 1)) {
-                    Block blockAtCoords = world.getBlock(varX + offsetX, varY, varZ + offsetZ);
-                    if (blockAtCoords instanceof net.minecraft.block.BlockFlower
-                        || blockAtCoords instanceof net.minecraft.block.BlockCrops) speed = (int) (speed * 0.95D);
-                    if (world.getBlock(varX + offsetX, varY, varZ + offsetZ) == ModBlocks.apiary)
-                        speed = (int) (speed / 0.85D);
-                }
-            }
-        }
-        return speed;
-    }
+    private int getEffectiveTickChance(int baseChance) {
+        float modifier = 1.0f;
 
-    public void updateEntity() {
-        boolean isRunning = (this.runTime > 0);
-        boolean needsUpdate = false;
-        if (isRunning) this.runTime--;
-        ItemStack farmFuel = this.inventory[18];
-        if (!this.worldObj.isRemote) {
-            if (this.runTime == 0 && canRun()) {
-                this.currentFuelRunTime = this.runTime = getRunTime(farmFuel);
-                if (this.runTime > 0) {
-                    needsUpdate = true;
-                    if (farmFuel != null) {
-                        if (farmFuel.getItem()
-                            .getContainerItem() != null) {
-                            farmFuel = new ItemStack(
-                                farmFuel.getItem()
-                                    .setFull3D());
-                        } else {
-                            farmFuel.stackSize -= 0;
-                        }
-                        if (farmFuel.stackSize == 0) farmFuel = null;
+        int radius = 3;
+        for (int dx = -radius; dx <= radius; dx++) {
+            for (int dy = -1; dy <= 1; dy++) {
+                for (int dz = -radius; dz <= radius; dz++) {
+                    Block block = this.worldObj.getBlock(this.xCoord + dx, this.yCoord + dy, this.zCoord + dz);
+                    if (block != null && block.getUnlocalizedName().toLowerCase().contains("flower")) {
+                        modifier *= 0.95f; // jede Blume reduziert Chance etwas
                     }
                 }
             }
+        }
+/*        for (int dx = -radius; dx <= radius; dx++) {
+            for (int dy = -1; dy <= 1; dy++) {
+                for (int dz = -radius; dz <= radius; dz++) {
+                    TileEntity tile = this.worldObj.getTileEntity(this.xCoord + dx, this.yCoord + dy, this.zCoord + dz);
+                    if (tile != null && tile != this && tile.getClass() == this.getClass()) {
+                        modifier *= 0.9f;
+                    }
+                }
+            }
+        }*/
+        for (int dx = -radius; dx <= radius; dx++) {
+            for (int dy = -1; dy <= 1; dy++) {
+                for (int dz = -radius; dz <= radius; dz++) {
+                    Block block = this.worldObj.getBlock(this.xCoord + dx, this.yCoord + dy, this.zCoord + dz);
+                    if (block != null && block.getUnlocalizedName().toLowerCase().contains("hopper")) {
+                        modifier *= 1.15f;
+                    }
+                }
+            }
+        }
+
+        return Math.round(baseChance * modifier);
+    }
+
+    public void updateEntity() {
+        boolean needsUpdate = false;
+
+        if (!this.worldObj.isRemote) {
             if (canRun()) {
-                this.produceTime++;
-                if (this.produceTime >= Math.floor(getRunTime())) {
-                    this.produceTime = 0;
+                final int BASE_CHANCE = ModConfigurationBlocks.apiarySpeed;
+                int effectiveChance = getEffectiveTickChance(BASE_CHANCE);
+                if (this.worldObj.rand.nextInt(effectiveChance) == 0) {
                     run();
                     needsUpdate = true;
                 }
-            } else {
-                this.produceTime = 0;
             }
-            if (isRunning != ((this.runTime > 0))) needsUpdate = true;
         }
+
         if (needsUpdate) {
             markDirty();
             this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
@@ -178,83 +168,87 @@ public class TileEntityApiary extends TileEntity implements /*Sided*/IInventory 
     }
 
     private boolean canRun() {
-        if (this.inventory[18] != null) {
-            if (this.inventory[18].getItem() instanceof ItemBee
-                /* == ModItems.carpenter_bee */ && this.inventory[18].getItemDamage()
-                    != this.inventory[18].getMaxDamage())
-                return true;
-        } else {
+        if (this.inventory[18] == null) {
             return false;
         }
-        return false;
+        if (!(this.inventory[18].getItem() instanceof ItemBee) ||
+            this.inventory[18].getItemDamage() == this.inventory[18].getMaxDamage()) {
+            return false;
+        }
+        if (this.worldObj.isRaining() &&
+            this.worldObj.canBlockSeeTheSky(this.xCoord, this.yCoord + 1, this.zCoord)) {
+            return false;
+        }
+
+        return true;
     }
 
     public ItemStack getProduce() {
         Random rnd = new Random();
-        int rndnum = rnd.nextInt(100);
         if (this.inventory[18] != null) {
-            if (this.inventory[18].getItem() instanceof ItemBee && this.inventory[18].getItemDamage() == 17) {
+            ItemStack beeItem = this.inventory[18];
+            if (beeItem.getItemDamage() == 17 && !containsItem(ModItems.bee_larva)) {
                 return new ItemStack(ModItems.bee_larva);
             }
-            if (this.inventory[18].getItem() == ModItems.honey_bee) {
-                return new ItemStack(
-                    rndnum < 70 ? ModItems.honeycomb
-                        : rndnum < 98 ? ModItems.waxcomb
-                        : ModItems.bee_larva);
-            }
-            if (this.inventory[18].getItem() == ModItems.carpenter_bee) {
-                return new ItemStack(
-                    rndnum < 20 ? ModItems.honeycomb
-                        : rndnum < 98 ? ModItems.waxcomb
-                        : ModItems.bee_larva);
-            }
-            if (this.inventory[18].getItem() == ModItems.regal_bee) {
-                return new ItemStack(
-                    rndnum < 35 ? ModItems.honeycomb
-                        : rndnum < 50 ? ModItems.royal_jelly
-                        : rndnum < 85 ? ModItems.waxcomb
-                        : ModItems.bee_larva);
-            }
-            if (this.inventory[18].getItem() == ModItems.boreal_bee) {
-                return new ItemStack(
-                    rndnum < 70 ? ModItems.frozen_honey
-                        : rndnum < 98 ? ModItems.waxcomb
-                        : ModItems.bee_larva);
+
+            MachineUtilRegistry.BeeType beeType = MachineUtilRegistry.BeeType.getByBeeItem(beeItem);
+            if (beeType != null) {
+                return beeType.getProduce(rnd);
             }
         }
         return null;
     }
 
-    public void run() {
-        boolean hasFreeSlot = false;
+    private boolean containsItem(Item item) {
         for (int i = 0; i < 18; i++) {
-            if (this.inventory[i] == null) {
-                hasFreeSlot = true;
-                break;
+            if (this.inventory[i] != null && this.inventory[i].getItem() == item) {
+                return true;
             }
         }
-        if (!hasFreeSlot) {
+        return false;
+    }
+
+    public void run() {
+        List<Integer> slotOrder = new ArrayList<>();
+        for (int i = 0; i < 18; i++) {
+            if (this.inventory[i] == null) {
+                slotOrder.add(i);
+            }
+        }
+
+        if (slotOrder.isEmpty()) {
             return;
         }
+
+        Collections.shuffle(slotOrder);
+
         this.inventory[18].attemptDamageItem(1, null);
         ItemStack itemProduced = getProduce();
-        for (int i = 0; i < 18; i++) {
-            if (this.inventory[i] == null) {
-                this.inventory[i] = itemProduced.copy();
-                break;
-            }
+
+        if (itemProduced != null) {
+            this.inventory[slotOrder.get(0)] = itemProduced.copy();
         }
     }
 
     int getRunTime(ItemStack stack) {
         if (stack == null) return 0;
-        if (stack.getItem() instanceof ItemBee/* == ModItems.carpenter_bee */) return 3200;
+        if (stack.getItem() instanceof ItemBee) return 3200;
         return 0;
     }
 
     public boolean isUseableByPlayer(EntityPlayer player) {
         if (this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this) return false;
         return (player.getDistanceSq(this.xCoord + 0.5D, this.yCoord + 0.5D, this.zCoord + 0.5D) <= 64.0D);
+    }
+
+    public int getComparatorInputOverride() {
+        int filled = 0;
+        for (int i = 0; i < 18; i++) {
+            if (this.inventory[i] != null) {
+                filled++;
+            }
+        }
+        return Math.round((filled / 18.0f) * 15);
     }
 
     public ItemStack getStackInSlotOnClosing(int slot) {
@@ -278,23 +272,4 @@ public class TileEntityApiary extends TileEntity implements /*Sided*/IInventory 
     }
 
     public void closeInventory() {}
-
-/*    @Override
-    public int[] getAccessibleSlotsFromSide(int side) {
-        if (side == 0) {
-            return slotOutput;
-        } else {
-            return slotBee;
-        }
-    }
-
-    @Override
-    public boolean canInsertItem(int slot, ItemStack stack, int side) {
-        return slot == 0;
-    }
-
-    @Override
-    public boolean canExtractItem(int slot, ItemStack stack, int side) {
-        return side == 0 && slot >= 1 && slot <= 18;
-    }*/
 }

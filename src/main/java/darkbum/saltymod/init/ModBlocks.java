@@ -120,7 +120,8 @@ public class ModBlocks {
         SaltyMod.logger.info("Start to initialize SaltyMod Blocks");
 
         dev_block = new BlockDevBlock("dev_block", tab);
-        GameRegistry.registerBlock(dev_block, "dev_block");
+//        GameRegistry.registerBlock(dev_block, "dev_block");
+
         salt_ore = new BlockSaltOre("salt_ore", tab);
         GameRegistry.registerBlock(salt_ore, "salt_ore");
         if (Loader.isModLoaded("etfuturum")
@@ -239,8 +240,8 @@ public class ModBlocks {
             GameRegistry.registerBlock(salt_crystal, "salt_crystal");
         }
 //        if (ModConfigurationItems.enableOnion) {
-            onions = new BlockOnions("onions", null);
-            GameRegistry.registerBlock(onions, "onions");
+        onions = new BlockOnions("onions", null);
+        GameRegistry.registerBlock(onions, "onions");
 //        }
         saltworts = new BlockSaltworts("saltworts", null);
         GameRegistry.registerBlock(saltworts, "saltworts");

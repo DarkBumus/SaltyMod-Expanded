@@ -63,6 +63,7 @@ public class ModConfigurationItems {
 
     public static boolean enablePumpkinPorridge;
     public static boolean enableCactusSoup;
+    public static boolean enableBoneMarrowSoup;
     public static boolean enableStewedVegetables;
     public static boolean enablePotatoMushroom;
     public static boolean enableFishSoup;
@@ -371,165 +372,170 @@ public class ModConfigurationItems {
             categoryNameIteFoo,
             true,
             enableFeatures + "\nCactus Soup" + "\nSalted Cactus Soup" + "\n");
+        enableBoneMarrowSoup = config.getBoolean(
+            "21-enableBoneMarrowSoup",
+            categoryNameIte,
+            true,
+            enableFeatures + "\nBone Marrow Soup" + "\nSalted Bone Marrow Soup" + "\n");
         enableStewedVegetables = config.getBoolean(
-            "21-enableStewedVegetables",
+            "22-enableStewedVegetables",
             categoryNameIteFoo,
             true,
             enableFeatures + "\nStewed Vegetables" + "\nSalted Stewed Vegetables" + "\n");
         enablePotatoMushroom = config.getBoolean(
-            "22-enablePotatoMushroom",
+            "23-enablePotatoMushroom",
             categoryNameIteFoo,
             true,
             enableFeatures + "\nPotato with Mushroom" + "\nSalted Potato with Mushroom" + "\n");
         enableFishSoup = config.getBoolean(
-            "23-enableFishSoup",
+            "24-enableFishSoup",
             categoryNameIteFoo,
             true,
             enableFeatures + "\nFish Soup" + "\nSalted Fish Soup" + "\n");
         enableDandelionSalad = config.getBoolean(
-            "24-enableDandelionSalad",
+            "25-enableDandelionSalad",
             categoryNameIteFoo,
             true,
             enableFeatures + "\nDandelion Salad" + "\nSalted Dandelion Salad" + "\n");
         enableWheatSprouts = config.getBoolean(
-            "25-enableWheatSprouts",
+            "26-enableWheatSprouts",
             categoryNameIteFoo,
             true,
             enableFeatures + "\nWheat Sprouts" + "\nSalted Wheat Sprouts" + "\n");
         enableSaltwortSalad = config
-            .getBoolean("26-enableSaltwortSalad", categoryNameIteFoo, true, enableFeatures + "\nSaltwort Salad" + "\n");
+            .getBoolean("27-enableSaltwortSalad", categoryNameIteFoo, true, enableFeatures + "\nSaltwort Salad" + "\n");
 
         enableSaltwortPorkchop = config.getBoolean(
-            "27-enableSaltwortPorkchop",
+            "28-enableSaltwortPorkchop",
             categoryNameIteFoo,
             true,
             enableFeatures + "\nSalted Cooked Porkchop with Saltwort" + "\n");
         enableSaltwortHoneyPorkchop = config.getBoolean(
-            "28-enableSaltwortHoneyPorkchop",
+            "29-enableSaltwortHoneyPorkchop",
             categoryNameIteFoo,
             true,
             enableFeatures + "\nHoney Glazed Porkchop with Saltwort" + "\n");
         enableSaltwortBeef = config.getBoolean(
-            "29-enableSaltwortBeef",
+            "30-enableSaltwortBeef",
             categoryNameIteFoo,
             true,
             enableFeatures + "\nSalted Steak with Saltwort" + "\n");
         enableSaltwortStrider = config.getBoolean(
-            "30-enableSaltwortStrider",
+            "31-enableSaltwortStrider",
             categoryNameIteFoo,
             true,
             enableFeatures + "\nSalted Strider Steak with Saltwort" + "\n");
         enableSaltwortHaunch = config.getBoolean(
-            "31-enableSaltwortHaunch",
+            "32-enableSaltwortHaunch",
             categoryNameIteFoo,
             true,
             enableFeatures + "\nSalted Cooked Haunch with Saltwort" + "\n");
 
         enableSugaredApple = config
-            .getBoolean("32-enableSugaredApple", categoryNameIteFoo, true, enableFeatures + "\nSugared Apple" + "\n");
+            .getBoolean("33-enableSugaredApple", categoryNameIteFoo, true, enableFeatures + "\nSugared Apple" + "\n");
         enableSugaredMelon = config
-            .getBoolean("33-enableSugaredMelon", categoryNameIteFoo, true, enableFeatures + "\nSugared Melon Slice" + "\n");
+            .getBoolean("34-enableSugaredMelon", categoryNameIteFoo, true, enableFeatures + "\nSugared Melon Slice" + "\n");
 
         enableFruitSalad = config.getBoolean(
-            "34-enableFruitSalad",
+            "35-enableFruitSalad",
             categoryNameIteFoo,
             true,
             enableFeatures + "\nFruit Salad" + "\nSugared Fruit Salad" + "\n");
         enableGratedCarrot = config.getBoolean(
-            "35-enableGratedCarrot",
+            "36-enableGratedCarrot",
             categoryNameIteFoo,
             true,
             enableFeatures + "\nGrated Carrot" + "\nSugared Grated Carrot" + "\n");
         enableMelonSoup = config.getBoolean(
-            "36-enableMelonSoup",
+            "37-enableMelonSoup",
             categoryNameIteFoo,
             true,
             enableFeatures + "\nMelon Soup" + "\nSugared Melon Soup" + "\n");
 
         enableHoneyPorkchop = config.getBoolean(
-            "37-enableHoneyPorkchop",
+            "38-enableHoneyPorkchop",
             categoryNameIteFoo,
             true,
             enableFeatures + "\nHoney Glazed Porkchop" + "\n");
         enableHoneyApple = config
-            .getBoolean("38-enableHoneyApple", categoryNameIteFoo, true, enableFeatures + "\nHoney Glazed Apple" + "\n");
+            .getBoolean("39-enableHoneyApple", categoryNameIteFoo, true, enableFeatures + "\nHoney Glazed Apple" + "\n");
         enableChocolateBar = config
-            .getBoolean("39-enableChocolateBar", categoryNameIteFoo, true, enableFeatures + "\nChocolate Bar" + "\n");
+            .getBoolean("40-enableChocolateBar", categoryNameIteFoo, true, enableFeatures + "\nChocolate Bar" + "\n");
 
         enableChocolatePie = config
-            .getBoolean("40-enableChocolatePie", categoryNameIteFoo, true, enableFeatures + "\nChocolate Pie" + "\n");
+            .getBoolean("41-enableChocolatePie", categoryNameIteFoo, true, enableFeatures + "\nChocolate Pie" + "\n");
         enableBirthdayPie = config
-            .getBoolean("41-enableBirthdayPie", categoryNameIteFoo, true, enableFeatures + "\nBirthday Pie" + "\n");
+            .getBoolean("42-enableBirthdayPie", categoryNameIteFoo, true, enableFeatures + "\nBirthday Pie" + "\n");
         replaceCake = config.getBoolean(
-            "42-replaceCake",
+            "43-replaceCake",
             categoryNameIteFoo,
             false,
             "Disables the Crafting Recipe for Cake, effectively replacing the Cake with the Birthday Pie");
 
         enableApplePie = config
-            .getBoolean("43-enableApplePie", categoryNameIteFoo, true, enableFeatures + "\nApple Pie" + "\n");
+            .getBoolean("44-enableApplePie", categoryNameIteFoo, true, enableFeatures + "\nApple Pie" + "\n");
         enableCarrotPie = config
-            .getBoolean("44-enableCarrotPie", categoryNameIteFoo, true, enableFeatures + "\nCarrot Pie" + "\n");
+            .getBoolean("45-enableCarrotPie", categoryNameIteFoo, true, enableFeatures + "\nCarrot Pie" + "\n");
         enableMushroomPie = config
-            .getBoolean("45-enableMushroomPie", categoryNameIteFoo, true, enableFeatures + "\nMushroom Pie" + "\n");
+            .getBoolean("46-enableMushroomPie", categoryNameIteFoo, true, enableFeatures + "\nMushroom Pie" + "\n");
         enablePotatoPie = config
-            .getBoolean("46-enablePotatoPie", categoryNameIteFoo, true, enableFeatures + "\nPotato Pie" + "\n");
+            .getBoolean("47-enablePotatoPie", categoryNameIteFoo, true, enableFeatures + "\nPotato Pie" + "\n");
         enableOnionPie = config
-            .getBoolean("47-enableOnionPie", categoryNameIteFoo, true, enableFeatures + "\nOnion Pie" + "\n");
+            .getBoolean("48-enableOnionPie", categoryNameIteFoo, true, enableFeatures + "\nOnion Pie" + "\n");
         enableShepherdsPie = config
-            .getBoolean("48-enableShepherdsPie", categoryNameIteFoo, true, enableFeatures + "\nShepherd's Pie" + "\n");
+            .getBoolean("49-enableShepherdsPie", categoryNameIteFoo, true, enableFeatures + "\nShepherd's Pie" + "\n");
         enableCodPie = config.getBoolean(
-            "49-enableCodPie",
+            "50-enableCodPie",
             categoryNameIteFoo,
             true,
             enableFeatures + "\nCod Pie"
                 + "\nNotes: This is in line with the localization changes this mod makes to the vanilla Fish (with the meta value of 0), to better reflect the modern Minecraft versions"
                 + "\n");
         enableSalmonPie = config
-            .getBoolean("50-enableSalmonPie", categoryNameIteFoo, true, enableFeatures + "\nSalmon Pie" + "\n");
+            .getBoolean("51-enableSalmonPie", categoryNameIteFoo, true, enableFeatures + "\nSalmon Pie" + "\n");
         enableTropicalFishPie = config.getBoolean(
-            "51-enableTropicalFishPie",
+            "52-enableTropicalFishPie",
             categoryNameIteFoo,
             true,
             enableFeatures + "\nTropical Fish Pie"
                 + "\nNotes: This is in line with the localization changes this mod makes to the vanilla Fish (with the meta value of 2), to better reflect the modern Minecraft versions"
                 + "\n");
         enableTailorPie = config.getBoolean(
-            "52-enableTailorPie",
+            "53-enableTailorPie",
             categoryNameIteFoo,
             true,
             enableFeatures + "\nTailor Pie"
                 + "\nNotes: This replaces an obligatory \"Fish Pie\" that would be named after the vanilla Fish (with the meta value of 0), to better reflect the modern Minecraft versions"
                 + "\n");
         enableCalamariPie = config
-            .getBoolean("53-enableCalamariPie", categoryNameIteFoo, true, enableFeatures + "\nCalamari Pie" + "\n");
+            .getBoolean("54-enableCalamariPie", categoryNameIteFoo, true, enableFeatures + "\nCalamari Pie" + "\n");
         enableSaltwortPie = config
-            .getBoolean("54-enableSaltwortPie", categoryNameIteFoo, true, enableFeatures + "\nSaltwort Pie" + "\n");
+            .getBoolean("55-enableSaltwortPie", categoryNameIteFoo, true, enableFeatures + "\nSaltwort Pie" + "\n");
 
         enableFermentedSaltwort = config.getBoolean(
-            "55-enableFermentedSaltwort",
+            "56-enableFermentedSaltwort",
             categoryNameIteFoo,
             true,
             enableFeatures + "\nFermented Saltwort" + "\n");
         enableFermentedFern = config
-            .getBoolean("56-enableFermentedFern", categoryNameIteFoo, true, enableFeatures + "\nFermented Fern" + "\n");
+            .getBoolean("57-enableFermentedFern", categoryNameIteFoo, true, enableFeatures + "\nFermented Fern" + "\n");
         enableFermentedMushroom = config.getBoolean(
-            "57-enableFermentedMushroom",
+            "58-enableFermentedMushroom",
             categoryNameIteFoo,
             true,
             enableFeatures + "\nFermented Mushroom" + "\n");
         enablePickledCalamari = config
-            .getBoolean("58-enablePickledCalamari", categoryNameIteFoo, true, enableFeatures + "\nPickled Calamari" + "\n");
+            .getBoolean("59-enablePickledCalamari", categoryNameIteFoo, true, enableFeatures + "\nPickled Calamari" + "\n");
         enablePickledOnion = config
-            .getBoolean("59-enablePickledOnion", categoryNameIteFoo, true, enableFeatures + "\nPickled Onion" + "\n");
+            .getBoolean("60-enablePickledOnion", categoryNameIteFoo, true, enableFeatures + "\nPickled Onion" + "\n");
         enableApplePreserves = config
-            .getBoolean("60-enableApplePreserves", categoryNameIteFoo, true, enableFeatures + "\nApple Preserves" + "\n");
+            .getBoolean("61-enableApplePreserves", categoryNameIteFoo, true, enableFeatures + "\nApple Preserves" + "\n");
         enableMelonPreserves = config
-            .getBoolean("61-enableMelonPreserves", categoryNameIteFoo, true, enableFeatures + "\nMelon Preserves" + "\n");
+            .getBoolean("62-enableMelonPreserves", categoryNameIteFoo, true, enableFeatures + "\nMelon Preserves" + "\n");
 
-        enableMuffin = config.getBoolean("62-enableMuffin", categoryNameIteFoo, true, enableFeatures + "\nMuffin" + "\n");
+        enableMuffin = config.getBoolean("63-enableMuffin", categoryNameIteFoo, true, enableFeatures + "\nMuffin" + "\n");
 
         enableToughJelly = config
-            .getBoolean("63-enableToughJelly", categoryNameIteFoo, true, enableFeatures + "\nTough Jelly" + "\n");
+            .getBoolean("64-enableToughJelly", categoryNameIteFoo, true, enableFeatures + "\nTough Jelly" + "\n");
     }
 }

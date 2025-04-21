@@ -106,7 +106,8 @@ public class ModConfigurationBlocks {
             3500,
             1,
             999999,
-            "Regulates the speed in ticks at which a Fish Farm will fill itself up");
+            "Regulates the speed in ticks at which an Fish Farm will fill itself up, not including the bonuses from rainfall."
+                + "\nThe lower the value, the higher the chance, per tick, that a slot will be filled, i.e. the quicker the Fish Farm will fill up.");
 
         enableApiary = config.getBoolean(
             "09-enableApiary",
@@ -119,7 +120,8 @@ public class ModConfigurationBlocks {
             3500,
             1,
             999999,
-            "Regulates the speed in ticks at which an Apiary will fill itself up, not including the reduction bonuses from nearby apiaries and flowers");
+            "Regulates the speed in ticks at which an Apiary will fill itself up, not including the bonuses from nearby apiaries and flowers."
+                + "\nThe lower the value, the higher the chance, per tick, that a slot will be filled, i.e. the quicker the Apiary will fill up.");
 
         enableHeater = config.getBoolean(
             "11-enableHeater",

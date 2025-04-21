@@ -27,10 +27,8 @@ public class GuiFishFarm extends GuiContainer {
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         String s = this.tileEntityFishFarm.hasCustomInventoryName() ? this.tileEntityFishFarm.getInventoryName()
             : I18n.format(this.tileEntityFishFarm.getInventoryName());
-        this.fontRendererObj
-            .drawString(s, 8, 6, 4210752);
-        this.fontRendererObj
-            .drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 4, 4210752);
+        this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
+        this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 4, 4210752);
     }
 
     protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {

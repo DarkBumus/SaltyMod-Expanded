@@ -118,10 +118,9 @@ public class SaltyMod {
 /*
  * //TO-DO-LIST//
  * Things I (might) need help with:
- * - Tackle Powdered Milk Recipe [Duplicating Bucket]
+ * - Tackle Powdered Milk Recipe [Duplicating Bucket] | Impossible?
  * - Change particles of the Swarmed effect
  * - Change Heart texture of the Swarmed effect
- * - Fix Fish Hunger Values [Probably set up Mixins in general?]
  * - Create/Finish Brickmaker Camps [Schematica?]
  * - Underground Salt Lakes? [MAYBE]
  * - Underground Salt Caves/Tunnels/Mines? [MAYBE]
@@ -131,12 +130,9 @@ public class SaltyMod {
  * NEW:
  *
  * - Try to set up Marsh Reeds as a two-tall plant?
- * - Apiary + Fish Farm Hopper interaction
- * - Add Press/Cooking Pot to NEI
- * - Sounds to Mill
+ * - Add Press/Cooking Pot/Clay Oven to NEI
  * - Slimes! [LATER]
- * - Apiary + Fish Farm time-based rather than set time.
- * - Refactoring Salt Food
  * - Farmer's Delight foods?
- * - Clay Oven Stack block indictor
+ * - XP to Press/Cooking Pot/Clay Oven
+ * - Finish the Recipes
  */

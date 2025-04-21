@@ -70,7 +70,7 @@ public class BlockSaltDirt extends Block {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public ItemStack getPickBlock(net.minecraft.util.MovingObjectPosition target, World world, int x, int y, int z) {
+    public ItemStack getPickBlock(net.minecraft.util.MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
         int meta = world.getBlockMetadata(x, y, z);
         return new ItemStack(this, 1, meta);
     }

@@ -26,30 +26,28 @@ public class LivingDropsEventHandler {
         int dropAmountZombie = 1;
         int dropAmountStrider = 1;
 
-        if (event.entityLiving instanceof net.minecraft.entity.monster.EntityZombie && !event.entityLiving.isChild()
-            && ThreadLocalRandom.current()
-                .nextInt(0, 1000) < 25) {
+        if (event.entityLiving instanceof net.minecraft.entity.monster.EntityZombie && !event.entityLiving.isChild() && ThreadLocalRandom.current().nextInt(0, 1000) < 25) {
             event.entityLiving.entityDropItem(new ItemStack(ModItems.onion, dropAmountZombie), dropped);
         } else if (event.entityLiving instanceof net.minecraft.entity.passive.EntitySquid) {
             if (event.entityLiving.isBurning()) {
-                event.entityLiving.entityDropItem(new ItemStack(ModItems.cooked_calamari, dropAmountSquid), dropped);
+                event.entityLiving.entityDropItem(new ItemStack(ModItems.calamari, dropAmountSquid, 1), dropped);
             } else {
                 event.entityLiving.entityDropItem(new ItemStack(ModItems.calamari, dropAmountSquid), dropped);
             }
         } else if (event.entityLiving instanceof net.minecraft.entity.passive.EntityHorse
             && !event.entityLiving.isChild()) {
-                if (event.entityLiving.isBurning()) {
-                    event.entityLiving.entityDropItem(new ItemStack(ModItems.cooked_haunch, dropAmountHorse), dropped);
-                } else {
-                    event.entityLiving.entityDropItem(new ItemStack(ModItems.haunch, dropAmountHorse), dropped);
-                }
-            } else if (event.entityLiving instanceof net.minecraft.entity.passive.EntityBat) {
-                if (event.entityLiving.isBurning()) {
-                    event.entityLiving
-                        .entityDropItem(new ItemStack(ModItems.cooked_strider, dropAmountStrider), dropped);
-                } else {
-                    event.entityLiving.entityDropItem(new ItemStack(ModItems.strider, dropAmountStrider), dropped);
-                }
+            if (event.entityLiving.isBurning()) {
+                event.entityLiving.entityDropItem(new ItemStack(ModItems.haunch, dropAmountHorse, 1), dropped);
+            } else {
+                event.entityLiving.entityDropItem(new ItemStack(ModItems.haunch, dropAmountHorse), dropped);
             }
+        } else if (event.entityLiving instanceof net.minecraft.entity.passive.EntityBat) {
+            if (event.entityLiving.isBurning()) {
+                event.entityLiving
+                    .entityDropItem(new ItemStack(ModItems.strider, dropAmountStrider, 1), dropped);
+            } else {
+                event.entityLiving.entityDropItem(new ItemStack(ModItems.strider, dropAmountStrider), dropped);
+            }
+        }
     }
 }

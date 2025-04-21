@@ -12,10 +12,16 @@ public class ProbablePotionEffect {
 
     private final PotionEffect effect;
     private final float probability;
+    private final int minHungerRequired;
 
-    public ProbablePotionEffect(int potionID, int duration, int amplifier, float probability) {
+    public ProbablePotionEffect(int potionID, int duration, int amplifier, float probability, int minHungerRequired) {
         this.effect = new PotionEffect(potionID, duration, amplifier);
         this.probability = probability;
+        this.minHungerRequired = minHungerRequired;
+    }
+
+    public ProbablePotionEffect(int potionID, int duration, int amplifier, float probability) {
+        this(potionID, duration, amplifier, probability, 0);
     }
 
     public ProbablePotionEffect(int potionID, int duration, int amplifier) {
@@ -26,7 +32,20 @@ public class ProbablePotionEffect {
         this(potionID, duration, 0, 1F);
     }
 
+    public boolean procEffect(EntityPlayer player, Random random) {
+        if (player.getFoodStats().getFoodLevel() >= minHungerRequired) {
+            boolean apply = random.nextFloat() < probability;
+            player.addPotionEffect(new PotionEffect(effect));
+            return apply;
+        }
+        return false;
+    }
+
     public String generateTooltip() {
+        if (minHungerRequired > 0) {
+            return null;
+        }
+
         String line = "";
         if (Potion.potionTypes[effect.getPotionID()].isBadEffect()) {
             line += EnumChatFormatting.RED;
@@ -59,11 +78,5 @@ public class ProbablePotionEffect {
         line += (int) (probability * 100F) + "%";
         line += EnumChatFormatting.RESET;
         return line;
-    }
-
-    public boolean procEffect(EntityPlayer player, Random random) {
-        boolean apply = random.nextFloat() < probability;
-        player.addPotionEffect(new PotionEffect(effect));
-        return apply;
     }
 }
