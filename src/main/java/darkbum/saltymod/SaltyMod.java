@@ -130,8 +130,8 @@ public class SaltyMod {
  * - Slimes! [LATER]
  * - Farmer's Delight foods?
  * - Finish the Recipes
- * - Cookies
+ * - Cookies (Sweet Berry, Chorus Fruit)
  * - Nether Salad
- * - Meat Stew
+ * - Meat Stews
  * - Rice, Tea, Brewing [LATER]
  */
