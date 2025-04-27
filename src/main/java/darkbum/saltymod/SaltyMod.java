@@ -2,7 +2,7 @@ package darkbum.saltymod;
 
 import java.io.File;
 
-import net.minecraft.potion.Potion;
+import darkbum.saltymod.zzzdeprecated.DeprecatedRecipes;
 import net.minecraft.util.EnumChatFormatting;
 
 import org.apache.logging.log4j.LogManager;
@@ -24,8 +24,7 @@ import darkbum.saltymod.configuration.configs.ModConfigurationWorldGeneration;
 import darkbum.saltymod.init.*;
 import darkbum.saltymod.init.recipes.*;
 import darkbum.saltymod.potion.ModPotion;
-import darkbum.saltymod.structure.ChestContent;
-import darkbum.saltymod.structure.ChestLootHandler;
+import darkbum.saltymod.world.structure.ChestContent;
 
 @Mod(
     modid = SaltyMod.MODID,
@@ -61,7 +60,7 @@ public class SaltyMod {
         event.getModMetadata().name = EnumChatFormatting.GOLD + SaltyMod.NAME;
         event.getModMetadata().version = EnumChatFormatting.YELLOW + SaltyMod.VERSION;
         event.getModMetadata().credits = EnumChatFormatting.AQUA
-            + "Thanks to original author Liahim85 and contributors jss2a98aj, Roadhog360, DelirusCrux, AstroTibs, Just Moe";
+            + "Thanks to original author Liahim85 and contributors jss2a98aj, Roadhog360, DelirusCrux, AstroTibs, Just Moe, Jack";
         File configDir = new File(event.getModConfigurationDirectory(), "saltymod");
         config = new ModConfigurationBase(configDir);
         config.preInit();
@@ -72,9 +71,6 @@ public class SaltyMod {
         ModBiomes.SaltyMod();
         ModFishRegistry.registerItems();
         GameRegistry.registerFuelHandler(new ModFuelHandler());
-        if (ModConfigurationWorldGeneration.enableBrickmakerCamp) {
-            ChestLootHandler.campChest();
-        }
         proxy.preInit(event);
     }
 
@@ -111,6 +107,7 @@ public class SaltyMod {
         if (Loader.isModLoaded("NotEnoughItems")) {
             new NEIConfig().loadConfig();
         }
+        DeprecatedRecipes.init();
     }
 }
 
@@ -121,7 +118,6 @@ public class SaltyMod {
  * - Tackle Powdered Milk Recipe [Duplicating Bucket] | Impossible?
  * - Change particles of the Swarmed effect
  * - Change Heart texture of the Swarmed effect
- * - Create/Finish Brickmaker Camps [Schematica?]
  * - Underground Salt Lakes? [MAYBE]
  * - Underground Salt Caves/Tunnels/Mines? [MAYBE]
  * - Recipe Book [LATER, ALSO MAYBE]
@@ -133,6 +129,9 @@ public class SaltyMod {
  * - Add Press/Cooking Pot/Clay Oven to NEI
  * - Slimes! [LATER]
  * - Farmer's Delight foods?
- * - XP to Press/Cooking Pot/Clay Oven
  * - Finish the Recipes
+ * - Cookies
+ * - Nether Salad
+ * - Meat Stew
+ * - Rice, Tea, Brewing [LATER]
  */

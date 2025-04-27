@@ -1,4 +1,4 @@
-package darkbum.saltymod.world.biome;
+package darkbum.saltymod.world.worldgen;
 
 import java.util.Random;
 
@@ -35,8 +35,7 @@ public class WorldGenAlliumMod extends WorldGenerator {
             }
             if (world.isAirBlock(xPos, yPos, zPos)
                 && Blocks.red_flower.canReplace(world, xPos, yPos, zPos, 0, new ItemStack(Blocks.red_flower, 1, 2))) {
-
-                world.setBlock(xPos, yPos, zPos, flowers[weight], flowersMeta[weight], 2);
+                world.setBlock(xPos, yPos, zPos, flowers[weight], flowersMeta[weight], 3);
             }
         }
         return true;

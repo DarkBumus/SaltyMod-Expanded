@@ -61,20 +61,27 @@ public class PotcookingRecipe {
         public final ItemStack output;
         public final boolean requiresHeater;
         public final List<IIngredientMatcher> ingreds;
+        public final float xp;  // Neues Feld für XP
 
-        // Reihenfolge geändert: Output, Heater?, Inputs
-        public PotRecipe(ItemStack output, boolean requiresHeater, List<IIngredientMatcher> ingreds) {
+        // Reihenfolge geändert: Output, Heater?, Inputs, XP
+        public PotRecipe(ItemStack output, boolean requiresHeater, List<IIngredientMatcher> ingreds, float xp) {
             this.output = output;
             this.requiresHeater = requiresHeater;
             this.ingreds = ingreds;
+            this.xp = xp;  // XP setzen
+        }
+
+        // Getter für XP
+        public float getXp() {
+            return xp;
         }
     }
 
-    // Rezeptregistrierung ohne Pinch
-    public void registerRecipe(ItemStack output, boolean requiresHeater, IIngredientMatcher... ingredMatchers) {
+    // Rezeptregistrierung mit XP
+    public void registerRecipe(ItemStack output, boolean requiresHeater, float xp, IIngredientMatcher... ingredMatchers) {
         // Zutaten von Varargs in eine Liste umwandeln
         List<IIngredientMatcher> ingredList = Arrays.asList(ingredMatchers);
-        recipes.put(output, new PotRecipe(output, requiresHeater, ingredList));
+        recipes.put(output, new PotRecipe(output, requiresHeater, ingredList, xp));  // XP übergeben
     }
 
     // Rezeptsuche ohne Pinch

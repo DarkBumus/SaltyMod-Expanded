@@ -85,22 +85,6 @@ public class ItemSaltFood extends ItemFood implements IEdible {
     }
 
     public ItemSaltFood addVariant(int meta, String unlocalizedName, String textureName,
-                                   int heal, float saturation, int stacksize, ItemStack container,
-                                   boolean isDogFood, boolean isAlwaysEdible, boolean hasGlint,
-                                   EnumAction useAction) {
-        return addVariant(meta, unlocalizedName, textureName, heal, saturation, stacksize,
-            container, isDogFood, isAlwaysEdible, hasGlint, useAction, null);
-    }
-
-    public ItemSaltFood addVariant(int meta, String unlocalizedName, String textureName,
-                                   int heal, float saturation, int stacksize,
-                                   boolean isDogFood, boolean isAlwaysEdible, boolean hasGlint,
-                                   EnumAction useAction) {
-        return addVariant(meta, unlocalizedName, textureName, heal, saturation, stacksize,
-            null, isDogFood, isAlwaysEdible, hasGlint, useAction, null);
-    }
-
-    public ItemSaltFood addVariant(int meta, String unlocalizedName, String textureName,
                                    int heal, float saturation, EnumAction useAction) {
         return addVariant(meta, unlocalizedName, textureName, heal, saturation, 64,
             null, false, false, false, useAction, null);
@@ -111,20 +95,6 @@ public class ItemSaltFood extends ItemFood implements IEdible {
                                    ProbablePotionEffect... effects) {
         return addVariant(meta, unlocalizedName, textureName, heal, saturation, 64,
             null, false, false, false, useAction, null, effects);
-    }
-
-    public ItemSaltFood addVariant(int meta, String unlocalizedName, String textureName,
-                                   int heal, float saturation, EnumAction useAction,
-                                   String customTooltip, ProbablePotionEffect... effects) {
-        return addVariant(meta, unlocalizedName, textureName, heal, saturation, 64,
-            null, false, false, false, useAction, customTooltip, effects);
-    }
-
-    public ItemSaltFood addVariant(int meta, String unlocalizedName, String textureName,
-                                   int heal, float saturation, boolean hasGlint, EnumAction useAction,
-                                   String customTooltip, ProbablePotionEffect... effects) {
-        return addVariant(meta, unlocalizedName, textureName, heal, saturation, 64,
-            null, false, false, hasGlint, useAction, customTooltip, effects);
     }
 
     @Override

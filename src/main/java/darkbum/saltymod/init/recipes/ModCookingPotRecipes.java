@@ -35,10 +35,11 @@ public class ModCookingPotRecipes {
 
         pot.registerRecipe(new ItemStack(Items.mushroom_stew),
             true,
+            1.0f,
             ore("blockMushroom"),
             ore("blockMushroom"));
 
-        if (Loader.isModLoaded("etfuturum")) {
+/*        if (Loader.isModLoaded("etfuturum")) {
             Item rabbit_cooked = GameRegistry.findItem("etfuturum", "rabbit_cooked");
             Item rabbit_stew = GameRegistry.findItem("etfuturum", "rabbit_stew");
             Item beetroot = GameRegistry.findItem("etfuturum", "beetroot");
@@ -62,6 +63,15 @@ public class ModCookingPotRecipes {
                     stack(new ItemStack(beetroot)));
             }
         }
+
+        pot.registerRecipe(new ItemStack(ModItems.egg_bowl),
+        true,
+        0.1f,
+        stack(new ItemStack(Moditems.salt_pinch)),
+        stack(new ItemStack(Items.egg),
+        stack(new ItemStack(Items.egg),
+        stack(new ItemStack(Items.egg),
+        stack(new ItemStack(Items.egg));
 
         pot.registerRecipe(new ItemStack(ModItems.salt_mushroom_stew),
             true,
@@ -332,6 +342,6 @@ public class ModCookingPotRecipes {
             stack(new ItemStack(ModItems.sugar_pinch)),
             stack(new ItemStack(Items.melon)),
             stack(new ItemStack(Items.melon)),
-            stack(new ItemStack(Items.melon)));
+            stack(new ItemStack(Items.melon)));*/
     }
 }

@@ -30,7 +30,7 @@ public class ModConfigurationBlocks {
     public static boolean enableApiary;
     public static int apiarySpeed;
 
-    public static boolean enableHeater;
+    public static boolean enableMachines;
 
     public static boolean enableStorageBlocks;
 
@@ -123,8 +123,8 @@ public class ModConfigurationBlocks {
             "Regulates the speed in ticks at which an Apiary will fill itself up, not including the bonuses from nearby apiaries and flowers."
                 + "\nThe lower the value, the higher the chance, per tick, that a slot will be filled, i.e. the quicker the Apiary will fill up.");
 
-        enableHeater = config.getBoolean(
-            "11-enableHeater",
+        enableMachines = config.getBoolean(
+            "11-enableMachines",
             categoryNameBlo,
             true,
             enableFeatures + "\nHeater"

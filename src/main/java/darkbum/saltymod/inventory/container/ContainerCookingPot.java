@@ -7,7 +7,6 @@ import darkbum.saltymod.tileentity.TileEntityCookingPot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
@@ -146,7 +145,7 @@ public class ContainerCookingPot extends Container {
             // Sonderbehandlung: Output-Slot → Schlüssel-Items abziehen
             if (slotIndex == SLOT_OUTPUT && slot instanceof SlotCookingPotOutputLocked) {
                 int amountTaken = itemStack.stackSize;
-                ((SlotCookingPotOutputLocked) slot).consumeKeys(amountTaken);
+                ((SlotCookingPotOutputLocked) slot).onConsumeKeys(amountTaken);
 
                 slot.onPickupFromSlot(player, stackInSlot);
 

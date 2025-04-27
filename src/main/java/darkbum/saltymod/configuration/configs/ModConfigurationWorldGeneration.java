@@ -25,6 +25,7 @@ public class ModConfigurationWorldGeneration {
     public static boolean enableSaltMarsh;
     public static int saltMarshBiomeID;
     public static int saltMarshBiomeWeight;
+    public static int saltMarshWetness;
     public static boolean saltMarshAdditionalSaltOre;
     public static int saltMarshSaltOreFrequency;
     public static int marshReedUpdateFrequency;
@@ -74,23 +75,30 @@ public class ModConfigurationWorldGeneration {
             "03-saltMarshBiomeWeight",
             categoryNameWorBio,
             10,
-            10,
-            10,
-            "Regulates the Generation chance of Salt Marsh Biomes");
+            1,
+            50,
+            "Regulates the generation chance of Salt Marsh Biomes");
+        saltMarshWetness = config.getInt(
+            "04-saltMarshWetness",
+            categoryNameWorBio,
+            2,
+            0,
+            20,
+            "Regulates the generation of extra lakes in the Salt Marsh Biome. The higher the number, the more lakes will generate. Careful, this is quite sensitive.");
         saltMarshAdditionalSaltOre = config.getBoolean(
-            "04-saltMarshAdditionalSaltOre",
+            "05-saltMarshAdditionalSaltOre",
             categoryNameWorBio,
             true,
             "Enables additional Salt Ore Generation in Salt Marsh Biomes");
         saltMarshSaltOreFrequency = config.getInt(
-            "05-saltMarshSaltOreFrequency",
+            "06-saltMarshSaltOreFrequency",
             categoryNameWorBio,
             4,
             1,
             10,
             "Regulates the frequency of the additional Salt Ore Generation in Salt Marsh Biomes");
         marshReedUpdateFrequency = config.getInt(
-            "06-marshReedUpdateFrequency",
+            "07-marshReedUpdateFrequency",
             categoryNameWorBio,
             25,
             1,
@@ -145,9 +153,9 @@ public class ModConfigurationWorldGeneration {
         brickmakerCampFrequency = config.getInt(
             "07-brickmakerCampFrequency",
             categoryNameWorStr,
-            300,
+            20,
             10,
-            1000,
-            "Regulates the frequency of the Brickmaker Camp Generation in Salt Marsh Biomes");
+            50,
+            "Regulates the frequency of the Brickmaker Camp Generation in Salt Marsh Biomes. The higher the number, the rarer the spawn.");
     }
 }

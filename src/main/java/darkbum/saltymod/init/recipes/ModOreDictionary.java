@@ -170,15 +170,15 @@ public class ModOreDictionary {
         OreDictionary.registerOre("itemFood", ModItems.saltwort_pie);
         OreDictionary.registerOre("itemFood", ModItems.muffin);
 
+        OreDictionary.registerOre("itemCoal", new ItemStack(Items.coal, 1, 0));
+        OreDictionary.registerOre("itemCoal", new ItemStack(Items.coal, 1, 1));
+
+
         if (ModConfigurationItems.mudArmorBeeResistant) {
-            OreDictionary
-                .registerOre("beeResistant", new ItemStack(ModItems.mud_helmet, 1, OreDictionary.WILDCARD_VALUE));
-            OreDictionary
-                .registerOre("beeResistant", new ItemStack(ModItems.mud_chestplate, 1, OreDictionary.WILDCARD_VALUE));
-            OreDictionary
-                .registerOre("beeResistant", new ItemStack(ModItems.mud_leggings, 1, OreDictionary.WILDCARD_VALUE));
-            OreDictionary
-                .registerOre("beeResistant", new ItemStack(ModItems.mud_boots, 1, OreDictionary.WILDCARD_VALUE));
+            OreDictionary.registerOre("beeResistant", new ItemStack(ModItems.mud_helmet, 1, OreDictionary.WILDCARD_VALUE));
+            OreDictionary.registerOre("beeResistant", new ItemStack(ModItems.mud_chestplate, 1, OreDictionary.WILDCARD_VALUE));
+            OreDictionary.registerOre("beeResistant", new ItemStack(ModItems.mud_leggings, 1, OreDictionary.WILDCARD_VALUE));
+            OreDictionary.registerOre("beeResistant", new ItemStack(ModItems.mud_boots, 1, OreDictionary.WILDCARD_VALUE));
         }
     }
 }

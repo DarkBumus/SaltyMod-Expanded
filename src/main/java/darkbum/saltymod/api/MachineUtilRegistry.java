@@ -5,6 +5,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.block.Block;
+import net.minecraft.entity.item.EntityXPOrb;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -273,5 +275,46 @@ public class MachineUtilRegistry {
             a.getItem() == b.getItem() &&
             a.getItemDamage() == b.getItemDamage() &&
             Objects.equals(a.getTagCompound(), b.getTagCompound());
+    }
+
+    public static void spawnXp(World world, double x, double y, double z, float xpAmount) {
+        if (world == null || world.isRemote || xpAmount <= 0) return;
+
+        int xp = Math.round(xpAmount);
+
+        EntityPlayer player = world.getClosestPlayer(x, y, z, 5.0D);
+
+        double baseX = x + 0.5D;
+        double baseY = y + 0.5D;
+        double baseZ = z + 0.5D;
+
+        boolean spawnAtPlayer = player != null;
+
+        if (spawnAtPlayer) {
+            baseX = player.posX;
+            baseY = player.posY + 0.5D;
+            baseZ = player.posZ;
+        }
+
+        Random rand = world.rand;  // Nutze Minecraft's Random-Instanz
+
+        while (xp > 0) {
+            int split = EntityXPOrb.getXPSplit(xp);
+            xp -= split;
+
+            // Leichte Zufallsbewegung
+            double offsetX = (rand.nextFloat() - 0.5D) * 0.5D;  // ±0.25 Blöcke
+            double offsetY = (rand.nextFloat() - 0.5D) * 0.25D; // ±0.125 Blöcke
+            double offsetZ = (rand.nextFloat() - 0.5D) * 0.5D;
+
+            EntityXPOrb orb = new EntityXPOrb(world, baseX + offsetX, baseY + offsetY, baseZ + offsetZ, split);
+
+            // Optional: Noch sanfte Startbewegung
+            orb.motionX = (rand.nextDouble() - 0.5D) * 0.02D; // Sehr leichte Bewegung
+            orb.motionY = (rand.nextDouble()) * 0.02D;
+            orb.motionZ = (rand.nextDouble() - 0.5D) * 0.02D;
+
+            world.spawnEntityInWorld(orb);
+        }
     }
 }

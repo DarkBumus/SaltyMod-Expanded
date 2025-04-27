@@ -18,6 +18,8 @@ import net.minecraft.tileentity.TileEntity;
 import java.util.ArrayList;
 import java.util.List;
 
+import static darkbum.saltymod.api.MachineUtilRegistry.spawnXp;
+
 public class TileEntityCookingPot extends TileEntity implements ISidedInventory {
 
     private String inventoryName;
@@ -54,16 +56,16 @@ public class TileEntityCookingPot extends TileEntity implements ISidedInventory 
     @Override
     public ItemStack decrStackSize(int index, int count) {
         if (inventory[index] != null) {
+            ItemStack itemstack;
             if (inventory[index].stackSize <= count) {
-                ItemStack itemstack = inventory[index];
+                itemstack = inventory[index];
                 inventory[index] = null;
-                return itemstack;
             } else {
-                ItemStack itemstack = inventory[index].splitStack(count);
+                itemstack = inventory[index].splitStack(count);
                 if (inventory[index].stackSize == 0)
                     inventory[index] = null;
-                return itemstack;
             }
+            return itemstack;
         }
         return null;
     }
@@ -171,17 +173,6 @@ public class TileEntityCookingPot extends TileEntity implements ISidedInventory 
         return currentStack.stackSize + output.stackSize <= currentStack.getMaxStackSize();
     }
 
-/*    private boolean canAcceptOutput(ItemStack currentStack, ItemStack output) {
-        if (output == null) return true;
-        if (currentStack == null) return true;
-
-        if (!currentStack.isItemEqual(output)) return false;
-
-        // Hier erlauben wir das "Stapelverhalten", auch wenn das Item normalerweise nicht stackbar ist
-        int maxCustomStackSize = 16; // Oder ein Wert, den du pro Slot selbst definieren willst
-        return currentStack.stackSize + output.stackSize <= maxCustomStackSize;
-    }*/
-
     public void cookItems() {
         List<ItemStack> ingreds = new ArrayList<>();
 
@@ -206,6 +197,7 @@ public class TileEntityCookingPot extends TileEntity implements ISidedInventory 
             }
         }
 
+        // Reduziere die Zutatenmengen im Inventar
         for (int i = 0; i < 6; i++) {
             if (inventory[i] != null) {
                 inventory[i].stackSize--;
@@ -220,6 +212,10 @@ public class TileEntityCookingPot extends TileEntity implements ISidedInventory 
             if (inventory[7].stackSize <= 0) {
                 inventory[7] = null;
             }
+        }
+
+        if (recipe.getXp() > 0 && worldObj != null && !worldObj.isRemote) {
+            spawnXp(worldObj, xCoord, yCoord, zCoord, recipe.getXp());
         }
     }
 
@@ -237,7 +233,7 @@ public class TileEntityCookingPot extends TileEntity implements ISidedInventory 
         for (int i = 0; i < itemList.tagCount(); i++) {
             NBTTagCompound itemTag = itemList.getCompoundTagAt(i);
             int slot = itemTag.getByte("Slot") & 255;
-            if (slot >= 0 && slot < inventory.length) {
+            if (slot < inventory.length) {
                 inventory[slot] = ItemStack.loadItemStackFromNBT(itemTag);
             }
         }

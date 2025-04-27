@@ -2,15 +2,16 @@ package darkbum.saltymod.world.biome;
 
 import java.util.Random;
 
+import darkbum.saltymod.world.worldgen.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenReed;
 import net.minecraft.world.gen.feature.WorldGenWaterlily;
 
+
 import darkbum.saltymod.configuration.configs.ModConfigurationWorldGeneration;
 import darkbum.saltymod.init.ModBlocks;
-import darkbum.saltymod.world.generator.SaltLakeGenerator;
 
 public class SaltMarshDecorator {
 
@@ -18,16 +19,16 @@ public class SaltMarshDecorator {
         ModBlocks.salt_ore,
         ModConfigurationWorldGeneration.saltoreVeinSize,
         Blocks.stone);
-    private final SaltLakeGenerator saltLakeGenerator = new SaltLakeGenerator();
-    private final WorldGenClayMod worldGenClayMod = new WorldGenClayMod(20);
+    private final WorldGenLakesMod worldGenLakesMod = new WorldGenLakesMod(Blocks.water, ModBlocks.mineral_mud, 4, 62, 62);
+    private final WorldGenMineralMud worldGenMineralMud = new WorldGenMineralMud(5);
     private final WorldGenSaltTree worldGenSaltTree = new WorldGenSaltTree(false, 3);
     private final WorldGenSaltLogs worldGenSaltLogs = new WorldGenSaltLogs(false, 3);
     private final WorldGenSaltBigTree worldGenSaltBigTree = new WorldGenSaltBigTree(false, false);
     private final WorldGenSaltMarshPlants worldGenSaltMarshPlants = new WorldGenSaltMarshPlants(64);
     private final WorldGenSaltwort worldGenSaltwort = new WorldGenSaltwort(32);
     private final WorldGenAlliumMod worldGenAlliumMod = new WorldGenAlliumMod(16);
+    private final WorldGenBrickmakerCamp worldGenBrickmakerCamp = new WorldGenBrickmakerCamp();
     private final WorldGenMarshReeds worldGenMarshReeds = new WorldGenMarshReeds();
-
     private final WorldGenWaterlily worldGenWaterlily = new WorldGenWaterlily();
     private final WorldGenReed worldGenReed = new WorldGenReed();
 
@@ -44,36 +45,16 @@ public class SaltMarshDecorator {
             }
         }
 
-        /*
-         * if(ModConfiguration.enableSaltLakes) {
-         * for (pass = 0; pass < 7; ++pass) {
-         * saltLakeGenerator.generateOverworld(world, rand, x + offsetXZ(rand), z + offsetXZ(rand));
-         * }
-         * }
-         */
-
-        for (pass = 0; pass < 5; ++pass) {
+        for (pass = 0; pass < ModConfigurationWorldGeneration.saltMarshWetness; ++pass) {
             passX = x + offsetXZ(rand);
             passZ = z + offsetXZ(rand);
-            worldGenClayMod.generate(world, rand, passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ);
+            worldGenLakesMod.generate(world, rand, passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ);
         }
 
-        passX = x + offsetXZ(rand);
-        passZ = z + offsetXZ(rand);
-        if (rand.nextInt(3) == 0) {
-            worldGenSaltTree.generate(world, rand, passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ);
-        }
-
-        passX = x + offsetXZ(rand);
-        passZ = z + offsetXZ(rand);
-        if (rand.nextInt(3) == 0) {
-            worldGenSaltLogs.generate(world, rand, passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ);
-        }
-
-        passX = x + offsetXZ(rand);
-        passZ = z + offsetXZ(rand);
-        if (rand.nextInt(20) == 0) {
-            worldGenSaltBigTree.generate(world, rand, passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ);
+        for (pass = 0; pass < 150; ++pass) {
+            passX = x + offsetXZ(rand);
+            passZ = z + offsetXZ(rand);
+            worldGenMineralMud.generate(world, rand, passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ);
         }
 
         for (pass = 0; pass < 5; ++pass) {
@@ -92,6 +73,32 @@ public class SaltMarshDecorator {
         passZ = z + offsetXZ(rand);
         worldGenAlliumMod.generate(world, rand, passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ);
 
+        if(ModConfigurationWorldGeneration.enableBrickmakerCamp) {
+            passX = x + offsetXZ(rand);
+            passZ = z + offsetXZ(rand);
+            if (rand.nextInt(ModConfigurationWorldGeneration.brickmakerCampFrequency) == 0) {
+                worldGenBrickmakerCamp.generate(world, rand, passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ);
+            }
+        }
+
+        passX = x + offsetXZ(rand);
+        passZ = z + offsetXZ(rand);
+        if (rand.nextInt(5) == 0) {
+            worldGenSaltTree.generate(world, rand, passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ);
+        }
+
+        passX = x + offsetXZ(rand);
+        passZ = z + offsetXZ(rand);
+        if (rand.nextInt(5) == 0) {
+            worldGenSaltLogs.generate(world, rand, passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ);
+        }
+
+        passX = x + offsetXZ(rand);
+        passZ = z + offsetXZ(rand);
+        if (rand.nextInt(30) == 0) {
+            worldGenSaltBigTree.generate(world, rand, passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ);
+        }
+
         for (pass = 0; pass < 4; ++pass) {
             passX = x + offsetXZ(rand);
             passZ = z + offsetXZ(rand);
@@ -109,5 +116,4 @@ public class SaltMarshDecorator {
             worldGenReed.generate(world, rand, passX, world.getTopSolidOrLiquidBlock(passX, passZ), passZ);
         }
     }
-
 }

@@ -9,7 +9,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 
-public class BreakHarvestDropsEventHandler {
+public class BlockHarvestDropsEventHandler {
 
     @SubscribeEvent
     public void blockHarvestDrops1(BlockEvent.HarvestDropsEvent event) {

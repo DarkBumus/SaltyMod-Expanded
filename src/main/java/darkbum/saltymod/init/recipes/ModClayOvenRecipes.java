@@ -14,6 +14,7 @@ public class ModClayOvenRecipes {
 
         oven.registerRecipe(new ItemStack(ModItems.chocolate_pie),
             true,
+            1.0f,
             stack(new ItemStack(Items.dye, 1, 3)),
             stack(new ItemStack(Items.dye, 1, 3)),
             stack(new ItemStack(ModItems.dough)),

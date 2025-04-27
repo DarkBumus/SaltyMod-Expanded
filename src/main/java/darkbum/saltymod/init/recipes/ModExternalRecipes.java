@@ -59,8 +59,7 @@ public class ModExternalRecipes {
                 OreDictionary.registerOre("itemFood", StriderFlankRaw);
                 OreDictionary.registerOre("itemFood", StriderFlankCooked);
 
-                GameRegistry.addShapelessRecipe(
-                    new ItemStack(ModItems.strider, 1, 2),
+                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.strider, 1, 2),
                     new ItemStack(ModItems.salt_pinch),
                     new ItemStack(StriderFlankCooked));
             }
@@ -188,7 +187,6 @@ public class ModExternalRecipes {
                 }
             }
             if (beetroot_seeds != null) {
-
                 if (ModConfigurationBlocks.enableStorageBlocks) {
                     GameRegistry.addShapelessRecipe(
                         new ItemStack(beetroot_seeds, 9),
@@ -319,13 +317,10 @@ public class ModExternalRecipes {
                     new ItemStack(ModBlocks.salt_flower, 1, 0));
             }
             if (honeycomb_block != null) {
-
             }
             if (beehive != null) {
-
             }
             if ((honeycomb_block != null) && (beehive != null)) {
-
                 if (ModConfigurationModCompatibility.enableEFRHoneyCompatibility) {
                     GameRegistry
                         .addRecipe(new ItemStack(honeycomb_block), "xx", "xx", 'x', new ItemStack(ModItems.waxcomb));

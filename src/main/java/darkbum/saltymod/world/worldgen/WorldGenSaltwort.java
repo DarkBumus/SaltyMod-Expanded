@@ -1,4 +1,4 @@
-package darkbum.saltymod.world.biome;
+package darkbum.saltymod.world.worldgen;
 
 import java.util.Random;
 
@@ -24,7 +24,7 @@ public class WorldGenSaltwort extends WorldGenerator {
             if (world.isAirBlock(i1, j1, k1) && (world.getBlock(i1, j1 - 1, k1) == ModBlocks.salt_dirt
                 || world.getBlock(i1, j1 - 1, k1) == ModBlocks.salt_dirt)) {
 
-                world.setBlock(i1, j1, k1, ModBlocks.saltworts, random.nextInt(5), 2);
+                world.setBlock(i1, j1, k1, ModBlocks.saltworts, random.nextInt(5), 3);
 
             }
 

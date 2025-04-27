@@ -61,28 +61,32 @@ public class OvenbakingRecipe {
         public final ItemStack output;
         public final boolean requiresHeater;
         public final List<IIngredientMatcher> ingreds;
+        public final float xp; // ✨ Neues Feld für XP ✨
 
-        // Reihenfolge geändert: Output, Heater?, Inputs
-        public OvenRecipe(ItemStack output, boolean requiresHeater, List<IIngredientMatcher> ingreds) {
+        // Angepasster Konstruktor mit XP
+        public OvenRecipe(ItemStack output, boolean requiresHeater, List<IIngredientMatcher> ingreds, float xp) {
             this.output = output;
             this.requiresHeater = requiresHeater;
             this.ingreds = ingreds;
+            this.xp = xp;
+        }
+
+        public float getXp() {
+            return xp;
         }
     }
 
-    // Rezeptregistrierung ohne Pinch
-    public void registerRecipe(ItemStack output, boolean requiresHeater, IIngredientMatcher... ingredMatchers) {
-        // Zutaten von Varargs in eine Liste umwandeln
+    // ✨ Neue Version der Registrierung: inkl. XP ✨
+    public void registerRecipe(ItemStack output, boolean requiresHeater, float xp, IIngredientMatcher... ingredMatchers) {
         List<IIngredientMatcher> ingredList = Arrays.asList(ingredMatchers);
-        recipes.put(output, new OvenRecipe(output, requiresHeater, ingredList));
+        recipes.put(output, new OvenRecipe(output, requiresHeater, ingredList, xp));
     }
 
-    // Rezeptsuche ohne Pinch
+    // Rezeptsuche bleibt wie sie ist
     public OvenRecipe getRecipeFor(List<ItemStack> ingreds) {
         for (Map.Entry<ItemStack, OvenRecipe> entry : recipes.entrySet()) {
             OvenRecipe recipe = entry.getValue();
 
-            // Rezept muss die gleiche Anzahl an Zutaten wie die Eingabewerte haben
             if (recipe.ingreds.size() != ingreds.size()) {
                 continue;
             }
