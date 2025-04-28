@@ -141,6 +141,7 @@ public class ModItems {
     public static Item saltwort_pie;
     public static Item fermented_saltwort;
     public static Item fermented_fern;
+    public static Item fermented_marsh_reeds;
     public static Item fermented_mushroom;
     public static Item pickled_calamari;
     public static Item pickled_beetroot;
@@ -508,6 +509,10 @@ public class ModItems {
             .addVariant(0, "fermented_fern", "fermented_fern", 4, 0.7f, 1, new ItemStack(Items.glass_bottle), false, false, false, drink, null,
                 new ProbablePotionEffect(health_boost.id, 1200, 1),
                 new ProbablePotionEffect(resistance.id, 900, 1));
+        fermented_marsh_reeds = new ItemSaltFood("fermented_marsh_reeds").setCreativeTab(tab)
+            .addVariant(0, "fermented_marsh_reeds", "fermented_marsh_reeds", 4, 0.7f, 1, new ItemStack(Items.glass_bottle), false, false, false, drink, null,
+                new ProbablePotionEffect(health_boost.id, 1200, 1),
+                new ProbablePotionEffect(resistance.id, 900, 1));
         fermented_mushroom = new ItemSaltFood("fermented_mushroom").setCreativeTab(tab)
             .addVariant(0, "fermented_mushroom", "fermented_mushroom", 4, 0.7f, 1, new ItemStack(Items.glass_bottle), false, false, false, drink, null,
                 new ProbablePotionEffect(health_boost.id, 1200, 1),
@@ -712,6 +717,7 @@ public class ModItems {
         ConditionalRegistrar.registerItem(saltwort_pie, "saltwort_pie", ModConfigurationItems.enableSaltwortPie);
         ConditionalRegistrar.registerItem(fermented_saltwort, "fermented_saltwort", ModConfigurationItems.enableFermentedSaltwort);
         ConditionalRegistrar.registerItem(fermented_fern, "fermented_fern", ModConfigurationItems.enableFermentedFern);
+        ConditionalRegistrar.registerItem(fermented_marsh_reeds, "fermented_marsh_reeds", ModConfigurationItems.enableFermentedFern);
         ConditionalRegistrar.registerItem(fermented_mushroom, "fermented_mushroom", ModConfigurationItems.enableFermentedMushroom);
         ConditionalRegistrar.registerItem(pickled_calamari, "pickled_calamari", ModConfigurationItems.enablePickledCalamari, ModConfigurationItems.enableCalamari);
         ConditionalRegistrar.registerItem(pickled_beetroot, "pickled_beetroot", ModConfigurationModCompatibility.enablePickledBeetroot, Loader.isModLoaded("etfuturum"));

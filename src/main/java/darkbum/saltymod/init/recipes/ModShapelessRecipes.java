@@ -1,7 +1,7 @@
 package darkbum.saltymod.init.recipes;
 
 import darkbum.saltymod.api.ConditionalRegistrar;
-import darkbum.saltymod.configuration.configs.ModConfigurationVanillaChanges;
+import darkbum.saltymod.configuration.configs.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -9,9 +9,6 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import darkbum.saltymod.configuration.configs.ModConfigurationBlocks;
-import darkbum.saltymod.configuration.configs.ModConfigurationItems;
-import darkbum.saltymod.configuration.configs.ModConfigurationModCompatibility;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 
@@ -114,6 +111,10 @@ public class ModShapelessRecipes {
             new boolean[]{ModConfigurationItems.enableHoney},
             new ItemStack(ModItems.bee_larva),
             new ItemStack(ModItems.regal_bee, 1, 18));
+        ConditionalRegistrar.addShapelessRecipe(new ItemStack(ModItems.boreal_bee, 1, 0),
+            new boolean[]{ModConfigurationItems.enableHoney},
+            new ItemStack(ModItems.bee_larva),
+            new ItemStack(ModItems.boreal_bee, 1, 18));
         ConditionalRegistrar.addShapelessRecipe(new ItemStack(ModItems.royal_jelly),
             new boolean[]{ModConfigurationItems.enableHoney},
             new ItemStack(ModItems.honey_bee, 1, 18));
@@ -123,6 +124,11 @@ public class ModShapelessRecipes {
         ConditionalRegistrar.addShapelessRecipe(new ItemStack(ModItems.royal_jelly),
             new boolean[]{ModConfigurationItems.enableHoney},
             new ItemStack(ModItems.regal_bee, 1, 18));
+
+        ConditionalRegistrar.addShapelessRecipe(new ItemStack(Items.string),
+            new boolean[]{ModConfigurationWorldGeneration.enableSaltMarsh},
+            new ItemStack(ModItems.marsh_reeds_grass),
+            new ItemStack(ModItems.marsh_reeds_grass));
 
         ConditionalRegistrar.addShapelessOreRecipe(new ItemStack(ModItems.mineral_mud_ball),
                 new boolean[]{ModConfigurationItems.enableMineralMud},
@@ -364,14 +370,6 @@ public class ModShapelessRecipes {
             new ItemStack(ModItems.saltwort),
             new ItemStack(ModItems.saltwort),
             new ItemStack(ModItems.saltwort));
-        ConditionalRegistrar.addShapelessRecipe(new ItemStack(ModItems.fermented_saltwort),
-            new ItemStack(Items.ghast_tear),
-            new ItemStack(Items.glass_bottle),
-            new ItemStack(ModItems.saltwort),
-            new ItemStack(ModItems.saltwort),
-            new ItemStack(ModItems.saltwort),
-            new ItemStack(ModItems.saltwort),
-            new ItemStack(ModItems.saltwort));
         ConditionalRegistrar.addShapelessRecipe(new ItemStack(ModItems.fermented_fern),
             new ItemStack(Items.ghast_tear),
             new ItemStack(Items.glass_bottle),
@@ -380,6 +378,14 @@ public class ModShapelessRecipes {
             new ItemStack(Blocks.tallgrass, 1, 2),
             new ItemStack(Blocks.tallgrass, 1, 2),
             new ItemStack(Blocks.tallgrass, 1, 2));
+        ConditionalRegistrar.addShapelessRecipe(new ItemStack(ModItems.fermented_marsh_reeds),
+            new ItemStack(Items.ghast_tear),
+            new ItemStack(Items.glass_bottle),
+            new ItemStack(ModItems.marsh_reeds_grass),
+            new ItemStack(ModItems.marsh_reeds_grass),
+            new ItemStack(ModItems.marsh_reeds_grass),
+            new ItemStack(ModItems.marsh_reeds_grass),
+            new ItemStack(ModItems.marsh_reeds_grass));
         ConditionalRegistrar.addShapelessOreRecipe(new ItemStack(ModItems.fermented_mushroom),
             new ItemStack(Items.ghast_tear),
             new ItemStack(Items.glass_bottle),

@@ -34,6 +34,7 @@ public class ModOreDictionary {
         OreDictionary.registerOre("itemMilk", Items.milk_bucket);
         OreDictionary.registerOre("itemMilk", ModItems.powdered_milk);
         OreDictionary.registerOre("materialWaxcomb", ModItems.waxcomb);
+        OreDictionary.registerOre("materialWax", ModItems.waxcomb);
         OreDictionary.registerOre("itemSweetener", Items.sugar);
         OreDictionary.registerOre("itemSweetener", ModItems.honeycomb);
         OreDictionary.registerOre("itemHoney", ModItems.honeycomb);

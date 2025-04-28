@@ -37,6 +37,7 @@ tile.salt_dirt_lite.name=Light Salt Dirt
 tile.salt_dirt_lake.name=Salt Lake Bottom
 tile.salt_dirt.name=Salt Dirt
 tile.salt_dirt.mess=Any more salt and you might aswell sprinke rat poison on it...
+tile.reeds_block.name=Marsh Reeds Bale
 tile.mineral_mud.name=Mineral Mud
 tile.wet_mud_brick.name=Wet Mud Bricks
 tile.dry_mud_brick.name=Mud Bricks
@@ -249,6 +250,7 @@ item.saltwort_pie.name=Saltwort Pie
 
 item.fermented_saltwort.name=Fermented Saltwort
 item.fermented_fern.name=Fermented Fern
+item.fermented_marsh_reeds.name=Fermented Marsh Reeds
 item.fermented_mushroom.name=Fermented Mushroom
 item.pickled_calamari.name=Pickled Calamari
 item.pickled_beetroot.name=Pickled Beetroot

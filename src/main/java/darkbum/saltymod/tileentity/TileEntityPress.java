@@ -135,7 +135,7 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
 
     @SideOnly(Side.CLIENT)
     public int getPressProgressScale(int scale) {
-        return pressingTime * scale / 125;
+        return pressingTime * scale / 200;
     }
 
     public boolean isRunning() {
@@ -151,7 +151,7 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
         if (!worldObj.isRemote) {
             if (canRun()) {
                 pressingTime++;
-                if (pressingTime >= 125) {
+                if (pressingTime >= 200) {
                     pressingTime = 0;
                     pressItems();
                     updated = true;

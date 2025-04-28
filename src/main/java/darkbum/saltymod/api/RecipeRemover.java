@@ -11,9 +11,7 @@ import java.util.Iterator;
 public class RecipeRemover {
 
     public static void removeFirstRecipeFor(Item item, int meta) {
-        Iterator<IRecipe> it = CraftingManager.getInstance()
-            .getRecipeList()
-            .iterator();
+        Iterator<IRecipe> it = CraftingManager.getInstance().getRecipeList().iterator();
         while (it.hasNext()) {
             IRecipe recipe = it.next();
             if (recipe != null) {
@@ -41,9 +39,7 @@ public class RecipeRemover {
 
 
     public static void removeAllRecipesFor(Item item, int meta) {
-        Iterator<IRecipe> it = CraftingManager.getInstance()
-            .getRecipeList()
-            .iterator();
+        Iterator<IRecipe> it = CraftingManager.getInstance().getRecipeList().iterator();
         while (it.hasNext()) {
             IRecipe recipe = it.next();
             ItemStack output = recipe.getRecipeOutput();
@@ -73,9 +69,7 @@ public class RecipeRemover {
 
 
     public static void removeNumberedRecipesFor(Item item, int meta, int loopCount) {
-        Iterator<IRecipe> it = CraftingManager.getInstance()
-            .getRecipeList()
-            .iterator();
+        Iterator<IRecipe> it = CraftingManager.getInstance().getRecipeList().iterator();
         int removed = 0;
         while (it.hasNext() && removed < loopCount) {
             IRecipe recipe = it.next();

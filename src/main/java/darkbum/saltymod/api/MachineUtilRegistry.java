@@ -3,6 +3,7 @@ package darkbum.saltymod.api;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import darkbum.saltymod.init.ModBlocks;
+import darkbum.saltymod.init.ModExternalItemLoader;
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityXPOrb;
@@ -25,18 +26,19 @@ public class MachineUtilRegistry {
     public static final Set<ItemStack> validSpadeItems = new HashSet<>();
 
     static {
+
+        Block campfire = ModExternalItemLoader.campfireBackportBlocks.get("campfire");
+        Block soul_campfire = ModExternalItemLoader.campfireBackportBlocks.get("soul_campfire");
+
         // Heater Registry
         validHeaterBlocks.add(Blocks.flowing_lava);
         validHeaterBlocks.add(Blocks.lava);
         validHeaterBlocks.add(Blocks.fire);
         validHeaterBlocks.add(Blocks.lit_furnace);
         validHeaterBlocks.add(ModBlocks.lit_stove);
-        if (Loader.isModLoaded("campfirebackport")) {
-            Block campfire = GameRegistry.findBlock("campfirebackport", "campfire");
-            Block soulCampfire = GameRegistry.findBlock("campfirebackport", "soul_campfire");
-            if (campfire != null) validHeaterBlocks.add(campfire);
-            if (soulCampfire != null) validHeaterBlocks.add(soulCampfire);
-        }
+        if (campfire != null) validHeaterBlocks.add(campfire);
+        if (soul_campfire != null) validHeaterBlocks.add(soul_campfire);
+
 
         // Pinch Items
         registerPinchItem(new ItemStack(ModItems.salt_pinch));
@@ -230,13 +232,13 @@ public class MachineUtilRegistry {
                 if (this == COD || this == SALMON || this == TAILOR) {
                     adjustedChance += 10;
                 }
-                if ( this == CLOWNFISH || this == PUFFERFISH) {
+                if (this == CLOWNFISH || this == PUFFERFISH) {
                     adjustedChance -= 15;
                 }
             }
 
             if (biome == BiomeGenBase.ocean || biome == BiomeGenBase.frozenOcean || biome == BiomeGenBase.deepOcean) {
-                if ( this == CLOWNFISH || this == PUFFERFISH) {
+                if (this == CLOWNFISH || this == PUFFERFISH) {
                     adjustedChance += 10;
                 }
                 if (this == COD || this == SALMON || this == TAILOR) {

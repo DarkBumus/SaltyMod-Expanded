@@ -2,7 +2,9 @@ package darkbum.saltymod.init.recipes;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
+import darkbum.saltymod.api.ConditionalRegistrar;
 import darkbum.saltymod.api.PotcookingRecipe;
+import darkbum.saltymod.configuration.configs.ModConfigurationBlocks;
 import darkbum.saltymod.configuration.configs.ModConfigurationItems;
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.init.Blocks;
@@ -31,13 +33,14 @@ public class ModCookingPotRecipes {
      */
 
     public static void init() {
-        PotcookingRecipe pot = PotcookingRecipe.cooking();
 
-        pot.registerRecipe(new ItemStack(Items.mushroom_stew),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(Items.mushroom_stew),
+            new boolean[]{ModConfigurationBlocks.enableMachines},
             true,
             1.0f,
             ore("blockMushroom"),
             ore("blockMushroom"));
+
 
 /*        if (Loader.isModLoaded("etfuturum")) {
             Item rabbit_cooked = GameRegistry.findItem("etfuturum", "rabbit_cooked");

@@ -2,6 +2,7 @@ package darkbum.saltymod;
 
 import java.io.File;
 
+import darkbum.saltymod.init.ModExternalItemLoader;
 import darkbum.saltymod.zzzdeprecated.DeprecatedRecipes;
 import net.minecraft.util.EnumChatFormatting;
 
@@ -87,6 +88,7 @@ public class SaltyMod {
     public void postInit(FMLPostInitializationEvent event) {
         config.postInit();
         proxy.postInit(event);
+        ModExternalItemLoader.loadAll();
         ModRemovedRecipes.init();
         ModShapedRecipes.init();
         ModShapelessRecipes.init();
@@ -101,8 +103,8 @@ public class SaltyMod {
                          * && new ComparableVersion(Loader.instance().getIndexedModList().get("etfuturum").
                          * getProcessedVersion().getVersionString()).compareTo(new ComparableVersion("2.4.5")) <= 0
                          */) {
-            System.out.println("deepslate ore registered");
             ganymedes01.etfuturum.api.DeepslateOreRegistry.addOre(ModBlocks.salt_ore, ModBlocks.deepslate_salt_ore);
+            System.out.println("Deepslate Ore registered");
         }
         if (Loader.isModLoaded("NotEnoughItems")) {
             new NEIConfig().loadConfig();
@@ -128,10 +130,10 @@ public class SaltyMod {
  * - Try to set up Marsh Reeds as a two-tall plant?
  * - Add Press/Cooking Pot/Clay Oven to NEI
  * - Slimes! [LATER]
- * - Farmer's Delight foods?
  * - Finish the Recipes
  * - Cookies (Sweet Berry, Chorus Fruit)
  * - Nether Salad
  * - Meat Stews
  * - Rice, Tea, Brewing [LATER]
+ * - Bee Nests Flammability & Compaction
  */

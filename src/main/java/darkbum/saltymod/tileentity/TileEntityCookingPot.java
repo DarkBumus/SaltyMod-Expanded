@@ -109,7 +109,7 @@ public class TileEntityCookingPot extends TileEntity implements ISidedInventory 
 
     @SideOnly(Side.CLIENT)
     public int getCookProgressScale(int scale) {
-        return cookingTime * scale / 125;
+        return cookingTime * scale / 200;
     }
 
     public boolean isRunning() {
@@ -124,7 +124,7 @@ public class TileEntityCookingPot extends TileEntity implements ISidedInventory 
         if (!worldObj.isRemote) {
             if (canRun()) {
                 cookingTime++;
-                if (cookingTime >= 125) {
+                if (cookingTime >= 200) {
                     cookingTime = 0;
                     cookItems();
                     updated = true;

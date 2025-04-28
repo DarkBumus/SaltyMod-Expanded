@@ -108,7 +108,7 @@ public class TileEntityClayOven extends TileEntity implements ISidedInventory {
 
     @SideOnly(Side.CLIENT)
     public int getBakeProgressScale(int scale) {
-        return bakingTime * scale / 125;
+        return bakingTime * scale / 200;
     }
 
     public boolean isRunning() {
@@ -123,7 +123,7 @@ public class TileEntityClayOven extends TileEntity implements ISidedInventory {
         if (!worldObj.isRemote) {
             if (canRun()) {
                 bakingTime++;
-                if (bakingTime >= 125) {
+                if (bakingTime >= 200) {
                     bakingTime = 0;
                     bakeItems();
                     updated = true;
