@@ -19,13 +19,15 @@ import darkbum.saltymod.common.CommonProxy;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.network.SaltwortMessage;
 
+import static darkbum.saltymod.init.ModItems.*;
+
 public class ItemSaltwort extends ItemFood {
 
     public ItemSaltwort(String name, CreativeTabs tab) {
         super(1, 0.3F, false);
         setUnlocalizedName(name);
         setCreativeTab(tab);
-        setPotionEffect(10, 5, 0, 0.8F);
+        setPotionEffect(regeneration, 5, 1, one_third);
     }
 
     @Override
@@ -64,16 +66,15 @@ public class ItemSaltwort extends ItemFood {
             item.stackSize--;
             return true;
         }
-        if (world.getTileEntity(x, y, z) != null && world.getTileEntity(x, y, z) instanceof TileEntityFlowerPot) {
-            TileEntityFlowerPot te = (TileEntityFlowerPot) world.getTileEntity(x, y, z);
-            if (te.getFlowerPotItem() == null) {
+        if (world.getTileEntity(x, y, z) != null && world.getTileEntity(x, y, z) instanceof TileEntityFlowerPot tileEntityFlowerPot) {
+            if (tileEntityFlowerPot.getFlowerPotItem() == null) {
                 if (!world.isRemote) {
                     int i = world.rand.nextInt(2);
-                    te.func_145964_a(Item.getItemFromBlock(ModBlocks.saltworts), i);
+                    tileEntityFlowerPot.func_145964_a(Item.getItemFromBlock(ModBlocks.saltworts), i);
                     CommonProxy.network.sendToAllAround(
                         new SaltwortMessage(x, y, z, i),
                         new NetworkRegistry.TargetPoint(world.provider.dimensionId, x, y, z, 256.0D));
-                    te.markDirty();
+                    tileEntityFlowerPot.markDirty();
                     world.markBlockForUpdate(x, y, z);
                 }
                 item.stackSize--;

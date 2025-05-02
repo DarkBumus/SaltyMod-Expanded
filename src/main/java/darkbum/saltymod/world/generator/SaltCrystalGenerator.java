@@ -7,7 +7,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 
 import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.Loader;
-import darkbum.saltymod.configuration.configs.ModConfigurationModCompatibility;
+import darkbum.saltymod.common.config.ModConfigurationModCompatibility;
 import darkbum.saltymod.init.ModBlocks;
 
 public class SaltCrystalGenerator implements IWorldGenerator {

@@ -9,12 +9,7 @@ public class PotionInspired extends ModPotion {
     }
 
     @Override
-    public boolean isInstant() {
-        return false;
-    }
-
-    @Override
-    public boolean isReady(int p_76397_1_, int p_76397_2_) {
+    public boolean isReady(int duration, int amplifier) {
         return false;
     }
 }

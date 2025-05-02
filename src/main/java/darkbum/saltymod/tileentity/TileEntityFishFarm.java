@@ -5,13 +5,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import darkbum.saltymod.api.MachineUtilRegistry;
-import darkbum.saltymod.item.ItemBee;
+import darkbum.saltymod.util.MachineUtilRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -21,8 +18,7 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import darkbum.saltymod.configuration.configs.ModConfigurationBlocks;
-import darkbum.saltymod.init.ModBlocks;
+import darkbum.saltymod.common.config.ModConfigurationBlocks;
 import darkbum.saltymod.init.ModItems;
 
 public class TileEntityFishFarm extends TileEntity implements IInventory {

@@ -11,7 +11,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
 
 import cpw.mods.fml.common.IWorldGenerator;
-import darkbum.saltymod.configuration.configs.ModConfigurationWorldGeneration;
+import darkbum.saltymod.common.config.ModConfigurationWorldGeneration;
 import darkbum.saltymod.init.ModBlocks;
 
 public class SaltLakeGenerator implements IWorldGenerator {

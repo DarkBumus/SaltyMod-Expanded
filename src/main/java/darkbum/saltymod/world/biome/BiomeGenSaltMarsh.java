@@ -14,7 +14,7 @@ import net.minecraftforge.common.BiomeManager.BiomeEntry;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.configuration.configs.ModConfigurationWorldGeneration;
+import darkbum.saltymod.common.config.ModConfigurationWorldGeneration;
 import darkbum.saltymod.init.ModBlocks;
 
 public class BiomeGenSaltMarsh extends BiomeGenBase {

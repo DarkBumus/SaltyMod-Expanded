@@ -21,9 +21,9 @@ import net.minecraftforge.fluids.IFluidHandler;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.api.EvaporateRegistry;
+import darkbum.saltymod.util.EvaporateRegistry;
 import darkbum.saltymod.block.BlockEvaporator;
-import darkbum.saltymod.configuration.configs.ModConfigurationBlocks;
+import darkbum.saltymod.common.config.ModConfigurationBlocks;
 
 public class TileEntityEvaporator extends TileEntity implements ISidedInventory, IFluidHandler {
 

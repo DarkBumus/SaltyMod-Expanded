@@ -13,7 +13,7 @@ import net.minecraft.util.MathHelper;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.configuration.configs.ModConfigurationItems;
+import darkbum.saltymod.common.config.ModConfigurationItems;
 
 public class BlockStorageBarrel extends Block {
 

@@ -26,7 +26,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.configuration.configs.ModConfigurationBlocks;
+import darkbum.saltymod.common.config.ModConfigurationBlocks;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 

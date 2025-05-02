@@ -129,54 +129,6 @@
 	  "mob/horned_sheep/say3"
 	]
   },
-  "item.horn.ponder": {
-	"category": "player",
-	"sounds": [
-	  "item/horn/ponder"
-	]
-  },
-  "item.horn.sing": {
-	"category": "player",
-	"sounds": [
-	  "item/horn/sing"
-	]
-  },
-  "item.horn.seek": {
-	"category": "player",
-	"sounds": [
-	  "item/horn/seek"
-	]
-  },
-  "item.horn.feel": {
-	"category": "player",
-	"sounds": [
-	  "item/horn/feel"
-	]
-  },
-  "item.horn.admire": {
-	"category": "player",
-	"sounds": [
-	  "item/horn/admire"
-	]
-  },
-  "item.horn.call": {
-	"category": "player",
-	"sounds": [
-	  "item/horn/call"
-	]
-  },
-  "item.horn.yearn": {
-	"category": "player",
-	"sounds": [
-	  "item/horn/yearn"
-	]
-  },
-  "item.horn.dream": {
-	"category": "player",
-	"sounds": [
-	  "item/horn/dream"
-	]
-  },
   "item.axe.strip": {
 	"category": "block",
 	"sounds": [
@@ -184,6 +136,13 @@
 	  "item/axe/strip2",
 	  "item/axe/strip3",
 	  "item/axe/strip4"
+	]
+  },
+  "item.chorus_cookie.portal": {
+	"category": "player",
+	"sounds": [
+	  "item/chorus_cookie/portal1",
+	  "item/chorus_cookie/portal2"
 	]
   }
 }

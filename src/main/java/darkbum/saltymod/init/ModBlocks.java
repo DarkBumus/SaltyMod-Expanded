@@ -1,20 +1,19 @@
 package darkbum.saltymod.init;
 
-import darkbum.saltymod.api.ConditionalRegistrar;
+import darkbum.saltymod.util.ConditionalRegistrar;
 import net.minecraft.block.*;
 import net.minecraft.creativetab.CreativeTabs;
 
 import cpw.mods.fml.common.Loader;
-import darkbum.saltymod.SaltyMod;
 import darkbum.saltymod.block.*;
 import darkbum.saltymod.block.BlockSaltBlock;
 import darkbum.saltymod.block.BlockSaltFlower;
 import darkbum.saltymod.itemblock.*;
 import darkbum.saltymod.common.CommonProxy;
-import darkbum.saltymod.configuration.configs.ModConfigurationBlocks;
-import darkbum.saltymod.configuration.configs.ModConfigurationItems;
-import darkbum.saltymod.configuration.configs.ModConfigurationModCompatibility;
-import darkbum.saltymod.configuration.configs.ModConfigurationWorldGeneration;
+import darkbum.saltymod.common.config.ModConfigurationBlocks;
+import darkbum.saltymod.common.config.ModConfigurationItems;
+import darkbum.saltymod.common.config.ModConfigurationModCompatibility;
+import darkbum.saltymod.common.config.ModConfigurationWorldGeneration;
 
 public class ModBlocks {
 
@@ -46,11 +45,11 @@ public class ModBlocks {
     public static Block lit_evaporator;
     public static Block steam_evaporator;
     public static Block fish_farm;
-    public static Block bee_nest_boreal;
     public static Block bee_nest_temperate;
+    public static Block bee_nest_boreal;
     public static Block bee_burrow_spruce;
-    public static Block bee_burrow_spruce_stripped;
     public static Block bee_burrow_birch;
+    public static Block bee_burrow_spruce_stripped;
     public static Block bee_burrow_birch_stripped;
     public static Block apiary;
     public static Block stove;
@@ -106,12 +105,12 @@ public class ModBlocks {
 
         fish_farm = new BlockFishFarm("fish_farm", tab);
 
-        bee_nest_temperate = new BlockBeeNestTemperate("bee_nest_temperate", tab);
-        bee_nest_boreal = new BlockBeeNestBoreal("bee_nest_boreal", tab);
-        bee_burrow_spruce = new BlockBeeBurrowSpruce("bee_burrow_spruce", tab);
-        bee_burrow_spruce_stripped = new BlockBeeBurrowSpruceStripped("bee_burrow_spruce_stripped", tab);
-        bee_burrow_birch = new BlockBeeBurrowBirch("bee_burrow_birch", tab);
-        bee_burrow_birch_stripped = new BlockBeeBurrowBirchStripped("bee_burrow_birch_stripped", tab);
+        bee_nest_temperate = new BlockBeeNest("bee_nest", tab, BlockBeeNest.BeeNestType.TEMPERATE);
+        bee_nest_boreal = new BlockBeeNest("bee_nest", tab, BlockBeeNest.BeeNestType.BOREAL);
+        bee_burrow_spruce = new BlockBeeBurrow("bee_burrow", tab, BlockBeeBurrow.BeeBurrowType.SPRUCE);
+        bee_burrow_birch = new BlockBeeBurrow("bee_burrow", tab, BlockBeeBurrow.BeeBurrowType.BIRCH);
+        bee_burrow_spruce_stripped = new BlockBeeBurrowStripped("bee_burrow_stripped", tab, BlockBeeBurrowStripped.BeeBurrowType.SPRUCE);
+        bee_burrow_birch_stripped = new BlockBeeBurrowStripped("bee_burrow_stripped", tab, BlockBeeBurrowStripped.BeeBurrowType.BIRCH);
         apiary = new BlockApiary("apiary", tab);
 
         stove = new BlockStove("stove", tab);
@@ -161,12 +160,12 @@ public class ModBlocks {
         ConditionalRegistrar.registerBlock(lit_evaporator, "lit_evaporator", ModConfigurationBlocks.enableEvaporator);
         ConditionalRegistrar.registerBlock(steam_evaporator, "steam_evaporator", ModConfigurationBlocks.enableEvaporator);
         ConditionalRegistrar.registerBlock(fish_farm, "fish_farm", ModConfigurationBlocks.enableFishFarm);
-        ConditionalRegistrar.registerBlock(bee_nest_temperate, "bee_nest_temperate", ModConfigurationBlocks.enableApiary);
-        ConditionalRegistrar.registerBlock(bee_nest_boreal, "bee_nest_boreal", ModConfigurationBlocks.enableApiary);
-        ConditionalRegistrar.registerBlock(bee_burrow_spruce, "bee_burrow_spruce", ModConfigurationBlocks.enableApiary);
-        ConditionalRegistrar.registerBlock(bee_burrow_spruce_stripped, "bee_burrow_spruce_stripped", ModConfigurationBlocks.enableApiary);
-        ConditionalRegistrar.registerBlock(bee_burrow_birch, "bee_burrow_birch", ModConfigurationBlocks.enableApiary);
-        ConditionalRegistrar.registerBlock(bee_burrow_birch_stripped, "bee_burrow_birch_stripped", ModConfigurationBlocks.enableApiary);
+        ConditionalRegistrar.registerBlock(bee_nest_temperate, ItemBlockBeeNest.class, "bee_nest_temperate", ModConfigurationBlocks.enableApiary);
+        ConditionalRegistrar.registerBlock(bee_nest_boreal, ItemBlockBeeNest.class, "bee_nest_boreal", ModConfigurationBlocks.enableApiary);
+        ConditionalRegistrar.registerBlock(bee_burrow_spruce, ItemBlockBeeBurrow.class, "bee_burrow_spruce", ModConfigurationBlocks.enableApiary);
+        ConditionalRegistrar.registerBlock(bee_burrow_birch, ItemBlockBeeBurrow.class, "bee_burrow_birch", ModConfigurationBlocks.enableApiary);
+        ConditionalRegistrar.registerBlock(bee_burrow_spruce_stripped, ItemBlockBeeBurrow.class, "bee_burrow_spruce_stripped", ModConfigurationBlocks.enableApiary);
+        ConditionalRegistrar.registerBlock(bee_burrow_birch_stripped, ItemBlockBeeBurrow.class, "bee_burrow_birch_stripped", ModConfigurationBlocks.enableApiary);
         ConditionalRegistrar.registerBlock(apiary, "apiary", ModConfigurationBlocks.enableApiary);
         ConditionalRegistrar.registerBlock(stove, "stove", ModConfigurationBlocks.enableMachines);
         ConditionalRegistrar.registerBlock(lit_stove, "lit_stove", ModConfigurationBlocks.enableMachines);

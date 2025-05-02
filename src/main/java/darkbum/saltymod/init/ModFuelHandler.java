@@ -1,13 +1,11 @@
 package darkbum.saltymod.init;
 
-import darkbum.saltymod.configuration.configs.ModConfigurationBlocks;
-import darkbum.saltymod.configuration.configs.ModConfigurationWorldGeneration;
-import net.minecraft.block.Block;
+import darkbum.saltymod.common.config.ModConfigurationWorldGeneration;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import cpw.mods.fml.common.IFuelHandler;
-import darkbum.saltymod.configuration.configs.ModConfigurationItems;
+import darkbum.saltymod.common.config.ModConfigurationItems;
 
 public class ModFuelHandler implements IFuelHandler {
 

@@ -3,7 +3,7 @@ package darkbum.saltymod.init;
 import darkbum.saltymod.world.biome.BiomeGenSaltMarsh;
 import net.minecraft.world.biome.BiomeGenBase;
 
-import darkbum.saltymod.configuration.configs.ModConfigurationWorldGeneration;
+import darkbum.saltymod.common.config.ModConfigurationWorldGeneration;
 
 public class ModBiomes {
 

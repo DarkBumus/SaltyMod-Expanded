@@ -4,6 +4,7 @@ import java.util.*;
 
 import cpw.mods.fml.common.Loader;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,29 +31,22 @@ public class ItemSaltFood extends ItemFood implements IEdible {
         public final float saturation;
         public final int stacksize;
         public final boolean isDogFood;
-        public final boolean isAlwaysEdible;
-        public final boolean hasGlint;
         public final EnumAction useAction;
-        public final String customTooltip;
         public final ProbablePotionEffect[] effects;
         public IIcon icon;
 
         public Variant(String unlocalizedName, String textureName, int heal,
-                       float saturation, int stacksize, ItemStack container, boolean isDogFood,
-                       boolean isAlwaysEdible, boolean hasGlint, EnumAction useAction, String customTooltip,
-                       ProbablePotionEffect... effects) {
+                       float saturation, boolean isDogFood, int stacksize, ItemStack container,
+                       EnumAction useAction, ProbablePotionEffect... effects) {
             this.unlocalizedName = unlocalizedName;
             this.textureName = textureName;
-            this.container = container;
             this.heal = heal;
             this.saturation = saturation;
-            this.stacksize = stacksize > 0 ? stacksize : 64;
-            this.effects = effects != null ? effects : new ProbablePotionEffect[0];
             this.isDogFood = isDogFood;
-            this.isAlwaysEdible = isAlwaysEdible;
-            this.hasGlint = hasGlint;
+            this.stacksize = stacksize > 0 ? stacksize : 64;
+            this.container = container;
             this.useAction = useAction != null ? useAction : EnumAction.eat;
-            this.customTooltip = customTooltip;
+            this.effects = effects != null ? effects : new ProbablePotionEffect[0];
         }
     }
 
@@ -76,25 +70,37 @@ public class ItemSaltFood extends ItemFood implements IEdible {
     }
 
     public ItemSaltFood addVariant(int meta, String unlocalizedName, String textureName,
-                                   int heal, float saturation, int stacksize, ItemStack container,
-                                   boolean isDogFood, boolean isAlwaysEdible, boolean hasGlint,
-                                   EnumAction useAction, String customTooltip, ProbablePotionEffect... effects) {
+                                   int heal, float saturation, boolean isDogFood, int stacksize, ItemStack container,
+                                   EnumAction useAction, ProbablePotionEffect... effects) {
         variants.put(meta, new Variant(unlocalizedName, textureName, heal, saturation,
-            stacksize, container, isDogFood, isAlwaysEdible, hasGlint, useAction, customTooltip, effects));
+            isDogFood, stacksize, container, useAction, effects));
         return this;
     }
 
     public ItemSaltFood addVariant(int meta, String unlocalizedName, String textureName,
-                                   int heal, float saturation, EnumAction useAction) {
-        return addVariant(meta, unlocalizedName, textureName, heal, saturation, 64,
-            null, false, false, false, useAction, null);
+                                   int heal, float saturation, boolean isDogFood, int stacksize, ItemStack container,
+                                   EnumAction useAction) {
+        variants.put(meta, new Variant(unlocalizedName, textureName, heal, saturation,
+            isDogFood, stacksize, container, useAction));
+        return this;
     }
 
     public ItemSaltFood addVariant(int meta, String unlocalizedName, String textureName,
-                                   int heal, float saturation, EnumAction useAction,
+                                   int heal, float saturation, boolean isDogFood) {
+        return addVariant(meta, unlocalizedName, textureName, heal, saturation, isDogFood, 64, null, EnumAction.eat);
+    }
+
+    public ItemSaltFood addVariant(int meta, String unlocalizedName, String textureName,
+                                   int heal, float saturation, boolean isDogFood,
                                    ProbablePotionEffect... effects) {
-        return addVariant(meta, unlocalizedName, textureName, heal, saturation, 64,
-            null, false, false, false, useAction, null, effects);
+        return addVariant(meta, unlocalizedName, textureName, heal, saturation, isDogFood, 64, null, EnumAction.eat, effects);
+    }
+
+    public ItemSaltFood addVariant(int meta, String unlocalizedName, String textureName,
+                                   int heal, float saturation, boolean isDogFood, int stacksize, ItemStack container,
+                                   ProbablePotionEffect... effects) {
+        return addVariant(meta, unlocalizedName, textureName, heal, saturation, isDogFood,
+            stacksize, container, EnumAction.eat, effects);
     }
 
     @Override
@@ -123,11 +129,8 @@ public class ItemSaltFood extends ItemFood implements IEdible {
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean advanced) {
         Variant v = variants.get(stack.getItemDamage());
         if (v != null) {
-            if (v.customTooltip != null) {
-                list.add(StatCollector.translateToLocal(v.customTooltip));
-            }
             for (ProbablePotionEffect effect : v.effects) {
-                String tooltip = effect.generateTooltip();
+                String tooltip = effect.addTooltip();
                 if (tooltip != null) {
                     list.add(tooltip);
                 }
@@ -154,16 +157,8 @@ public class ItemSaltFood extends ItemFood implements IEdible {
                 }
             }
         }
+        this.onFoodEaten(stack, world, player);
         stack.stackSize--;
-        return stack;
-    }
-
-    @Override
-    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-        Variant v = variants.get(stack.getItemDamage());
-        if (v != null && player.canEat(v.isAlwaysEdible)) {
-            player.setItemInUse(stack, getMaxItemUseDuration(stack));
-        }
         return stack;
     }
 
@@ -193,21 +188,10 @@ public class ItemSaltFood extends ItemFood implements IEdible {
         return super.getIconFromDamage(damage);
     }
 
-    public boolean isDogFood(ItemStack stack) {
-        Variant v = variants.get(stack.getItemDamage());
-        return v != null && v.isDogFood;
-    }
-
     @Override
     public ItemSaltFood setCreativeTab(CreativeTabs tab) {
         super.setCreativeTab(tab);
         return this;
-    }
-
-    @Override
-    public boolean hasEffect(ItemStack stack, int pass) {
-        Variant v = variants.get(stack.getItemDamage());
-        return v != null && v.hasGlint;
     }
 
     @Override

@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import darkbum.saltymod.configuration.configs.ModConfigurationBlocks;
+import darkbum.saltymod.common.config.ModConfigurationBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -20,7 +20,7 @@ import net.minecraft.tileentity.TileEntity;
 
 import darkbum.saltymod.init.ModItems;
 import darkbum.saltymod.item.ItemBee;
-import darkbum.saltymod.api.MachineUtilRegistry;
+import darkbum.saltymod.util.MachineUtilRegistry;
 
 public class TileEntityApiary extends TileEntity implements IInventory {
 

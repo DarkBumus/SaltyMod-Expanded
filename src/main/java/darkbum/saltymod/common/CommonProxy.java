@@ -1,10 +1,13 @@
 package darkbum.saltymod.common;
 
 import cpw.mods.fml.common.Loader;
-import darkbum.saltymod.configuration.configs.ModConfigurationEntities;
+import darkbum.saltymod.common.config.ModConfigurationEntities;
+import darkbum.saltymod.creativetab.TabSaltBlocks;
+import darkbum.saltymod.creativetab.TabSaltItems;
 import darkbum.saltymod.dispenser.DispenserBehaviorBottle;
 import darkbum.saltymod.dispenser.DispenserBehaviorPotion;
 import darkbum.saltymod.entity.EntityHornedSheep;
+import darkbum.saltymod.event.*;
 import darkbum.saltymod.tileentity.*;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.creativetab.CreativeTabs;
@@ -35,10 +38,10 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.SaltyMod;
-import darkbum.saltymod.api.EvaporateRegistry;
-import darkbum.saltymod.configuration.configs.ModConfigurationBlocks;
-import darkbum.saltymod.configuration.configs.ModConfigurationModCompatibility;
-import darkbum.saltymod.configuration.configs.ModConfigurationWorldGeneration;
+import darkbum.saltymod.util.EvaporateRegistry;
+import darkbum.saltymod.common.config.ModConfigurationBlocks;
+import darkbum.saltymod.common.config.ModConfigurationModCompatibility;
+import darkbum.saltymod.common.config.ModConfigurationWorldGeneration;
 import darkbum.saltymod.dispenser.DispenserBehaviorRainmaker;
 import darkbum.saltymod.dispenser.DispenserBehaviorSaltPinch;
 import darkbum.saltymod.entity.EntityRainmaker;
@@ -48,7 +51,6 @@ import darkbum.saltymod.init.ModItems;
 import darkbum.saltymod.inventory.gui.GuiHandler;
 import darkbum.saltymod.network.EvaporatorButtonMessage;
 import darkbum.saltymod.network.SaltwortMessage;
-import darkbum.saltymod.network.events.*;
 import darkbum.saltymod.world.generator.*;
 
 public class CommonProxy {

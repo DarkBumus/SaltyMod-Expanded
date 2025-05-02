@@ -58,10 +58,6 @@ public class BlockClayOven extends BlockContainer {
         FRONT = icon.registerIcon("saltymod:clay_oven_front");
     }
 
-/*    public int getRenderType() {
-        return ClientProxy.cookingPotRenderType;
-    }*/
-
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
         switch (meta) {

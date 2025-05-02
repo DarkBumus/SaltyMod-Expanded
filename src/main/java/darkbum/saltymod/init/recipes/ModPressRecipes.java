@@ -2,7 +2,7 @@ package darkbum.saltymod.init.recipes;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
-import darkbum.saltymod.api.PressingRecipe;
+import darkbum.saltymod.util.PressingRecipe;
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -25,12 +25,8 @@ public class ModPressRecipes {
         press.registerRecipe(new ItemStack(Blocks.cobblestone), null, new ItemStack(Blocks.gravel), false, true, null);
         press.registerRecipe(new ItemStack(Blocks.gravel), null, new ItemStack(Blocks.sand), false, true, null);
 
-
-
         press.registerRecipe(new ItemStack(ModItems.mineral_mud_ball), new ItemStack(Items.potionitem, 1, 0), new ItemStack(Items.clay_ball, 1, 0), false, false, new ItemStack(Items.glass_bottle));
         press.registerRecipe(new ItemStack(Items.wheat), new ItemStack(Items.glass_bottle), new ItemStack(ModItems.dough), false, true, new ItemStack(Items.potionitem, 1, 0));
-
-
 
         if (Loader.isModLoaded("etfuturum")) {
             Item honey_bottle = GameRegistry.findItem("etfuturum", "honey_bottle");
@@ -53,8 +49,5 @@ public class ModPressRecipes {
         }
 
         press.registerRecipe(new ItemStack(ModItems.horn), new ItemStack(ModItems.tunneler_concoction), null, true, true, new ItemStack(ModItems.fizzy_drink));
-
-
-
     }
 }

@@ -1,24 +1,31 @@
 package darkbum.saltymod.init.recipes;
 
 import cpw.mods.fml.common.Loader;
-import darkbum.saltymod.api.ConditionalRegistrar;
-import darkbum.saltymod.configuration.configs.ModConfigurationVanillaChanges;
-import darkbum.saltymod.configuration.configs.ModConfigurationWorldGeneration;
+import darkbum.saltymod.common.config.*;
+import darkbum.saltymod.util.ConditionalRegistrar;
+import darkbum.saltymod.init.ModExternalItemLoader;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import darkbum.saltymod.configuration.configs.ModConfigurationBlocks;
-import darkbum.saltymod.configuration.configs.ModConfigurationItems;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 
 public class ModShapedRecipes {
 
     public static void init() {
+
+        Item beetroot = ModExternalItemLoader.etFuturumItems.get("beetroot");
+        Item beetroot_seeds = ModExternalItemLoader.etFuturumItems.get("beetroot_seeds");
+        Item sweet_berries = ModExternalItemLoader.etFuturumItems.get("sweet_berries");
+        Block honeycomb_block = ModExternalItemLoader.etFuturumBlocks.get("honeycomb_block");
+        Block beehive = ModExternalItemLoader.etFuturumBlocks.get("beehive");
+
+        Block campfire = ModExternalItemLoader.campfireBackportBlocks.get("campfire");
+
 
         ConditionalRegistrar.addShapedRecipe(new ItemStack(Items.sugar),
             new Object[]{"xxx", "xxx", "xxx",
@@ -31,6 +38,16 @@ public class ModShapedRecipes {
                 'z', new ItemStack(Items.egg),
                 'a', new ItemStack(ModItems.dough)},
             ModConfigurationVanillaChanges.enableRecipeChanges, ModConfigurationItems.enableDough);
+
+        ConditionalRegistrar.addShapedRecipe(new ItemStack(honeycomb_block),
+            new Object[]{"xx", "xx",
+                'x', new ItemStack(ModItems.waxcomb)},
+            honeycomb_block != null, ModConfigurationModCompatibility.enableEFRHoneyCompatibility);
+        ConditionalRegistrar.addShapedOreRecipe(new ItemStack(beehive),
+            new Object[]{"xxx", "yyy", "xxx",
+                'x', "plankWood",
+                'y', new ItemStack(ModItems.waxcomb)},
+            beehive != null, ModConfigurationModCompatibility.enableEFRHoneyCompatibility);
 
         ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.salt_block),
             new Object[]{"xxx", "xxx", "xxx",
@@ -131,6 +148,12 @@ public class ModShapedRecipes {
             new Object[]{"xxx", "y y", "yzy",
                 'x', new ItemStack(Items.iron_ingot),
                 'y', new ItemStack(Blocks.brick_block),
+                'z', new ItemStack(campfire)},
+            ModConfigurationBlocks.enableMachines, Loader.isModLoaded("campfirebackport"));
+        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.stove),
+            new Object[]{"xxx", "y y", "yzy",
+                'x', new ItemStack(Items.iron_ingot),
+                'y', new ItemStack(Blocks.brick_block),
                 'z', new ItemStack(Blocks.furnace)},
             ModConfigurationBlocks.enableMachines, !Loader.isModLoaded("campfirebackport"));
 
@@ -178,6 +201,10 @@ public class ModShapedRecipes {
             new Object[]{"xxx", "xxx", "xxx",
                 'x', new ItemStack(ModItems.onion)},
             ModConfigurationBlocks.enableStorageBlocks, ModConfigurationItems.enableOnion);
+        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.storage_crate, 1, 4),
+            new Object[]{"xxx", "xxx", "xxx",
+                'x', beetroot},
+            beetroot != null, ModConfigurationBlocks.enableStorageBlocks);
         ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.storage_barrel),
             new Object[]{"xxx", "xxx", "xxx",
                 'x', new ItemStack(Items.fish)},
@@ -214,6 +241,10 @@ public class ModShapedRecipes {
             new Object[]{"xxx", "xxx", "xxx",
                 'x', new ItemStack(ModItems.saltwort)},
             ModConfigurationBlocks.enableStorageBlocks);
+        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.storage_sack, 1, 4),
+            new Object[]{"xxx", "xxx", "xxx",
+                'x', beetroot_seeds},
+            beetroot_seeds != null, ModConfigurationBlocks.enableStorageBlocks);
 
         ConditionalRegistrar.addShapedRecipe(new ItemStack(ModItems.marsh_reeds_grass, 9),
             new Object[]{"x",
@@ -232,6 +263,16 @@ public class ModShapedRecipes {
             new Object[]{"xxx", "xyx", "xxx",
                 'x', new ItemStack(Items.gold_nugget),
                 'y', new ItemStack(Items.potato)});
+        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModItems.golden_berries),
+            new Object[]{"xxx", "xyx", "xxx",
+                'x', Items.gold_nugget,
+                'y', sweet_berries},
+            sweet_berries != null);
+        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModItems.golden_berries, 1, 1),
+            new Object[]{"xxx", "xyx", "xxx",
+                'x', Blocks.gold_block,
+                'y', sweet_berries},
+            sweet_berries != null);
 
         ConditionalRegistrar.addShapedRecipe(new ItemStack(ModItems.cured_meat),
             new Object[]{"xxx", "xyx", "xxx",

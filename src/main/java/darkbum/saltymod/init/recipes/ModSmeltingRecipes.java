@@ -1,13 +1,13 @@
 package darkbum.saltymod.init.recipes;
 
-import darkbum.saltymod.api.ConditionalRegistrar;
-import darkbum.saltymod.configuration.configs.ModConfigurationVanillaChanges;
+import cpw.mods.fml.common.Loader;
+import darkbum.saltymod.util.ConditionalRegistrar;
+import darkbum.saltymod.common.config.ModConfigurationVanillaChanges;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import darkbum.saltymod.configuration.configs.ModConfigurationBlocks;
-import darkbum.saltymod.configuration.configs.ModConfigurationItems;
+import darkbum.saltymod.common.config.ModConfigurationBlocks;
+import darkbum.saltymod.common.config.ModConfigurationItems;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 
@@ -60,6 +60,10 @@ public class ModSmeltingRecipes {
             new ItemStack(ModItems.haunch, 1, 1),
             0.35F);
 
+        ConditionalRegistrar.addSmelting(new ItemStack(ModItems.strider, 1, 0),
+            new ItemStack(ModItems.strider, 1, 1),
+            0.35F,
+            Loader.isModLoaded("etfuturum"), !Loader.isModLoaded("netherlicious"));
         ConditionalRegistrar.addSmelting(new ItemStack(Items.fish, 1, 2),
             new ItemStack(ModItems.cooked_tropical_fish),
             0.35F,

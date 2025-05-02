@@ -7,7 +7,7 @@ import net.minecraft.util.ResourceLocation;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.configuration.configs.ModConfigurationEffects;
+import darkbum.saltymod.common.config.ModConfigurationEffects;
 
 public class ModPotion extends Potion {
 

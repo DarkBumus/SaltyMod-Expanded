@@ -1,14 +1,14 @@
 package darkbum.saltymod.init.recipes;
 
-import darkbum.saltymod.api.ConditionalRegistrar;
+import darkbum.saltymod.util.ConditionalRegistrar;
 import darkbum.saltymod.init.ModExternalItemLoader;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
-import darkbum.saltymod.configuration.configs.ModConfigurationItems;
-import darkbum.saltymod.configuration.configs.ModConfigurationModCompatibility;
-import darkbum.saltymod.configuration.configs.ModConfigurationVanillaChanges;
+import darkbum.saltymod.common.config.ModConfigurationItems;
+import darkbum.saltymod.common.config.ModConfigurationModCompatibility;
+import darkbum.saltymod.common.config.ModConfigurationVanillaChanges;
 
 public class ModRemovedRecipes {
 

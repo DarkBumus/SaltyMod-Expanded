@@ -6,8 +6,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 
-import darkbum.saltymod.api.RainMakerEvent;
-import darkbum.saltymod.configuration.configs.ModConfigurationOther;
+import darkbum.saltymod.util.RainMakerEvent;
+import darkbum.saltymod.common.config.ModConfigurationOther;
 
 public class EntityRainmakerDust extends Entity {
 

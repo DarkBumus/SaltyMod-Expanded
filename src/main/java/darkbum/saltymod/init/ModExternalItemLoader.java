@@ -90,6 +90,7 @@ public class ModExternalItemLoader {
         etFuturumItems.put("chorus_fruit", GameRegistry.findItem("etfuturum", "chorus_fruit"));
         etFuturumItems.put("sweet_berries", GameRegistry.findItem("etfuturum", "sweet_berries"));
         etFuturumItems.put("dye", GameRegistry.findItem("etfuturum", "dye"));
+        etFuturumBlocks.put("nether_fungus", GameRegistry.findBlock("etfuturum", "nether_fungus"));
         etFuturumBlocks.put("honeycomb_block", GameRegistry.findBlock("etfuturum", "honeycomb_block"));
         etFuturumBlocks.put("beehive", GameRegistry.findBlock("etfuturum", "beehive"));
     }

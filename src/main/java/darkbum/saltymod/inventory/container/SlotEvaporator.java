@@ -7,7 +7,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 
-import darkbum.saltymod.api.EvaporateRegistry;
+import darkbum.saltymod.util.EvaporateRegistry;
 import darkbum.saltymod.init.ModAchievementList;
 import darkbum.saltymod.init.ModItems;
 

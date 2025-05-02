@@ -1,7 +1,7 @@
 package darkbum.saltymod.common;
 
 import darkbum.saltymod.block.render.*;
-import darkbum.saltymod.configuration.configs.ModConfigurationBlocks;
+import darkbum.saltymod.common.config.ModConfigurationBlocks;
 import net.minecraft.client.renderer.entity.RenderSnowball;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;

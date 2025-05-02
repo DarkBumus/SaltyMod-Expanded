@@ -3,6 +3,7 @@ package darkbum.saltymod.block;
 import java.util.ArrayList;
 import java.util.List;
 
+import darkbum.saltymod.common.config.ModConfigurationBlocks;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -12,6 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import cpw.mods.fml.common.Loader;
@@ -23,8 +25,8 @@ import darkbum.saltymod.init.ModItems;
 
 public class BlockSaltFlower extends BlockFlower {
 
-    public static final String[] types = new String[] { "daucus", "wild_carrot", "solanum", "wild_potato", "wild_onion",
-        "maritima", "wild_beet" };
+    public static final String[] types = new String[]{"daucus", "wild_carrot", "solanum", "wild_potato", "wild_onion",
+        "maritima", "wild_beet"};
 
     @SideOnly(Side.CLIENT)
     private IIcon DAUCUS;
@@ -134,4 +136,24 @@ public class BlockSaltFlower extends BlockFlower {
         }
         return drop;
     }
+
+    @Override
+    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, int x, int y, int z) {
+        int meta = worldIn.getBlockMetadata(x, y, z);
+
+        if (ModConfigurationBlocks.saltFlowersLargeHitbox) {
+            if (meta == 1 || meta == 3 || meta == 4 || meta == 6) {
+                float minX = 2.0f / 16.0f;
+                float minY = 0.0f;
+                float minZ = 2.0f / 16.0f;
+                float maxX = 14.0f / 16.0f;
+                float maxY = 13.0f / 16.0f;
+                float maxZ = 14.0f / 16.0f;
+                this.setBlockBounds(minX, minY, minZ, maxX, maxY, maxZ);
+                return;
+            }
+        }
+        this.setBlockBounds(0.3F, 0.0F, 0.3F, 0.7F, 0.6F, 0.7F);
+    }
 }
+

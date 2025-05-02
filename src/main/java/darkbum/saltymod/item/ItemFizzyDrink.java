@@ -11,7 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import darkbum.saltymod.configuration.configs.ModConfigurationItems;
+import darkbum.saltymod.common.config.ModConfigurationItems;
 import darkbum.saltymod.init.ModAchievementList;
 
 public class ItemFizzyDrink extends Item {

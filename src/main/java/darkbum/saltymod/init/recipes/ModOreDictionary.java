@@ -1,18 +1,46 @@
 package darkbum.saltymod.init.recipes;
 
+import darkbum.saltymod.util.ConditionalRegistrar;
+import darkbum.saltymod.init.ModExternalItemLoader;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-import cpw.mods.fml.common.Loader;
-import darkbum.saltymod.configuration.configs.ModConfigurationItems;
+import darkbum.saltymod.common.config.ModConfigurationItems;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 
 public class ModOreDictionary {
 
     public static void init() {
+
+        Item honeycombItem = ModExternalItemLoader.harvestcraftItems.get("honeycombItem");
+        Item royaljellyItem = ModExternalItemLoader.harvestcraftItems.get("royaljellyItem");
+
+        Item beeCombs = ModExternalItemLoader.forestryItems.get("beeCombs");
+
+        Item honeyCombFilled = ModExternalItemLoader.growthcraftItems.get("honeyCombFilled");
+
+        Item StriderFlankRaw = ModExternalItemLoader.netherliciousItems.get("StriderFlankRaw");
+        Item StriderFlankCooked = ModExternalItemLoader.netherliciousItems.get("StriderFlankCooked");
+
+        Block nether_fungus = ModExternalItemLoader.etFuturumBlocks.get("nether_fungus");
+        Item suspicious_stew = ModExternalItemLoader.etFuturumItems.get("suspicious_stew");
+        Item mutton_raw = ModExternalItemLoader.etFuturumItems.get("mutton_raw");
+        Item mutton_cooked = ModExternalItemLoader.etFuturumItems.get("mutton_cooked");
+        Item rabbit_raw = ModExternalItemLoader.etFuturumItems.get("rabbit_raw");
+        Item rabbit_cooked = ModExternalItemLoader.etFuturumItems.get("rabbit_cooked");
+        Item rabbit_stew = ModExternalItemLoader.etFuturumItems.get("rabbit_stew");
+        Item beetroot = ModExternalItemLoader.etFuturumItems.get("beetroot");
+        Item beetroot_soup = ModExternalItemLoader.etFuturumItems.get("beetroot_soup");
+        Item chorus_fruit = ModExternalItemLoader.etFuturumItems.get("chorus_fruit");
+        Item sweet_berries = ModExternalItemLoader.etFuturumItems.get("sweet_berries");
+
+        Item food = ModExternalItemLoader.biomesOPlentyItems.get("food");
+
         // Salty Mod Ore Dictionaries
         OreDictionary.registerOre("blockMushroom", Blocks.red_mushroom);
         OreDictionary.registerOre("blockMushroom", Blocks.brown_mushroom);
@@ -174,12 +202,42 @@ public class ModOreDictionary {
         OreDictionary.registerOre("itemCoal", new ItemStack(Items.coal, 1, 0));
         OreDictionary.registerOre("itemCoal", new ItemStack(Items.coal, 1, 1));
 
+        ConditionalRegistrar.registerOre("beeResistant", new ItemStack(ModItems.mud_helmet, 1, OreDictionary.WILDCARD_VALUE), ModConfigurationItems.mudArmorBeeResistant);
+        ConditionalRegistrar.registerOre("beeResistant", new ItemStack(ModItems.mud_chestplate, 1, OreDictionary.WILDCARD_VALUE), ModConfigurationItems.mudArmorBeeResistant);
+        ConditionalRegistrar.registerOre("beeResistant", new ItemStack(ModItems.mud_leggings, 1, OreDictionary.WILDCARD_VALUE), ModConfigurationItems.mudArmorBeeResistant);
+        ConditionalRegistrar.registerOre("beeResistant", new ItemStack(ModItems.mud_boots, 1, OreDictionary.WILDCARD_VALUE), ModConfigurationItems.mudArmorBeeResistant);
 
-        if (ModConfigurationItems.mudArmorBeeResistant) {
-            OreDictionary.registerOre("beeResistant", new ItemStack(ModItems.mud_helmet, 1, OreDictionary.WILDCARD_VALUE));
-            OreDictionary.registerOre("beeResistant", new ItemStack(ModItems.mud_chestplate, 1, OreDictionary.WILDCARD_VALUE));
-            OreDictionary.registerOre("beeResistant", new ItemStack(ModItems.mud_leggings, 1, OreDictionary.WILDCARD_VALUE));
-            OreDictionary.registerOre("beeResistant", new ItemStack(ModItems.mud_boots, 1, OreDictionary.WILDCARD_VALUE));
-        }
+        //External Ore Dictionaries
+        ConditionalRegistrar.registerOre("itemSweetener", honeycombItem, honeycombItem != null);
+        ConditionalRegistrar.registerOre("itemHoney", honeycombItem, honeycombItem != null);
+        ConditionalRegistrar.registerOre("itemRoyaljelly", royaljellyItem, royaljellyItem != null);
+
+        ConditionalRegistrar.registerOre("itemSweetener", beeCombs, beeCombs != null);
+        ConditionalRegistrar.registerOre("itemHoney", beeCombs, beeCombs != null);
+
+        ConditionalRegistrar.registerOre("itemSweetener", honeyCombFilled, honeyCombFilled != null);
+        ConditionalRegistrar.registerOre("itemHoney", honeyCombFilled, honeyCombFilled != null);
+
+        ConditionalRegistrar.registerOre("itemFood", StriderFlankRaw, StriderFlankRaw != null);
+        ConditionalRegistrar.registerOre("itemRedmeat", StriderFlankCooked, StriderFlankCooked != null);
+        ConditionalRegistrar.registerOre("itemFood", StriderFlankCooked, StriderFlankCooked != null);
+
+        ConditionalRegistrar.registerOre("blockFungus", new ItemStack(nether_fungus, 1, 0), nether_fungus != null);
+        ConditionalRegistrar.registerOre("blockFungus", new ItemStack(nether_fungus, 1, 1), nether_fungus != null);
+
+        ConditionalRegistrar.registerOre("itemFood", new ItemStack(suspicious_stew, 1, OreDictionary.WILDCARD_VALUE), suspicious_stew != null);
+        ConditionalRegistrar.registerOre("itemFood", mutton_raw, mutton_raw != null);
+        ConditionalRegistrar.registerOre("itemRedmeat", mutton_cooked, mutton_cooked != null);
+        ConditionalRegistrar.registerOre("itemFood", mutton_cooked, mutton_cooked != null);
+        ConditionalRegistrar.registerOre("itemFood", rabbit_raw, rabbit_raw != null);
+        ConditionalRegistrar.registerOre("itemFood", rabbit_cooked, rabbit_cooked != null);
+        ConditionalRegistrar.registerOre("itemFood", rabbit_stew, rabbit_stew != null);
+        ConditionalRegistrar.registerOre("itemFood", beetroot, beetroot != null);
+        ConditionalRegistrar.registerOre("itemFood", beetroot_soup, beetroot_soup != null);
+        ConditionalRegistrar.registerOre("itemFood", chorus_fruit, chorus_fruit != null);
+        ConditionalRegistrar.registerOre("itemFood", sweet_berries, sweet_berries != null);
+
+        ConditionalRegistrar.registerOre("itemSweetener", new ItemStack(food, 1, 9), food != null);
+        ConditionalRegistrar.registerOre("itemHoney", new ItemStack(food, 1, 9), food != null);
     }
 }

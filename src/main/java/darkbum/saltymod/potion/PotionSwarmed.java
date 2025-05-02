@@ -21,8 +21,7 @@ public class PotionSwarmed extends ModPotion {
 
     @Override
     public void performEffect(EntityLivingBase entity, int level) {
-        if (entity instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) entity;
+        if (entity instanceof EntityPlayer player) {
 
             float beeResistance = 0F;
             ArrayList<ItemStack> validStacks = OreDictionary.getOres("beeResistant");
@@ -49,26 +48,13 @@ public class PotionSwarmed extends ModPotion {
                 player.addStat(ModAchievementList.effect_swarmed, 1);
                 entity.attackEntityFrom(ModPotion.swarmedDamage, Math.max(0.0F, 1.0F - beeResistance));
             }
-
-            // Bedingung für den Schaden
-/*            if (!player.worldObj.getBlock((int) player.posX, (int) player.posY + 2, (int) player.posZ)
-                .getMaterial()
-                .isLiquid() && (!player.isBurning())) {
-                player.addStat(ModAchievementList.effect_swarmed, 1);
-                entity.attackEntityFrom(ModPotion.swarmedDamage, Math.max(0.0F, 1.0F - beeResistance));
-            }*/
         }
     }
 
     @Override
-    public boolean isInstant() {
-        return false;
-    }
-
-    @Override
-    public boolean isReady(int p_76397_1_, int p_76397_2_) {
-        int k;
-        k = 10 >> p_76397_2_;
-        return k > 0 ? p_76397_1_ % k == 0 : true;
+    public boolean isReady(int duration, int amplifier) {
+        int interval;
+        interval = 10 >> amplifier;
+        return interval == 0 || duration % interval == 0;
     }
 }

@@ -2,7 +2,7 @@ package darkbum.saltymod.inventory.container;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.api.MachineUtilRegistry;
+import darkbum.saltymod.util.MachineUtilRegistry;
 import darkbum.saltymod.tileentity.TileEntityCookingPot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

@@ -41,7 +41,7 @@ public class ProbablePotionEffect {
         return false;
     }
 
-    public String generateTooltip() {
+    public String addTooltip() {
         if (minHungerRequired > 0) {
             return null;
         }
@@ -73,7 +73,7 @@ public class ProbablePotionEffect {
         if (effect.getDuration() > 20) {
             line += " (" + Potion.getDurationString(effect) + ") ";
         } else {
-            line += " (<0:01) ";
+            line += " ";
         }
         line += (int) (probability * 100F) + "%";
         line += EnumChatFormatting.RESET;

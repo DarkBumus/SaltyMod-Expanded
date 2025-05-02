@@ -2,7 +2,7 @@ package darkbum.saltymod.tileentity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.api.MachineUtilRegistry;
+import darkbum.saltymod.util.MachineUtilRegistry;
 import darkbum.saltymod.init.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,7 +14,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import darkbum.saltymod.api.PressingRecipe;
+import darkbum.saltymod.util.PressingRecipe;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileEntityPress extends TileEntity implements ISidedInventory {
@@ -135,7 +135,7 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
 
     @SideOnly(Side.CLIENT)
     public int getPressProgressScale(int scale) {
-        return pressingTime * scale / 200;
+        return pressingTime * scale / 100;
     }
 
     public boolean isRunning() {
@@ -151,7 +151,7 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
         if (!worldObj.isRemote) {
             if (canRun()) {
                 pressingTime++;
-                if (pressingTime >= 200) {
+                if (pressingTime >= 100) {
                     pressingTime = 0;
                     pressItems();
                     updated = true;

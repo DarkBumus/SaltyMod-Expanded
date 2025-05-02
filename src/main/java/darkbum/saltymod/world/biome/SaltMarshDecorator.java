@@ -10,7 +10,7 @@ import net.minecraft.world.gen.feature.WorldGenReed;
 import net.minecraft.world.gen.feature.WorldGenWaterlily;
 
 
-import darkbum.saltymod.configuration.configs.ModConfigurationWorldGeneration;
+import darkbum.saltymod.common.config.ModConfigurationWorldGeneration;
 import darkbum.saltymod.init.ModBlocks;
 
 public class SaltMarshDecorator {

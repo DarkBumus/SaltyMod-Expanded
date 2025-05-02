@@ -6,11 +6,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemFishFood;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemSoup;
-import net.minecraft.potion.Potion;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import darkbum.saltymod.configuration.configs.ModConfigurationModCompatibility;
-import darkbum.saltymod.configuration.configs.ModConfigurationVanillaChanges;
+import darkbum.saltymod.common.config.ModConfigurationModCompatibility;
+import darkbum.saltymod.common.config.ModConfigurationVanillaChanges;
+
+import static darkbum.saltymod.init.ModItems.*;
 
 public class ModExternalValueRegistry {
 
@@ -20,107 +21,117 @@ public class ModExternalValueRegistry {
 
             ItemFood apple = (ItemFood) Items.apple;
             apple.healAmount = 2;
-            apple.saturationModifier = 0.3F;
+            apple.saturationModifier = 0.3f;
+            apple.setPotionEffect(speed, 5, 0, one_third);
 
             ItemFood mushroom_stew = (ItemFood) Items.mushroom_stew;
             mushroom_stew.healAmount = 5;
-            mushroom_stew.saturationModifier = 0.7F;
+            mushroom_stew.saturationModifier = 0.7f;
+            mushroom_stew.setPotionEffect(strength, 15, 0, one_third);
 
             ItemFood bread = (ItemFood) Items.bread;
             bread.healAmount = 3;
-            bread.saturationModifier = 0.5F;
+            bread.saturationModifier = 0.5f;
 
             ItemFood porkchop = (ItemFood) Items.porkchop;
             porkchop.healAmount = 2;
-            porkchop.saturationModifier = 0.6F;
+            porkchop.saturationModifier = 0.6f;
 
             ItemFood cooked_porkchop = (ItemFood) Items.cooked_porkchop;
             cooked_porkchop.healAmount = 4;
-            cooked_porkchop.saturationModifier = 0.6F;
+            cooked_porkchop.saturationModifier = 0.6f;
+            cooked_porkchop.setPotionEffect(health_boost, 5, 0, one_third);
 
             ItemFood golden_apple = (ItemFood) Items.golden_apple;
             golden_apple.healAmount = 4;
-            golden_apple.saturationModifier = 0.6F;
+            golden_apple.saturationModifier = 0.6f;
+            golden_apple.setPotionEffect(speed, 45, 1, 1.0f);
 
             ItemFishFood fish = (ItemFishFood) Items.fish;
             ItemFishFood.FishType.COD.field_150991_j = 1;
-            ItemFishFood.FishType.COD.field_150992_k = 0.5F;
+            ItemFishFood.FishType.COD.field_150992_k = 0.5f;
             ItemFishFood.FishType.COD.field_150989_l = 3;
-            ItemFishFood.FishType.COD.field_150990_m = 0.5F;
+            ItemFishFood.FishType.COD.field_150990_m = 0.5f;
 
             ItemFishFood.FishType.SALMON.field_150991_j = 1;
-            ItemFishFood.FishType.SALMON.field_150992_k = 0.5F;
+            ItemFishFood.FishType.SALMON.field_150992_k = 0.5f;
             ItemFishFood.FishType.SALMON.field_150989_l = 3;
-            ItemFishFood.FishType.SALMON.field_150990_m = 0.5F;
+            ItemFishFood.FishType.SALMON.field_150990_m = 0.5f;
 
             ItemFishFood.FishType.CLOWNFISH.field_150991_j = 1;
-            ItemFishFood.FishType.CLOWNFISH.field_150992_k = 0.5F;
+            ItemFishFood.FishType.CLOWNFISH.field_150992_k = 0.5f;
             ItemFishFood.FishType.CLOWNFISH.field_150989_l = 0;
-            ItemFishFood.FishType.CLOWNFISH.field_150990_m = 0.0F;
+            ItemFishFood.FishType.CLOWNFISH.field_150990_m = 0.0f;
 
             ItemFishFood.FishType.PUFFERFISH.field_150991_j = 1;
-            ItemFishFood.FishType.PUFFERFISH.field_150992_k = 0.5F;
+            ItemFishFood.FishType.PUFFERFISH.field_150992_k = 0.5f;
             ItemFishFood.FishType.PUFFERFISH.field_150989_l = 0;
-            ItemFishFood.FishType.PUFFERFISH.field_150990_m = 0.0F;
+            ItemFishFood.FishType.PUFFERFISH.field_150990_m = 0.0f;
 
-            fish.setPotionEffect(Potion.waterBreathing.id, 3, 0, 1.0F);
+            fish.setPotionEffect(water_breathing, 5, 0, one_third);
 
             ItemFood cookie = (ItemFood) Items.cookie;
             cookie.healAmount = 2;
-            cookie.saturationModifier = 0.1F;
+            cookie.saturationModifier = 0.1f;
+            cookie.setPotionEffect(haste, 10, 0, one_third);
 
             ItemFood melon = (ItemFood) Items.melon;
             melon.healAmount = 1;
-            melon.saturationModifier = 0.3F;
-            melon.setPotionEffect(Potion.jump.id, 3, 0, 1.0F);
+            melon.saturationModifier = 0.3f;
+            melon.setPotionEffect(fire_resistance, 5, 0, one_third);
 
             ItemFood beef = (ItemFood) Items.beef;
             beef.healAmount = 2;
-            beef.saturationModifier = 0.6F;
+            beef.saturationModifier = 0.6f;
 
             ItemFood cooked_beef = (ItemFood) Items.cooked_beef;
             cooked_beef.healAmount = 4;
-            cooked_beef.saturationModifier = 0.6F;
+            cooked_beef.saturationModifier = 0.6f;
+            cooked_beef.setPotionEffect(health_boost, 5, 0, one_third);
 
             ItemFood chicken = (ItemFood) Items.chicken;
             chicken.healAmount = 1;
-            chicken.saturationModifier = 0.6F;
+            chicken.saturationModifier = 0.6f;
 
             ItemFood cooked_chicken = (ItemFood) Items.cooked_chicken;
             cooked_chicken.healAmount = 3;
-            cooked_chicken.saturationModifier = 0.6F;
+            cooked_chicken.saturationModifier = 0.6f;
+            cooked_chicken.setPotionEffect(health_boost, 5, 0, one_third);
 
             ItemFood rotten_flesh = (ItemFood) Items.rotten_flesh;
             rotten_flesh.healAmount = 1;
-            rotten_flesh.saturationModifier = 0.3F;
+            rotten_flesh.saturationModifier = 0.3f;
 
             ItemFood spider_eye = (ItemFood) Items.spider_eye;
             spider_eye.healAmount = 1;
-            spider_eye.saturationModifier = 0.3F;
+            spider_eye.saturationModifier = 0.3f;
 
             ItemFood carrot = (ItemFood) Items.carrot;
-            carrot.healAmount = 2;
-            carrot.saturationModifier = 0.3F;
+            carrot.healAmount = 1;
+            carrot.saturationModifier = 0.3f;
+            carrot.setPotionEffect(night_vision, 5, 0, one_third);
 
             ItemFood potato = (ItemFood) Items.potato;
-            potato.healAmount = 1;
-            potato.saturationModifier = 0.3F;
+            potato.healAmount = 2;
+            potato.saturationModifier = 0.3f;
 
             ItemFood baked_potato = (ItemFood) Items.baked_potato;
-            baked_potato.healAmount = 3;
-            baked_potato.saturationModifier = 0.5F;
+            baked_potato.healAmount = 4;
+            baked_potato.saturationModifier = 0.5f;
 
             ItemFood poisonous_potato = (ItemFood) Items.poisonous_potato;
             poisonous_potato.healAmount = 1;
-            poisonous_potato.saturationModifier = 0.3F;
+            poisonous_potato.saturationModifier = 0.3f;
 
             ItemFood golden_carrot = (ItemFood) Items.golden_carrot;
-            golden_carrot.healAmount = 6;
-            golden_carrot.saturationModifier = 1.2F;
+            golden_carrot.healAmount = 4;
+            golden_carrot.saturationModifier = 1.2f;
+            golden_carrot.setPotionEffect(night_vision, 45, 0, two_thirds);
 
             ItemFood pumpkin_pie = (ItemFood) Items.pumpkin_pie;
             pumpkin_pie.healAmount = 7;
-            pumpkin_pie.saturationModifier = 0.9F;
+            pumpkin_pie.saturationModifier = 0.9f;
+            pumpkin_pie.setPotionEffect(resistance, 90, 1, two_thirds);
         }
 
         if (Loader.isModLoaded("etfuturum") && ModConfigurationModCompatibility.enableEFRFoodValueChanges) {
@@ -128,61 +139,67 @@ public class ModExternalValueRegistry {
             Item raw_mutton = GameRegistry.findItem("etfuturum", "raw_mutton");
             if (raw_mutton instanceof ItemFood ItemMuttonRaw) {
                 ItemMuttonRaw.healAmount = 2;
-                ItemMuttonRaw.saturationModifier = 0.6F;
+                ItemMuttonRaw.saturationModifier = 0.6f;
             }
 
             Item mutton_cooked = GameRegistry.findItem("etfuturum", "mutton_cooked");
             if (mutton_cooked instanceof ItemFood ItemMuttonCooked) {
                 ItemMuttonCooked.healAmount = 4;
-                ItemMuttonCooked.saturationModifier = 0.6F;
+                ItemMuttonCooked.saturationModifier = 0.6f;
+                ItemMuttonCooked.setPotionEffect(health_boost, 5, 0, one_third);
             }
 
             Item rabbit_raw = GameRegistry.findItem("etfuturum", "rabbit_raw");
             if (rabbit_raw instanceof ItemFood ItemRabbitRaw) {
                 ItemRabbitRaw.healAmount = 1;
-                ItemRabbitRaw.saturationModifier = 0.6F;
+                ItemRabbitRaw.saturationModifier = 0.6f;
             }
 
             Item rabbit_cooked = GameRegistry.findItem("etfuturum", "rabbit_cooked");
             if (rabbit_cooked instanceof ItemFood ItemRabbitCooked) {
                 ItemRabbitCooked.healAmount = 3;
-                ItemRabbitCooked.saturationModifier = 0.6F;
+                ItemRabbitCooked.saturationModifier = 0.6f;
+                ItemRabbitCooked.setPotionEffect(health_boost, 5, 0, one_third);
             }
 
             Item rabbit_stew = GameRegistry.findItem("etfuturum", "rabbit_stew");
             if (rabbit_stew instanceof ItemFood ItemRabbitStew) {
                 ItemRabbitStew.healAmount = 7;
-                ItemRabbitStew.saturationModifier = 0.7F;
+                ItemRabbitStew.saturationModifier = 0.7f;
+                ItemRabbitStew.setPotionEffect(health_boost, 30, 0, one_third);
             }
 
             Item beetroot = GameRegistry.findItem("etfuturum", "beetroot");
             if (beetroot instanceof ItemFood ItemBeetroot) {
                 ItemBeetroot.healAmount = 1;
-                ItemBeetroot.saturationModifier = 0.3F;
+                ItemBeetroot.saturationModifier = 0.3f;
+                ItemBeetroot.setPotionEffect(jump_boost, 5, 0, one_third);
             }
 
             Item beetroot_soup = GameRegistry.findItem("etfuturum", "beetroot_soup");
             if (beetroot_soup instanceof ItemFood ItemBeetrootSoup) {
                 ItemBeetrootSoup.healAmount = 5;
-                ItemBeetrootSoup.saturationModifier = 0.7F;
+                ItemBeetrootSoup.saturationModifier = 0.7f;
+                ItemBeetrootSoup.setPotionEffect(jump_boost, 60, 1, one_third);
             }
 
             Item chorus_fruit = GameRegistry.findItem("etfuturum", "chorus_fruit");
             if (chorus_fruit instanceof ItemFood ItemChorusFruit) {
                 ItemChorusFruit.healAmount = 1;
-                ItemChorusFruit.saturationModifier = 0.3F;
+                ItemChorusFruit.saturationModifier = 0.3f;
             }
 
             Item suspicious_stew = GameRegistry.findItem("etfuturum", "suspicious_stew");
             if (suspicious_stew instanceof ItemFood ItemSuspiciousStew) {
                 ItemSuspiciousStew.healAmount = 5;
-                ItemSuspiciousStew.saturationModifier = 0.7F;
+                ItemSuspiciousStew.saturationModifier = 0.7f;
             }
 
             Item sweet_berries = GameRegistry.findItem("etfuturum", "sweet_berries");
             if (sweet_berries instanceof ItemFood ItemSweetBerries) {
                 ItemSweetBerries.healAmount = 1;
-                ItemSweetBerries.saturationModifier = 0.3F;
+                ItemSweetBerries.saturationModifier = 0.3f;
+                ItemSweetBerries.setPotionEffect(speed, 5, 0, one_third);
             }
         }
 
@@ -209,8 +226,7 @@ public class ModExternalValueRegistry {
                 ItemSuspiciousStew.setMaxStackSize(16);
             }
         }
-
         Item woodenShovel = GameRegistry.findItem("minecraft", "wooden_shovel");
-            woodenShovel.setMaxDamage(64);
+        woodenShovel.setMaxDamage(64);
     }
 }

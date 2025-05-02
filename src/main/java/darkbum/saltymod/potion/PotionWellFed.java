@@ -30,11 +30,6 @@ public class PotionWellFed extends ModPotion {
     }
 
     @Override
-    public boolean isInstant() {
-        return false;
-    }
-
-    @Override
     public boolean isReady(int p_76397_1_, int p_76397_2_) {
         return true;
     }

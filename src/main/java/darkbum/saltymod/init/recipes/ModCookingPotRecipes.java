@@ -1,19 +1,18 @@
 package darkbum.saltymod.init.recipes;
 
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.registry.GameRegistry;
-import darkbum.saltymod.api.ConditionalRegistrar;
-import darkbum.saltymod.api.PotcookingRecipe;
-import darkbum.saltymod.configuration.configs.ModConfigurationBlocks;
-import darkbum.saltymod.configuration.configs.ModConfigurationItems;
+import darkbum.saltymod.util.ConditionalRegistrar;
+import darkbum.saltymod.common.config.ModConfigurationBlocks;
+import darkbum.saltymod.common.config.ModConfigurationItems;
+import darkbum.saltymod.common.config.ModConfigurationModCompatibility;
+import darkbum.saltymod.init.ModExternalItemLoader;
 import darkbum.saltymod.init.ModItems;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import static darkbum.saltymod.api.PotcookingRecipe.ore;
-import static darkbum.saltymod.api.PotcookingRecipe.stack;
+import static darkbum.saltymod.util.PotcookingRecipe.*;
 
 
 public class ModCookingPotRecipes {
@@ -27,178 +26,248 @@ public class ModCookingPotRecipes {
      * NOTE: Further, it is not necessary to place items in any of the input slots save for one. PotcookingRecipe.java defines an Array for the inputs.
      * In short: If you want a recipe that only requires, e.g. two inputs, it is sufficient to define only two in the List.
      * NOTE: If you want to make use of this in your own mod, you will have to
-     * "import static darkbum.saltymod.api.PotcookingRecipe.ore;"
-     * "import static darkbum.saltymod.api.PotcookingRecipe.stack;"
+     * "import static darkbum.saltymod.util.PotcookingRecipe.ore;"
+     * "import static darkbum.saltymod.util.PotcookingRecipe.stack;"
      * so that you can specify ItemStacks or OreDicts in your recipes.
      */
 
     public static void init() {
 
+        Block nether_fungus = ModExternalItemLoader.etFuturumBlocks.get("nether_fungus");
+        Item rabbit_raw = ModExternalItemLoader.etFuturumItems.get("rabbit_raw");
+        Item rabbit_stew = ModExternalItemLoader.etFuturumItems.get("rabbit_stew");
+        Item beetroot = ModExternalItemLoader.etFuturumItems.get("beetroot");
+        Item beetroot_soup = ModExternalItemLoader.etFuturumItems.get("beetroot_soup");
+        Item sweet_berries = ModExternalItemLoader.etFuturumItems.get("sweet_berries");
+
         ConditionalRegistrar.addPotRecipe(new ItemStack(Items.mushroom_stew),
             new boolean[]{ModConfigurationBlocks.enableMachines},
             true,
-            1.0f,
+            0.3f,
             ore("blockMushroom"),
             ore("blockMushroom"));
-
-
-/*        if (Loader.isModLoaded("etfuturum")) {
-            Item rabbit_cooked = GameRegistry.findItem("etfuturum", "rabbit_cooked");
-            Item rabbit_stew = GameRegistry.findItem("etfuturum", "rabbit_stew");
-            Item beetroot = GameRegistry.findItem("etfuturum", "beetroot");
-            Item beetroot_soup = GameRegistry.findItem("etfuturum", "beetroot_soup");
-            if ((rabbit_cooked != null) && (rabbit_stew != null)) {
-                pot.registerRecipe(new ItemStack(rabbit_stew),
-                    true,
-                    stack(new ItemStack(rabbit_cooked)),
-                    stack(new ItemStack(Items.carrot)),
-                    stack(new ItemStack(Items.baked_potato)),
-                    ore("blockMushroom"));
-            }
-            if ((beetroot != null) && (beetroot_soup != null)) {
-                pot.registerRecipe(new ItemStack(beetroot_soup),
-                    true,
-                    stack(new ItemStack(beetroot)),
-                    stack(new ItemStack(beetroot)),
-                    stack(new ItemStack(beetroot)),
-                    stack(new ItemStack(beetroot)),
-                    stack(new ItemStack(beetroot)),
-                    stack(new ItemStack(beetroot)));
-            }
-        }
-
-        pot.registerRecipe(new ItemStack(ModItems.egg_bowl),
-        true,
-        0.1f,
-        stack(new ItemStack(Moditems.salt_pinch)),
-        stack(new ItemStack(Items.egg),
-        stack(new ItemStack(Items.egg),
-        stack(new ItemStack(Items.egg),
-        stack(new ItemStack(Items.egg));
-
-        pot.registerRecipe(new ItemStack(ModItems.salt_mushroom_stew),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(rabbit_stew),
+            new boolean[]{rabbit_raw != null, rabbit_stew != null},
             true,
+            0.5f,
+            stack(new ItemStack(rabbit_raw)),
+            stack(new ItemStack(Items.carrot)),
+            stack(new ItemStack(Items.potato)),
+            ore("blockMushroom"));
+        ConditionalRegistrar.addPotRecipe(new ItemStack(beetroot_soup),
+            new boolean[]{beetroot != null, beetroot_soup != null},
+            true,
+            0.3f,
+            stack(new ItemStack(beetroot)),
+            stack(new ItemStack(beetroot)),
+            stack(new ItemStack(beetroot)));
+
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.egg_bowl),
+            new boolean[]{ModConfigurationItems.enableEgg},
+            true,
+            0.5f,
+            stack(new ItemStack(ModItems.salt_pinch)),
+            stack(new ItemStack(Items.egg)),
+            stack(new ItemStack(Items.egg)),
+            stack(new ItemStack(Items.egg)),
+            stack(new ItemStack(Items.egg)));
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.salt_mushroom_stew),
+            new boolean[]{ModConfigurationItems.enableSaltedMushroomStew},
+            true,
+            0.4f,
             stack(new ItemStack(ModItems.salt_pinch)),
             ore("blockMushroom"),
             ore("blockMushroom"));
-
-        if (Loader.isModLoaded("etfuturum")) {
-            Item rabbit_cooked = GameRegistry.findItem("etfuturum", "rabbit_cooked");
-            Item beetroot = GameRegistry.findItem("etfuturum", "beetroot");
-            if ((rabbit_cooked != null)) {
-                pot.registerRecipe(new ItemStack(ModItems.salt_rabbit_stew),
-                    true,
-                    stack(new ItemStack(ModItems.salt_pinch)),
-                    stack(new ItemStack(rabbit_cooked)),
-                    stack(new ItemStack(Items.carrot)),
-                    stack(new ItemStack(Items.baked_potato)),
-                    ore("blockMushroom"));
-            }
-            if ((beetroot != null)) {
-                pot.registerRecipe(new ItemStack(ModItems.salt_beetroot_soup),
-                    true,
-                    stack(new ItemStack(ModItems.salt_pinch)),
-                    stack(new ItemStack(beetroot)),
-                    stack(new ItemStack(beetroot)),
-                    stack(new ItemStack(beetroot)),
-                    stack(new ItemStack(beetroot)),
-                    stack(new ItemStack(beetroot)),
-                    stack(new ItemStack(beetroot)));
-            }
-        }
-
-        pot.registerRecipe(new ItemStack(ModItems.pumpkin_porridge),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.salt_rabbit_stew),
+            new boolean[]{rabbit_raw != null, ModConfigurationModCompatibility.enableSaltedRabbitRagout},
             true,
+            0.6f,
+            stack(new ItemStack(ModItems.salt_pinch)),
+            stack(new ItemStack(rabbit_raw)),
+            stack(new ItemStack(Items.carrot)),
+            stack(new ItemStack(Items.potato)),
+            ore("blockMushroom"));
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.salt_beetroot_soup),
+            new boolean[]{beetroot != null, ModConfigurationModCompatibility.enableSaltedBorscht},
+            true,
+            0.4f,
+            stack(new ItemStack(ModItems.salt_pinch)),
+            stack(new ItemStack(beetroot)),
+            stack(new ItemStack(beetroot)),
+            stack(new ItemStack(beetroot)));
+
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.fungus_stew),
+            new boolean[]{nether_fungus != null, ModConfigurationModCompatibility.enableFungusStew},
+            true,
+            0.3f,
+            ore("blockFungus"),
+            ore("blockFungus"));
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.fungus_stew, 1, 1),
+            new boolean[]{nether_fungus != null, ModConfigurationModCompatibility.enableFungusStew},
+            true,
+            0.4f,
+            stack(new ItemStack(ModItems.salt_pinch)),
+            ore("blockFungus"),
+            ore("blockFungus"));
+
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.chicken_soup),
+            new boolean[]{ModConfigurationItems.enableChickenSoup},
+            true,
+            0.45f,
+            stack(new ItemStack(Items.cooked_chicken)),
+            stack(new ItemStack(Items.carrot)),
+            stack(new ItemStack(Items.potato)),
+            ore("blockMushroom"));
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.chicken_soup, 1, 1),
+            new boolean[]{ModConfigurationItems.enableChickenSoup},
+            true,
+            0.55f,
+            stack(new ItemStack(ModItems.salt_pinch)),
+            stack(new ItemStack(Items.cooked_chicken)),
+            stack(new ItemStack(Items.carrot)),
+            stack(new ItemStack(Items.potato)),
+            ore("blockMushroom"));
+
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.beef_stew),
+            new boolean[]{ModConfigurationItems.enableBeefStew},
+            true,
+            0.45f,
+            stack(new ItemStack(Items.cooked_beef)),
+            stack(new ItemStack(Items.carrot)),
+            stack(new ItemStack(Items.potato)),
+            ore("blockMushroom"));
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.beef_stew, 1, 1),
+            new boolean[]{ModConfigurationItems.enableBeefStew},
+            true,
+            0.55f,
+            stack(new ItemStack(ModItems.salt_pinch)),
+            stack(new ItemStack(Items.cooked_beef)),
+            stack(new ItemStack(Items.carrot)),
+            stack(new ItemStack(Items.potato)),
+            ore("blockMushroom"));
+
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.pumpkin_porridge),
+            new boolean[]{ModConfigurationItems.enablePumpkinPorridge},
+            true,
+            0.15f,
             stack(new ItemStack(Blocks.pumpkin)));
-        pot.registerRecipe(new ItemStack(ModItems.pumpkin_porridge, 1, 1),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.pumpkin_porridge, 1, 1),
+            new boolean[]{ModConfigurationItems.enablePumpkinPorridge},
             true,
+            0.25f,
             stack(new ItemStack(ModItems.salt_pinch)),
             stack(new ItemStack(Blocks.pumpkin)));
 
-        pot.registerRecipe(new ItemStack(ModItems.cactus_soup),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.cactus_soup),
+            new boolean[]{ModConfigurationItems.enableCactusSoup},
             true,
+            0.3f,
             stack(new ItemStack(Blocks.cactus)),
             stack(new ItemStack(Blocks.cactus)),
             stack(new ItemStack(Blocks.cactus)));
-        pot.registerRecipe(new ItemStack(ModItems.cactus_soup, 1, 1),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.cactus_soup, 1, 1),
+            new boolean[]{ModConfigurationItems.enableCactusSoup},
             true,
+            0.4f,
             stack(new ItemStack(ModItems.salt_pinch)),
             stack(new ItemStack(Blocks.cactus)),
             stack(new ItemStack(Blocks.cactus)),
             stack(new ItemStack(Blocks.cactus)));
 
-        pot.registerRecipe(new ItemStack(ModItems.stewed_vegetables),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.stewed_vegetables),
+            new boolean[]{ModConfigurationItems.enableStewedVegetables},
             true,
+            0.35f,
             stack(new ItemStack(Items.carrot)),
             stack(new ItemStack(Items.potato)),
             ore("blockMushroom"));
-        pot.registerRecipe(new ItemStack(ModItems.stewed_vegetables, 1, 1),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.stewed_vegetables, 1, 1),
+            new boolean[]{ModConfigurationItems.enableStewedVegetables},
             true,
+            0.45f,
             stack(new ItemStack(ModItems.salt_pinch)),
             stack(new ItemStack(Items.carrot)),
             stack(new ItemStack(Items.potato)),
             ore("blockMushroom"));
 
-        pot.registerRecipe(new ItemStack(ModItems.potato_mushroom),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.potato_mushroom),
+            new boolean[]{ModConfigurationItems.enableSaltedPotato},
             true,
+            0.35f,
             stack(new ItemStack(Items.potato)),
             stack(new ItemStack(Items.potato)),
             ore("blockMushroom"));
-        pot.registerRecipe(new ItemStack(ModItems.potato_mushroom, 1, 1),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.potato_mushroom, 1, 1),
+            new boolean[]{ModConfigurationItems.enableSaltedPotato},
             true,
+            0.45f,
             stack(new ItemStack(ModItems.salt_pinch)),
             stack(new ItemStack(Items.potato)),
             stack(new ItemStack(Items.potato)),
             ore("blockMushroom"));
 
-        pot.registerRecipe(new ItemStack(ModItems.golden_vegetables),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.golden_vegetables),
+            new boolean[]{ModConfigurationItems.enableGoldenFoods},
             true,
+            0.45f,
             stack(new ItemStack(Items.golden_carrot)),
             stack(new ItemStack(ModItems.golden_potato)),
             stack(new ItemStack(ModItems.golden_saltwort)));
-        pot.registerRecipe(new ItemStack(ModItems.golden_vegetables, 1, 1),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.golden_vegetables, 1, 1),
+            new boolean[]{ModConfigurationItems.enableGoldenFoods},
             true,
+            0.55f,
             stack(new ItemStack(ModItems.salt_pinch)),
             stack(new ItemStack(Items.golden_carrot)),
             stack(new ItemStack(ModItems.golden_potato)),
             stack(new ItemStack(ModItems.golden_saltwort)));
 
-        pot.registerRecipe(new ItemStack(ModItems.fish_soup),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.fish_soup),
+            new boolean[]{ModConfigurationItems.enableFishSoup},
             true,
+            0.3f,
             stack(new ItemStack(Items.carrot)),
             stack(new ItemStack(Items.potato)),
             ore("itemFish"));
-        pot.registerRecipe(new ItemStack(ModItems.fish_soup, 1, 1),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.fish_soup, 1, 1),
+            new boolean[]{ModConfigurationItems.enableFishSoup},
             true,
+            0.4f,
             stack(new ItemStack(ModItems.salt_pinch)),
             stack(new ItemStack(Items.carrot)),
             stack(new ItemStack(Items.potato)),
             ore("itemFish"));
 
-        if (ModConfigurationItems.enableOnion) {
-            pot.registerRecipe(new ItemStack(ModItems.dandelion_salad),
-                false,
-                stack(new ItemStack(Blocks.tallgrass, 1, 2)),
-                stack(new ItemStack(Blocks.yellow_flower)),
-                stack(new ItemStack(ModItems.onion)));
-            pot.registerRecipe(new ItemStack(ModItems.dandelion_salad, 1, 1),
-                false,
-                stack(new ItemStack(ModItems.salt_pinch)),
-                stack(new ItemStack(Blocks.tallgrass, 1, 2)),
-                stack(new ItemStack(Blocks.yellow_flower)),
-                stack(new ItemStack(ModItems.onion)));
-        }
-
-        pot.registerRecipe(new ItemStack(ModItems.wheat_sprouts),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.dandelion_salad),
+            new boolean[]{ModConfigurationItems.enableOnion, ModConfigurationItems.enableDandelionSalad},
             false,
+            0.35f,
+            stack(new ItemStack(Blocks.tallgrass, 1, 2)),
+            stack(new ItemStack(Blocks.yellow_flower)),
+            stack(new ItemStack(ModItems.onion)));
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.dandelion_salad, 1, 1),
+            new boolean[]{ModConfigurationItems.enableOnion, ModConfigurationItems.enableDandelionSalad},
+            false,
+            0.45f,
+            stack(new ItemStack(ModItems.salt_pinch)),
+            stack(new ItemStack(Blocks.tallgrass, 1, 2)),
+            stack(new ItemStack(Blocks.yellow_flower)),
+            stack(new ItemStack(ModItems.onion)));
+
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.wheat_sprouts),
+            new boolean[]{ModConfigurationItems.enableWheatSprouts},
+            false,
+            0.6f,
             stack(new ItemStack(Items.wheat_seeds)),
             stack(new ItemStack(Items.wheat_seeds)),
             stack(new ItemStack(Items.wheat_seeds)),
             stack(new ItemStack(Items.wheat_seeds)),
             stack(new ItemStack(Items.wheat_seeds)),
             stack(new ItemStack(Items.wheat_seeds)));
-        pot.registerRecipe(new ItemStack(ModItems.wheat_sprouts, 1, 1),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.wheat_sprouts, 1, 1),
+            new boolean[]{ModConfigurationItems.enableWheatSprouts},
             false,
+            0.6f,
             stack(new ItemStack(ModItems.salt_pinch)),
             stack(new ItemStack(Items.wheat_seeds)),
             stack(new ItemStack(Items.wheat_seeds)),
@@ -207,53 +276,58 @@ public class ModCookingPotRecipes {
             stack(new ItemStack(Items.wheat_seeds)),
             stack(new ItemStack(Items.wheat_seeds)));
 
-        if (Loader.isModLoaded("etfuturum")) {
-            Item beetroot = GameRegistry.findItem("etfuturum", "beetroot");
-            if ((beetroot != null)) {
-                pot.registerRecipe(new ItemStack(ModItems.beetroot_salad),
-                    false,
-                    stack(new ItemStack(Items.carrot)),
-                    stack(new ItemStack(Items.potato)),
-                    stack(new ItemStack(beetroot)));
-                pot.registerRecipe(new ItemStack(ModItems.beetroot_salad, 1, 1),
-                    false,
-                    stack(new ItemStack(ModItems.salt_pinch)),
-                    stack(new ItemStack(Items.carrot)),
-                    stack(new ItemStack(Items.potato)),
-                    stack(new ItemStack(beetroot)));
-
-                if (ModConfigurationItems.enableOnion) {
-                    pot.registerRecipe(new ItemStack(ModItems.dressed_herring),
-                        false,
-                        stack(new ItemStack(Items.carrot)),
-                        stack(new ItemStack(ModItems.onion)),
-                        stack(new ItemStack(Items.potato)),
-                        stack(new ItemStack(beetroot)),
-                        stack(new ItemStack(Items.egg)),
-                        ore("itemFish"));
-                    pot.registerRecipe(new ItemStack(ModItems.dressed_herring, 1, 1),
-                        false,
-                        stack(new ItemStack(ModItems.salt_pinch)),
-                        stack(new ItemStack(Items.carrot)),
-                        stack(new ItemStack(ModItems.onion)),
-                        stack(new ItemStack(Items.potato)),
-                        stack(new ItemStack(beetroot)),
-                        stack(new ItemStack(Items.egg)),
-                        ore("itemFish"));
-                }
-            }
-        }
-
-        pot.registerRecipe(new ItemStack(ModItems.saltwort_salad),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.beetroot_salad),
+            new boolean[]{beetroot != null, ModConfigurationModCompatibility.enableBeetrootSalad},
             false,
+            0.3f,
+            stack(new ItemStack(beetroot)),
+            stack(new ItemStack(Items.carrot)),
+            stack(new ItemStack(Items.potato)));
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.beetroot_salad, 1, 1),
+            new boolean[]{beetroot != null, ModConfigurationModCompatibility.enableBeetrootSalad},
+            false,
+            0.4f,
+            stack(new ItemStack(ModItems.salt_pinch)),
+            stack(new ItemStack(beetroot)),
+            stack(new ItemStack(Items.carrot)),
+            stack(new ItemStack(Items.potato)));
+
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.dressed_herring),
+            new boolean[]{beetroot != null, ModConfigurationModCompatibility.enableDressedHerring},
+            false,
+            0.6f,
+            ore("itemFish"),
+            stack(new ItemStack(ModItems.onion)),
+            stack(new ItemStack(Items.carrot)),
+            stack(new ItemStack(Items.potato)),
+            stack(new ItemStack(beetroot)),
+            stack(new ItemStack(Items.egg)));
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.dressed_herring, 1, 1),
+            new boolean[]{beetroot != null, ModConfigurationModCompatibility.enableDressedHerring},
+            false,
+            0.7f,
+            stack(new ItemStack(ModItems.salt_pinch)),
+            ore("itemFish"),
+            stack(new ItemStack(ModItems.onion)),
+            stack(new ItemStack(Items.carrot)),
+            stack(new ItemStack(Items.potato)),
+            stack(new ItemStack(beetroot)),
+            stack(new ItemStack(Items.egg)));
+
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.saltwort_salad),
+            new boolean[]{ModConfigurationItems.enableSaltwortSalad},
+            false,
+            0.6f,
             stack(new ItemStack(ModItems.saltwort)),
             stack(new ItemStack(ModItems.saltwort)),
             stack(new ItemStack(ModItems.saltwort)),
             stack(new ItemStack(ModItems.saltwort)),
             stack(new ItemStack(ModItems.saltwort)),
             stack(new ItemStack(ModItems.saltwort)));
-        pot.registerRecipe(new ItemStack(ModItems.golden_saltwort_salad),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.golden_saltwort_salad),
+            new boolean[]{ModConfigurationItems.enableGoldenFoods},
             false,
+            0.9f,
             stack(new ItemStack(ModItems.golden_saltwort)),
             stack(new ItemStack(ModItems.golden_saltwort)),
             stack(new ItemStack(ModItems.golden_saltwort)),
@@ -261,90 +335,111 @@ public class ModCookingPotRecipes {
             stack(new ItemStack(ModItems.golden_saltwort)),
             stack(new ItemStack(ModItems.golden_saltwort)));
 
-        pot.registerRecipe(new ItemStack(ModItems.saltwort_cooked_porkchop),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.saltwort_cooked_porkchop),
+            new boolean[]{ModConfigurationItems.enableSaltwortPorkchop},
             false,
+            0.3f,
             stack(new ItemStack(ModItems.salt_cooked_porkchop)),
             stack(new ItemStack(ModItems.saltwort)),
             stack(new ItemStack(ModItems.saltwort)));
-        if (ModConfigurationItems.enableHoney) {
-            pot.registerRecipe(new ItemStack(ModItems.saltwort_honey_porkchop),
-                false,
-                stack(new ItemStack(ModItems.honey_porkchop)),
-                stack(new ItemStack(ModItems.saltwort)),
-                stack(new ItemStack(ModItems.saltwort)));
-        }
-        pot.registerRecipe(new ItemStack(ModItems.saltwort_cooked_beef),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.saltwort_honey_porkchop),
+            new boolean[]{ModConfigurationItems.enableHoney, ModConfigurationItems.enableHoneyPorkchop, ModConfigurationItems.enableSaltwortHoneyPorkchop},
             false,
+            0.35f,
+            stack(new ItemStack(ModItems.honey_porkchop)),
+            stack(new ItemStack(ModItems.saltwort)),
+            stack(new ItemStack(ModItems.saltwort)));
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.saltwort_cooked_beef),
+            new boolean[]{ModConfigurationItems.enableSaltwortBeef},
+            false,
+            0.3f,
             stack(new ItemStack(ModItems.salt_cooked_beef)),
             stack(new ItemStack(ModItems.saltwort)),
             stack(new ItemStack(ModItems.saltwort)));
-        pot.registerRecipe(new ItemStack(ModItems.saltwort_cooked_mutton),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.saltwort_cooked_mutton),
+            new boolean[]{ModConfigurationModCompatibility.enableSaltwortMutton},
             false,
+            0.3f,
             stack(new ItemStack(ModItems.salt_cooked_mutton)),
             stack(new ItemStack(ModItems.saltwort)),
             stack(new ItemStack(ModItems.saltwort)));
-        pot.registerRecipe(new ItemStack(ModItems.saltwort_cooked_strider),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.saltwort_cooked_strider),
+            new boolean[]{ModConfigurationItems.enableStrider, ModConfigurationItems.enableSaltwortStrider},
             false,
+            0.35f,
             stack(new ItemStack(ModItems.strider, 1, 2)),
             stack(new ItemStack(ModItems.saltwort)),
             stack(new ItemStack(ModItems.saltwort)));
-        pot.registerRecipe(new ItemStack(ModItems.saltwort_cooked_haunch),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.saltwort_cooked_haunch),
+            new boolean[]{ModConfigurationItems.enableHaunch, ModConfigurationItems.enableSaltwortHaunch},
             false,
+            0.3f,
             stack(new ItemStack(ModItems.haunch, 1, 2)),
             stack(new ItemStack(ModItems.saltwort)),
             stack(new ItemStack(ModItems.saltwort)));
 
-        if (Loader.isModLoaded("etfuturum")) {
-            Item sweet_berries = GameRegistry.findItem("etfuturum", "sweet_berries");
-            if ((sweet_berries != null)) {
-                pot.registerRecipe(new ItemStack(ModItems.fruit_salad),
-                    false,
-                    stack(new ItemStack(Items.apple)),
-                    stack(new ItemStack(sweet_berries)),
-                    stack(new ItemStack(Items.melon)));
-                pot.registerRecipe(new ItemStack(ModItems.fruit_salad, 1, 1),
-                    false,
-                    stack(new ItemStack(ModItems.sugar_pinch)),
-                    stack(new ItemStack(Items.apple)),
-                    stack(new ItemStack(sweet_berries)),
-                    stack(new ItemStack(Items.melon)));
-            }
-        }
-
-        pot.registerRecipe(new ItemStack(ModItems.golden_fruit_salad),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.fruit_salad),
+            new boolean[]{sweet_berries != null, ModConfigurationItems.enableFruitSalad},
             false,
+            0.3f,
+            stack(new ItemStack(Items.apple)),
+            stack(new ItemStack(sweet_berries)),
+            stack(new ItemStack(Items.melon)));
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.fruit_salad, 1, 1),
+            new boolean[]{sweet_berries != null, ModConfigurationItems.enableFruitSalad},
+            false,
+            0.4f,
+            stack(new ItemStack(ModItems.sugar_pinch)),
+            stack(new ItemStack(Items.apple)),
+            stack(new ItemStack(sweet_berries)),
+            stack(new ItemStack(Items.melon)));
+
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.golden_fruit_salad),
+            new boolean[]{sweet_berries != null, ModConfigurationItems.enableGoldenFoods},
+            false,
+            0.45f,
             stack(new ItemStack(Items.golden_apple, 1, 0)),
             stack(new ItemStack(ModItems.golden_berries, 1, 0)),
             stack(new ItemStack(Items.speckled_melon)));
-        pot.registerRecipe(new ItemStack(ModItems.golden_fruit_salad, 1, 1),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.golden_fruit_salad, 1, 1),
+            new boolean[]{sweet_berries != null, ModConfigurationItems.enableGoldenFoods},
             false,
+            0.55f,
             stack(new ItemStack(ModItems.sugar_pinch)),
             stack(new ItemStack(Items.golden_apple, 1, 0)),
             stack(new ItemStack(ModItems.golden_berries, 1, 0)),
             stack(new ItemStack(Items.speckled_melon)));
 
-        pot.registerRecipe(new ItemStack(ModItems.grated_carrot),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.grated_carrot),
+            new boolean[]{ModConfigurationItems.enableGratedCarrot},
             false,
+            0.3f,
             stack(new ItemStack(Items.carrot)),
             stack(new ItemStack(Items.carrot)),
             stack(new ItemStack(Items.carrot)));
-        pot.registerRecipe(new ItemStack(ModItems.grated_carrot, 1, 1),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.grated_carrot, 1, 1),
+            new boolean[]{ModConfigurationItems.enableGratedCarrot},
             false,
+            0.4f,
             stack(new ItemStack(ModItems.sugar_pinch)),
             stack(new ItemStack(Items.carrot)),
             stack(new ItemStack(Items.carrot)),
             stack(new ItemStack(Items.carrot)));
 
-        pot.registerRecipe(new ItemStack(ModItems.melon_soup),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.melon_soup),
+            new boolean[]{ModConfigurationItems.enableMelonSoup},
             true,
+            0.45f,
             stack(new ItemStack(Items.melon)),
             stack(new ItemStack(Items.melon)),
             stack(new ItemStack(Items.melon)));
-        pot.registerRecipe(new ItemStack(ModItems.melon_soup),
+        ConditionalRegistrar.addPotRecipe(new ItemStack(ModItems.melon_soup, 1, 1),
+            new boolean[]{ModConfigurationItems.enableMelonSoup},
             true,
+            0.55f,
             stack(new ItemStack(ModItems.sugar_pinch)),
             stack(new ItemStack(Items.melon)),
             stack(new ItemStack(Items.melon)),
-            stack(new ItemStack(Items.melon)));*/
+            stack(new ItemStack(Items.melon)));
     }
 }

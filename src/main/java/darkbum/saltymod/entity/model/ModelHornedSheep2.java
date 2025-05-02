@@ -1,6 +1,6 @@
 package darkbum.saltymod.entity.model;
 
-import darkbum.saltymod.configuration.configs.ModConfigurationEntities;
+import darkbum.saltymod.common.config.ModConfigurationEntities;
 import darkbum.saltymod.entity.EntityHornedSheep;
 import net.minecraft.client.model.ModelQuadruped;
 import net.minecraft.client.model.ModelRenderer;

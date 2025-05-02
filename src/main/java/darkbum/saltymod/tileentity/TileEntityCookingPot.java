@@ -2,8 +2,8 @@ package darkbum.saltymod.tileentity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.api.PotcookingRecipe;
-import darkbum.saltymod.api.MachineUtilRegistry;
+import darkbum.saltymod.util.PotcookingRecipe;
+import darkbum.saltymod.util.MachineUtilRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
@@ -18,7 +18,7 @@ import net.minecraft.tileentity.TileEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-import static darkbum.saltymod.api.MachineUtilRegistry.spawnXp;
+import static darkbum.saltymod.util.MachineUtilRegistry.spawnXp;
 
 public class TileEntityCookingPot extends TileEntity implements ISidedInventory {
 

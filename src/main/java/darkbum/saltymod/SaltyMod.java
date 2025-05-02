@@ -20,8 +20,8 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import darkbum.saltymod.api.nei.NEIConfig;
 import darkbum.saltymod.common.*;
-import darkbum.saltymod.configuration.ModConfigurationBase;
-import darkbum.saltymod.configuration.configs.ModConfigurationWorldGeneration;
+import darkbum.saltymod.common.config.ModConfigurationBase;
+import darkbum.saltymod.common.config.ModConfigurationWorldGeneration;
 import darkbum.saltymod.init.*;
 import darkbum.saltymod.init.recipes.*;
 import darkbum.saltymod.potion.ModPotion;
@@ -79,6 +79,7 @@ public class SaltyMod {
     public void init(FMLInitializationEvent event) {
         config.init();
         proxy.init(event);
+        ModFlammabilityHandler.init();
         if (ModConfigurationWorldGeneration.enableBrickmakerCamp) {
             ChestContent.addDungeonLoot();
         }
@@ -89,6 +90,7 @@ public class SaltyMod {
         config.postInit();
         proxy.postInit(event);
         ModExternalItemLoader.loadAll();
+        ModOreDictionary.init();
         ModRemovedRecipes.init();
         ModShapedRecipes.init();
         ModShapelessRecipes.init();
@@ -96,7 +98,6 @@ public class SaltyMod {
         ModPressRecipes.init();
         ModCookingPotRecipes.init();
         ModClayOvenRecipes.init();
-        ModExternalRecipes.init();
         ModExternalValueRegistry.init();
         if (Loader.isModLoaded(
             "etfuturum")/*
@@ -130,10 +131,8 @@ public class SaltyMod {
  * - Try to set up Marsh Reeds as a two-tall plant?
  * - Add Press/Cooking Pot/Clay Oven to NEI
  * - Slimes! [LATER]
- * - Finish the Recipes
- * - Cookies (Sweet Berry, Chorus Fruit)
- * - Nether Salad
- * - Meat Stews
  * - Rice, Tea, Brewing [LATER]
- * - Bee Nests Flammability & Compaction
+ * - Cooking Pot / Clay Oven Particles
+ * - Salt Flowers Potting [LATER] [WTF]
+ * - Achievements/Configs
  */
