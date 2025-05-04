@@ -2,6 +2,7 @@ package darkbum.saltymod.entity;
 
 import java.util.Random;
 
+import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
@@ -19,7 +20,7 @@ public class EntityHornedSheep extends EntitySheep {
     public EntityHornedSheep(World world) {
         super(world);
         this.tasks.addTask(2, new EntityAIMate(this, 1.0D));
-        this.tasks.addTask(3, new EntityAITempt(this, 1.1D, ModItems.marsh_reeds_grass, false));
+        this.tasks.addTask(3, new EntityAITempt(this, 1.1D, Item.getItemFromBlock(ModBlocks.marsh_reeds_b), false));
     }
 
     protected void applyEntityAttributes() {
@@ -40,7 +41,7 @@ public class EntityHornedSheep extends EntitySheep {
 
     @Override
     public boolean isBreedingItem(ItemStack itemStack) {
-        return itemStack != null && itemStack.getItem() == ModItems.marsh_reeds_grass;
+        return itemStack != null && itemStack.getItem() == Item.getItemFromBlock(ModBlocks.marsh_reeds_b);
     }
 
     public EntityHornedSheep createChild(EntityAgeable entityanimal) {

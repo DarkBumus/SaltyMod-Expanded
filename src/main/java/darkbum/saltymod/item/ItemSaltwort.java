@@ -15,7 +15,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import cpw.mods.fml.common.network.NetworkRegistry;
-import darkbum.saltymod.common.CommonProxy;
+import darkbum.saltymod.common.proxy.CommonProxy;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.network.SaltwortMessage;
 

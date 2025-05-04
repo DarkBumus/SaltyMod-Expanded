@@ -7,7 +7,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 
-import darkbum.saltymod.util.EvaporateRegistry;
+import darkbum.saltymod.util.EvaporatingRecipe;
 import darkbum.saltymod.init.ModAchievementList;
 import darkbum.saltymod.init.ModItems;
 
@@ -45,7 +45,7 @@ public class SlotEvaporator extends Slot {
         stack.onCrafting(this.thePlayer.worldObj, this.thePlayer, this.count);
         if (!this.thePlayer.worldObj.isRemote) {
             int i = this.count;
-            float f = EvaporateRegistry.instance()
+            float f = EvaporatingRecipe.instance()
                 .getEvaporateExperience(stack);
             if (f == 0.0F) {
                 i = 0;

@@ -77,22 +77,22 @@ public class ConditionalRegistrar {
         GameRegistry.addSmelting(input, output, xp);
     }
 
-    public static void addPotRecipe(ItemStack output, boolean[] conditions, boolean requiresHeater, float xp, PotcookingRecipe.IIngredientMatcher... ingredients) {
+    public static void addPotRecipe(ItemStack output, boolean[] conditions, boolean requiresHeater, float xpChance, PotcookingRecipe.IIngredientMatcher... ingredients) {
         if (!checkConditions(conditions)) return;
-        PotcookingRecipe.cooking().registerRecipe(output, requiresHeater, xp, ingredients);
+        PotcookingRecipe.cooking().registerRecipe(output, requiresHeater, xpChance, ingredients);
     }
 
-    public static void addPotRecipe(ItemStack output, boolean requiresHeater, float xp, PotcookingRecipe.IIngredientMatcher... ingredients) {
-        addPotRecipe(output, new boolean[0], requiresHeater, xp, ingredients);
+    public static void addPotRecipe(ItemStack output, boolean requiresHeater, float xpChance, PotcookingRecipe.IIngredientMatcher... ingredients) {
+        addPotRecipe(output, new boolean[0], requiresHeater, xpChance, ingredients);
     }
 
-    public static void addOvenRecipe(ItemStack output, boolean[] conditions, boolean requiresHeater, float xp, OvenbakingRecipe.IIngredientMatcher... ingredients) {
+    public static void addOvenRecipe(ItemStack output, boolean[] conditions, boolean requiresHeater, float xpChance, OvenbakingRecipe.IIngredientMatcher... ingredients) {
         if (!checkConditions(conditions)) return;
-        OvenbakingRecipe.baking().registerRecipe(output, requiresHeater, xp, ingredients);
+        OvenbakingRecipe.baking().registerRecipe(output, requiresHeater, xpChance, ingredients);
     }
 
-    public static void addOvenRecipe(ItemStack output, boolean requiresHeater, float xp, OvenbakingRecipe.IIngredientMatcher... ingredients) {
-        addOvenRecipe(output, new boolean[0], requiresHeater, xp, ingredients);
+    public static void addOvenRecipe(ItemStack output, boolean requiresHeater, float xpChance, OvenbakingRecipe.IIngredientMatcher... ingredients) {
+        addOvenRecipe(output, new boolean[0], requiresHeater, xpChance, ingredients);
     }
 
     public static void removeFirstRecipeFor(Item item, int meta, boolean... conditions) {

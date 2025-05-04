@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.common.CommonProxy;
+import darkbum.saltymod.common.proxy.CommonProxy;
 
 public class BlockSaltDeepslateOre extends Block {
 

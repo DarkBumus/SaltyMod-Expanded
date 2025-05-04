@@ -14,6 +14,8 @@ public class ModConfigurationBlocks {
     private static final String compatibilityStringEFR2 = " to be present";
 
     // Blocks Config Options
+    public static boolean enableSaltOre;
+
     public static boolean enableSaltBlocks;
 
     public static boolean enableSaltDirt;
@@ -45,8 +47,14 @@ public class ModConfigurationBlocks {
     public static void init(Configuration config) {
         config.setCategoryComment(categoryNameBlo, categoryDescriptionBlo);
 
+        enableSaltOre = config.getBoolean(
+            "01-enableSaltOre",
+            categoryNameBlo,
+            true,
+            enableFeatures + "\nSalt Ore" + "\n");
+
         enableSaltBlocks = config.getBoolean(
-            "01-enableSaltBlocks",
+            "02-enableSaltBlocks",
             categoryNameBlo,
             true,
             enableFeatures + "\nSalt Block"
@@ -65,13 +73,13 @@ public class ModConfigurationBlocks {
                 + "\n");
 
         enableSaltDirt = config.getBoolean(
-            "02-enableSaltDirt",
+            "03-enableSaltDirt",
             categoryNameBlo,
             true,
             enableFeatures + "\nSalt Grass" + "\nLight Salt Dirt" + "\nSalt Lake Bottom (Dirt)" + "\nSalt Dirt" + "\n");
 
         enableMudBricks = config.getBoolean(
-            "03-enableMudBricks",
+            "04-enableMudBricks",
             categoryNameBlo,
             true,
             enableFeatures + "\nWet Mud Bricks"
@@ -81,18 +89,18 @@ public class ModConfigurationBlocks {
                 + "\nMud Brick Wall (Requires Et Futurum Requiem)"
                 + "\n");
         complexMudBricks = config.getBoolean(
-            "04-complexMudBricks",
+            "05-complexMudBricks",
             categoryNameBlo,
             true,
             "Enables the a complex drying mechanic on Wet Mud Bricks (by enabling their random tick functionality) and disables the furnace recipe");
 
         enableEvaporator = config.getBoolean(
-            "05-enableEvaporator",
+            "06-enableEvaporator",
             categoryNameBlo,
             true,
             enableFeatures + "\nEvaporator" + "\nPowdered Milk" + "\n");
         evaporatorVolume = config.getInt(
-            "06-evaporatorVolume",
+            "07-evaporatorVolume",
             categoryNameBlo,
             1,
             1,
@@ -100,9 +108,9 @@ public class ModConfigurationBlocks {
             "Regulates the number of buckets that can be poured into an evaporator at once");
 
         enableFishFarm = config
-            .getBoolean("07-enableFishFarm", categoryNameBlo, true, enableFeatures + "\nFish Farm" + "\nFish Bait" + "\n");
+            .getBoolean("08-enableFishFarm", categoryNameBlo, true, enableFeatures + "\nFish Farm" + "\nFish Bait" + "\n");
         fishFarmSpeed = config.getInt(
-            "08-fishFarmSpeed",
+            "09-fishFarmSpeed",
             categoryNameBlo,
             3500,
             1,
@@ -111,12 +119,12 @@ public class ModConfigurationBlocks {
                 + "\nThe lower the value, the higher the chance, per tick, that a slot will be filled, i.e. the quicker the Fish Farm will fill up.");
 
         enableApiary = config.getBoolean(
-            "09-enableApiary",
+            "10-enableApiary",
             categoryNameBlo,
             true,
             enableFeatures + "\nApiary" + "\nBee Nest" + "\nBee Burrow" + "\n");
         apiarySpeed = config.getInt(
-            "10-apiarySpeed",
+            "11-apiarySpeed",
             categoryNameBlo,
             3500,
             1,
@@ -125,14 +133,14 @@ public class ModConfigurationBlocks {
                 + "\nThe lower the value, the higher the chance, per tick, that a slot will be filled, i.e. the quicker the Apiary will fill up.");
 
         enableMachines = config.getBoolean(
-            "11-enableMachines",
+            "12-enableMachines",
             categoryNameBlo,
             true,
             enableFeatures + "\nHeater"
                 + "\n");
 
         enableStorageBlocks = config.getBoolean(
-            "11-enableStorageBlocks",
+            "13-enableStorageBlocks",
             categoryNameBlo,
             true,
             enableFeatures + "\nCarrot Crate"
@@ -153,12 +161,12 @@ public class ModConfigurationBlocks {
                 + "\n");
 
         enableSaltCrystal = config.getBoolean(
-            "12-enableSaltCrystal",
+            "14-enableSaltCrystal",
             categoryNameBlo,
             true,
             enableFeatures + "\nSalt Crystal" + "\nSalt Shard" + "\n");
         saltCrystalGrowthSpeed = config.getInt(
-            "13-saltCrystalGrowthSpeed",
+            "15-saltCrystalGrowthSpeed",
             categoryNameBlo,
             14,
             1,
@@ -166,7 +174,7 @@ public class ModConfigurationBlocks {
             "Regulates the Salt Crystal growth speed (1 - faster, 20 - slower)");
 
         saltwortGrowthSpeed = config.getInt(
-            "14-saltwortGrowthSpeed",
+            "16-saltwortGrowthSpeed",
             categoryNameBlo,
             7,
             1,
@@ -174,7 +182,7 @@ public class ModConfigurationBlocks {
             "Regulates the Saltwort growth speed (1 - faster, 20 - slower)");
 
         enableSaltFlowers = config.getBoolean(
-            "15-enableSaltFlowers",
+            "17-enableSaltFlowers",
             categoryNameBlo,
             true,
             enableFeatures + "\nDaucus"
@@ -184,7 +192,7 @@ public class ModConfigurationBlocks {
                 + "\n");
 
         saltFlowersLargeHitbox = config.getBoolean(
-            "16-saltFlowersLargeHitbox",
+            "18-saltFlowersLargeHitbox",
             categoryNameBlo,
             false,
             "Changes the hitbox of the flowers with vegetables growing under them, to make them more distinct.");

@@ -1,4 +1,4 @@
-package darkbum.saltymod.core;
+/*package darkbum.saltymod.core;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,4 +47,4 @@ public class EarlyMixinLoader implements IEarlyMixinLoader, IFMLLoadingPlugin {
     public String getAccessTransformerClass() {
         return null;
     }
-}
+}*/

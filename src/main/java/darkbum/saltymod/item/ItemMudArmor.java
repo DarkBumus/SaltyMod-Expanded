@@ -8,7 +8,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
-import darkbum.saltymod.common.CommonProxy;
+import darkbum.saltymod.common.proxy.CommonProxy;
 import darkbum.saltymod.common.config.ModConfigurationItems;
 import darkbum.saltymod.init.ModAchievementList;
 import darkbum.saltymod.init.ModItems;

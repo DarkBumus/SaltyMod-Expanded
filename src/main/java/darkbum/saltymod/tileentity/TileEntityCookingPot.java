@@ -197,7 +197,7 @@ public class TileEntityCookingPot extends TileEntity implements ISidedInventory 
             }
         }
 
-        // Reduziere die Zutatenmengen im Inventar
+        // Update inventory after cooking
         for (int i = 0; i < 6; i++) {
             if (inventory[i] != null) {
                 inventory[i].stackSize--;
@@ -214,8 +214,9 @@ public class TileEntityCookingPot extends TileEntity implements ISidedInventory 
             }
         }
 
-        if (recipe.getXp() > 0 && worldObj != null && !worldObj.isRemote) {
-            spawnXp(worldObj, xCoord, yCoord, zCoord, recipe.getXp());
+        // Use the XP chance to determine if XP should be spawned
+        if (recipe.shouldSpawnXp() && worldObj != null && !worldObj.isRemote) {
+            spawnXp(worldObj, xCoord, yCoord, zCoord, recipe.xpChance); // Use the chance to spawn XP
         }
     }
 

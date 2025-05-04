@@ -6,7 +6,6 @@ import java.util.List;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.gui.inventory.GuiFurnace;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.I18n;
@@ -20,7 +19,7 @@ import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.common.CommonProxy;
+import darkbum.saltymod.common.proxy.CommonProxy;
 import darkbum.saltymod.inventory.container.ContainerEvaporator;
 import darkbum.saltymod.network.EvaporatorButtonMessage;
 import darkbum.saltymod.tileentity.TileEntityEvaporator;

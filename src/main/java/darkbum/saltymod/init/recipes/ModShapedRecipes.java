@@ -97,7 +97,7 @@ public class ModShapedRecipes {
 
         ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.reeds_block),
             new Object[]{"xxx", "xxx", "xxx",
-                'x', new ItemStack(ModItems.marsh_reeds_grass)},
+                'x', new ItemStack(ModBlocks.marsh_reeds_b)},
             ModConfigurationWorldGeneration.enableSaltMarsh);
 
         ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.mineral_mud),
@@ -246,7 +246,7 @@ public class ModShapedRecipes {
                 'x', beetroot_seeds},
             beetroot_seeds != null, ModConfigurationBlocks.enableStorageBlocks);
 
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModItems.marsh_reeds_grass, 9),
+        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.marsh_reeds_b, 9),
             new Object[]{"x",
                 'x', new ItemStack(ModBlocks.reeds_block)},
             ModConfigurationWorldGeneration.enableSaltMarsh);

@@ -9,26 +9,41 @@ import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+/**
+ * Block class for the dev block.
+ * The dev is a testing block.
+ *
+ * @author DarkBum
+ * @since 2.0.0
+ */
 public class BlockDevBlock extends Block {
 
     @SideOnly(Side.CLIENT)
-    private IIcon SIDE0BOTTOM;
+    private IIcon iconSide0Bottom;
 
     @SideOnly(Side.CLIENT)
-    private IIcon SIDE1TOP;
+    private IIcon iconSide1Top;
 
     @SideOnly(Side.CLIENT)
-    private IIcon SIDE2NORTH;
+    private IIcon iconSide2North;
 
     @SideOnly(Side.CLIENT)
-    private IIcon SIDE3SOUTH;
+    private IIcon iconSide3South;
 
     @SideOnly(Side.CLIENT)
-    private IIcon SIDE4WEST;
+    private IIcon iconSide4West;
 
     @SideOnly(Side.CLIENT)
-    private IIcon SIDE5EAST;
+    private IIcon iconSide5East;
 
+    /**
+     * Constructs a new block instance with a given name and a creative tab.
+     * <p>
+     * Also assigns a material and other base properties.
+     *
+     * @param name The internal name of the block.
+     * @param tab  The creative tab in which the block appears.
+     */
     public BlockDevBlock(String name, CreativeTabs tab) {
         super(Material.rock);
         setBlockName(name);
@@ -38,25 +53,42 @@ public class BlockDevBlock extends Block {
         setHarvestLevel("pickaxe", 0);
     }
 
+    /**
+     * Registers the textures for the different sides of the block.
+     *
+     * @param icon The icon register used to load textures.
+     */
+    @Override
     @SideOnly(Side.CLIENT)
-    public IIcon getIcon(int side, int meta) {
-        if (side == 0) return SIDE0BOTTOM;
-        if (side == 1) return SIDE1TOP;
-        if (side == 2) return SIDE2NORTH;
-        if (side == 3) return SIDE3SOUTH;
-        if (side == 4) return SIDE4WEST;
-        if (side == 5) return SIDE5EAST;
-        return null;
+    public void registerBlockIcons(IIconRegister icon) {
+        iconSide0Bottom = icon.registerIcon("saltymod:dev/dev_side0bottom");
+        iconSide1Top = icon.registerIcon("saltymod:dev/dev_side1top");
+        iconSide2North = icon.registerIcon("saltymod:dev/dev_side2north");
+        iconSide3South = icon.registerIcon("saltymod:dev/dev_side3south");
+        iconSide4West = icon.registerIcon("saltymod:dev/dev_side4west");
+        iconSide5East = icon.registerIcon("saltymod:dev/dev_side5east");
     }
 
-    @SideOnly(Side.CLIENT)
+    /**
+     * Returns the appropriate icon for a given side and metadata value.
+     *
+     * @param side The side of the block being rendered.
+     * @param meta The metadata of the block.
+     * @return the icon to render.
+     */
     @Override
-    public void registerBlockIcons(IIconRegister iconRegister) {
-        SIDE0BOTTOM = iconRegister.registerIcon("saltymod:dev/dev_side0bottom");
-        SIDE1TOP = iconRegister.registerIcon("saltymod:dev/dev_side1top");
-        SIDE2NORTH = iconRegister.registerIcon("saltymod:dev/dev_side2north");
-        SIDE3SOUTH = iconRegister.registerIcon("saltymod:dev/dev_side3south");
-        SIDE4WEST = iconRegister.registerIcon("saltymod:dev/dev_side4west");
-        SIDE5EAST = iconRegister.registerIcon("saltymod:dev/dev_side5east");
+    @SideOnly(Side.CLIENT)
+    public IIcon getIcon(int side, int meta) {
+        IIcon[] icons = {iconSide0Bottom, iconSide1Top, iconSide2North, iconSide3South, iconSide4West, iconSide5East};
+
+        return switch (side) {
+            case 0 -> icons[0];
+            case 1 -> icons[1];
+            case 2 -> icons[2];
+            case 3 -> icons[3];
+            case 4 -> icons[4];
+            case 5 -> icons[5];
+            default -> null;
+        };
     }
 }

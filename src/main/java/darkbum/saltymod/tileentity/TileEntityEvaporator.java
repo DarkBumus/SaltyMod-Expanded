@@ -21,7 +21,7 @@ import net.minecraftforge.fluids.IFluidHandler;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.util.EvaporateRegistry;
+import darkbum.saltymod.util.EvaporatingRecipe;
 import darkbum.saltymod.block.BlockEvaporator;
 import darkbum.saltymod.common.config.ModConfigurationBlocks;
 
@@ -100,7 +100,7 @@ public class TileEntityEvaporator extends TileEntity implements ISidedInventory,
             if (this.liquidLevel > 0 && this.liquidChange == 0) {
                 this.liquidChange = this.liquidLevel;
                 teUpdate = true;
-                if (canEvaporate()) BlockEvaporator.updateEvaporatorBlockState(
+                if (canEvaporate()) BlockEvaporator.updateEvaporatorState(
                     (this.burningTime > 0),
                     true,
                     this.worldObj,
@@ -112,7 +112,7 @@ public class TileEntityEvaporator extends TileEntity implements ISidedInventory,
                 this.liquidChange = 0;
                 this.evaporateTime = 0;
                 teUpdate = true;
-                BlockEvaporator.updateEvaporatorBlockState(
+                BlockEvaporator.updateEvaporatorState(
                     (this.burningTime > 0),
                     false,
                     this.worldObj,
@@ -143,7 +143,7 @@ public class TileEntityEvaporator extends TileEntity implements ISidedInventory,
                 }
                 if (isBurning() && canEvaporate()) {
                     if (clear && !liquid) {
-                        int vol = EvaporateRegistry.instance()
+                        int vol = EvaporatingRecipe.instance()
                             .getEvaporateFluidVolume(
                                 this.tank.getFluid()
                                     .getFluid());
@@ -163,7 +163,7 @@ public class TileEntityEvaporator extends TileEntity implements ISidedInventory,
             }
             if (burn != ((this.burningTime > 0))) {
                 teUpdate = true;
-                BlockEvaporator.updateEvaporatorBlockState(
+                BlockEvaporator.updateEvaporatorState(
                     (this.burningTime > 0),
                     canEvaporate(),
                     this.worldObj,
@@ -185,7 +185,7 @@ public class TileEntityEvaporator extends TileEntity implements ISidedInventory,
     }
 
     public void pressure() {
-        int vol = EvaporateRegistry.instance()
+        int vol = EvaporatingRecipe.instance()
             .getEvaporateFluidVolume(
                 this.tank.getFluid()
                     .getFluid());
@@ -210,7 +210,7 @@ public class TileEntityEvaporator extends TileEntity implements ISidedInventory,
 
     public boolean canEvaporate() {
         if (isFluidTankEmpty()) return false;
-        ItemStack itemstack = EvaporateRegistry.instance()
+        ItemStack itemstack = EvaporatingRecipe.instance()
             .getEvaporateItemStack(
                 this.tank.getFluid()
                     .getFluid());
@@ -223,7 +223,7 @@ public class TileEntityEvaporator extends TileEntity implements ISidedInventory,
 
     public void evaporate() {
         if (canEvaporate()) {
-            ItemStack itemstack = EvaporateRegistry.instance()
+            ItemStack itemstack = EvaporatingRecipe.instance()
                 .getEvaporateItemStack(
                     this.tank.getFluid()
                         .getFluid());
@@ -237,7 +237,7 @@ public class TileEntityEvaporator extends TileEntity implements ISidedInventory,
 
     @SideOnly(Side.CLIENT)
     public int getEvaporateProgressScaled(int scale) {
-        int vol = EvaporateRegistry.instance()
+        int vol = EvaporatingRecipe.instance()
             .getEvaporateFluidVolume(FluidRegistry.getFluid(this.liquidID));
         if (vol == 0) vol = 1000;
         return this.evaporateTime * scale / vol;

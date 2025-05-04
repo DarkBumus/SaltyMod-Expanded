@@ -10,11 +10,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 
-public class EvaporateRegistry {
+public class EvaporatingRecipe {
 
-    private static final EvaporateRegistry instance = new EvaporateRegistry();
+    public static final EvaporatingRecipe instance = new EvaporatingRecipe();
 
-    public static EvaporateRegistry instance() {
+    public static EvaporatingRecipe instance() {
         return instance;
     }
 

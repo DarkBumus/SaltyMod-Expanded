@@ -61,28 +61,27 @@ public class OvenbakingRecipe {
         public final ItemStack output;
         public final boolean requiresHeater;
         public final List<IIngredientMatcher> ingreds;
-        public final float xp; // ✨ Neues Feld für XP ✨
+        public final float xpChance; // Renamed to xpChance to represent the probability
 
-        // Angepasster Konstruktor mit XP
-        public OvenRecipe(ItemStack output, boolean requiresHeater, List<IIngredientMatcher> ingreds, float xp) {
+        public OvenRecipe(ItemStack output, boolean requiresHeater, List<IIngredientMatcher> ingreds, float xpChance) {
             this.output = output;
             this.requiresHeater = requiresHeater;
             this.ingreds = ingreds;
-            this.xp = xp;
+            this.xpChance = xpChance;
         }
 
-        public float getXp() {
-            return xp;
+        // Check whether XP should be spawned based on the chance
+        public boolean shouldSpawnXp() {
+            return Math.random() < xpChance;
         }
     }
 
-    // ✨ Neue Version der Registrierung: inkl. XP ✨
-    public void registerRecipe(ItemStack output, boolean requiresHeater, float xp, IIngredientMatcher... ingredMatchers) {
+    // Modify the registerRecipe method to take xpChance instead of xp
+    public void registerRecipe(ItemStack output, boolean requiresHeater, float xpChance, IIngredientMatcher... ingredMatchers) {
         List<IIngredientMatcher> ingredList = Arrays.asList(ingredMatchers);
-        recipes.put(output, new OvenRecipe(output, requiresHeater, ingredList, xp));
+        recipes.put(output, new OvenRecipe(output, requiresHeater, ingredList, xpChance));  // Use xpChance instead of xp
     }
 
-    // Rezeptsuche bleibt wie sie ist
     public OvenRecipe getRecipeFor(List<ItemStack> ingreds) {
         for (Map.Entry<ItemStack, OvenRecipe> entry : recipes.entrySet()) {
             OvenRecipe recipe = entry.getValue();

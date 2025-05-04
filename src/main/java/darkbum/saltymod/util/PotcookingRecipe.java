@@ -61,35 +61,31 @@ public class PotcookingRecipe {
         public final ItemStack output;
         public final boolean requiresHeater;
         public final List<IIngredientMatcher> ingreds;
-        public final float xp;  // Neues Feld für XP
+        public final float xpChance; // Changed from 'xp' to 'xpChance', now a probability.
 
-        // Reihenfolge geändert: Output, Heater?, Inputs, XP
-        public PotRecipe(ItemStack output, boolean requiresHeater, List<IIngredientMatcher> ingreds, float xp) {
+        public PotRecipe(ItemStack output, boolean requiresHeater, List<IIngredientMatcher> ingreds, float xpChance) {
             this.output = output;
             this.requiresHeater = requiresHeater;
             this.ingreds = ingreds;
-            this.xp = xp;  // XP setzen
+            this.xpChance = xpChance; // Storing chance (probability) instead of XP amount.
         }
 
-        // Getter für XP
-        public float getXp() {
-            return xp;
+        // Now, the method will use the xpChance to calculate if the XP should be awarded.
+        public boolean shouldSpawnXp() {
+            return Math.random() < xpChance; // Generate a random number to decide if XP should spawn.
         }
     }
 
-    // Rezeptregistrierung mit XP
-    public void registerRecipe(ItemStack output, boolean requiresHeater, float xp, IIngredientMatcher... ingredMatchers) {
-        // Zutaten von Varargs in eine Liste umwandeln
+    // Register the recipe, specifying the chance of XP spawn instead of the amount.
+    public void registerRecipe(ItemStack output, boolean requiresHeater, float xpChance, IIngredientMatcher... ingredMatchers) {
         List<IIngredientMatcher> ingredList = Arrays.asList(ingredMatchers);
-        recipes.put(output, new PotRecipe(output, requiresHeater, ingredList, xp));  // XP übergeben
+        recipes.put(output, new PotRecipe(output, requiresHeater, ingredList, xpChance)); // XP chance passed
     }
 
-    // Rezeptsuche ohne Pinch
     public PotRecipe getRecipeFor(List<ItemStack> ingreds) {
         for (Map.Entry<ItemStack, PotRecipe> entry : recipes.entrySet()) {
             PotRecipe recipe = entry.getValue();
 
-            // Rezept muss die gleiche Anzahl an Zutaten wie die Eingabewerte haben
             if (recipe.ingreds.size() != ingreds.size()) {
                 continue;
             }

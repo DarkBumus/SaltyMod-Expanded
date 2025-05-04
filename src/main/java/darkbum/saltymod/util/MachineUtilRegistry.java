@@ -282,35 +282,40 @@ public class MachineUtilRegistry {
 
         int xp = Math.round(xpAmount);
 
-        EntityPlayer player = world.getClosestPlayer(x, y, z, 5.0D);
-
         double baseX = x + 0.5D;
         double baseY = y + 0.5D;
         double baseZ = z + 0.5D;
 
-        boolean spawnAtPlayer = player != null;
-
-        if (spawnAtPlayer) {
-            baseX = player.posX;
-            baseY = player.posY + 0.5D;
-            baseZ = player.posZ;
+        List<EntityPlayer> nearbyPlayers = new ArrayList<>();
+        for (Object obj : world.playerEntities) {
+            if (obj instanceof EntityPlayer player) {
+                double distSq = player.getDistanceSq(x, y, z);
+                if (distSq <= 100.0D) {
+                    nearbyPlayers.add(player);
+                }
+            }
         }
 
-        Random rand = world.rand;  // Nutze Minecraft's Random-Instanz
+        if (nearbyPlayers.size() == 1) {
+            EntityPlayer targetPlayer = nearbyPlayers.get(0);
+            baseX = targetPlayer.posX;
+            baseY = targetPlayer.posY + 0.5D;
+            baseZ = targetPlayer.posZ;
+        }
+
+        Random rand = world.rand;
 
         while (xp > 0) {
             int split = EntityXPOrb.getXPSplit(xp);
             xp -= split;
 
-            // Leichte Zufallsbewegung
-            double offsetX = (rand.nextFloat() - 0.5D) * 0.5D;  // ±0.25 Blöcke
-            double offsetY = (rand.nextFloat() - 0.5D) * 0.25D; // ±0.125 Blöcke
+            double offsetX = (rand.nextFloat() - 0.5D) * 0.5D;
+            double offsetY = (rand.nextFloat() - 0.5D) * 0.25D;
             double offsetZ = (rand.nextFloat() - 0.5D) * 0.5D;
 
             EntityXPOrb orb = new EntityXPOrb(world, baseX + offsetX, baseY + offsetY, baseZ + offsetZ, split);
 
-            // Optional: Noch sanfte Startbewegung
-            orb.motionX = (rand.nextDouble() - 0.5D) * 0.02D; // Sehr leichte Bewegung
+            orb.motionX = (rand.nextDouble() - 0.5D) * 0.02D;
             orb.motionY = (rand.nextDouble()) * 0.02D;
             orb.motionZ = (rand.nextDouble() - 0.5D) * 0.02D;
 

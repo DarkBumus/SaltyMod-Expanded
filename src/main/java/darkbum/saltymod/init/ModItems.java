@@ -10,7 +10,7 @@ import net.minecraft.item.*;
 import net.minecraft.potion.Potion;
 
 import cpw.mods.fml.common.Loader;
-import darkbum.saltymod.common.CommonProxy;
+import darkbum.saltymod.common.proxy.CommonProxy;
 import darkbum.saltymod.item.*;
 import darkbum.saltymod.potion.ProbablePotionEffect;
 
@@ -62,7 +62,6 @@ public class ModItems {
     public static Item royal_jelly;
     public static Item mineral_mud_ball;
     public static Item horn;
-    public static Item marsh_reeds_grass;
     public static Item baking_soda;
     public static Item powdered_milk;
     public static Item salt;
@@ -208,7 +207,6 @@ public class ModItems {
         frozen_honey = new Item().setCreativeTab(tab).setUnlocalizedName("frozen_honey").setTextureName("saltymod:frozen_honey");
         royal_jelly = new Item().setCreativeTab(tab).setUnlocalizedName("royal_jelly").setTextureName("saltymod:royal_jelly");
 
-        marsh_reeds_grass = new ItemMarshReedsGrass("marsh_reeds_grass", tab).setTextureName("saltymod:marsh_reeds_grass");
         mineral_mud_ball = new Item().setCreativeTab(tab).setUnlocalizedName("mineral_mud_ball").setTextureName("saltymod:mineral_mud_ball");
         horn = new Item().setCreativeTab(tab).setUnlocalizedName("horn").setTextureName("saltymod:horn");
 
@@ -707,7 +705,6 @@ public class ModItems {
         ConditionalRegistrar.registerItem(honeycomb, "honeycomb", ModConfigurationItems.enableHoney);
         ConditionalRegistrar.registerItem(frozen_honey, "frozen_honey", ModConfigurationItems.enableHoney);
         ConditionalRegistrar.registerItem(royal_jelly, "royal_jelly", ModConfigurationItems.enableHoney);
-        ConditionalRegistrar.registerItem(marsh_reeds_grass, "marsh_reeds_grass", ModConfigurationWorldGeneration.enableSaltMarsh);
         ConditionalRegistrar.registerItem(mineral_mud_ball, "mineral_mud_ball", ModConfigurationItems.enableMineralMud);
         ConditionalRegistrar.registerItem(horn, "horn", ModConfigurationEntities.enableHornedSheep);
         ConditionalRegistrar.registerItem(baking_soda, "baking_soda");

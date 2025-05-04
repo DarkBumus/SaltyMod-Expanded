@@ -142,7 +142,6 @@ public class TileEntityClayOven extends TileEntity implements ISidedInventory {
     private boolean canRun() {
         List<ItemStack> ingreds = new ArrayList<>();
 
-        // Jetzt nur noch 4 Ingred-Slots
         for (int i = 0; i < 4; i++) {
             if (inventory[i] != null) {
                 ingreds.add(inventory[i]);
@@ -154,7 +153,7 @@ public class TileEntityClayOven extends TileEntity implements ISidedInventory {
         OvenbakingRecipe.OvenRecipe recipe = OvenbakingRecipe.baking().getRecipeFor(ingreds);
         if (recipe == null) return false;
 
-        return isHeaterRequirementMet(recipe) && canAcceptOutput(inventory[4], recipe.output);  // Output-Slot ist jetzt Index 4
+        return isHeaterRequirementMet(recipe) && canAcceptOutput(inventory[4], recipe.output);
     }
 
     private boolean isHeaterRequirementMet(OvenbakingRecipe.OvenRecipe recipe) {
@@ -172,19 +171,15 @@ public class TileEntityClayOven extends TileEntity implements ISidedInventory {
     public void bakeItems() {
         List<ItemStack> ingreds = new ArrayList<>();
 
-        // Nur die 4 Zutatenslots (0-3) berücksichtigen
         for (int i = 0; i < 4; i++) {
             if (inventory[i] != null) {
                 ingreds.add(inventory[i]);
             }
         }
 
-        // NICHT den Spade-Slot (Index 5) dazufügen!
-
         OvenbakingRecipe.OvenRecipe recipe = OvenbakingRecipe.baking().getRecipeFor(ingreds);
         if (recipe == null) return;
 
-        // Output-Slot ist Index 4
         if (recipe.output != null) {
             if (inventory[4] == null) {
                 inventory[4] = recipe.output.copy();
@@ -193,7 +188,6 @@ public class TileEntityClayOven extends TileEntity implements ISidedInventory {
             }
         }
 
-        // Verbrauche die 4 Zutaten
         for (int i = 0; i < 4; i++) {
             if (inventory[i] != null) {
                 inventory[i].stackSize--;
@@ -203,9 +197,8 @@ public class TileEntityClayOven extends TileEntity implements ISidedInventory {
             }
         }
 
-        // XP-Verleihung, wenn der Ofen ein Rezept hat
-        if (recipe.getXp() > 0 && worldObj != null && !worldObj.isRemote) {
-            spawnXp(worldObj, xCoord, yCoord, zCoord, recipe.getXp());
+        if (recipe.shouldSpawnXp() && worldObj != null && !worldObj.isRemote) {
+            spawnXp(worldObj, xCoord, yCoord, zCoord, 1);
         }
     }
 
