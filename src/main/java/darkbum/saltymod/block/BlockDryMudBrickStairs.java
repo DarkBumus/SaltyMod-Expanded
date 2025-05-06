@@ -6,6 +6,8 @@ import net.minecraft.creativetab.CreativeTabs;
 
 import darkbum.saltymod.init.ModBlocks;
 
+import static darkbum.saltymod.util.BlockHelper.*;
+
 /**
  * Block class for the dry mud brick stairs block.
  * The dry mud brick stairs is a regular stairs block.
@@ -29,6 +31,6 @@ public class BlockDryMudBrickStairs extends BlockStairs {
         setCreativeTab(tab);
         setBlockTextureName("saltymod:mud_bricks");
         this.useNeighborBrightness = true;
-        BlockHelper.propertiesDryMudBrick(this);
+        propertiesDryMudBrick(this);
     }
 }

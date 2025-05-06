@@ -18,6 +18,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.init.ModBlocks;
 
+import static darkbum.saltymod.util.BlockHelper.*;
+
 /**
  * Block class for the dry mud brick wall block.
  * The dry mud brick wall is a regular wall block.
@@ -40,7 +42,7 @@ public class BlockDryMudBrickWall extends BlockWall {
         setCreativeTab(tab);
         setBlockTextureName("saltymod:mud_bricks");
         this.useNeighborBrightness = true;
-        BlockHelper.propertiesDryMudBrick(this);
+        propertiesDryMudBrick(this);
     }
 
     /**
@@ -65,7 +67,7 @@ public class BlockDryMudBrickWall extends BlockWall {
      */
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
         list.add(new ItemStack(item, 1, 0));
     }
 

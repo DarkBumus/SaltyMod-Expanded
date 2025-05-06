@@ -43,15 +43,30 @@ public class MarshReedsRenderer implements ISimpleBlockRenderingHandler {
      */
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+        Block blockAbove = world.getBlock(x, y + 1, z);
+        Block blockBelow = world.getBlock(x, y - 1, z);
+
         Tessellator tessellator = Tessellator.instance;
 
-        tessellator.setBrightness(block.getMixedBrightnessForBlock(world, x, y, z));
-        tessellator.setColorOpaque_F(1.0f, 1.0f, 1.0f);
+        if (block == ModBlocks.marsh_reeds_b) {
+            tessellator.setBrightness(block.getMixedBrightnessForBlock(world, x, y, z));
+            tessellator.setColorOpaque_F(1.0f, 1.0f, 1.0f);
 
-        renderer.renderBlockLiquid(Blocks.water, x, y, z);
-        renderer.drawCrossedSquares(((BlockMarshReedsBottom) ModBlocks.marsh_reeds_b).iconBottom, x, y, z, 1.0f);
-        if (world.isAirBlock(x, y + 1, z)) {
-            renderer.drawCrossedSquares(((BlockMarshReedsTop) ModBlocks.marsh_reeds_t).iconTop, x, y + 1, z, 1.0f);
+            renderer.drawCrossedSquares(((BlockMarshReedsBottom) ModBlocks.marsh_reeds_b).iconBottom, x, y, z, 1.0f);
+            if (blockAbove != ModBlocks.marsh_reeds_t && blockAbove != ModBlocks.marsh_reeds_b) {
+                renderer.drawCrossedSquares(((BlockMarshReedsTop) ModBlocks.marsh_reeds_t).iconTop, x, y + 1, z, 1.0f);
+            }
+            renderer.renderBlockLiquid(Blocks.water, x, y, z);
+        }
+        if (block == ModBlocks.marsh_reeds_t) {
+            tessellator.setBrightness(block.getMixedBrightnessForBlock(world, x, y, z));
+            tessellator.setColorOpaque_F(1.0f, 1.0f, 1.0f);
+
+            renderer.drawCrossedSquares(((BlockMarshReedsTop) ModBlocks.marsh_reeds_t).iconTop, x, y, z, 1.0f);
+            if (blockBelow != ModBlocks.marsh_reeds_t && blockBelow != ModBlocks.marsh_reeds_b) {
+                renderer.drawCrossedSquares(((BlockMarshReedsBottom) ModBlocks.marsh_reeds_b).iconBottom, x, y - 1, z, 1.0f);
+                renderer.renderBlockLiquid(Blocks.water, x, y - 1, z);
+            }
         }
 
         return true;
@@ -72,6 +87,6 @@ public class MarshReedsRenderer implements ISimpleBlockRenderingHandler {
      */
     @Override
     public int getRenderId() {
-        return ClientProxy.marshReedsNewRenderType;
+        return ClientProxy.marshReedsRenderType;
     }
 }

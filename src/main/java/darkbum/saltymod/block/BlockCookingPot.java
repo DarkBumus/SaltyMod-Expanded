@@ -27,6 +27,7 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 import static darkbum.saltymod.tileentity.TileEntityCookingPot.*;
+import static darkbum.saltymod.util.BlockHelper.*;
 
 /**
  * Block class for the cooking pot block.
@@ -66,7 +67,7 @@ public class BlockCookingPot extends BlockContainer {
         super(Material.iron);
         setBlockName(name);
         setCreativeTab(tab);
-        BlockHelper.propertiesCookingPot(this);
+        propertiesCookingPot(this);
     }
 
     /**

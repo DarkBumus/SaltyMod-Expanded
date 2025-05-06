@@ -22,6 +22,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.SaltyMod;
 
+import static darkbum.saltymod.util.BlockHelper.*;
+
 /**
  * Block class for the fish farm block.
  * The fish farm is a tile entity container block that stores and produces items in a bulk fishing context.
@@ -52,7 +54,7 @@ public class BlockFishFarm extends BlockContainer {
         setBlockName(name);
         setCreativeTab(tab);
         setTickRandomly(true);
-        BlockHelper.propertiesApiaryFishFarm(this);
+        propertiesApiaryFishFarm(this);
     }
 
     /**

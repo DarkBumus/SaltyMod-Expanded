@@ -1,4 +1,4 @@
-package darkbum.saltymod.itemblock;
+package darkbum.saltymod.block.itemblock;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemSlab;

@@ -36,8 +36,6 @@ public class ClientProxy extends CommonProxy {
     public static int evaporatorRenderType;
     public static int cookingPotRenderType;
     public static int marshReedsRenderType;
-    public static int marshGrassRenderType;
-    public static int marshReedsNewRenderType;
 
     /**
      * Helper method that overrides from CommonProxy and makes sure the renderer methods are only called client-side.
@@ -70,7 +68,7 @@ public class ClientProxy extends CommonProxy {
         }
 
         if (ModConfigurationWorldGeneration.enableSaltMarsh) {
-            marshReedsNewRenderType = RenderingRegistry.getNextAvailableRenderId();
+            marshReedsRenderType = RenderingRegistry.getNextAvailableRenderId();
             RenderingRegistry.registerBlockHandler(new MarshReedsRenderer());
         }
     }

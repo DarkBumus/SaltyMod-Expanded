@@ -1,5 +1,6 @@
 package darkbum.saltymod.init;
 
+import darkbum.saltymod.block.itemblock.*;
 import darkbum.saltymod.util.ConditionalRegistrar;
 import net.minecraft.block.*;
 import net.minecraft.creativetab.CreativeTabs;
@@ -8,7 +9,6 @@ import cpw.mods.fml.common.Loader;
 import darkbum.saltymod.block.*;
 import darkbum.saltymod.block.BlockSaltBlock;
 import darkbum.saltymod.block.BlockSaltFlower;
-import darkbum.saltymod.itemblock.*;
 import darkbum.saltymod.common.proxy.CommonProxy;
 import darkbum.saltymod.common.config.ModConfigurationBlocks;
 import darkbum.saltymod.common.config.ModConfigurationItems;
@@ -183,7 +183,7 @@ public class ModBlocks {
         ConditionalRegistrar.registerBlock(onions, "onions", ModConfigurationItems.enableOnion);
         ConditionalRegistrar.registerBlock(saltworts, "saltworts");
         ConditionalRegistrar.registerBlock(salt_flower, ItemBlockSaltFlower.class, "salt_flower", ModConfigurationBlocks.enableSaltFlowers);
-        ConditionalRegistrar.registerBlock(marsh_reeds_t, ItemBlockMarshReeds.class, "marsh_reeds_t", ModConfigurationWorldGeneration.enableSaltMarsh);
+        ConditionalRegistrar.registerBlock(marsh_reeds_t, "marsh_reeds_t", ModConfigurationWorldGeneration.enableSaltMarsh);
         ConditionalRegistrar.registerBlock(marsh_reeds_b, ItemBlockMarshReeds.class, "marsh_reeds_b", ModConfigurationWorldGeneration.enableSaltMarsh);
     }
 }

@@ -274,45 +274,39 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
     private void checkForMill() {
         isMillNearby = false;
 
-        // Bestimme den Meta-Wert des aktuellen BlockPress
         int blockMeta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
 
-        // Positionen für die Seiten des Blocks, abhängig vom Meta-Wert
         int targetSide = -1;
 
-        // Definiere die Zielseite basierend auf dem Meta-Wert von BlockPress
         switch (blockMeta) {
             case 0:
-                targetSide = 2; // Meta:0 -> Seite 2
+                targetSide = 2;
                 break;
             case 1:
-                targetSide = 5; // Meta:1 -> Seite 5
+                targetSide = 5;
                 break;
             case 2:
-                targetSide = 3; // Meta:2 -> Seite 3
+                targetSide = 3;
                 break;
             case 3:
-                targetSide = 4; // Meta:3 -> Seite 4
+                targetSide = 4;
                 break;
         }
 
-        // Nun suchen wir nach einem BlockMill auf der bestimmten Seite
         if (targetSide != -1) {
             Block neighborBlock = worldObj.getBlock(xCoord + ForgeDirection.VALID_DIRECTIONS[targetSide].offsetX,
                 yCoord + ForgeDirection.VALID_DIRECTIONS[targetSide].offsetY,
                 zCoord + ForgeDirection.VALID_DIRECTIONS[targetSide].offsetZ);
 
-            // Überprüfen, ob es BlockMill ist und den richtigen Meta-Wert hat
             if (neighborBlock != null && neighborBlock == ModBlocks.mill) {
                 int neighborMeta = worldObj.getBlockMetadata(xCoord + ForgeDirection.VALID_DIRECTIONS[targetSide].offsetX,
                     yCoord + ForgeDirection.VALID_DIRECTIONS[targetSide].offsetY,
                     zCoord + ForgeDirection.VALID_DIRECTIONS[targetSide].offsetZ);
 
-                // Vergleiche den Meta-Wert des BlockMill mit dem erforderlichen Wert
-                if ((blockMeta == 0 && neighborMeta == 4) ||
-                    (blockMeta == 1 && neighborMeta == 5) ||
-                    (blockMeta == 2 && neighborMeta == 6) ||
-                    (blockMeta == 3 && neighborMeta == 7)) {
+                if ((blockMeta == 0 && neighborMeta == 6) ||
+                    (blockMeta == 1 && neighborMeta == 7) ||
+                    (blockMeta == 2 && neighborMeta == 4) ||
+                    (blockMeta == 3 && neighborMeta == 5)) {
                     isMillNearby = true;
                 }
             }

@@ -1,15 +1,15 @@
-package darkbum.saltymod.itemblock;
+package darkbum.saltymod.block.itemblock;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.IIcon;
 
-public class ItemBlockClayOven extends ItemBlock {
+public class ItemBlockCookingPot extends ItemBlock {
 
-    private IIcon clay_oven;
+    private IIcon cooking_pot;
 
-    public ItemBlockClayOven(Block block) {
+    public ItemBlockCookingPot(Block block) {
         super(block);
         setHasSubtypes(false);
         setMaxStackSize(1);
@@ -17,11 +17,11 @@ public class ItemBlockClayOven extends ItemBlock {
 
     @Override
     public void registerIcons(IIconRegister register) {
-        this.clay_oven = register.registerIcon("saltymod:clay_oven");
+        this.cooking_pot = register.registerIcon("saltymod:cooking_pot");
     }
 
     @Override
     public IIcon getIconFromDamage(int damage) {
-        return clay_oven;
+        return cooking_pot;
     }
 }

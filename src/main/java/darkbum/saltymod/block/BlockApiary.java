@@ -22,6 +22,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.SaltyMod;
 import darkbum.saltymod.tileentity.TileEntityApiary;
 
+import static darkbum.saltymod.util.BlockHelper.*;
+
 /**
  * Block class for the apiary block.
  * The apiary is a tile entity container block that stores and produces items in a beekeeping context.
@@ -58,7 +60,7 @@ public class BlockApiary extends BlockContainer {
         setBlockName(name);
         setCreativeTab(tab);
         setTickRandomly(true);
-        BlockHelper.propertiesApiaryFishFarm(this);
+        propertiesApiaryFishFarm(this);
     }
 
     /**

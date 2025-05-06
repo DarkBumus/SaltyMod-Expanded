@@ -196,7 +196,7 @@ public class SaltyMod {
  * - Change Heart texture of the Swarmed effect
  * - Underground Salt Lakes? [MAYBE]
  * - Underground Salt Caves/Tunnels/Mines? [MAYBE]
- * - Recipe Book [LATER, ALSO MAYBE]
+ * - Recipe Book [LATER]
  * - Fix up the latest Config changes
  * - Add Press/Cooking Pot/Clay Oven to NEI
  * - Slimes! [LATER]

@@ -34,6 +34,8 @@ import darkbum.saltymod.common.proxy.ClientProxy;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.tileentity.TileEntityEvaporator;
 
+import static darkbum.saltymod.util.BlockHelper.*;
+
 /**
  * Block class for the evaporator block.
  * The evaporator is a tile entity container block that stores fluids and produces item in an evaporation context.
@@ -77,7 +79,7 @@ public class BlockEvaporator extends BlockContainer {
         this.isEvaporating = evaporating;
         setBlockName(name);
         setCreativeTab(tab);
-        BlockHelper.propertiesEvaporator(this);
+        propertiesEvaporator(this);
     }
 
     /**

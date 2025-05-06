@@ -5,6 +5,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 
+import static darkbum.saltymod.util.BlockHelper.*;
+
 /**
  * Block class for the dry mud brick block.
  * The dry mud brick is a regular block that is created from wet mud brick.
@@ -26,9 +28,7 @@ public class BlockDryMudBrick extends Block {
         super(Material.rock);
         setBlockName(name);
         setCreativeTab(tab);
-        setBlockTextureName("saltymod:mud_bricks");        setBlockName(name);
-        setCreativeTab(tab);
         setBlockTextureName("saltymod:mud_bricks");
-        BlockHelper.propertiesDryMudBrick(this);
+        propertiesDryMudBrick(this);
     }
 }

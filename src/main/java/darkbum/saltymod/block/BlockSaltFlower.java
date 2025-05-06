@@ -94,11 +94,6 @@ public class BlockSaltFlower extends BlockFlower {
     }
 
     @Override
-    public int damageDropped(int meta) {
-        return meta;
-    }
-
-    @Override
     public ArrayList getDrops(World world, int x, int y, int z, int meta, int fortune) {
         ArrayList drop = new ArrayList();
         switch (meta) {

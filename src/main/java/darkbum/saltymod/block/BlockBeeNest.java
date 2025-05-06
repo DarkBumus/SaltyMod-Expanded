@@ -20,6 +20,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.init.ModItems;
 
+import static darkbum.saltymod.util.BlockHelper.*;
+
 /**
  * Block class for the bee nest block.
  * The bee nest is a regular block with two types, which produce special drops when destroyed.
@@ -64,7 +66,7 @@ public class BlockBeeNest extends Block {
         this.type = type;
         setBlockName(name);
         setCreativeTab(tab);
-        BlockHelper.propertiesBeeNest(this);
+        propertiesBeeNest(this);
     }
 
     /**

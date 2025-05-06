@@ -23,6 +23,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.init.ModItems;
 
+import static darkbum.saltymod.util.BlockHelper.*;
+
 /**
  * Block class for the bee burrow block.
  * The bee burrow is a regular block with two types, which produce special drops when destroyed.
@@ -64,7 +66,7 @@ public class BlockBeeBurrow extends Block {
         this.type = type;
         setBlockName(name);
         setCreativeTab(tab);
-        BlockHelper.propertiesBeeNest(this);
+        propertiesBeeNest(this);
     }
 
     /**

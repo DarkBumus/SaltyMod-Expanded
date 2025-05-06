@@ -14,6 +14,8 @@ import net.minecraft.world.World;
 
 import darkbum.saltymod.init.ModBlocks;
 
+import static darkbum.saltymod.util.BlockHelper.*;
+
 /**
  * Block class for the dry mud brick slab block.
  * The dry mud brick slab is a regular slab block.
@@ -37,7 +39,7 @@ public class BlockDryMudBrickSlab extends BlockSlab {
         setCreativeTab(tab);
         setBlockTextureName("saltymod:mud_bricks");
         this.useNeighborBrightness = true;
-        BlockHelper.propertiesDryMudBrick(this);
+        propertiesDryMudBrick(this);
     }
 
     /**
@@ -48,7 +50,7 @@ public class BlockDryMudBrickSlab extends BlockSlab {
      * @return the unlocalized name of the block.
      */
     @Override
-    public String func_150002_b(int meta) {
+    public String func_150002_b(int meta) {     //getUnlocalizedName()
         return getUnlocalizedName();
     }
 

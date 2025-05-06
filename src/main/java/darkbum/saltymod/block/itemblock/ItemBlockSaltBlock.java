@@ -1,4 +1,4 @@
-package darkbum.saltymod.itemblock;
+package darkbum.saltymod.block.itemblock;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlockWithMetadata;
@@ -19,7 +19,7 @@ public class ItemBlockSaltBlock extends ItemBlockWithMetadata {
             case 1:
                 nameBlock = "salt_chiseled_block";
                 break;
-            case 2:
+            case 2, 3, 4:
                 nameBlock = "salt_pillar";
                 break;
             case 5:
@@ -34,7 +34,7 @@ public class ItemBlockSaltBlock extends ItemBlockWithMetadata {
             case 8:
                 nameBlock = "salt_chiseled_brick";
                 break;
-            case 9:
+            case 9, 10:
                 nameBlock = "salt_chapiter";
                 break;
         }

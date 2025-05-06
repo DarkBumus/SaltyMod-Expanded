@@ -23,7 +23,8 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-import static darkbum.saltymod.tileentity.TileEntityClayOven.slotOutput;
+import static darkbum.saltymod.tileentity.TileEntityClayOven.*;
+import static darkbum.saltymod.util.BlockHelper.*;
 
 /**
  * Block class for the clay oven block.
@@ -60,7 +61,7 @@ public class BlockClayOven extends BlockContainer {
         super(Material.rock);
         setBlockName(name);
         setCreativeTab(tab);
-        BlockHelper.propertiesClayoven(this);
+        propertiesClayOven(this);
     }
 
     /**

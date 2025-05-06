@@ -2,219 +2,150 @@ package darkbum.saltymod.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import darkbum.saltymod.util.BlockHelper;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockRedstoneLight;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
+import static darkbum.saltymod.util.BlockHelper.*;
+
+/**
+ * Block class for the mill block.
+ * The mill is a regular block with no real function on its own, that can be powered to provide auxiliary properties to the press.
+ *
+ * @author DarkBum
+ * @since 2.0.0
+ */
 public class BlockMill extends Block {
 
     @SideOnly(Side.CLIENT)
-    private IIcon BOTTOM;
+    private IIcon iconBottom;
 
     @SideOnly(Side.CLIENT)
-    private IIcon TOP;
+    private IIcon iconTop;
 
     @SideOnly(Side.CLIENT)
-    private IIcon SIDESOFF;
+    private IIcon iconSidesOff;
 
     @SideOnly(Side.CLIENT)
-    private IIcon SIDESON;
+    private IIcon iconSidesOn;
 
     @SideOnly(Side.CLIENT)
-    private IIcon FRONT;
+    private IIcon iconFront;
 
     @SideOnly(Side.CLIENT)
-    private IIcon BACK;
+    private IIcon iconBack;
 
+    /**
+     * Constructs a new block instance with a given name and a creative tab.
+     * <p>
+     * Also assigns a material and other base properties through {@link BlockHelper}.
+     *
+     * @param name The internal name of the block.
+     * @param tab  The creative tab in which the block appears.
+     */
     public BlockMill(String name, CreativeTabs tab) {
         super(Material.wood);
         setBlockName(name);
         setCreativeTab(tab);
-        setHardness(2.5F);
-        setResistance(2.5F);
-        setStepSound(soundTypeWood);
+        propertiesMillPress(this);
     }
 
+    /**
+     * Registers the textures for the different sides of the block.
+     *
+     * @param icon The icon register used to load textures.
+     */
+    @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister icon) {
-        this.BOTTOM = icon.registerIcon("saltymod:mill_bottom");
-        this.TOP = icon.registerIcon("saltymod:mill_top");
-        this.SIDESOFF = icon.registerIcon("saltymod:mill_side_off");
-        this.SIDESON = icon.registerIcon("saltymod:mill_side_on");
-        this.FRONT = icon.registerIcon("saltymod:mill_front");
-        this.BACK = icon.registerIcon("saltymod:mill_back");
+        this.iconBottom = icon.registerIcon("saltymod:mill_bottom");
+        this.iconTop = icon.registerIcon("saltymod:mill_top");
+        this.iconSidesOff = icon.registerIcon("saltymod:mill_side_off");
+        this.iconSidesOn = icon.registerIcon("saltymod:mill_side_on");
+        this.iconFront = icon.registerIcon("saltymod:mill_front");
+        this.iconBack = icon.registerIcon("saltymod:mill_back");
     }
 
+    /**
+     * Returns the appropriate icon for a given side and metadata value.
+     *
+     * @param side The side of the block being rendered.
+     * @param meta The metadata of the block.
+     * @return the icon to render.
+     */
+    @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-        switch (meta) {
-            case 0:
-                switch (side) {
-                    case 0:
-                        return BOTTOM;
-                    case 1:
-                        return TOP;
-                    case 2:
-                        return BACK;
-                    case 3:
-                        return FRONT;
-                    case 4:
-                    case 5:
-                        return SIDESOFF;
-                }
-            case 1:
-                switch (side) {
-                    case 0:
-                        return BOTTOM;
-                    case 1:
-                        return TOP;
-                    case 2:
-                    case 3:
-                        return SIDESOFF;
-                    case 4:
-                        return FRONT;
-                    case 5:
-                        return BACK;
-                }
-            case 2:
-                switch (side) {
-                    case 0:
-                        return BOTTOM;
-                    case 1:
-                        return TOP;
-                    case 2:
-                        return FRONT;
-                    case 3:
-                        return BACK;
-                    case 4:
-                    case 5:
-                        return SIDESOFF;
-                }
-            case 3:
-                switch (side) {
-                    case 0:
-                        return BOTTOM;
-                    case 1:
-                        return TOP;
-                    case 2:
-                    case 3:
-                        return SIDESOFF;
-                    case 4:
-                        return BACK;
-                    case 5:
-                        return FRONT;
-                }
-            case 4:
-                switch (side) {
-                    case 0:
-                        return BOTTOM;
-                    case 1:
-                        return TOP;
-                    case 2:
-                        return BACK;
-                    case 3:
-                        return FRONT;
-                    case 4:
-                    case 5:
-                        return SIDESON;
-                }
-            case 5:
-                switch (side) {
-                    case 0:
-                        return BOTTOM;
-                    case 1:
-                        return TOP;
-                    case 2:
-                    case 3:
-                        return SIDESON;
-                    case 4:
-                        return FRONT;
-                    case 5:
-                        return BACK;
-                }
-            case 6:
-                switch (side) {
-                    case 0:
-                        return BOTTOM;
-                    case 1:
-                        return TOP;
-                    case 2:
-                        return FRONT;
-                    case 3:
-                        return BACK;
-                    case 4:
-                    case 5:
-                        return SIDESON;
-                }
-            case 7:
-                switch (side) {
-                    case 0:
-                        return BOTTOM;
-                    case 1:
-                        return TOP;
-                    case 2:
-                    case 3:
-                        return SIDESON;
-                    case 4:
-                        return BACK;
-                    case 5:
-                        return FRONT;
-                }
-        }
-        return null;
+        if (meta < 0 || meta > 7) return null;
+        IIcon[] icons = {iconBottom, iconTop, iconBack, iconFront, iconSidesOff, iconSidesOn};
+        int[][] iconMatrix = {
+            {0, 1, 3, 2, 4, 4},
+            {0, 1, 4, 4, 2, 3},
+            {0, 1, 2, 3, 4, 4},
+            {0, 1, 4, 4, 3, 2},
+            {0, 1, 3, 2, 5, 5},
+            {0, 1, 5, 5, 2, 3},
+            {0, 1, 2, 3, 5, 5},
+            {0, 1, 5, 5, 3, 2},
+        };
+        return icons[iconMatrix[meta][side]];
     }
 
-    public void onBlockPlacedBy(World worldIn, int x, int y, int z, EntityLivingBase placer, ItemStack itemIn) {
-        int l = MathHelper.floor_double((double) (placer.rotationYaw * 4.0F / 360.0F) + 2.5D) & 3;
-        worldIn.setBlockMetadataWithNotify(x, y, z, l, 2);
+    /**
+     * Called when the block is placed by an entity.
+     * Sets metadata based on player's rotation and block type.
+     *
+     * @param world  The world the block is in.
+     * @param x      The x-coordinate of the block.
+     * @param y      The y-coordinate of the block.
+     * @param z      The z-coordinate of the block.
+     * @param entity The entity placing the block.
+     * @param stack  The item used to place the block.
+     */
+    @Override
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
+        BlockHelper.setBlockDirectionFromEntity(world, x, y, z, entity);
     }
 
     @Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbor) {
-        super.onNeighborBlockChange(world, x, y, z, neighbor);
+    public void onBlockAdded(World world, int x, int y, int z) {
+        super.onBlockAdded(world, x, y, z);
+        updatePowerState(world, x, y, z);
+    }
 
+    /**
+     * Called when a neighboring block changes.
+     * Causes flowing water to appear in cardinal directions if there's air.
+     *
+     * @param neighborBlock The block that changed.
+     */
+    @Override
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block neighborBlock) {
+        super.onNeighborBlockChange(world, x, y, z, neighborBlock);
+        updatePowerState(world, x, y, z);
+    }
+
+    /**
+     * Updates the block's metadata based on its current redstone power state.
+     * <p>
+     * If the block is powered and not already in its powered state (metadata 4–7),
+     * it increments the metadata by 4 to reflect the powered version.
+     * If the block is unpowered and currently in a powered state, it decrements the metadata by 4.
+     */
+    private void updatePowerState(World world, int x, int y, int z) {
+        int meta = world.getBlockMetadata(x, y, z);
         boolean isPowered = world.isBlockIndirectlyGettingPowered(x, y, z);
 
-        int meta = world.getBlockMetadata(x, y, z);
-
-        if (isPowered) {
-            switch (meta) {
-                case 0:
-                    world.setBlockMetadataWithNotify(x, y, z, 4, 3);
-                    break;
-                case 1:
-                    world.setBlockMetadataWithNotify(x, y, z, 5, 3);
-                    break;
-                case 2:
-                    world.setBlockMetadataWithNotify(x, y, z, 6, 3);
-                    break;
-                case 3:
-                    world.setBlockMetadataWithNotify(x, y, z, 7, 3);
-                    break;
-            }
-        } else {
-            switch (meta) {
-                case 4:
-                    world.setBlockMetadataWithNotify(x, y, z, 0, 3);
-                    break;
-                case 5:
-                    world.setBlockMetadataWithNotify(x, y, z, 1, 3);
-                    break;
-                case 6:
-                    world.setBlockMetadataWithNotify(x, y, z, 2, 3);
-                    break;
-                case 7:
-                    world.setBlockMetadataWithNotify(x, y, z, 3, 3);
-                    break;
-            }
+        if (isPowered && meta >= 0 && meta <= 3) {
+            world.setBlockMetadataWithNotify(x, y, z, meta + 4, 3);
+        } else if (!isPowered && meta >= 4 && meta <= 7) {
+            world.setBlockMetadataWithNotify(x, y, z, meta - 4, 3);
         }
     }
 }

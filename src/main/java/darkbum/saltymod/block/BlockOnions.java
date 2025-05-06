@@ -1,5 +1,6 @@
 package darkbum.saltymod.block;
 
+import darkbum.saltymod.util.BlockHelper;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -10,19 +11,56 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.init.ModItems;
 
+import static darkbum.saltymod.util.BlockHelper.*;
+
+/**
+ * Block class for the onions block.
+ * The onions are a regular crop block.
+ *
+ * @author DarkBum
+ * @since 1.9.f
+ */
 public class BlockOnions extends BlockCrops {
 
     @SideOnly(Side.CLIENT)
     private IIcon[] icons;
 
+    /**
+     * Constructs a new block instance with a given name and a creative tab.
+     * <p>
+     * Also assigns a material and other base properties through {@link BlockHelper}.
+     *
+     * @param name The internal name of the block.
+     * @param tab  The creative tab in which the block appears.
+     */
     public BlockOnions(String name, CreativeTabs tab) {
         setBlockName(name);
-        setStepSound(soundTypeGrass);
         setCreativeTab(tab);
         setTickRandomly(true);
         setBlockTextureName("saltymod:onions");
+        propertiesMarshReedsOnions(this);
     }
 
+    /**
+     * Registers the textures for the different sides of the block.
+     *
+     * @param icon The icon register used to load textures.
+     */
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerBlockIcons(IIconRegister icon) {
+        this.icons = new IIcon[4];
+        for (int i = 0; i < this.icons.length; i++) this.icons[i] = icon.registerIcon(getTextureName() + "_stage_" + i);
+    }
+
+    /**
+     * Returns the appropriate icon for a given side and metadata value.
+     *
+     * @param side The side of the block being rendered.
+     * @param meta The metadata of the block.
+     * @return the icon to render.
+     */
+    @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
         if (meta < 7) {
@@ -32,17 +70,25 @@ public class BlockOnions extends BlockCrops {
         return this.icons[3];
     }
 
-    protected Item func_149866_i() {
+    /**
+     * Returns the crop item that is harvested from this plant.
+     * This is typically the same as the seed, unless differentiated.
+     *
+     * @return the item dropped on harvest.
+     */
+    @Override
+    protected Item func_149865_P() {    //getCrop()
         return ModItems.onion;
     }
 
-    protected Item func_149865_P() {
+    /**
+     * Returns the seed item for this crop.
+     * This determines what item is required to plant the crop.
+     *
+     * @return the item used to plant onions.
+     */
+    @Override
+    protected Item func_149866_i() {    //getSeed()
         return ModItems.onion;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister reg) {
-        this.icons = new IIcon[4];
-        for (int i = 0; i < this.icons.length; i++) this.icons[i] = reg.registerIcon(getTextureName() + "_stage_" + i);
     }
 }

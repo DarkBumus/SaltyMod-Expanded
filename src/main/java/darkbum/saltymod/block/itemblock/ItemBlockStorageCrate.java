@@ -1,14 +1,14 @@
-package darkbum.saltymod.itemblock;
+package darkbum.saltymod.block.itemblock;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlockWithMetadata;
 import net.minecraft.item.ItemStack;
 
-public class ItemBlockStorageBarrel extends ItemBlockWithMetadata {
+public class ItemBlockStorageCrate extends ItemBlockWithMetadata {
 
-    private static final String[] types = new String[] { "cod", "salmon", "tropical_fish", "tailor", "pufferfish" };
+    private static final String[] types = new String[] { "carrot", "potato", "poisonous_potato", "onion", "beetroot" };
 
-    public ItemBlockStorageBarrel(Block block) {
+    public ItemBlockStorageCrate(Block block) {
         super(block, block);
         setHasSubtypes(true);
     }

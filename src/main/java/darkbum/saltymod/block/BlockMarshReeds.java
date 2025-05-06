@@ -25,6 +25,8 @@ import net.minecraftforge.common.IShearable;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static darkbum.saltymod.util.BlockHelper.*;
+
 /**
  * Parent class for the marsh reeds block.
  * This class encompasses both {@link BlockMarshReedsTop} and {@link BlockMarshReedsBottom}
@@ -59,7 +61,7 @@ public class BlockMarshReeds {
             setBlockName(name);
             setCreativeTab(tab);
             setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-            BlockHelper.propertiesMarshReeds(this);
+            propertiesMarshReedsOnions(this);
         }
 
         /**
@@ -87,11 +89,23 @@ public class BlockMarshReeds {
         }
 
         /**
-         * @return the icon name for the block.
+         * Gets the render type for this block.
+         *
+         * @return a custom render type ID, provided by the client proxy.
          */
         @Override
-        public String getItemIconName() {
-            return "marsh_reeds";
+        public int getRenderType() {
+            return ClientProxy.marshReedsRenderType;
+        }
+
+        /**
+         * Specifies the render pass this block should be rendered in.
+         *
+         * @return 1 to render this block during the transparent render pass.
+         */
+        @Override
+        public int getRenderBlockPass() {
+            return 1;
         }
 
         /**
@@ -230,7 +244,7 @@ public class BlockMarshReeds {
             setBlockName(name);
             setCreativeTab(tab);
             setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-            BlockHelper.propertiesMarshReeds(this);
+            propertiesMarshReedsOnions(this);
         }
 
         /**
@@ -272,9 +286,14 @@ public class BlockMarshReeds {
          */
         @Override
         public int getRenderType() {
-            return ClientProxy.marshReedsNewRenderType;
+            return ClientProxy.marshReedsRenderType;
         }
 
+        /**
+         * Specifies the render pass this block should be rendered in.
+         *
+         * @return 1 to render this block during the transparent render pass.
+         */
         @Override
         public int getRenderBlockPass() {
             return 1;

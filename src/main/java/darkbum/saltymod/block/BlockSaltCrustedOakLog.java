@@ -16,12 +16,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockSaltCrustedOakLog extends Block {
 
@@ -123,21 +121,12 @@ public class BlockSaltCrustedOakLog extends Block {
     public int onBlockPlaced(World worldIn, int x, int y, int z, int side, float subX, float subY, float subZ,
         int meta) {
         int j1 = meta & 3;
-        byte b0 = 0;
+        byte b0 = switch (side) {
+            case 2, 3 -> 8;
+            case 4, 5 -> 4;
+            default -> 0;
+        };
 
-        switch (side) {
-            case 0:
-            case 1:
-                b0 = 0;
-                break;
-            case 2:
-            case 3:
-                b0 = 8;
-                break;
-            case 4:
-            case 5:
-                b0 = 4;
-        }
         return j1 | b0;
     }
 
@@ -147,18 +136,6 @@ public class BlockSaltCrustedOakLog extends Block {
 
     protected boolean canSilkHarvest() {
         return false;
-    }
-
-    public boolean isFlammable(IBlockAccess aWorld, int aX, int aY, int aZ, ForgeDirection aSide) {
-        return true;
-    }
-
-    public int getFlammability(IBlockAccess aWorld, int aX, int aY, int aZ, ForgeDirection aSide) {
-        return 5;
-    }
-
-    public int getFireSpreadSpeed(IBlockAccess aWorld, int aX, int aY, int aZ, ForgeDirection aSide) {
-        return 5;
     }
 
     @Override
