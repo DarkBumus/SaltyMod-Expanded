@@ -1,127 +1,77 @@
 package darkbum.saltymod.block;
 
-import java.util.Iterator;
-import java.util.List;
 import java.util.Random;
 
+import darkbum.saltymod.util.BlockHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-import darkbum.saltymod.init.ModBlocks;
 
+import static darkbum.saltymod.util.BlockHelper.*;
+
+/**
+ * Block class for the salt grass block.
+ * The salt grass is a regular block with multiple variations.
+ *
+ * @author DarkBum
+ * @since 1.9.f
+ */
 public class BlockSaltLamp extends Block {
 
+    /**
+     * Constructs a new block instance with a given name and a creative tab.
+     * <p>
+     * Also assigns a material and other base properties through {@link BlockHelper}.
+     *
+     * @param name The internal name of the block.
+     * @param tab  The creative tab in which the block appears.
+     */
     public BlockSaltLamp(String name, CreativeTabs tab) {
         super(Material.rock);
-        setTickRandomly(true);
         setBlockName(name);
         setCreativeTab(tab);
-        setHardness(5.0F);
-        setResistance(10.0F);
-        setLightLevel(0.9F);
-        setHarvestLevel("pickaxe", 1);
         setBlockTextureName("saltymod:salt_lamp");
+        setTickRandomly(true);
+        propertiesSaltLamp(this);
     }
 
-    public void onEntityWalking(World world, int x, int y, int z, Entity entity) {
-        if (!world.isRemote && entity instanceof net.minecraft.entity.EntityLivingBase
-            && EntityList.getEntityString(entity) != null
-            && ((EntityList.getEntityString(entity)
-                .toLowerCase()
-                .contains("slime")
-                && !EntityList.getEntityString(entity)
-                    .toLowerCase()
-                    .contains("lava"))
-                || EntityList.getEntityString(entity)
-                    .toLowerCase()
-                    .contains("witch")))
-            world.scheduleBlockUpdate(x, y, z, this, 0);
-    }
-
-    public void updateTick(World world, int x, int y, int z, Random rand) {
-        if (!world.isRemote) {
-            int d1 = 0;
-            double d0 = 0.0625D;
-            AxisAlignedBB axisalignedbb = AxisAlignedBB.getBoundingBox(x, y, z, (x + 1), (y + 1), (z + 1))
-                .expand(d0, d0, d0);
-            List<Entity> list = world.getEntitiesWithinAABB(Entity.class, axisalignedbb);
-            Iterator<Entity> iterator = list.iterator();
-            while (iterator.hasNext()) {
-                Entity entity = iterator.next();
-                if (entity instanceof net.minecraft.entity.EntityLivingBase
-                    && EntityList.getEntityString(entity) != null
-                    && ((EntityList.getEntityString(entity)
-                        .toLowerCase()
-                        .contains("slime")
-                        && !EntityList.getEntityString(entity)
-                            .toLowerCase()
-                            .contains("lava"))
-                        || EntityList.getEntityString(entity)
-                            .toLowerCase()
-                            .contains("witch"))) {
-                    entity.attackEntityFrom(DamageSource.cactus, 1.0F);
-                    d1 = 3;
-                }
-                if (d1 > 0) {
-                    d1--;
-                    for (int x1 = x - 1; x1 < x + 2; x1++) {
-                        for (int z1 = z - 1; z1 < z + 2; z1++) {
-                            if (world.getBlock(x1, y, z1) == ModBlocks.salt_block
-                                || world.getBlock(x1, y, z1) == ModBlocks.salt_lamp
-                                || world.getBlock(x1, y, z1) == ModBlocks.salt_lake
-                                || world.getBlock(x1, y, z1) == ModBlocks.salt_dirt
-                                || world.getBlock(x1, y, z1) == ModBlocks.salt_brick_stairs)
-                                world.scheduleBlockUpdate(x1, y, z1, this, 10);
-                        }
-                    }
-                }
-            }
-            for (int x2 = x - 1; x2 < x + 2; x2++) {
-                for (int y2 = y - 1; y2 < y + 2; y2++) {
-                    for (int z2 = z - 1; z2 < z + 2; z2++) {
-                        if ((world.getBlock(x2, y2, z2) == Blocks.ice || world.getBlock(x2, y2, z2) == Blocks.snow
-                            || (world.getBlock(x2, y2, z2) == Blocks.snow_layer && y2 != y - 1))
-                            && ((x2 - 1 == x
-                                && (world.getBlock(x2 - 1, y2, z2) == this || world.getBlock(x2 - 1, y2, z2)
-                                    .getMaterial() == Material.water))
-                                || (x2 + 1 == x
-                                    && (world.getBlock(x2 + 1, y2, z2) == this || world.getBlock(x2 + 1, y2, z2)
-                                        .getMaterial() == Material.water))
-                                || (y2 - 1 == y
-                                    && (world.getBlock(x2, y2 - 1, z2) == this || world.getBlock(x2, y2 - 1, z2)
-                                        .getMaterial() == Material.water))
-                                || (y2 + 1 == y
-                                    && (world.getBlock(x2, y2 + 1, z2) == this || world.getBlock(x2, y2 + 1, z2)
-                                        .getMaterial() == Material.water))
-                                || (z2 - 1 == z
-                                    && (world.getBlock(x2, y2, z2 - 1) == this || world.getBlock(x2, y2, z2 - 1)
-                                        .getMaterial() == Material.water))
-                                || (z2 + 1 == z
-                                    && (world.getBlock(x2, y2, z2 + 1) == this || world.getBlock(x2, y2, z2 + 1)
-                                        .getMaterial() == Material.water)))) {
-                            world.scheduleBlockUpdate(x, y, z, this, 5);
-                            if (rand.nextInt(20) == 0) {
-                                if (world.getBlock(x2, y2, z2) == Blocks.ice
-                                    || world.getBlock(x2, y2, z2) == Blocks.snow)
-                                    world.setBlock(x2, y2, z2, Blocks.water);
-                                if (world.getBlock(x2, y2, z2) == Blocks.snow_layer) world.setBlockToAir(x2, y2, z2);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
+    /**
+     * Returns the map color used for this block in maps.
+     *
+     * @param meta The metadata of the block.
+     * @return the map color.
+     */
     public MapColor getMapColor(int meta) {
         return MapColor.quartzColor;
+    }
+
+    /**
+     * Updates the block's state during a tick.
+     * This method is called on each tick to update the block's behavior.
+     * It checks for nearby entities, tries to grow salt crystals, and attempts to melt ice or snow.
+     *
+     * @param rand The random number generator for events like crystal growth.
+     */
+    @Override
+    public void updateTick(World world, int x, int y, int z, Random rand) {
+        if (world.isRemote) return;
+
+        checkAndDamageNearbyEntities(world, x, y, z, this);
+        tryMeltIceAndSnow(world, x, y, z, rand, this);
+    }
+
+    /**
+     * Handles the effect when an entity walks on this block.
+     * This method is used to apply effects or trigger actions when an entity steps on the block.
+     *
+     * @param entity The entity that is walking on the block.
+     */
+    @Override
+    public void onEntityWalking(World world, int x, int y, int z, Entity entity) {
+        BlockHelper.handleEntityWalkingSaltVulnerableUpdate(world, x, y, z, entity, this);
     }
 }

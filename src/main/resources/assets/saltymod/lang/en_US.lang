@@ -341,7 +341,9 @@ achievement.find_salt.desc=Collect some salt
 
 achievement.find_salt_crystal=More than salt
 achievement.find_salt_crystal.desc=Obtain a salt shard
-achievement.navelse_salt_crystal=Break a thing, mend your luck
+achievement.nav_salt_crystal=Break a thing,...
+achievement.nav_salt_crystal.desc=Fall onto a salt crystal
+achievement.navelse_salt_crystal=...mend your luck
 achievement.navelse_salt_crystal.desc=Shove a witch or a slime on a salt crystal
 achievement.slime_salt_crystal=Tough Jelly
 achievement.slime_salt_crystal.desc=Kill a slime with a salt shard in hand

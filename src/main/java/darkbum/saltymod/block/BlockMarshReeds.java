@@ -61,7 +61,7 @@ public class BlockMarshReeds {
             setBlockName(name);
             setCreativeTab(tab);
             setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-            propertiesMarshReedsOnions(this);
+            propertiesSaltPlantsAll(this);
         }
 
         /**
@@ -72,20 +72,16 @@ public class BlockMarshReeds {
         @Override
         @SideOnly(Side.CLIENT)
         public void registerBlockIcons(IIconRegister icon) {
-            this.iconTop = icon.registerIcon("saltymod:marsh_reeds_top");
+            iconTop = icon.registerIcon("saltymod:marsh_reeds_top");
+            blockIcon = iconTop;
         }
 
         /**
-         * Returns the appropriate icon for a given side and metadata value.
-         *
-         * @param side  The side of the block being rendered.
-         * @param meta  The metadata of the block.
-         * @return the icon to render.
+         * @return the icon name for the block.
          */
         @Override
-        @SideOnly(Side.CLIENT)
-        public IIcon getIcon(int side, int meta) {
-            return iconTop;
+        public String getItemIconName() {
+            return "marsh_reeds";
         }
 
         /**
@@ -191,7 +187,8 @@ public class BlockMarshReeds {
          */
         @Override
         public boolean isReplaceable(IBlockAccess world, int x, int y, int z) {
-            return true;
+            Block blockAbove = world.getBlock(x, y + 1, z);
+            return blockAbove.getMaterial().isLiquid();
         }
 
         /**
@@ -244,7 +241,7 @@ public class BlockMarshReeds {
             setBlockName(name);
             setCreativeTab(tab);
             setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-            propertiesMarshReedsOnions(this);
+            propertiesSaltPlantsAll(this);
         }
 
         /**
@@ -255,20 +252,8 @@ public class BlockMarshReeds {
         @Override
         @SideOnly(Side.CLIENT)
         public void registerBlockIcons(IIconRegister icon) {
-            this.iconBottom = icon.registerIcon("saltymod:marsh_reeds_bottom");
-        }
-
-        /**
-         * Returns the appropriate icon for a given side and metadata value.
-         *
-         * @param side The side of the block being rendered.
-         * @param meta The metadata of the block.
-         * @return the icon to render.
-         */
-        @Override
-        @SideOnly(Side.CLIENT)
-        public IIcon getIcon(int side, int meta) {
-            return iconBottom;
+            iconBottom = icon.registerIcon("saltymod:marsh_reeds_bottom");
+            blockIcon = iconBottom;
         }
 
         /**
@@ -418,6 +403,17 @@ public class BlockMarshReeds {
         @Override
         public Item getItemDropped(int meta, Random random, int fortune) {
             return null;
+        }
+
+        /**
+         * Whether the block is replacable by water or other means.
+         *
+         * @return true, indicating that the block gets destroyed by water.
+         */
+        @Override
+        public boolean isReplaceable(IBlockAccess world, int x, int y, int z) {
+            Block blockAbove = world.getBlock(x, y + 1, z);
+            return blockAbove.getMaterial().isLiquid();
         }
 
         /**

@@ -22,7 +22,9 @@ public class ModFlammabilityHandler {
         fire.setFireInfo(ModBlocks.storage_crate, 5, 20);
         fire.setFireInfo(ModBlocks.storage_barrel, 5, 20);
         fire.setFireInfo(ModBlocks.storage_sack, 30, 60);
-        fire.setFireInfo(ModBlocks.salt_flower, 60, 100);
+        fire.setFireInfo(ModBlocks.onions, 60, 100);
+        fire.setFireInfo(ModBlocks.saltworts, 60, 100);
+        fire.setFireInfo(ModBlocks.salt_flower_d, 60, 100);
         fire.setFireInfo(ModBlocks.marsh_reeds_t, 60, 100);
     }
 }

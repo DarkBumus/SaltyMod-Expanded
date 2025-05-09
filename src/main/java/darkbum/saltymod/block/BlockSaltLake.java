@@ -1,190 +1,120 @@
 package darkbum.saltymod.block;
 
-import java.util.Iterator;
-import java.util.List;
 import java.util.Random;
 
-import net.minecraft.block.Block;
+import darkbum.saltymod.util.BlockHelper;
 import net.minecraft.block.material.MapColor;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.stats.StatBase;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.init.ModAchievementList;
 import darkbum.saltymod.init.ModBlocks;
-import darkbum.saltymod.init.ModItems;
 
-public class BlockSaltLake extends Block {
+import static darkbum.saltymod.block.BlockSaltBlock.*;
+import static darkbum.saltymod.util.BlockHelper.*;
+
+/**
+ * Block class for the salt lake block.
+ * The salt lake is a regular block with multiple variations.
+ *
+ * @author DarkBum
+ * @since 1.9.f
+ */
+public class BlockSaltLake extends BlockSaltOre {
 
     @SideOnly(Side.CLIENT)
-    private IIcon TOP;
+    private IIcon iconTop;
 
     @SideOnly(Side.CLIENT)
-    private IIcon SIDE;
+    private IIcon iconSide;
 
+    /**
+     * Constructs a new block instance with a given name and a creative tab.
+     * <p>
+     * Also assigns a material and other base properties through {@link BlockHelper}.
+     *
+     * @param name The internal name of the block.
+     * @param tab  The creative tab in which the block appears.
+     */
     public BlockSaltLake(String name, CreativeTabs tab) {
-        super(Material.rock);
+        super(name, tab);
         setTickRandomly(true);
-        setBlockName(name);
-        setCreativeTab(tab);
-        setHardness(2.0F);
-        setResistance(10.0F);
-        setHarvestLevel("pickaxe", 2);
     }
 
+    /**
+     * Registers the textures for the different sides of the block.
+     *
+     * @param icon The icon register used to load textures.
+     */
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerBlockIcons(IIconRegister icon) {
+        blockIcon = icon.registerIcon("saltymod:salt_lake_ore");
+        iconTop = icon.registerIcon("saltymod:salt_lake_ore_top");
+        iconSide = icon.registerIcon("saltymod:salt_lake_ore_side");
+    }
+
+    /**
+     * Returns the appropriate icon for a given side and metadata value.
+     *
+     * @param side The side of the block being rendered.
+     * @param meta The metadata of the block.
+     * @return the icon to render.
+     */
+    @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-        return (side == 1) ? this.TOP
+        return (side == 1) ? this.iconTop
             : ((side == 0) ? ModBlocks.salt_ore.getBlockTextureFromSide(side)
-                : (((side == 2 && meta % 2 == 1) || (side == 5 && meta % 4 >= 2)
-                    || (side == 3 && meta % 8 >= 4)
-                    || (side == 4 && meta >= 8)) ? this.SIDE : this.blockIcon));
+            : (((side == 2 && meta % 2 == 1) || (side == 5 && meta % 4 >= 2)
+            || (side == 3 && meta % 8 >= 4)
+            || (side == 4 && meta >= 8)) ? this.iconSide : this.blockIcon));
     }
 
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister par1) {
-        this.blockIcon = par1.registerIcon("saltymod:salt_lake_ore");
-        this.TOP = par1.registerIcon("saltymod:salt_lake_ore_top");
-        this.SIDE = par1.registerIcon("saltymod:salt_lake_ore_side");
-    }
-
-    public void onEntityWalking(World world, int x, int y, int z, Entity entity) {
-        if (!world.isRemote) {
-            if (entity instanceof net.minecraft.entity.EntityLivingBase && EntityList.getEntityString(entity) != null
-                && ((EntityList.getEntityString(entity)
-                    .toLowerCase()
-                    .contains("slime")
-                    && !EntityList.getEntityString(entity)
-                        .toLowerCase()
-                        .contains("lava"))
-                    || EntityList.getEntityString(entity)
-                        .toLowerCase()
-                        .contains("witch")))
-                world.scheduleBlockUpdate(x, y, z, this, 0);
-            if (entity instanceof EntityPlayer)
-                ((EntityPlayer) entity).addStat((StatBase) ModAchievementList.nav_salt_lake, 1);
-        }
-    }
-
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx,
-        float hity, float hitz) {
-        if (player.capabilities.isCreativeMode && side > 1
-            && player.getCurrentEquippedItem() != null
-            && player.getCurrentEquippedItem()
-                .getItem() == ModItems.salt) {
-            int i = world.getBlockMetadata(x, y, z);
-            if (side == 2) if (i % 2 < 1) {
-                i++;
-            } else {
-                i--;
-            }
-            if (side == 5) if (i % 4 < 2) {
-                i += 2;
-            } else {
-                i -= 2;
-            }
-            if (side == 3) if (i % 8 < 4) {
-                i += 4;
-            } else {
-                i -= 4;
-            }
-            if (side == 4) if (i < 8) {
-                i += 8;
-            } else {
-                i -= 8;
-            }
-            world.setBlock(x, y, z, this, i, 3);
-            return true;
-        }
-        return false;
-    }
-
-    public void updateTick(World world, int x, int y, int z, Random random) {
-        if (!world.isRemote) {
-            int d1 = 0;
-            double d0 = 0.0625D;
-            AxisAlignedBB axisalignedbb = AxisAlignedBB.getBoundingBox(x, y, z, (x + 1), (y + 1) + d0, (z + 1));
-            List<Entity> list = world.getEntitiesWithinAABB(Entity.class, axisalignedbb);
-            Iterator<Entity> iterator = list.iterator();
-            while (iterator.hasNext()) {
-                Entity entity = iterator.next();
-                if (entity instanceof net.minecraft.entity.EntityLivingBase
-                    && EntityList.getEntityString(entity) != null
-                    && ((EntityList.getEntityString(entity)
-                        .toLowerCase()
-                        .contains("slime")
-                        && !EntityList.getEntityString(entity)
-                            .toLowerCase()
-                            .contains("lava"))
-                        || EntityList.getEntityString(entity)
-                            .toLowerCase()
-                            .contains("witch"))) {
-                    entity.attackEntityFrom(DamageSource.cactus, 1.0F);
-                    d1 = 3;
-                }
-                if (d1 > 0) {
-                    d1--;
-                    for (int x1 = x - 1; x1 < x + 2; x1++) {
-                        for (int z1 = z - 1; z1 < z + 2; z1++) {
-                            if (world.getBlock(x1, y, z1) == ModBlocks.salt_block
-                                || world.getBlock(x1, y, z1) == ModBlocks.salt_lamp
-                                || world.getBlock(x1, y, z1) == ModBlocks.salt_lake
-                                || world.getBlock(x1, y, z1) == ModBlocks.salt_dirt
-                                || world.getBlock(x1, y, z1) == ModBlocks.salt_brick_stairs
-                                || world.getBlock(x1, y, z1) == ModBlocks.salt_slab
-                                || world.getBlock(x1, y, z1) == ModBlocks.double_salt_slab)
-                                world.scheduleBlockUpdate(x1, y, z1, this, 10);
-                        }
-                    }
-                }
-            }
-            if (world.getBlock(x, y + 1, z)
-                .getMaterial() == Material.snow) {
-                world.setBlockToAir(x, y + 1, z);
-            } else if (world.getBlock(x, y + 1, z)
-                .getMaterial() == Material.craftedSnow
-                || world.getBlock(x, y + 1, z)
-                    .getMaterial() == Material.ice) {
-                        world.setBlock(x, y + 1, z, Blocks.water);
-                    }
-        }
-    }
-
-    public Item getItemDropped(int par1, Random random, int par2) {
-        return ModItems.salt;
-    }
-
-    public int quantityDropped(Random random) {
-        return 1 + random.nextInt(3);
-    }
-
-    public int quantityDroppedWithBonus(int fortune, Random random) {
-        if (fortune > 0) {
-            int j = random.nextInt(fortune + 1);
-            if (j > 2) return 2;
-            return quantityDropped(random) + j;
-        }
-        return quantityDropped(random);
-    }
-
-    public int getExpDrop(IBlockAccess par1, int par2, int par3) {
-        return 1;
-    }
-
+    /**
+     * Returns the map color used for this block in maps.
+     *
+     * @param meta The metadata of the block.
+     * @return the map color.
+     */
+    @Override
     public MapColor getMapColor(int meta) {
         return MapColor.quartzColor;
+    }
+
+    /**
+     * Updates the block's state during a tick.
+     * This method is called on each tick to update the block's behavior.
+     * It checks for nearby entities, tries to grow salt crystals, and attempts to melt ice or snow.
+     *
+     * @param rand The random number generator for events like crystal growth.
+     */
+    @Override
+    public void updateTick(World world, int x, int y, int z, Random rand) {
+        if (world.isRemote) return;
+
+        checkAndDamageNearbyEntities(world, x, y, z, this);
+        tryMeltIceAndSnow(world, x, y, z, rand, this);
+        crystal = false;
+    }
+
+    /**
+     * Handles the effect when an entity walks on this block.
+     * This method is used to apply effects or trigger actions when an entity steps on the block.
+     *
+     * @param entity The entity that is walking on the block.
+     */
+    @Override
+    public void onEntityWalking(World world, int x, int y, int z, Entity entity) {
+        handleEntityWalkingSaltVulnerableUpdate(world, x, y, z, entity, this);
+        if (entity instanceof EntityPlayer) {
+            ((EntityPlayer) entity).addStat(ModAchievementList.nav_salt_lake, 1);
+        }
     }
 }

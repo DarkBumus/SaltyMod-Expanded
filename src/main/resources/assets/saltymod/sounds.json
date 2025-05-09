@@ -144,5 +144,11 @@
 	  "item/chorus_cookie/portal1",
 	  "item/chorus_cookie/portal2"
 	]
+  },
+    "item.shears.shear": {
+	"category": "player",
+	"sounds": [
+	  "item/shears/shear"
+	]
   }
 }

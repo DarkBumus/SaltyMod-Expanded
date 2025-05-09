@@ -2,6 +2,7 @@ package darkbum.saltymod.block;
 
 import java.util.Random;
 
+import darkbum.saltymod.util.BlockHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -9,7 +10,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatBase;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
@@ -19,216 +19,177 @@ import darkbum.saltymod.init.ModAchievementList;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 
+import static darkbum.saltymod.util.BlockHelper.*;
+
+/**
+ * Block class for the lite salt dirt block.
+ * The lite salt dirt block is a regular block with multiple variations.
+ *
+ * @author DarkBum
+ * @since 1.9.f
+ */
 public class BlockSaltDirtLite extends Block {
 
     @SideOnly(Side.CLIENT)
-    private IIcon SIDE;
+    private IIcon iconSide;
 
     @SideOnly(Side.CLIENT)
-    private IIcon SIDE_L;
+    private IIcon iconSideL;
 
     @SideOnly(Side.CLIENT)
-    private IIcon SIDE_R;
+    private IIcon iconSideR;
 
     @SideOnly(Side.CLIENT)
-    private IIcon BOTTOM;
+    private IIcon iconBottom;
 
     @SideOnly(Side.CLIENT)
-    private IIcon SIDE_1;
+    private IIcon iconSide1;
 
     @SideOnly(Side.CLIENT)
-    private IIcon SIDE_2;
+    private IIcon iconSide2;
 
+    /**
+     * Constructs a new block instance with a given name and a creative tab.
+     * <p>
+     * Also assigns a material and other base properties through {@link BlockHelper}.
+     *
+     * @param name The internal name of the block.
+     * @param tab  The creative tab in which the block appears.
+     */
     public BlockSaltDirtLite(String name, CreativeTabs tab) {
         super(Material.ground);
-        setTickRandomly(true);
-        setStepSound(soundTypeGravel);
         setBlockName(name);
         setCreativeTab(tab);
-        setHardness(0.5F);
-        setResistance(1.0F);
-        setHarvestLevel("shovel", 0);
+        setTickRandomly(true);
+        propertiesSaltDirtSaltDirtLite(this);
     }
 
+    /**
+     * Registers the textures for the different sides of the block.
+     *
+     * @param icon The icon register used to load textures.
+     */
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerBlockIcons(IIconRegister icon) {
+        this.blockIcon = icon.registerIcon("saltymod:salt_dirt_lite_0");
+        this.iconSide1 = icon.registerIcon("saltymod:salt_dirt_lite_1");
+        this.iconSide2 = icon.registerIcon("saltymod:salt_dirt_lite_2");
+        this.iconSide = icon.registerIcon("saltymod:salt_dirt_lite_saltside");
+        this.iconSideL = icon.registerIcon("saltymod:salt_dirt_lite_saltside_l");
+        this.iconSideR = icon.registerIcon("saltymod:salt_dirt_lite_saltside_r");
+        this.iconBottom = icon.registerIcon("saltymod:salt_dirt_lite_bottom");
+    }
+
+    /**
+     * Returns the appropriate icon for a given side and metadata value.
+     *
+     * @param side The side of the block being rendered.
+     * @param meta The metadata of the block.
+     * @return the icon to render.
+     */
+    @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-        return (meta == 1) ? this.SIDE_1
-            : ((meta == 2) ? this.SIDE_2
-                : ((side == 0 && meta >= 3) ? this.BOTTOM
-                    : (((side == 2 && (meta == 7 || meta == 11 || meta == 14 || meta == 15))
-                        || (side == 5 && (meta == 8 || meta == 11 || meta == 12 || meta == 15))
-                        || (side == 3 && (meta == 9 || meta == 12 || meta == 13 || meta == 15))
-                        || (side == 4 && (meta == 10 || meta == 13 || meta == 14 || meta == 15)))
-                            ? this.SIDE
-                            : (((side == 2 && (meta == 3 || meta == 8 || meta == 12))
-                                || (side == 5 && (meta == 4 || meta == 9 || meta == 13))
-                                || (side == 3 && (meta == 5 || meta == 10 || meta == 14))
-                                || (side == 4 && (meta == 6 || meta == 7 || meta == 11)))
-                                    ? this.SIDE_L
-                                    : (((side == 2 && (meta == 6 || meta == 10 || meta == 13))
-                                        || (side == 5 && (meta == 3 || meta == 7 || meta == 14))
-                                        || (side == 3 && (meta == 4 || meta == 8 || meta == 11))
-                                        || (side == 4 && (meta == 5 || meta == 9 || meta == 12))) ? this.SIDE_R
-                                            : this.blockIcon)))));
-    }
+        IIcon[] icons = {iconSide, iconSide1, iconSide2, iconSideL, iconSideR, iconBottom};
 
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister par1) {
-        this.blockIcon = par1.registerIcon("saltymod:salt_dirt_lite_0");
-        this.SIDE_1 = par1.registerIcon("saltymod:salt_dirt_lite_1");
-        this.SIDE_2 = par1.registerIcon("saltymod:salt_dirt_lite_2");
-        this.SIDE = par1.registerIcon("saltymod:salt_dirt_lite_saltside");
-        this.SIDE_L = par1.registerIcon("saltymod:salt_dirt_lite_saltside_l");
-        this.SIDE_R = par1.registerIcon("saltymod:salt_dirt_lite_saltside_r");
-        this.BOTTOM = par1.registerIcon("saltymod:salt_dirt_lite_bottom");
-    }
+        return switch (meta) {
+            case 1 -> icons[1];
+            case 2 -> icons[2];
+            case 0 -> blockIcon;
+            default -> {
+                if (side == 0) yield icons[5];
 
-    public void updateTick(World world, int x, int y, int z, Random rand) {
-        if (!world.isRemote) if (world.getBlock(x, y + 1, z)
-            .getMaterial() == Material.snow) {
-                world.setBlockToAir(x, y + 1, z);
-            } else if (!world.getBlock(x, y + 1, z)
-                .getMaterial()
-                .isSolid() && world.getFullBlockLightValue(x, y + 1, z) > 7) {
-                    int j = world.getBlockMetadata(x, y, z);
-                    if (j > 2) for (int x1 = x - 1; x1 < x + 2; x1++) {
-                        for (int z1 = z - 1; z1 < z + 2; z1++) {
-                            if ((world.getBlock(x1, y, z1) == Blocks.grass
-                                || world.getBlock(x1, y, z1) == ModBlocks.salt_grass)
-                                && world.getBlock(x, y, z) == ModBlocks.salt_dirt_lite
-                                && world.getBlockLightValue(x, y + 1, z) > 7
-                                && rand.nextInt(5) == 0) world.setBlock(x, y, z, ModBlocks.salt_grass, j, 3);
-                        }
-                    }
+                if ((side == 2 && (meta == 7 || meta == 11 || meta == 14 || meta == 15)) ||
+                    (side == 5 && (meta == 8 || meta == 11 || meta == 12 || meta == 15)) ||
+                    (side == 3 && (meta == 9 || meta == 12 || meta == 13 || meta == 15)) ||
+                    (side == 4 && (meta == 10 || meta == 13 || meta == 14 || meta == 15))) {
+                    yield icons[0];
                 }
+                if ((side == 2 && (meta == 3 || meta == 8 || meta == 12)) ||
+                    (side == 5 && (meta == 4 || meta == 9 || meta == 13)) ||
+                    (side == 3 && (meta == 5 || meta == 10 || meta == 14)) ||
+                    (side == 4 && (meta == 6 || meta == 7 || meta == 11))) {
+                    yield icons[3];
+                }
+                if ((side == 2 && (meta == 6 || meta == 10 || meta == 13)) ||
+                    (side == 5 && (meta == 3 || meta == 7 || meta == 14)) ||
+                    (side == 3 && (meta == 4 || meta == 8 || meta == 11)) ||
+                    (side == 4 && (meta == 5 || meta == 9 || meta == 12))) {
+                    yield icons[4];
+                }
+                yield this.blockIcon;
+            }
+        };
     }
 
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx,
-        float hity, float hitz) {
-        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem()
-            .getItem() == ModItems.salt_pinch) {
-            ItemStack current = player.getCurrentEquippedItem();
+    /**
+     * Handles right-click interaction with the block.
+     *
+     * @param player The player interacting with the block.
+     * @return true, if the block was successfully stripped, false otherwise.
+     */
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx, float hity, float hitz) {
+        ItemStack currentItem = player.getCurrentEquippedItem();
+
+        if (currentItem != null && currentItem.getItem() == ModItems.salt_pinch) {
             if (world.getBlock(x, y + 1, z) == ModBlocks.saltworts)
-                player.addStat((StatBase) ModAchievementList.farm_saltwort, 1);
+                player.addStat(ModAchievementList.farm_saltwort, 1);
+
             int meta = world.getBlockMetadata(x, y, z);
+
             if (meta == 0 || meta > 2) {
                 world.setBlock(x, y, z, this, 1, 3);
-                if (!player.capabilities.isCreativeMode) current.stackSize--;
             } else if (meta == 1) {
                 world.setBlock(x, y, z, this, 2, 3);
-                if (!player.capabilities.isCreativeMode) current.stackSize--;
             } else if (meta == 2) {
                 world.setBlock(x, y, z, ModBlocks.salt_dirt);
-                if (!player.capabilities.isCreativeMode) current.stackSize--;
             }
+            if (!player.capabilities.isCreativeMode) currentItem.stackSize--;
             return true;
         }
-        if (player.capabilities.isCreativeMode && player.getCurrentEquippedItem() != null
-            && player.getCurrentEquippedItem()
-                .getItem() == ModItems.salt) {
-            int i = world.getBlockMetadata(x, y, z);
-            if (side <= 1) if (i == 0) {
-                i = 3;
-            } else if (i < 3 || i > 5) {
-                i = 0;
-            } else {
-                i++;
-            }
-            if (side == 2) if (i == 4) {
-                i = 11;
-            } else if (i == 5) {
-                i = 14;
-            } else if (i < 7) {
-                i = 7;
-            } else if (i == 7) {
-                i = 0;
-            } else if (i == 8) {
-                i = 11;
-            } else if (i == 9) {
-                i = 15;
-            } else if (i == 10) {
-                i = 14;
-            } else if (i == 11) {
-                i = 8;
-            } else if (i == 14) {
-                i = 10;
-            } else if (i < 15) {
-                i = 15;
-            } else {
-                i = 9;
-            }
-            if (side == 5) if (i == 5) {
-                i = 12;
-            } else if (i == 6) {
-                i = 11;
-            } else if (i < 7) {
-                i = 8;
-            } else if (i == 7) {
-                i = 11;
-            } else if (i == 8) {
-                i = 0;
-            } else if (i == 9) {
-                i = 12;
-            } else if (i == 10) {
-                i = 15;
-            } else if (i == 11) {
-                i = 7;
-            } else if (i == 12) {
-                i = 9;
-            } else if (i < 15) {
-                i = 15;
-            } else {
-                i = 10;
-            }
-            if (side == 3) if (i == 3) {
-                i = 12;
-            } else if (i == 6) {
-                i = 13;
-            } else if (i < 7) {
-                i = 9;
-            } else if (i == 7) {
-                i = 15;
-            } else if (i == 8) {
-                i = 12;
-            } else if (i == 9) {
-                i = 0;
-            } else if (i == 10) {
-                i = 13;
-            } else if (i == 12) {
-                i = 8;
-            } else if (i == 13) {
-                i = 10;
-            } else if (i < 15) {
-                i = 15;
-            } else {
-                i = 7;
-            }
-            if (side == 4) if (i == 3) {
-                i = 14;
-            } else if (i == 4) {
-                i = 13;
-            } else if (i < 7) {
-                i = 10;
-            } else if (i == 7) {
-                i = 14;
-            } else if (i == 8) {
-                i = 15;
-            } else if (i == 9) {
-                i = 13;
-            } else if (i == 10) {
-                i = 0;
-            } else if (i == 13) {
-                i = 9;
-            } else if (i == 14) {
-                i = 7;
-            } else if (i < 15) {
-                i = 15;
-            } else {
-                i = 8;
-            }
-            world.setBlock(x, y, z, this, i, 3);
+
+        if (player.capabilities.isCreativeMode && currentItem != null && currentItem.getItem() == ModItems.salt) {
+            int currentMeta = world.getBlockMetadata(x, y, z);
+            int newMeta = calculateSaltDirtSaltGrassNewMeta(currentMeta, side);
+            world.setBlock(x, y, z, this, newMeta, 3);
             return true;
         }
         return false;
+    }
+
+    /**
+     * Updates the block's state during a tick.
+     * This method is called on each tick to update the block's behavior.
+     * It checks for nearby entities, tries to grow salt crystals, and attempts to melt ice or snow.
+     *
+     * @param random The random number generator.
+     */
+    @Override
+    public void updateTick(World world, int x, int y, int z, Random random) {
+        if (world.isRemote) return;
+
+        Block blockAbove = world.getBlock(x, y + 1, z);
+        Material materialAbove = blockAbove.getMaterial();
+
+        if (blockAbove == Blocks.snow_layer) world.setBlockToAir(x, y + 1, z);
+
+        else if (!materialAbove.isSolid() && world.getFullBlockLightValue(x, y + 1, z) > 7) {
+            int metadata = world.getBlockMetadata(x, y, z);
+            if (metadata > 2) {
+                for (int x1 = x - 1; x1 <= x + 1; x1++) {
+                    for (int z1 = z - 1; z1 <= z + 1; z1++) {
+                        Block currentBlock = world.getBlock(x1, y, z1);
+                        if ((currentBlock == Blocks.grass || currentBlock == ModBlocks.salt_grass)
+                            && world.getBlock(x, y, z) == ModBlocks.salt_dirt_lite
+                            && world.getBlockLightValue(x, y + 1, z) > 7
+                            && random.nextInt(5) == 0) {
+                            world.setBlock(x, y, z, ModBlocks.salt_grass, metadata, 3);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

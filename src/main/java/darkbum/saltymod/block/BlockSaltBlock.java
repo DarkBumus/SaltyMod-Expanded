@@ -10,7 +10,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -18,8 +17,6 @@ import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.common.config.ModConfigurationBlocks;
-import darkbum.saltymod.init.ModBlocks;
 
 import static darkbum.saltymod.util.BlockHelper.*;
 
@@ -33,10 +30,10 @@ import static darkbum.saltymod.util.BlockHelper.*;
 public class BlockSaltBlock extends Block {
 
     @SideOnly(Side.CLIENT)
-    private IIcon iconLines;
+    private IIcon iconPillar;
 
     @SideOnly(Side.CLIENT)
-    private IIcon iconLinesTop;
+    private IIcon iconPillarTop;
 
     @SideOnly(Side.CLIENT)
     private IIcon iconChiseled;
@@ -106,8 +103,8 @@ public class BlockSaltBlock extends Block {
     public void registerBlockIcons(IIconRegister icon) {
         this.blockIcon = icon.registerIcon("saltymod:salt_block");
         this.iconChiseled = icon.registerIcon("saltymod:chiseled_salt_block");
-        this.iconLines = icon.registerIcon("saltymod:salt_pillar");
-        this.iconLinesTop = icon.registerIcon("saltymod:salt_pillar_top");
+        this.iconPillar = icon.registerIcon("saltymod:salt_pillar");
+        this.iconPillarTop = icon.registerIcon("saltymod:salt_pillar_top");
         this.iconBrick = icon.registerIcon("saltymod:salt_bricks");
         this.iconBrickTop = icon.registerIcon("saltymod:salt_bricks_top");
         this.iconBrickBottom = icon.registerIcon("saltymod:salt_bricks_bottom");
@@ -135,17 +132,17 @@ public class BlockSaltBlock extends Block {
     public IIcon getIcon(int side, int meta) {
         return switch (meta) {
             case 1 -> this.iconChiseled;
-            case 2 -> side < 2 ? this.iconLinesTop : this.iconLines;
-            case 3 -> side > 3 ? this.iconLinesTop : this.iconLines;
-            case 4 -> (side == 2 || side == 3) ? this.iconLinesTop : this.iconLines;
+            case 2 -> side < 2 ? this.iconPillarTop : this.iconPillar;
+            case 3 -> side > 3 ? this.iconPillarTop : this.iconPillar;
+            case 4 -> (side == 2 || side == 3) ? this.iconPillarTop : this.iconPillar;
             case 5 -> side == 1 ? this.iconBrickTop : (side == 0 ? this.iconBrickBottom : this.iconBrick);
             case 6 -> this.iconBlockCracked;
             case 7 ->
                 side == 1 ? this.iconBrickCrackedTop : (side == 0 ? this.iconBrickCrackedBottom : this.iconBrickCracked);
             case 8 ->
                 side == 1 ? this.iconBrickChiseledTop : (side == 0 ? this.iconBrickChiseledBottom : this.iconBrickChiseled);
-            case 9 -> side == 1 ? this.iconChapiterTop : (side == 0 ? this.iconLinesTop : this.iconChapiterUp);
-            case 10 -> side == 1 ? this.iconLinesTop : (side == 0 ? this.iconChapiterTop : this.iconChapiterDown);
+            case 9 -> side == 1 ? this.iconChapiterTop : (side == 0 ? this.iconPillarTop : this.iconChapiterUp);
+            case 10 -> side == 1 ? this.iconPillarTop : (side == 0 ? this.iconChapiterTop : this.iconChapiterDown);
             default -> this.blockIcon;
         };
     }
@@ -284,53 +281,6 @@ public class BlockSaltBlock extends Block {
      */
     @Override
     public void onEntityWalking(World world, int x, int y, int z, Entity entity) {
-        BlockHelper.handleEntityWalkingSaltEffect(world, x, y, z, entity, this);
-    }
-
-    /**
-     * Attempts to grow a salt crystal above the block if the conditions are right.
-     * This method checks whether a crystal can grow and, if so, places the crystal at the correct position.
-     *
-     * @param rand The random number generator used for determining if a crystal will grow.
-     */
-    private void tryGrowSaltCrystal(World world, int x, int y, int z, Random rand) {
-        if (!canGrowCrystal(world, x, y, z)) return;
-
-        if (rand.nextInt(ModConfigurationBlocks.saltCrystalGrowthSpeed) != 0) return;
-
-        Block above = world.getBlock(x, y + 1, z);
-        int meta = world.getBlockMetadata(x, y + 1, z);
-
-        if (above == Blocks.air) {
-            world.setBlock(x, y + 1, z, ModBlocks.salt_crystal, 2, 3);
-        } else if (above == ModBlocks.salt_crystal && meta == 2) {
-            world.setBlock(x, y + 1, z, ModBlocks.salt_crystal, 1, 3);
-        } else if (above == ModBlocks.salt_crystal && meta == 1) {
-            world.setBlock(x, y + 1, z, ModBlocks.salt_crystal);
-        }
-
-        crystal = true;
-    }
-
-    /**
-     * Whether a salt crystal can grow at the given coordinates.
-     * This method checks if the surrounding blocks meet the necessary conditions for crystal growth.
-     *
-     * @return true, if the crystal can grow, false otherwise.
-     */
-    private boolean canGrowCrystal(World world, int x, int y, int z) {
-        return (world.getBlock(x + 1, y + 1, z) == ModBlocks.salt_block
-            || world.getBlock(x + 1, y + 1, z) == ModBlocks.double_salt_slab)
-            && (world.getBlock(x - 1, y + 1, z) == ModBlocks.salt_block
-            || world.getBlock(x - 1, y + 1, z) == ModBlocks.double_salt_slab)
-            && (world.getBlock(x, y + 1, z + 1) == ModBlocks.salt_block
-            || world.getBlock(x, y + 1, z + 1) == ModBlocks.double_salt_slab)
-            && (world.getBlock(x, y + 1, z - 1) == ModBlocks.salt_block
-            || world.getBlock(x, y + 1, z - 1) == ModBlocks.double_salt_slab)
-            && (world.getBlock(x + 1, y + 1, z + 1).getMaterial() == Material.water)
-            && (world.getBlock(x + 1, y + 1, z - 1).getMaterial() == Material.water)
-            && (world.getBlock(x - 1, y + 1, z + 1).getMaterial() == Material.water)
-            && (world.getBlock(x - 1, y + 1, z - 1).getMaterial() == Material.water)
-            && world.getFullBlockLightValue(x, y + 1, z) < 8;
+        handleEntityWalkingSaltVulnerableUpdate(world, x, y, z, entity, this);
     }
 }

@@ -18,7 +18,7 @@ import static darkbum.saltymod.util.BlockHelper.*;
  * The onions are a regular crop block.
  *
  * @author DarkBum
- * @since 1.9.f
+ * @since 2.0.0
  */
 public class BlockOnions extends BlockCrops {
 
@@ -38,7 +38,7 @@ public class BlockOnions extends BlockCrops {
         setCreativeTab(tab);
         setTickRandomly(true);
         setBlockTextureName("saltymod:onions");
-        propertiesMarshReedsOnions(this);
+        propertiesSaltPlantsAll(this);
     }
 
     /**

@@ -8,7 +8,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import cpw.mods.fml.common.Loader;
 import darkbum.saltymod.block.*;
 import darkbum.saltymod.block.BlockSaltBlock;
-import darkbum.saltymod.block.BlockSaltFlower;
+import darkbum.saltymod.block.BlockSaltFlowerDirt;
 import darkbum.saltymod.common.proxy.CommonProxy;
 import darkbum.saltymod.common.config.ModConfigurationBlocks;
 import darkbum.saltymod.common.config.ModConfigurationItems;
@@ -66,7 +66,8 @@ public class ModBlocks {
     public static Block salt_crystal;
     public static Block onions;
     public static Block saltworts;
-    public static Block salt_flower;
+    public static Block salt_flower_d;
+    public static Block salt_flower_s;
     public static Block marsh_reeds_t;
     public static Block marsh_reeds_b;
 
@@ -76,7 +77,7 @@ public class ModBlocks {
         dev_block = new BlockDevBlock("dev_block", tab);
 
         salt_ore = new BlockSaltOre("salt_ore", tab);
-        deepslate_salt_ore = new BlockSaltDeepslateOre(salt_ore);
+        deepslate_salt_ore = new BlockSaltDeepslateOre(salt_ore, "deepslate_salt_ore", tab);
         salt_lake = new BlockSaltLake("salt_lake", tab);
 
         salt_block = new BlockSaltBlock(tab);
@@ -100,7 +101,7 @@ public class ModBlocks {
         double_dry_mud_brick_slab = new BlockDryMudBrickSlab(true, "double_dry_mud_brick_slab", null);
         dry_mud_brick_wall = new BlockDryMudBrickWall(ModBlocks.dry_mud_brick, tab);
 
-        salt_crusted_oak_log = new BlockSaltCrustedOakLog("salt_crusted_oak_log", tab);
+        salt_crusted_oak_log = new BlockSaltCrustedLog("salt_crusted_oak_log", tab);
 
         evaporator = new BlockEvaporator("evaporator", tab, false, false);
         lit_evaporator = new BlockEvaporator("evaporator", null, true, false).setLightLevel(0.9F);
@@ -131,13 +132,14 @@ public class ModBlocks {
 
         onions = new BlockOnions("onions", null);
         saltworts = new BlockSaltworts("saltworts", null);
-        salt_flower = new BlockSaltFlower();
+        salt_flower_d = new BlockSaltFlowerDirt();
+        salt_flower_s = new BlockSaltFlowerSand();
 
         marsh_reeds_t = new BlockMarshReedsTop("marsh_reeds", null);
         marsh_reeds_b = new BlockMarshReedsBottom("marsh_reeds", tab);
 
 
-//        ConditionalRegistrar.registerBlock(dev_block, "dev_block");
+        ConditionalRegistrar.registerBlock(dev_block, "dev_block");
         ConditionalRegistrar.registerBlock(salt_ore, "salt_ore", ModConfigurationBlocks.enableSaltOre);
         ConditionalRegistrar.registerBlock(deepslate_salt_ore, "deepslate_salt_ore", ModConfigurationBlocks.enableSaltOre, Loader.isModLoaded("etfuturum"), ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableDeepslate, ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableDeepslateOres);
         ConditionalRegistrar.registerBlock(salt_lake, "salt_lake", ModConfigurationWorldGeneration.enableSaltLakes);
@@ -182,8 +184,9 @@ public class ModBlocks {
         ConditionalRegistrar.registerBlock(salt_crystal, "salt_crystal", ModConfigurationBlocks.enableSaltCrystal);
         ConditionalRegistrar.registerBlock(onions, "onions", ModConfigurationItems.enableOnion);
         ConditionalRegistrar.registerBlock(saltworts, "saltworts");
-        ConditionalRegistrar.registerBlock(salt_flower, ItemBlockSaltFlower.class, "salt_flower", ModConfigurationBlocks.enableSaltFlowers);
-        ConditionalRegistrar.registerBlock(marsh_reeds_t, "marsh_reeds_t", ModConfigurationWorldGeneration.enableSaltMarsh);
+        ConditionalRegistrar.registerBlock(salt_flower_d, ItemBlockSaltFlowerDirt.class, "salt_flower_d", ModConfigurationBlocks.enableSaltFlowers);
+        ConditionalRegistrar.registerBlock(salt_flower_s, ItemBlockSaltFlowerSand.class, "salt_flower_s", ModConfigurationBlocks.enableSaltFlowers, Loader.isModLoaded("etfuturum"));
+        ConditionalRegistrar.registerBlock(marsh_reeds_t, ItemBlockMarshReeds.class,"marsh_reeds_t", ModConfigurationWorldGeneration.enableSaltMarsh);
         ConditionalRegistrar.registerBlock(marsh_reeds_b, ItemBlockMarshReeds.class, "marsh_reeds_b", ModConfigurationWorldGeneration.enableSaltMarsh);
     }
 }

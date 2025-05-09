@@ -4,18 +4,13 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlockWithMetadata;
 import net.minecraft.item.ItemStack;
 
-public class ItemBlockSaltFlower extends ItemBlockWithMetadata {
+public class ItemBlockSaltFlowerDirt extends ItemBlockWithMetadata {
 
-    public static final String[] types = new String[] { "daucus", "wild_carrot", "solanum", "wild_potato", "wild_onion",
-        "maritima", "wild_beet" };
+    public static final String[] types = new String[] {"daucus", "wild_carrot", "solanum", "wild_potato", "wild_onion"};
 
-    public ItemBlockSaltFlower(Block block) {
+    public ItemBlockSaltFlowerDirt(Block block) {
         super(block, block);
         setHasSubtypes(true);
-    }
-
-    public int getMetadata(int meta) {
-        return meta;
     }
 
     public String getUnlocalizedName(ItemStack itemstack) {

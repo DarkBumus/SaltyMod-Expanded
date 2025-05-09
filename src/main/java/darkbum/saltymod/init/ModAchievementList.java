@@ -23,14 +23,21 @@ public class ModAchievementList {
         Items.iron_pickaxe,
         find_salt).registerStat();
 
+    public static Achievement nav_salt_crystal = new Achievement(
+        "achievement.nav_salt_crystal",
+        "nav_salt_crystal",
+        -4,
+        -4,
+        Items.bone,
+        find_salt_crystal).registerStat();
+
     public static Achievement navelse_salt_crystal = new Achievement(
         "achievement.navelse_salt_crystal",
         "navelse_salt_crystal",
         -4,
-        -4,
+        -6,
         ModBlocks.salt_crystal,
-        find_salt_crystal).setSpecial()
-            .registerStat();
+        nav_salt_crystal).setSpecial().registerStat();
 
     public static Achievement slime_salt_crystal = new Achievement(
         "achievement.slime_salt_crystal",
@@ -38,8 +45,7 @@ public class ModAchievementList {
         -5,
         -3,
         ModItems.tough_jelly,
-        find_salt_crystal).setSpecial()
-            .registerStat();
+        find_salt_crystal).setSpecial().registerStat();
 
     public static Achievement witch_salt_crystal = new Achievement(
         "achievement.witch_salt_crystal",
@@ -47,8 +53,7 @@ public class ModAchievementList {
         -3,
         -3,
         new ItemStack(ModItems.powdered_milk, 1, 3),
-        find_salt_crystal).setSpecial()
-            .registerStat();
+        find_salt_crystal).setSpecial().registerStat();
 
     public static Achievement farm_salt = new Achievement(
         "achievement.farm_salt",
@@ -80,8 +85,7 @@ public class ModAchievementList {
         4,
         -4,
         ModBlocks.evaporator,
-        farm_evaporator).setSpecial()
-            .registerStat();
+        farm_evaporator).setSpecial().registerStat();
 
     public static Achievement nav_salt_marsh = new Achievement(
         "achievement.nav_salt_marsh",
@@ -200,6 +204,7 @@ public class ModAchievementList {
         "SaltyMod Expanded",
         find_salt,
         find_salt_crystal,
+        nav_salt_crystal,
         navelse_salt_crystal,
         slime_salt_crystal,
         witch_salt_crystal,

@@ -12,7 +12,7 @@ import darkbum.saltymod.init.ModBlocks;
 
 public class WorldGenAlliumMod extends WorldGenerator {
 
-    private static final Block[] flowers = { Blocks.red_flower, ModBlocks.salt_flower };
+    private static final Block[] flowers = { Blocks.red_flower, ModBlocks.salt_flower_d};
 
     private static final int[] flowersMeta = { 2, 4 };
 
@@ -30,7 +30,7 @@ public class WorldGenAlliumMod extends WorldGenerator {
 
             int weight = random.nextFloat() < 0.5F ? 0 : 1;
 
-            if (ModBlocks.salt_flower == null) {
+            if (ModBlocks.salt_flower_d == null) {
                 weight = 0;
             }
             if (world.isAirBlock(xPos, yPos, zPos)

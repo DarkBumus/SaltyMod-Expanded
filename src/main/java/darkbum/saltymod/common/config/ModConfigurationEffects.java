@@ -29,24 +29,27 @@ public class ModConfigurationEffects {
             categoryNameEff,
             28,
             0,
-            Byte.MAX_VALUE,
-            "Sets the Potion ID for the \"Swarmed!\" Potion Effect");
+            65536,
+            "Sets the Potion ID for the \"Swarmed!\" Potion Effect. Only use a value above 127 if you have an ID extender mod."
+                + "\nIf you don't know what that is, don't use a value above 127.");
 
         wellFedEffectID = config.getInt(
             "02-wellFedEffectID",
             categoryNameEff,
             29,
             0,
-            Byte.MAX_VALUE,
-            "Sets the Potion ID for the \"Well Fed\" Potion Effect");
+            65536,
+            "Sets the Potion ID for the \"Well Fed\" Potion Effect. Only use a value above 127 if you have an ID extender mod."
+                + "\nIf you don't know what that is, don't use a value above 127.");
 
         inspiredEffectID = config.getInt(
             "03-inspiredEffectID",
             categoryNameEff,
             30,
             0,
-            Byte.MAX_VALUE,
-            "Sets the Potion ID for the \"Inspired\" Potion Effect");
+            65536,
+            "Sets the Potion ID for the \"Inspired\" Potion Effect. Only use a value above 127 if you have an ID extender mod."
+                + "\nIf you don't know what that is, don't use a value above 127.");
         inspiredEffectStrength = config.getFloat(
             "04-inspiredEffectStrength",
             categoryNameEff,

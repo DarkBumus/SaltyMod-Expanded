@@ -3,130 +3,126 @@ package darkbum.saltymod.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.init.ModBlocks;
-import ganymedes01.etfuturum.configuration.configs.ConfigSounds;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class BlockStoveLit extends Block {
+import static darkbum.saltymod.util.BlockHelper.*;
+
+public class BlockStoveLit extends BlockStove {
 
     @SideOnly(Side.CLIENT)
-    private IIcon BOTTOM;
+    private IIcon iconBottom;
 
     @SideOnly(Side.CLIENT)
-    private IIcon TOP;
+    private IIcon iconTop;
 
     @SideOnly(Side.CLIENT)
-    private IIcon SIDE;
+    private IIcon iconSide;
 
     @SideOnly(Side.CLIENT)
-    private IIcon FRONT;
+    private IIcon iconFront;
 
     public BlockStoveLit(String name, CreativeTabs tab) {
-        super(Material.rock);
+        super(name, tab);
         setTickRandomly(true);
-        setBlockName(name);
-        setCreativeTab(tab);
-        setHardness(2.0F);
-        setResistance(6.0F);
-        setLightLevel(0.8667F);
-        setStepSound(soundTypeStone);
+        setLightLevel(0.875f);
+        propertiesStove(this);
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister icon) {
-        this.TOP = icon.registerIcon("saltymod:stove_top_on");
-        this.BOTTOM = icon.registerIcon("saltymod:stove_bottom");
-        this.SIDE = icon.registerIcon("saltymod:stove_side");
-        this.FRONT = icon.registerIcon("saltymod:stove_front_on");
+        this.iconTop = icon.registerIcon("saltymod:stove_top_on");
+        this.iconBottom = icon.registerIcon("saltymod:stove_bottom");
+        this.iconSide = icon.registerIcon("saltymod:stove_side");
+        this.iconFront = icon.registerIcon("saltymod:stove_front_on");
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-        switch (meta) {
-            case 0:
-                switch (side) {
-                    case 0:
-                        return BOTTOM;
-                    case 1:
-                        return TOP;
-                    case 2:
-                    case 4:
-                    case 5:
-                        return SIDE;
-                    case 3:
-                        return FRONT;
-                }
-            case 1:
-                switch (side) {
-                    case 0:
-                        return BOTTOM;
-                    case 1:
-                        return TOP;
-                    case 2:
-                    case 5:
-                    case 3:
-                        return SIDE;
-                    case 4:
-                        return FRONT;
-                }
-            case 2:
-                switch (side) {
-                    case 0:
-                        return BOTTOM;
-                    case 1:
-                        return TOP;
-                    case 2:
-                        return FRONT;
-                    case 4:
-                    case 5:
-                    case 3:
-                        return SIDE;
-                }
-            case 3:
-                switch (side) {
-                    case 0:
-                        return BOTTOM;
-                    case 1:
-                        return TOP;
-                    case 2:
-                    case 3:
-                    case 4:
-                        return SIDE;
-                    case 5:
-                        return FRONT;
-                }
-        }
-        return null;
+        IIcon[] icons = {iconBottom, iconTop, iconSide, iconFront};
+
+        return switch (meta) {
+            case 0 -> switch (side) {
+                case 0 -> icons[0];
+                case 1 -> icons[1];
+                case 3 -> icons[3];
+                default -> icons[2];
+            };
+            case 1 -> switch (side) {
+                case 0 -> icons[0];
+                case 1 -> icons[1];
+                case 4 -> icons[3];
+                default -> icons[2];
+            };
+            case 2 -> switch (side) {
+                case 0 -> icons[0];
+                case 1 -> icons[1];
+                case 2 -> icons[3];
+                default -> icons[2];
+            };
+            case 3 -> switch (side) {
+                case 0 -> icons[0];
+                case 1 -> icons[1];
+                case 5 -> icons[3];
+                default -> icons[2];
+            };
+            default -> null;
+        };
     }
 
-    public void randomDisplayTick(World world, int x, int y, int z, Random random) {
-        float f = ((float) (4 + random.nextInt(8) + 1) + random.nextFloat()) / 16.0F;
-        if (random.nextDouble() < 0.1) {
-            world.playSound((double) x + (double) 0.5F, (double) y + (double) 0.5F, (double) z + (double) 0.5F, "saltymod:block.stove.crackle", 1.0F, world.rand.nextFloat() * 0.1F + 0.9F, false);
-        }
+    /**
+     * Returns the item stack to be picked when the block is targeted in creative mode.
+     * Always returns a single slab, even if targeting a double slab.
+     *
+     * @param target    The targeted block hit result.
+     * @param world     The world the block is in.
+     * @param x         The x-coordinate of the block.
+     * @param y         The y-coordinate of the block.
+     * @param z         The z-coordinate of the block.
+     * @param player    The player picking the block.
+     * @return an item stack of the single dry mud brick slab.
+     */
+    @Override
+    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
+        return new ItemStack(ModBlocks.stove);
     }
 
-    public void onBlockPlacedBy(World worldIn, int x, int y, int z, EntityLivingBase placer, ItemStack itemIn) {
-        int l = MathHelper.floor_double((double) (placer.rotationYaw * 4.0F / 360.0F) + 2.5D) & 3;
-        worldIn.setBlockMetadataWithNotify(x, y, z, l, 2);
+    /**
+     * Handles right-click interaction with the block.
+     *
+     * @param side      The side the block is interacted with.
+     * @param hitX      The x-coordinate of the hit location on the block.
+     * @param hitY      The y-coordinate of the hit location on the block.
+     * @param hitZ      The z-coordinate of the hit location on the block.
+     * @return true, if a GUI was opened, false otherwise
+     */
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+        ItemStack heldItem = player.getCurrentEquippedItem();
+        return heldItem != null && extinguishBlock(world, x, y, z, player, heldItem);
     }
 
+    /**
+     * Determines the drops when the block is harvested. The drops are dependent on the block's type.
+     * <p>
+     * This block will always drop a bee for the specific burrow type, aswell as having a 30% chance
+     * to drop 1-3 combs of the appropriate type.
+     *
+     * @param fortune The fortune level of the player's tool.
+     * @return a list of item stacks representing the items dropped by the block.
+     */
     @Override
     public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
         ArrayList<ItemStack> drops = new ArrayList<>();
@@ -134,64 +130,16 @@ public class BlockStoveLit extends Block {
         return drops;
     }
 
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player,
-                                    int side, float hitX, float hitY, float hitZ) {
-
-        ItemStack heldItem = player.getCurrentEquippedItem();
-
-        if (heldItem == null) return false;
-        int meta = world.getBlockMetadata(x, y, z);
-
-        if (heldItem.getItem() == Items.water_bucket || heldItem.getItem() instanceof ItemSpade) {
-            if (!world.isRemote) {
-                world.setBlock(x, y, z, ModBlocks.stove, meta, 3);
-                if (heldItem.getItem() == Items.water_bucket) {
-                    world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "random.fizz", 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
-                    if (!player.capabilities.isCreativeMode) {
-                        player.setCurrentItemOrArmor(0, new ItemStack(Items.bucket));
-                        if (heldItem.stackSize <= 0) {
-                            player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-                        }
-                    }
-                } else if (heldItem.getItem() instanceof ItemSpade) {
-                    world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "random.fizz", 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
-                    if (!player.capabilities.isCreativeMode) {
-                        heldItem.damageItem(1, player);
-                        if (heldItem.getItemDamage() >= heldItem.getMaxDamage()) {
-                            player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-                        }
-                    }
-                }
-            }
-            return true;
-        }
-        return false;
-    }
-
+    /**
+     * Called randomly on the client side to display audiovisual effects such as particles and sounds.
+     *
+     * @param random A random number generator.
+     */
     @Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, Block neighborBlock) {
-        if (world.isRemote) return;
-
-        if (isWater(world, x + 1, y, z) ||
-            isWater(world, x - 1, y, z) ||
-            isWater(world, x, y + 1, z) ||
-            isWater(world, x, y - 1, z) ||
-            isWater(world, x, y, z + 1) ||
-            isWater(world, x, y, z - 1)) {
-
-            int meta = world.getBlockMetadata(x, y, z);
-            world.setBlock(x, y, z, ModBlocks.stove, meta, 3);
-            world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "random.fizz", 0.5F, 2.6F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);
+    public void randomDisplayTick(World world, int x, int y, int z, Random random) {
+        float f = ((float) (4 + random.nextInt(8) + 1) + random.nextFloat()) / 16.0F;
+        if (random.nextDouble() < 0.1) {
+            world.playSound((double) x + (double) 0.5F, (double) y + (double) 0.5F, (double) z + (double) 0.5F, "saltymod:block.stove.crackle", 1.0F, world.rand.nextFloat() * 0.1F + 0.9F, false);
         }
-    }
-
-    private boolean isWater(World world, int x, int y, int z) {
-        Block block = world.getBlock(x, y, z);
-        return block == Blocks.water || block == Blocks.flowing_water;
-    }
-
-    @Override
-    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
-        return new ItemStack(ModBlocks.stove);
     }
 }

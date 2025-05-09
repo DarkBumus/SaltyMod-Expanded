@@ -71,7 +71,7 @@ public class BlockSaltBrickStairs extends BlockStairs {
      * @param entity The entity that is walking on the block.
      */
     public void onEntityWalking(World world, int x, int y, int z, Entity entity) {
-        handleEntityWalkingSaltEffect(world, x, y, z, entity, this);
+        handleEntityWalkingSaltVulnerableUpdate(world, x, y, z, entity, this);
     }
 
     /**
@@ -81,6 +81,6 @@ public class BlockSaltBrickStairs extends BlockStairs {
      * @param entity The entity that is colliding with the block.
      */
     public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
-        handleEntityWalkingSaltEffect(world, x, y, z, entity, this);
+        handleEntityWalkingSaltVulnerableUpdate(world, x, y, z, entity, this);
     }
 }

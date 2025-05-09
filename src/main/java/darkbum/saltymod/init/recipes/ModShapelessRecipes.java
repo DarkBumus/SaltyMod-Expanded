@@ -70,9 +70,9 @@ public class ModShapelessRecipes {
         GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 2),
             new ItemStack(ModItems.saltwort));
         GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 5),
-            new ItemStack(ModBlocks.salt_flower, 1, 2));
+            new ItemStack(ModBlocks.salt_flower_d, 1, 2));
         GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 10),
-            new ItemStack(ModBlocks.salt_flower, 1, 5));
+            new ItemStack(ModBlocks.salt_flower_d, 1, 5));
 
         ConditionalRegistrar.addShapelessRecipe(new ItemStack(Items.melon_seeds, 9),
             new boolean[]{ModConfigurationBlocks.enableStorageBlocks},
@@ -125,10 +125,10 @@ public class ModShapelessRecipes {
 
         ConditionalRegistrar.addShapelessRecipe(new ItemStack(dye, 1, 0),
             new boolean[]{dye != null},
-            new ItemStack(ModBlocks.salt_flower, 1, 0));
+            new ItemStack(ModBlocks.salt_flower_d, 1, 0));
         ConditionalRegistrar.addShapelessRecipe(new ItemStack(Items.dye, 1, 15),
             new boolean[]{dye == null},
-            new ItemStack(ModBlocks.salt_flower, 1, 0));
+            new ItemStack(ModBlocks.salt_flower_d, 1, 0));
 
         ConditionalRegistrar.addShapelessRecipe(new ItemStack(ModBlocks.salt_dirt),
             new boolean[]{ModConfigurationBlocks.enableSaltDirt},

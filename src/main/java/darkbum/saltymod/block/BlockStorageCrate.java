@@ -2,6 +2,7 @@ package darkbum.saltymod.block;
 
 import java.util.List;
 
+import darkbum.saltymod.util.BlockHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -16,64 +17,124 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.common.config.ModConfigurationItems;
 
+import static darkbum.saltymod.util.BlockHelper.*;
+
+/**
+ * Block class for the storage crate block.
+ * The storage crate is a regular block with different variations.
+ *
+ * @author DarkBum
+ * @since 2.0.0
+ */
 public class BlockStorageCrate extends Block {
 
-    public static final String[] types = new String[] { "carrot", "potato", "poisonous_potato", "onion", "beetroot" };
+    public static final String[] types = new String[] {"carrot", "potato", "poisonous_potato", "onion", "beetroot"};
 
     @SideOnly(Side.CLIENT)
-    private IIcon BOTTOM;
+    private IIcon iconBottom;
 
     @SideOnly(Side.CLIENT)
-    private IIcon CARROTSIDE;
+    private IIcon iconCarrotSide;
 
     @SideOnly(Side.CLIENT)
-    private IIcon CARROTTOP;
+    private IIcon iconCarrotTop;
 
     @SideOnly(Side.CLIENT)
-    private IIcon POTATOSIDE;
+    private IIcon iconPotatoSide;
 
     @SideOnly(Side.CLIENT)
-    private IIcon POTATOTOP;
+    private IIcon iconPotatoTop;
 
     @SideOnly(Side.CLIENT)
-    private IIcon POIPOTATOSIDE;
+    private IIcon iconPoisonousPotatoSide;
 
     @SideOnly(Side.CLIENT)
-    private IIcon POIPOTATOTOP;
+    private IIcon getIconPoisonousPotatoTop;
 
     @SideOnly(Side.CLIENT)
-    private IIcon ONIONSIDE;
+    private IIcon iconOnionSide;
 
     @SideOnly(Side.CLIENT)
-    private IIcon ONIONTOP;
+    private IIcon iconOnionTop;
 
     @SideOnly(Side.CLIENT)
-    private IIcon BEETROOTSIDE;
+    private IIcon iconBeetrootSide;
 
     @SideOnly(Side.CLIENT)
-    private IIcon BEETROOTTOP;
+    private IIcon iconBeetrootTop;
 
+    /**
+     * Constructs a new block instance with a given name and a creative tab.
+     * <p>
+     * Also assigns a material and other base properties through {@link BlockHelper}.
+     *
+     * @param name The internal name of the block.
+     * @param tab  The creative tab in which the block appears.
+     */
     public BlockStorageCrate(String name, CreativeTabs tab) {
         super(Material.wood);
         setBlockName(name);
         setCreativeTab(tab);
-        setHardness(2.5F);
-        setResistance(2.5F);
-        setStepSound(soundTypeWood);
+        propertiesStorageBarrelStorageCrate(this);
     }
 
-    /*
-     * @Override
-     * public void getSubBlocks(Item block, CreativeTabs creativeTabs, List list) {
-     * for (int i = 0; i < types.length; ++i) {
-     * list.add(new ItemStack(block, 1, i));
-     * }
-     * }
+    /**
+     * Registers the textures for the different sides of the block.
+     *
+     * @param icon The icon register used to load textures.
      */
-
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+    public void registerBlockIcons(IIconRegister icon) {
+        this.iconBottom = icon.registerIcon("saltymod:storage_crate_bottom");
+        this.iconCarrotSide = icon.registerIcon("saltymod:storage_crate_carrot_side");
+        this.iconCarrotTop = icon.registerIcon("saltymod:storage_crate_carrot_top");
+        this.iconPotatoSide = icon.registerIcon("saltymod:storage_crate_potato_side");
+        this.iconPotatoTop = icon.registerIcon("saltymod:storage_crate_potato_top");
+        this.iconPoisonousPotatoSide = icon.registerIcon("saltymod:storage_crate_poisonous_potato_side");
+        this.getIconPoisonousPotatoTop = icon.registerIcon("saltymod:storage_crate_poisonous_potato_top");
+        this.iconOnionSide = icon.registerIcon("saltymod:storage_crate_onion_side");
+        this.iconOnionTop = icon.registerIcon("saltymod:storage_crate_onion_top");
+        this.iconBeetrootSide = icon.registerIcon("saltymod:storage_crate_beetroot_side");
+        this.iconBeetrootTop = icon.registerIcon("saltymod:storage_crate_beetroot_top");
+    }
+
+    /**
+     * Returns the appropriate icon for a given side and metadata value.
+     *
+     * @param side The side of the block being rendered.
+     * @param meta The metadata of the block.
+     * @return the icon to render.
+     */
+    @Override
+    @SideOnly(Side.CLIENT)
+    public IIcon getIcon(int side, int meta) {
+        IIcon[] icons = {iconBottom, iconCarrotSide, iconCarrotTop, iconPotatoSide, iconPotatoTop, iconPoisonousPotatoSide, getIconPoisonousPotatoTop, iconOnionSide, iconOnionTop, iconBeetrootSide, iconBeetrootTop};
+        if (side > 0) {
+            return switch (meta) {
+                case 0 -> side == 1 ? icons[2] : icons[1];
+                case 1 -> side == 1 ? icons[4] : icons[3];
+                case 2 -> side == 1 ? icons[6] : icons[5];
+                case 3 -> side == 1 ? icons[8] : icons[7];
+                case 4 -> side == 1 ? icons[10] : icons[9];
+                default -> icons[0];
+            };
+        }
+        return icons[0];
+    }
+
+    /**
+     * Adds the available sub-blocks of this item to the creative tab.
+     * This method is used to specify the different variations of this item
+     * that can be displayed in the creative inventory.
+     *
+     * @param item The item to add sub-blocks for.
+     * @param tabs The creative tab where the item is being displayed.
+     * @param list The list of item stacks to add the sub-blocks to.
+     */
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void getSubBlocks(Item item, CreativeTabs tabs, List<ItemStack> list) {
         for (int i = 0; i < 5; ++i) {
             if (i == 3 && !ModConfigurationItems.enableOnion) continue;
             if (i == 4 && !Loader.isModLoaded("etfuturum")) continue;
@@ -81,50 +142,11 @@ public class BlockStorageCrate extends Block {
         }
     }
 
-    public IIcon getIcon(int side, int meta) {
-
-        meta = MathHelper.clamp_int(meta, 0, 4);
-
-        if (side > 0) {
-            if (meta == 0) {
-                if (side == 1) return this.CARROTTOP;
-                return this.CARROTSIDE;
-            }
-            if (meta == 1) {
-                if (side == 1) return this.POTATOTOP;
-                return this.POTATOSIDE;
-            }
-            if (meta == 2) {
-                if (side == 1) return this.POIPOTATOTOP;
-                return this.POIPOTATOSIDE;
-            }
-            if (meta == 3) {
-                if (side == 1) return this.ONIONTOP;
-                return this.ONIONSIDE;
-            }
-            if (meta == 4) {
-                if (side == 1) return this.BEETROOTTOP;
-                return this.BEETROOTSIDE;
-            }
-        }
-        return this.BOTTOM;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister icon) {
-        this.BOTTOM = icon.registerIcon("saltymod:storage_crate_bottom");
-        this.CARROTSIDE = icon.registerIcon("saltymod:storage_crate_carrot_side");
-        this.CARROTTOP = icon.registerIcon("saltymod:storage_crate_carrot_top");
-        this.POTATOSIDE = icon.registerIcon("saltymod:storage_crate_potato_side");
-        this.POTATOTOP = icon.registerIcon("saltymod:storage_crate_potato_top");
-        this.POIPOTATOSIDE = icon.registerIcon("saltymod:storage_crate_poisonous_potato_side");
-        this.POIPOTATOTOP = icon.registerIcon("saltymod:storage_crate_poisonous_potato_top");
-        this.ONIONSIDE = icon.registerIcon("saltymod:storage_crate_onion_side");
-        this.ONIONTOP = icon.registerIcon("saltymod:storage_crate_onion_top");
-        this.BEETROOTSIDE = icon.registerIcon("saltymod:storage_crate_beetroot_side");
-        this.BEETROOTTOP = icon.registerIcon("saltymod:storage_crate_beetroot_top");
-    }
-
+    /**
+     * Returns the damage (meta value) associated with the block when it is dropped.
+     *
+     * @return the meta value that is dropped when the block is destroyed.
+     */
     @Override
     public int damageDropped(int meta) {
         return meta;
