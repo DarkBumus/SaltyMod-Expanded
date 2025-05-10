@@ -12,7 +12,7 @@ import net.minecraft.world.IBlockAccess;
 
 /**
  * Renderer class for {@link BlockCookingPot}.
- *
+ * <p>
  * Handles the custom rendering of the cooking pot block in the world an in inventory.
  *
  * @author DarkBum
@@ -155,7 +155,7 @@ public class CookingPotRenderer implements ISimpleBlockRenderingHandler {
 
         // Define coordinates for the cuboid in the space of the block
         double grx1 = x + 14.0 / 16.0;
-        double grx2 = x + 16.0 / 16.0;
+        double grx2 = x + 1.0;          // 16.0 / 16.0
         double gry1 = y + 7.0 / 16.0;
         double gry2 = y + 9.0 / 16.0;
         double grz1 = z + 5.0 / 16.0;
@@ -295,7 +295,7 @@ public class CookingPotRenderer implements ISimpleBlockRenderingHandler {
         double gry1 = y + 7.0 / 16.0;
         double gry2 = y + 9.0 / 16.0;
         double grz1 = z + 14.0 / 16.0;
-        double grz2 = z + 16.0 / 16.0;
+        double grz2 = z + 1.0;
 
         // Down - UV: [4, 2, 10, 4]
         float minU = parts.getInterpolatedU(4);
@@ -426,10 +426,9 @@ public class CookingPotRenderer implements ISimpleBlockRenderingHandler {
         prepareLighting(tess, renderer, x, y, z);
 
         // Define coordinates for the cuboid in the space of the block
-        double hrx1 = x + 15.0 / 16.0;
         double hrx2 = x + 15.0 / 16.0;
         double hry1 = y + 8.0 / 16.0;
-        double hry2 = y + 16.0 / 16.0;
+        double hry2 = y + 1.0;
         double hrz1 = z + 7.0 / 16.0;
         double hrz2 = z + 9.0 / 16.0;
 
@@ -459,10 +458,9 @@ public class CookingPotRenderer implements ISimpleBlockRenderingHandler {
         prepareLighting(tess, renderer, x, y, z);
 
         // Define coordinates for the cuboid in the space of the block
-        double hlx1 = x + 1.0 / 16.0;
         double hlx2 = x + 1.0 / 16.0;
         double hly1 = y + 8.0 / 16.0;
-        double hly2 = y + 16.0 / 16.0;
+        double hly2 = y + 1.0;
         double hlz1 = z + 7.0 / 16.0;
         double hlz2 = z + 9.0 / 16.0;
 
@@ -528,7 +526,7 @@ public class CookingPotRenderer implements ISimpleBlockRenderingHandler {
         double hox1 = x + 1.0 / 16.0;
         double hox2 = x + 15.0 / 16.0;
         double hoy1 = y + 8.0 / 16.0;
-        double hoy2 = y + 16.0 / 16.0;
+        double hoy2 = y + 1.0;
         double hoz1 = z + 8.0 / 16.0;
         double hoz2 = z + 8.0 / 16.0;
 
@@ -561,7 +559,7 @@ public class CookingPotRenderer implements ISimpleBlockRenderingHandler {
         double hrx1 = x + 7.0 / 16.0;
         double hrx2 = x + 9.0 / 16.0;
         double hry1 = y + 8.0 / 16.0;
-        double hry2 = y + 16.0 / 16.0;
+        double hry2 = y + 1.0;
         double hrz1 = z + 15.0 / 16.0;
         double hrz2 = z + 15.0 / 16.0;
 
@@ -594,7 +592,7 @@ public class CookingPotRenderer implements ISimpleBlockRenderingHandler {
         double hlx1 = x + 7.0 / 16.0;
         double hlx2 = x + 9.0 / 16.0;
         double hly1 = y + 8.0 / 16.0;
-        double hly2 = y + 16.0 / 16.0;
+        double hly2 = y + 1.0;
         double hlz1 = z + 1.0 / 16.0;
         double hlz2 = z + 1.0 / 16.0;
 
@@ -660,7 +658,7 @@ public class CookingPotRenderer implements ISimpleBlockRenderingHandler {
         double hox1 = x + 8.0 / 16.0;
         double hox2 = x + 8.0 / 16.0;
         double hoy1 = y + 8.0 / 16.0;
-        double hoy2 = y + 16.0 / 16.0;
+        double hoy2 = y + 1.0;
         double hoz1 = z + 1.0 / 16.0;
         double hoz2 = z + 15.0 / 16.0;
 

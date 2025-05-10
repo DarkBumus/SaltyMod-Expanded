@@ -12,10 +12,14 @@ import darkbum.saltymod.block.BlockSaltFlowerDirt;
 import darkbum.saltymod.common.proxy.CommonProxy;
 import darkbum.saltymod.common.config.ModConfigurationBlocks;
 import darkbum.saltymod.common.config.ModConfigurationItems;
-import darkbum.saltymod.common.config.ModConfigurationModCompatibility;
 import darkbum.saltymod.common.config.ModConfigurationWorldGeneration;
 
 import static darkbum.saltymod.block.BlockMarshReeds.*;
+import static darkbum.saltymod.common.config.ModConfigurationBlocks.*;
+import static darkbum.saltymod.common.config.ModConfigurationItems.*;
+import static darkbum.saltymod.common.config.ModConfigurationModCompatibility.*;
+import static darkbum.saltymod.common.config.ModConfigurationWorldGeneration.*;
+import static ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.*;
 
 public class ModBlocks {
 
@@ -140,53 +144,57 @@ public class ModBlocks {
 
 
         ConditionalRegistrar.registerBlock(dev_block, "dev_block");
-        ConditionalRegistrar.registerBlock(salt_ore, "salt_ore", ModConfigurationBlocks.enableSaltOre);
-        ConditionalRegistrar.registerBlock(deepslate_salt_ore, "deepslate_salt_ore", ModConfigurationBlocks.enableSaltOre, Loader.isModLoaded("etfuturum"), ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableDeepslate, ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableDeepslateOres);
-        ConditionalRegistrar.registerBlock(salt_lake, "salt_lake", ModConfigurationWorldGeneration.enableSaltLakes);
-        ConditionalRegistrar.registerBlock(salt_block, ItemBlockSaltBlock.class, "salt_block", ModConfigurationBlocks.enableSaltBlocks);
-        ConditionalRegistrar.registerBlock(salt_brick_stairs, "salt_brick_stairs", ModConfigurationBlocks.enableSaltBlocks);
-        ConditionalRegistrar.registerBlock(salt_slab, ItemBlockSaltSlab.class, "salt_slab", ModConfigurationBlocks.enableSaltBlocks);
-        ConditionalRegistrar.registerBlock(double_salt_slab, ItemBlockSaltSlab.class, "double_salt_slab", ModConfigurationBlocks.enableSaltBlocks);
-        ConditionalRegistrar.registerBlock(salt_lamp, "salt_lamp", ModConfigurationBlocks.enableSaltBlocks);
-        ConditionalRegistrar.registerBlock(salt_grass, "salt_grass", ModConfigurationBlocks.enableSaltDirt);
-        ConditionalRegistrar.registerBlock(salt_dirt_lite, "salt_dirt_lite", ModConfigurationBlocks.enableSaltDirt);
-        ConditionalRegistrar.registerBlock(salt_dirt, ItemBlockSaltDirt.class, "salt_dirt", ModConfigurationBlocks.enableSaltDirt);
-        ConditionalRegistrar.registerBlock(grass_top, "grass_top", ModConfigurationBlocks.enableSaltDirt);
-        ConditionalRegistrar.registerBlock(reeds_block, "reeds_block", ModConfigurationWorldGeneration.enableSaltMarsh);
-        ConditionalRegistrar.registerBlock(mineral_mud, "mineral_mud", ModConfigurationItems.enableMineralMud);
-        ConditionalRegistrar.registerBlock(wet_mud_brick, "wet_mud_brick", ModConfigurationItems.enableMineralMud, ModConfigurationBlocks.enableMudBricks);
-        ConditionalRegistrar.registerBlock(dry_mud_brick, "dry_mud_brick", ModConfigurationItems.enableMineralMud, ModConfigurationBlocks.enableMudBricks);
-        ConditionalRegistrar.registerBlock(dry_mud_brick_stairs, "dry_mud_brick_stairs", ModConfigurationItems.enableMineralMud, ModConfigurationBlocks.enableMudBricks);
-        ConditionalRegistrar.registerBlock(dry_mud_brick_slab, ItemBlockMudBrickDrySlab.class, "dry_mud_brick_slab", ModConfigurationItems.enableMineralMud, ModConfigurationBlocks.enableMudBricks);
-        ConditionalRegistrar.registerBlock(double_dry_mud_brick_slab, ItemBlockMudBrickDrySlab.class, "double_dry_mud_brick_slab", ModConfigurationItems.enableMineralMud, ModConfigurationBlocks.enableMudBricks);
-        ConditionalRegistrar.registerBlock(dry_mud_brick_wall, "dry_mud_brick_wall", ModConfigurationItems.enableMineralMud, ModConfigurationBlocks.enableMudBricks, Loader.isModLoaded("etfuturum"), ModConfigurationModCompatibility.enableMudBrickWall);
-        ConditionalRegistrar.registerBlock(salt_crusted_oak_log, "salt_crusted_oak_log", ModConfigurationWorldGeneration.enableSaltMarsh);
-        ConditionalRegistrar.registerBlock(evaporator, "evaporator", ModConfigurationBlocks.enableEvaporator);
-        ConditionalRegistrar.registerBlock(lit_evaporator, "lit_evaporator", ModConfigurationBlocks.enableEvaporator);
-        ConditionalRegistrar.registerBlock(steam_evaporator, "steam_evaporator", ModConfigurationBlocks.enableEvaporator);
-        ConditionalRegistrar.registerBlock(fish_farm, "fish_farm", ModConfigurationBlocks.enableFishFarm);
-        ConditionalRegistrar.registerBlock(bee_nest_temperate, ItemBlockBeeNest.class, "bee_nest_temperate", ModConfigurationBlocks.enableApiary);
-        ConditionalRegistrar.registerBlock(bee_nest_boreal, ItemBlockBeeNest.class, "bee_nest_boreal", ModConfigurationBlocks.enableApiary);
-        ConditionalRegistrar.registerBlock(bee_burrow_spruce, ItemBlockBeeBurrow.class, "bee_burrow_spruce", ModConfigurationBlocks.enableApiary);
-        ConditionalRegistrar.registerBlock(bee_burrow_birch, ItemBlockBeeBurrow.class, "bee_burrow_birch", ModConfigurationBlocks.enableApiary);
-        ConditionalRegistrar.registerBlock(bee_burrow_spruce_stripped, ItemBlockBeeBurrow.class, "bee_burrow_spruce_stripped", ModConfigurationBlocks.enableApiary);
-        ConditionalRegistrar.registerBlock(bee_burrow_birch_stripped, ItemBlockBeeBurrow.class, "bee_burrow_birch_stripped", ModConfigurationBlocks.enableApiary);
-        ConditionalRegistrar.registerBlock(apiary, "apiary", ModConfigurationBlocks.enableApiary);
-        ConditionalRegistrar.registerBlock(stove, "stove", ModConfigurationBlocks.enableMachines);
-        ConditionalRegistrar.registerBlock(lit_stove, "lit_stove", ModConfigurationBlocks.enableMachines);
-        ConditionalRegistrar.registerBlock(press, "press", ModConfigurationBlocks.enableMachines);
-        ConditionalRegistrar.registerBlock(mill, "mill", ModConfigurationBlocks.enableMachines);
-        ConditionalRegistrar.registerBlock(cooking_pot, ItemBlockCookingPot.class, "cooking_pot", ModConfigurationBlocks.enableMachines);
-        ConditionalRegistrar.registerBlock(clay_oven, ItemBlockClayOven.class, "clay_oven", ModConfigurationBlocks.enableMachines);
-        ConditionalRegistrar.registerBlock(storage_crate, ItemBlockStorageCrate.class, "storage_crate", ModConfigurationBlocks.enableStorageBlocks);
-        ConditionalRegistrar.registerBlock(storage_barrel, ItemBlockStorageBarrel.class, "storage_barrel", ModConfigurationBlocks.enableStorageBlocks);
-        ConditionalRegistrar.registerBlock(storage_sack, ItemBlockStorageSack.class, "storage_sack", ModConfigurationBlocks.enableStorageBlocks);
-        ConditionalRegistrar.registerBlock(salt_crystal, "salt_crystal", ModConfigurationBlocks.enableSaltCrystal);
-        ConditionalRegistrar.registerBlock(onions, "onions", ModConfigurationItems.enableOnion);
+        ConditionalRegistrar.registerBlock(salt_ore, "salt_ore", enableSaltOre);
+        if (Loader.isModLoaded("etfuturum")) {
+            if (enableDeepslate && enableDeepslateOres) {
+                ConditionalRegistrar.registerBlock(deepslate_salt_ore, "deepslate_salt_ore", enableSaltOre);
+            }
+        }
+        ConditionalRegistrar.registerBlock(salt_lake, "salt_lake", enableSaltLakes);
+        ConditionalRegistrar.registerBlock(salt_block, ItemBlockSaltBlock.class, "salt_block", enableSaltBlocks);
+        ConditionalRegistrar.registerBlock(salt_brick_stairs, "salt_brick_stairs", enableSaltBlocks);
+        ConditionalRegistrar.registerBlock(salt_slab, ItemBlockSaltSlab.class, "salt_slab", enableSaltBlocks);
+        ConditionalRegistrar.registerBlock(double_salt_slab, ItemBlockSaltSlab.class, "double_salt_slab", enableSaltBlocks);
+        ConditionalRegistrar.registerBlock(salt_lamp, "salt_lamp", enableSaltBlocks);
+        ConditionalRegistrar.registerBlock(salt_grass, "salt_grass", enableSaltDirt);
+        ConditionalRegistrar.registerBlock(salt_dirt_lite, "salt_dirt_lite", enableSaltDirt);
+        ConditionalRegistrar.registerBlock(salt_dirt, ItemBlockSaltDirt.class, "salt_dirt", enableSaltDirt);
+        ConditionalRegistrar.registerBlock(grass_top, "grass_top", enableSaltDirt);
+        ConditionalRegistrar.registerBlock(reeds_block, "reeds_block", enableSaltMarsh);
+        ConditionalRegistrar.registerBlock(mineral_mud, "mineral_mud", enableMineralMud);
+        ConditionalRegistrar.registerBlock(wet_mud_brick, "wet_mud_brick", enableMineralMud, enableMudBricks);
+        ConditionalRegistrar.registerBlock(dry_mud_brick, "dry_mud_brick", enableMineralMud, enableMudBricks);
+        ConditionalRegistrar.registerBlock(dry_mud_brick_stairs, "dry_mud_brick_stairs", enableMineralMud, enableMudBricks);
+        ConditionalRegistrar.registerBlock(dry_mud_brick_slab, ItemBlockMudBrickDrySlab.class, "dry_mud_brick_slab", enableMineralMud, enableMudBricks);
+        ConditionalRegistrar.registerBlock(double_dry_mud_brick_slab, ItemBlockMudBrickDrySlab.class, "double_dry_mud_brick_slab", enableMineralMud, enableMudBricks);
+        ConditionalRegistrar.registerBlock(dry_mud_brick_wall, "dry_mud_brick_wall", enableMineralMud, enableMudBricks, Loader.isModLoaded("etfuturum"), enableMudBrickWall);
+        ConditionalRegistrar.registerBlock(salt_crusted_oak_log, "salt_crusted_oak_log", enableSaltMarsh);
+        ConditionalRegistrar.registerBlock(evaporator, "evaporator", enableEvaporator);
+        ConditionalRegistrar.registerBlock(lit_evaporator, "lit_evaporator", enableEvaporator);
+        ConditionalRegistrar.registerBlock(steam_evaporator, "steam_evaporator", enableEvaporator);
+        ConditionalRegistrar.registerBlock(fish_farm, "fish_farm", enableFishFarm);
+        ConditionalRegistrar.registerBlock(bee_nest_temperate, ItemBlockBeeNest.class, "bee_nest_temperate", enableApiary);
+        ConditionalRegistrar.registerBlock(bee_nest_boreal, ItemBlockBeeNest.class, "bee_nest_boreal", enableApiary);
+        ConditionalRegistrar.registerBlock(bee_burrow_spruce, ItemBlockBeeBurrow.class, "bee_burrow_spruce", enableApiary);
+        ConditionalRegistrar.registerBlock(bee_burrow_birch, ItemBlockBeeBurrow.class, "bee_burrow_birch", enableApiary);
+        ConditionalRegistrar.registerBlock(bee_burrow_spruce_stripped, ItemBlockBeeBurrow.class, "bee_burrow_spruce_stripped", enableApiary);
+        ConditionalRegistrar.registerBlock(bee_burrow_birch_stripped, ItemBlockBeeBurrow.class, "bee_burrow_birch_stripped", enableApiary);
+        ConditionalRegistrar.registerBlock(apiary, "apiary", enableApiary);
+        ConditionalRegistrar.registerBlock(stove, "stove", enableMachines);
+        ConditionalRegistrar.registerBlock(lit_stove, "lit_stove", enableMachines);
+        ConditionalRegistrar.registerBlock(press, "press", enableMachines);
+        ConditionalRegistrar.registerBlock(mill, "mill", enableMachines);
+        ConditionalRegistrar.registerBlock(cooking_pot, ItemBlockCookingPot.class, "cooking_pot", enableMachines);
+        ConditionalRegistrar.registerBlock(clay_oven, ItemBlockClayOven.class, "clay_oven", enableMachines);
+        ConditionalRegistrar.registerBlock(storage_crate, ItemBlockStorageCrate.class, "storage_crate", enableStorageBlocks);
+        ConditionalRegistrar.registerBlock(storage_barrel, ItemBlockStorageBarrel.class, "storage_barrel", enableStorageBlocks);
+        ConditionalRegistrar.registerBlock(storage_sack, ItemBlockStorageSack.class, "storage_sack", enableStorageBlocks);
+        ConditionalRegistrar.registerBlock(salt_crystal, "salt_crystal", enableSaltCrystal);
+        ConditionalRegistrar.registerBlock(onions, "onions", enableOnion);
         ConditionalRegistrar.registerBlock(saltworts, "saltworts");
-        ConditionalRegistrar.registerBlock(salt_flower_d, ItemBlockSaltFlowerDirt.class, "salt_flower_d", ModConfigurationBlocks.enableSaltFlowers);
-        ConditionalRegistrar.registerBlock(salt_flower_s, ItemBlockSaltFlowerSand.class, "salt_flower_s", ModConfigurationBlocks.enableSaltFlowers, Loader.isModLoaded("etfuturum"));
-        ConditionalRegistrar.registerBlock(marsh_reeds_t, ItemBlockMarshReeds.class,"marsh_reeds_t", ModConfigurationWorldGeneration.enableSaltMarsh);
-        ConditionalRegistrar.registerBlock(marsh_reeds_b, ItemBlockMarshReeds.class, "marsh_reeds_b", ModConfigurationWorldGeneration.enableSaltMarsh);
+        ConditionalRegistrar.registerBlock(salt_flower_d, ItemBlockSaltFlowerDirt.class, "salt_flower_d", enableSaltFlowers);
+        ConditionalRegistrar.registerBlock(salt_flower_s, ItemBlockSaltFlowerSand.class, "salt_flower_s", enableSaltFlowers, Loader.isModLoaded("etfuturum"));
+        ConditionalRegistrar.registerBlock(marsh_reeds_t, ItemBlockMarshReeds.class,"marsh_reeds_t", enableSaltMarsh);
+        ConditionalRegistrar.registerBlock(marsh_reeds_b, ItemBlockMarshReeds.class, "marsh_reeds_b", enableSaltMarsh);
     }
 }

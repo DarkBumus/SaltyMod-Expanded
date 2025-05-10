@@ -14,7 +14,7 @@ import darkbum.saltymod.init.ModBlocks;
 
 /**
  * Renderer class for {@link BlockSaltGrass}.
- *
+ * <p>
  * Handles the custom rendering of the evaporator block in the world an in inventory.
  *
  * @author DarkBum

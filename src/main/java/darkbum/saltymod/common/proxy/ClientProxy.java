@@ -10,11 +10,11 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.entity.EntityHornedSheep;
 import darkbum.saltymod.entity.EntityRainmaker;
-import darkbum.saltymod.entity.EntityRainmakerDust;
+import darkbum.saltymod.entity.EntityRainmakerExplosion;
 import darkbum.saltymod.entity.model.ModelHornedSheep1;
 import darkbum.saltymod.entity.model.ModelHornedSheep2;
 import darkbum.saltymod.entity.render.RenderHornedSheep;
-import darkbum.saltymod.entity.render.RenderRainmakerDust;
+import darkbum.saltymod.entity.render.RenderRainmakerExplosion;
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.util.IIcon;
 
@@ -80,8 +80,8 @@ public class ClientProxy extends CommonProxy {
     public void setEntityRenderers() {
         RenderingRegistry.registerEntityRenderingHandler(EntityRainmaker.class,
             new RenderSnowball(ModItems.rainmaker));
-        RenderingRegistry.registerEntityRenderingHandler(EntityRainmakerDust.class,
-            new RenderRainmakerDust());
+        RenderingRegistry.registerEntityRenderingHandler(EntityRainmakerExplosion.class,
+            new RenderRainmakerExplosion());
         RenderingRegistry.registerEntityRenderingHandler(EntityHornedSheep.class,
             new RenderHornedSheep(new ModelHornedSheep2(), new ModelHornedSheep1(), 0.7F));
     }

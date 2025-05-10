@@ -8,6 +8,18 @@ import net.minecraftforge.common.config.Configuration;
 
 import darkbum.saltymod.SaltyMod;
 
+/**
+ * Handles configuration settings that are marked to be phased out in future versions of SaltyMod Expanded.
+ * <p>
+ * This class manages configuration options that are deprecated or planned for removal,
+ * allowing for legacy support and transition handling. Currently, the only configuration
+ * handled here is cloud level height per dimension.
+ * <p>
+ * This class is initialized during the pre-initialization stage of the mod lifecycle.
+ *
+ * @author DarkBum
+ * @since 2.0.0
+ */
 public class ModConfigurationOther {
 
     // Category Strings
@@ -22,6 +34,11 @@ public class ModConfigurationOther {
     // Config Options TOBEPHASEDOUT
     public static Map<Integer, Integer> cloudLevel;
 
+    /**
+     * Initializes the configuration settings for the "to be phased out" category by reading values from the provided configuration file.
+     *
+     * @param config The configuration file object to read from.
+     */
     public static void init(Configuration config) {
         config.setCategoryComment(categoryNameOth, categoryDescriptionOth);
 
@@ -39,25 +56,19 @@ public class ModConfigurationOther {
             String s = loadedCloudLevel[i];
             String[] pair = splitpattern.split(s);
             if (pair.length != 2) {
-                SaltyMod.logger.warn("Invalid key-value pair at DimCloudLevel[" + i + "]");
+                SaltyMod.logger.warn("Invalid key-value pair at DimCloudLevel[{}]", i);
             } else {
                 int dim, level;
                 try {
                     dim = Integer.parseInt(pair[0]);
                 } catch (NumberFormatException e) {
-                    SaltyMod.logger.warn(
-                        "Cannot parse DimensionID \"" + pair[0]
-                            + "\" to integer point at DimCloudLevel line "
-                            + (i + 1));
+                    SaltyMod.logger.warn("Cannot parse DimensionID \"{}\" to integer point at DimCloudLevel line {}", pair[0], i + 1);
                     break;
                 }
                 try {
                     level = Integer.parseInt(pair[1]);
                 } catch (NumberFormatException e) {
-                    SaltyMod.logger.warn(
-                        "Cannot parse CloudLevel \"" + pair[1]
-                            + "\" to integer point at DimCloudLevel line "
-                            + (i + 1));
+                    SaltyMod.logger.warn("Cannot parse CloudLevel \"{}\" to integer point at DimCloudLevel line {}", pair[1], i + 1);
                     break;
                 }
                 cloudLevel.put(dim, level);

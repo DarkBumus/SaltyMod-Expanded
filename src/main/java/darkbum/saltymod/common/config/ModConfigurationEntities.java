@@ -2,6 +2,18 @@ package darkbum.saltymod.common.config;
 
 import net.minecraftforge.common.config.Configuration;
 
+/**
+ * Handles the configuration settings for entity-related features in SaltyMod Expanded.
+ * <p>
+ * This class is responsible for defining configuration options related to entities,
+ * such as enabling or modifying specific entity types.
+ * The configuration values are read from the "entities.cfg" file.
+ * <p>
+ * This class is initialized during the pre-initialization stage of the mod lifecycle.
+ *
+ * @author DarkBum
+ * @since 2.0.0
+ */
 public class ModConfigurationEntities {
 
     // Category Strings
@@ -18,6 +30,11 @@ public class ModConfigurationEntities {
 
     public static boolean hornedSheepThinHorns;
 
+    /**
+     * Initializes the entity configuration settings by reading values from the provided configuration file.
+     *
+     * @param config The configuration file object to read from.
+     */
     public static void init(Configuration config) {
         config.setCategoryComment(categoryNameEnt, categoryDescriptionEnt);
 

@@ -2,6 +2,18 @@ package darkbum.saltymod.common.config;
 
 import net.minecraftforge.common.config.Configuration;
 
+/**
+ * Handles the configuration settings related to world generation in SaltyMod Expanded.
+ * <p>
+ * This class manages configuration options that affect world generation,
+ * including structures and biomes as well as ore generation.
+ * The settings are read from the "world_generation.cfg" file and its subcategories.
+ * <p>
+ * This class is initialized during the pre-initialization stage of the mod lifecycle.
+ *
+ * @author DarkBum
+ * @since 2.0.0
+ */
 public class ModConfigurationWorldGeneration {
 
     // Category Strings
@@ -40,6 +52,11 @@ public class ModConfigurationWorldGeneration {
     public static boolean enableBrickmakerCamp;
     public static int brickmakerCampFrequency;
 
+    /**
+     * Initializes the mod compatibility configuration settings by reading values from the provided configuration file.
+     *
+     * @param config The configuration file object to read from.
+     */
     public static void init(Configuration config) {
         config.setCategoryComment(categoryNameWor, categoryDescriptionWor);
 

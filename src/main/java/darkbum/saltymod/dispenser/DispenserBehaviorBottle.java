@@ -11,8 +11,23 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
+/**
+ * Custom dispenser behavior for dispensing glass bottles.
+ *
+ * @author DarkBum
+ * @since 2.0.0
+ */
 public class DispenserBehaviorBottle implements IBehaviorDispenseItem {
 
+    /**
+     * Dispenses an item from the dispenser.
+     * If a glass bottle is dispensed in front of a water source or flowing water block, it is filled with water and converted into a water bottle.
+     * The water bottle is either placed into the dispenser's inventory or dropped in the world if there is no space.
+     *
+     * @param source The source block of the dispenser.
+     * @param stack  The item stack being dispensed.
+     * @return the updated item stack after dispensing.
+     */
     @Override
     public ItemStack dispense(IBlockSource source, ItemStack stack) {
         World world = source.getWorld();
@@ -26,13 +41,11 @@ public class DispenserBehaviorBottle implements IBehaviorDispenseItem {
         if (stack.getItem() == Items.glass_bottle &&
             (blockInFront == Blocks.water || blockInFront == Blocks.flowing_water)) {
 
-            ItemStack waterBottle = new ItemStack(Items.potionitem, 1, 0); // Wasserflasche, keine Effekte
+            ItemStack waterBottle = new ItemStack(Items.potionitem, 1, 0);
 
             if (stack.stackSize == 1) {
-                // Nur eine leere Flasche: einfach ersetzen
                 return waterBottle;
             } else {
-                // Mehrere leere Flaschen: versuche Wasserflasche im Dispenser zu verstauen
                 IInventory dispenser = (IInventory) source.getBlockTileEntity();
                 boolean stored = false;
 
@@ -44,18 +57,14 @@ public class DispenserBehaviorBottle implements IBehaviorDispenseItem {
                         break;
                     }
                 }
-
                 stack.stackSize--;
 
                 if (!stored) {
-                    // Kein Platz gefunden, also ausspucken
                     world.spawnEntityInWorld(new EntityItem(world, source.getX(), source.getY(), source.getZ(), waterBottle));
                 }
-
                 return stack;
             }
         }
-
         return stack;
     }
 }

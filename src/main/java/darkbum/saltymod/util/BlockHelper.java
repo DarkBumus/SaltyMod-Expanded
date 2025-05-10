@@ -1,5 +1,6 @@
 package darkbum.saltymod.util;
 
+import cpw.mods.fml.common.Loader;
 import darkbum.saltymod.common.config.ModConfigurationBlocks;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModSounds;
@@ -388,8 +389,10 @@ public class BlockHelper {
     public static void propertiesSaltDeepslateOre(Block block) {
         block.setHardness(4.5f);
         block.setResistance(3.0f);
-        block.setStepSound(soundDeepslate);
         block.setHarvestLevel("pickaxe", 0);
+        if (Loader.isModLoaded("etfuturum")) {
+            block.setStepSound(soundDeepslate);
+        }
     }
 
     public static void propertiesSaltDirtSaltDirtLite(Block block) {

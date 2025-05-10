@@ -85,7 +85,14 @@ public class ModClayOvenRecipes {
             stack(new ItemStack(Items.apple)),
             stack(new ItemStack(ModItems.dough)),
             stack(new ItemStack(Items.egg)));
-
+        ConditionalRegistrar.addOvenRecipe(new ItemStack(ModItems.sweetberry_pie),
+            new boolean[]{ModConfigurationItems.enableDough, ModConfigurationModCompatibility.enableBerryPie},
+            true,
+            0.4f,
+            stack(new ItemStack(Items.sugar)),
+            stack(new ItemStack(sweet_berries)),
+            stack(new ItemStack(ModItems.dough)),
+            stack(new ItemStack(Items.egg)));
         ConditionalRegistrar.addOvenRecipe(new ItemStack(ModItems.carrot_pie),
             new boolean[]{ModConfigurationItems.enableDough, ModConfigurationItems.enableCarrotPie},
             true,

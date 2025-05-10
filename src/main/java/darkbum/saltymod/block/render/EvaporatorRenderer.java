@@ -13,7 +13,7 @@ import darkbum.saltymod.common.proxy.ClientProxy;
 
 /**
  * Renderer class for {@link BlockEvaporator}.
- *
+ * <p>
  * Handles the custom rendering of the evaporator block in the world an in inventory.
  *
  * @author DarkBum

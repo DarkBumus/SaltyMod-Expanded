@@ -2,6 +2,18 @@ package darkbum.saltymod.common.config;
 
 import net.minecraftforge.common.config.Configuration;
 
+/**
+ * Handles the configuration settings for item-related features in SaltyMod Expanded.
+ * <p>
+ * This class is responsible for defining configuration options related to items,
+ * including regular items, armor/tools, and food items. The configuration values
+ * are read from the "items.cfg" file and its subcategories.
+ * <p>
+ * This class is initialized during the pre-initialization stage of the mod lifecycle.
+ *
+ * @author DarkBum
+ * @since 2.0.0
+ */
 public class ModConfigurationItems {
 
     // Category Strings
@@ -117,6 +129,11 @@ public class ModConfigurationItems {
 
     public static boolean enableToughJelly;
 
+    /**
+     * Initializes the item configuration settings by reading values from the provided configuration file.
+     *
+     * @param config The configuration file object to read from.
+     */
     public static void init(Configuration config) {
         config.setCategoryComment(categoryNameIte, categoryDescriptionIte);
 

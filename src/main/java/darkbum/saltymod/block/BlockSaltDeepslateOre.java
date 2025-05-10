@@ -1,5 +1,6 @@
 package darkbum.saltymod.block;
 
+import cpw.mods.fml.common.Loader;
 import darkbum.saltymod.util.BlockHelper;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;

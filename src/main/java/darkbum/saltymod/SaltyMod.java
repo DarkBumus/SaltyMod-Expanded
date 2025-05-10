@@ -2,7 +2,6 @@ package darkbum.saltymod;
 
 import java.io.File;
 
-import cpw.mods.fml.common.versioning.ComparableVersion;
 import darkbum.saltymod.common.config.ModConfigurationBlocks;
 import darkbum.saltymod.common.proxy.CommonProxy;
 import darkbum.saltymod.init.ModExternalItemLoader;
@@ -31,7 +30,7 @@ import darkbum.saltymod.world.structure.ChestContent;
 
 /**
  * Main mod class for SaltyMod Expanded.
- *
+ * <p>
  * Handles the Forge Mod Loader events and sets up initialization, configuration and registration of all subclasses,
  * aswell as compatibility with other mods and NEI integration.
  *
@@ -74,7 +73,7 @@ public class SaltyMod {
 
     /**
      * Called during the Forge Mod Loader Pre-Initialization phase.
-     *
+     * <p>
      * Handles initial setup, config loading, initialization for blocks, items, potions and biomes.
      * Handles proxy pre-init methods.
      */
@@ -114,7 +113,7 @@ public class SaltyMod {
 
     /**
      * Called during the Forge Mod Loader Initialization phase.
-     *
+     * <p>
      * Handles runtime systems.
      * Handles proxy init methods.
      */
@@ -140,7 +139,7 @@ public class SaltyMod {
 
     /**
      * Called during Forge Mod Loader Post-Initialization phase.
-     *
+     * <p>
      * Handles compatibility-sensitive systems, recipe loading, ore dictionary, NEI integration and deprecated features.
      * Handles proxy post-init methods.
      */

@@ -98,31 +98,6 @@ public class ModShapelessRecipes {
             new boolean[]{beetroot_seeds != null, ModConfigurationBlocks.enableStorageBlocks},
             new ItemStack(ModBlocks.storage_sack, 1, 4));
 
-        ConditionalRegistrar.addShapelessRecipe(new ItemStack(ModItems.chocolate_berries),
-            new boolean[]{sweet_berries != null},
-            new ItemStack(Items.dye, 1, 3),
-            new ItemStack(sweet_berries));
-        ConditionalRegistrar.addShapelessRecipe(new ItemStack(ModItems.sweetberry_pie),
-            new boolean[]{sweet_berries != null},
-            new ItemStack(Items.sugar),
-            new ItemStack(sweet_berries),
-            new ItemStack(sweet_berries),
-            new ItemStack(Items.egg));
-        ConditionalRegistrar.addShapelessRecipe(new ItemStack(ModItems.sugar_berries),
-            new boolean[]{sweet_berries != null},
-            new ItemStack(ModItems.sugar_pinch),
-            new ItemStack(sweet_berries));
-        ConditionalRegistrar.addShapelessRecipe(new ItemStack(ModItems.berry_preserves),
-            new boolean[]{sweet_berries != null},
-            new ItemStack(ModItems.sugar_pinch),
-            new ItemStack(Items.potionitem),
-            new ItemStack(sweet_berries),
-            new ItemStack(sweet_berries));
-        ConditionalRegistrar.addShapelessOreRecipe(new ItemStack(ModItems.honey_berries),
-            new boolean[]{sweet_berries != null, ModConfigurationItems.enableHoney},
-            "itemHoney",
-            new ItemStack(sweet_berries));
-
         ConditionalRegistrar.addShapelessRecipe(new ItemStack(dye, 1, 0),
             new boolean[]{dye != null},
             new ItemStack(ModBlocks.salt_flower_d, 1, 0));
@@ -130,6 +105,14 @@ public class ModShapelessRecipes {
             new boolean[]{dye == null},
             new ItemStack(ModBlocks.salt_flower_d, 1, 0));
 
+        ConditionalRegistrar.addShapelessRecipe(new ItemStack(ModBlocks.salt_grass),
+            new boolean[]{ModConfigurationBlocks.enableSaltDirt},
+            new ItemStack(Blocks.grass),
+            new ItemStack(ModItems.salt_pinch));
+        ConditionalRegistrar.addShapelessRecipe(new ItemStack(ModBlocks.salt_dirt_lite),
+            new boolean[]{ModConfigurationBlocks.enableSaltDirt},
+            new ItemStack(Blocks.dirt),
+            new ItemStack(ModItems.salt_pinch));
         ConditionalRegistrar.addShapelessRecipe(new ItemStack(ModBlocks.salt_dirt),
             new boolean[]{ModConfigurationBlocks.enableSaltDirt},
             new ItemStack(Blocks.dirt),
@@ -274,6 +257,10 @@ public class ModShapelessRecipes {
         ConditionalRegistrar.addShapelessRecipe(new ItemStack(ModItems.sugar_melon),
             new ItemStack(ModItems.sugar_pinch),
             new ItemStack(Items.melon));
+        ConditionalRegistrar.addShapelessRecipe(new ItemStack(ModItems.sugar_berries),
+            new boolean[]{sweet_berries != null},
+            new ItemStack(ModItems.sugar_pinch),
+            new ItemStack(sweet_berries));
 
         ConditionalRegistrar.addShapelessOreRecipe(new ItemStack(ModItems.honey_apple),
             new boolean[]{ModConfigurationItems.enableHoney},
@@ -283,6 +270,14 @@ public class ModShapelessRecipes {
             new boolean[]{ModConfigurationItems.enableHoney},
             "itemHoney",
             new ItemStack(Items.cooked_porkchop));
+        ConditionalRegistrar.addShapelessOreRecipe(new ItemStack(ModItems.honey_berries),
+            new boolean[]{sweet_berries != null, ModConfigurationItems.enableHoney},
+            "itemHoney",
+            new ItemStack(sweet_berries));
+        ConditionalRegistrar.addShapelessRecipe(new ItemStack(ModItems.chocolate_berries),
+            new boolean[]{sweet_berries != null},
+            new ItemStack(Items.dye, 1, 3),
+            new ItemStack(sweet_berries));
 
         ConditionalRegistrar.addShapelessRecipe(new ItemStack(ModItems.fermented_saltwort),
             new ItemStack(Items.ghast_tear),
@@ -333,16 +328,22 @@ public class ModShapelessRecipes {
             new ItemStack(Items.potionitem),
             new ItemStack(ModItems.onion),
             new ItemStack(ModItems.onion));
-        ConditionalRegistrar.addShapelessRecipe(new ItemStack(ModItems.melon_preserves),
-            new ItemStack(ModItems.sugar_pinch),
-            new ItemStack(Items.potionitem),
-            new ItemStack(Items.melon),
-            new ItemStack(Items.melon));
         ConditionalRegistrar.addShapelessRecipe(new ItemStack(ModItems.apple_preserves),
             new ItemStack(ModItems.sugar_pinch),
             new ItemStack(Items.potionitem),
             new ItemStack(Items.apple),
             new ItemStack(Items.apple));
+        ConditionalRegistrar.addShapelessRecipe(new ItemStack(ModItems.melon_preserves),
+            new ItemStack(ModItems.sugar_pinch),
+            new ItemStack(Items.potionitem),
+            new ItemStack(Items.melon),
+            new ItemStack(Items.melon));
+        ConditionalRegistrar.addShapelessRecipe(new ItemStack(ModItems.berry_preserves),
+            new boolean[]{sweet_berries != null},
+            new ItemStack(ModItems.sugar_pinch),
+            new ItemStack(Items.potionitem),
+            new ItemStack(sweet_berries),
+            new ItemStack(sweet_berries));
 
         ConditionalRegistrar.addShapelessRecipe(new ItemStack(ModItems.fizzy_drink),
             new boolean[]{ModConfigurationItems.enableFizzyDrink},

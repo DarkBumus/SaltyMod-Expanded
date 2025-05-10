@@ -300,6 +300,8 @@ item.salt_shard.name=Salt Shard
 item.rainmaker_star.name=Rainmaker Star
 item.rainmaker.name=Rainmaker
 item.rainmaker.tooltip=Should explode above the clouds
+item.rainmaker.rain.message=Your world has been blessed with rain!
+item.rainmaker.thunder.message=Your world has been blessed with thunder!
 
 
 # MOD ITEMS

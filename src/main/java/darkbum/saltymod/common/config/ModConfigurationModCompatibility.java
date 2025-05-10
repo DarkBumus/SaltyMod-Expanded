@@ -4,6 +4,18 @@ import java.io.File;
 
 import net.minecraftforge.common.config.Configuration;
 
+/**
+ * Handles the configuration settings related to mod compatibility in SaltyMod Expanded.
+ * <p>
+ * This class manages configuration options that affect interaction with other mods,
+ * including block and item compatibility as well as general compatibility settings.
+ * The settings are read from the "mod_compatibility.cfg" file and its subcategories.
+ * <p>
+ * This class is initialized during the pre-initialization stage of the mod lifecycle.
+ *
+ * @author DarkBum
+ * @since 2.0.0
+ */
 public class ModConfigurationModCompatibility {
 
     // Category Strings
@@ -56,6 +68,11 @@ public class ModConfigurationModCompatibility {
 
     public static boolean enableWMFoods;
 
+    /**
+     * Initializes the mod compatibility configuration settings by reading values from the provided configuration file.
+     *
+     * @param config The configuration file object to read from.
+     */
     public static void init(Configuration config) {
         config.setCategoryComment(categoryNameMod, categoryDescriptionMod);
 

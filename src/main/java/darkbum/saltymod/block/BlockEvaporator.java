@@ -198,7 +198,9 @@ public class BlockEvaporator extends BlockContainer {
                         playerInvChange(world, x, y, z, stack, player, consumedStack);
                     return true;
                 }
-            } else if (stack.getItem() == Items.potionitem) {
+            } else if (stack.getItemDamage() == 0
+                && stack.getItem() == Items.potionitem
+                && (!stack.hasTagCompound() || !stack.getTagCompound().hasKey("CustomPotionEffects"))) {
                 heldContents = new FluidStack(FluidRegistry.WATER, 333);
                 int used = tank.fill(ForgeDirection.UNKNOWN, heldContents, true);
                 if (used > 0) {

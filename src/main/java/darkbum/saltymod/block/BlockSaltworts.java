@@ -14,6 +14,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -264,114 +265,120 @@ public class BlockSaltworts extends BlockBush implements IGrowable {
      * This method is called on each tick to update the block's behavior.
      * It checks for nearby entities, tries to grow salt crystals, and attempts to melt ice or snow.
      *
-     * @param rand The random number generator for events like crystal growth.
+     * @param random The random number generator for events like crystal growth.
      */
     @Override
-    public void updateTick(World world, int x, int y, int z, Random rand) {
-        if (world.isRemote) return;
-
-        Block blockBelow = world.getBlock(x, y - 1, z);
-        int metaBelow = world.getBlockMetadata(x, y - 1, z);
+    public void updateTick(World world, int x, int y, int z, Random random) {
         int meta = world.getBlockMetadata(x, y, z);
+        Block groundBlock = world.getBlock(x, y - 1, z);
 
-        if (isValidGround(blockBelow, metaBelow)) {
-            if (rand.nextInt(ModConfigurationBlocks.saltwortGrowthSpeed) == 0) {
-                handleGrowth(world, x, y, z, meta, blockBelow, metaBelow);
-            }
-        } else if (rand.nextInt(ModConfigurationBlocks.saltwortGrowthSpeed + 1) == 0) {
-            if (meta == 0) {
-                world.setBlock(x, y, z, this, 1, 3);
-            } else if (meta == 1) {
-                world.setBlock(x, y, z, this, 5, 3);
-            }
-        }
-    }
+        if (canGrow(world, x, y, z)) {
+            boolean isRichSoil = groundBlock == ModBlocks.salt_dirt || groundBlock == ModBlocks.salt_dirt_lite || groundBlock == ModBlocks.salt_grass;
+            boolean isStandardSoil = groundBlock == Blocks.dirt || groundBlock == Blocks.grass;
 
-    /**
-     * Handles the growth and spread of the Saltwort plant.
-     */
-    private void handleGrowth(World world, int x, int y, int z, int meta, Block groundBlock, int groundMeta) {
-        int light = world.getFullBlockLightValue(x, y, z);
-
-        if (meta == 0) {
-            world.setBlock(x, y, z, this, 1, 3);
-        } else if (light >= 12) {
-            if (meta == 1) {
-                world.setBlock(x, y, z, this, 2, 3);
-                transformGround(world, x, y - 1, z, groundBlock, groundMeta);
-            } else if (meta >= 2 && meta <= 4) {
-                growPlant(world, x, y, z, meta);
+            if (isStandardSoil) {
+                growToFinalStage(world, x, y, z, meta);
+            } else if (isRichSoil) {
+                growInStages(world, x, y, z, meta);
             }
         }
     }
 
     /**
-     * Grows the plant to the next stage.
+     * Handles growth on standard soil (dirt or grass).
+     * Jumps directly to the final growth stage (5).
      */
-    private void growPlant(World world, int x, int y, int z, int meta) {
-        switch (meta) {
-            case 2:
-                world.setBlock(x, y, z, this, 3, 3);
-                break;
-            case 3:
-                world.setBlock(x, y, z, this, 4, 3);
-                break;
+    private static void growToFinalStage(World world, int x, int y, int z, int meta) {
+        if (meta < 4) {
+            world.setBlockMetadataWithNotify(x, y, z, 5, 2);
+            transformGround(world, x, y - 1, z, world.getBlock(x, y - 1, z), world.getBlockMetadata(x, y - 1, z));
         }
-    }
-
-    public boolean func_149851_a(World world, int x, int y, int z, boolean isClient) {
-        return fertilize(world, x, y, z);
-    }
-
-    public static boolean fertilize(World world, int x, int y, int z) {
-        if (world.isRemote) return false;
-
-        boolean check = false;
-
-        for (int x3 = x - 1; x3 <= x + 1; x3++) {
-            for (int z3 = z - 1; z3 <= z + 1; z3++) {
-                Block blockBelow = world.getBlock(x3, y - 1, z3);
-                int metaBelow = world.getBlockMetadata(x3, y - 1, z3);
-                Block block = world.getBlock(x3, y, z3);
-                int meta = world.getBlockMetadata(x3, y, z3);
-
-                if (block == ModBlocks.saltworts && meta < 4 && isValidGround(blockBelow, metaBelow)) {
-                    int newMeta = meta + 1;
-                    world.setBlock(x3, y, z3, ModBlocks.saltworts, newMeta, 3);
-                    transformGround(world, x3, y - 1, z3, blockBelow, metaBelow);
-                    check = true;
-
-                    world.playSoundEffect(x3, y, z3, "random.bonemeal", 1.0F, 1.0F);
-                }
-            }
-        }
-        return check;
     }
 
     /**
-     * Checks if the given block and metadata combination is a valid ground for Saltwort.
+     * Handles gradual growth on rich soil (salt_dirt, salt_dirt_lite, salt_grass).
+     * Grows through each stage (0 to 4) and stops at stage 4.
      */
-    private static boolean isValidGround(Block block, int meta) {
-        return (block == ModBlocks.salt_dirt && meta == 0) ||
-            (block == ModBlocks.salt_dirt_lite && (meta == 1 || meta == 2));
+    private static void growInStages(World world, int x, int y, int z, int meta) {
+        if (meta < 4) {
+            world.setBlockMetadataWithNotify(x, y, z, meta + 1, 2);
+            transformGround(world, x, y - 1, z, world.getBlock(x, y - 1, z), world.getBlockMetadata(x, y - 1, z));
+        }
+    }
+
+    /**
+     * Checks if the block can grow based on light level and a dynamic growth chance.
+     */
+    private boolean canGrow(World world, int x, int y, int z) {
+        int lightLevel = world.getBlockLightValue(x, y + 1, z);
+        int growthChance = Math.max(1, ModConfigurationBlocks.saltwortGrowthSpeed);
+
+        return lightLevel >= 9 && world.rand.nextInt(growthChance) == 0;
     }
 
     /**
      * Transforms the ground based on its current state.
      */
     private static void transformGround(World world, int x, int y, int z, Block groundBlock, int meta) {
-        if (groundBlock == ModBlocks.salt_dirt) {
+        if (groundBlock == ModBlocks.salt_dirt && meta == 0) {
             world.setBlock(x, y, z, ModBlocks.salt_dirt_lite, 2, 3);
-        } else if (groundBlock == ModBlocks.salt_dirt_lite) {
-            int newMeta = 1;
-            world.setBlock(x, y, z, ModBlocks.salt_dirt_lite, newMeta, 3);
+        } else if (groundBlock == ModBlocks.salt_dirt_lite && meta == 2) {
+            world.setBlock(x, y, z, ModBlocks.salt_dirt_lite, 1, 3);
+        } else if (groundBlock == ModBlocks.salt_dirt_lite && meta == 1) {
+            world.setBlock(x, y, z, ModBlocks.salt_dirt_lite, 0, 3);
+        } else if (groundBlock == ModBlocks.salt_dirt_lite && meta == 0) {
+            world.setBlock(x, y, z, Blocks.dirt, 0, 3);
+        } else if (groundBlock == ModBlocks.salt_grass && meta == 0) {
+            world.setBlock(x, y, z, Blocks.grass, 0, 3);
         }
+    }
+
+    public boolean func_149851_a(World world, int x, int y, int z, boolean isClient) {
+        if (!world.isRemote) return fertilize(world, x, y, z);
+        return false;
+    }
+
+    /**
+     * Applies the fertilize effect to a 3x3 area around the specified coordinates.
+     * Increases the growth stage of each Saltwort in the area, based on its soil type.
+     *
+     * @return true, if any block was successfully fertilized, false otherwise.
+     */
+    public static boolean fertilize(World world, int x, int y, int z) {
+        if (world.isRemote) return false;
+        boolean fertilized = false;
+
+        for (int offsetX = -1; offsetX <= 1; offsetX++) {
+            for (int offsetZ = -1; offsetZ <= 1; offsetZ++) {
+                int targetX = x + offsetX;
+                int targetZ = z + offsetZ;
+                int meta = world.getBlockMetadata(targetX, y, targetZ);
+                Block block = world.getBlock(targetX, y, targetZ);
+
+                if (block instanceof BlockSaltworts) {
+                    Block groundBlock = world.getBlock(targetX, y - 1, targetZ);
+
+                    if (meta < 5) {
+                        boolean isRichSoil = groundBlock == ModBlocks.salt_dirt || groundBlock == ModBlocks.salt_dirt_lite || groundBlock == ModBlocks.salt_grass;
+                        boolean isStandardSoil = groundBlock == Blocks.dirt || groundBlock == Blocks.grass;
+
+                        if (isStandardSoil) {
+                            growToFinalStage(world, targetX, y, targetZ, meta);
+                            fertilized = true;
+                        } else if (isRichSoil && meta < 4) {
+                            growInStages(world, targetX, y, targetZ, meta);
+                            fertilized = true;
+                        }
+                    }
+                }
+            }
+        }
+        return fertilized;
     }
 
     public boolean func_149852_a(World world, Random rand, int x, int y, int z) {
         return false;
     }
 
-    public void func_149853_b(World world, Random rand, int x, int y, int z) {
-    }
+    public void func_149853_b(World world, Random rand, int x, int y, int z) {}
 }
