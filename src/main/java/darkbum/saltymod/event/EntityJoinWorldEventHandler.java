@@ -10,12 +10,23 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import darkbum.saltymod.init.ModItems;
 
+/**
+ * Event handler class for entity behavior-related events.
+ *
+ * @author DarkBum
+ * @since 1.9.f
+ */
 public class EntityJoinWorldEventHandler {
 
+    /**
+     * Handles adding custom AI tasks to specific entities.
+     *
+     * @param event The event containing the entity joining the world.
+     */
+    @SuppressWarnings("unused")
     @SubscribeEvent
-    public void entityJoinWorld1(EntityJoinWorldEvent event) {
-        if (event.entity instanceof EntityAnimal) {
-            EntityAnimal animal = (EntityAnimal) event.entity;
+    public void entityJoinWorld(EntityJoinWorldEvent event) {
+        if (event.entity instanceof EntityAnimal animal) {
             if (animal instanceof net.minecraft.entity.passive.EntityCow
                 || animal instanceof net.minecraft.entity.passive.EntityHorse) {
                 animal.tasks.addTask(3, new EntityAITempt(animal, 1.25D, ModItems.salt, false));
@@ -23,16 +34,10 @@ public class EntityJoinWorldEventHandler {
             if (animal instanceof net.minecraft.entity.passive.EntityPig) {
                 animal.tasks.addTask(4, new EntityAITempt(animal, 1.25D, ModItems.onion, false));
             }
-        }
-    }
 
-    @SubscribeEvent
-    public void entityJoinWorld2(EntityJoinWorldEvent event) {
-        Entity entity = event.entity;
-
-        if (entity instanceof EntitySheep) {
-            EntitySheep sheep = (EntitySheep) entity;
-            sheep.tasks.addTask(4, new EntityAICustomEatGrass(sheep));
+            if (animal instanceof EntitySheep sheep) {
+                sheep.tasks.addTask(4, new EntityAICustomEatGrass(sheep));
+            }
         }
     }
 }

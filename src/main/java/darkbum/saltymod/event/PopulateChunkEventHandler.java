@@ -11,12 +11,24 @@ import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import darkbum.saltymod.init.ModBlocks;
 
+/**
+ * Event handler class for chunk population-related events.
+ *
+ * @author DarkBum
+ * @since 2.0.0
+ */
 public class PopulateChunkEventHandler {
 
     private static final Random rand = new Random();
 
+    /**
+     * Handles populating certain biomes with bee burrows or nests based on the specific biome type and block metadata.
+     *
+     * @param event The PopulateChunkEvent.Post event containing chunk and world information.
+     */
+    @SuppressWarnings("unused")
     @SubscribeEvent
-    public void populateChunkPost1(PopulateChunkEvent.Post event) {
+    public void populateChunkPost(PopulateChunkEvent.Post event) {
         World world = event.world;
 
         int chunkX = event.chunkX * 16;

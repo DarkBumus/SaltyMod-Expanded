@@ -10,8 +10,20 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import static darkbum.saltymod.init.recipes.ModEvaporatorRecipes.milk;
 
+/**
+ * Event handler class for texture stitching-related events.
+ *
+ * @author DarkBum
+ * @since 1.9.f
+ */
 public class TextureStitchEventHandler {
 
+    /**
+     * Handles the pre-stitch event for fluid textures.
+     *
+     * @param event The {@link TextureStitchEvent.Pre} event instance.
+     */
+    @SuppressWarnings("unused")
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void textureStitchPre1(TextureStitchEvent.Pre event) {
@@ -20,6 +32,12 @@ public class TextureStitchEventHandler {
         }
     }
 
+    /**
+     * Handles the post-stitch event for fluid textures.
+     *
+     * @param event The {@link TextureStitchEvent.Post} event instance.
+     */
+    @SuppressWarnings("unused")
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void textureStitchPost1(TextureStitchEvent.Post event) {

@@ -35,6 +35,7 @@ public class DispenserBehaviorSaltPinch implements IBehaviorDispenseItem {
      * @param stack  The item stack being dispensed.
      * @return the updated item stack after dispensing.
      */
+    @Override
     public ItemStack dispense(IBlockSource source, ItemStack stack) {
         World world = source.getWorld();
         EnumFacing enumFacing = BlockDispenser.func_149937_b(source.getBlockMetadata());
