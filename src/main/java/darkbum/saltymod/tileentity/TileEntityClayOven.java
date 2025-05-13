@@ -153,11 +153,11 @@ public class TileEntityClayOven extends TileEntity implements ISidedInventory {
         OvenbakingRecipe.OvenRecipe recipe = OvenbakingRecipe.baking().getRecipeFor(ingreds);
         if (recipe == null) return false;
 
-        return isHeaterRequirementMet(recipe) && canAcceptOutput(inventory[4], recipe.output);
+        return isHeaterRequirementMet(recipe) && canAcceptOutput(inventory[4], recipe.output());
     }
 
     private boolean isHeaterRequirementMet(OvenbakingRecipe.OvenRecipe recipe) {
-        return recipe.requiresHeater == isHeaterBelow;
+        return recipe.requiresHeater() == isHeaterBelow;
     }
 
     private boolean canAcceptOutput(ItemStack currentStack, ItemStack output) {
@@ -180,11 +180,11 @@ public class TileEntityClayOven extends TileEntity implements ISidedInventory {
         OvenbakingRecipe.OvenRecipe recipe = OvenbakingRecipe.baking().getRecipeFor(ingreds);
         if (recipe == null) return;
 
-        if (recipe.output != null) {
+        if (recipe.output() != null) {
             if (inventory[4] == null) {
-                inventory[4] = recipe.output.copy();
+                inventory[4] = recipe.output().copy();
             } else {
-                inventory[4].stackSize += recipe.output.stackSize;
+                inventory[4].stackSize += recipe.output().stackSize;
             }
         }
 

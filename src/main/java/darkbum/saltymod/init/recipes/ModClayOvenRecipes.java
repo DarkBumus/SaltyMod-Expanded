@@ -1,195 +1,212 @@
 package darkbum.saltymod.init.recipes;
 
-import darkbum.saltymod.util.ConditionalRegistrar;
-import darkbum.saltymod.common.config.ModConfigurationBlocks;
-import darkbum.saltymod.common.config.ModConfigurationItems;
-import darkbum.saltymod.common.config.ModConfigurationModCompatibility;
-import darkbum.saltymod.common.config.ModConfigurationVanillaChanges;
-import darkbum.saltymod.init.ModExternalItemLoader;
-import darkbum.saltymod.init.ModItems;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
+import darkbum.saltymod.tileentity.TileEntityClayOven;
+import darkbum.saltymod.util.OvenbakingRecipe;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import static darkbum.saltymod.init.ModExternalItemLoader.*;
+import static darkbum.saltymod.util.ConditionalRegistrar.*;
+import static darkbum.saltymod.common.config.ModConfigurationBlocks.*;
+import static darkbum.saltymod.common.config.ModConfigurationItems.*;
+import static darkbum.saltymod.common.config.ModConfigurationModCompatibility.*;
+import static darkbum.saltymod.common.config.ModConfigurationVanillaChanges.*;
 import static darkbum.saltymod.util.OvenbakingRecipe.*;
+import static darkbum.saltymod.init.ModItems.*;
+import static net.minecraft.init.Blocks.*;
+import static net.minecraft.init.Items.*;
 
+/**
+ * Recipe class for {@link TileEntityClayOven}.
+ *
+ * @author DarkBum
+ * @since 2.0.0
+ */
 public class ModClayOvenRecipes {
 
+    /**
+     * Initializes all custom oven recipes.
+     * <p>
+     * Recipe definition:
+     * OvenbakingRecipe.baking().registerRecipe(OUTPUT(ItemStack), HEATER?(boolean), XPCHANCE(float), INPUTS(ItemStack));
+     * If you want to use this in your own mod, you need to import the static methods for stack and ore ingredients from {@link OvenbakingRecipe}.
+     * NOTE:    The requiresHeater boolean intentionally functions in a way where setting the value to "false" will require the heater to NOT
+     *          be present for the recipe to function.
+     */
     public static void init() {
 
-        Item chorus_fruit = ModExternalItemLoader.etFuturumItems.get("chorus_fruit");
-        Item sweet_berries = ModExternalItemLoader.etFuturumItems.get("sweet_berries");
+        Item chorus_fruit = etFuturumItems.get("chorus_fruit");
+        Item sweet_berries = etFuturumItems.get("sweet_berries");
 
-        ConditionalRegistrar.addOvenRecipe(new ItemStack(Items.cookie, 4),
-            new boolean[]{ModConfigurationItems.enableDough, ModConfigurationVanillaChanges.enableRecipeChanges},
+        addOvenRecipe(new ItemStack(cookie, 4),
+            new boolean[]{enableDough, enableRecipeChanges},
             true,
             0.25f,
-            stack(new ItemStack(ModItems.dough)),
-            stack(new ItemStack(Items.dye, 1, 3)));
+            stack(new ItemStack(dough)),
+            stack(new ItemStack(dye, 1, 3)));
 
-        ConditionalRegistrar.addOvenRecipe(new ItemStack(Items.pumpkin_pie),
-            new boolean[]{ModConfigurationItems.enableDough, ModConfigurationVanillaChanges.enableRecipeChanges},
+        addOvenRecipe(new ItemStack(pumpkin_pie),
+            new boolean[]{enableDough, enableRecipeChanges},
             true,
             0.45f,
-            stack(new ItemStack(Items.sugar)),
-            stack(new ItemStack(Blocks.pumpkin)),
-            stack(new ItemStack(ModItems.dough)),
-            stack(new ItemStack(Items.egg)));
+            stack(new ItemStack(sugar)),
+            stack(new ItemStack(pumpkin)),
+            stack(new ItemStack(dough)),
+            stack(new ItemStack(egg)));
 
-        ConditionalRegistrar.addOvenRecipe(new ItemStack(ModItems.sweetberry_cookie, 4),
-            new boolean[]{ModConfigurationItems.enableDough, ModConfigurationModCompatibility.enableBerryCookie},
+        addOvenRecipe(new ItemStack(sweetberry_cookie, 4),
+            new boolean[]{enableDough, enableBerryCookie},
             true,
             0.2f,
-            stack(new ItemStack(ModItems.dough)),
+            stack(new ItemStack(dough)),
             stack(new ItemStack(sweet_berries)));
 
-        ConditionalRegistrar.addOvenRecipe(new ItemStack(ModItems.chorus_cookie, 4),
-            new boolean[]{ModConfigurationItems.enableDough, ModConfigurationModCompatibility.enableChorusCookie},
+        addOvenRecipe(new ItemStack(chorus_cookie, 4),
+            new boolean[]{enableDough, enableChorusCookie},
             true,
             0.25f,
-            stack(new ItemStack(ModItems.dough)),
+            stack(new ItemStack(dough)),
             stack(new ItemStack(chorus_fruit)));
 
-        ConditionalRegistrar.addOvenRecipe(new ItemStack(ModItems.chocolate_pie),
-            new boolean[]{ModConfigurationItems.enableDough, ModConfigurationItems.enableChocolatePie},
+        addOvenRecipe(new ItemStack(chocolate_pie),
+            new boolean[]{enableDough, enableChocolatePie},
             true,
             0.5f,
-            stack(new ItemStack(Items.dye, 1, 3)),
-            stack(new ItemStack(Items.dye, 1, 3)),
-            stack(new ItemStack(ModItems.dough)),
-            stack(new ItemStack(Items.egg)));
+            stack(new ItemStack(dye, 1, 3)),
+            stack(new ItemStack(dye, 1, 3)),
+            stack(new ItemStack(dough)),
+            stack(new ItemStack(egg)));
 
-        ConditionalRegistrar.addOvenRecipe(new ItemStack(ModItems.birthday_pie),
-            new boolean[]{ModConfigurationItems.enableDough, ModConfigurationBlocks.enableEvaporator, ModConfigurationItems.enableBirthdayPie},
+        addOvenRecipe(new ItemStack(birthday_pie),
+            new boolean[]{enableDough, enableEvaporator, enableBirthdayPie},
             true,
             0.4f,
-            stack(new ItemStack(Items.sugar)),
+            stack(new ItemStack(sugar)),
             ore("itemMilk"),
-            stack(new ItemStack(ModItems.dough)),
-            stack(new ItemStack(Items.egg)));
-        ConditionalRegistrar.addOvenRecipe(new ItemStack(ModItems.birthday_pie),
-            new boolean[]{ModConfigurationItems.enableDough, !ModConfigurationBlocks.enableEvaporator, ModConfigurationItems.enableBirthdayPie},
+            stack(new ItemStack(dough)),
+            stack(new ItemStack(egg)));
+        addOvenRecipe(new ItemStack(birthday_pie),
+            new boolean[]{enableDough, !enableEvaporator, enableBirthdayPie},
             true,
             0.4f,
-            stack(new ItemStack(Items.sugar)),
-            stack(new ItemStack(Items.milk_bucket)),
-            stack(new ItemStack(ModItems.dough)),
-            stack(new ItemStack(Items.egg)));
+            stack(new ItemStack(sugar)),
+            stack(new ItemStack(milk_bucket)),
+            stack(new ItemStack(dough)),
+            stack(new ItemStack(egg)));
 
-        ConditionalRegistrar.addOvenRecipe(new ItemStack(ModItems.apple_pie),
-            new boolean[]{ModConfigurationItems.enableDough, ModConfigurationItems.enableApplePie},
+        addOvenRecipe(new ItemStack(apple_pie),
+            new boolean[]{enableDough, enableApplePie},
             true,
             0.4f,
-            stack(new ItemStack(Items.sugar)),
-            stack(new ItemStack(Items.apple)),
-            stack(new ItemStack(ModItems.dough)),
-            stack(new ItemStack(Items.egg)));
-        ConditionalRegistrar.addOvenRecipe(new ItemStack(ModItems.sweetberry_pie),
-            new boolean[]{ModConfigurationItems.enableDough, ModConfigurationModCompatibility.enableBerryPie},
+            stack(new ItemStack(sugar)),
+            stack(new ItemStack(apple)),
+            stack(new ItemStack(dough)),
+            stack(new ItemStack(egg)));
+        addOvenRecipe(new ItemStack(sweetberry_pie),
+            new boolean[]{enableDough, enableBerryPie},
             true,
             0.4f,
-            stack(new ItemStack(Items.sugar)),
+            stack(new ItemStack(sugar)),
             stack(new ItemStack(sweet_berries)),
-            stack(new ItemStack(ModItems.dough)),
-            stack(new ItemStack(Items.egg)));
-        ConditionalRegistrar.addOvenRecipe(new ItemStack(ModItems.carrot_pie),
-            new boolean[]{ModConfigurationItems.enableDough, ModConfigurationItems.enableCarrotPie},
+            stack(new ItemStack(dough)),
+            stack(new ItemStack(egg)));
+        addOvenRecipe(new ItemStack(carrot_pie),
+            new boolean[]{enableDough, enableCarrotPie},
             true,
             0.4f,
-            stack(new ItemStack(Items.sugar)),
-            stack(new ItemStack(Items.carrot)),
-            stack(new ItemStack(ModItems.dough)),
-            stack(new ItemStack(Items.egg)));
+            stack(new ItemStack(sugar)),
+            stack(new ItemStack(carrot)),
+            stack(new ItemStack(dough)),
+            stack(new ItemStack(egg)));
 
-        ConditionalRegistrar.addOvenRecipe(new ItemStack(ModItems.mushroom_pie),
-            new boolean[]{ModConfigurationItems.enableDough, ModConfigurationItems.enableMushroomPie},
+        addOvenRecipe(new ItemStack(mushroom_pie),
+            new boolean[]{enableDough, enableMushroomPie},
             true,
             0.45f,
-            stack(new ItemStack(ModItems.salt)),
+            stack(new ItemStack(salt)),
             ore("blockMushroom"),
-            stack(new ItemStack(ModItems.dough)),
-            stack(new ItemStack(Items.egg)));
+            stack(new ItemStack(dough)),
+            stack(new ItemStack(egg)));
 
-        ConditionalRegistrar.addOvenRecipe(new ItemStack(ModItems.potato_mushroom),
-            new boolean[]{ModConfigurationItems.enableDough, ModConfigurationItems.enablePotatoPie},
+        addOvenRecipe(new ItemStack(potato_mushroom),
+            new boolean[]{enableDough, enablePotatoPie},
             true,
             0.4f,
-            stack(new ItemStack(ModItems.salt)),
-            stack(new ItemStack(Items.potato)),
-            stack(new ItemStack(ModItems.dough)),
-            stack(new ItemStack(Items.egg)));
+            stack(new ItemStack(salt)),
+            stack(new ItemStack(potato)),
+            stack(new ItemStack(dough)),
+            stack(new ItemStack(egg)));
 
-        ConditionalRegistrar.addOvenRecipe(new ItemStack(ModItems.onion_pie),
-            new boolean[]{ModConfigurationItems.enableDough, ModConfigurationItems.enableOnion, ModConfigurationItems.enableOnionPie},
+        addOvenRecipe(new ItemStack(onion_pie),
+            new boolean[]{enableDough, enableOnion, enableOnionPie},
             true,
             0.4f,
-            stack(new ItemStack(ModItems.salt)),
-            stack(new ItemStack(ModItems.onion)),
-            stack(new ItemStack(ModItems.dough)),
-            stack(new ItemStack(Items.egg)));
+            stack(new ItemStack(salt)),
+            stack(new ItemStack(onion)),
+            stack(new ItemStack(dough)),
+            stack(new ItemStack(egg)));
 
-        ConditionalRegistrar.addOvenRecipe(new ItemStack(ModItems.shepherds_pie),
-            new boolean[]{ModConfigurationItems.enableDough, ModConfigurationItems.enableShepherdsPie},
+        addOvenRecipe(new ItemStack(shepherds_pie),
+            new boolean[]{enableDough, enableShepherdsPie},
             true,
             0.4f,
-            stack(new ItemStack(ModItems.salt)),
+            stack(new ItemStack(salt)),
             ore("itemRedmeat"),
-            stack(new ItemStack(ModItems.dough)),
-            stack(new ItemStack(Items.egg)));
+            stack(new ItemStack(dough)),
+            stack(new ItemStack(egg)));
 
-        ConditionalRegistrar.addOvenRecipe(new ItemStack(ModItems.cod_pie),
-            new boolean[]{ModConfigurationItems.enableDough, ModConfigurationItems.enableCodPie},
+        addOvenRecipe(new ItemStack(cod_pie),
+            new boolean[]{enableDough, enableCodPie},
             true,
             0.4f,
-            stack(new ItemStack(ModItems.salt)),
-            stack(new ItemStack(Items.fish)),
-            stack(new ItemStack(ModItems.dough)),
-            stack(new ItemStack(Items.egg)));
+            stack(new ItemStack(salt)),
+            stack(new ItemStack(fish)),
+            stack(new ItemStack(dough)),
+            stack(new ItemStack(egg)));
 
-        ConditionalRegistrar.addOvenRecipe(new ItemStack(ModItems.salmon_pie),
-            new boolean[]{ModConfigurationItems.enableDough, ModConfigurationItems.enableSalmonPie},
+        addOvenRecipe(new ItemStack(salmon_pie),
+            new boolean[]{enableDough, enableSalmonPie},
             true,
             0.4f,
-            stack(new ItemStack(ModItems.salt)),
-            stack(new ItemStack(Items.fish, 1, 1)),
-            stack(new ItemStack(ModItems.dough)),
-            stack(new ItemStack(Items.egg)));
+            stack(new ItemStack(salt)),
+            stack(new ItemStack(fish, 1, 1)),
+            stack(new ItemStack(dough)),
+            stack(new ItemStack(egg)));
 
-        ConditionalRegistrar.addOvenRecipe(new ItemStack(ModItems.tropical_fish_pie),
-            new boolean[]{ModConfigurationItems.enableDough, ModConfigurationItems.enableTropicalFishPie},
+        addOvenRecipe(new ItemStack(tropical_fish_pie),
+            new boolean[]{enableDough, enableTropicalFishPie},
             true,
             0.4f,
-            stack(new ItemStack(ModItems.salt)),
-            stack(new ItemStack(Items.fish, 1, 2)),
-            stack(new ItemStack(ModItems.dough)),
-            stack(new ItemStack(Items.egg)));
+            stack(new ItemStack(salt)),
+            stack(new ItemStack(fish, 1, 2)),
+            stack(new ItemStack(dough)),
+            stack(new ItemStack(egg)));
 
-        ConditionalRegistrar.addOvenRecipe(new ItemStack(ModItems.tailor_pie),
-            new boolean[]{ModConfigurationItems.enableDough, ModConfigurationItems.enableTailor, ModConfigurationItems.enableTailorPie},
+        addOvenRecipe(new ItemStack(tailor_pie),
+            new boolean[]{enableDough, enableTailor, enableTailorPie},
             true,
             0.4f,
-            stack(new ItemStack(ModItems.salt)),
-            stack(new ItemStack(ModItems.tailor)),
-            stack(new ItemStack(ModItems.dough)),
-            stack(new ItemStack(Items.egg)));
+            stack(new ItemStack(salt)),
+            stack(new ItemStack(tailor)),
+            stack(new ItemStack(dough)),
+            stack(new ItemStack(egg)));
 
-        ConditionalRegistrar.addOvenRecipe(new ItemStack(ModItems.calamari_pie),
-            new boolean[]{ModConfigurationItems.enableDough, ModConfigurationItems.enableCalamari, ModConfigurationItems.enableCalamariPie},
+        addOvenRecipe(new ItemStack(calamari_pie),
+            new boolean[]{enableDough, enableCalamari, enableCalamariPie},
             true,
             0.4f,
-            stack(new ItemStack(ModItems.salt)),
-            stack(new ItemStack(ModItems.calamari)),
-            stack(new ItemStack(ModItems.dough)),
-            stack(new ItemStack(Items.egg)));
+            stack(new ItemStack(salt)),
+            stack(new ItemStack(calamari)),
+            stack(new ItemStack(dough)),
+            stack(new ItemStack(egg)));
 
-        ConditionalRegistrar.addOvenRecipe(new ItemStack(ModItems.saltwort_pie),
-            new boolean[]{ModConfigurationItems.enableDough, ModConfigurationItems.enableSaltwortPie},
+        addOvenRecipe(new ItemStack(saltwort_pie),
+            new boolean[]{enableDough, enableSaltwortPie},
             true,
             0.4f,
-            stack(new ItemStack(ModItems.saltwort)),
-            stack(new ItemStack(ModItems.saltwort)),
-            stack(new ItemStack(ModItems.dough)),
-            stack(new ItemStack(Items.egg)));
+            stack(new ItemStack(saltwort)),
+            stack(new ItemStack(saltwort)),
+            stack(new ItemStack(dough)),
+            stack(new ItemStack(egg)));
     }
 }

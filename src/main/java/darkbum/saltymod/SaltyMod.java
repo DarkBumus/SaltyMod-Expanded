@@ -2,16 +2,13 @@ package darkbum.saltymod;
 
 import java.io.File;
 
-import darkbum.saltymod.common.config.ModConfigurationBlocks;
 import darkbum.saltymod.common.proxy.CommonProxy;
 import darkbum.saltymod.init.ModExternalItemLoader;
 import darkbum.saltymod.zzzdeprecated.DeprecatedRecipes;
-import net.minecraft.util.EnumChatFormatting;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -19,14 +16,21 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
 import darkbum.saltymod.api.nei.NEIConfig;
 import darkbum.saltymod.common.config.ModConfigurationBase;
-import darkbum.saltymod.common.config.ModConfigurationWorldGeneration;
 import darkbum.saltymod.init.*;
 import darkbum.saltymod.init.recipes.*;
 import darkbum.saltymod.potion.ModPotion;
 import darkbum.saltymod.world.structure.ChestContent;
+
+import static cpw.mods.fml.common.Loader.isModLoaded;
+import static cpw.mods.fml.common.registry.GameRegistry.*;
+import static darkbum.saltymod.common.config.ModConfigurationBlocks.*;
+import static darkbum.saltymod.common.config.ModConfigurationItems.*;
+import static darkbum.saltymod.common.config.ModConfigurationWorldGeneration.*;
+import static darkbum.saltymod.init.ModBlocks.*;
+import static ganymedes01.etfuturum.api.DeepslateOreRegistry.*;
+import static net.minecraft.util.EnumChatFormatting.*;
 
 /**
  * Main mod class for SaltyMod Expanded.
@@ -82,9 +86,9 @@ public class SaltyMod {
         logger.info("Started SaltyMod Expanded PreInitialization");
 
         // Set custom mod metadata for display in the mod list.
-        event.getModMetadata().name = EnumChatFormatting.GOLD + SaltyMod.NAME;
-        event.getModMetadata().version = EnumChatFormatting.YELLOW + SaltyMod.VERSION;
-        event.getModMetadata().credits = EnumChatFormatting.AQUA
+        event.getModMetadata().name = GOLD + NAME + WHITE;
+        event.getModMetadata().version = YELLOW + VERSION;
+        event.getModMetadata().credits = AQUA
             + "Thanks to original author Liahim85 and contributors jss2a98aj, Roadhog360, DelirusCrux, AstroTibs, Just Moe, Jack";
 
         // Load and initialize configuration files
@@ -98,11 +102,13 @@ public class SaltyMod {
         ModItems.init();
         ModTileEntities.init();
         ModEntities.init();
-        ModBiomes.SaltyMod();
+        ModBiomes.init();
 
         // Register miscellaneous registries and handlers
-        ModFishRegistry.registerItems();
-        GameRegistry.registerFuelHandler(new ModFuelHandler());
+        if (enableTailor) {
+            ModFishRegistry.registerItems();
+        }
+        registerFuelHandler(new ModFuelHandler());
         ModFlammabilityHandler.init();
         ModDispenserBehaviorRegistry.init();
 
@@ -127,8 +133,8 @@ public class SaltyMod {
         ModAchievementList.init();
 
         // Register chest loot for Brickmaker Camps
-        if (ModConfigurationWorldGeneration.enableBrickmakerCamp) {
-            ChestContent.addDungeonLoot();
+        if (enableBrickmakerCamp) {
+            ChestContent.init();
         }
 
         proxy.init(event);
@@ -150,7 +156,7 @@ public class SaltyMod {
         config.postInit();
 
         // Load mod items, external value changes and OreDictionary
-        ModExternalItemLoader.loadAll();
+        ModExternalItemLoader.init();
         ModExternalValueRegistry.init();
         ModOreDictionary.init();
 
@@ -160,20 +166,20 @@ public class SaltyMod {
         ModShapelessRecipes.init();
         ModSmeltingRecipes.init();
         ModEvaporatorRecipes.init();
-        if (ModConfigurationBlocks.enableMachines) {
+        if (enableMachines) {
             ModPressRecipes.init();
             ModCookingPotRecipes.init();
             ModClayOvenRecipes.init();
         }
 
         // Register custom ore for Et Futurum Requiem's deepslate compatibility
-        if (ModConfigurationBlocks.enableSaltOre && Loader.isModLoaded("etfuturum")) {
-            ganymedes01.etfuturum.api.DeepslateOreRegistry.addOre(ModBlocks.salt_ore, ModBlocks.deepslate_salt_ore);
+        if (enableSaltOre && isModLoaded("etfuturum")) {
+            addOre(salt_ore, deepslate_salt_ore);
             logger.info("Deepslate Ore registered");
         }
 
         // Register NEI recipes if NEI is loaded
-        if (Loader.isModLoaded("NotEnoughItems")) {
+        if (isModLoaded("NotEnoughItems")) {
             new NEIConfig().loadConfig();
             logger.info("NEI Config loaded");
         }

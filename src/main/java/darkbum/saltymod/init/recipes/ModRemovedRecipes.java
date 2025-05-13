@@ -1,44 +1,58 @@
 package darkbum.saltymod.init.recipes;
 
-import darkbum.saltymod.util.ConditionalRegistrar;
-import darkbum.saltymod.init.ModExternalItemLoader;
 import net.minecraft.block.Block;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
-import darkbum.saltymod.common.config.ModConfigurationItems;
-import darkbum.saltymod.common.config.ModConfigurationModCompatibility;
-import darkbum.saltymod.common.config.ModConfigurationVanillaChanges;
+import static darkbum.saltymod.init.ModExternalItemLoader.*;
+import static darkbum.saltymod.util.ConditionalRegistrar.*;
+import static darkbum.saltymod.common.config.ModConfigurationItems.*;
+import static darkbum.saltymod.common.config.ModConfigurationModCompatibility.*;
+import static darkbum.saltymod.common.config.ModConfigurationVanillaChanges.*;
+import static net.minecraft.init.Items.*;
+import static net.minecraft.init.Items.cake;
 
+/**
+ * Recipe remover class.
+ *
+ * @author DarkBum
+ * @since 2.0.0
+ */
 public class ModRemovedRecipes {
 
+    /**
+     * Initializes all removed recipes.
+     */
     public static void init() {
 
-        Item rabbit_stew = ModExternalItemLoader.etFuturumItems.get("rabbit_stew");
-        Item beetroot_soup = ModExternalItemLoader.etFuturumItems.get("beetroot_soup");
-        Block honeycomb_block = ModExternalItemLoader.etFuturumBlocks.get("honeycomb_block");
-        Block beehive = ModExternalItemLoader.etFuturumBlocks.get("beehive");
+        Item rabbit_stew = etFuturumItems.get("rabbit_stew");
+        Item beetroot_soup = etFuturumItems.get("beetroot_soup");
+        Block honeycomb_block = etFuturumBlocks.get("honeycomb_block");
+        Block beehive = etFuturumBlocks.get("beehive");
 
-        ConditionalRegistrar.removeFirstRecipeFor(Items.mushroom_stew,
-            ModConfigurationVanillaChanges.enableRecipeChanges);
-        ConditionalRegistrar.removeFirstRecipeFor(Items.bread,
-            ModConfigurationVanillaChanges.enableRecipeChanges, ModConfigurationItems.enableDough);
-        ConditionalRegistrar.removeFirstRecipeFor(Items.cake,
-            ModConfigurationVanillaChanges.enableRecipeChanges, ModConfigurationItems.enableDough);
-        ConditionalRegistrar.removeFirstRecipeFor(Items.cake,
-            ModConfigurationVanillaChanges.enableRecipeChanges, ModConfigurationItems.replaceCake);
-        ConditionalRegistrar.removeFirstRecipeFor(Items.cookie,
-            ModConfigurationVanillaChanges.enableRecipeChanges, ModConfigurationItems.enableDough);
-        ConditionalRegistrar.removeFirstRecipeFor(Items.pumpkin_pie,
-            ModConfigurationVanillaChanges.enableRecipeChanges, ModConfigurationItems.enableDough);
+        removeFirstRecipeFor(mushroom_stew,
+            enableRecipeChanges);
+        removeFirstRecipeFor(bread,
+            enableRecipeChanges, enableDough);
+        removeFirstRecipeFor(cake,
+            enableRecipeChanges, enableDough);
+        removeFirstRecipeFor(cake,
+            enableRecipeChanges, replaceCake);
+        removeFirstRecipeFor(cake,
+            enableRecipeChanges, enableDough);
+        removeFirstRecipeFor(cake,
+            enableRecipeChanges, replaceCake);
+        removeFirstRecipeFor(cookie,
+            enableRecipeChanges, enableDough);
+        removeFirstRecipeFor(pumpkin_pie,
+            enableRecipeChanges, enableDough);
 
-        ConditionalRegistrar.removeAllRecipesFor(rabbit_stew,
+        removeAllRecipesFor(rabbit_stew,
             rabbit_stew != null);
-        ConditionalRegistrar.removeAllRecipesFor(beetroot_soup,
+        removeAllRecipesFor(beetroot_soup,
             beetroot_soup != null);
-        ConditionalRegistrar.removeAllRecipesFor(honeycomb_block,
-            honeycomb_block != null, ModConfigurationModCompatibility.enableEFRHoneyCompatibility);
-        ConditionalRegistrar.removeAllRecipesFor(beehive,
-            beehive != null, ModConfigurationModCompatibility.enableEFRHoneyCompatibility);
+        removeAllRecipesFor(honeycomb_block,
+            honeycomb_block != null, enableEFRHoneyCompatibility);
+        removeAllRecipesFor(beehive,
+            beehive != null, enableEFRHoneyCompatibility);
     }
 }

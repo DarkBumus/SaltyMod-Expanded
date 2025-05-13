@@ -5,7 +5,7 @@ import java.util.Random;
 
 import cpw.mods.fml.common.Loader;
 import darkbum.saltymod.init.ModBlocks;
-import darkbum.saltymod.util.BlockHelper;
+import darkbum.saltymod.util.BlockUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -23,7 +23,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.init.ModItems;
 
-import static darkbum.saltymod.util.BlockHelper.*;
+import static darkbum.saltymod.util.BlockUtil.*;
 
 /**
  * Block class for the bee burrow block.
@@ -55,7 +55,7 @@ public class BlockBeeBurrow extends Block {
     /**
      * Constructs a new block instance with a given name, a creative tab and a type.
      * <p>
-     * Also assigns a material and other base properties through {@link BlockHelper}.
+     * Also assigns a material and other base properties through {@link BlockUtil}.
      *
      * @param name The internal name of the block.
      * @param tab  The creative tab in which the block appears.
@@ -166,7 +166,7 @@ public class BlockBeeBurrow extends Block {
 
             if (!player.capabilities.isCreativeMode) {
                 heldItem.damageItem(1, player);
-                BlockHelper.applySwarmedEffect(world, player, x, y, z, 600);
+                BlockUtil.applySwarmedEffect(world, player, x, y, z, 600);
             }
             return true;
         }
@@ -190,7 +190,7 @@ public class BlockBeeBurrow extends Block {
     @Override
     public void onBlockHarvested(World world, int x, int y, int z, int meta, EntityPlayer player) {
         if (!player.capabilities.isCreativeMode) {
-            BlockHelper.applySwarmedEffect(world, player, x, y, z, 900);
+            BlockUtil.applySwarmedEffect(world, player, x, y, z, 900);
         }
     }
 

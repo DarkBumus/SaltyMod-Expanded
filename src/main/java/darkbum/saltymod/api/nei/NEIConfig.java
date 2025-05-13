@@ -1,6 +1,7 @@
 package darkbum.saltymod.api.nei;
 
 import darkbum.saltymod.init.ModBlocks;
+import darkbum.saltymod.init.ModItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
@@ -25,6 +26,10 @@ public class NEIConfig implements IConfigureNEI {
         API.addItemListEntry(new ItemStack(Blocks.tallgrass, 1, 0));
         API.addItemListEntry(new ItemStack(Blocks.tallgrass, 1, 1));
         API.addItemListEntry(new ItemStack(Blocks.tallgrass, 1, 2));
+
+        API.hideItem(new ItemStack(ModItems.dev_item, 1, 0));
+        API.hideItem(new ItemStack(ModItems.dev_item, 1, 1));
+        API.hideItem(new ItemStack(ModItems.dev_item, 1, 2));
         API.hideItem(new ItemStack(ModBlocks.marsh_reeds_t));
 
         API.registerRecipeHandler(new NEIPotcookingRecipeHandler());

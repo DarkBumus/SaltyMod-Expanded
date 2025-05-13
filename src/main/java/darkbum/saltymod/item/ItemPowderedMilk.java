@@ -2,48 +2,43 @@ package darkbum.saltymod.item;
 
 import java.util.List;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import static darkbum.saltymod.util.ItemUtil.addItemTooltip;
 
+/**
+ * Item class for the powdered milk item.
+ * The powdered milk is an item with a special tooltip.
+ *
+ * @author DarkBum
+ * @since 1.9.f
+ */
 public class ItemPowderedMilk extends Item {
 
-    private IIcon[] icon;
-
+    /**
+     * Constructs a new item instance with the specified name and creative tab.
+     *
+     * @param name The base name of the item.
+     * @param tab The creative tab to display this item in.
+     */
     public ItemPowderedMilk(String name, CreativeTabs tab) {
         setUnlocalizedName(name);
         setCreativeTab(tab);
-        setHasSubtypes(true);
     }
 
+    /**
+     * Adds additional information to the item tooltip when hovering over the item in the inventory.
+     *
+     * @param stack     The ItemStack for which the information is being added.
+     * @param player    The player viewing the tooltip.
+     * @param list      The list to which the tooltip lines are added.
+     * @param advanced  Whether advanced tooltips are enabled.
+     */
     @Override
-    public void addInformation(ItemStack is, EntityPlayer player, List list, boolean flag) {
-        list.add(I18n.format(getUnlocalizedName() + ".tooltip"));
-    }
-
-    // The following just exists so that I don't have to waste another item ID by registering an item just to affix a
-    // texture to three distinct achievements
-    // Thanks to Mojang for forcing achievements to take textures from items, instead of allowing raw texture file
-    // input. Fuck you.
-
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister iconRegister) {
-        this.icon = new IIcon[4];
-        for (int i = 0; i < this.icon.length; i++) {
-            this.icon[i] = iconRegister.registerIcon("saltymod:dev/achievement_icon_" + i);
-            this.icon[0] = iconRegister.registerIcon("saltymod:powdered_milk");
-        }
-    }
-
-    @SideOnly(Side.CLIENT)
-    public IIcon getIconFromDamage(int meta) {
-        return this.icon[meta];
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean advanced) {
+        addItemTooltip(stack, list);
     }
 }

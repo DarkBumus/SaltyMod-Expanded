@@ -5,6 +5,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
 
+import static net.minecraftforge.common.AchievementPage.*;
+import static darkbum.saltymod.init.ModBlocks.*;
+import static darkbum.saltymod.init.ModItems.*;
+import static net.minecraft.init.Items.*;
+
+/**
+ * Achievement class.
+ *
+ * @author DarkBum
+ * @since 1.9.f
+ */
 public class ModAchievementList {
 
     public static Achievement find_salt = new Achievement(
@@ -12,7 +23,7 @@ public class ModAchievementList {
         "find_salt",
         0,
         -1,
-        ModItems.salt,
+        salt,
         null).registerStat();
 
     public static Achievement find_salt_crystal = new Achievement(
@@ -20,7 +31,7 @@ public class ModAchievementList {
         "find_salt_crystal",
         -4,
         -2,
-        Items.iron_pickaxe,
+        iron_pickaxe,
         find_salt).registerStat();
 
     public static Achievement nav_salt_crystal = new Achievement(
@@ -36,7 +47,7 @@ public class ModAchievementList {
         "navelse_salt_crystal",
         -4,
         -6,
-        ModBlocks.salt_crystal,
+        salt_crystal,
         nav_salt_crystal).setSpecial().registerStat();
 
     public static Achievement slime_salt_crystal = new Achievement(
@@ -44,7 +55,7 @@ public class ModAchievementList {
         "slime_salt_crystal",
         -5,
         -3,
-        ModItems.tough_jelly,
+        tough_jelly,
         find_salt_crystal).setSpecial().registerStat();
 
     public static Achievement witch_salt_crystal = new Achievement(
@@ -52,7 +63,7 @@ public class ModAchievementList {
         "witch_salt_crystal",
         -3,
         -3,
-        new ItemStack(ModItems.powdered_milk, 1, 3),
+        new ItemStack(dev_item, 1, 2),
         find_salt_crystal).setSpecial().registerStat();
 
     public static Achievement farm_salt = new Achievement(
@@ -60,7 +71,7 @@ public class ModAchievementList {
         "farm_salt",
         2,
         -2,
-        ModItems.salt_pinch,
+        salt_pinch,
         find_salt).registerStat();
 
     public static Achievement make_rain = new Achievement(
@@ -68,7 +79,7 @@ public class ModAchievementList {
         "make_rain",
         2,
         -4,
-        ModItems.rainmaker,
+        rainmaker,
         farm_salt).registerStat();
 
     public static Achievement farm_evaporator = new Achievement(
@@ -84,7 +95,7 @@ public class ModAchievementList {
         "explode_evaporator",
         4,
         -4,
-        ModBlocks.evaporator,
+        evaporator,
         farm_evaporator).setSpecial().registerStat();
 
     public static Achievement nav_salt_marsh = new Achievement(
@@ -92,7 +103,7 @@ public class ModAchievementList {
         "nav_salt_marsh",
         2,
         0,
-        ModBlocks.salt_grass,
+        salt_grass,
         null).registerStat();
 
     public static Achievement find_onion = new Achievement(
@@ -100,7 +111,7 @@ public class ModAchievementList {
         "find_onion",
         4,
         0,
-        ModItems.onion,
+        onion,
         nav_salt_marsh).registerStat();
 
     public static Achievement find_mud_brick = new Achievement(
@@ -108,7 +119,7 @@ public class ModAchievementList {
         "find_mud_brick",
         6,
         0,
-        ModBlocks.dry_mud_brick,
+        dry_mud_brick,
         find_onion).registerStat();
 
     public static Achievement nav_salt_lake = new Achievement(
@@ -116,7 +127,7 @@ public class ModAchievementList {
         "nav_salt_lake",
         0,
         1,
-        ModBlocks.salt_lake,
+        salt_lake,
         null).registerStat();
 
     public static Achievement find_mineral_mud = new Achievement(
@@ -124,7 +135,7 @@ public class ModAchievementList {
         "find_mineral_mud",
         2,
         2,
-        ModItems.mineral_mud_ball,
+        mineral_mud_ball,
         nav_salt_lake).registerStat();
 
     public static Achievement full_mud_armor = new Achievement(
@@ -132,7 +143,7 @@ public class ModAchievementList {
         "full_mud_armor",
         4,
         2,
-        new ItemStack(ModItems.powdered_milk, 1, 1),
+        new ItemStack(dev_item, 1, 0),
         find_mineral_mud).registerStat();
 
     public static Achievement destroy_mud_armor = new Achievement(
@@ -140,7 +151,7 @@ public class ModAchievementList {
         "destroy_mud_armor",
         6,
         2,
-        new ItemStack(ModItems.powdered_milk, 1, 2),
+        new ItemStack(dev_item, 1, 1),
         full_mud_armor).registerStat();
 
     public static Achievement find_saltwort = new Achievement(
@@ -148,7 +159,7 @@ public class ModAchievementList {
         "find_saltwort",
         -2,
         0,
-        ModItems.saltwort,
+        saltwort,
         null).registerStat();
 
     public static Achievement farm_saltwort = new Achievement(
@@ -156,7 +167,7 @@ public class ModAchievementList {
         "farm_saltwort",
         -4,
         0,
-        ModBlocks.salt_dirt_lite,
+        salt_dirt_lite,
         find_saltwort).registerStat();
 
     public static Achievement consume_fizzy_drink = new Achievement(
@@ -164,7 +175,7 @@ public class ModAchievementList {
         "consume_fizzy_drink",
         -4,
         2,
-        ModItems.fizzy_drink,
+        fizzy_drink,
         find_saltwort).registerStat();
 
     public static Achievement find_dough = new Achievement(
@@ -172,7 +183,7 @@ public class ModAchievementList {
         "find_dough",
         -2,
         4,
-        ModItems.dough,
+        dough,
         find_saltwort).registerStat();
 
     public static Achievement consumespec_muffin = new Achievement(
@@ -180,16 +191,15 @@ public class ModAchievementList {
         "consumespec_muffin",
         -2,
         6,
-        ModItems.muffin,
-        find_dough).setSpecial()
-            .registerStat();
+        muffin,
+        find_dough).setSpecial().registerStat();
 
     public static Achievement effect_swarmed = new Achievement(
         "achievement.effect_swarmed",
         "effect_swarmed",
         0,
         6,
-        ModItems.carpenter_bee,
+        carpenter_bee,
         null).registerStat();
 
     public static Achievement craft_apiary = new Achievement(
@@ -197,7 +207,7 @@ public class ModAchievementList {
         "craft_apiary",
         2,
         6,
-        ModBlocks.apiary,
+        apiary,
         effect_swarmed).registerStat();
 
     public static AchievementPage achievSaltPage = new AchievementPage(
@@ -227,7 +237,10 @@ public class ModAchievementList {
         effect_swarmed,
         craft_apiary);
 
+    /**
+     * Initializes all achievements.
+     */
     public static void init() {
-        AchievementPage.registerAchievementPage(achievSaltPage);
+        registerAchievementPage(achievSaltPage);
     }
 }

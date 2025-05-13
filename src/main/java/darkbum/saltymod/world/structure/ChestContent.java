@@ -13,6 +13,10 @@ import java.util.Random;
 
 public class ChestContent {
 
+    public static void init() {
+        addDungeonLoot();
+    }
+
     public static void addDungeonLoot() {
         Random rand = new Random();
         int meta = 100 + rand.nextInt(101);

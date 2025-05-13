@@ -1,310 +1,332 @@
 package darkbum.saltymod.init.recipes;
 
-import cpw.mods.fml.common.Loader;
-import darkbum.saltymod.common.config.*;
-import darkbum.saltymod.util.ConditionalRegistrar;
-import darkbum.saltymod.init.ModExternalItemLoader;
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 
-import darkbum.saltymod.init.ModBlocks;
-import darkbum.saltymod.init.ModItems;
+import static cpw.mods.fml.common.Loader.isModLoaded;
+import static darkbum.saltymod.init.ModExternalItemLoader.*;
+import static darkbum.saltymod.util.ConditionalRegistrar.*;
+import static net.minecraftforge.oredict.OreDictionary.*;
+import static darkbum.saltymod.common.config.ModConfigurationBlocks.*;
+import static darkbum.saltymod.common.config.ModConfigurationItems.*;
+import static darkbum.saltymod.common.config.ModConfigurationModCompatibility.*;
+import static darkbum.saltymod.common.config.ModConfigurationVanillaChanges.*;
+import static darkbum.saltymod.common.config.ModConfigurationWorldGeneration.*;
+import static darkbum.saltymod.init.ModBlocks.*;
+import static darkbum.saltymod.init.ModItems.*;
+import static net.minecraft.init.Blocks.*;
+import static net.minecraft.init.Items.*;
+import static net.minecraft.init.Items.cake;
+import static net.minecraft.init.Items.cauldron;
+import static net.minecraft.init.Items.wheat;
 
+/**
+ * Recipe class for Shaped Recipes.
+ *
+ * @author DarkBum
+ * @since 1.9.f
+ */
 public class ModShapedRecipes {
 
+    /**
+     * Initializes all shaped recipes.
+     */
     public static void init() {
 
-        Item beetroot = ModExternalItemLoader.etFuturumItems.get("beetroot");
-        Item beetroot_seeds = ModExternalItemLoader.etFuturumItems.get("beetroot_seeds");
-        Item sweet_berries = ModExternalItemLoader.etFuturumItems.get("sweet_berries");
-        Block honeycomb_block = ModExternalItemLoader.etFuturumBlocks.get("honeycomb_block");
-        Block beehive = ModExternalItemLoader.etFuturumBlocks.get("beehive");
+        Item beetroot = etFuturumItems.get("beetroot");
+        Item beetroot_seeds = etFuturumItems.get("beetroot_seeds");
+        Item sweet_berries = etFuturumItems.get("sweet_berries");
+        Block honeycomb_block = etFuturumBlocks.get("honeycomb_block");
+        Block beehive = etFuturumBlocks.get("beehive");
 
-        Block campfire = ModExternalItemLoader.campfireBackportBlocks.get("campfire");
+        Block campfire = campfireBackportBlocks.get("campfire");
 
 
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(Items.sugar),
+        addShapedRecipe(new ItemStack(sugar),
             new Object[]{"xxx", "xxx", "xxx",
-                'x', new ItemStack(ModItems.sugar_pinch)});
+                'x', new ItemStack(sugar_pinch)});
 
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(Items.cake),
+        addShapedRecipe(new ItemStack(cake),
             new Object[]{" x ", "yzy", " a ",
-                'x', new ItemStack(Items.milk_bucket),
-                'y', new ItemStack(Items.sugar),
-                'z', new ItemStack(Items.egg),
-                'a', new ItemStack(ModItems.dough)},
-            ModConfigurationVanillaChanges.enableRecipeChanges, ModConfigurationItems.enableDough);
+                'x', new ItemStack(milk_bucket),
+                'y', new ItemStack(sugar),
+                'z', new ItemStack(egg),
+                'a', new ItemStack(dough)},
+            enableRecipeChanges, enableDough);
 
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(honeycomb_block),
+        addShapedRecipe(new ItemStack(honeycomb_block),
             new Object[]{"xx", "xx",
-                'x', new ItemStack(ModItems.waxcomb)},
-            honeycomb_block != null, ModConfigurationModCompatibility.enableEFRHoneyCompatibility);
-        ConditionalRegistrar.addShapedOreRecipe(new ItemStack(beehive),
+                'x', new ItemStack(waxcomb)},
+            honeycomb_block != null, enableEFRHoneyCompatibility);
+        addShapedOreRecipe(new ItemStack(beehive),
             new Object[]{"xxx", "yyy", "xxx",
                 'x', "plankWood",
-                'y', new ItemStack(ModItems.waxcomb)},
-            beehive != null, ModConfigurationModCompatibility.enableEFRHoneyCompatibility);
+                'y', new ItemStack(waxcomb)},
+            beehive != null, enableEFRHoneyCompatibility);
 
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.salt_block),
+        addShapedRecipe(new ItemStack(salt_block),
             new Object[]{"xxx", "xxx", "xxx",
-                'x', new ItemStack(ModItems.salt)},
-            ModConfigurationBlocks.enableSaltBlocks);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.salt_block, 4, 5),
+                'x', new ItemStack(salt)},
+            enableSaltBlocks);
+        addShapedRecipe(new ItemStack(salt_block, 4, 5),
             new Object[]{"xx", "xx",
-                'x', new ItemStack(ModBlocks.salt_block, 1, 0)},
-            ModConfigurationBlocks.enableSaltBlocks);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.salt_block, 2, 2),
+                'x', new ItemStack(salt_block, 1, 0)},
+            enableSaltBlocks);
+        addShapedRecipe(new ItemStack(salt_block, 2, 2),
             new Object[]{"x", "x",
-                'x', new ItemStack(ModBlocks.salt_block, 1, 0)},
-            ModConfigurationBlocks.enableSaltBlocks);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.salt_block, 1, 1),
+                'x', new ItemStack(salt_block, 1, 0)},
+            enableSaltBlocks);
+        addShapedRecipe(new ItemStack(salt_block, 1, 1),
             new Object[]{"x", "x",
-                'x', new ItemStack(ModBlocks.salt_slab, 1, 0)},
-            ModConfigurationBlocks.enableSaltBlocks);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.salt_block, 1, 8),
+                'x', new ItemStack(salt_slab, 1, 0)},
+            enableSaltBlocks);
+        addShapedRecipe(new ItemStack(salt_block, 1, 8),
             new Object[]{"x", "x",
-                'x', new ItemStack(ModBlocks.salt_slab, 1, 1)},
-            ModConfigurationBlocks.enableSaltBlocks);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.salt_block, 1, 9),
+                'x', new ItemStack(salt_slab, 1, 1)},
+            enableSaltBlocks);
+        addShapedRecipe(new ItemStack(salt_block, 1, 9),
             new Object[]{"x", "x",
-                'x', new ItemStack(ModBlocks.salt_slab, 1, 2)},
-            ModConfigurationBlocks.enableSaltBlocks);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.salt_block, 6),
+                'x', new ItemStack(salt_slab, 1, 2)},
+            enableSaltBlocks);
+        addShapedRecipe(new ItemStack(salt_block, 6),
             new Object[]{"x  ", "xx ", "xxx",
-                'x', new ItemStack(ModBlocks.salt_block, 1, 5)},
-            ModConfigurationBlocks.enableSaltBlocks);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.salt_slab, 6, 0),
+                'x', new ItemStack(salt_block, 1, 5)},
+            enableSaltBlocks);
+        addShapedRecipe(new ItemStack(salt_slab, 6, 0),
             new Object[]{"xxx",
-                'x', new ItemStack(ModBlocks.salt_block, 1, 0)},
-            ModConfigurationBlocks.enableSaltBlocks);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.salt_slab, 6, 1),
+                'x', new ItemStack(salt_block, 1, 0)},
+            enableSaltBlocks);
+        addShapedRecipe(new ItemStack(salt_slab, 6, 1),
             new Object[]{"xxx",
-                'x', new ItemStack(ModBlocks.salt_block, 1, 5)},
-            ModConfigurationBlocks.enableSaltBlocks);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.salt_slab, 6, 2),
+                'x', new ItemStack(salt_block, 1, 5)},
+            enableSaltBlocks);
+        addShapedRecipe(new ItemStack(salt_slab, 6, 2),
             new Object[]{"xxx",
-                'x', new ItemStack(ModBlocks.salt_block, 1, 2)},
-            ModConfigurationBlocks.enableSaltBlocks);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.salt_lamp),
+                'x', new ItemStack(salt_block, 1, 2)},
+            enableSaltBlocks);
+        addShapedRecipe(new ItemStack(salt_lamp),
             new Object[]{"x", "y",
-                'x', new ItemStack(ModBlocks.salt_block, 1, 0),
-                'y', new ItemStack(Blocks.torch)},
-            ModConfigurationBlocks.enableSaltBlocks);
+                'x', new ItemStack(salt_block, 1, 0),
+                'y', new ItemStack(torch)},
+            enableSaltBlocks);
 
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.reeds_block),
+        addShapedRecipe(new ItemStack(reeds_block),
             new Object[]{"xxx", "xxx", "xxx",
-                'x', new ItemStack(ModBlocks.marsh_reeds_b)},
-            ModConfigurationWorldGeneration.enableSaltMarsh);
+                'x', new ItemStack(marsh_reeds_b)},
+            enableSaltMarsh);
 
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.mineral_mud),
+        addShapedRecipe(new ItemStack(mineral_mud),
             new Object[]{"xx", "xx",
-                'x', new ItemStack(ModItems.mineral_mud_ball)},
-            ModConfigurationItems.enableMineralMud);
+                'x', new ItemStack(mineral_mud_ball)},
+            enableMineralMud);
 
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.wet_mud_brick, 2),
+        addShapedRecipe(new ItemStack(wet_mud_brick, 2),
             new Object[]{"xy", "yx",
-                'x', new ItemStack(ModBlocks.mineral_mud),
-                'y', new ItemStack(Items.wheat)},
-            ModConfigurationItems.enableMineralMud, ModConfigurationBlocks.enableMudBricks);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.dry_mud_brick_stairs, 4),
+                'x', new ItemStack(mineral_mud),
+                'y', new ItemStack(wheat)},
+            enableMineralMud, enableMudBricks);
+        addShapedRecipe(new ItemStack(dry_mud_brick_stairs, 4),
             new Object[]{"x  ", "xx ", "xxx",
-                'x', new ItemStack(ModBlocks.dry_mud_brick)},
-            ModConfigurationItems.enableMineralMud, ModConfigurationBlocks.enableMudBricks);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.dry_mud_brick_slab, 6),
+                'x', new ItemStack(dry_mud_brick)},
+            enableMineralMud, enableMudBricks);
+        addShapedRecipe(new ItemStack(dry_mud_brick_slab, 6),
             new Object[]{"xxx",
-                'x', new ItemStack(ModBlocks.dry_mud_brick)},
-            ModConfigurationItems.enableMineralMud, ModConfigurationBlocks.enableMudBricks);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.dry_mud_brick_wall, 6),
+                'x', new ItemStack(dry_mud_brick)},
+            enableMineralMud, enableMudBricks);
+        addShapedRecipe(new ItemStack(dry_mud_brick_wall, 6),
             new Object[]{"xxx", "xxx",
-                'x', new ItemStack(ModBlocks.dry_mud_brick)},
-            ModConfigurationItems.enableMineralMud, ModConfigurationBlocks.enableMudBricks);
+                'x', new ItemStack(dry_mud_brick)},
+            enableMineralMud, enableMudBricks);
 
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.evaporator),
+        addShapedRecipe(new ItemStack(evaporator),
             new Object[]{"xyx", "x x", "xxx",
-                'x', new ItemStack(Blocks.cobblestone),
-                'y', new ItemStack(Items.cauldron)},
-            ModConfigurationBlocks.enableEvaporator);
+                'x', new ItemStack(cobblestone),
+                'y', new ItemStack(cauldron)},
+            enableEvaporator);
 
-        ConditionalRegistrar.addShapedOreRecipe(new ItemStack(ModBlocks.fish_farm),
+        addShapedOreRecipe(new ItemStack(fish_farm),
             new Object[]{"xxx", "yzy", "xax",
                 'x', "plankWood",
-                'y', new ItemStack(Items.stick),
-                'z', new ItemStack(Items.fishing_rod),
-                'a', new ItemStack(Blocks.chest)},
-            ModConfigurationBlocks.enableFishFarm);
+                'y', new ItemStack(stick),
+                'z', new ItemStack(fishing_rod),
+                'a', new ItemStack(chest)},
+            enableFishFarm);
 
-        ConditionalRegistrar.addShapedOreRecipe(new ItemStack(ModBlocks.apiary),
+        addShapedOreRecipe(new ItemStack(apiary),
             new Object[]{"xxx", "yyy", "xzx",
                 'x', "plankWood",
-                'y', new ItemStack(Items.item_frame),
-                'z', new ItemStack(Blocks.chest)},
-            ModConfigurationBlocks.enableApiary);
+                'y', new ItemStack(item_frame),
+                'z', new ItemStack(chest)},
+            enableApiary);
 
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.stove),
+        addShapedRecipe(new ItemStack(stove),
             new Object[]{"xxx", "y y", "yzy",
-                'x', new ItemStack(Items.iron_ingot),
-                'y', new ItemStack(Blocks.brick_block),
+                'x', new ItemStack(iron_ingot),
+                'y', new ItemStack(brick_block),
                 'z', new ItemStack(campfire)},
-            ModConfigurationBlocks.enableMachines, Loader.isModLoaded("campfirebackport"));
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.stove),
+            enableMachines, isModLoaded("campfirebackport"));
+        addShapedRecipe(new ItemStack(stove),
             new Object[]{"xxx", "y y", "yzy",
-                'x', new ItemStack(Items.iron_ingot),
-                'y', new ItemStack(Blocks.brick_block),
-                'z', new ItemStack(Blocks.furnace)},
-            ModConfigurationBlocks.enableMachines, !Loader.isModLoaded("campfirebackport"));
+                'x', new ItemStack(iron_ingot),
+                'y', new ItemStack(brick_block),
+                'z', new ItemStack(furnace)},
+            enableMachines, !isModLoaded("campfirebackport"));
 
-        ConditionalRegistrar.addShapedOreRecipe(new ItemStack(ModBlocks.press),
+        addShapedOreRecipe(new ItemStack(press),
             new Object[]{"xyx", "z z", "xxx",
                 'x', "plankWood",
-                'y', new ItemStack(Blocks.hopper),
-                'z', new ItemStack(Blocks.piston)},
-            ModConfigurationBlocks.enableMachines);
+                'y', new ItemStack(hopper),
+                'z', new ItemStack(piston)},
+            enableMachines);
 
-        ConditionalRegistrar.addShapedOreRecipe(new ItemStack(ModBlocks.mill),
+        addShapedOreRecipe(new ItemStack(mill),
             new Object[]{"xxx", "yzz", "xxx",
                 'x', "plankWood",
-                'y', new ItemStack(Blocks.piston),
-                'z', new ItemStack(Items.redstone)},
-            ModConfigurationBlocks.enableMachines);
+                'y', new ItemStack(piston),
+                'z', new ItemStack(redstone)},
+            enableMachines);
 
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.cooking_pot),
+        addShapedRecipe(new ItemStack(cooking_pot),
             new Object[]{"xyx", "zaz", "zzz",
-                'x', new ItemStack(Items.brick),
-                'y', new ItemStack(Items.wooden_shovel, 1, OreDictionary.WILDCARD_VALUE),
-                'z', new ItemStack(Items.iron_ingot),
-                'a', new ItemStack(Items.water_bucket)},
-            ModConfigurationBlocks.enableMachines);
+                'x', new ItemStack(brick),
+                'y', new ItemStack(wooden_shovel, 1, WILDCARD_VALUE),
+                'z', new ItemStack(iron_ingot),
+                'a', new ItemStack(water_bucket)},
+            enableMachines);
 
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.clay_oven),
+        addShapedRecipe(new ItemStack(clay_oven),
             new Object[]{"xxx", "x x", "xyx",
-                'x', new ItemStack(Items.brick),
-                'y', new ItemStack(Blocks.stone_slab, 1, 0)},
-            ModConfigurationBlocks.enableMachines);
+                'x', new ItemStack(brick),
+                'y', new ItemStack(stone_slab, 1, 0)},
+            enableMachines);
 
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.storage_crate),
+        addShapedRecipe(new ItemStack(storage_crate),
             new Object[]{"xxx", "xxx", "xxx",
-                'x', new ItemStack(Items.carrot)},
-            ModConfigurationBlocks.enableStorageBlocks);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.storage_crate, 1, 1),
+                'x', new ItemStack(carrot)},
+            enableStorageBlocks);
+        addShapedRecipe(new ItemStack(storage_crate, 1, 1),
             new Object[]{"xxx", "xxx", "xxx",
-                'x', new ItemStack(Items.potato)},
-            ModConfigurationBlocks.enableStorageBlocks);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.storage_crate, 1, 2),
+                'x', new ItemStack(potato)},
+            enableStorageBlocks);
+        addShapedRecipe(new ItemStack(storage_crate, 1, 2),
             new Object[]{"xxx", "xxx", "xxx",
-                'x', new ItemStack(Items.poisonous_potato)},
-            ModConfigurationBlocks.enableStorageBlocks);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.storage_crate, 1, 3),
+                'x', new ItemStack(poisonous_potato)},
+            enableStorageBlocks);
+        addShapedRecipe(new ItemStack(storage_crate, 1, 3),
             new Object[]{"xxx", "xxx", "xxx",
-                'x', new ItemStack(ModItems.onion)},
-            ModConfigurationBlocks.enableStorageBlocks, ModConfigurationItems.enableOnion);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.storage_crate, 1, 4),
+                'x', new ItemStack(onion)},
+            enableStorageBlocks, enableOnion);
+        addShapedRecipe(new ItemStack(storage_crate, 1, 4),
             new Object[]{"xxx", "xxx", "xxx",
                 'x', beetroot},
-            beetroot != null, ModConfigurationBlocks.enableStorageBlocks);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.storage_barrel),
+            beetroot != null, enableStorageBlocks);
+        addShapedRecipe(new ItemStack(storage_barrel),
             new Object[]{"xxx", "xxx", "xxx",
-                'x', new ItemStack(Items.fish)},
-            ModConfigurationBlocks.enableStorageBlocks);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.storage_barrel, 1, 1),
+                'x', new ItemStack(fish)},
+            enableStorageBlocks);
+        addShapedRecipe(new ItemStack(storage_barrel, 1, 1),
             new Object[]{"xxx", "xxx", "xxx",
-                'x', new ItemStack(Items.fish, 1, 1)},
-            ModConfigurationBlocks.enableStorageBlocks);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.storage_barrel, 1, 2),
+                'x', new ItemStack(fish, 1, 1)},
+            enableStorageBlocks);
+        addShapedRecipe(new ItemStack(storage_barrel, 1, 2),
             new Object[]{"xxx", "xxx", "xxx",
-                'x', new ItemStack(Items.fish, 1, 2)},
-            ModConfigurationBlocks.enableStorageBlocks);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.storage_barrel, 1, 3),
+                'x', new ItemStack(fish, 1, 2)},
+            enableStorageBlocks);
+        addShapedRecipe(new ItemStack(storage_barrel, 1, 3),
             new Object[]{"xxx", "xxx", "xxx",
-                'x', new ItemStack(ModItems.tailor)},
-            ModConfigurationBlocks.enableStorageBlocks);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.storage_barrel, 1, 4),
+                'x', new ItemStack(tailor)},
+            enableStorageBlocks);
+        addShapedRecipe(new ItemStack(storage_barrel, 1, 4),
             new Object[]{"xxx", "xxx", "xxx",
-                'x', new ItemStack(Items.fish, 1, 3)},
-            ModConfigurationBlocks.enableStorageBlocks);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.storage_sack),
+                'x', new ItemStack(fish, 1, 3)},
+            enableStorageBlocks);
+        addShapedRecipe(new ItemStack(storage_sack),
             new Object[]{"xxx", "xxx", "xxx",
-                'x', new ItemStack(Items.wheat_seeds)},
-            ModConfigurationBlocks.enableStorageBlocks);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.storage_sack, 1, 1),
+                'x', new ItemStack(wheat_seeds)},
+            enableStorageBlocks);
+        addShapedRecipe(new ItemStack(storage_sack, 1, 1),
             new Object[]{"xxx", "xxx", "xxx",
-                'x', new ItemStack(Items.melon_seeds)},
-            ModConfigurationBlocks.enableStorageBlocks);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.storage_sack, 1, 2),
+                'x', new ItemStack(melon_seeds)},
+            enableStorageBlocks);
+        addShapedRecipe(new ItemStack(storage_sack, 1, 2),
             new Object[]{"xxx", "xxx", "xxx",
-                'x', new ItemStack(Items.pumpkin_seeds)},
-            ModConfigurationBlocks.enableStorageBlocks);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.storage_sack, 1, 3),
+                'x', new ItemStack(pumpkin_seeds)},
+            enableStorageBlocks);
+        addShapedRecipe(new ItemStack(storage_sack, 1, 3),
             new Object[]{"xxx", "xxx", "xxx",
-                'x', new ItemStack(ModItems.saltwort)},
-            ModConfigurationBlocks.enableStorageBlocks);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.storage_sack, 1, 4),
+                'x', new ItemStack(saltwort)},
+            enableStorageBlocks);
+        addShapedRecipe(new ItemStack(storage_sack, 1, 4),
             new Object[]{"xxx", "xxx", "xxx",
                 'x', beetroot_seeds},
-            beetroot_seeds != null, ModConfigurationBlocks.enableStorageBlocks);
+            beetroot_seeds != null, enableStorageBlocks);
 
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModBlocks.marsh_reeds_b, 9),
+        addShapedRecipe(new ItemStack(marsh_reeds_b, 9),
             new Object[]{"x",
-                'x', new ItemStack(ModBlocks.reeds_block)},
-            ModConfigurationWorldGeneration.enableSaltMarsh);
+                'x', new ItemStack(reeds_block)},
+            enableSaltMarsh);
 
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModItems.salt),
+        addShapedRecipe(new ItemStack(salt),
             new Object[]{"xxx", "xxx", "xxx",
-                'x', new ItemStack(ModItems.salt_pinch)});
+                'x', new ItemStack(salt_pinch)});
 
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModItems.golden_saltwort),
+        addShapedRecipe(new ItemStack(golden_saltwort),
             new Object[]{"xxx", "xyx", "xxx",
-                'x', new ItemStack(Items.gold_nugget),
-                'y', new ItemStack(ModItems.saltwort)});
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModItems.golden_potato),
+                'x', new ItemStack(gold_nugget),
+                'y', new ItemStack(saltwort)});
+        addShapedRecipe(new ItemStack(golden_potato),
             new Object[]{"xxx", "xyx", "xxx",
-                'x', new ItemStack(Items.gold_nugget),
-                'y', new ItemStack(Items.potato)});
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModItems.golden_berries),
+                'x', new ItemStack(gold_nugget),
+                'y', new ItemStack(potato)});
+        addShapedRecipe(new ItemStack(golden_berries),
             new Object[]{"xxx", "xyx", "xxx",
-                'x', Items.gold_nugget,
+                'x', gold_nugget,
                 'y', sweet_berries},
             sweet_berries != null);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModItems.golden_berries, 1, 1),
+        addShapedRecipe(new ItemStack(golden_berries, 1, 1),
             new Object[]{"xxx", "xyx", "xxx",
-                'x', Blocks.gold_block,
+                'x', gold_block,
                 'y', sweet_berries},
             sweet_berries != null);
 
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModItems.cured_meat),
+        addShapedRecipe(new ItemStack(cured_meat),
             new Object[]{"xxx", "xyx", "xxx",
-                'x', new ItemStack(ModItems.salt_pinch),
-                'y', new ItemStack(Items.rotten_flesh)});
+                'x', new ItemStack(salt_pinch),
+                'y', new ItemStack(rotten_flesh)});
 
-        ConditionalRegistrar.addShapedOreRecipe(new ItemStack(ModItems.chocolate_bar),
+        addShapedOreRecipe(new ItemStack(chocolate_bar),
             new Object[]{"xyx",
-                'x', new ItemStack(Items.dye, 1, 3),
+                'x', new ItemStack(dye, 1, 3),
                 'y', "itemMilk"},
-            ModConfigurationBlocks.enableEvaporator);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModItems.chocolate_bar),
+            enableEvaporator);
+        addShapedRecipe(new ItemStack(chocolate_bar),
             new Object[]{"xyx",
-                'x', new ItemStack(Items.dye, 1, 3),
-                'y', new ItemStack(Items.milk_bucket)},
-            !ModConfigurationBlocks.enableEvaporator);
+                'x', new ItemStack(dye, 1, 3),
+                'y', new ItemStack(milk_bucket)},
+            !enableEvaporator);
 
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModItems.mud_helmet),
+        addShapedRecipe(new ItemStack(mud_helmet),
             new Object[]{"xxx", "x x",
-                'x', ModItems.mineral_mud_ball},
-            ModConfigurationItems.enableMineralMud, ModConfigurationItems.enableMudArmor);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModItems.mud_chestplate),
+                'x', mineral_mud_ball},
+            enableMineralMud, enableMudArmor);
+        addShapedRecipe(new ItemStack(mud_chestplate),
             new Object[]{"x x", "xxx", "xxx",
-                'x', ModItems.mineral_mud_ball},
-            ModConfigurationItems.enableMineralMud, ModConfigurationItems.enableMudArmor);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModItems.mud_leggings),
+                'x', mineral_mud_ball},
+            enableMineralMud, enableMudArmor);
+        addShapedRecipe(new ItemStack(mud_leggings),
             new Object[]{"xxx", "x x", "x x",
-                'x', ModItems.mineral_mud_ball},
-            ModConfigurationItems.enableMineralMud, ModConfigurationItems.enableMudArmor);
-        ConditionalRegistrar.addShapedRecipe(new ItemStack(ModItems.mud_boots),
+                'x', mineral_mud_ball},
+            enableMineralMud, enableMudArmor);
+        addShapedRecipe(new ItemStack(mud_boots),
             new Object[]{"x x", "x x",
-                'x', ModItems.mineral_mud_ball},
-            ModConfigurationItems.enableMineralMud, ModConfigurationItems.enableMudArmor);
+                'x', mineral_mud_ball},
+            enableMineralMud, enableMudArmor);
+
+        addShapedRecipe(new ItemStack(salt_pickaxe),
+            new Object[]{"xxx", " y ", " y ",
+            'x', salt_shard,
+            'y', stick},
+            enableSaltPickaxe);
     }
 }

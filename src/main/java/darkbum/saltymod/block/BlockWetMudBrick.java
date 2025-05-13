@@ -23,7 +23,7 @@ import darkbum.saltymod.common.config.ModConfigurationBlocks;
 import darkbum.saltymod.init.ModBlocks;
 
 import static darkbum.saltymod.SaltyMod.*;
-import static darkbum.saltymod.util.BlockHelper.*;
+import static darkbum.saltymod.util.BlockUtil.*;
 
 public class BlockWetMudBrick extends Block {
 

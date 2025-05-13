@@ -2,7 +2,7 @@ package darkbum.saltymod.block;
 
 import java.util.Random;
 
-import darkbum.saltymod.util.BlockHelper;
+import darkbum.saltymod.util.BlockUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -22,7 +22,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.SaltyMod;
 import darkbum.saltymod.tileentity.TileEntityApiary;
 
-import static darkbum.saltymod.util.BlockHelper.*;
+import static darkbum.saltymod.util.BlockUtil.*;
 
 /**
  * Block class for the apiary block.
@@ -50,7 +50,7 @@ public class BlockApiary extends BlockContainer {
     /**
      * Constructs a new block instance with a given name and a creative tab.
      * <p>
-     * Also assigns a material and other base properties through {@link BlockHelper}.
+     * Also assigns a material and other base properties through {@link BlockUtil}.
      *
      * @param name  The internal name of the block.
      * @param tab   The creative tab in which the block appears.
@@ -122,7 +122,7 @@ public class BlockApiary extends BlockContainer {
      */
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
-        BlockHelper.setBlockDirectionFromEntity(world, x, y, z, entity);
+        BlockUtil.setBlockDirectionFromEntity(world, x, y, z, entity);
     }
 
     /**

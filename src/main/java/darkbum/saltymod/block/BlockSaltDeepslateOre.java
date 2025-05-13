@@ -1,7 +1,6 @@
 package darkbum.saltymod.block;
 
-import cpw.mods.fml.common.Loader;
-import darkbum.saltymod.util.BlockHelper;
+import darkbum.saltymod.util.BlockUtil;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 
@@ -11,7 +10,7 @@ import darkbum.saltymod.common.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.IIcon;
 
-import static darkbum.saltymod.util.BlockHelper.*;
+import static darkbum.saltymod.util.BlockUtil.*;
 import static ganymedes01.etfuturum.ModBlocks.*;
 
 /**
@@ -29,7 +28,7 @@ public class BlockSaltDeepslateOre extends BlockSaltOre {
     /**
      * Constructs a new block instance with parent ore block.
      * <p>
-     * Also assigns a material and other base properties through {@link BlockHelper}.
+     * Also assigns a material and other base properties through {@link BlockUtil}.
      *
      * @param block The parent ore this block belongs to.
      */

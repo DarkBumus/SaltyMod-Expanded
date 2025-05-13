@@ -158,11 +158,11 @@ public class TileEntityCookingPot extends TileEntity implements ISidedInventory 
         PotcookingRecipe.PotRecipe recipe = PotcookingRecipe.cooking().getRecipeFor(ingreds);
         if (recipe == null) return false;
 
-        return isHeaterRequirementMet(recipe) && canAcceptOutput(inventory[6], recipe.output);
+        return isHeaterRequirementMet(recipe) && canAcceptOutput(inventory[6], recipe.output());
     }
 
     private boolean isHeaterRequirementMet(PotcookingRecipe.PotRecipe recipe) {
-        return recipe.requiresHeater == isHeaterBelow;
+        return recipe.requiresHeater() == isHeaterBelow;
     }
 
     private boolean canAcceptOutput(ItemStack currentStack, ItemStack output) {
@@ -189,11 +189,11 @@ public class TileEntityCookingPot extends TileEntity implements ISidedInventory 
         PotcookingRecipe.PotRecipe recipe = PotcookingRecipe.cooking().getRecipeFor(ingreds);
         if (recipe == null) return;
 
-        if (recipe.output != null) {
+        if (recipe.output() != null) {
             if (inventory[6] == null) {
-                inventory[6] = recipe.output.copy();
+                inventory[6] = recipe.output().copy();
             } else {
-                inventory[6].stackSize += recipe.output.stackSize;
+                inventory[6].stackSize += recipe.output().stackSize;
             }
         }
 
@@ -216,7 +216,7 @@ public class TileEntityCookingPot extends TileEntity implements ISidedInventory 
 
         // Use the XP chance to determine if XP should be spawned
         if (recipe.shouldSpawnXp() && worldObj != null && !worldObj.isRemote) {
-            spawnXp(worldObj, xCoord, yCoord, zCoord, recipe.xpChance); // Use the chance to spawn XP
+            spawnXp(worldObj, xCoord, yCoord, zCoord, recipe.xpChance()); // Use the chance to spawn XP
         }
     }
 

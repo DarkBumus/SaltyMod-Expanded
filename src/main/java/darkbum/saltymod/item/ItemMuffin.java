@@ -1,46 +1,60 @@
 package darkbum.saltymod.item;
 
-import darkbum.saltymod.init.ModAchievementList;
-import darkbum.saltymod.potion.ProbablePotionEffect;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.world.World;
 
 import java.util.List;
-import java.util.Random;
 
-import static darkbum.saltymod.init.ModItems.*;
+import static darkbum.saltymod.init.ModAchievementList.*;
+import static darkbum.saltymod.util.ItemUtil.*;
 
+/**
+ * Item class for the muffin item.
+ * The muffin is a salt food item with a special tooltip and message.
+ *
+ * @author DarkBum
+ * @since 1.9.f
+ */
 public class ItemMuffin extends ItemSaltFood {
 
+    /**
+     * Constructs a new item instance with the specified base name and creative tab.
+     *
+     * @param baseName The base name of the item.
+     * @param tab      The creative tab to display this item in.
+     */
     public ItemMuffin(String baseName, CreativeTabs tab) {
         super(baseName);
         setCreativeTab(tab);
-        this.addVariant(0, "muffin", "muffin", 3, 3.4f, false,
-            new ProbablePotionEffect(well_fed, 3600, 0, 1.0f, 20));
+        variantsMuffin(this);
     }
 
+    /**
+     * Adds additional information to the item tooltip when hovering over the item in the inventory.
+     *
+     * @param stack    The ItemStack for which the information is being added.
+     * @param player   The player viewing the tooltip.
+     * @param list     The list to which the tooltip lines are added.
+     * @param advanced Whether advanced tooltips are enabled.
+     */
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean advanced) {
-        String baseKey = getUnlocalizedName(stack);
-        String tooltipKey = baseKey + ".tooltip";
-
-        String tooltip = I18n.format(tooltipKey);
-        if (!tooltip.equals(tooltipKey)) {
-            list.add(tooltip);
-        }
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean advanced) {
+        addItemTooltip(stack, list);
     }
 
+    /**
+     * Called when the player consumes the food item.
+     *
+     * @param stack  The consumed ItemStack.
+     * @param world  The world in which the food was eaten.
+     * @param player The player who ate the food.
+     */
     @Override
     protected void onFoodEaten(ItemStack stack, net.minecraft.world.World world, EntityPlayer player) {
         if (!world.isRemote && player.getFoodStats().getFoodLevel() >= 20) {
-            player.triggerAchievement(ModAchievementList.consumespec_muffin);
-
-            String message = I18n.format(getUnlocalizedName() + ".mess." + world.rand.nextInt(4));
-            player.addChatMessage(new net.minecraft.util.ChatComponentText(message));
+            sendRandomFullChatMessage(world, player, getUnlocalizedName(), 4);
+            player.triggerAchievement(consumespec_muffin);
         }
     }
 }

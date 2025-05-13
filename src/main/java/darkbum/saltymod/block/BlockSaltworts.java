@@ -3,7 +3,7 @@ package darkbum.saltymod.block;
 import java.util.ArrayList;
 import java.util.Random;
 
-import darkbum.saltymod.util.BlockHelper;
+import darkbum.saltymod.util.BlockUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
@@ -28,7 +28,7 @@ import darkbum.saltymod.common.config.ModConfigurationBlocks;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 
-import static darkbum.saltymod.util.BlockHelper.*;
+import static darkbum.saltymod.util.BlockUtil.*;
 
 /**
  * Block class for the saltworts block.
@@ -57,7 +57,7 @@ public class BlockSaltworts extends BlockBush implements IGrowable {
     /**
      * Constructs a new block instance with a given name and a creative tab.
      * <p>
-     * Also assigns a material and other base properties through {@link BlockHelper}.
+     * Also assigns a material and other base properties through {@link BlockUtil}.
      *
      * @param name The internal name of the block.
      * @param tab  The creative tab in which the block appears.
@@ -289,7 +289,7 @@ public class BlockSaltworts extends BlockBush implements IGrowable {
      * Jumps directly to the final growth stage (5).
      */
     private static void growToFinalStage(World world, int x, int y, int z, int meta) {
-        if (meta < 4) {
+        if (meta < 2) {
             world.setBlockMetadataWithNotify(x, y, z, 5, 2);
             transformGround(world, x, y - 1, z, world.getBlock(x, y - 1, z), world.getBlockMetadata(x, y - 1, z));
         }

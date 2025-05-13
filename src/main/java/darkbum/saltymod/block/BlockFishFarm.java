@@ -3,7 +3,7 @@ package darkbum.saltymod.block;
 import java.util.Random;
 
 import darkbum.saltymod.tileentity.TileEntityFishFarm;
-import darkbum.saltymod.util.BlockHelper;
+import darkbum.saltymod.util.BlockUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -22,7 +22,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.SaltyMod;
 
-import static darkbum.saltymod.util.BlockHelper.*;
+import static darkbum.saltymod.util.BlockUtil.*;
 
 /**
  * Block class for the fish farm block.
@@ -44,7 +44,7 @@ public class BlockFishFarm extends BlockContainer {
     /**
      * Constructs a new block instance with a given name and a creative tab.
      * <p>
-     * Also assigns a material and other base properties through {@link BlockHelper}.
+     * Also assigns a material and other base properties through {@link BlockUtil}.
      *
      * @param name  The internal name of the block.
      * @param tab   The creative tab in which the block appears.

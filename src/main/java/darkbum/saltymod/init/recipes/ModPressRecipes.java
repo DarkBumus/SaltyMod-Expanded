@@ -1,53 +1,98 @@
 package darkbum.saltymod.init.recipes;
 
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.registry.GameRegistry;
-import darkbum.saltymod.util.PressingRecipe;
-import darkbum.saltymod.init.ModItems;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
+import darkbum.saltymod.tileentity.TileEntityPress;
+import darkbum.saltymod.util.PotcookingRecipe;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import static darkbum.saltymod.init.ModExternalItemLoader.*;
+import static darkbum.saltymod.util.ConditionalRegistrar.*;
+import static darkbum.saltymod.common.config.ModConfigurationEntities.*;
+import static darkbum.saltymod.common.config.ModConfigurationItems.*;
+import static darkbum.saltymod.init.ModItems.*;
+import static net.minecraft.init.Blocks.*;
+import static net.minecraft.init.Items.*;
+import static net.minecraft.init.Items.wheat;
+
+/**
+ * Recipe class for {@link TileEntityPress}.
+ *
+ * @author DarkBum
+ * @since 2.0.0
+ */
 public class ModPressRecipes {
 
     /**
-     *  Recipe definition is a bit complex, so here it goes:
-     *  recipes.registerRecipe(INPUT[ItemStack], OUTPUT1/LEFT[ItemStack], OUTPUT2/RIGHT[ItemStack], REQUIRES HEATER?[Boolean], REQUIRES MILL?[Boolean], VESSEL[ItemStack]);
-     *  NOTE: Both requiresHeater and requiresMill intentionally function in a way where they will block functionality of a recipe, if the recipe specifies that they're not required, and yet they are present.
-     *  In short: If you recipe says requiresHeater = false and you place a valid stove block next to the press, the recipe will not function. Likewise, if you recipe says requiresHeater = true, and the stove is not present,
-     *  it will also not function. Same goes for the mill.
+     * Initializes all custom press recipes.
+     * <p>
+     * Recipe definition:
+     * OvenbakingRecipe.baking().registerRecipe(OUTPUT(ItemStack), HEATER?(boolean), XPCHANCE(float), INPUTS(ItemStack));
+     * If you want to use this in your own mod, you need to import the static methods for stack and ore ingredients from {@link PotcookingRecipe}.
+     * NOTE:    The requiresHeater boolean intentionally functions in a way where setting the value to "false" will require the heater to NOT
+     * be present for the recipe to function.
      */
-
     public static void init() {
-        PressingRecipe press = PressingRecipe.pressing();
 
-        press.registerRecipe(new ItemStack(Blocks.cobblestone), null, new ItemStack(Blocks.gravel), false, true, null);
-        press.registerRecipe(new ItemStack(Blocks.gravel), null, new ItemStack(Blocks.sand), false, true, null);
+        Item honey_bottle = etFuturumItems.get("honey_bottle");
 
-        press.registerRecipe(new ItemStack(ModItems.mineral_mud_ball), new ItemStack(Items.potionitem, 1, 0), new ItemStack(Items.clay_ball, 1, 0), false, false, new ItemStack(Items.glass_bottle));
-        press.registerRecipe(new ItemStack(Items.wheat), new ItemStack(Items.glass_bottle), new ItemStack(ModItems.dough), false, true, new ItemStack(Items.potionitem, 1, 0));
+        addPressRecipe(new ItemStack(cobblestone),
+            null,
+            new ItemStack(gravel),
+            false,
+            true,
+            null);
 
-        if (Loader.isModLoaded("etfuturum")) {
-            Item honey_bottle = GameRegistry.findItem("etfuturum", "honey_bottle");
-            if ((honey_bottle != null)) {
-                press.registerRecipe(new ItemStack(ModItems.honeycomb),
-                    new ItemStack(honey_bottle), new ItemStack(ModItems.waxcomb),
-                    false,
-                    false,
-                    new ItemStack(Items.glass_bottle));
-                press.registerRecipe(new ItemStack(ModItems.frozen_honey),
-                    new ItemStack(honey_bottle),
-                    null,
-                    true,
-                    false,
-                    new ItemStack(Items.glass_bottle));
-            } else {
-                press.registerRecipe(new ItemStack(ModItems.honeycomb), new ItemStack(ModItems.royal_jelly), new ItemStack(ModItems.waxcomb), false, false, new ItemStack(Items.glass_bottle));
-                press.registerRecipe(new ItemStack(ModItems.frozen_honey), new ItemStack(ModItems.royal_jelly), null, true, false, new ItemStack(Items.glass_bottle));
-            }
-        }
+        addPressRecipe(new ItemStack(mineral_mud_ball),
+            new boolean[]{enableMineralMud},
+            new ItemStack(potionitem, 1, 0),
+            new ItemStack(clay_ball),
+            false,
+            false,
+            new ItemStack(glass_bottle));
 
-        press.registerRecipe(new ItemStack(ModItems.horn), new ItemStack(ModItems.tunneler_concoction), null, true, true, new ItemStack(ModItems.fizzy_drink));
+        addPressRecipe(new ItemStack(wheat),
+            new boolean[]{enableDough},
+            new ItemStack(glass_bottle),
+            new ItemStack(dough),
+            false,
+            true,
+            new ItemStack(potionitem, 1, 0));
+
+        addPressRecipe(new ItemStack(honeycomb),
+            new boolean[]{enableHoney, honey_bottle != null},
+            new ItemStack(honey_bottle),
+            new ItemStack(waxcomb),
+            false,
+            false,
+            new ItemStack(glass_bottle));
+        addPressRecipe(new ItemStack(frozen_honey),
+            new boolean[]{enableHoney, honey_bottle != null},
+            new ItemStack(honey_bottle),
+            null,
+            true,
+            false,
+            new ItemStack(glass_bottle));
+        addPressRecipe(new ItemStack(honeycomb),
+            new boolean[]{enableHoney, honey_bottle == null},
+            new ItemStack(royal_jelly),
+            new ItemStack(waxcomb),
+            false,
+            false,
+            new ItemStack(glass_bottle));
+        addPressRecipe(new ItemStack(frozen_honey),
+            new boolean[]{enableHoney, honey_bottle == null},
+            new ItemStack(royal_jelly),
+            null,
+            true,
+            false,
+            new ItemStack(glass_bottle));
+
+        addPressRecipe(new ItemStack(horn),
+            new boolean[]{enableHornedSheep},
+            new ItemStack(tunneler_concoction),
+            null,
+            true,
+            true,
+            new ItemStack(fizzy_drink));
     }
 }

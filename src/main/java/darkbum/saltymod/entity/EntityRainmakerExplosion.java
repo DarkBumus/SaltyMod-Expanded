@@ -6,8 +6,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 
-import darkbum.saltymod.util.RainMakerEvent;
 import darkbum.saltymod.common.config.ModConfigurationOther;
+
+import static darkbum.saltymod.event.RainMakerEventHandler.*;
 
 /**
  * Entity class for the rainmaker explosion entity.

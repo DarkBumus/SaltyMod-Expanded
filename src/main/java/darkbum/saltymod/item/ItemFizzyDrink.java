@@ -14,21 +14,90 @@ import net.minecraft.world.World;
 import darkbum.saltymod.common.config.ModConfigurationItems;
 import darkbum.saltymod.init.ModAchievementList;
 
+/**
+ * Item class for the fizzy drink item.
+ * The fizzy drink is an item with potion curing functionality.
+ *
+ * @author DarkBum
+ * @since 1.9.f
+ */
 public class ItemFizzyDrink extends Item {
 
+    /**
+     * Constructs a new item instance with the specified name and creative tab.
+     *
+     * @param name The base name of the item.
+     * @param tab The creative tab to display this item in.
+     */
     public ItemFizzyDrink(String name, CreativeTabs tab) {
         setMaxStackSize(1);
         setUnlocalizedName(name);
         setCreativeTab(tab);
     }
 
+    /**
+     * Adds additional information to the item tooltip when hovering over the item in the inventory.
+     * <p>
+     * The tooltip text is retrieved from the localized key: {@code <item name>.tooltip}.
+     * If no translation is found, the tooltip is not displayed.
+     *
+     * @param stack     The ItemStack for which the information is being added.
+     * @param player    The player viewing the tooltip.
+     * @param list      The list to which the tooltip lines are added.
+     * @param advanced  Whether advanced tooltips are enabled.
+     */
     @Override
-    public void addInformation(ItemStack is, EntityPlayer player, List list, boolean flag) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean advanced) {
         list.add(I18n.format(getUnlocalizedName() + ".tooltip"));
     }
 
-    public ItemStack onEaten(ItemStack item, World world, EntityPlayer player) {
-        if (!player.capabilities.isCreativeMode) item.stackSize--;
+    /**
+     * Called when the player right-clicks with this item.
+     *
+     * @param stack  The ItemStack being right-clicked.
+     * @param world  The world in which the action occurs.
+     * @param player The player using the item.
+     * @return the modified ItemStack after the action.
+     */
+    @Override
+    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+        player.setItemInUse(stack, getMaxItemUseDuration(stack));
+        return stack;
+    }
+
+    /**
+     * Returns the action that is performed when the player uses the item.
+     *
+     * @param stack The ItemStack being used.
+     * @return the action performed while using the item.
+     */
+    @Override
+    public EnumAction getItemUseAction(ItemStack stack) {
+        return EnumAction.drink;
+    }
+
+    /**
+     * Returns the maximum duration of time the player can use the item.
+     *
+     * @param stack The ItemStack being used.
+     * @return the maximum duration in ticks (32 ticks equals approximately 1.6 seconds).
+     */
+    @Override
+    public int getMaxItemUseDuration(ItemStack stack) {
+        return 32;
+    }
+
+    /**
+     * Called when the player consumes this item.
+     *
+     * @param stack  The ItemStack that was consumed.
+     * @param world  The world in which the item was consumed.
+     * @param player The player consuming the item.
+     * @return the resulting ItemStack after the item is consumed.
+     */
+    @Override
+    public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player) {
+        if (!player.capabilities.isCreativeMode) stack.stackSize--;
         if (!world.isRemote) {
             if (ModConfigurationItems.fizzyDrinkEffect) {
                 player.clearActivePotions();
@@ -40,19 +109,6 @@ public class ItemFizzyDrink extends Item {
                 player.extinguish();
             }
         }
-        return (item.stackSize <= 0) ? new ItemStack(Items.glass_bottle) : item;
-    }
-
-    public int getMaxItemUseDuration(ItemStack item) {
-        return 32;
-    }
-
-    public EnumAction getItemUseAction(ItemStack item) {
-        return EnumAction.drink;
-    }
-
-    public ItemStack onItemRightClick(ItemStack item, World world, EntityPlayer player) {
-        player.setItemInUse(item, getMaxItemUseDuration(item));
-        return item;
+        return (stack.stackSize <= 0) ? new ItemStack(Items.glass_bottle) : stack;
     }
 }

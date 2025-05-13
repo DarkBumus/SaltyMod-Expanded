@@ -1,23 +1,31 @@
 package darkbum.saltymod.init;
 
-import cpw.mods.fml.common.Loader;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFishFood;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemSoup;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import darkbum.saltymod.common.config.ModConfigurationModCompatibility;
-import darkbum.saltymod.common.config.ModConfigurationVanillaChanges;
-
+import static cpw.mods.fml.common.Loader.isModLoaded;
+import static cpw.mods.fml.common.registry.GameRegistry.findItem;
+import static darkbum.saltymod.common.config.ModConfigurationModCompatibility.*;
+import static darkbum.saltymod.common.config.ModConfigurationVanillaChanges.*;
 import static darkbum.saltymod.init.ModItems.*;
 
+/**
+ * External Value Registry class.
+ *
+ * @author DarkBum
+ * @since 1.9.f
+ */
 public class ModExternalValueRegistry {
 
+    /**
+     * Initializes all updated external values.
+     */
     public static void init() {
 
-        if (ModConfigurationVanillaChanges.enableVanillaFoodValueChanges) {
+        if (enableVanillaFoodValueChanges) {
 
             ItemFood apple = (ItemFood) Items.apple;
             apple.healAmount = 2;
@@ -134,68 +142,67 @@ public class ModExternalValueRegistry {
             pumpkin_pie.setPotionEffect(resistance, 90, 1, two_thirds);
         }
 
-        if (Loader.isModLoaded("etfuturum") && ModConfigurationModCompatibility.enableEFRFoodValueChanges) {
-
-            Item raw_mutton = GameRegistry.findItem("etfuturum", "raw_mutton");
+        if (isModLoaded("etfuturum") && enableEFRFoodValueChanges) {
+            Item raw_mutton = findItem("etfuturum", "raw_mutton");
             if (raw_mutton instanceof ItemFood ItemMuttonRaw) {
                 ItemMuttonRaw.healAmount = 2;
                 ItemMuttonRaw.saturationModifier = 0.6f;
             }
 
-            Item mutton_cooked = GameRegistry.findItem("etfuturum", "mutton_cooked");
+            Item mutton_cooked = findItem("etfuturum", "mutton_cooked");
             if (mutton_cooked instanceof ItemFood ItemMuttonCooked) {
                 ItemMuttonCooked.healAmount = 4;
                 ItemMuttonCooked.saturationModifier = 0.6f;
                 ItemMuttonCooked.setPotionEffect(health_boost, 5, 0, one_third);
             }
 
-            Item rabbit_raw = GameRegistry.findItem("etfuturum", "rabbit_raw");
+            Item rabbit_raw = findItem("etfuturum", "rabbit_raw");
             if (rabbit_raw instanceof ItemFood ItemRabbitRaw) {
                 ItemRabbitRaw.healAmount = 1;
                 ItemRabbitRaw.saturationModifier = 0.6f;
             }
 
-            Item rabbit_cooked = GameRegistry.findItem("etfuturum", "rabbit_cooked");
+            Item rabbit_cooked = findItem("etfuturum", "rabbit_cooked");
             if (rabbit_cooked instanceof ItemFood ItemRabbitCooked) {
                 ItemRabbitCooked.healAmount = 3;
                 ItemRabbitCooked.saturationModifier = 0.6f;
                 ItemRabbitCooked.setPotionEffect(health_boost, 5, 0, one_third);
             }
 
-            Item rabbit_stew = GameRegistry.findItem("etfuturum", "rabbit_stew");
+            Item rabbit_stew = findItem("etfuturum", "rabbit_stew");
             if (rabbit_stew instanceof ItemFood ItemRabbitStew) {
                 ItemRabbitStew.healAmount = 7;
                 ItemRabbitStew.saturationModifier = 0.7f;
                 ItemRabbitStew.setPotionEffect(health_boost, 30, 0, one_third);
             }
 
-            Item beetroot = GameRegistry.findItem("etfuturum", "beetroot");
+            Item beetroot = findItem("etfuturum", "beetroot");
             if (beetroot instanceof ItemFood ItemBeetroot) {
                 ItemBeetroot.healAmount = 1;
                 ItemBeetroot.saturationModifier = 0.3f;
                 ItemBeetroot.setPotionEffect(jump_boost, 5, 0, one_third);
             }
 
-            Item beetroot_soup = GameRegistry.findItem("etfuturum", "beetroot_soup");
+            Item beetroot_soup = findItem("etfuturum", "beetroot_soup");
             if (beetroot_soup instanceof ItemFood ItemBeetrootSoup) {
                 ItemBeetrootSoup.healAmount = 5;
                 ItemBeetrootSoup.saturationModifier = 0.7f;
                 ItemBeetrootSoup.setPotionEffect(jump_boost, 60, 1, one_third);
             }
 
-            Item chorus_fruit = GameRegistry.findItem("etfuturum", "chorus_fruit");
+            Item chorus_fruit = findItem("etfuturum", "chorus_fruit");
             if (chorus_fruit instanceof ItemFood ItemChorusFruit) {
                 ItemChorusFruit.healAmount = 1;
                 ItemChorusFruit.saturationModifier = 0.3f;
             }
 
-            Item suspicious_stew = GameRegistry.findItem("etfuturum", "suspicious_stew");
+            Item suspicious_stew = findItem("etfuturum", "suspicious_stew");
             if (suspicious_stew instanceof ItemFood ItemSuspiciousStew) {
                 ItemSuspiciousStew.healAmount = 5;
                 ItemSuspiciousStew.saturationModifier = 0.7f;
             }
 
-            Item sweet_berries = GameRegistry.findItem("etfuturum", "sweet_berries");
+            Item sweet_berries = findItem("etfuturum", "sweet_berries");
             if (sweet_berries instanceof ItemFood ItemSweetBerries) {
                 ItemSweetBerries.healAmount = 1;
                 ItemSweetBerries.saturationModifier = 0.3f;
@@ -203,30 +210,28 @@ public class ModExternalValueRegistry {
             }
         }
 
-        if (ModConfigurationVanillaChanges.enableMushroomStewStacksize16) {
-
-            Item mushroom_stew = GameRegistry.findItem("minecraft", "mushroom_stew");
+        if (enableMushroomStewStacksize16) {
+            Item mushroom_stew = findItem("minecraft", "mushroom_stew");
             mushroom_stew.setMaxStackSize(16);
         }
 
-        if (Loader.isModLoaded("etfuturum") && ModConfigurationModCompatibility.enableEFRStewsStacksize16) {
-
-            Item rabbit_stew = GameRegistry.findItem("etfuturum", "rabbit_stew");
+        if (isModLoaded("etfuturum") && enableEFRStewsStacksize16) {
+            Item rabbit_stew = findItem("etfuturum", "rabbit_stew");
             if (rabbit_stew instanceof ItemSoup ItemRabbitStew) {
                 ItemRabbitStew.setMaxStackSize(16);
             }
 
-            Item beetroot_soup = GameRegistry.findItem("etfuturum", "beetroot_soup");
+            Item beetroot_soup = findItem("etfuturum", "beetroot_soup");
             if (beetroot_soup instanceof ItemSoup ItemBeetrootSoup) {
                 ItemBeetrootSoup.setMaxStackSize(16);
             }
 
-            Item suspicious_stew = GameRegistry.findItem("etfuturum", "suspicious_stew");
+            Item suspicious_stew = findItem("etfuturum", "suspicious_stew");
             if (suspicious_stew instanceof ItemSoup ItemSuspiciousStew) {
                 ItemSuspiciousStew.setMaxStackSize(16);
             }
         }
-        Item woodenShovel = GameRegistry.findItem("minecraft", "wooden_shovel");
+        Item woodenShovel = findItem("minecraft", "wooden_shovel");
         woodenShovel.setMaxDamage(64);
     }
 }

@@ -1,12 +1,8 @@
 package darkbum.saltymod.util;
 
 import cpw.mods.fml.common.Loader;
-import darkbum.saltymod.common.config.ModConfigurationBlocks;
-import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModSounds;
-import darkbum.saltymod.potion.ModPotion;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityMagmaCube;
@@ -14,7 +10,6 @@ import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
@@ -27,11 +22,34 @@ import java.util.List;
 import java.util.Random;
 
 import static darkbum.saltymod.block.BlockSaltBlock.*;
+import static darkbum.saltymod.common.config.ModConfigurationBlocks.*;
+import static darkbum.saltymod.init.ModBlocks.*;
+import static darkbum.saltymod.init.ModItems.*;
 import static darkbum.saltymod.init.ModSounds.*;
 import static ganymedes01.etfuturum.client.sound.ModSounds.*;
+import static net.minecraft.block.material.Material.*;
+import static net.minecraft.init.Blocks.snow_layer;
+import static net.minecraft.init.Blocks.snow;
+import static net.minecraft.init.Blocks.ice;
+import static net.minecraft.init.Items.*;
 
-public class BlockHelper {
+/**
+ * Utility class for handling various block-related functionalities.
+ *
+ * @author DarkBum
+ * @since 2.0.0
+ */
+public class BlockUtil {
 
+    /**
+     * Sets the block metadata based on the direction the player is facing when placing the block.
+     *
+     * @param world  The world where the block is placed.
+     * @param x      The x-coordinate of the block.
+     * @param y      The y-coordinate of the block.
+     * @param z      The z-coordinate of the block.
+     * @param entity The entity placing the block, expected to be a player.
+     */
     public static void setBlockDirectionFromEntity(World world, int x, int y, int z, EntityLivingBase entity) {
         if (entity instanceof EntityPlayer) {
             int direction = MathHelper.floor_double(entity.rotationYaw * 4.0F / 360.0F + 2.5D) & 3;
@@ -39,19 +57,39 @@ public class BlockHelper {
         }
     }
 
+    /**
+     * Applies the "Swarmed" effect to a player, causing a debuff effect for a specified duration.
+     * This effect is typically associated with being attacked by bees or similar entities.
+     *
+     * @param player       The player receiving the effect.
+     * @param durationTicks The duration of the effect in ticks.
+     */
     public static void applySwarmedEffect(World world, EntityPlayer player, int x, int y, int z, int durationTicks) {
         if (!player.capabilities.isCreativeMode) {
-            PotionEffect effect = new PotionEffect(ModPotion.swarmed.id, durationTicks, 0, true);
+            PotionEffect effect = new PotionEffect(swarmed, durationTicks, 0, true);
             effect.getCurativeItems().clear();
             player.addPotionEffect(effect);
             world.playSoundEffect(x + 0.5, y + 0.5, z + 0.5, "saltymod:block.bee_burrow.bees", 1.0F, 1.5F);
         }
     }
 
+    /**
+     * Determines whether the specified entity is vulnerable to salt-related effects.
+     * Slimes (excluding Magma Cubes) and Witches are considered vulnerable.
+     *
+     * @param entity The entity to check.
+     * @return true, if the entity is vulnerable to salt effects, false otherwise.
+     */
     public static boolean isSaltVulnerableEntity(Entity entity) {
         return ((entity instanceof EntitySlime) && !(entity instanceof EntityMagmaCube)) || (entity instanceof EntityWitch);
     }
 
+    /**
+     * Checks if a salt-vulnerable entity is walking over a specific block and schedules
+     * a block update if the condition is met.
+     *
+     * @param sourceBlock The block being interacted with.
+     */
     public static void handleEntityWalkingSaltVulnerableUpdate(World world, int x, int y, int z, Entity entity, Block sourceBlock) {
         if (!world.isRemote
             && entity instanceof EntityLivingBase
@@ -60,6 +98,10 @@ public class BlockHelper {
         }
     }
 
+    /**
+     * Checks for entities in close proximity to a specified block and applies
+     * salt-based damage to vulnerable entities.
+     */
     public static void checkAndDamageNearbyEntities(World world, int x, int y, int z, Block sourceBlock) {
         AxisAlignedBB area = AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1, z + 1).expand(0.0625D, 0.0625D, 0.0625D);
 
@@ -73,68 +115,88 @@ public class BlockHelper {
         }
     }
 
+    /**
+     * Schedules block updates for nearby salt-based blocks when a salt effect is triggered.
+     */
     private static void updateNearbySaltBlocks(World world, int x, int y, int z, Block sourceBlock) {
         for (int dx = -1; dx <= 1; dx++) {
             for (int dz = -1; dz <= 1; dz++) {
                 Block block = world.getBlock(x + dx, y, z + dz);
-                if (block == ModBlocks.salt_block
-                    || block == ModBlocks.salt_lamp
-                    || block == ModBlocks.salt_lake
-                    || block == ModBlocks.salt_dirt
-                    || block == ModBlocks.salt_brick_stairs
-                    || block == ModBlocks.salt_slab
-                    || block == ModBlocks.double_salt_slab) {
+                if (block == salt_block
+                    || block == salt_lamp
+                    || block == salt_lake
+                    || block == salt_dirt
+                    || block == salt_brick_stairs
+                    || block == salt_slab
+                    || block == double_salt_slab) {
                     world.scheduleBlockUpdate(x + dx, y, z + dz, sourceBlock, 10);
                 }
             }
         }
     }
 
+    /**
+     * Attempts to grow a salt crystal block at a specified location if the conditions are met.
+     * A salt crystal can only grow if there is a water source block directly above the target block.
+     */
     public static void tryGrowSaltCrystal(World world, int x, int y, int z, Random rand) {
         if (!canGrowCrystal(world, x, y, z)) return;
 
-        if (rand.nextInt(ModConfigurationBlocks.saltCrystalGrowthSpeed) != 0) return;
+        if (rand.nextInt(saltCrystalGrowthSpeed) != 0) return;
 
         Block above = world.getBlock(x, y + 1, z);
         int meta = world.getBlockMetadata(x, y + 1, z);
 
         if (above == Blocks.air) {
-            world.setBlock(x, y + 1, z, ModBlocks.salt_crystal, 2, 3);
-        } else if (above == ModBlocks.salt_crystal && meta == 2) {
-            world.setBlock(x, y + 1, z, ModBlocks.salt_crystal, 1, 3);
-        } else if (above == ModBlocks.salt_crystal && meta == 1) {
-            world.setBlock(x, y + 1, z, ModBlocks.salt_crystal);
+            world.setBlock(x, y + 1, z, salt_crystal, 2, 3);
+        } else if (above == salt_crystal && meta == 2) {
+            world.setBlock(x, y + 1, z, salt_crystal, 1, 3);
+        } else if (above == salt_crystal && meta == 1) {
+            world.setBlock(x, y + 1, z, salt_crystal);
         }
 
         crystal = true;
     }
 
+    /**
+     * Determines whether a crystal can grow at the given position in the world.
+     * This checks if the block at the specified position is either a salt-related block or a related structure
+     * and if adjacent blocks meet the necessary criteria for crystal growth.
+     *
+     * @return true, if a crystal can grow at the specified position, false otherwise.
+     */
     private static boolean canGrowCrystal(World world, int x, int y, int z) {
         Block block = world.getBlock(x, y, z);
         int meta = world.getBlockMetadata(x, y, z);
 
-        if (block == ModBlocks.salt_block
-            || block == ModBlocks.double_salt_slab
-            || (block == ModBlocks.salt_slab && meta >= 8)
-            || (block == ModBlocks.salt_brick_stairs && meta >= 4)) {
+        if (block == salt_block
+            || block == double_salt_slab
+            || (block == salt_slab && meta >= 8)
+            || (block == salt_brick_stairs && meta >= 4)) {
 
-            return (world.getBlock(x + 1, y + 1, z) == ModBlocks.salt_block
-                || world.getBlock(x + 1, y + 1, z) == ModBlocks.double_salt_slab)
-                && (world.getBlock(x - 1, y + 1, z) == ModBlocks.salt_block
-                || world.getBlock(x - 1, y + 1, z) == ModBlocks.double_salt_slab)
-                && (world.getBlock(x, y + 1, z + 1) == ModBlocks.salt_block
-                || world.getBlock(x, y + 1, z + 1) == ModBlocks.double_salt_slab)
-                && (world.getBlock(x, y + 1, z - 1) == ModBlocks.salt_block
-                || world.getBlock(x, y + 1, z - 1) == ModBlocks.double_salt_slab)
-                && (world.getBlock(x + 1, y + 1, z + 1).getMaterial() == Material.water)
-                && (world.getBlock(x + 1, y + 1, z - 1).getMaterial() == Material.water)
-                && (world.getBlock(x - 1, y + 1, z + 1).getMaterial() == Material.water)
-                && (world.getBlock(x - 1, y + 1, z - 1).getMaterial() == Material.water)
+            return (world.getBlock(x + 1, y + 1, z) == salt_block
+                || world.getBlock(x + 1, y + 1, z) == double_salt_slab)
+                && (world.getBlock(x - 1, y + 1, z) == salt_block
+                || world.getBlock(x - 1, y + 1, z) == double_salt_slab)
+                && (world.getBlock(x, y + 1, z + 1) == salt_block
+                || world.getBlock(x, y + 1, z + 1) == double_salt_slab)
+                && (world.getBlock(x, y + 1, z - 1) == salt_block
+                || world.getBlock(x, y + 1, z - 1) == double_salt_slab)
+                && (world.getBlock(x + 1, y + 1, z + 1).getMaterial() == water)
+                && (world.getBlock(x + 1, y + 1, z - 1).getMaterial() == water)
+                && (world.getBlock(x - 1, y + 1, z + 1).getMaterial() == water)
+                && (world.getBlock(x - 1, y + 1, z - 1).getMaterial() == water)
                 && world.getFullBlockLightValue(x, y + 1, z) < 8;
         }
         return false;
     }
 
+    /**
+     * Attempts to melt ice and snow blocks around the specified coordinates based on adjacent salt or water blocks.
+     * If the conditions are met, the blocks are replaced with water or removed, simulating the melting process.
+     *
+     * @param rand A random number generator used to simulate randomness in melting.
+     */
     public static void tryMeltIceAndSnow(World world, int x, int y, int z, Random rand, Block sourceBlock) {
         for (int dx = -1; dx <= 1; dx++) {
             for (int dy = -1; dy <= 1; dy++) {
@@ -144,15 +206,15 @@ public class BlockHelper {
                     int nz = z + dz;
                     Block block = world.getBlock(nx, ny, nz);
 
-                    if ((block == Blocks.ice || block == Blocks.snow || block == Blocks.snow_layer) && isAdjacentToSaltOrWater(world, nx, ny, nz, x, y, z, sourceBlock)) {
+                    if ((block == ice || block == snow || block == snow_layer) && isAdjacentToSaltOrWater(world, nx, ny, nz, x, y, z, sourceBlock)) {
                         crystal = false;
                         world.scheduleBlockUpdate(x, y, z, sourceBlock, 5);
 
                         if (rand.nextInt(20) == 0) {
-                            if (block == Blocks.ice || block == Blocks.snow) {
+                            if (block == ice || block == snow) {
                                 world.setBlock(nx, ny, nz, Blocks.water);
                                 crystal = true;
-                            } else if (block == Blocks.snow_layer) {
+                            } else if (block == snow_layer) {
                                 world.setBlockToAir(nx, ny, nz);
                                 crystal = true;
                             }
@@ -163,22 +225,35 @@ public class BlockHelper {
         }
     }
 
+    /**
+     * Checks if the given block is adjacent to a salt or water block.
+     *
+     * @return true, if the block is adjacent to a salt or water block, false otherwise.
+     */
     private static boolean isAdjacentToSaltOrWater(World world, int bx, int by, int bz, int x, int y, int z, Block sourceBlock) {
         if (bx - 1 == x)
-            return (world.getBlock(bx - 1, by, bz) == sourceBlock || world.getBlock(bx - 1, by, bz).getMaterial() == Material.water);
+            return (world.getBlock(bx - 1, by, bz) == sourceBlock || world.getBlock(bx - 1, by, bz).getMaterial() == water);
         if (bx + 1 == x)
-            return (world.getBlock(bx + 1, by, bz) == sourceBlock || world.getBlock(bx + 1, by, bz).getMaterial() == Material.water);
+            return (world.getBlock(bx + 1, by, bz) == sourceBlock || world.getBlock(bx + 1, by, bz).getMaterial() == water);
         if (by - 1 == y)
-            return (world.getBlock(bx, by - 1, bz) == sourceBlock || world.getBlock(bx, by - 1, bz).getMaterial() == Material.water);
+            return (world.getBlock(bx, by - 1, bz) == sourceBlock || world.getBlock(bx, by - 1, bz).getMaterial() == water);
         if (by + 1 == y)
-            return (world.getBlock(bx, by + 1, bz) == sourceBlock || world.getBlock(bx, by + 1, bz).getMaterial() == Material.water);
+            return (world.getBlock(bx, by + 1, bz) == sourceBlock || world.getBlock(bx, by + 1, bz).getMaterial() == water);
         if (bz - 1 == z)
-            return (world.getBlock(bx, by, bz - 1) == sourceBlock || world.getBlock(bx, by, bz - 1).getMaterial() == Material.water);
+            return (world.getBlock(bx, by, bz - 1) == sourceBlock || world.getBlock(bx, by, bz - 1).getMaterial() == water);
         if (bz + 1 == z)
-            return (world.getBlock(bx, by, bz + 1) == sourceBlock || world.getBlock(bx, by, bz + 1).getMaterial() == Material.water);
+            return (world.getBlock(bx, by, bz + 1) == sourceBlock || world.getBlock(bx, by, bz + 1).getMaterial() == water);
         return false;
     }
 
+    /**
+     * Calculates the new metadata for a block based on the current metadata and the specified side of the block.
+     * This method adjusts the block's metadata depending on the side it is connected to, allowing for different states.
+     *
+     * @param currentMeta The current metadata of the block.
+     * @param side The side of the block (0-5) to determine the new metadata for.
+     * @return the new metadata value based on the current metadata and side.
+     */
     public static int calculateSaltDirtSaltGrassNewMeta(int currentMeta, int side) {
         if (side <= 1) {
             if (currentMeta == 0) return 3;
@@ -244,18 +319,25 @@ public class BlockHelper {
         return currentMeta;
     }
 
+    /**
+     * Attempts to ignite a block using a fire charge or flint and steel held by the player.
+     * The block will be set to a lit version if ignition is successful.
+     *
+     * @param heldItem The item the player is holding, either a fire charge or flint and steel.
+     * @return true, if the block was successfully ignited, false otherwise.
+     */
     public static boolean igniteBlock(World world, int x, int y, int z, EntityPlayer player, ItemStack heldItem) {
         int meta = world.getBlockMetadata(x, y, z);
 
-        if (heldItem.getItem() == Items.fire_charge || heldItem.getItem() == Items.flint_and_steel) {
+        if (heldItem.getItem() == fire_charge || heldItem.getItem() == flint_and_steel) {
             if (!world.isRemote) {
-                world.setBlock(x, y, z, ModBlocks.lit_stove, meta, 3);
+                world.setBlock(x, y, z, lit_stove, meta, 3);
 
-                String sound = heldItem.getItem() == Items.fire_charge ? "mob.ghast.fireball" : "fire.ignite";
+                String sound = heldItem.getItem() == fire_charge ? "mob.ghast.fireball" : "fire.ignite";
                 world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, sound, 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
 
                 if (!player.capabilities.isCreativeMode) {
-                    if (heldItem.getItem() == Items.flint_and_steel) {
+                    if (heldItem.getItem() == flint_and_steel) {
                         heldItem.damageItem(1, player);
                         if (heldItem.getItemDamage() >= heldItem.getMaxDamage()) {
                             player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
@@ -273,17 +355,23 @@ public class BlockHelper {
         return false;
     }
 
+    /**
+     * Attempts to extinguish a block using a water bucket or a spade held by the player.
+     * If the block is extinguishable, it will be replaced with a non-lit version.
+     *
+     * @return true, if the block was successfully extinguished, false otherwise.
+     */
     public static boolean extinguishBlock(World world, int x, int y, int z, EntityPlayer player, ItemStack heldItem) {
         int meta = world.getBlockMetadata(x, y, z);
 
-        if (heldItem.getItem() == Items.water_bucket || heldItem.getItem() instanceof ItemSpade) {
+        if (heldItem.getItem() == water_bucket || heldItem.getItem() instanceof ItemSpade) {
             if (!world.isRemote) {
-                world.setBlock(x, y, z, ModBlocks.stove, meta, 3);
+                world.setBlock(x, y, z, stove, meta, 3);
                 world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "random.fizz", 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
 
                 if (!player.capabilities.isCreativeMode) {
-                    if (heldItem.getItem() == Items.water_bucket) {
-                        player.setCurrentItemOrArmor(0, new ItemStack(Items.bucket));
+                    if (heldItem.getItem() == water_bucket) {
+                        player.setCurrentItemOrArmor(0, new ItemStack(bucket));
                     } else if (heldItem.getItem() instanceof ItemSpade) {
                         heldItem.damageItem(1, player);
                     }
@@ -298,6 +386,11 @@ public class BlockHelper {
         return false;
     }
 
+    /**
+     * Sets properties for a block, including hardness, resistance, step sound, and harvest level.
+     *
+     * @param block The block to set the properties for.
+     */
     public static void propertiesApiaryFishFarm(Block block) {
         block.setHardness(0.6f);
         block.setResistance(0.6f);

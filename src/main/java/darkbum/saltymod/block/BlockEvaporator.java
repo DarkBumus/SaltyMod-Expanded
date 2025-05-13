@@ -3,7 +3,7 @@ package darkbum.saltymod.block;
 import java.util.Objects;
 import java.util.Random;
 
-import darkbum.saltymod.util.BlockHelper;
+import darkbum.saltymod.util.BlockUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -34,7 +34,7 @@ import darkbum.saltymod.common.proxy.ClientProxy;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.tileentity.TileEntityEvaporator;
 
-import static darkbum.saltymod.util.BlockHelper.*;
+import static darkbum.saltymod.util.BlockUtil.*;
 
 /**
  * Block class for the evaporator block.
@@ -68,7 +68,7 @@ public class BlockEvaporator extends BlockContainer {
     /**
      * Constructs a new block instance with a given name, a creative tab and active/evaporating states.
      * <p>
-     * Also assigns a material and other base properties through {@link BlockHelper}.
+     * Also assigns a material and other base properties through {@link BlockUtil}.
      *
      * @param name  The internal name of the block.
      * @param tab   The creative tab in which the block appears.

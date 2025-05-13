@@ -6,7 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.common.config.ModConfigurationBlocks;
 import darkbum.saltymod.common.proxy.CommonProxy;
-import darkbum.saltymod.util.BlockHelper;
+import darkbum.saltymod.util.BlockUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static darkbum.saltymod.util.BlockHelper.*;
+import static darkbum.saltymod.util.BlockUtil.*;
 
 /**
  * Block class for the salt flower block.
@@ -46,7 +46,7 @@ public class BlockSaltFlowerSand extends BlockFlower {
     /**
      * Constructs a new block instance.
      * <p>
-     * Also assigns base properties through {@link BlockHelper}.
+     * Also assigns base properties through {@link BlockUtil}.
      */
     public BlockSaltFlowerSand() {
         super(1);

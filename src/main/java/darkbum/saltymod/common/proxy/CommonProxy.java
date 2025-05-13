@@ -3,6 +3,8 @@ package darkbum.saltymod.common.proxy;
 import darkbum.saltymod.creativetab.TabSaltBlocks;
 import darkbum.saltymod.creativetab.TabSaltItems;
 import darkbum.saltymod.event.*;
+import darkbum.saltymod.network.SaltFlowerDirtMessage;
+import darkbum.saltymod.network.SaltFlowerSandMessage;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
@@ -54,9 +56,10 @@ public class CommonProxy {
 
     /**
      * Called during Forge Mod Loader Pre-Initialization phase.
-     *
+     * <p>
      * Handles event handler registering, network registry, GUI handler and dispenser behavior.
      */
+    @SuppressWarnings("unused")
     public void preInit(FMLPreInitializationEvent event) {
         // Register event handlers
         registerEventHandlers();
@@ -66,13 +69,16 @@ public class CommonProxy {
         network = NetworkRegistry.INSTANCE.newSimpleChannel("SaltyMod");
         network.registerMessage(EvaporatorButtonMessage.Handler.class, EvaporatorButtonMessage.class, 0, Side.SERVER);
         network.registerMessage(SaltwortMessage.Handler.class, SaltwortMessage.class, 1, Side.CLIENT);
+        network.registerMessage(SaltFlowerDirtMessage.Handler.class, SaltFlowerDirtMessage.class, 2, Side.CLIENT);
+        network.registerMessage(SaltFlowerSandMessage.Handler.class, SaltFlowerSandMessage.class, 3, Side.CLIENT);
     }
 
     /**
      * Called during Forge Mod Loader Initialization phase.
-     *
+     * <p>
      * Handles world generators and chest gen hooks.
      */
+    @SuppressWarnings("unused")
     public void init(FMLInitializationEvent event) {
         // Register world generators
         registerWorldGenerators();
@@ -84,6 +90,7 @@ public class CommonProxy {
     /**
      * Called during Forge Mod Loader Post-Initialization phase.
      */
+    @SuppressWarnings("unused")
     public void postInit(FMLPostInitializationEvent event) {
     }
 

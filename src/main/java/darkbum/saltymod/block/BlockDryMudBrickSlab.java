@@ -2,7 +2,7 @@ package darkbum.saltymod.block;
 
 import java.util.Random;
 
-import darkbum.saltymod.util.BlockHelper;
+import darkbum.saltymod.util.BlockUtil;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 
 import darkbum.saltymod.init.ModBlocks;
 
-import static darkbum.saltymod.util.BlockHelper.*;
+import static darkbum.saltymod.util.BlockUtil.*;
 
 /**
  * Block class for the dry mud brick slab block.
@@ -28,7 +28,7 @@ public class BlockDryMudBrickSlab extends BlockSlab {
     /**
      * Constructs a new block instance with a boolean for isDouble, a given name and a creative tab.
      * <p>
-     * Also assigns a material and other base properties through {@link BlockHelper}.
+     * Also assigns a material and other base properties through {@link BlockUtil}.
      *
      * @param name The internal name of the block.
      * @param tab  The creative tab in which the block appears.

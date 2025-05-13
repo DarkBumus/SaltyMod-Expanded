@@ -49,6 +49,8 @@ public class ModConfigurationItems {
     public static int mudArmorHealthBoostValue;
     public static boolean mudArmorBeeResistant;
 
+    public static boolean enableSaltPickaxe;
+
     // Food items Config Options
     public static boolean enableDough;
 
@@ -242,6 +244,12 @@ public class ModConfigurationItems {
                 + "\nbeeResistant.add(<[MODID]:[LEGGINGSID]>);"
                 + "\nbeeResistant.add(<[MODID]:[BOOTSID]>);"
                 + "\n");
+
+        enableSaltPickaxe = config.getBoolean(
+            "06-enableSaltPickaxe",
+            categoryDescriptionIteArm,
+            true,
+            enableFeatures + "\nSalt Pickaxe" + "\n");
 
         config.setCategoryComment(categoryNameIteFoo, categoryDescriptionIteFoo);
 

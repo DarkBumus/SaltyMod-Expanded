@@ -13,15 +13,38 @@ import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 
 import java.util.Random;
 
+import static darkbum.saltymod.util.ItemUtil.*;
+
+/**
+ * Item class for the chorus cookie item.
+ * The chorus coookie is a salt food item with a special teleport function.
+ *
+ * @author DarkBum
+ * @since 2.0.0
+ */
 public class ItemChorusCookie extends ItemSaltFood {
 
+    /**
+     * Constructs a new item instance with the specified base name and creative tab.
+     *
+     * @param baseName The base name of the item.
+     * @param tab The creative tab to display this item in.
+     */
     public ItemChorusCookie(String baseName, CreativeTabs tab) {
         super(baseName);
         setCreativeTab(tab);
-        this.addVariant(0, "chorus_cookie", "chorus_cookie", 2, 0.1f, false);
         setAlwaysEdible();
+        variantsChorusCookie(this);
     }
 
+    /**
+     * Called when the player consumes this item.
+     *
+     * @param stack  The ItemStack that was consumed.
+     * @param world  The world in which the item was consumed.
+     * @param player The player consuming the item.
+     * @return the resulting ItemStack after the item is consumed.
+     */
     @Override
     public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player) {
         ItemStack result = super.onEaten(stack, world, player);
@@ -72,6 +95,15 @@ public class ItemChorusCookie extends ItemSaltFood {
         return result;
     }
 
+    /**
+     * Checks if a specific coordinate is a valid teleportation spot.
+     *
+     * @param world The world to check in.
+     * @param x     The X coordinate to check.
+     * @param y     The Y coordinate to check.
+     * @param z     The Z coordinate to check.
+     * @return true, if the spot is valid, false otherwise.
+     */
     private static boolean isValidTeleportSpot(World world, int x, int y, int z) {
         Block below = world.getBlock(x, y - 1, z);
         boolean solidBelow = below.getMaterial().blocksMovement();
@@ -84,14 +116,23 @@ public class ItemChorusCookie extends ItemSaltFood {
         return solidBelow && airHere && airAbove && !isLava;
     }
 
-    private static boolean teleportTo(EntityLivingBase entity, double xx, double yy, double zz) {
-        EnderTeleportEvent event = new EnderTeleportEvent(entity, xx, yy, zz, 0.0F);
+    /**
+     * Attempts to teleport the specified entity to the given coordinates.
+     *
+     * @param entity The entity to teleport.
+     * @param x      The target X coordinate.
+     * @param y      The target Y coordinate.
+     * @param z      The target Z coordinate.
+     * @return true, if the teleportation was successful, false otherwise.
+     */
+    private static boolean teleportTo(EntityLivingBase entity, double x, double y, double z) {
+        EnderTeleportEvent event = new EnderTeleportEvent(entity, x, y, z, 0.0F);
         if (MinecraftForge.EVENT_BUS.post(event)) {
             return false;
         } else {
-            double d3 = entity.posX;
-            double d4 = entity.posY;
-            double d5 = entity.posZ;
+            double startX = entity.posX;
+            double startY = entity.posY;
+            double startZ = entity.posZ;
             entity.posX = event.targetX;
             entity.posY = event.targetY;
             entity.posZ = event.targetZ;
@@ -121,7 +162,7 @@ public class ItemChorusCookie extends ItemSaltFood {
             }
 
             if (!flag) {
-                entity.setPosition(d3, d4, d5);
+                entity.setPosition(startX, startY, startZ);
                 return false;
             } else {
                 short short1 = 128;
@@ -131,13 +172,13 @@ public class ItemChorusCookie extends ItemSaltFood {
                     float f = (entity.getRNG().nextFloat() - 0.5F) * 0.2F;
                     float f1 = (entity.getRNG().nextFloat() - 0.5F) * 0.2F;
                     float f2 = (entity.getRNG().nextFloat() - 0.5F) * 0.2F;
-                    double d7 = d3 + (entity.posX - d3) * d6 + (entity.getRNG().nextDouble() - (double)0.5F) * (double)entity.width * (double)2.0F;
-                    double d8 = d4 + (entity.posY - d4) * d6 + entity.getRNG().nextDouble() * (double)entity.height;
-                    double d9 = d5 + (entity.posZ - d5) * d6 + (entity.getRNG().nextDouble() - (double)0.5F) * (double)entity.width * (double)2.0F;
+                    double d7 = startX + (entity.posX - startX) * d6 + (entity.getRNG().nextDouble() - (double)0.5F) * (double)entity.width * (double)2.0F;
+                    double d8 = startY + (entity.posY - startY) * d6 + entity.getRNG().nextDouble() * (double)entity.height;
+                    double d9 = startZ + (entity.posZ - startZ) * d6 + (entity.getRNG().nextDouble() - (double)0.5F) * (double)entity.width * (double)2.0F;
                     entity.worldObj.spawnParticle("portal", d7, d8, d9, f, f1, f2);
                 }
 
-                entity.worldObj.playSoundEffect(d3, d4, d5, "saltymod:item.chorus_cookie.portal", 1.0F, 1.0F);
+                entity.worldObj.playSoundEffect(startX, startY, startZ, "saltymod:item.chorus_cookie.portal", 1.0F, 1.0F);
                 entity.playSound("saltymod:item.chorus_cookie.portal", 1.0F, 1.0F);
                 return true;
             }

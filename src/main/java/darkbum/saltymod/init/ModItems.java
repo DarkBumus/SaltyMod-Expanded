@@ -1,24 +1,32 @@
 package darkbum.saltymod.init;
 
 import darkbum.saltymod.common.config.*;
-import darkbum.saltymod.util.ConditionalRegistrar;
 import darkbum.saltymod.potion.ModPotion;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.*;
 import net.minecraft.potion.Potion;
 
-import cpw.mods.fml.common.Loader;
-import darkbum.saltymod.common.proxy.CommonProxy;
 import darkbum.saltymod.item.*;
 import darkbum.saltymod.potion.ProbablePotionEffect;
 
+import static cpw.mods.fml.common.Loader.isModLoaded;
 import static darkbum.saltymod.common.config.ModConfigurationBlocks.*;
 import static darkbum.saltymod.common.config.ModConfigurationItems.*;
 import static darkbum.saltymod.common.config.ModConfigurationModCompatibility.*;
+import static darkbum.saltymod.common.proxy.CommonProxy.*;
+import static darkbum.saltymod.init.ModBlocks.*;
+import static darkbum.saltymod.util.ConditionalRegistrar.*;
+import static net.minecraft.init.Blocks.*;
+import static net.minecraft.init.Items.*;
 import static net.minecraft.item.EnumAction.*;
 
+/**
+ * Items class.
+ *
+ * @author DarkBum
+ * @since 1.9.f
+ */
+@SuppressWarnings("unused")
 public class ModItems {
 
     public static final int speed = Potion.moveSpeed.id;
@@ -45,13 +53,15 @@ public class ModItems {
     public static final int absorption = Potion.field_76444_x.id;
     public static final int saturation = Potion.field_76443_y.id;
     public static final int well_fed = ModPotion.wellFed.id;
+    public static final int swarmed = ModPotion.swarmed.id;
     public static final int inspired = ModPotion.inspired.id;
 
     public static final float one_third = 1.0f / 3.0f;
     public static final float two_thirds = 2.0f / 3.0f;
 
-    public static CreativeTabs tab = CommonProxy.tabSaltItems;
+    public static CreativeTabs tab = tabSaltItems;
 
+    public static Item dev_item;
     public static Item developer_foods;
     public static Item fish_bait;
     public static Item bee_larva;
@@ -195,7 +205,12 @@ public class ModItems {
     public static Item wm_salt_cooked_mouse;
     public static Item wm_salt_cooked_venison;
 
+    /**
+     * Initializes and registers all blocks.
+     */
     public static void init() {
+
+        dev_item = new ItemDevItem("dev_item", null);
         developer_foods = new ItemDeveloperFoods("developer_foods", tab);
 
         fish_bait = new Item().setCreativeTab(tab).setUnlocalizedName("fish_bait").setTextureName("saltymod:fish_bait");
@@ -214,7 +229,7 @@ public class ModItems {
         horn = new Item().setCreativeTab(tab).setUnlocalizedName("horn").setTextureName("saltymod:horn");
 
         baking_soda = new Item().setCreativeTab(tab).setUnlocalizedName("baking_soda").setTextureName("saltymod:baking_soda");
-        powdered_milk = new ItemPowderedMilk("powdered_milk", tab);
+        powdered_milk = new ItemPowderedMilk("powdered_milk", tab).setTextureName("saltymod:powdered_milk");
         salt = new ItemSalt("salt", tab).setTextureName("saltymod:salt");
         salt_pinch = new Item().setCreativeTab(tab).setUnlocalizedName("salt_pinch").setTextureName("saltymod:salt_pinch");
         sugar_pinch = new Item().setCreativeTab(tab).setUnlocalizedName("sugar_pinch").setTextureName("saltymod:sugar_pinch");
@@ -223,7 +238,7 @@ public class ModItems {
             .addVariant(0, "dough", "dough", 1, 0.3f, false,
                 new ProbablePotionEffect(nausea, 100),
                 new ProbablePotionEffect(slowness, 300, 0, 1.0f, 20));
-        onion = new ItemSeedFood(2, 0.3F, ModBlocks.onions, Blocks.farmland).setUnlocalizedName("onion").setCreativeTab(tab).setTextureName("saltymod:onion");
+        onion = new ItemSeedFood(2, 0.3F, onions, farmland).setUnlocalizedName("onion").setCreativeTab(tab).setTextureName("saltymod:onion");
         saltwort = new ItemSaltwort("saltwort", tab).setTextureName("saltymod:saltwort");
 
         golden_saltwort = new ItemSaltFood("golden_saltwort").setCreativeTab(tab)
@@ -312,167 +327,167 @@ public class ModItems {
                 new ProbablePotionEffect(well_fed, 200),
                 new ProbablePotionEffect(jump_boost, 100, 0, one_third));
         salt_egg = new ItemSaltFood("salt_egg").setCreativeTab(tab)
-            .addVariant(0, "salt_egg", "salt_egg", 2, 0.3f, false, 16, new ItemStack(Items.dye, 1, 15),
+            .addVariant(0, "salt_egg", "salt_egg", 2, 0.3f, false, 16, new ItemStack(dye, 1, 15),
                 new ProbablePotionEffect(well_fed, 300));
         egg_bowl = new ItemEggBowl("egg_bowl", tab).setMaxStackSize(16).setTextureName("saltymod:egg_bowl");
 
         salt_mushroom_stew = new ItemSaltFood("salt_mushroom_stew").setCreativeTab(tab)
-            .addVariant(0, "salt_mushroom_stew", "salt_mushroom_stew", 6, 0.8f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "salt_mushroom_stew", "salt_mushroom_stew", 6, 0.8f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(well_fed, 900),
                 new ProbablePotionEffect(strength, 900, 0, two_thirds));
         salt_rabbit_stew = new ItemSaltFood("salt_rabbit_stew").setCreativeTab(tab)
-            .addVariant(0, "salt_rabbit_stew", "salt_rabbit_stew", 8, 0.8f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "salt_rabbit_stew", "salt_rabbit_stew", 8, 0.8f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(well_fed, 1500),
                 new ProbablePotionEffect(health_boost, 900, 0, two_thirds),
                 new ProbablePotionEffect(night_vision, 600, 0, two_thirds),
                 new ProbablePotionEffect(strength, 200, 1, two_thirds));
         salt_beetroot_soup = new ItemSaltFood("salt_beetroot_soup").setCreativeTab(tab)
-            .addVariant(0, "salt_beetroot_soup", "salt_beetroot_soup", 6, 0.8f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "salt_beetroot_soup", "salt_beetroot_soup", 6, 0.8f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(well_fed, 1200),
                 new ProbablePotionEffect(jump_boost, 1200, 1, two_thirds));
         fungus_stew = new ItemSaltFood("fungus_stew").setCreativeTab(tab)
-            .addVariant(0, "fungus_stew", "fungus_stew", 4, 0.6f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "fungus_stew", "fungus_stew", 4, 0.6f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(wither, 200),
                 new ProbablePotionEffect(strength, 300, 0 ,one_third))
-            .addVariant(1, "salt_fungus_stew", "salt_fungus_stew", 5, 0.7f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(1, "salt_fungus_stew", "salt_fungus_stew", 5, 0.7f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(well_fed, 900),
                 new ProbablePotionEffect(strength, 900, 0, two_thirds));
         chicken_soup = new ItemSaltFood("chicken_soup").setCreativeTab(tab)
-            .addVariant(0, "chicken_soup", "chicken_soup", 7, 0.7f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "chicken_soup", "chicken_soup", 7, 0.7f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(health_boost, 600, 0, one_third),
                 new ProbablePotionEffect(night_vision, 200, 0, one_third),
                 new ProbablePotionEffect(strength, 100, 0, one_third))
-            .addVariant(1, "salt_chicken_soup", "salt_chicken_soup", 8, 0.8f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(1, "salt_chicken_soup", "salt_chicken_soup", 8, 0.8f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(well_fed, 1500),
                 new ProbablePotionEffect(health_boost, 900, 0, two_thirds),
                 new ProbablePotionEffect(night_vision, 600, 0, two_thirds),
                 new ProbablePotionEffect(strength, 200, 1, two_thirds));
         beef_stew = new ItemSaltFood("beef_stew").setCreativeTab(tab)
-            .addVariant(0, "beef_stew", "beef_stew", 7, 0.7f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "beef_stew", "beef_stew", 7, 0.7f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(health_boost, 600, 0, one_third),
                 new ProbablePotionEffect(night_vision, 200, 0, one_third),
                 new ProbablePotionEffect(strength, 100, 0, one_third))
-            .addVariant(1, "salt_beef_stew", "salt_beef_stew", 8, 0.8f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(1, "salt_beef_stew", "salt_beef_stew", 8, 0.8f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(well_fed, 1500),
                 new ProbablePotionEffect(health_boost, 900, 0, two_thirds),
                 new ProbablePotionEffect(night_vision, 600, 0, two_thirds),
                 new ProbablePotionEffect(strength, 200, 1, two_thirds));
         pumpkin_porridge = new ItemSaltFood("pumpkin_porridge").setCreativeTab(tab)
-            .addVariant(0, "pumpkin_porridge", "pumpkin_porridge", 5, 0.7f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "pumpkin_porridge", "pumpkin_porridge", 5, 0.7f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(resistance, 200, 0, one_third))
-            .addVariant(1, "salt_pumpkin_porridge", "salt_pumpkin_porridge", 6, 0.8f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(1, "salt_pumpkin_porridge", "salt_pumpkin_porridge", 6, 0.8f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(well_fed, 600),
                 new ProbablePotionEffect(resistance, 600, 0, two_thirds));
         cactus_soup = new ItemSaltFood("cactus_soup").setCreativeTab(tab)
-            .addVariant(0, "cactus_soup", "cactus_soup", 5, 0.7f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "cactus_soup", "cactus_soup", 5, 0.7f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(fire_resistance, 400, 0, one_third))
-            .addVariant(1, "salt_cactus_soup", "salt_cactus_soup", 6, 0.8f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(1, "salt_cactus_soup", "salt_cactus_soup", 6, 0.8f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(well_fed, 1200),
                 new ProbablePotionEffect(fire_resistance, 1200, 0, two_thirds));
         bone_marrow_soup = new ItemSaltFood("bone_marrow_soup").setCreativeTab(tab)
-            .addVariant(0, "bone_marrow_soup", "bone_marrow_soup", 6, 0.7f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "bone_marrow_soup", "bone_marrow_soup", 6, 0.7f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(health_boost, 100, 0, one_third),
                 new ProbablePotionEffect(strength, 100, 0, one_third))
-            .addVariant(1, "salt_bone_marrow_soup", "salt_bone_marrow_soup", 7, 0.8f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(1, "salt_bone_marrow_soup", "salt_bone_marrow_soup", 7, 0.8f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(well_fed, 900),
                 new ProbablePotionEffect(health_boost, 300, 0, two_thirds),
                 new ProbablePotionEffect(strength, 200, 0, two_thirds));
         stewed_vegetables = new ItemSaltFood("stewed_vegetables").setCreativeTab(tab)
-            .addVariant(0, "stewed_vegetables", "stewed_vegetables", 6, 0.7f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "stewed_vegetables", "stewed_vegetables", 6, 0.7f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(night_vision, 600, 0, one_third),
                 new ProbablePotionEffect(strength, 200, 0, one_third))
-            .addVariant(1, "salt_stewed_vegetables", "salt_stewed_vegetables", 7, 0.8f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(1, "salt_stewed_vegetables", "salt_stewed_vegetables", 7, 0.8f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(well_fed, 1200),
                 new ProbablePotionEffect(night_vision, 900, 0, two_thirds),
                 new ProbablePotionEffect(strength, 600, 0, two_thirds));
         potato_mushroom = new ItemSaltFood("potato_mushroom").setCreativeTab(tab)
-            .addVariant(0, "potato_mushroom", "potato_mushroom", 5, 0.7f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "potato_mushroom", "potato_mushroom", 5, 0.7f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(strength, 200, 0, one_third))
-            .addVariant(1, "salt_potato_mushroom", "salt_potato_mushroom", 6, 0.8f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(1, "salt_potato_mushroom", "salt_potato_mushroom", 6, 0.8f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(well_fed, 1200),
                 new ProbablePotionEffect(strength, 600, 0, two_thirds));
         golden_vegetables = new ItemSaltFood("golden_vegetables").setCreativeTab(tab)
-            .addVariant(0, "golden_vegetables", "golden_vegetables", 10, 1.2f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "golden_vegetables", "golden_vegetables", 10, 1.2f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(night_vision, 900),
                 new ProbablePotionEffect(regeneration, 900, 2))
-            .addVariant(1, "salt_golden_vegetables", "salt_golden_vegetables", 11, 1.2f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(1, "salt_golden_vegetables", "salt_golden_vegetables", 11, 1.2f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(well_fed, 1200),
                 new ProbablePotionEffect(night_vision, 900),
                 new ProbablePotionEffect(regeneration, 900, 2));
         fish_soup = new ItemSaltFood("fish_soup").setCreativeTab(tab)
-            .addVariant(0, "fish_soup", "fish_soup", 6, 0.7f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "fish_soup", "fish_soup", 6, 0.7f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(water_breathing, 600, 0, one_third),
                 new ProbablePotionEffect(night_vision, 200, 0, one_third))
-            .addVariant(1, "salt_fish_soup", "salt_fish_soup", 7, 0.8f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(1, "salt_fish_soup", "salt_fish_soup", 7, 0.8f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(well_fed, 1200),
                 new ProbablePotionEffect(water_breathing, 900, 0, two_thirds),
                 new ProbablePotionEffect(night_vision, 600, 0, two_thirds));
         dandelion_salad = new ItemSaltFood("dandelion_salad").setCreativeTab(tab)
-            .addVariant(0, "dandelion_salad", "dandelion_salad", 6, 0.7f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "dandelion_salad", "dandelion_salad", 6, 0.7f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(resistance, 300, 0, one_third),
                 new ProbablePotionEffect(inspired, 200, 0, one_third))
-            .addVariant(1, "salt_dandelion_salad", "salt_dandelion_salad", 7, 0.8f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(1, "salt_dandelion_salad", "salt_dandelion_salad", 7, 0.8f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(well_fed, 1200),
                 new ProbablePotionEffect(resistance, 800, 0, two_thirds),
                 new ProbablePotionEffect(inspired, 600, 0, two_thirds));
         wheat_sprouts = new ItemSaltFood("wheat_sprouts").setCreativeTab(tab)
-            .addVariant(0, "wheat_sprouts", "wheat_sprouts", 3, 0.7f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "wheat_sprouts", "wheat_sprouts", 3, 0.7f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(resistance, 700, 0, one_third))
-            .addVariant(1, "salt_wheat_sprouts", "salt_wheat_sprouts", 4, 0.8f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(1, "salt_wheat_sprouts", "salt_wheat_sprouts", 4, 0.8f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(well_fed, 2100),
                 new ProbablePotionEffect(resistance, 1200, 1, two_thirds));
         beetroot_salad = new ItemSaltFood("beetroot_salad").setCreativeTab(tab)
-            .addVariant(0, "beetroot_salad", "beetroot_salad", 6, 0.7f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "beetroot_salad", "beetroot_salad", 6, 0.7f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(jump_boost, 600, 0, one_third),
                 new ProbablePotionEffect(night_vision, 200, 0, one_third))
-            .addVariant(1, "salt_beetroot_salad", "salt_beetroot_salad", 7, 0.8f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(1, "salt_beetroot_salad", "salt_beetroot_salad", 7, 0.8f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(well_fed, 1200),
                 new ProbablePotionEffect(jump_boost, 900, 0, two_thirds),
                 new ProbablePotionEffect(night_vision, 600, 0, two_thirds));
         dressed_herring = new ItemSaltFood("dressed_herring").setCreativeTab(tab)
-            .addVariant(0, "dressed_herring", "dressed_herring", 6, 0.7f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "dressed_herring", "dressed_herring", 6, 0.7f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(water_breathing, 600, 0, one_third),
                 new ProbablePotionEffect(inspired, 600, 0, one_third),
                 new ProbablePotionEffect(night_vision, 200, 0, one_third),
                 new ProbablePotionEffect(jump_boost, 200, 0, one_third))
-            .addVariant(1, "salt_dressed_herring", "salt_dressed_herring", 7, 0.8f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(1, "salt_dressed_herring", "salt_dressed_herring", 7, 0.8f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(well_fed, 2100),
                 new ProbablePotionEffect(water_breathing, 900, 0, two_thirds),
                 new ProbablePotionEffect(inspired, 900, 0, two_thirds),
                 new ProbablePotionEffect(night_vision, 600, 0, two_thirds),
                 new ProbablePotionEffect(jump_boost, 600, 0, two_thirds));
         saltwort_salad = new ItemSaltFood("saltwort_salad").setCreativeTab(tab)
-            .addVariant(0, "saltwort_salad", "saltwort_salad", 5, 0.7f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "saltwort_salad", "saltwort_salad", 5, 0.7f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(regeneration, 1200, 1, one_third));
         golden_saltwort_salad = new ItemSaltFood("golden_saltwort_salad").setCreativeTab(tab)
-            .addVariant(0, "golden_saltwort_salad", "golden_saltwort_salad", 6, 1.2f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "golden_saltwort_salad", "golden_saltwort_salad", 6, 1.2f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(regeneration, 1200, 2, two_thirds));
         saltwort_cooked_porkchop = new ItemSaltFood("saltwort_cooked_porkchop").setCreativeTab(tab)
-            .addVariant(0, "saltwort_cooked_porkchop", "saltwort_cooked_porkchop", 12, 0.9f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "saltwort_cooked_porkchop", "saltwort_cooked_porkchop", 12, 0.9f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(well_fed, 1200),
                 new ProbablePotionEffect(health_boost, 900, 1, two_thirds),
                 new ProbablePotionEffect(regeneration, 1200, 2, two_thirds));
         saltwort_honey_porkchop = new ItemSaltFood("saltwort_honey_porkchop").setCreativeTab(tab)
-            .addVariant(0, "saltwort_honey_porkchop", "saltwort_honey_porkchop", 12, 0.9f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "saltwort_honey_porkchop", "saltwort_honey_porkchop", 12, 0.9f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(absorption, 900, 1, two_thirds),
                 new ProbablePotionEffect(regeneration, 1200, 2, two_thirds));
         saltwort_cooked_beef = new ItemSaltFood("saltwort_cooked_beef").setCreativeTab(tab)
-            .addVariant(0, "saltwort_cooked_beef", "saltwort_cooked_beef", 12, 0.9f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "saltwort_cooked_beef", "saltwort_cooked_beef", 12, 0.9f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(well_fed, 1200),
                 new ProbablePotionEffect(health_boost, 900, 1, two_thirds),
                 new ProbablePotionEffect(regeneration, 1200, 2, two_thirds));
         saltwort_cooked_mutton = new ItemSaltFood("saltwort_cooked_mutton").setCreativeTab(tab)
-            .addVariant(0, "saltwort_cooked_mutton", "saltwort_cooked_mutton", 12, 0.9f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "saltwort_cooked_mutton", "saltwort_cooked_mutton", 12, 0.9f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(well_fed, 1200),
                 new ProbablePotionEffect(health_boost, 900, 1, two_thirds),
                 new ProbablePotionEffect(regeneration, 1200, 2, two_thirds));
         saltwort_cooked_strider = new ItemSaltFood("saltwort_cooked_strider").setCreativeTab(tab)
-            .addVariant(0, "saltwort_cooked_strider", "saltwort_cooked_strider", 12, 0.9f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "saltwort_cooked_strider", "saltwort_cooked_strider", 12, 0.9f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(well_fed, 1200),
                 new ProbablePotionEffect(health_boost, 900, 1, two_thirds),
                 new ProbablePotionEffect(regeneration, 1200, 2, two_thirds));
         saltwort_cooked_haunch = new ItemSaltFood("saltwort_cooked_haunch").setCreativeTab(tab)
-            .addVariant(0, "saltwort_cooked_haunch", "saltwort_cooked_haunch", 12, 0.9f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "saltwort_cooked_haunch", "saltwort_cooked_haunch", 12, 0.9f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(well_fed, 1200),
                 new ProbablePotionEffect(health_boost, 900, 1, two_thirds),
                 new ProbablePotionEffect(regeneration, 1200, 2, two_thirds));
@@ -489,32 +504,32 @@ public class ModItems {
                 new ProbablePotionEffect(speed, 300));
 
         fruit_salad = new ItemSaltFood("fruit_salad").setCreativeTab(tab)
-            .addVariant(0, "fruit_salad", "fruit_salad", 6, 0.7f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "fruit_salad", "fruit_salad", 6, 0.7f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(speed, 900, 0, one_third),
                 new ProbablePotionEffect(fire_resistance, 600, 0, one_third))
-            .addVariant(1, "sugar_fruit_salad", "sugar_fruit_salad", 7, 0.8f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(1, "sugar_fruit_salad", "sugar_fruit_salad", 7, 0.8f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(speed, 1200, 2),
                 new ProbablePotionEffect(fire_resistance, 600, 0));
         golden_fruit_salad = new ItemSaltFood("golden_fruit_salad").setCreativeTab(tab)
-            .addVariant(0, "golden_fruit_salad", "golden_fruit_salad", 8, 0.7f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "golden_fruit_salad", "golden_fruit_salad", 8, 0.7f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(regeneration, 200, 1),
                 new ProbablePotionEffect(absorption, 2400),
                 new ProbablePotionEffect(speed, 900, 1, two_thirds))
-            .addVariant(1, "sugar_golden_fruit_salad", "sugar_golden_fruit_salad", 9, 0.8f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(1, "sugar_golden_fruit_salad", "sugar_golden_fruit_salad", 9, 0.8f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(regeneration, 200, 1),
                 new ProbablePotionEffect(absorption, 2400),
                 new ProbablePotionEffect(fire_resistance, 200),
                 new ProbablePotionEffect(speed, 900, 1));
         grated_carrot = new ItemSaltFood("grated_carrot").setCreativeTab(tab)
-            .addVariant(0, "grated_carrot", "grated_carrot", 6, 0.7f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "grated_carrot", "grated_carrot", 6, 0.7f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(night_vision, 1200, 0, one_third))
-            .addVariant(1, "sugar_grated_carrot", "sugar_grated_carrot", 7, 0.8f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(1, "sugar_grated_carrot", "sugar_grated_carrot", 7, 0.8f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(speed, 1200),
                 new ProbablePotionEffect(night_vision, 1200, 0, two_thirds));
         melon_soup = new ItemSaltFood("melon_soup").setCreativeTab(tab)
-            .addVariant(0, "melon_soup", "melon_soup", 5, 0.7f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "melon_soup", "melon_soup", 5, 0.7f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(fire_resistance, 1200, 0, one_third))
-            .addVariant(1, "sugar_melon_soup", "sugar_melon_soup", 6, 0.8f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(1, "sugar_melon_soup", "sugar_melon_soup", 6, 0.8f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(speed, 1200),
                 new ProbablePotionEffect(fire_resistance, 1200, 1, two_thirds));
 
@@ -581,43 +596,43 @@ public class ModItems {
                 new ProbablePotionEffect(regeneration, 1800, 1, two_thirds));
 
         fermented_saltwort = new ItemSaltFood("fermented_saltwort").setCreativeTab(tab)
-            .addVariant(0, "fermented_saltwort", "fermented_saltwort", 5, 0.7f, false, 1, new ItemStack(Items.glass_bottle), drink,
+            .addVariant(0, "fermented_saltwort", "fermented_saltwort", 5, 0.7f, false, 1, new ItemStack(glass_bottle), drink,
                 new ProbablePotionEffect(regeneration, 1200, 3),
                 new ProbablePotionEffect(instant_damage, 1, 1));
         fermented_fern = new ItemSaltFood("fermented_fern").setCreativeTab(tab)
-            .addVariant(0, "fermented_fern", "fermented_fern", 4, 0.7f, false, 1, new ItemStack(Items.glass_bottle), drink,
+            .addVariant(0, "fermented_fern", "fermented_fern", 4, 0.7f, false, 1, new ItemStack(glass_bottle), drink,
                 new ProbablePotionEffect(resistance, 1200, 2),
                 new ProbablePotionEffect(slowness, 600, 1));
         fermented_marsh_reeds = new ItemSaltFood("fermented_marsh_reeds").setCreativeTab(tab)
-            .addVariant(0, "fermented_marsh_reeds", "fermented_marsh_reeds", 4, 0.7f, false, 1, new ItemStack(Items.glass_bottle), drink,
+            .addVariant(0, "fermented_marsh_reeds", "fermented_marsh_reeds", 4, 0.7f, false, 1, new ItemStack(glass_bottle), drink,
                 new ProbablePotionEffect(resistance, 1200, 2),
                 new ProbablePotionEffect(slowness, 600, 1));
         fermented_mushroom = new ItemSaltFood("fermented_mushroom").setCreativeTab(tab)
-            .addVariant(0, "fermented_mushroom", "fermented_mushroom", 4, 0.7f, false, 1, new ItemStack(Items.glass_bottle), drink,
+            .addVariant(0, "fermented_mushroom", "fermented_mushroom", 4, 0.7f, false, 1, new ItemStack(glass_bottle), drink,
                 new ProbablePotionEffect(strength, 1200, 2),
                 new ProbablePotionEffect(blindness, 100, 0));
         pickled_calamari = new ItemSaltFood("pickled_calamari").setCreativeTab(tab)
-            .addVariant(0, "pickled_calamari", "pickled_calamari", 6, 0.7f, false, 1, new ItemStack(Items.glass_bottle), drink,
+            .addVariant(0, "pickled_calamari", "pickled_calamari", 6, 0.7f, false, 1, new ItemStack(glass_bottle), drink,
                 new ProbablePotionEffect(water_breathing, 1200, 0),
                 new ProbablePotionEffect(mining_fatigue, 600, 1));
         pickled_beetroot = new ItemSaltFood("pickled_beetroot").setCreativeTab(tab)
-            .addVariant(0, "pickled_beetroot", "pickled_beetroot", 5, 0.8f, false, 1, new ItemStack(Items.glass_bottle), drink,
+            .addVariant(0, "pickled_beetroot", "pickled_beetroot", 5, 0.8f, false, 1, new ItemStack(glass_bottle), drink,
                 new ProbablePotionEffect(jump_boost, 1200, 2),
                 new ProbablePotionEffect(nausea, 300));
         pickled_onion = new ItemSaltFood("pickled_onion").setCreativeTab(tab)
-            .addVariant(0, "pickled_onion", "pickled_onion", 6, 0.8f, false, 1, new ItemStack(Items.glass_bottle), drink,
+            .addVariant(0, "pickled_onion", "pickled_onion", 6, 0.8f, false, 1, new ItemStack(glass_bottle), drink,
                 new ProbablePotionEffect(inspired, 1200, 2),
                 new ProbablePotionEffect(hunger, 600, 1));
         apple_preserves = new ItemSaltFood("apple_preserves").setCreativeTab(tab)
-            .addVariant(0, "apple_preserves", "apple_preserves", 8, 0.8f, false, 1, new ItemStack(Items.glass_bottle), drink,
+            .addVariant(0, "apple_preserves", "apple_preserves", 8, 0.8f, false, 1, new ItemStack(glass_bottle), drink,
                 new ProbablePotionEffect(speed, 1200, 2),
                 new ProbablePotionEffect(weakness, 600, 1));
         melon_preserves = new ItemSaltFood("melon_preserves").setCreativeTab(tab)
-            .addVariant(0, "melon_preserves", "melon_preserves", 6, 0.8f, false, 1, new ItemStack(Items.glass_bottle), drink,
+            .addVariant(0, "melon_preserves", "melon_preserves", 6, 0.8f, false, 1, new ItemStack(glass_bottle), drink,
                 new ProbablePotionEffect(fire_resistance, 1200),
                 new ProbablePotionEffect(weakness, 600, 1));
         berry_preserves = new ItemSaltFood("berry_preserves").setCreativeTab(tab)
-            .addVariant(0, "berry_preserves", "berry_preserves", 6, 0.8f, false, 1, new ItemStack(Items.glass_bottle), drink,
+            .addVariant(0, "berry_preserves", "berry_preserves", 6, 0.8f, false, 1, new ItemStack(glass_bottle), drink,
                 new ProbablePotionEffect(speed, 1200, 2),
                 new ProbablePotionEffect(weakness, 600, 1));
 
@@ -628,10 +643,10 @@ public class ModItems {
             .addVariant(0, "tough_jelly", "tough_jelly", 1, 0.3f, false,
                 new ProbablePotionEffect(nausea, 300, 0, 0.3f));
 
-        mud_helmet = new ItemMudArmor("mud_helmet", CommonProxy.mudMaterial, 0);
-        mud_chestplate = new ItemMudArmor("mud_chestplate", CommonProxy.mudMaterial, 1);
-        mud_leggings = new ItemMudArmor("mud_leggings", CommonProxy.mudMaterial, 2);
-        mud_boots = new ItemMudArmor("mud_boots", CommonProxy.mudMaterial, 3);
+        mud_helmet = new ItemMudArmor("mud_helmet", mudMaterial, 0);
+        mud_chestplate = new ItemMudArmor("mud_chestplate", mudMaterial, 1);
+        mud_leggings = new ItemMudArmor("mud_leggings", mudMaterial, 2);
+        mud_boots = new ItemMudArmor("mud_boots", mudMaterial, 3);
 
         salt_pickaxe = new ItemSaltPickaxe("salt_pickaxe", tab).setTextureName("saltymod:salt_pickaxe");
         salt_shard = new ItemSaltShard("salt_shard", tab).setTextureName("saltymod:salt_shard");
@@ -645,19 +660,19 @@ public class ModItems {
         tf_salt_meef_steak = new ItemSaltFood("tf_salt_meef_steak").setCreativeTab(tab)
             .addVariant(0, "tf_salt_meef_steak", "tf/tf_salt_meef_steak", 7, 0.7f, false);
         tf_salt_meef_stroganoff = new ItemSaltFood("tf_salt_meef_stroganoff").setCreativeTab(tab)
-            .addVariant(0, "tf_salt_meef_stroganoff", "tf/tf_salt_meef_stroganoff", 9, 0.7f, false, 16, new ItemStack(Items.bowl));
+            .addVariant(0, "tf_salt_meef_stroganoff", "tf/tf_salt_meef_stroganoff", 9, 0.7f, false, 16, new ItemStack(bowl));
         tf_salt_hydra_chop = new ItemSaltFood("tf_salt_hydra_chop").setCreativeTab(tab)
             .addVariant(0, "tf_salt_hydra_chop", "tf/tf_salt_hydra_chop", 19, 2.1f, false,
                 new ProbablePotionEffect(regeneration, 100, 0));
         tf_pickled_mushgloom = new ItemSaltFood("tf_pickled_mushgloom").setCreativeTab(tab)
-            .addVariant(0, "tf_pickled_mushgloom", "tf/tf_pickled_mushgloom", 6, 0.8f, false, 1, new ItemStack(Items.glass_bottle), drink,
+            .addVariant(0, "tf_pickled_mushgloom", "tf/tf_pickled_mushgloom", 6, 0.8f, false, 1, new ItemStack(glass_bottle), drink,
                 new ProbablePotionEffect(night_vision, 1200, 0),
                 new ProbablePotionEffect(slowness, 100, 0));
         tf_saltwort_cooked_venison = new ItemSaltFood("tf_saltwort_cooked_venison").setCreativeTab(tab)
-            .addVariant(0, "tf_saltwort_cooked_venison", "tf/tf_saltwort_cooked_venison", 10, 0.9f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "tf_saltwort_cooked_venison", "tf/tf_saltwort_cooked_venison", 10, 0.9f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(regeneration, 100, 0));
         tf_saltwort_meef_steak = new ItemSaltFood("tf_saltwort_meef_steak").setCreativeTab(tab)
-            .addVariant(0, "tf_saltwort_meef_steak", "tf/tf_saltwort_meef_steak", 8, 0.9f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "tf_saltwort_meef_steak", "tf/tf_saltwort_meef_steak", 8, 0.9f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(regeneration, 100, 0));
 
 
@@ -669,18 +684,18 @@ public class ModItems {
             .addVariant(0, "bop_salt_shroom_powder", "bop/bop_salt_shroom_powder", 2, 0.2f, false,
                 new ProbablePotionEffect(nausea, 300, 0, 0.3f));
         bop_sugar_fruit_salad = new ItemSaltFood("bop_sugar_fruit_salad").setCreativeTab(tab)
-            .addVariant(0, "bop_sugar_fruit_salad", "bop/bop_sugar_fruit_salad", 7, 0.7f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "bop_sugar_fruit_salad", "bop/bop_sugar_fruit_salad", 7, 0.7f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(haste, 1200, 2, 0.1f));
         bop_salt_veggie_salad = new ItemSaltFood("bop_salt_veggie_salad").setCreativeTab(tab)
-            .addVariant(0, "bop_salt_veggie_salad", "bop/bop_salt_veggie_salad", 7, 0.7f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "bop_salt_veggie_salad", "bop/bop_salt_veggie_salad", 7, 0.7f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(health_boost, 1550, 2, 0.1f));
         bop_salt_shroom_salad = new ItemSaltFood("bop_salt_shroom_salad").setCreativeTab(tab)
-            .addVariant(0, "bop_salt_shroom_salad", "bop/bop_salt_shroom_salad", 7, 0.7f, false, 16, new ItemStack(Items.bowl),
+            .addVariant(0, "bop_salt_shroom_salad", "bop/bop_salt_shroom_salad", 7, 0.7f, false, 16, new ItemStack(bowl),
                 new ProbablePotionEffect(jump_boost, 900, 2, 0.1f));
         bop_salt_rice_bowl = new ItemSaltFood("bop_salt_rice_bowl").setCreativeTab(tab)
-            .addVariant(0, "bop_salt_rice_bowl", "bop/bop_salt_rice_bowl", 3, 0.2f, false, 16, new ItemStack(Items.bowl));
+            .addVariant(0, "bop_salt_rice_bowl", "bop/bop_salt_rice_bowl", 3, 0.2f, false, 16, new ItemStack(bowl));
         bop_pickled_turnip = new ItemSaltFood("bop_pickled_turnip").setCreativeTab(tab)
-            .addVariant(0, "bop_pickled_turnip", "bop/bop_pickled_turnip", 6, 0.8f, false, 1, new ItemStack(Items.glass_bottle));
+            .addVariant(0, "bop_pickled_turnip", "bop/bop_pickled_turnip", 6, 0.8f, false, 1, new ItemStack(glass_bottle));
 
 
         wm_salt_cooked_bison = new ItemSaltFood("wm_salt_cooked_bison").setCreativeTab(tab)
@@ -697,150 +712,151 @@ public class ModItems {
             .addVariant(0, "wm_salt_cooked_venison", "wm/wm_salt_cooked_venison", 9, 0.7f, false);
 
 
-        ConditionalRegistrar.registerItem(developer_foods, "developer_foods", enableDeveloperFoods);
-        ConditionalRegistrar.registerItem(fish_bait, "fish_bait", enableFishFarm);
-        ConditionalRegistrar.registerItem(bee_larva, "bee_larva", enableHoney);
-        ConditionalRegistrar.registerItem(honey_bee, "honey_bee", enableHoney);
-        ConditionalRegistrar.registerItem(carpenter_bee, "carpenter_bee", enableHoney);
-        ConditionalRegistrar.registerItem(regal_bee, "regal_bee", enableHoney);
-        ConditionalRegistrar.registerItem(boreal_bee, "boreal_bee", enableHoney);
-        ConditionalRegistrar.registerItem(waxcomb, "waxcomb", enableHoney);
-        ConditionalRegistrar.registerItem(honeycomb, "honeycomb", enableHoney);
-        ConditionalRegistrar.registerItem(frozen_honey, "frozen_honey", enableHoney);
-        ConditionalRegistrar.registerItem(royal_jelly, "royal_jelly", enableHoney);
-        ConditionalRegistrar.registerItem(mineral_mud_ball, "mineral_mud_ball", enableMineralMud);
-        ConditionalRegistrar.registerItem(horn, "horn", ModConfigurationEntities.enableHornedSheep);
-        ConditionalRegistrar.registerItem(baking_soda, "baking_soda");
-        ConditionalRegistrar.registerItem(powdered_milk, "powdered_milk");
-        ConditionalRegistrar.registerItem(salt, "salt");
-        ConditionalRegistrar.registerItem(salt_pinch, "salt_pinch");
-        ConditionalRegistrar.registerItem(sugar_pinch, "sugar_pinch");
-        ConditionalRegistrar.registerItem(dough, "dough", enableDough);
-        ConditionalRegistrar.registerItem(onion, "onion", enableOnion);
-        ConditionalRegistrar.registerItem(saltwort, "saltwort");
-        ConditionalRegistrar.registerItem(golden_saltwort, "golden_saltwort", enableGoldenFoods);
-        ConditionalRegistrar.registerItem(golden_potato, "golden_potato", enableGoldenFoods);
-        ConditionalRegistrar.registerItem(golden_berries, "golden_berries", enableGoldenFoods, Loader.isModLoaded("etfuturum"));
-        ConditionalRegistrar.registerItem(salt_cooked_porkchop, "salt_cooked_porkchop", enableSaltedPorkchop);
-        ConditionalRegistrar.registerItem(salt_cooked_beef, "salt_cooked_beef", enableSaltedBeef);
-        ConditionalRegistrar.registerItem(salt_cooked_chicken, "salt_cooked_chicken", enableSaltedChicken);
-        ConditionalRegistrar.registerItem(salt_cooked_rabbit, "salt_cooked_rabbit", enableSaltedRabbit, Loader.isModLoaded("etfuturum"));
-        ConditionalRegistrar.registerItem(salt_cooked_mutton, "salt_cooked_mutton", enableSaltedMutton, Loader.isModLoaded("etfuturum"));
-        ConditionalRegistrar.registerItem(strider, "strider", enableStrider);
-        ConditionalRegistrar.registerItem(haunch, "haunch", enableHaunch);
-        ConditionalRegistrar.registerItem(cured_meat, "cured_meat", enableCuredMeat);
-        ConditionalRegistrar.registerItem(salt_cooked_cod, "salt_cooked_cod", enableSaltedCod);
-        ConditionalRegistrar.registerItem(salt_cooked_salmon, "salt_cooked_salmon", enableSaltedSalmon);
-        ConditionalRegistrar.registerItem(cooked_tropical_fish, "cooked_tropical_fish", enableTropicalFish);
-        ConditionalRegistrar.registerItem(tailor, "tailor", enableTailor);
-        ConditionalRegistrar.registerItem(calamari, "calamari", enableCalamari);
-        ConditionalRegistrar.registerItem(salt_bread, "salt_bread", enableSaltedBread);
-        ConditionalRegistrar.registerItem(salt_baked_potato, "salt_baked_potato", enableSaltedPotato);
-        ConditionalRegistrar.registerItem(salt_beetroot, "salt_beetroot", enableSaltedBeetroot);
-        ConditionalRegistrar.registerItem(salt_egg, "salt_egg", enableEgg);
-        ConditionalRegistrar.registerItem(egg_bowl, "egg_bowl", enableEgg);
-        ConditionalRegistrar.registerItem(salt_mushroom_stew, "salt_mushroom_stew", enableSaltedMushroomStew);
-        ConditionalRegistrar.registerItem(salt_rabbit_stew, "salt_rabbit_stew", enableSaltedRabbitRagout, Loader.isModLoaded("etfuturum"));
-        ConditionalRegistrar.registerItem(salt_beetroot_soup, "salt_beetroot_soup", enableSaltedBorscht, Loader.isModLoaded("etfuturum"));
-        ConditionalRegistrar.registerItem(fungus_stew, "fungus_stew", enableFungusStew, Loader.isModLoaded("etfuturum"));
-        ConditionalRegistrar.registerItem(chicken_soup, "chicken_soup", enableChickenSoup);
-        ConditionalRegistrar.registerItem(beef_stew, "beef_stew", enableBeefStew);
-        ConditionalRegistrar.registerItem(pumpkin_porridge, "pumpkin_porridge", enablePumpkinPorridge);
-        ConditionalRegistrar.registerItem(cactus_soup, "cactus_soup", enableCactusSoup);
-        ConditionalRegistrar.registerItem(bone_marrow_soup, "bone_marrow_soup", enableBoneMarrowSoup);
-        ConditionalRegistrar.registerItem(stewed_vegetables, "stewed_vegetables", enableStewedVegetables);
-        ConditionalRegistrar.registerItem(potato_mushroom, "potato_mushroom", enablePotatoMushroom);
-        ConditionalRegistrar.registerItem(golden_vegetables, "golden_vegetables", enableGoldenFoods);
-        ConditionalRegistrar.registerItem(fish_soup, "fish_soup", enableFishSoup);
-        ConditionalRegistrar.registerItem(dandelion_salad, "dandelion_salad", enableDandelionSalad, enableOnion);
-        ConditionalRegistrar.registerItem(wheat_sprouts, "wheat_sprouts", enableWheatSprouts);
-        ConditionalRegistrar.registerItem(beetroot_salad, "beetroot_salad", enableBeetrootSalad, Loader.isModLoaded("etfuturum"));
-        ConditionalRegistrar.registerItem(dressed_herring, "dressed_herring", enableDressedHerring, enableOnion, Loader.isModLoaded("etfuturum"));
-        ConditionalRegistrar.registerItem(saltwort_salad, "saltwort_salad", enableSaltwortSalad);
-        ConditionalRegistrar.registerItem(golden_saltwort_salad, "golden_saltwort_salad", enableGoldenFoods);
-        ConditionalRegistrar.registerItem(saltwort_cooked_porkchop, "saltwort_cooked_porkchop", enableSaltwortPorkchop, enableSaltedPorkchop);
-        ConditionalRegistrar.registerItem(saltwort_honey_porkchop, "saltwort_honey_porkchop", enableSaltwortHoneyPorkchop, enableHoney);
-        ConditionalRegistrar.registerItem(saltwort_cooked_beef, "saltwort_cooked_beef", enableSaltwortBeef, enableSaltedBeef);
-        ConditionalRegistrar.registerItem(saltwort_cooked_mutton, "saltwort_cooked_mutton", enableSaltwortMutton, enableSaltedMutton, Loader.isModLoaded("etfuturum"));
-        ConditionalRegistrar.registerItem(saltwort_cooked_strider, "saltwort_cooked_strider", enableSaltwortStrider, enableStrider);
-        ConditionalRegistrar.registerItem(saltwort_cooked_haunch, "saltwort_cooked_haunch", enableSaltwortHaunch, enableHaunch);
-        ConditionalRegistrar.registerItem(sugar_apple, "sugar_apple", enableSugaredApple);
-        ConditionalRegistrar.registerItem(sugar_melon, "sugar_melon", enableSugaredMelon);
-        ConditionalRegistrar.registerItem(sugar_berries, "sugar_berries", enableSugaredBerries, Loader.isModLoaded("etfuturum"));
-        ConditionalRegistrar.registerItem(fruit_salad, "fruit_salad", enableFruitSalad);
-        ConditionalRegistrar.registerItem(golden_fruit_salad, "golden_fruit_salad", enableGoldenFoods, Loader.isModLoaded("etfuturum"));
-        ConditionalRegistrar.registerItem(grated_carrot, "grated_carrot", enableGratedCarrot);
-        ConditionalRegistrar.registerItem(melon_soup, "melon_soup", enableMelonSoup);
-        ConditionalRegistrar.registerItem(honey_porkchop, "honey_porkchop", enableHoneyPorkchop, enableHoney);
-        ConditionalRegistrar.registerItem(honey_apple, "honey_apple", enableHoneyApple, enableHoney);
-        ConditionalRegistrar.registerItem(honey_berries, "honey_berries", enableHoneyBerries, enableHoney, Loader.isModLoaded("etfuturum"));
-        ConditionalRegistrar.registerItem(chocolate_berries, "chocolate_berries", enableChocolateBerries, Loader.isModLoaded("etfuturum"));
-        ConditionalRegistrar.registerItem(chocolate_bar, "chocolate_bar", enableChocolateBar);
-        ConditionalRegistrar.registerItem(sweetberry_cookie, "sweetberry_cookie", enableBerryCookie);
-        ConditionalRegistrar.registerItem(chorus_cookie, "chorus_cookie", enableChorusCookie);
-        ConditionalRegistrar.registerItem(chocolate_pie, "chocolate_pie", enableChocolatePie);
-        ConditionalRegistrar.registerItem(birthday_pie, "birthday_pie", enableBirthdayPie);
-        ConditionalRegistrar.registerItem(apple_pie, "apple_pie", enableApplePie);
-        ConditionalRegistrar.registerItem(sweetberry_pie, "sweetberry_pie", enableBerryPie, Loader.isModLoaded("etfuturum"));
-        ConditionalRegistrar.registerItem(carrot_pie, "carrot_pie", enableCarrotPie);
-        ConditionalRegistrar.registerItem(mushroom_pie, "mushroom_pie", enableMushroomPie);
-        ConditionalRegistrar.registerItem(potato_pie, "potato_pie", enablePotatoPie);
-        ConditionalRegistrar.registerItem(onion_pie, "onion_pie", enableOnionPie, enableOnion);
-        ConditionalRegistrar.registerItem(shepherds_pie, "shepherds_pie", enableShepherdsPie);
-        ConditionalRegistrar.registerItem(cod_pie, "cod_pie", enableCodPie);
-        ConditionalRegistrar.registerItem(salmon_pie, "salmon_pie", enableSalmonPie);
-        ConditionalRegistrar.registerItem(tropical_fish_pie, "tropical_fish_pie", enableTropicalFishPie);
-        ConditionalRegistrar.registerItem(tailor_pie, "tailor_pie", enableTailorPie, enableTailor);
-        ConditionalRegistrar.registerItem(calamari_pie, "calamari_pie", enableCalamariPie, enableCalamari);
-        ConditionalRegistrar.registerItem(saltwort_pie, "saltwort_pie", enableSaltwortPie);
-        ConditionalRegistrar.registerItem(fermented_saltwort, "fermented_saltwort", enableFermentedSaltwort);
-        ConditionalRegistrar.registerItem(fermented_fern, "fermented_fern", enableFermentedFern);
-        ConditionalRegistrar.registerItem(fermented_marsh_reeds, "fermented_marsh_reeds", enableFermentedFern);
-        ConditionalRegistrar.registerItem(fermented_mushroom, "fermented_mushroom", enableFermentedMushroom);
-        ConditionalRegistrar.registerItem(pickled_calamari, "pickled_calamari", enablePickledCalamari, enableCalamari);
-        ConditionalRegistrar.registerItem(pickled_beetroot, "pickled_beetroot", enablePickledBeetroot, Loader.isModLoaded("etfuturum"));
-        ConditionalRegistrar.registerItem(pickled_onion, "pickled_onion", enablePickledOnion, enableOnion);
-        ConditionalRegistrar.registerItem(apple_preserves, "apple_preserves", enableApplePreserves);
-        ConditionalRegistrar.registerItem(melon_preserves, "melon_preserves", enableMelonPreserves);
-        ConditionalRegistrar.registerItem(berry_preserves, "berry_preserves", enableBerryPreserves, Loader.isModLoaded("etfuturum"));
-        ConditionalRegistrar.registerItem(fizzy_drink, "fizzy_drink", enableFizzyDrink);
-        ConditionalRegistrar.registerItem(tunneler_concoction, "tunneler_concoction", enableTunnelersConcoction);
-        ConditionalRegistrar.registerItem(muffin, "muffin", enableMuffin);
-        ConditionalRegistrar.registerItem(tough_jelly, "tough_jelly", enableToughJelly);
-        ConditionalRegistrar.registerItem(mud_helmet, "mud_helmet", enableMudArmor, enableMineralMud);
-        ConditionalRegistrar.registerItem(mud_chestplate, "mud_chestplate", enableMudArmor, enableMineralMud);
-        ConditionalRegistrar.registerItem(mud_leggings, "mud_leggings", enableMudArmor, enableMineralMud);
-        ConditionalRegistrar.registerItem(mud_boots, "mud_boots", enableMudArmor, enableMineralMud);
-        ConditionalRegistrar.registerItem(salt_pickaxe, "salt_pickaxe", enableSaltCrystal);
-        ConditionalRegistrar.registerItem(salt_shard, "salt_shard", enableSaltCrystal);
-        ConditionalRegistrar.registerItem(rainmaker_star, "rainmaker_star", enableRainmaker);
-        ConditionalRegistrar.registerItem(rainmaker, "rainmaker", enableRainmaker);
+        registerItem(dev_item, "dev_item");
+        registerItem(developer_foods, "developer_foods", enableDeveloperFoods);
+        registerItem(fish_bait, "fish_bait", enableFishFarm);
+        registerItem(bee_larva, "bee_larva", enableHoney);
+        registerItem(honey_bee, "honey_bee", enableHoney);
+        registerItem(carpenter_bee, "carpenter_bee", enableHoney);
+        registerItem(regal_bee, "regal_bee", enableHoney);
+        registerItem(boreal_bee, "boreal_bee", enableHoney);
+        registerItem(waxcomb, "waxcomb", enableHoney);
+        registerItem(honeycomb, "honeycomb", enableHoney);
+        registerItem(frozen_honey, "frozen_honey", enableHoney);
+        registerItem(royal_jelly, "royal_jelly", enableHoney);
+        registerItem(mineral_mud_ball, "mineral_mud_ball", enableMineralMud);
+        registerItem(horn, "horn", ModConfigurationEntities.enableHornedSheep);
+        registerItem(baking_soda, "baking_soda");
+        registerItem(powdered_milk, "powdered_milk");
+        registerItem(salt, "salt");
+        registerItem(salt_pinch, "salt_pinch");
+        registerItem(sugar_pinch, "sugar_pinch");
+        registerItem(dough, "dough", enableDough);
+        registerItem(onion, "onion", enableOnion);
+        registerItem(saltwort, "saltwort");
+        registerItem(golden_saltwort, "golden_saltwort", enableGoldenFoods);
+        registerItem(golden_potato, "golden_potato", enableGoldenFoods);
+        registerItem(golden_berries, "golden_berries", enableGoldenFoods, isModLoaded("etfuturum"));
+        registerItem(salt_cooked_porkchop, "salt_cooked_porkchop", enableSaltedPorkchop);
+        registerItem(salt_cooked_beef, "salt_cooked_beef", enableSaltedBeef);
+        registerItem(salt_cooked_chicken, "salt_cooked_chicken", enableSaltedChicken);
+        registerItem(salt_cooked_rabbit, "salt_cooked_rabbit", enableSaltedRabbit, isModLoaded("etfuturum"));
+        registerItem(salt_cooked_mutton, "salt_cooked_mutton", enableSaltedMutton, isModLoaded("etfuturum"));
+        registerItem(strider, "strider", enableStrider);
+        registerItem(haunch, "haunch", enableHaunch);
+        registerItem(cured_meat, "cured_meat", enableCuredMeat);
+        registerItem(salt_cooked_cod, "salt_cooked_cod", enableSaltedCod);
+        registerItem(salt_cooked_salmon, "salt_cooked_salmon", enableSaltedSalmon);
+        registerItem(cooked_tropical_fish, "cooked_tropical_fish", enableTropicalFish);
+        registerItem(tailor, "tailor", enableTailor);
+        registerItem(calamari, "calamari", enableCalamari);
+        registerItem(salt_bread, "salt_bread", enableSaltedBread);
+        registerItem(salt_baked_potato, "salt_baked_potato", enableSaltedPotato);
+        registerItem(salt_beetroot, "salt_beetroot", enableSaltedBeetroot);
+        registerItem(salt_egg, "salt_egg", enableEgg);
+        registerItem(egg_bowl, "egg_bowl", enableEgg);
+        registerItem(salt_mushroom_stew, "salt_mushroom_stew", enableSaltedMushroomStew);
+        registerItem(salt_rabbit_stew, "salt_rabbit_stew", enableSaltedRabbitRagout, isModLoaded("etfuturum"));
+        registerItem(salt_beetroot_soup, "salt_beetroot_soup", enableSaltedBorscht, isModLoaded("etfuturum"));
+        registerItem(fungus_stew, "fungus_stew", enableFungusStew, isModLoaded("etfuturum"));
+        registerItem(chicken_soup, "chicken_soup", enableChickenSoup);
+        registerItem(beef_stew, "beef_stew", enableBeefStew);
+        registerItem(pumpkin_porridge, "pumpkin_porridge", enablePumpkinPorridge);
+        registerItem(cactus_soup, "cactus_soup", enableCactusSoup);
+        registerItem(bone_marrow_soup, "bone_marrow_soup", enableBoneMarrowSoup);
+        registerItem(stewed_vegetables, "stewed_vegetables", enableStewedVegetables);
+        registerItem(potato_mushroom, "potato_mushroom", enablePotatoMushroom);
+        registerItem(golden_vegetables, "golden_vegetables", enableGoldenFoods);
+        registerItem(fish_soup, "fish_soup", enableFishSoup);
+        registerItem(dandelion_salad, "dandelion_salad", enableDandelionSalad, enableOnion);
+        registerItem(wheat_sprouts, "wheat_sprouts", enableWheatSprouts);
+        registerItem(beetroot_salad, "beetroot_salad", enableBeetrootSalad, isModLoaded("etfuturum"));
+        registerItem(dressed_herring, "dressed_herring", enableDressedHerring, enableOnion, isModLoaded("etfuturum"));
+        registerItem(saltwort_salad, "saltwort_salad", enableSaltwortSalad);
+        registerItem(golden_saltwort_salad, "golden_saltwort_salad", enableGoldenFoods);
+        registerItem(saltwort_cooked_porkchop, "saltwort_cooked_porkchop", enableSaltwortPorkchop, enableSaltedPorkchop);
+        registerItem(saltwort_honey_porkchop, "saltwort_honey_porkchop", enableSaltwortHoneyPorkchop, enableHoney);
+        registerItem(saltwort_cooked_beef, "saltwort_cooked_beef", enableSaltwortBeef, enableSaltedBeef);
+        registerItem(saltwort_cooked_mutton, "saltwort_cooked_mutton", enableSaltwortMutton, enableSaltedMutton, isModLoaded("etfuturum"));
+        registerItem(saltwort_cooked_strider, "saltwort_cooked_strider", enableSaltwortStrider, enableStrider);
+        registerItem(saltwort_cooked_haunch, "saltwort_cooked_haunch", enableSaltwortHaunch, enableHaunch);
+        registerItem(sugar_apple, "sugar_apple", enableSugaredApple);
+        registerItem(sugar_melon, "sugar_melon", enableSugaredMelon);
+        registerItem(sugar_berries, "sugar_berries", enableSugaredBerries, isModLoaded("etfuturum"));
+        registerItem(fruit_salad, "fruit_salad", enableFruitSalad);
+        registerItem(golden_fruit_salad, "golden_fruit_salad", enableGoldenFoods, isModLoaded("etfuturum"));
+        registerItem(grated_carrot, "grated_carrot", enableGratedCarrot);
+        registerItem(melon_soup, "melon_soup", enableMelonSoup);
+        registerItem(honey_porkchop, "honey_porkchop", enableHoneyPorkchop, enableHoney);
+        registerItem(honey_apple, "honey_apple", enableHoneyApple, enableHoney);
+        registerItem(honey_berries, "honey_berries", enableHoneyBerries, enableHoney, isModLoaded("etfuturum"));
+        registerItem(chocolate_berries, "chocolate_berries", enableChocolateBerries, isModLoaded("etfuturum"));
+        registerItem(chocolate_bar, "chocolate_bar", enableChocolateBar);
+        registerItem(sweetberry_cookie, "sweetberry_cookie", enableBerryCookie);
+        registerItem(chorus_cookie, "chorus_cookie", enableChorusCookie);
+        registerItem(chocolate_pie, "chocolate_pie", enableChocolatePie);
+        registerItem(birthday_pie, "birthday_pie", enableBirthdayPie);
+        registerItem(apple_pie, "apple_pie", enableApplePie);
+        registerItem(sweetberry_pie, "sweetberry_pie", enableBerryPie, isModLoaded("etfuturum"));
+        registerItem(carrot_pie, "carrot_pie", enableCarrotPie);
+        registerItem(mushroom_pie, "mushroom_pie", enableMushroomPie);
+        registerItem(potato_pie, "potato_pie", enablePotatoPie);
+        registerItem(onion_pie, "onion_pie", enableOnionPie, enableOnion);
+        registerItem(shepherds_pie, "shepherds_pie", enableShepherdsPie);
+        registerItem(cod_pie, "cod_pie", enableCodPie);
+        registerItem(salmon_pie, "salmon_pie", enableSalmonPie);
+        registerItem(tropical_fish_pie, "tropical_fish_pie", enableTropicalFishPie);
+        registerItem(tailor_pie, "tailor_pie", enableTailorPie, enableTailor);
+        registerItem(calamari_pie, "calamari_pie", enableCalamariPie, enableCalamari);
+        registerItem(saltwort_pie, "saltwort_pie", enableSaltwortPie);
+        registerItem(fermented_saltwort, "fermented_saltwort", enableFermentedSaltwort);
+        registerItem(fermented_fern, "fermented_fern", enableFermentedFern);
+        registerItem(fermented_marsh_reeds, "fermented_marsh_reeds", enableFermentedFern);
+        registerItem(fermented_mushroom, "fermented_mushroom", enableFermentedMushroom);
+        registerItem(pickled_calamari, "pickled_calamari", enablePickledCalamari, enableCalamari);
+        registerItem(pickled_beetroot, "pickled_beetroot", enablePickledBeetroot, isModLoaded("etfuturum"));
+        registerItem(pickled_onion, "pickled_onion", enablePickledOnion, enableOnion);
+        registerItem(apple_preserves, "apple_preserves", enableApplePreserves);
+        registerItem(melon_preserves, "melon_preserves", enableMelonPreserves);
+        registerItem(berry_preserves, "berry_preserves", enableBerryPreserves, isModLoaded("etfuturum"));
+        registerItem(fizzy_drink, "fizzy_drink", enableFizzyDrink);
+        registerItem(tunneler_concoction, "tunneler_concoction", enableTunnelersConcoction);
+        registerItem(muffin, "muffin", enableMuffin);
+        registerItem(tough_jelly, "tough_jelly", enableToughJelly);
+        registerItem(mud_helmet, "mud_helmet", enableMudArmor, enableMineralMud);
+        registerItem(mud_chestplate, "mud_chestplate", enableMudArmor, enableMineralMud);
+        registerItem(mud_leggings, "mud_leggings", enableMudArmor, enableMineralMud);
+        registerItem(mud_boots, "mud_boots", enableMudArmor, enableMineralMud);
+        registerItem(salt_pickaxe, "salt_pickaxe", enableSaltCrystal);
+        registerItem(salt_shard, "salt_shard", enableSaltCrystal);
+        registerItem(rainmaker_star, "rainmaker_star", enableRainmaker);
+        registerItem(rainmaker, "rainmaker", enableRainmaker);
 
 
-        ConditionalRegistrar.registerItem(tf_salt_cooked_venison, "tf_salt_cooked_venison", enableTFFoods, Loader.isModLoaded("TwilightForest"));
-        ConditionalRegistrar.registerItem(tf_salt_meef_steak, "tf_salt_meef_steak", enableTFFoods, Loader.isModLoaded("TwilightForest"));
-        ConditionalRegistrar.registerItem(tf_salt_meef_stroganoff, "tf_salt_meef_stroganoff", enableTFFoods, Loader.isModLoaded("TwilightForest"));
-        ConditionalRegistrar.registerItem(tf_salt_hydra_chop, "tf_salt_hydra_chop", enableTFFoods, Loader.isModLoaded("TwilightForest"));
-        ConditionalRegistrar.registerItem(tf_pickled_mushgloom, "tf_pickled_mushgloom", enableTFFoods, Loader.isModLoaded("TwilightForest"));
-        ConditionalRegistrar.registerItem(tf_saltwort_cooked_venison, "tf_saltwort_cooked_venison", enableTFFoods, Loader.isModLoaded("TwilightForest"));
-        ConditionalRegistrar.registerItem(tf_saltwort_meef_steak, "tf_saltwort_meef_steak", enableTFFoods, Loader.isModLoaded("TwilightForest"));
+        registerItem(tf_salt_cooked_venison, "tf_salt_cooked_venison", enableTFFoods, isModLoaded("TwilightForest"));
+        registerItem(tf_salt_meef_steak, "tf_salt_meef_steak", enableTFFoods, isModLoaded("TwilightForest"));
+        registerItem(tf_salt_meef_stroganoff, "tf_salt_meef_stroganoff", enableTFFoods, isModLoaded("TwilightForest"));
+        registerItem(tf_salt_hydra_chop, "tf_salt_hydra_chop", enableTFFoods, isModLoaded("TwilightForest"));
+        registerItem(tf_pickled_mushgloom, "tf_pickled_mushgloom", enableTFFoods, isModLoaded("TwilightForest"));
+        registerItem(tf_saltwort_cooked_venison, "tf_saltwort_cooked_venison", enableTFFoods, isModLoaded("TwilightForest"));
+        registerItem(tf_saltwort_meef_steak, "tf_saltwort_meef_steak", enableTFFoods, isModLoaded("TwilightForest"));
 
 
-        ConditionalRegistrar.registerItem(bop_hemoglobin, "bop_hemoglobin", enableBOPFoods, Loader.isModLoaded("BiomesOPlenty"));
-        ConditionalRegistrar.registerItem(bop_poison, "bop_poison", enableBOPFoods, Loader.isModLoaded("BiomesOPlenty"));
-        ConditionalRegistrar.registerItem(bop_salt_shroom_powder, "bop_salt_shroom_powder", enableBOPFoods, Loader.isModLoaded("BiomesOPlenty"));
-        ConditionalRegistrar.registerItem(bop_sugar_fruit_salad, "bop_sugar_fruit_salad", enableBOPFoods, Loader.isModLoaded("BiomesOPlenty"));
-        ConditionalRegistrar.registerItem(bop_salt_veggie_salad, "bop_salt_veggie_salad", enableBOPFoods, Loader.isModLoaded("BiomesOPlenty"));
-        ConditionalRegistrar.registerItem(bop_salt_shroom_salad, "bop_salt_shroom_salad", enableBOPFoods, Loader.isModLoaded("BiomesOPlenty"));
-        ConditionalRegistrar.registerItem(bop_salt_rice_bowl, "bop_salt_rice_bowl", enableBOPFoods, Loader.isModLoaded("BiomesOPlenty"));
-        ConditionalRegistrar.registerItem(bop_pickled_turnip, "bop_pickled_turnip", enableBOPFoods, Loader.isModLoaded("BiomesOPlenty"));
+        registerItem(bop_hemoglobin, "bop_hemoglobin", enableBOPFoods, isModLoaded("BiomesOPlenty"));
+        registerItem(bop_poison, "bop_poison", enableBOPFoods, isModLoaded("BiomesOPlenty"));
+        registerItem(bop_salt_shroom_powder, "bop_salt_shroom_powder", enableBOPFoods, isModLoaded("BiomesOPlenty"));
+        registerItem(bop_sugar_fruit_salad, "bop_sugar_fruit_salad", enableBOPFoods, isModLoaded("BiomesOPlenty"));
+        registerItem(bop_salt_veggie_salad, "bop_salt_veggie_salad", enableBOPFoods, isModLoaded("BiomesOPlenty"));
+        registerItem(bop_salt_shroom_salad, "bop_salt_shroom_salad", enableBOPFoods, isModLoaded("BiomesOPlenty"));
+        registerItem(bop_salt_rice_bowl, "bop_salt_rice_bowl", enableBOPFoods, isModLoaded("BiomesOPlenty"));
+        registerItem(bop_pickled_turnip, "bop_pickled_turnip", enableBOPFoods, isModLoaded("BiomesOPlenty"));
 
 
-        ConditionalRegistrar.registerItem(wm_salt_cooked_bison, "wm_salt_cooked_bison", enableWMFoods, Loader.isModLoaded("wildmobsmod"));
-        ConditionalRegistrar.registerItem(wm_salt_cooked_calamari, "wm_salt_cooked_calamari", enableWMFoods, Loader.isModLoaded("wildmobsmod"));
-        ConditionalRegistrar.registerItem(wm_salt_cooked_chevon, "wm_salt_cooked_chevon", enableWMFoods, Loader.isModLoaded("wildmobsmod"));
-        ConditionalRegistrar.registerItem(wm_salt_cooked_goose, "wm_salt_cooked_goose", enableWMFoods, Loader.isModLoaded("wildmobsmod"));
-        ConditionalRegistrar.registerItem(wm_salt_cooked_mouse, "wm_salt_cooked_mouse", enableWMFoods, Loader.isModLoaded("wildmobsmod"));
-        ConditionalRegistrar.registerItem(wm_salt_cooked_venison, "wm_salt_cooked_venison", enableWMFoods, Loader.isModLoaded("wildmobsmod"));
+        registerItem(wm_salt_cooked_bison, "wm_salt_cooked_bison", enableWMFoods, isModLoaded("wildmobsmod"));
+        registerItem(wm_salt_cooked_calamari, "wm_salt_cooked_calamari", enableWMFoods, isModLoaded("wildmobsmod"));
+        registerItem(wm_salt_cooked_chevon, "wm_salt_cooked_chevon", enableWMFoods, isModLoaded("wildmobsmod"));
+        registerItem(wm_salt_cooked_goose, "wm_salt_cooked_goose", enableWMFoods, isModLoaded("wildmobsmod"));
+        registerItem(wm_salt_cooked_mouse, "wm_salt_cooked_mouse", enableWMFoods, isModLoaded("wildmobsmod"));
+        registerItem(wm_salt_cooked_venison, "wm_salt_cooked_venison", enableWMFoods, isModLoaded("wildmobsmod"));
     }
 }
