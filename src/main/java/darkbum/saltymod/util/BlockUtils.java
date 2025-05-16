@@ -39,7 +39,7 @@ import static net.minecraft.init.Items.*;
  * @author DarkBum
  * @since 2.0.0
  */
-public class BlockUtil {
+public class BlockUtils {
 
     /**
      * Sets the block metadata based on the direction the player is facing when placing the block.

@@ -2,7 +2,7 @@ package darkbum.saltymod.block;
 
 import java.util.Random;
 
-import darkbum.saltymod.util.BlockUtil;
+import darkbum.saltymod.util.BlockUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -18,7 +18,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.init.ModItems;
 
-import static darkbum.saltymod.util.BlockUtil.*;
+import static darkbum.saltymod.util.BlockUtils.*;
 
 /**
  * Block class for the salt ore block.
@@ -35,7 +35,7 @@ public class BlockSaltOre extends Block {
     /**
      * Constructs a new block instance with a given name and a creative tab.
      * <p>
-     * Also assigns a material and other base properties through {@link BlockUtil}.
+     * Also assigns a material and other base properties through {@link BlockUtils}.
      *
      * @param name The internal name of the block.
      * @param tab  The creative tab in which the block appears.

@@ -9,11 +9,8 @@ import net.minecraft.item.ItemStack;
 
 public class SlotPressVessel extends Slot {
 
-    private EntityPlayer entityPlayer;
-
-    public SlotPressVessel(EntityPlayer entityPlayer, IInventory iInventory, int slotIndex, int x, int y) {
+    public SlotPressVessel(IInventory iInventory, int slotIndex, int x, int y) {
         super(iInventory, slotIndex, x, y);
-        setEntityPlayer(entityPlayer);
     }
 
     public boolean isItemValid(ItemStack itemStack) {
@@ -26,9 +23,5 @@ public class SlotPressVessel extends Slot {
 
     public void onPickupFromSlot(EntityPlayer entityPlayer, ItemStack itemStack) {
         super.onPickupFromSlot(entityPlayer, itemStack);
-    }
-
-    public void setEntityPlayer(EntityPlayer entityPlayer) {
-        this.entityPlayer = entityPlayer;
     }
 }

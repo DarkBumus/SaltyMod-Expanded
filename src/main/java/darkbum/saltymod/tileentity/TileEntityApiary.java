@@ -22,14 +22,19 @@ import darkbum.saltymod.init.ModItems;
 import darkbum.saltymod.item.ItemBee;
 import darkbum.saltymod.util.MachineUtilRegistry;
 
+/**
+ * Tile Entity class for the apiary block.
+ * The apiary is a tile entity container block that stores and produces items in a beekeeping context.
+ *
+ * @author DarkBum
+ * @since 2.0.0
+ */
 public class TileEntityApiary extends TileEntity implements IInventory {
 
+    @SuppressWarnings("unused")
     private String inventoryName;
 
     private ItemStack[] inventory = new ItemStack[19];
-
-    private static final int[] slotsOutput = new int[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17};
-    private static final int[] slotBee = new int[] {18};
 
     public int runTime = 0;
 
@@ -39,31 +44,64 @@ public class TileEntityApiary extends TileEntity implements IInventory {
 
     private boolean larvaProducedForBee = false;
 
-    public String getInventoryName() {
-        return hasCustomInventoryName() ? this.inventoryName : "container.apiary";
-    }
-
+    /**
+     * Checks if the inventory has a custom name.
+     *
+     * @return true if a custom name is set, false otherwise.
+     */
+    @Override
     public boolean hasCustomInventoryName() {
         return (this.inventoryName != null && !this.inventoryName.isEmpty());
     }
 
+    /**
+     * Returns the inventory name.
+     *
+     * @return the custom name if set, otherwise the default name.
+     */
+    @Override
+    public String getInventoryName() {
+        return hasCustomInventoryName() ? this.inventoryName : "container.apiary";
+    }
+
+    /**
+     * Gets the size of the inventory.
+     *
+     * @return the number of inventory slots.
+     */
+    @Override
     public int getSizeInventory() {
         return this.inventory.length;
     }
 
+    /**
+     * Gets the item stack in the specified slot.
+     *
+     * @param slot The slot index.
+     * @return the ItemStack in the slot, or null if empty.
+     */
+    @Override
     public ItemStack getStackInSlot(int slot) {
         return this.inventory[slot];
     }
 
+    /**
+     * Decreases the stack size in the specified slot by the specified amount.
+     *
+     * @param slot   The slot index.
+     * @param amount The amount to decrease.
+     * @return the removed ItemStack or null if none was removed.
+     */
+    @Override
     public ItemStack decrStackSize(int slot, int amount) {
         if (this.inventory[slot] == null) {
             setInventorySlotContents(slot, null);
             return null;
         }
         if ((this.inventory[slot]).stackSize <= amount) {
-            ItemStack itemStack = this.inventory[slot];
+            ItemStack stack = this.inventory[slot];
             setInventorySlotContents(slot, null);
-            return itemStack;
+            return stack;
         }
         ItemStack stack = this.inventory[slot].splitStack(amount);
         if ((this.inventory[slot]).stackSize <= 0) setInventorySlotContents(slot, null);
@@ -71,11 +109,24 @@ public class TileEntityApiary extends TileEntity implements IInventory {
         return stack;
     }
 
+    /**
+     * Sets the ItemStack in the specified slot.
+     *
+     * @param slot  The slot index.
+     * @param stack The ItemStack to set.
+     */
+    @Override
     public void setInventorySlotContents(int slot, ItemStack stack) {
         this.inventory[slot] = stack;
         if (stack != null && stack.stackSize > getInventoryStackLimit()) stack.stackSize = getInventoryStackLimit();
     }
 
+    /**
+     * Reads the inventory and other data from NBT.
+     *
+     * @param nbt The NBTTagCompound to read from.
+     */
+    @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
         NBTTagList invTag = nbt.getTagList("Items", 10);
@@ -90,6 +141,12 @@ public class TileEntityApiary extends TileEntity implements IInventory {
         this.larvaProducedForBee = nbt.getBoolean("LarvaProducedForBee");
     }
 
+    /**
+     * Writes the inventory and other data to NBT.
+     *
+     * @param nbt The NBTTagCompound to write to.
+     */
+    @Override
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
         nbt.setBoolean("LarvaProducedForBee", this.larvaProducedForBee);
@@ -105,48 +162,20 @@ public class TileEntityApiary extends TileEntity implements IInventory {
         nbt.setTag("Items", intTag);
     }
 
+    /**
+     * Gets the maximum stack size allowed in a slot.
+     *
+     * @return the maximum stack size (64).
+     */
+    @Override
     public int getInventoryStackLimit() {
         return 64;
     }
 
-    private int getEffectiveTickChance(int baseChance) {
-        float modifier = 1.0f;
-
-        int radius = 3;
-        for (int dx = -radius; dx <= radius; dx++) {
-            for (int dy = -1; dy <= 1; dy++) {
-                for (int dz = -radius; dz <= radius; dz++) {
-                    Block block = this.worldObj.getBlock(this.xCoord + dx, this.yCoord + dy, this.zCoord + dz);
-                    if (block != null && block.getUnlocalizedName().toLowerCase().contains("flower")) {
-                        modifier *= 0.95f; // jede Blume reduziert Chance etwas
-                    }
-                }
-            }
-        }
-/*        for (int dx = -radius; dx <= radius; dx++) {
-            for (int dy = -1; dy <= 1; dy++) {
-                for (int dz = -radius; dz <= radius; dz++) {
-                    TileEntity tile = this.worldObj.getTileEntity(this.xCoord + dx, this.yCoord + dy, this.zCoord + dz);
-                    if (tile != null && tile != this && tile.getClass() == this.getClass()) {
-                        modifier *= 0.9f;
-                    }
-                }
-            }
-        }*/
-        for (int dx = -radius; dx <= radius; dx++) {
-            for (int dy = -1; dy <= 1; dy++) {
-                for (int dz = -radius; dz <= radius; dz++) {
-                    Block block = this.worldObj.getBlock(this.xCoord + dx, this.yCoord + dy, this.zCoord + dz);
-                    if (block != null && block.getUnlocalizedName().toLowerCase().contains("hopper")) {
-                        modifier *= 1.15f;
-                    }
-                }
-            }
-        }
-
-        return Math.round(baseChance * modifier);
-    }
-
+    /**
+     * Updates the entity each tick. Checks for production conditions and runs production if possible.
+     */
+    @Override
     public void updateEntity() {
         boolean needsUpdate = false;
 
@@ -167,6 +196,45 @@ public class TileEntityApiary extends TileEntity implements IInventory {
         }
     }
 
+    /**
+     * Calculates the effective tick chance based on nearby blocks.
+     *
+     * @param baseChance The base tick chance.
+     * @return the adjusted tick chance.
+     */
+    private int getEffectiveTickChance(int baseChance) {
+        float modifier = 1.0f;
+
+        int radius = 3;
+        for (int dx = -radius; dx <= radius; dx++) {
+            for (int dy = -1; dy <= 1; dy++) {
+                for (int dz = -radius; dz <= radius; dz++) {
+                    Block block = this.worldObj.getBlock(this.xCoord + dx, this.yCoord + dy, this.zCoord + dz);
+                    if (block != null && block.getUnlocalizedName().toLowerCase().contains("flower")) {
+                        modifier *= 0.95f;
+                    }
+                }
+            }
+        }
+        for (int dx = -radius; dx <= radius; dx++) {
+            for (int dy = -1; dy <= 1; dy++) {
+                for (int dz = -radius; dz <= radius; dz++) {
+                    Block block = this.worldObj.getBlock(this.xCoord + dx, this.yCoord + dy, this.zCoord + dz);
+                    if (block != null && block.getUnlocalizedName().toLowerCase().contains("hopper")) {
+                        modifier *= 1.15f;
+                    }
+                }
+            }
+        }
+
+        return Math.round(baseChance * modifier);
+    }
+
+    /**
+     * Checks whether the Apiary can run its production cycle.
+     *
+     * @return true, if production can proceed, false otherwise.
+     */
     private boolean canRun() {
         if (this.inventory[18] == null) {
             return false;
@@ -175,14 +243,15 @@ public class TileEntityApiary extends TileEntity implements IInventory {
             this.inventory[18].getItemDamage() == this.inventory[18].getMaxDamage()) {
             return false;
         }
-        if (this.worldObj.isRaining() &&
-            this.worldObj.canBlockSeeTheSky(this.xCoord, this.yCoord + 1, this.zCoord)) {
-            return false;
-        }
-
-        return true;
+        return !this.worldObj.isRaining() ||
+            !this.worldObj.canBlockSeeTheSky(this.xCoord, this.yCoord + 1, this.zCoord);
     }
 
+    /**
+     * Attempts to produce an item based on the current bee type and its state.
+     *
+     * @return the produced ItemStack or null if nothing is produced.
+     */
     public ItemStack getProduce() {
         Random rnd = new Random();
         if (this.inventory[18] != null) {
@@ -199,6 +268,12 @@ public class TileEntityApiary extends TileEntity implements IInventory {
         return null;
     }
 
+    /**
+     * Checks if the inventory contains a specific item.
+     *
+     * @param item The item to search for.
+     * @return true, if the item is found, false otherwise.
+     */
     private boolean containsItem(Item item) {
         for (int i = 0; i < 18; i++) {
             if (this.inventory[i] != null && this.inventory[i].getItem() == item) {
@@ -208,6 +283,9 @@ public class TileEntityApiary extends TileEntity implements IInventory {
         return false;
     }
 
+    /**
+     * Executes a production cycle. A random empty slot is selected to receive the produced item.
+     */
     public void run() {
         List<Integer> slotOrder = new ArrayList<>();
         for (int i = 0; i < 18; i++) {
@@ -230,17 +308,35 @@ public class TileEntityApiary extends TileEntity implements IInventory {
         }
     }
 
+    /**
+     * Determines the runtime duration for a given ItemStack.
+     *
+     * @param stack The item stack.
+     * @return the runtime in ticks.
+     */
     int getRunTime(ItemStack stack) {
         if (stack == null) return 0;
         if (stack.getItem() instanceof ItemBee) return 3200;
         return 0;
     }
 
+    /**
+     * Checks if the specified player can access this inventory.
+     *
+     * @param player The player entity.
+     * @return true, if the player is within access range, false otherwise.
+     */
+    @Override
     public boolean isUseableByPlayer(EntityPlayer player) {
         if (this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this) return false;
         return (player.getDistanceSq(this.xCoord + 0.5D, this.yCoord + 0.5D, this.zCoord + 0.5D) <= 64.0D);
     }
 
+    /**
+     * Gets the comparator signal strength based on the number of filled slots.
+     *
+     * @return a value between 0 and 15 based on inventory fill level.
+     */
     public int getComparatorInputOverride() {
         int filled = 0;
         for (int i = 0; i < 18; i++) {
@@ -251,25 +347,63 @@ public class TileEntityApiary extends TileEntity implements IInventory {
         return Math.round((filled / 18.0f) * 15);
     }
 
+    /**
+     * Called when a slot is closed. This method does nothing in this implementation.
+     *
+     * @param slot The slot index.
+     * @return null.
+     */
+    @Override
     public ItemStack getStackInSlotOnClosing(int slot) {
         return null;
     }
 
+    /**
+     * Checks if the specified item is valid for insertion into the specified slot.
+     *
+     * @param slot  The slot index.
+     * @param stack The item stack.
+     * @return false in this implementation, as no specific slot validation logic is implemented.
+     */
+    @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack) {
         return false;
     }
 
+    /**
+     * Called when the inventory is opened by a player.
+     * This implementation does nothing.
+     */
+    @Override
     public void openInventory() {}
 
+    /**
+     * Creates a packet to synchronize data with the client.
+     *
+     * @return the description packet containing the tile entity data.
+     */
+    @Override
     public Packet getDescriptionPacket() {
         NBTTagCompound tag = new NBTTagCompound();
         writeToNBT(tag);
         return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, tag);
     }
 
+    /**
+     * Handles incoming data packets to synchronize data with the server.
+     *
+     * @param net    The network manager.
+     * @param packet The packet containing the updated data.
+     */
+    @Override
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
         readFromNBT(packet.func_148857_g());
     }
 
+    /**
+     * Called when the inventory is closed by a player.
+     * This implementation does nothing.
+     */
+    @Override
     public void closeInventory() {}
 }

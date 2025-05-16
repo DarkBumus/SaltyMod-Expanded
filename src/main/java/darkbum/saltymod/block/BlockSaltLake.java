@@ -2,7 +2,7 @@ package darkbum.saltymod.block;
 
 import java.util.Random;
 
-import darkbum.saltymod.util.BlockUtil;
+import darkbum.saltymod.util.BlockUtils;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -17,7 +17,7 @@ import darkbum.saltymod.init.ModAchievementList;
 import darkbum.saltymod.init.ModBlocks;
 
 import static darkbum.saltymod.block.BlockSaltBlock.*;
-import static darkbum.saltymod.util.BlockUtil.*;
+import static darkbum.saltymod.util.BlockUtils.*;
 
 /**
  * Block class for the salt lake block.
@@ -37,7 +37,7 @@ public class BlockSaltLake extends BlockSaltOre {
     /**
      * Constructs a new block instance with a given name and a creative tab.
      * <p>
-     * Also assigns a material and other base properties through {@link BlockUtil}.
+     * Also assigns a material and other base properties through {@link BlockUtils}.
      *
      * @param name The internal name of the block.
      * @param tab  The creative tab in which the block appears.

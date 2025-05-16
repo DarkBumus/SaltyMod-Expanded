@@ -3,7 +3,7 @@ package darkbum.saltymod.block;
 import java.util.List;
 import java.util.Random;
 
-import darkbum.saltymod.util.BlockUtil;
+import darkbum.saltymod.util.BlockUtils;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -21,7 +21,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.init.ModBlocks;
 
-import static darkbum.saltymod.util.BlockUtil.*;
+import static darkbum.saltymod.util.BlockUtils.*;
 
 /**
  * Block class for the salt brick slab.
@@ -57,7 +57,7 @@ public class BlockSaltSlab extends BlockSlab {
     /**
      * Constructs a new block instance with a double slab boolean, a given name and a creative tab.
      * <p>
-     * Also assigns a material and other base properties through {@link BlockUtil}.
+     * Also assigns a material and other base properties through {@link BlockUtils}.
      *
      * @param name The internal name of the block.
      * @param tab  The creative tab in which the block appears.

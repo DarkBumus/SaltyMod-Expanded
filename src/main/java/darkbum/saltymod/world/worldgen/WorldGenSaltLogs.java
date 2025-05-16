@@ -10,15 +10,14 @@ import darkbum.saltymod.init.ModBlocks;
 
 public class WorldGenSaltLogs extends WorldGenAbstractTree {
 
-    private final int minTreeHeight;
-
+    @SuppressWarnings("unused")
     public WorldGenSaltLogs(boolean doBlockNotify) {
         this(doBlockNotify, 4);
     }
 
+    @SuppressWarnings("unused")
     public WorldGenSaltLogs(boolean doBlockNotify, int minTreeHeight) {
         super(doBlockNotify);
-        this.minTreeHeight = minTreeHeight;
     }
 
     public boolean generate(World world, Random random, int x, int y, int z) {

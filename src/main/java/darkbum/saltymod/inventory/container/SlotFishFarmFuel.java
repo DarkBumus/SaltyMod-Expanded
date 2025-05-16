@@ -9,11 +9,8 @@ import darkbum.saltymod.init.ModItems;
 
 public class SlotFishFarmFuel extends Slot {
 
-    private EntityPlayer entityPlayer;
-
-    public SlotFishFarmFuel(EntityPlayer entityPlayer, IInventory iInventory, int slotIndex, int x, int y) {
+    public SlotFishFarmFuel(IInventory iInventory, int slotIndex, int x, int y) {
         super(iInventory, slotIndex, x, y);
-        setEntityPlayer(entityPlayer);
     }
 
     public boolean isItemValid(ItemStack itemStack) {
@@ -26,9 +23,5 @@ public class SlotFishFarmFuel extends Slot {
 
     public void onPickupFromSlot(EntityPlayer entityPlayer, ItemStack itemStack) {
         super.onPickupFromSlot(entityPlayer, itemStack);
-    }
-
-    public void setEntityPlayer(EntityPlayer entityPlayer) {
-        this.entityPlayer = entityPlayer;
     }
 }

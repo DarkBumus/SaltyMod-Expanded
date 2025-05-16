@@ -2,7 +2,7 @@ package darkbum.saltymod.block;
 
 import java.util.Random;
 
-import darkbum.saltymod.util.BlockUtil;
+import darkbum.saltymod.util.BlockUtils;
 import net.minecraft.block.*;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -26,7 +26,7 @@ import darkbum.saltymod.common.proxy.ClientProxy;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 
-import static darkbum.saltymod.util.BlockUtil.*;
+import static darkbum.saltymod.util.BlockUtils.*;
 
 /**
  * Block class for the salt grass block.
@@ -58,7 +58,7 @@ public class BlockSaltGrass extends Block implements IGrowable {
     /**
      * Constructs a new block instance with a given name and a creative tab.
      * <p>
-     * Also assigns a material and other base properties through {@link BlockUtil}.
+     * Also assigns a material and other base properties through {@link BlockUtils}.
      *
      * @param name The internal name of the block.
      * @param tab  The creative tab in which the block appears.

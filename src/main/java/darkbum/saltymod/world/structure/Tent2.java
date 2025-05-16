@@ -1,13 +1,13 @@
 package darkbum.saltymod.world.structure;
 
-import darkbum.saltymod.world.StructureUtils;
+import darkbum.saltymod.util.StructureUtils;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
-import darkbum.saltymod.world.StructureUtils.Rotation;
+import darkbum.saltymod.util.StructureUtils.Rotation;
 import net.minecraftforge.common.ChestGenHooks;
 
 import java.util.Random;
@@ -36,10 +36,9 @@ public class Tent2 {
 
             int[] chestPos = StructureUtils.rotatePosition(3, -3, rotation); // dieselben dx, dz wie oben!
             int chestX = baseX + chestPos[0];
-            int chestY = baseY;
             int chestZ = baseZ + chestPos[1];
 
-            TileEntity tileEntity = world.getTileEntity(chestX, chestY, chestZ);
+            TileEntity tileEntity = world.getTileEntity(chestX, baseY, chestZ);
             if (tileEntity instanceof IInventory) {
                 ChestGenHooks info = ChestGenHooks.getInfo("campChest_II");
                 Random rand = world.rand;

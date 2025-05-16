@@ -28,27 +28,17 @@ public class SaltOreGenerator implements IWorldGenerator {
 
     }
 
+    @SuppressWarnings("unused")
     private void generateNether(World world, Random rand, int i, int j) {}
 
     private void generateOverworld(World world, Random rand, int chunkX, int chunkZ) {
-        generateOre(
-            ModBlocks.salt_ore,
-            world,
-            rand,
-            chunkX,
-            chunkZ,
-            ModConfigurationWorldGeneration.saltoreVeinSize,
-            ModConfigurationWorldGeneration.saltOreFrequency,
-            1,
-            96,
-            Blocks.stone);
+        generateOre(ModBlocks.salt_ore, world, rand, chunkX, chunkZ, ModConfigurationWorldGeneration.saltoreVeinSize, ModConfigurationWorldGeneration.saltOreFrequency, 1, 96, Blocks.stone);
 
     }
 
-    public void generateOre(Block block, World world, Random rand, int chunkX, int chunkZ, int veinSize, int chance,
-        int minY, int maxY, Block generateIn) {
+    public void generateOre(Block block, World world, Random rand, int chunkX, int chunkZ, int veinSize, int chance, int minY, int maxY, Block generateIn) {
         int heightRange = maxY - minY;
-        WorldGenMinable gen = new WorldGenMinable(block, veinSize, generateIn);
+        WorldGenMinable gen = new WorldGenMinable(block, veinSize, chance, generateIn);
         for (int i = 0; i < ModConfigurationWorldGeneration.saltOreFrequency; i++) {
             int randPosX = chunkX + rand.nextInt(16);
             int randPosY = rand.nextInt(heightRange) + minY;
@@ -57,5 +47,6 @@ public class SaltOreGenerator implements IWorldGenerator {
         }
     }
 
+    @SuppressWarnings("unused")
     private void generateEnd(World world, Random random, int i, int j) {}
 }

@@ -89,7 +89,7 @@ public class ModShapedRecipes {
             new Object[]{"x", "x",
                 'x', new ItemStack(salt_slab, 1, 2)},
             enableSaltBlocks);
-        addShapedRecipe(new ItemStack(salt_block, 6),
+        addShapedRecipe(new ItemStack(salt_brick_stairs, 4),
             new Object[]{"x  ", "xx ", "xxx",
                 'x', new ItemStack(salt_block, 1, 5)},
             enableSaltBlocks);
@@ -181,10 +181,11 @@ public class ModShapedRecipes {
             enableMachines);
 
         addShapedOreRecipe(new ItemStack(mill),
-            new Object[]{"xxx", "yzz", "xxx",
+            new Object[]{"xyx", "zaa", "xyx",
                 'x', "plankWood",
-                'y', new ItemStack(piston),
-                'z', new ItemStack(redstone)},
+                'y', new ItemStack(iron_ingot),
+                'z', new ItemStack(piston),
+                'a', new ItemStack(redstone)},
             enableMachines);
 
         addShapedRecipe(new ItemStack(cooking_pot),
@@ -325,8 +326,8 @@ public class ModShapedRecipes {
 
         addShapedRecipe(new ItemStack(salt_pickaxe),
             new Object[]{"xxx", " y ", " y ",
-            'x', salt_shard,
-            'y', stick},
+                'x', salt_shard,
+                'y', stick},
             enableSaltPickaxe);
     }
 }

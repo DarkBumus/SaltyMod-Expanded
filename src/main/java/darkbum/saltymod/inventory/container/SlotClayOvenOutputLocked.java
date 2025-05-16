@@ -5,6 +5,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 
+import java.util.Objects;
+
 public class SlotClayOvenOutputLocked extends SlotOutputLockedBase {
 
     public SlotClayOvenOutputLocked(EntityPlayer entityPlayer, IInventory inventory, int slotIndex, int x, int y, IInventory keyInventory, int keySlotIndex) {
@@ -32,7 +34,7 @@ public class SlotClayOvenOutputLocked extends SlotOutputLockedBase {
     @Override
     protected void onConsumeKeys(int amountTaken) {
         ItemStack keyStack = keyInventory.getStackInSlot(keySlotIndex);
-        if (keyStack != null && keyStack.getItem().isDamageable()) {
+        if (keyStack != null && Objects.requireNonNull(keyStack.getItem()).isDamageable()) {
             keyStack.setItemDamage(keyStack.getItemDamage() + amountTaken);
 
             if (keyStack.getItemDamage() >= keyStack.getMaxDamage()) {

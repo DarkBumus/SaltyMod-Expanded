@@ -3,7 +3,7 @@ package darkbum.saltymod.block;
 import java.util.ArrayList;
 import java.util.Random;
 
-import darkbum.saltymod.util.BlockUtil;
+import darkbum.saltymod.util.BlockUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
@@ -28,7 +28,7 @@ import darkbum.saltymod.common.config.ModConfigurationBlocks;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 
-import static darkbum.saltymod.util.BlockUtil.*;
+import static darkbum.saltymod.util.BlockUtils.*;
 
 /**
  * Block class for the saltworts block.
@@ -57,7 +57,7 @@ public class BlockSaltworts extends BlockBush implements IGrowable {
     /**
      * Constructs a new block instance with a given name and a creative tab.
      * <p>
-     * Also assigns a material and other base properties through {@link BlockUtil}.
+     * Also assigns a material and other base properties through {@link BlockUtils}.
      *
      * @param name The internal name of the block.
      * @param tab  The creative tab in which the block appears.

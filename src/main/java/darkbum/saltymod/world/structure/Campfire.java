@@ -3,11 +3,11 @@ package darkbum.saltymod.world.structure;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import darkbum.saltymod.init.ModBlocks;
-import darkbum.saltymod.world.StructureUtils;
+import darkbum.saltymod.util.StructureUtils;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-import darkbum.saltymod.world.StructureUtils.Rotation;
+import darkbum.saltymod.util.StructureUtils.Rotation;
 
 public class Campfire {
 

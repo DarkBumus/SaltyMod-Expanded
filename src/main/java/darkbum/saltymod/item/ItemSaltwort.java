@@ -13,7 +13,7 @@ import darkbum.saltymod.common.proxy.CommonProxy;
 import darkbum.saltymod.network.SaltwortMessage;
 
 import static darkbum.saltymod.init.ModBlocks.*;
-import static darkbum.saltymod.util.ItemUtil.*;
+import static darkbum.saltymod.util.ItemUtils.*;
 
 /**
  * Item class for the saltwort item.

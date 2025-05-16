@@ -13,7 +13,7 @@ import darkbum.saltymod.init.ModItems;
 
 public class SlotEvaporator extends Slot {
 
-    private EntityPlayer thePlayer;
+    private final EntityPlayer thePlayer;
 
     private int count;
 

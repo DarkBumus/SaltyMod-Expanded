@@ -2,7 +2,7 @@ package darkbum.saltymod.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.util.BlockUtil;
+import darkbum.saltymod.util.BlockUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-import static darkbum.saltymod.util.BlockUtil.*;
+import static darkbum.saltymod.util.BlockUtils.*;
 
 /**
  * Block class for the mill block.
@@ -39,12 +39,15 @@ public class BlockMill extends Block {
     private IIcon iconFront;
 
     @SideOnly(Side.CLIENT)
-    private IIcon iconBack;
+    private IIcon iconBackOff;
+
+    @SideOnly(Side.CLIENT)
+    private IIcon iconBackOn;
 
     /**
      * Constructs a new block instance with a given name and a creative tab.
      * <p>
-     * Also assigns a material and other base properties through {@link BlockUtil}.
+     * Also assigns a material and other base properties through {@link BlockUtils}.
      *
      * @param name The internal name of the block.
      * @param tab  The creative tab in which the block appears.
@@ -64,12 +67,13 @@ public class BlockMill extends Block {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister icon) {
-        this.iconBottom = icon.registerIcon("saltymod:mill_bottom");
-        this.iconTop = icon.registerIcon("saltymod:mill_top");
-        this.iconSidesOff = icon.registerIcon("saltymod:mill_side_off");
-        this.iconSidesOn = icon.registerIcon("saltymod:mill_side_on");
-        this.iconFront = icon.registerIcon("saltymod:mill_front");
-        this.iconBack = icon.registerIcon("saltymod:mill_back");
+        iconBottom = icon.registerIcon("saltymod:mill_bottom");
+        iconTop = icon.registerIcon("saltymod:mill_top");
+        iconSidesOff = icon.registerIcon("saltymod:mill_side_off");
+        iconSidesOn = icon.registerIcon("saltymod:mill_side_on");
+        iconFront = icon.registerIcon("saltymod:mill_front");
+        iconBackOff = icon.registerIcon("saltymod:mill_back_off");
+        iconBackOn = icon.registerIcon("saltymod:mill_back_on");
     }
 
     /**
@@ -83,16 +87,16 @@ public class BlockMill extends Block {
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
         if (meta < 0 || meta > 7) return null;
-        IIcon[] icons = {iconBottom, iconTop, iconBack, iconFront, iconSidesOff, iconSidesOn};
+        IIcon[] icons = {iconBottom, iconTop, iconBackOff, iconBackOn, iconFront, iconSidesOff, iconSidesOn};
         int[][] iconMatrix = {
-            {0, 1, 3, 2, 4, 4},
-            {0, 1, 4, 4, 2, 3},
-            {0, 1, 2, 3, 4, 4},
-            {0, 1, 4, 4, 3, 2},
-            {0, 1, 3, 2, 5, 5},
-            {0, 1, 5, 5, 2, 3},
-            {0, 1, 2, 3, 5, 5},
-            {0, 1, 5, 5, 3, 2},
+            {0, 1, 4, 2, 5, 5},
+            {0, 1, 5, 5, 2, 4},
+            {0, 1, 2, 4, 5, 5},
+            {0, 1, 5, 5, 4, 2},
+            {0, 1, 4, 3, 6, 6},
+            {0, 1, 6, 6, 3, 4},
+            {0, 1, 3, 4, 6, 6},
+            {0, 1, 6, 6, 4, 3},
         };
         return icons[iconMatrix[meta][side]];
     }
@@ -110,7 +114,7 @@ public class BlockMill extends Block {
      */
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
-        BlockUtil.setBlockDirectionFromEntity(world, x, y, z, entity);
+        BlockUtils.setBlockDirectionFromEntity(world, x, y, z, entity);
     }
 
     @Override

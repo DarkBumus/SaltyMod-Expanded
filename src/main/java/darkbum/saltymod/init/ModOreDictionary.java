@@ -4,6 +4,7 @@ import darkbum.saltymod.tileentity.TileEntityEvaporator;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 import static darkbum.saltymod.init.ModExternalItemLoader.*;
 import static net.minecraftforge.oredict.OreDictionary.*;
@@ -38,6 +39,7 @@ public class ModOreDictionary {
         Item StriderFlankRaw = netherliciousItems.get("StriderFlankRaw");
         Item StriderFlankCooked = netherliciousItems.get("StriderFlankCooked");
 
+        Block magma = etFuturumBlocks.get("magma");
         Block nether_fungus = etFuturumBlocks.get("nether_fungus");
         Item suspicious_stew = etFuturumItems.get("suspicious_stew");
         Item mutton_raw = etFuturumItems.get("mutton_raw");
@@ -51,6 +53,9 @@ public class ModOreDictionary {
         Item sweet_berries = etFuturumItems.get("sweet_berries");
 
         Item food = biomesOPlentyItems.get("food");
+
+        Block campfire = campfireBackportBlocks.get("campfire");
+        Block soul_campfire = campfireBackportBlocks.get("soul_campfire");
 
         // Salty Mod Ore Dictionaries
         registerOre("blockMushroom", red_mushroom);
@@ -218,6 +223,25 @@ public class ModOreDictionary {
         registerOre("beeResistant", new ItemStack(mud_leggings, 1, WILDCARD_VALUE), mudArmorBeeResistant);
         registerOre("beeResistant", new ItemStack(mud_boots, 1, WILDCARD_VALUE), mudArmorBeeResistant);
 
+        registerOre("blockHeater", flowing_lava);
+        registerOre("blockHeater", lava);
+        registerOre("blockHeater", fire);
+        registerOre("blockHeater", lit_furnace);
+        registerOre("blockHeater", lit_stove);
+
+        registerOre("itemPinch", salt_pinch);
+        registerOre("itemPinch", sugar_pinch);
+
+        registerOre("itemVessel", bucket);
+        registerOre("itemVessel", water_bucket);
+        registerOre("itemVessel", new ItemStack(potionitem, 1, 0));
+        registerOre("itemVessel", glass_bottle);
+        registerOre("itemVessel", fizzy_drink);
+
+        registerOre("itemBowl", bowl);
+
+        registerOre("itemSpade", new ItemStack(wooden_shovel, 1, OreDictionary.WILDCARD_VALUE));
+
         //External Ore Dictionaries
         registerOre("itemSweetener", honeycombItem, honeycombItem != null);
         registerOre("itemHoney", honeycombItem, honeycombItem != null);
@@ -250,5 +274,10 @@ public class ModOreDictionary {
 
         registerOre("itemSweetener", new ItemStack(food, 1, 9), food != null);
         registerOre("itemHoney", new ItemStack(food, 1, 9), food != null);
+
+        registerOre("blockHeater", magma);
+
+        registerOre("blockHeater", campfire);
+        registerOre("blockHeater", soul_campfire);
     }
 }

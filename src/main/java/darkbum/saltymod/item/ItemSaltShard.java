@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import darkbum.saltymod.init.ModAchievementList;
 import darkbum.saltymod.init.ModItems;
 
-import static darkbum.saltymod.util.BlockUtil.*;
+import static darkbum.saltymod.util.BlockUtils.*;
 
 /**
  * Item class for the salt shard item.

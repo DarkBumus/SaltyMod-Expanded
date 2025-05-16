@@ -13,8 +13,17 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+/**
+ * Recipe class for Deprecated Recipes.
+ *
+ * @author DarkBum
+ * @since 2.0.0
+ */
 public class DeprecatedRecipes {
 
+    /**
+     * Initializes all deprecated recipes.
+     */
     public static void init() {
 
         Block nether_fungus = ModExternalItemLoader.etFuturumBlocks.get("nether_fungus");

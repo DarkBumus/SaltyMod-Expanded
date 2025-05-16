@@ -1,4 +1,4 @@
-package darkbum.saltymod.world;
+package darkbum.saltymod.util;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.World;

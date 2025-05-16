@@ -1,14 +1,14 @@
 package darkbum.saltymod.world.structure;
 
 import darkbum.saltymod.init.ModBlocks;
-import darkbum.saltymod.world.StructureUtils;
+import darkbum.saltymod.util.StructureUtils;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
-import darkbum.saltymod.world.StructureUtils.Rotation;
+import darkbum.saltymod.util.StructureUtils.Rotation;
 import net.minecraftforge.common.ChestGenHooks;
 
 import java.util.Random;

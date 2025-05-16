@@ -11,7 +11,7 @@ import org.lwjgl.opengl.GL11;
 
 public class GuiPress extends GuiContainer {
 
-    private TileEntityPress tileEntityPress;
+    private final TileEntityPress tileEntityPress;
 
     private static final ResourceLocation resourceLocation = new ResourceLocation("saltymod", "textures/gui/container/press.png");
 
@@ -38,18 +38,18 @@ public class GuiPress extends GuiContainer {
         drawTexturedModalRect(x, y, 0, 0, this.xSize, this.ySize);
 
         if (this.tileEntityPress.isRunning()) {
-            int progress = this.tileEntityPress.getPressProgressScale(24);
-            drawTexturedModalRect(x + 76, y + 36, 176, 14, progress + 1, 16);
+            int progress = this.tileEntityPress.getPressProgressScale(16);
+
+            drawTexturedModalRect(x + 73, y + 36, 176, 14, progress, 14);
+            drawTexturedModalRect(x + 88 + (15 - progress), y + 36, 191 + (15 - progress), 14, progress, 14);
         }
 
         if (this.tileEntityPress.isHeaterNearby) {
-            // Zeichnen des Overlays an der Position 63, 18
             drawTexturedModalRect(x + 63, y + 18, 176, 0, 14, 14);
         }
 
         if (this.tileEntityPress.isMillNearby) {
-            // Zeichnen des Overlays an der Position 63, 18
-            drawTexturedModalRect(x + 99, y + 18, 190, 0, 14, 14); // Anpassen der Größe und Position nach Bedarf
+            drawTexturedModalRect(x + 99, y + 18, 190, 0, 14, 14);
         }
     }
 }

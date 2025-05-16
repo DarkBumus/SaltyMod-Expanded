@@ -16,15 +16,12 @@ public class GuiEvaporatorButton extends GuiButton {
     }
 
     public void drawButton(Minecraft mc, int w, int h) {
-        if (this.visible) {
-            mc.getTextureManager()
-                .bindTexture(this.res);
+        if (visible) {
+            mc.getTextureManager().bindTexture(res);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-            this.field_146123_n = (w >= this.xPosition && h >= this.yPosition
-                && w < this.xPosition + this.width
-                && h < this.yPosition + this.height);
-            if (this.enabled && this.field_146123_n)
-                drawTexturedModalRect(this.xPosition, this.yPosition, 190, 0, this.width, this.height);
+            field_146123_n = (w >= xPosition && h >= yPosition && w < xPosition + width && h < yPosition + height);
+            if (enabled && field_146123_n)
+                drawTexturedModalRect(xPosition, yPosition, 190, 0, width, height);
         }
     }
 }

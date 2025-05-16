@@ -3,7 +3,7 @@ package darkbum.saltymod.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.init.ModBlocks;
-import darkbum.saltymod.util.BlockUtil;
+import darkbum.saltymod.util.BlockUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static darkbum.saltymod.util.BlockUtil.*;
+import static darkbum.saltymod.util.BlockUtils.*;
 
 /**
  * Parent class for the stove block.
@@ -53,7 +53,7 @@ public class BlockStove {
         /**
          * Constructs a new block instance with a given name and a creative tab.
          * <p>
-         * Also assigns a material and other base properties through {@link BlockUtil}.
+         * Also assigns a material and other base properties through {@link BlockUtils}.
          *
          * @param name  The internal name of the block.
          * @param tab   The creative tab in which the block appears.
@@ -175,7 +175,7 @@ public class BlockStove {
         /**
          * Constructs a new block instance with a given name and a creative tab.
          * <p>
-         * Also assigns a material and other base properties through {@link BlockUtil}.
+         * Also assigns a material and other base properties through {@link BlockUtils}.
          *
          * @param name  The internal name of the block.
          * @param tab   The creative tab in which the block appears.
@@ -298,18 +298,30 @@ public class BlockStove {
         @Override
         public void randomDisplayTick(World world, int x, int y, int z, Random random) {
             float f = ((float) (4 + random.nextInt(8) + 1) + random.nextFloat()) / 16.0F;
+            int meta = world.getBlockMetadata(x, y, z);
+            float centerX = x + 0.5F;
+            float centerY = y + 0.0F + random.nextFloat() * 6.0F / 16.0F;
+            float centerZ = z + 0.5F;
+
+            float sideOffset = 0.52F;
+            float randomOffset = random.nextFloat() * 0.6F - 0.3F;
 
             if (random.nextFloat() < f) {
                 float pitch = 0.9F + random.nextFloat() * 0.1F;
-                world.playSound(
-                        (double) x + 0.5F,
-                        (double) y + 0.5F,
-                        (double) z + 0.5F,
-                        "saltymod:block.stove.crackle",
-                        1.0F,
-                        pitch,
-                        false
-                );
+                world.playSound((double) x + 0.5F, (double) y + 0.5F, (double) z + 0.5F, "saltymod:block.stove.crackle", 1.0F, pitch, false);
+            }
+            if (meta == 0) {
+                world.spawnParticle("smoke", (centerX + randomOffset), centerY, (centerZ + sideOffset), 0.0D, 0.0D, 0.0D);
+                world.spawnParticle("flame", (centerX + randomOffset), centerY, (centerZ + sideOffset), 0.0D, 0.0D, 0.0D);
+            } else if (meta == 1) {
+                world.spawnParticle("smoke", (centerX - sideOffset), centerY, (centerZ + randomOffset), 0.0D, 0.0D, 0.0D);
+                world.spawnParticle("flame", (centerX - sideOffset), centerY, (centerZ + randomOffset), 0.0D, 0.0D, 0.0D);
+            } else if (meta == 2) {
+                world.spawnParticle("smoke", (centerX + randomOffset), centerY, (centerZ - sideOffset), 0.0D, 0.0D, 0.0D);
+                world.spawnParticle("flame", (centerX + randomOffset), centerY, (centerZ - sideOffset), 0.0D, 0.0D, 0.0D);
+            } else if (meta == 3) {
+                world.spawnParticle("smoke", (centerX + sideOffset), centerY, (centerZ + randomOffset), 0.0D, 0.0D, 0.0D);
+                world.spawnParticle("flame", (centerX + sideOffset), centerY, (centerZ + randomOffset), 0.0D, 0.0D, 0.0D);
             }
         }
     }

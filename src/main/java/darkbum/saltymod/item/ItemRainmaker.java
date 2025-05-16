@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 
 import darkbum.saltymod.entity.EntityRainmaker;
 
-import static darkbum.saltymod.util.ItemUtil.*;
+import static darkbum.saltymod.util.ItemUtils.*;
 
 /**
  * Item class for the rainmaker item.

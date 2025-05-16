@@ -1,27 +1,25 @@
 package darkbum.saltymod.world.worldgen;
 
 import darkbum.saltymod.init.ModBlocks;
-import darkbum.saltymod.world.StructureUtils;
+import darkbum.saltymod.util.StructureUtils;
 import darkbum.saltymod.world.structure.*;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import darkbum.saltymod.world.StructureUtils.Rotation;
+import darkbum.saltymod.util.StructureUtils.Rotation;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import static darkbum.saltymod.world.StructureUtils.rotateRelative;
+import static darkbum.saltymod.util.StructureUtils.rotateRelative;
 
 public class WorldGenBrickmakerCamp extends WorldGenerator {
     private static final List<Integer> woolMetaList = Arrays.asList(0, 7, 8, 12, 15);
-    private static final Random rand = new Random();
 
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z) {
-        // Zufällige Rotation für das gesamte Camp
         Rotation rotation = StructureUtils.Rotation.fromIndex(rand.nextInt(4));
 
         List<Block> validGround = Arrays.asList(Blocks.grass, Blocks.dirt, ModBlocks.salt_grass);
@@ -39,17 +37,14 @@ public class WorldGenBrickmakerCamp extends WorldGenerator {
         }
         Pos pos = new Pos();
 
-        // Untergrund vorbereiten
         StructureUtils.fillArea(world, x, y, z, 0, -3, 0, 19, -16, rotation, ModBlocks.salt_dirt_lite, 0);
         StructureUtils.fillArea(world, x, y, z, 0, -2, 0, 19, -16, rotation, ModBlocks.salt_dirt_lite, 0);
         StructureUtils.fillArea(world, x, y, z, 0, -1, 0, 19, -16, rotation, ModBlocks.salt_grass, 0);
 
-        // Bereich freiräumen
         for (int i = 0; i <= 9; i++) {
             StructureUtils.fillArea(world, x, y, z, 0, i, 0, 19, -16, rotation, Blocks.air, 0);
         }
 
-        // Zufällige Farben und Kisten für die Zelte
         int woolMetaTent1 = woolMetaList.get(rand.nextInt(woolMetaList.size()));
         boolean hasChestTent1 = rand.nextBoolean();
         Tent1 tent1 = new Tent1(woolMetaTent1, hasChestTent1);
@@ -63,13 +58,11 @@ public class WorldGenBrickmakerCamp extends WorldGenerator {
         boolean hasChestDryingPlace = rand.nextBoolean();
         DryingPlace dryingPlace = new DryingPlace(hasChestDryingPlace);
 
-        // Ursprüngliche Richtungen anpassen zur Gesamtdrehung
         Rotation tent1Rot = rotateRelative(Rotation.WEST, rotation);
         Rotation tent2Rot = rotateRelative(Rotation.NORTH, rotation);
         Rotation campfireRot = rotateRelative(Rotation.NORTH, rotation);
         Rotation dryingRot = rotateRelative(Rotation.NORTH, rotation);
 
-        // Bauteile platzieren – Positionen sind lokal zum Ursprung (x, z)
         {
             int[] p = pos.get(7, -1);
             tent1.placeAt(world, p[0], baseY, p[1], tent1Rot);

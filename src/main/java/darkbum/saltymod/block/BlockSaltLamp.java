@@ -2,7 +2,7 @@ package darkbum.saltymod.block;
 
 import java.util.Random;
 
-import darkbum.saltymod.util.BlockUtil;
+import darkbum.saltymod.util.BlockUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -11,7 +11,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 
 
-import static darkbum.saltymod.util.BlockUtil.*;
+import static darkbum.saltymod.util.BlockUtils.*;
 
 /**
  * Block class for the salt grass block.
@@ -25,7 +25,7 @@ public class BlockSaltLamp extends Block {
     /**
      * Constructs a new block instance with a given name and a creative tab.
      * <p>
-     * Also assigns a material and other base properties through {@link BlockUtil}.
+     * Also assigns a material and other base properties through {@link BlockUtils}.
      *
      * @param name The internal name of the block.
      * @param tab  The creative tab in which the block appears.
@@ -72,6 +72,6 @@ public class BlockSaltLamp extends Block {
      */
     @Override
     public void onEntityWalking(World world, int x, int y, int z, Entity entity) {
-        BlockUtil.handleEntityWalkingSaltVulnerableUpdate(world, x, y, z, entity, this);
+        BlockUtils.handleEntityWalkingSaltVulnerableUpdate(world, x, y, z, entity, this);
     }
 }

@@ -172,7 +172,7 @@ public class WorldGenSaltBigTree extends WorldGenAbstractTree {
                 if (i1 > 0) {
                     if (k == i1) {
                         meta = 4;
-                    } else if (l == i1) {
+                    } else {
                         meta = 8;
                     }
                 }

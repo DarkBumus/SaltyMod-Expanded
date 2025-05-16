@@ -14,7 +14,7 @@ import static darkbum.saltymod.inventory.container.ContainerClayOven.SLOT_OUTPUT
 
 public class GuiClayOven extends GuiContainer {
 
-    private TileEntityClayOven tileEntityClayOven;
+    private final TileEntityClayOven tileEntityClayOven;
 
     Slot slotClayOvenOutputLocked = inventorySlots.getSlot(SLOT_OUTPUT);
 

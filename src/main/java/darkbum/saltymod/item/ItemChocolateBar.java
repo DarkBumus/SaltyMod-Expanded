@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
-import static darkbum.saltymod.util.ItemUtil.*;
+import static darkbum.saltymod.util.ItemUtils.*;
 
 /**
  * Item class for the chocolate bar item.

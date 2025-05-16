@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
-import static darkbum.saltymod.util.ItemUtil.*;
+import static darkbum.saltymod.util.ItemUtils.*;
 /**
  * Item class for the tunneler's concoction item.
  * The tunneler's concoction is a salt food item with a special tooltip and message.

@@ -9,11 +9,8 @@ import darkbum.saltymod.item.ItemBee;
 
 public class SlotApiaryFuel extends Slot {
 
-    private EntityPlayer entityPlayer;
-
-    public SlotApiaryFuel(EntityPlayer entityPlayer, IInventory iInventory, int slotIndex, int x, int y) {
+    public SlotApiaryFuel(IInventory iInventory, int slotIndex, int x, int y) {
         super(iInventory, slotIndex, x, y);
-        setEntityPlayer(entityPlayer);
     }
 
     public boolean isItemValid(ItemStack itemStack) {
@@ -26,9 +23,5 @@ public class SlotApiaryFuel extends Slot {
 
     public void onPickupFromSlot(EntityPlayer entityPlayer, ItemStack itemStack) {
         super.onPickupFromSlot(entityPlayer, itemStack);
-    }
-
-    public void setEntityPlayer(EntityPlayer entityPlayer) {
-        this.entityPlayer = entityPlayer;
     }
 }

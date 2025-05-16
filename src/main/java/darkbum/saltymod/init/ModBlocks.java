@@ -116,8 +116,8 @@ public class ModBlocks {
         salt_crusted_oak_log = new BlockSaltCrustedLog("salt_crusted_oak_log", tab);
 
         evaporator = new BlockEvaporator("evaporator", tab, false, false);
-        lit_evaporator = new BlockEvaporator("evaporator", null, true, false).setLightLevel(0.9F);
-        steam_evaporator = new BlockEvaporator("evaporator", null, true, true).setLightLevel(0.9F);
+        lit_evaporator = new BlockEvaporator("evaporator", null, true, false).setLightLevel(0.875f);
+        steam_evaporator = new BlockEvaporator("evaporator", null, true, true).setLightLevel(0.875f);
 
         fish_farm = new BlockFishFarm("fish_farm", tab);
 

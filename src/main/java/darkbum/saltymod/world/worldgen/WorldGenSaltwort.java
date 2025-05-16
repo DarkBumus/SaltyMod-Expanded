@@ -9,7 +9,7 @@ import darkbum.saltymod.init.ModBlocks;
 
 public class WorldGenSaltwort extends WorldGenerator {
 
-    private int GroupSize;
+    private final int GroupSize;
 
     public WorldGenSaltwort(int size) {
         this.GroupSize = size;

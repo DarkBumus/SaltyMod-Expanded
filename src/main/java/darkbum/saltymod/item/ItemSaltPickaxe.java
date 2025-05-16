@@ -19,8 +19,8 @@ import net.minecraft.world.World;
 import java.util.List;
 
 import static darkbum.saltymod.init.ModExternalItemLoader.*;
-import static darkbum.saltymod.util.BlockUtil.*;
-import static darkbum.saltymod.util.ItemUtil.*;
+import static darkbum.saltymod.util.BlockUtils.*;
+import static darkbum.saltymod.util.ItemUtils.*;
 
 /**
  * Item class for the salt pickaxe item.

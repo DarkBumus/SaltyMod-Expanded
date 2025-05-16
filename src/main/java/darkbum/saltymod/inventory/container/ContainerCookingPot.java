@@ -14,8 +14,6 @@ public class ContainerCookingPot extends Container {
 
     private final TileEntityCookingPot tileEntityCookingPot;
 
-    private int lastCookingTime = 0;
-
     private static final int SLOT_INGRED_1 = 0;
     private static final int SLOT_INGRED_2 = 1;
     private static final int SLOT_INGRED_3 = 2;
@@ -32,7 +30,7 @@ public class ContainerCookingPot extends Container {
     private static final int SLOT_TOTAL = SLOT_HOTBAR_START + 9;
 
     public ContainerCookingPot(InventoryPlayer playerInventory, TileEntityCookingPot TileEntityCookingPot) {
-        this.tileEntityCookingPot = TileEntityCookingPot;
+        tileEntityCookingPot = TileEntityCookingPot;
 
         addSlotToContainer(new SlotMachineIngred(playerInventory.player, TileEntityCookingPot, SLOT_INGRED_1, 30, 17));
         addSlotToContainer(new SlotMachineIngred(playerInventory.player, TileEntityCookingPot, SLOT_INGRED_2, 48, 17));
@@ -41,8 +39,8 @@ public class ContainerCookingPot extends Container {
         addSlotToContainer(new SlotMachineIngred(playerInventory.player, TileEntityCookingPot, SLOT_INGRED_5, 48, 35));
         addSlotToContainer(new SlotMachineIngred(playerInventory.player, TileEntityCookingPot, SLOT_INGRED_6, 66, 35));
         addSlotToContainer(new SlotCookingPotOutputLocked(playerInventory.player, TileEntityCookingPot, SLOT_OUTPUT, 124, 26, TileEntityCookingPot, SLOT_BOWL));
-        addSlotToContainer(new SlotCookingPotPinch(playerInventory.player, TileEntityCookingPot, SLOT_PINCH, 8, 17));
-        addSlotToContainer(new SlotCookingPotBowl(playerInventory.player, TileEntityCookingPot, SLOT_BOWL, 124, 55));
+        addSlotToContainer(new SlotCookingPotPinch(TileEntityCookingPot, SLOT_PINCH, 8, 17));
+        addSlotToContainer(new SlotCookingPotBowl(TileEntityCookingPot, SLOT_BOWL, 124, 55));
 
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 9; col++) {
@@ -63,13 +61,13 @@ public class ContainerCookingPot extends Container {
     public void detectAndSendChanges() {
         super.detectAndSendChanges();
         // Optional: erzwinge Slot-Update
-        for (int i = 0; i < this.inventorySlots.size(); ++i) {
-            Slot slot = (Slot)this.inventorySlots.get(i);
+        for (int i = 0; i < inventorySlots.size(); ++i) {
+            Slot slot = inventorySlots.get(i);
             if (slot.getHasStack()) {
                 ItemStack stack = slot.getStack();
                 // Kleine Maßnahme gegen Jitter:
-                if (!ItemStack.areItemStacksEqual(stack, this.inventoryItemStacks.get(i))) {
-                    this.inventoryItemStacks.set(i, stack.copy());
+                if (!ItemStack.areItemStacksEqual(stack, inventoryItemStacks.get(i))) {
+                    inventoryItemStacks.set(i, stack.copy());
                 }
             }
         }
@@ -79,19 +77,19 @@ public class ContainerCookingPot extends Container {
     @Override
     public void updateProgressBar(int id, int value) {
         if (id == 0) {
-            this.tileEntityCookingPot.cookingTime = value;
+            tileEntityCookingPot.cookingTime = value;
         }
     }
 
     @Override
     public boolean canInteractWith(EntityPlayer player) {
-        return this.tileEntityCookingPot.isUseableByPlayer(player);
+        return tileEntityCookingPot.isUseableByPlayer(player);
     }
 
     @Override
     public ItemStack transferStackInSlot(EntityPlayer player, int slotIndex) {
         ItemStack itemStack = null;
-        Slot slot = this.inventorySlots.get(slotIndex);
+        Slot slot = inventorySlots.get(slotIndex);
 
         if (slot != null && slot.getHasStack()) {
             ItemStack stackInSlot = slot.getStack();
@@ -118,9 +116,9 @@ public class ContainerCookingPot extends Container {
                 }
 
                 if (!merged) {
-                    if (slotIndex >= SLOT_PLAYER_INV_START && slotIndex < SLOT_HOTBAR_START) {
+                    if (slotIndex < SLOT_HOTBAR_START) {
                         merged = mergeItemStack(stackInSlot, SLOT_HOTBAR_START, SLOT_TOTAL, false);
-                    } else if (slotIndex >= SLOT_HOTBAR_START && slotIndex < SLOT_TOTAL) {
+                    } else if (slotIndex < SLOT_TOTAL) {
                         merged = mergeItemStack(stackInSlot, SLOT_PLAYER_INV_START, SLOT_HOTBAR_START, false);
                     }
 

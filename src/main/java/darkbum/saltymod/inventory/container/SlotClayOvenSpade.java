@@ -8,15 +8,12 @@ import net.minecraft.item.ItemStack;
 
 public class SlotClayOvenSpade extends Slot {
 
-    private final EntityPlayer player;
-
     public boolean isItemValid(ItemStack stack) {
         return MachineUtilRegistry.isValidSpade(stack);
     }
 
-    public SlotClayOvenSpade(EntityPlayer player, IInventory inventory, int index, int xPosition, int yPosition) {
+    public SlotClayOvenSpade(IInventory inventory, int index, int xPosition, int yPosition) {
         super(inventory, index, xPosition, yPosition);
-        this.player = player;
     }
 
     @Override

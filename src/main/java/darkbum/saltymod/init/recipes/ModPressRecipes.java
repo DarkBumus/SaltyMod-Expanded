@@ -72,7 +72,7 @@ public class ModPressRecipes {
             true,
             false,
             new ItemStack(glass_bottle));
-        addPressRecipe(new ItemStack(honeycomb),
+/*        addPressRecipe(new ItemStack(honeycomb),
             new boolean[]{enableHoney, honey_bottle == null},
             new ItemStack(royal_jelly),
             new ItemStack(waxcomb),
@@ -85,7 +85,7 @@ public class ModPressRecipes {
             null,
             true,
             false,
-            new ItemStack(glass_bottle));
+            new ItemStack(glass_bottle));*/
 
         addPressRecipe(new ItemStack(horn),
             new boolean[]{enableHornedSheep},

@@ -185,7 +185,9 @@ public class SaltyMod {
         }
 
         // Load deprecated (legacy) recipes
-        DeprecatedRecipes.init();
+        if (!enableMachines || enableDeprecatedRecipes) {
+            DeprecatedRecipes.init();
+        }
 
         proxy.postInit(event);
 
@@ -202,7 +204,6 @@ public class SaltyMod {
  * - Underground Salt Lakes? [MAYBE]
  * - Underground Salt Caves/Tunnels/Mines? [MAYBE]
  * - Recipe Book [LATER]
- * - Fix up the latest Config changes
  * - Add Press/Cooking Pot/Clay Oven to NEI
  * - Slimes! [LATER]
  * - Rice, Tea, Brewing [LATER]

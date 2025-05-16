@@ -4,7 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.SaltyMod;
 import darkbum.saltymod.tileentity.TileEntityPress;
-import darkbum.saltymod.util.BlockUtil;
+import darkbum.saltymod.util.BlockUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -23,7 +23,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-import static darkbum.saltymod.util.BlockUtil.*;
+import static darkbum.saltymod.util.BlockUtils.*;
 
 /**
  * Block class for the press block.
@@ -54,7 +54,7 @@ public class BlockPress extends BlockContainer {
     /**
      * Constructs a new block instance with a given name and a creative tab.
      * <p>
-     * Also assigns a material and other base properties through {@link BlockUtil}.
+     * Also assigns a material and other base properties through {@link BlockUtils}.
      *
      * @param name The internal name of the block.
      * @param tab  The creative tab in which the block appears.
@@ -127,7 +127,7 @@ public class BlockPress extends BlockContainer {
      */
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
-        BlockUtil.setBlockDirectionFromEntity(world, x, y, z, entity);
+        BlockUtils.setBlockDirectionFromEntity(world, x, y, z, entity);
     }
 
     /**

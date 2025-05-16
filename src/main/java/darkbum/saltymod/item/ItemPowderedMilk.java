@@ -7,7 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import static darkbum.saltymod.util.ItemUtil.addItemTooltip;
+import static darkbum.saltymod.util.ItemUtils.addItemTooltip;
 
 /**
  * Item class for the powdered milk item.

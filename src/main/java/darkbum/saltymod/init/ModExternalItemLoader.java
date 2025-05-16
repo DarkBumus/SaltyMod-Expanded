@@ -100,6 +100,7 @@ public class ModExternalItemLoader {
         etFuturumItems.put("chorus_fruit", findItem("etfuturum", "chorus_fruit"));
         etFuturumItems.put("sweet_berries", findItem("etfuturum", "sweet_berries"));
         etFuturumItems.put("dye", findItem("etfuturum", "dye"));
+        etFuturumItems.put("honey_bottle", findItem("etfuturum", "honey_bottle"));
         etFuturumBlocks.put("blue_ice", findBlock("etfuturum", "blue_ice"));
         etFuturumBlocks.put("magma", findBlock("etfuturum", "magma"));
         etFuturumBlocks.put("nether_fungus", findBlock("etfuturum", "nether_fungus"));

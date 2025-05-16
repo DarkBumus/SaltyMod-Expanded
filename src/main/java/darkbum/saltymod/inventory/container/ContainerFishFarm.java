@@ -12,7 +12,7 @@ import darkbum.saltymod.tileentity.TileEntityFishFarm;
 
 public class ContainerFishFarm extends Container {
 
-    private TileEntityFishFarm fishfarm;
+    private final TileEntityFishFarm fishfarm;
 
     private int lastProduceTime = 0;
 
@@ -39,34 +39,29 @@ public class ContainerFishFarm extends Container {
     private static final int SLOT_OUTPUT_16 = 16;
     private static final int SLOT_OUTPUT_17 = 17;
     private static final int SLOT_INPUT = 18;
-    private static final int SLOT_COUNT_MACHINE = 19;
-
-    private static final int SLOT_PLAYER_INV_START = SLOT_COUNT_MACHINE;
-    private static final int SLOT_HOTBAR_START = SLOT_PLAYER_INV_START + 27;
-    private static final int SLOT_TOTAL = SLOT_HOTBAR_START + 9;
 
     public ContainerFishFarm(InventoryPlayer playerInventory, TileEntityFishFarm tileEntityFishFarm) {
         this.fishfarm = tileEntityFishFarm;
 
-        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_0, 8, 17));
-        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_1, 8, 35));
-        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_2, 8, 53));
-        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_3, 26, 17));
-        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_4, 26, 35));
-        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_5, 26, 53));
-        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_6, 44, 17));
-        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_7, 44, 35));
-        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_8, 44, 53));
-        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_9, 116, 17));
-        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_10, 116, 35));
-        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_11, 116, 53));
-        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_12, 134, 17));
-        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_13, 134, 35));
-        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_14, 134, 53));
-        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_15, 152, 17));
-        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_16, 152, 35));
-        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_OUTPUT_17, 152, 53));
-        addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityFishFarm, SLOT_INPUT, 80, 35));
+        addSlotToContainer(new SlotMachineOutput(tileEntityFishFarm, SLOT_OUTPUT_0, 8, 17));
+        addSlotToContainer(new SlotMachineOutput(tileEntityFishFarm, SLOT_OUTPUT_1, 8, 35));
+        addSlotToContainer(new SlotMachineOutput(tileEntityFishFarm, SLOT_OUTPUT_2, 8, 53));
+        addSlotToContainer(new SlotMachineOutput(tileEntityFishFarm, SLOT_OUTPUT_3, 26, 17));
+        addSlotToContainer(new SlotMachineOutput(tileEntityFishFarm, SLOT_OUTPUT_4, 26, 35));
+        addSlotToContainer(new SlotMachineOutput(tileEntityFishFarm, SLOT_OUTPUT_5, 26, 53));
+        addSlotToContainer(new SlotMachineOutput(tileEntityFishFarm, SLOT_OUTPUT_6, 44, 17));
+        addSlotToContainer(new SlotMachineOutput(tileEntityFishFarm, SLOT_OUTPUT_7, 44, 35));
+        addSlotToContainer(new SlotMachineOutput(tileEntityFishFarm, SLOT_OUTPUT_8, 44, 53));
+        addSlotToContainer(new SlotMachineOutput(tileEntityFishFarm, SLOT_OUTPUT_9, 116, 17));
+        addSlotToContainer(new SlotMachineOutput(tileEntityFishFarm, SLOT_OUTPUT_10, 116, 35));
+        addSlotToContainer(new SlotMachineOutput(tileEntityFishFarm, SLOT_OUTPUT_11, 116, 53));
+        addSlotToContainer(new SlotMachineOutput(tileEntityFishFarm, SLOT_OUTPUT_12, 134, 17));
+        addSlotToContainer(new SlotMachineOutput(tileEntityFishFarm, SLOT_OUTPUT_13, 134, 35));
+        addSlotToContainer(new SlotMachineOutput(tileEntityFishFarm, SLOT_OUTPUT_14, 134, 53));
+        addSlotToContainer(new SlotMachineOutput(tileEntityFishFarm, SLOT_OUTPUT_15, 152, 17));
+        addSlotToContainer(new SlotMachineOutput(tileEntityFishFarm, SLOT_OUTPUT_16, 152, 35));
+        addSlotToContainer(new SlotMachineOutput(tileEntityFishFarm, SLOT_OUTPUT_17, 152, 53));
+        addSlotToContainer(new SlotFishFarmFuel(tileEntityFishFarm, SLOT_INPUT, 80, 35));
 
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 9; col++) {
@@ -89,8 +84,7 @@ public class ContainerFishFarm extends Container {
 
     public void detectAndSendChanges() {
         super.detectAndSendChanges();
-        for (int i = 0; i < this.crafters.size(); i++) {
-            ICrafting crafter = this.crafters.get(i);
+        for (ICrafting crafter : this.crafters) {
             if (this.lastProduceTime != this.fishfarm.produceTime)
                 crafter.sendProgressBarUpdate(this, 1, this.fishfarm.produceTime);
             if (this.lastRunTime != this.fishfarm.runTime)
@@ -112,9 +106,9 @@ public class ContainerFishFarm extends Container {
             if (slotIndex >= 19) {
                 if (slotStack.getItem() == ModItems.fish_bait) {
                     if (!mergeItemStack(slotStack, 18, 19, false)) return null;
-                } else if (slotIndex >= 19 && slotIndex < 46) {
+                } else if (slotIndex < 46) {
                     if (!mergeItemStack(slotStack, 46, 55, false)) return null;
-                } else if (slotIndex >= 46 && slotIndex < 55 && !mergeItemStack(slotStack, 19, 46, false)) {
+                } else if (slotIndex < 55 && !mergeItemStack(slotStack, 19, 46, false)) {
                     return null;
                 }
             } else if (!mergeItemStack(slotStack, 19, 55, false)) {

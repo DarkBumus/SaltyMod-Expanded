@@ -90,9 +90,9 @@ public class ModAchievementList {
         Items.bucket,
         farm_salt).registerStat();
 
-    public static Achievement explode_evaporator = new Achievement(
-        "achievement.explode_evaporator",
-        "explode_evaporator",
+    public static Achievement explodespec_evaporator = new Achievement(
+        "achievement.explodespec_evaporator",
+        "explodespec_evaporator",
         4,
         -4,
         evaporator,
@@ -221,7 +221,7 @@ public class ModAchievementList {
         farm_salt,
         make_rain,
         farm_evaporator,
-        explode_evaporator,
+        explodespec_evaporator,
         nav_salt_lake,
         find_mineral_mud,
         full_mud_armor,

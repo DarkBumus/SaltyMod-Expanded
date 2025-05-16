@@ -19,6 +19,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileEntityPress extends TileEntity implements ISidedInventory {
 
+    @SuppressWarnings("unused")
     private String inventoryName;
 
     private ItemStack[] inventory = new ItemStack[4];
@@ -54,16 +55,16 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
     @Override
     public ItemStack decrStackSize(int index, int count) {
         if (inventory[index] != null) {
+            ItemStack itemstack;
             if (inventory[index].stackSize <= count) {
-                ItemStack itemstack = inventory[index];
+                itemstack = inventory[index];
                 inventory[index] = null;
-                return itemstack;
             } else {
-                ItemStack itemstack = inventory[index].splitStack(count);
+                itemstack = inventory[index].splitStack(count);
                 if (inventory[index].stackSize == 0)
                     inventory[index] = null;
-                return itemstack;
             }
+            return itemstack;
         }
         return null;
     }
@@ -157,7 +158,10 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
                     updated = true;
                 }
             } else {
-                pressingTime = 0;
+                if (pressingTime != 0) {
+                    pressingTime = 0;
+                    updated = true;
+                }
             }
 
             if (updated || pressingTime > 0) {
@@ -179,9 +183,7 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
         if (!isMillRequirementMet(recipe)) return false;
         if (!isVesselRequirementMet(recipe, vessel)) return false;
         if (!canAcceptOutput(inventory[1], recipe.output1)) return false;
-        if (!canAcceptOutput(inventory[2], recipe.output2)) return false;
-
-        return true;
+        return canAcceptOutput(inventory[2], recipe.output2);
     }
 
     private boolean isHeaterRequirementMet(PressingRecipe.PressRecipe recipe) {
@@ -214,7 +216,6 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
         PressingRecipe.PressRecipe recipe = PressingRecipe.pressing().getRecipeFor(input, vessel);
         if (recipe == null) return;
 
-        // Ausgabe 1
         if (recipe.output1 != null) {
             if (inventory[1] == null) {
                 inventory[1] = recipe.output1.copy();
@@ -223,7 +224,6 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
             }
         }
 
-        // Ausgabe 2
         if (recipe.output2 != null) {
             if (inventory[2] == null) {
                 inventory[2] = recipe.output2.copy();
@@ -232,7 +232,6 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
             }
         }
 
-        // Eingabeware verringern
         inventory[0].stackSize--;
         if (inventory[0].stackSize <= 0) inventory[0] = null;
 
@@ -278,20 +277,13 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
 
         int targetSide = -1;
 
-        switch (blockMeta) {
-            case 0:
-                targetSide = 2;
-                break;
-            case 1:
-                targetSide = 5;
-                break;
-            case 2:
-                targetSide = 3;
-                break;
-            case 3:
-                targetSide = 4;
-                break;
-        }
+        targetSide = switch (blockMeta) {
+            case 0 -> 2;
+            case 1 -> 5;
+            case 2 -> 3;
+            case 3 -> 4;
+            default -> targetSide;
+        };
 
         if (targetSide != -1) {
             Block neighborBlock = worldObj.getBlock(xCoord + ForgeDirection.VALID_DIRECTIONS[targetSide].offsetX,
@@ -322,7 +314,7 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
         for (int i = 0; i < itemList.tagCount(); i++) {
             NBTTagCompound itemTag = itemList.getCompoundTagAt(i);
             int slot = itemTag.getByte("Slot") & 255;
-            if (slot >= 0 && slot < inventory.length) {
+            if (slot < inventory.length) {
                 inventory[slot] = ItemStack.loadItemStackFromNBT(itemTag);
             }
         }

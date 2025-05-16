@@ -1,8 +1,6 @@
 package darkbum.saltymod.inventory.gui;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import darkbum.saltymod.util.EvaporatingRecipe;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -10,9 +8,11 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
 import org.lwjgl.opengl.GL11;
@@ -24,13 +24,18 @@ import darkbum.saltymod.inventory.container.ContainerEvaporator;
 import darkbum.saltymod.network.EvaporatorButtonMessage;
 import darkbum.saltymod.tileentity.TileEntityEvaporator;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static darkbum.saltymod.common.config.ModConfigurationBlocks.*;
+
 @SideOnly(Side.CLIENT)
 public class GuiEvaporator extends GuiContainer {
 
-    private static final ResourceLocation guiTextures = new ResourceLocation(
+    private static final ResourceLocation resourceLocation = new ResourceLocation(
         "saltymod:textures/gui/container/evaporator.png");
 
-    private TileEntityEvaporator tileEntityEvaporator;
+    private final TileEntityEvaporator tileEntityEvaporator;
 
     private GuiEvaporatorButton button;
 
@@ -41,92 +46,140 @@ public class GuiEvaporator extends GuiContainer {
 
     public void initGui() {
         super.initGui();
-        this.buttonList.add(this.button = new GuiEvaporatorButton(guiTextures, 1, this.guiLeft + 97, this.guiTop + 16));
-        this.button.enabled = false;
+        buttonList.add(button = new GuiEvaporatorButton(resourceLocation, 1, guiLeft + 49, guiTop + 62));
+        button.enabled = false;
     }
 
     public void updateScreen() {
         super.updateScreen();
-        this.button.enabled = (this.tileEntityEvaporator.liquidLevel > 0);
+        button.enabled = (tileEntityEvaporator.liquidLevel > 0);
     }
 
     protected void actionPerformed(GuiButton button) {
-        CommonProxy.network.sendToServer(new EvaporatorButtonMessage(this.tileEntityEvaporator.xCoord, this.tileEntityEvaporator.yCoord, this.tileEntityEvaporator.zCoord));
+        CommonProxy.network.sendToServer(new EvaporatorButtonMessage(tileEntityEvaporator.xCoord, tileEntityEvaporator.yCoord, tileEntityEvaporator.zCoord));
     }
 
     protected void drawGuiContainerForegroundLayer(int par_1, int par_2) {
-        String s = this.tileEntityEvaporator.hasCustomInventoryName() ? this.tileEntityEvaporator.getInventoryName()
-            : I18n.format(this.tileEntityEvaporator.getInventoryName());
-        this.fontRendererObj
-            .drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
-        this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
+        String string = tileEntityEvaporator.hasCustomInventoryName() ? tileEntityEvaporator.getInventoryName() : I18n.format(tileEntityEvaporator.getInventoryName());
+        fontRendererObj.drawString(string, xSize / 2 - fontRendererObj.getStringWidth(string) / 2, 6, 4210752);
+        fontRendererObj.drawString(I18n.format("container.inventory"), 8, ySize - 96 + 2, 4210752);
     }
 
-    protected void drawGuiContainerBackgroundLayer(float par_1, int par_2, int par_3) {
+    @Override
+    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.getTextureManager()
-            .bindTexture(guiTextures);
-        int k = (this.width - this.xSize) / 2;
-        int l = (this.height - this.ySize) / 2;
-        drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
-        if (this.tileEntityEvaporator.isBurning()) {
-            int i1 = this.tileEntityEvaporator.getBurnTimeRemainingScaled(13);
-            drawTexturedModalRect(k + 71, l + 54 + 12 - i1, 176, 12 - i1, 14, i1 + 1);
+        mc.getTextureManager().bindTexture(resourceLocation);
+        int x = (width - xSize) / 2;
+        int y = (height - ySize) / 2;
+
+        drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+
+        if (tileEntityEvaporator.isBurning()) {
+            int burn = tileEntityEvaporator.getBurnTimeRemainingScale(13);
+            drawTexturedModalRect(x + 56, y + 36 + 12 - burn, 176, 12 - burn, 14, burn + 1);
         }
-        if (this.tileEntityEvaporator.liquidLevel > 0) {
-            int i1 = this.tileEntityEvaporator.getEvaporateProgressScaled(17);
-            drawTexturedModalRect(k + 96, l + 36, 176, 14, i1 + 1, 10);
+
+        if (tileEntityEvaporator.liquidLevel > 0) {
+            int progress = tileEntityEvaporator.getEvaporateProgressScale(24);
+            drawTexturedModalRect(x + 79, y + 34, 176, 14, progress + 1, 17);
         }
-        if (this.tileEntityEvaporator.pressure > 0)
-            drawTexturedModalRect(k + 59, l + 32 - this.tileEntityEvaporator.pressure, 176, 40 - this.tileEntityEvaporator.pressure, 1, this.tileEntityEvaporator.pressure);
-        if (this.tileEntityEvaporator.getFluidAmountScaledClient(32) > 0) {
-            drawTank(
-                k,
-                l,
-                62,
-                17,
-                32,
-                this.tileEntityEvaporator.getFluidAmountScaledClient(32),
-                new FluidStack(this.tileEntityEvaporator.liquidID, this.tileEntityEvaporator.liquidLevel));
-            this.mc.getTextureManager()
-                .bindTexture(guiTextures);
+
+        int pressureHeight = tileEntityEvaporator.getPressureProgressScale(16);
+        if (pressureHeight > 0) {
+            drawTexturedModalRect(x + 75, y + 17 + 16 - pressureHeight, 193, 31 + 16 - pressureHeight, 1, pressureHeight);
+        }
+
+        int fluidLevel = tileEntityEvaporator.getFluidAmountScaleClient(33);
+        if (fluidLevel > 0) {
+            drawTexturedModalRect(x + 48, y + 26 + 33 - fluidLevel, 176, 31 + 33 - fluidLevel, 5, fluidLevel);
+        }
+
+        if (tileEntityEvaporator.isBurning() && tileEntityEvaporator.liquidLevel > 0) {
+            ItemStack outputStack = tileEntityEvaporator.getStackInSlot(0);
+            ItemStack evaporatedItem = EvaporatingRecipe.instance().getEvaporateItemStack(
+                FluidRegistry.getFluid(tileEntityEvaporator.liquidID)
+            );
+            boolean hasRoomInOutputSlot = (outputStack == null ||
+                (outputStack.isItemEqual(evaporatedItem) &&
+                    outputStack.stackSize + evaporatedItem.stackSize <= outputStack.getMaxStackSize()));
+
+            if (hasRoomInOutputSlot) {
+                int tick = (int) (System.currentTimeMillis() / 100) % 7;
+                int yOffset = switch (tick) {
+                    case 1 -> 6;
+                    case 2 -> 11;
+                    case 3 -> 16;
+                    case 4 -> 20;
+                    case 5 -> 24;
+                    case 6 -> 29;
+                    default -> 0;
+                };
+                if (yOffset > 0) {
+                    drawTexturedModalRect(x + 34, y + 28 + 29 - yOffset, 181, 59 - yOffset, 12, yOffset);
+                }
+            }
+        }
+
+        if (tileEntityEvaporator.liquidLevel > 0) {
+            FluidStack fluidstack = new FluidStack(FluidRegistry.getFluid(tileEntityEvaporator.liquidID), 1000);
+            drawTank(x, y, fluidstack);
         }
     }
 
-    protected void drawTank(int w, int h, int wp, int hp, int width, int amount, FluidStack fluidstack) {
+    protected void drawTank(int x, int y, FluidStack fluidstack) {
         if (fluidstack == null) return;
         IIcon icon = null;
         Fluid fluid = fluidstack.getFluid();
         int color = fluid.getColor();
         if (fluid.getStillIcon() != null) icon = fluid.getStillIcon();
-        this.mc.getTextureManager()
-            .bindTexture(TextureMap.locationBlocksTexture);
+        mc.getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
         float r = (color >> 16 & 0xFF) / 255.0F;
         float g = (color >> 8 & 0xFF) / 255.0F;
         float b = (color & 0xFF) / 255.0F;
         GL11.glColor4f(r, g, b, 1.0F);
-        drawTexturedModelRectFromIcon(w + wp, h + hp + 32 - amount, icon, width, amount);
+        assert icon != null;
+        drawTexturedModelRectFromIcon(x + 56, y + 17, icon, 16, 16);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         super.drawScreen(mouseX, mouseY, partialTicks);
-        int w = (this.width - this.xSize) / 2;
-        int h = (this.height - this.ySize) / 2;
-        if (mouseX >= w + 62 && mouseY >= h + 17 && mouseX < w + 62 + 32 && mouseY < h + 17 + 32) {
-            ArrayList<String> toolTip = new ArrayList<String>();
-            if (this.tileEntityEvaporator.liquidLevel > 0)
-                toolTip.add((new FluidStack(this.tileEntityEvaporator.liquidID, this.tileEntityEvaporator.liquidLevel)).getLocalizedName());
-            drawText(toolTip, mouseX, mouseY, this.fontRendererObj);
+        int x = (width - xSize) / 2;
+        int y = (height - ySize) / 2;
+        if (mouseX >= x + 55 && mouseY >= y + 16 && mouseX < x + 55 + 18 && mouseY < y + 16 + 18) {
+            ArrayList<String> toolTip = new ArrayList<>();
+            if (tileEntityEvaporator.liquidLevel > 0)
+                toolTip.add((new FluidStack(FluidRegistry.getFluid(tileEntityEvaporator.liquidID), tileEntityEvaporator.liquidLevel)).getLocalizedName());
+            drawText(toolTip, mouseX, mouseY, fontRendererObj);
         }
-        if (mouseX >= w + 97 && mouseY >= h + 16 && mouseX < w + 97 + 3 && mouseY < h + 16 + 3) {
-            ArrayList<String> toolTip = new ArrayList<String>();
-            if (this.tileEntityEvaporator.liquidLevel > 0) toolTip.add(I18n.format("container.discard"));
-            drawText(toolTip, mouseX, mouseY, this.fontRendererObj);
+        if (mouseX >= x + 49 && mouseY >= y + 62 && mouseX < x + 49 + 3 && mouseY < y + 62 + 3) {
+            ArrayList<String> toolTip = new ArrayList<>();
+            if (tileEntityEvaporator.liquidLevel > 0) toolTip.add(I18n.format("container.discard"));
+            drawText(toolTip, mouseX, mouseY, fontRendererObj);
+        }
+        if (mouseX >= x + 48 && mouseY >= y + 26 && mouseX < x + 48 + 5 && mouseY < y + 26 + 33) {
+            ArrayList<String> toolTip = new ArrayList<>();
+            if (tileEntityEvaporator.liquidLevel > 0) {
+                int currentLevel = tileEntityEvaporator.liquidLevel;
+                int maxLevel = tileEntityEvaporator.maxCap;
+                toolTip.add(currentLevel + " / " + maxLevel + " mB");
+            } else {
+                toolTip.add(I18n.format("container.empty"));
+            }
+            drawText(toolTip, mouseX, mouseY, fontRendererObj);
+        }
+        if (mouseX >= x + 74 && mouseY >= y + 16 && mouseX < x + 74 + 3 && mouseY < y + 16 + 18) {
+            ArrayList<String> toolTip = new ArrayList<>();
+            if (tileEntityEvaporator.pressure > 0) {
+                int currentLevel = tileEntityEvaporator.pressure;
+                int maxLevel = evaporatorPressureBuildup;
+                toolTip.add(I18n.format("container.pressure") + ": " + currentLevel + " / " + maxLevel + " PU");
+            }
+            drawText(toolTip, mouseX, mouseY, fontRendererObj);
         }
     }
 
-    protected void drawText(List<String> list, int par2, int par3, FontRenderer font) {
+    protected void drawText(List<String> list, int mouseX, int mouseY, FontRenderer font) {
         if (!list.isEmpty()) {
             GL11.glDisable(32826);
             RenderHelper.disableStandardItemLighting();
@@ -134,17 +187,16 @@ public class GuiEvaporator extends GuiContainer {
             GL11.glDisable(2929);
             int k = 0;
             for (String aList : list) {
-                String s = aList;
-                int l = font.getStringWidth(s);
+                int l = font.getStringWidth(aList);
                 if (l > k) k = l;
             }
-            int i1 = par2 + 12;
-            int j1 = par3 - 12;
+            int i1 = mouseX + 12;
+            int j1 = mouseY - 12;
             int k1 = 8;
             if (list.size() > 1) k1 += 2 + (list.size() - 1) * 10;
-            if (i1 + k > this.width) i1 -= 28 + k;
-            if (j1 + k1 + 6 > this.height) j1 = this.height - k1 - 6;
-            this.zLevel = 300.0F;
+            if (i1 + k > width) i1 -= 28 + k;
+            if (j1 + k1 + 6 > height) j1 = height - k1 - 6;
+            zLevel = 300.0F;
             itemRender.zLevel = 300.0F;
             int l1 = -267386864;
             drawGradientRect(i1 - 3, j1 - 4, i1 + k + 3, j1 - 3, l1, l1);
@@ -164,7 +216,7 @@ public class GuiEvaporator extends GuiContainer {
                 if (k2 == 0) j1 += 2;
                 j1 += 10;
             }
-            this.zLevel = 0.0F;
+            zLevel = 0.0F;
             itemRender.zLevel = 0.0F;
             GL11.glEnable(2896);
             GL11.glEnable(2929);

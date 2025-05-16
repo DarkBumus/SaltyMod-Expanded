@@ -13,8 +13,8 @@ import darkbum.saltymod.init.ModBlocks;
 
 public class WorldGenMineralMud extends WorldGenerator {
 
-    private Block filler;
-    private int numberOfBlocks;
+    private final Block filler;
+    private final int numberOfBlocks;
 
     public WorldGenMineralMud(int number) {
         this.filler = ModBlocks.mineral_mud;

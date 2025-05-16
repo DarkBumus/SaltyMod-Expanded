@@ -39,6 +39,7 @@ public class ModConfigurationBlocks {
 
     public static boolean enableEvaporator;
     public static int evaporatorVolume;
+    public static int evaporatorPressureBuildup;
 
     public static boolean enableFishFarm;
     public static int fishFarmSpeed;
@@ -47,6 +48,7 @@ public class ModConfigurationBlocks {
     public static int apiarySpeed;
 
     public static boolean enableMachines;
+    public static boolean enableDeprecatedRecipes;
 
     public static boolean enableStorageBlocks;
 
@@ -132,11 +134,18 @@ public class ModConfigurationBlocks {
             1,
             3,
             "Regulates the number of buckets that can be poured into an evaporator at once");
+        evaporatorPressureBuildup = config.getInt(
+            "09-evaporatorPressureBuildup",
+            categoryNameBlo,
+            100,
+            20,
+            1200,
+            "Regulates the time in ticks it takes for the evaporator to explode once you block the exhaust");
 
         enableFishFarm = config
-            .getBoolean("09-enableFishFarm", categoryNameBlo, true, enableFeatures + "\nFish Farm" + "\nFish Bait" + "\n");
+            .getBoolean("10-enableFishFarm", categoryNameBlo, true, enableFeatures + "\nFish Farm" + "\nFish Bait" + "\n");
         fishFarmSpeed = config.getInt(
-            "10-fishFarmSpeed",
+            "11-fishFarmSpeed",
             categoryNameBlo,
             3500,
             1,
@@ -145,12 +154,12 @@ public class ModConfigurationBlocks {
                 + "\nThe lower the value, the higher the chance, per tick, that a slot will be filled, i.e. the quicker the Fish Farm will fill up.");
 
         enableApiary = config.getBoolean(
-            "11-enableApiary",
+            "12-enableApiary",
             categoryNameBlo,
             true,
             enableFeatures + "\nApiary" + "\nBee Nest" + "\nBee Burrow" + "\n");
         apiarySpeed = config.getInt(
-            "12-apiarySpeed",
+            "13-apiarySpeed",
             categoryNameBlo,
             3500,
             1,
@@ -159,14 +168,21 @@ public class ModConfigurationBlocks {
                 + "\nThe lower the value, the higher the chance, per tick, that a slot will be filled, i.e. the quicker the Apiary will fill up.");
 
         enableMachines = config.getBoolean(
-            "13-enableMachines",
+            "14-enableMachines",
             categoryNameBlo,
             true,
             enableFeatures + "\nHeater"
                 + "\n");
+        enableDeprecatedRecipes = config.getBoolean(
+            "15-enableDeprecatedMachines",
+            categoryNameBlo,
+            false,
+            "Regulates whether or not the deprecated recipes should be shown." +
+                "This allows you to see the recipes for machines as normal crafting recipes in NEI." +
+                "This feature will be deprecated altogether, as soon as NEI is properly integrated.");
 
         enableStorageBlocks = config.getBoolean(
-            "14-enableStorageBlocks",
+            "16-enableStorageBlocks",
             categoryNameBlo,
             true,
             enableFeatures + "\nCarrot Crate"
@@ -187,12 +203,12 @@ public class ModConfigurationBlocks {
                 + "\n");
 
         enableSaltCrystal = config.getBoolean(
-            "15-enableSaltCrystal",
+            "17-enableSaltCrystal",
             categoryNameBlo,
             true,
             enableFeatures + "\nSalt Crystal" + "\nSalt Shard" + "\n");
         saltCrystalGrowthSpeed = config.getInt(
-            "16-saltCrystalGrowthSpeed",
+            "18-saltCrystalGrowthSpeed",
             categoryNameBlo,
             14,
             1,
@@ -200,7 +216,7 @@ public class ModConfigurationBlocks {
             "Regulates the Salt Crystal growth speed (1 - faster, 20 - slower)");
 
         saltwortGrowthSpeed = config.getInt(
-            "17-saltwortGrowthSpeed",
+            "19-saltwortGrowthSpeed",
             categoryNameBlo,
             7,
             1,
@@ -208,7 +224,7 @@ public class ModConfigurationBlocks {
             "Regulates the Saltwort growth speed (1 - faster, 20 - slower)");
 
         enableSaltFlowers = config.getBoolean(
-            "18-enableSaltFlowers",
+            "20-enableSaltFlowers",
             categoryNameBlo,
             true,
             enableFeatures + "\nDaucus"
@@ -217,7 +233,7 @@ public class ModConfigurationBlocks {
                 + "\n");
 
         saltFlowersLargeHitbox = config.getInt(
-            "19-saltFlowersLargeHitbox",
+            "21-saltFlowersLargeHitbox",
             categoryNameBlo,
             0,
             0,

@@ -7,7 +7,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 
-import static darkbum.saltymod.util.ItemUtil.*;
+import static darkbum.saltymod.util.ItemUtils.*;
 
 /**
  * Item class for the golden berries item.

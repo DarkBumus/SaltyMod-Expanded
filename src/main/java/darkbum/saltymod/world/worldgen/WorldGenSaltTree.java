@@ -15,6 +15,7 @@ public class WorldGenSaltTree extends WorldGenAbstractTree {
 
     private final int minTreeHeight;
 
+    @SuppressWarnings("unused")
     public WorldGenSaltTree(boolean doBlockNotify) {
         this(doBlockNotify, 4);
     }

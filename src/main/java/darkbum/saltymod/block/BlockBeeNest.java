@@ -3,7 +3,7 @@ package darkbum.saltymod.block;
 import java.util.ArrayList;
 import java.util.Random;
 
-import darkbum.saltymod.util.BlockUtil;
+import darkbum.saltymod.util.BlockUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -20,7 +20,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.init.ModItems;
 
-import static darkbum.saltymod.util.BlockUtil.*;
+import static darkbum.saltymod.util.BlockUtils.*;
 
 /**
  * Block class for the bee nest block.
@@ -55,7 +55,7 @@ public class BlockBeeNest extends Block {
     /**
      * Constructs a new block instance with a given name, a creative tab and a type.
      * <p>
-     * Also assigns a material and other base properties through {@link BlockUtil}.
+     * Also assigns a material and other base properties through {@link BlockUtils}.
      *
      * @param name The internal name of the block.
      * @param tab  The creative tab in which the block appears.
@@ -150,7 +150,7 @@ public class BlockBeeNest extends Block {
     @Override
     public void onBlockHarvested(World world, int x, int y, int z, int meta, EntityPlayer player) {
         if (!player.capabilities.isCreativeMode) {
-            BlockUtil.applySwarmedEffect(world, player, x, y, z, 900);
+            BlockUtils.applySwarmedEffect(world, player, x, y, z, 900);
         }
     }
 

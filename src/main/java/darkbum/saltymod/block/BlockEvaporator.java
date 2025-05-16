@@ -1,9 +1,11 @@
 package darkbum.saltymod.block;
 
-import java.util.Objects;
-import java.util.Random;
-
-import darkbum.saltymod.util.BlockUtil;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import darkbum.saltymod.SaltyMod;
+import darkbum.saltymod.init.ModBlocks;
+import darkbum.saltymod.tileentity.TileEntityEvaporator;
+import darkbum.saltymod.util.BlockUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -19,7 +21,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidContainerRegistry;
@@ -27,29 +28,25 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidHandler;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import darkbum.saltymod.SaltyMod;
-import darkbum.saltymod.common.proxy.ClientProxy;
-import darkbum.saltymod.init.ModBlocks;
-import darkbum.saltymod.tileentity.TileEntityEvaporator;
+import java.util.Objects;
+import java.util.Random;
 
-import static darkbum.saltymod.util.BlockUtil.*;
+import static darkbum.saltymod.util.BlockUtils.*;
 
 /**
- * Block class for the evaporator block.
- * The evaporator is a tile entity container block that stores fluids and produces item in an evaporation context.
+ * Static block class for the evaporator block.
+ * The evaporator is a tile entity container block that stores fluids and produces items in an evaporation context.
  *
  * @author DarkBum
- * @since 1.9.f
+ * @since 2.0.0
  */
 public class BlockEvaporator extends BlockContainer {
 
     @SideOnly(Side.CLIENT)
-    private IIcon iconTop;
+    private IIcon iconBottom;
 
     @SideOnly(Side.CLIENT)
-    private IIcon iconBottom;
+    private IIcon iconTop;
 
     @SideOnly(Side.CLIENT)
     private IIcon iconSide;
@@ -58,42 +55,40 @@ public class BlockEvaporator extends BlockContainer {
     private IIcon iconFront;
 
     private static boolean isBurning;
-
     private final boolean isActive;
-
     private final boolean isEvaporating;
 
     private final Random random = new Random();
 
     /**
-     * Constructs a new block instance with a given name, a creative tab and active/evaporating states.
+     * Constructs a new block instance with a given name and a creative tab.
      * <p>
-     * Also assigns a material and other base properties through {@link BlockUtil}.
+     * Also assigns a material and other base properties through {@link BlockUtils}.
      *
      * @param name  The internal name of the block.
      * @param tab   The creative tab in which the block appears.
      */
     public BlockEvaporator(String name, CreativeTabs tab, boolean active, boolean evaporating) {
         super(Material.rock);
-        this.isActive = active;
-        this.isEvaporating = evaporating;
         setBlockName(name);
         setCreativeTab(tab);
+        isActive = active;
+        isEvaporating = evaporating;
         propertiesEvaporator(this);
     }
 
     /**
      * Registers the textures for the different sides of the block.
      *
-     * @param icon  The icon register used to load textures.
+     * @param icon The icon register used to load textures.
      */
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister icon) {
-        this.iconSide = icon.registerIcon("furnace_side");
-        this.iconFront = icon.registerIcon(this.isActive ? "saltymod:evaporator_front_on" : "saltymod:evaporator_front_off");
-        this.iconTop = icon.registerIcon("saltymod:evaporator_top");
-        this.iconBottom = icon.registerIcon("furnace_top");
+        iconTop = icon.registerIcon("saltymod:evaporator_top");
+        iconBottom = icon.registerIcon("furnace_top");
+        iconSide = icon.registerIcon("furnace_side");
+        iconFront = icon.registerIcon(isActive ? "saltymod:evaporator_front_on" : "saltymod:evaporator_front_off");
     }
 
     /**
@@ -107,21 +102,13 @@ public class BlockEvaporator extends BlockContainer {
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
         IIcon[] icons = {iconBottom, iconTop, iconSide, iconFront};
-        return switch (side) {
-            case 0 -> icons[0];
-            case 1 -> icons[1];
-            default -> (side != meta) ? icons[2] : icons[3];
+        return switch (meta) {
+            case 0 -> icons[side == 0 ? 0 : (side == 1 ? 1 : (side == 3 ? 3 : 2))];
+            case 1 -> icons[side == 0 ? 0 : (side == 1 ? 1 : (side == 4 ? 3 : 2))];
+            case 2 -> icons[side == 0 ? 0 : (side == 1 ? 1 : (side == 2 ? 3 : 2))];
+            case 3 -> icons[side == 0 ? 0 : (side == 1 ? 1 : (side == 5 ? 3 : 2))];
+            default -> null;
         };
-    }
-
-    /**
-     * Gets the render type for this block.
-     *
-     * @return a custom render type ID, provided by the client proxy.
-     */
-    @Override
-    public int getRenderType() {
-        return ClientProxy.evaporatorRenderType;
     }
 
     /**
@@ -136,26 +123,15 @@ public class BlockEvaporator extends BlockContainer {
     }
 
     /**
-     * Called when the block is placed in the world by an entity.
-     * Determines the facing based on the placing entity's yaw rotation
-     * and applies a custom display name if available.
+     * Called when the block is placed by an entity.
+     * Sets metadata based on player's rotation.
      *
-     * @param world     The world in which the block is placed.
-     * @param x         X-coordinate of the block.
-     * @param y         Y-coordinate of the block.
-     * @param z         Z-coordinate of the block.
-     * @param entity    The entity placing the block.
-     * @param stack     The item stack used to place the block.
+     * @param entity The entity placing the block.
+     * @param stack  The item used to place the block.
      */
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
-        int l = MathHelper.floor_double((entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 0x3;
-        if (l == 0) world.setBlockMetadataWithNotify(x, y, z, 2, 2);
-        if (l == 1) world.setBlockMetadataWithNotify(x, y, z, 5, 2);
-        if (l == 2) world.setBlockMetadataWithNotify(x, y, z, 3, 2);
-        if (l == 3) world.setBlockMetadataWithNotify(x, y, z, 4, 2);
-        if (stack.hasDisplayName())
-            ((TileEntityEvaporator) world.getTileEntity(x, y, z)).func_145951_a(stack.getDisplayName());
+        setBlockDirectionFromEntity(world, x, y, z, entity);
     }
 
     /**
@@ -395,20 +371,18 @@ public class BlockEvaporator extends BlockContainer {
             boolean isAboveClear = (!world.isSideSolid(x, y + 1, z, ForgeDirection.DOWN) && FluidRegistry.lookupFluidForBlock(world.getBlock(x, y + 1, z)) == null);
             boolean hasCeiling = world.isSideSolid(x, y + 2, z, ForgeDirection.DOWN);
 
-            if (meta == 4) {
+            if (meta == 0) {
+                world.spawnParticle("smoke", (centerX + randomOffset), centerY, (centerZ + sideOffset), 0.0D, 0.0D, 0.0D);
+                world.spawnParticle("flame", (centerX + randomOffset), centerY, (centerZ + sideOffset), 0.0D, 0.0D, 0.0D);
+            } else if (meta == 1) {
                 world.spawnParticle("smoke", (centerX - sideOffset), centerY, (centerZ + randomOffset), 0.0D, 0.0D, 0.0D);
                 world.spawnParticle("flame", (centerX - sideOffset), centerY, (centerZ + randomOffset), 0.0D, 0.0D, 0.0D);
-            } else if (meta == 5) {
-                world.spawnParticle("smoke", (centerX + sideOffset), centerY, (centerZ + randomOffset), 0.0D, 0.0D, 0.0D);
-                world.spawnParticle("flame", (centerX + sideOffset), centerY, (centerZ + randomOffset), 0.0D, 0.0D, 0.0D);
             } else if (meta == 2) {
                 world.spawnParticle("smoke", (centerX + randomOffset), centerY, (centerZ - sideOffset), 0.0D, 0.0D, 0.0D);
                 world.spawnParticle("flame", (centerX + randomOffset), centerY, (centerZ - sideOffset), 0.0D, 0.0D, 0.0D);
             } else if (meta == 3) {
-                world.spawnParticle("smoke", (centerX + randomOffset), centerY, (centerZ + sideOffset), 0.0D, 0.0D, 0.0D);
-                world.spawnParticle("flame", (centerX + randomOffset), centerY, (centerZ + sideOffset), 0.0D, 0.0D, 0.0D);
-            } else if (meta == 1) {
-                world.spawnParticle("smoke", (centerX + randomOffset), centerY, (centerZ + sideOffset), 0.0D, 0.0D, 0.0D);
+                world.spawnParticle("smoke", (centerX + sideOffset), centerY, (centerZ + randomOffset), 0.0D, 0.0D, 0.0D);
+                world.spawnParticle("flame", (centerX + sideOffset), centerY, (centerZ + randomOffset), 0.0D, 0.0D, 0.0D);
             }
             if (this.isEvaporating && isAboveClear) {
                 world.spawnParticle("explode", particleX, y + 1.1D, particleZ, 0.0D, 0.1D, 0.0D);
@@ -441,6 +415,6 @@ public class BlockEvaporator extends BlockContainer {
     @Override
     public int getComparatorInputOverride(World world, int x, int y, int z, int side) {
         TileEntityEvaporator tileEntityEvaporator = (TileEntityEvaporator) world.getTileEntity(x, y, z);
-        return (tileEntityEvaporator.tank.getFluid() != null) ? tileEntityEvaporator.getFluidAmountScaled(15) : 0;
+        return (tileEntityEvaporator.tank.getFluid() != null) ? tileEntityEvaporator.getFluidAmountScale(15) : 0;
     }
 }

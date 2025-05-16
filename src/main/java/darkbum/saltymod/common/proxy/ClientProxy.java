@@ -33,7 +33,6 @@ public class ClientProxy extends CommonProxy {
 
     /** Custom render IDs for special block renderers. */
     public static int saltGrassRenderType;
-    public static int evaporatorRenderType;
     public static int cookingPotRenderType;
     public static int marshReedsRenderType;
 
@@ -55,11 +54,6 @@ public class ClientProxy extends CommonProxy {
         if (ModConfigurationBlocks.enableSaltDirt) {
             saltGrassRenderType = RenderingRegistry.getNextAvailableRenderId();
             RenderingRegistry.registerBlockHandler(new SaltGrassRenderer());
-        }
-
-        if (ModConfigurationBlocks.enableEvaporator) {
-            evaporatorRenderType = RenderingRegistry.getNextAvailableRenderId();
-            RenderingRegistry.registerBlockHandler(new EvaporatorRenderer());
         }
 
         if (ModConfigurationBlocks.enableMachines) {

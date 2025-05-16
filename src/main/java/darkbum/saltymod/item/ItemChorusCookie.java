@@ -13,7 +13,7 @@ import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 
 import java.util.Random;
 
-import static darkbum.saltymod.util.ItemUtil.*;
+import static darkbum.saltymod.util.ItemUtils.*;
 
 /**
  * Item class for the chorus cookie item.

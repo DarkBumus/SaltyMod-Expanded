@@ -23,12 +23,10 @@ import darkbum.saltymod.init.ModItems;
 
 public class TileEntityFishFarm extends TileEntity implements IInventory {
 
+    @SuppressWarnings("unused")
     private String inventoryName;
 
     private ItemStack[] inventory = new ItemStack[19];
-
-    private static final int[] slotsOutput = new int[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17};
-    private static final int[] slotBait = new int[] {18};
 
     public int runTime = 0;
 
@@ -174,7 +172,7 @@ public class TileEntityFishFarm extends TileEntity implements IInventory {
 
     private boolean canRun() {
         if (this.inventory[18] != null) {
-            if (this.inventory[18].getItem() == ModItems.fish_bait) if (currentSurroundings() >= 5) return true;
+            if (this.inventory[18].getItem() == ModItems.fish_bait) return currentSurroundings() >= 5;
         } else {
             return false;
         }

@@ -1,6 +1,5 @@
 package darkbum.saltymod.inventory.gui;
 
-import darkbum.saltymod.tileentity.TileEntityApiary;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -14,7 +13,7 @@ import darkbum.saltymod.tileentity.TileEntityFishFarm;
 
 public class GuiFishFarm extends GuiContainer {
 
-    private TileEntityFishFarm tileEntityFishFarm;
+    private final TileEntityFishFarm tileEntityFishFarm;
 
     private static final ResourceLocation guiTextures = new ResourceLocation(
         "saltymod:textures/gui/container/fish_farm.png");

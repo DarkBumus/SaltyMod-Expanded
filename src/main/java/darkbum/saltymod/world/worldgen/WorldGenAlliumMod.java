@@ -16,7 +16,7 @@ public class WorldGenAlliumMod extends WorldGenerator {
 
     private static final int[] flowersMeta = { 2, 4 };
 
-    private int groupSize;
+    private final int groupSize;
 
     public WorldGenAlliumMod(int size) {
         groupSize = size;

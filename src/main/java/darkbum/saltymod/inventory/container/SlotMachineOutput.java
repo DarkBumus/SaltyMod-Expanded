@@ -7,15 +7,12 @@ import net.minecraft.item.ItemStack;
 
 public class SlotMachineOutput extends Slot {
 
-    private EntityPlayer entityPlayer;
-
     public boolean isItemValid(ItemStack itemStack) {
         return false;
     }
 
-    public SlotMachineOutput(EntityPlayer entityPlayer, IInventory iInventory, int slotIndex, int x, int y) {
+    public SlotMachineOutput(IInventory iInventory, int slotIndex, int x, int y) {
         super(iInventory, slotIndex, x, y);
-        this.entityPlayer = entityPlayer;
     }
 
     public void onPickupFromSlot(EntityPlayer entityPlayer, ItemStack itemStack) {

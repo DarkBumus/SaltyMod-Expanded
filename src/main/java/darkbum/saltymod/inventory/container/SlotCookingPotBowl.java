@@ -8,15 +8,12 @@ import net.minecraft.item.ItemStack;
 
 public class SlotCookingPotBowl extends Slot {
 
-    private final EntityPlayer player;
-
     public boolean isItemValid(ItemStack stack) {
         return MachineUtilRegistry.isValidBowl(stack);
     }
 
-    public SlotCookingPotBowl(EntityPlayer player, IInventory inventory, int index, int xPosition, int yPosition) {
+    public SlotCookingPotBowl(IInventory inventory, int index, int xPosition, int yPosition) {
         super(inventory, index, xPosition, yPosition);
-        this.player = player;
     }
 
     @Override

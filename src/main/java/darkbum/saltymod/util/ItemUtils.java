@@ -21,7 +21,7 @@ import static net.minecraft.item.EnumAction.*;
  * @author DarkBum
  * @since 2.0.0
  */
-public class ItemUtil {
+public class ItemUtils {
 
     /**
      * Adds a tooltip to the provided ItemStack based on its unlocalized name.

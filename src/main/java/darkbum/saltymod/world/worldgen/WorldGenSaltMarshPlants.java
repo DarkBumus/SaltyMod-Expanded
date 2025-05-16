@@ -11,7 +11,7 @@ import darkbum.saltymod.init.ModBlocks;
 
 public class WorldGenSaltMarshPlants extends WorldGenerator {
 
-    private int groupsize;
+    private final int groupsize;
 
     public WorldGenSaltMarshPlants(int size) {
         groupsize = size;

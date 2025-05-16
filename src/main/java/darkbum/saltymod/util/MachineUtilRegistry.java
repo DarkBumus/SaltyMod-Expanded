@@ -1,19 +1,20 @@
 package darkbum.saltymod.util;
 
-import darkbum.saltymod.init.ModBlocks;
-import darkbum.saltymod.init.ModExternalItemLoader;
-import darkbum.saltymod.init.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.*;
+
+import static darkbum.saltymod.init.ModBlocks.*;
+import static darkbum.saltymod.init.ModExternalItemLoader.*;
+import static darkbum.saltymod.init.ModItems.*;
+import static net.minecraft.init.Blocks.*;
+import static net.minecraft.init.Items.*;
 
 /**
  * Utility class for managing and registering machine-related items and blocks,
@@ -25,44 +26,58 @@ import java.util.*;
 public class MachineUtilRegistry {
 
     public static final Set<Block> validHeaterBlocks = new HashSet<>();
+    public static final Set<String> validHeaterOreDicts = new HashSet<>();
     public static final Set<ItemStack> validPinchItems = new HashSet<>();
+    public static final Set<String> validPinchOreDicts = new HashSet<>();
     public static final Set<ItemStack> validVesselItems = new HashSet<>();
+    public static final Set<String> validVesselOreDicts = new HashSet<>();
     public static final Set<ItemStack> validBowlItems = new HashSet<>();
+    public static final Set<String> validBowlOreDicts = new HashSet<>();
     public static final Set<ItemStack> validSpadeItems = new HashSet<>();
+    public static final Set<String> validSpadeOreDicts = new HashSet<>();
 
     static {
 
-        Block magma = ModExternalItemLoader.etFuturumBlocks.get("magma");
-        Block campfire = ModExternalItemLoader.campfireBackportBlocks.get("campfire");
-        Block soul_campfire = ModExternalItemLoader.campfireBackportBlocks.get("soul_campfire");
+        Block magma = etFuturumBlocks.get("magma");
+        Block campfire = campfireBackportBlocks.get("campfire");
+        Block soul_campfire = campfireBackportBlocks.get("soul_campfire");
 
         // Heater Registry
-        validHeaterBlocks.add(Blocks.flowing_lava);
-        validHeaterBlocks.add(Blocks.lava);
-        validHeaterBlocks.add(Blocks.fire);
-        validHeaterBlocks.add(Blocks.lit_furnace);
-        validHeaterBlocks.add(ModBlocks.lit_stove);
+        validHeaterBlocks.add(flowing_lava);
+        validHeaterBlocks.add(lava);
+        validHeaterBlocks.add(fire);
+        validHeaterBlocks.add(lit_furnace);
+        validHeaterBlocks.add(lit_stove);
         if (magma != null) validHeaterBlocks.add(magma);
         if (campfire != null) validHeaterBlocks.add(campfire);
         if (soul_campfire != null) validHeaterBlocks.add(soul_campfire);
 
+        validHeaterOreDicts.add("blockHeater");
 
         // Pinch Items
-        registerPinchItem(new ItemStack(ModItems.salt_pinch));
-        registerPinchItem(new ItemStack(ModItems.sugar_pinch));
+        registerPinchItem(new ItemStack(salt_pinch));
+        registerPinchItem(new ItemStack(sugar_pinch));
+
+        registerPinchOreDict("itemPinch");
 
         // Vessel Items
-        registerVesselItem(new ItemStack(Items.bucket));
-        registerVesselItem(new ItemStack(Items.water_bucket));
-        registerVesselItem(new ItemStack(Items.potionitem, 1, 0));
-        registerVesselItem(new ItemStack(Items.glass_bottle));
-        registerVesselItem(new ItemStack(ModItems.fizzy_drink));
+        registerVesselItem(new ItemStack(bucket));
+        registerVesselItem(new ItemStack(water_bucket));
+        registerVesselItem(new ItemStack(potionitem, 1, 0));
+        registerVesselItem(new ItemStack(glass_bottle));
+        registerVesselItem(new ItemStack(fizzy_drink));
+
+        registerVesselOreDict("itemVessel");
 
         //Bowl Items
-        registerBowlItem(new ItemStack(Items.bowl));
+        registerBowlItem(new ItemStack(bowl));
+
+        registerBowlOreDict("itemBowl");
 
         //Spade items
-        registerSpadeItem(new ItemStack(Items.wooden_shovel, 1, OreDictionary.WILDCARD_VALUE));
+        registerSpadeItem(new ItemStack(wooden_shovel, 1, OreDictionary.WILDCARD_VALUE));
+
+        registerSpadeOreDict("itemSpade");
     }
 
     // === Heater Methods ===
@@ -74,7 +89,23 @@ public class MachineUtilRegistry {
      * @return true, if the block is a valid heater, false otherwise.
      */
     public static boolean isValidHeater(Block block) {
-        return block != null && block != Blocks.air && validHeaterBlocks.contains(block);
+        if (block == null || block == air) return false;
+
+        if (validHeaterBlocks.contains(block)) {
+            return true;
+        }
+
+        ItemStack stack = new ItemStack(block);
+        int[] oreIds = OreDictionary.getOreIDs(stack);
+
+        for (int oreId : oreIds) {
+            String oreName = OreDictionary.getOreName(oreId);
+            if (validHeaterOreDicts.contains(oreName)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -98,6 +129,26 @@ public class MachineUtilRegistry {
     }
 
     /**
+     * Registers an OreDict entry as a valid heater.
+     *
+     * @param oreDict The OreDict entry to register.
+     */
+    @SuppressWarnings("unused")
+    public static void registerHeaterOreDict(String oreDict) {
+        if (oreDict != null && !oreDict.isEmpty()) validHeaterOreDicts.add(oreDict);
+    }
+
+    /**
+     * Unregisters an OreDict entry as a valid heater.
+     *
+     * @param oreDict The OreDict entry to unregister.
+     */
+    @SuppressWarnings("unused")
+    public static void unregisterHeaterOreDict(String oreDict) {
+        validHeaterOreDicts.remove(oreDict);
+    }
+
+    /**
      * Returns a set of all valid heater blocks.
      *
      * @return A set of valid heater blocks.
@@ -105,6 +156,16 @@ public class MachineUtilRegistry {
     @SuppressWarnings("unused")
     public static Set<Block> getValidHeaters() {
         return new HashSet<>(validHeaterBlocks);
+    }
+
+    /**
+     * Returns a set of all valid OreDict entries for heaters.
+     *
+     * @return A set of valid OreDict entries.
+     */
+    @SuppressWarnings("unused")
+    public static Set<String> getValidHeaterOreDicts() {
+        return new HashSet<>(validHeaterOreDicts);
     }
 
     // === Pinch Item Methods ===
@@ -117,9 +178,19 @@ public class MachineUtilRegistry {
      */
     public static boolean isValidPinch(ItemStack stack) {
         if (stack == null) return false;
+
         for (ItemStack valid : validPinchItems) {
             if (areStacksEqualStrict(stack, valid)) return true;
         }
+
+        int[] oreIds = OreDictionary.getOreIDs(stack);
+        for (int oreId : oreIds) {
+            String oreName = OreDictionary.getOreName(oreId);
+            if (validPinchOreDicts.contains(oreName)) {
+                return true;
+            }
+        }
+
         return false;
     }
 
@@ -144,6 +215,26 @@ public class MachineUtilRegistry {
     }
 
     /**
+     * Registers an OreDict entry as a valid pinch item.
+     *
+     * @param oreDict The OreDict entry to register.
+     */
+    @SuppressWarnings("unused")
+    public static void registerPinchOreDict(String oreDict) {
+        if (oreDict != null && !oreDict.isEmpty()) validPinchOreDicts.add(oreDict);
+    }
+
+    /**
+     * Unregisters an OreDict entry as a valid pinch item.
+     *
+     * @param oreDict The OreDict entry to unregister.
+     */
+    @SuppressWarnings("unused")
+    public static void unregisterPinchOreDict(String oreDict) {
+        validPinchOreDicts.remove(oreDict);
+    }
+
+    /**
      * Returns a set of all valid pinch items.
      *
      * @return A set of valid pinch items.
@@ -151,6 +242,16 @@ public class MachineUtilRegistry {
     @SuppressWarnings("unused")
     public static Set<ItemStack> getValidPinchItems() {
         return new HashSet<>(validPinchItems);
+    }
+
+    /**
+     * Returns a set of all valid OreDict entries for pinch items.
+     *
+     * @return A set of valid OreDict entries.
+     */
+    @SuppressWarnings("unused")
+    public static Set<String> getValidPinchOreDicts() {
+        return new HashSet<>(validPinchOreDicts);
     }
 
     // === Vessel Item Methods ===
@@ -163,9 +264,19 @@ public class MachineUtilRegistry {
      */
     public static boolean isValidVessel(ItemStack stack) {
         if (stack == null) return false;
+
         for (ItemStack valid : validVesselItems) {
             if (areStacksEqualStrict(stack, valid)) return true;
         }
+
+        int[] oreIds = OreDictionary.getOreIDs(stack);
+        for (int oreId : oreIds) {
+            String oreName = OreDictionary.getOreName(oreId);
+            if (validVesselOreDicts.contains(oreName)) {
+                return true;
+            }
+        }
+
         return false;
     }
 
@@ -190,6 +301,26 @@ public class MachineUtilRegistry {
     }
 
     /**
+     * Registers an Ore Dictionary name as a valid vessel item.
+     *
+     * @param oreDict The OreDict name to register.
+     */
+    @SuppressWarnings("unused")
+    public static void registerVesselOreDict(String oreDict) {
+        if (oreDict != null && !oreDict.isEmpty()) validVesselOreDicts.add(oreDict);
+    }
+
+    /**
+     * Unregisters an OreDict entry as a valid vessel item.
+     *
+     * @param oreDict The OreDict entry to unregister.
+     */
+    @SuppressWarnings("unused")
+    public static void unregisterVesselOreDict(String oreDict) {
+        validVesselOreDicts.remove(oreDict);
+    }
+
+    /**
      * Returns a set of all valid vessel items.
      *
      * @return A set of valid vessel items.
@@ -197,6 +328,16 @@ public class MachineUtilRegistry {
     @SuppressWarnings("unused")
     public static Set<ItemStack> getValidVesselItems() {
         return new HashSet<>(validVesselItems);
+    }
+
+    /**
+     * Returns a set of all valid OreDict entries for vessel items.
+     *
+     * @return A set of valid OreDict entries.
+     */
+    @SuppressWarnings("unused")
+    public static Set<String> getValidVesselOreDicts() {
+        return new HashSet<>(validVesselOreDicts);
     }
 
     // === Bowl Item Methods ===
@@ -209,9 +350,19 @@ public class MachineUtilRegistry {
      */
     public static boolean isValidBowl(ItemStack stack) {
         if (stack == null) return false;
+
         for (ItemStack valid : validBowlItems) {
             if (areStacksEqualStrict(stack, valid)) return true;
         }
+
+        int[] oreIds = OreDictionary.getOreIDs(stack);
+        for (int oreId : oreIds) {
+            String oreName = OreDictionary.getOreName(oreId);
+            if (validBowlOreDicts.contains(oreName)) {
+                return true;
+            }
+        }
+
         return false;
     }
 
@@ -236,13 +387,43 @@ public class MachineUtilRegistry {
     }
 
     /**
+     * Registers an OreDict entry as a valid bowl item.
+     *
+     * @param oreDict The OreDict entry to register.
+     */
+    @SuppressWarnings("unused")
+    public static void registerBowlOreDict(String oreDict) {
+        if (oreDict != null && !oreDict.isEmpty()) validBowlOreDicts.add(oreDict);
+    }
+
+    /**
+     * Unregisters an OreDict entry as a valid bowl item.
+     *
+     * @param oreDict The OreDict entry to unregister.
+     */
+    @SuppressWarnings("unused")
+    public static void unregisterBowlOreDict(String oreDict) {
+        validBowlOreDicts.remove(oreDict);
+    }
+
+    /**
      * Returns a set of all valid bowl items.
      *
      * @return A set of valid bowl items.
      */
     @SuppressWarnings("unused")
-    public static Set<ItemStack> getBowlPinchItems() {
+    public static Set<ItemStack> getValidBowlItems() {
         return new HashSet<>(validBowlItems);
+    }
+
+    /**
+     * Returns a set of all valid OreDict entries for bowl items.
+     *
+     * @return A set of valid OreDict entries.
+     */
+    @SuppressWarnings("unused")
+    public static Set<String> getValidBowlOreDicts() {
+        return new HashSet<>(validBowlOreDicts);
     }
 
     // === Spade Item Methods ===
@@ -255,9 +436,19 @@ public class MachineUtilRegistry {
      */
     public static boolean isValidSpade(ItemStack stack) {
         if (stack == null) return false;
+
         for (ItemStack valid : validSpadeItems) {
             if (OreDictionary.itemMatches(valid, stack, false)) return true;
         }
+
+        int[] oreIds = OreDictionary.getOreIDs(stack);
+        for (int oreId : oreIds) {
+            String oreName = OreDictionary.getOreName(oreId);
+            if (validSpadeOreDicts.contains(oreName)) {
+                return true;
+            }
+        }
+
         return false;
     }
 
@@ -282,13 +473,43 @@ public class MachineUtilRegistry {
     }
 
     /**
+     * Registers an OreDict entry as a valid spade item.
+     *
+     * @param oreDict The OreDict entry to register.
+     */
+    @SuppressWarnings("unused")
+    public static void registerSpadeOreDict(String oreDict) {
+        if (oreDict != null && !oreDict.isEmpty()) validSpadeOreDicts.add(oreDict);
+    }
+
+    /**
+     * Unregisters an OreDict entry as a valid spade item.
+     *
+     * @param oreDict The OreDict entry to unregister.
+     */
+    @SuppressWarnings("unused")
+    public static void unregisterSpadeOreDict(String oreDict) {
+        validSpadeOreDicts.remove(oreDict);
+    }
+
+    /**
      * Returns a set of all valid spade items.
      *
      * @return A set of valid spade items.
      */
     @SuppressWarnings("unused")
-    public static Set<ItemStack> getSpadePinchItems() {
+    public static Set<ItemStack> getValidSpadeItems() {
         return new HashSet<>(validSpadeItems);
+    }
+
+    /**
+     * Returns a set of all valid OreDict entries for spade items.
+     *
+     * @return A set of valid OreDict entries.
+     */
+    @SuppressWarnings("unused")
+    public static Set<String> getValidSpadeOreDicts() {
+        return new HashSet<>(validSpadeOreDicts);
     }
 
     // === Apiary Enum Methods ===
@@ -297,10 +518,10 @@ public class MachineUtilRegistry {
      * Enum representing different types of bees in the game.
      */
     public enum BeeType {
-        HONEY_BEE(new int[]{70, 98}, new ItemStack[]{new ItemStack(ModItems.honeycomb), new ItemStack(ModItems.waxcomb), new ItemStack(ModItems.bee_larva)}),
-        CARPENTER_BEE(new int[]{20, 98}, new ItemStack[]{new ItemStack(ModItems.honeycomb), new ItemStack(ModItems.waxcomb), new ItemStack(ModItems.bee_larva)}),
-        REGAL_BEE(new int[]{35, 50, 85}, new ItemStack[]{new ItemStack(ModItems.honeycomb), new ItemStack(ModItems.royal_jelly), new ItemStack(ModItems.waxcomb), new ItemStack(ModItems.bee_larva)}),
-        BOREAL_BEE(new int[]{70, 98}, new ItemStack[]{new ItemStack(ModItems.frozen_honey), new ItemStack(ModItems.waxcomb), new ItemStack(ModItems.bee_larva)});
+        HONEY_BEE(new int[]{70, 98}, new ItemStack[]{new ItemStack(honeycomb), new ItemStack(waxcomb), new ItemStack(bee_larva)}),
+        CARPENTER_BEE(new int[]{20, 98}, new ItemStack[]{new ItemStack(honeycomb), new ItemStack(waxcomb), new ItemStack(bee_larva)}),
+        REGAL_BEE(new int[]{35, 50, 85}, new ItemStack[]{new ItemStack(honeycomb), new ItemStack(royal_jelly), new ItemStack(waxcomb), new ItemStack(bee_larva)}),
+        BOREAL_BEE(new int[]{70, 98}, new ItemStack[]{new ItemStack(frozen_honey), new ItemStack(waxcomb), new ItemStack(bee_larva)});
 
         private final int[] thresholds;
         private final ItemStack[] items;
@@ -324,10 +545,10 @@ public class MachineUtilRegistry {
          */
         public static BeeType getByBeeItem(ItemStack beeItem) {
             if (beeItem == null) return null;
-            if (beeItem.getItem() == ModItems.honey_bee) return HONEY_BEE;
-            if (beeItem.getItem() == ModItems.carpenter_bee) return CARPENTER_BEE;
-            if (beeItem.getItem() == ModItems.regal_bee) return REGAL_BEE;
-            if (beeItem.getItem() == ModItems.boreal_bee) return BOREAL_BEE;
+            if (beeItem.getItem() == honey_bee) return HONEY_BEE;
+            if (beeItem.getItem() == carpenter_bee) return CARPENTER_BEE;
+            if (beeItem.getItem() == regal_bee) return REGAL_BEE;
+            if (beeItem.getItem() == boreal_bee) return BOREAL_BEE;
             return null;
         }
 
@@ -354,11 +575,11 @@ public class MachineUtilRegistry {
      * Enum representing different types of fish that can be caught by the fish farm.
      */
     public enum FishType {
-        COD(20, new ItemStack(Items.fish, 1, 0)),
-        SALMON(20, new ItemStack(Items.fish, 1, 1)),
-        CLOWNFISH(20, new ItemStack(Items.fish, 1, 2)),
-        PUFFERFISH(20, new ItemStack(Items.fish, 1, 3)),
-        TAILOR(20, new ItemStack(ModItems.tailor, 1, 0));
+        COD(20, new ItemStack(fish, 1, 0)),
+        SALMON(20, new ItemStack(fish, 1, 1)),
+        CLOWNFISH(20, new ItemStack(fish, 1, 2)),
+        PUFFERFISH(20, new ItemStack(fish, 1, 3)),
+        TAILOR(20, new ItemStack(tailor, 1, 0));
 
         private final int baseChance;
         private final ItemStack item;

@@ -11,6 +11,8 @@ import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
+import java.util.Objects;
+
 public class ContainerClayOven extends Container {
 
     private final TileEntityClayOven tileEntityClayOven;
@@ -37,7 +39,7 @@ public class ContainerClayOven extends Container {
         addSlotToContainer(new SlotMachineIngred(playerInventory.player, TileEntityClayOven, SLOT_INGRED_3, 40, 35));
         addSlotToContainer(new SlotMachineIngred(playerInventory.player, TileEntityClayOven, SLOT_INGRED_4, 58, 35));
         addSlotToContainer(new SlotClayOvenOutputLocked(playerInventory.player, TileEntityClayOven, SLOT_OUTPUT, 116, 26, TileEntityClayOven, SLOT_SPADE));
-        addSlotToContainer(new SlotClayOvenSpade(playerInventory.player, TileEntityClayOven, SLOT_SPADE, 116, 55));
+        addSlotToContainer(new SlotClayOvenSpade(TileEntityClayOven, SLOT_SPADE, 116, 55));
 
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 9; col++) {
@@ -88,9 +90,8 @@ public class ContainerClayOven extends Container {
             ItemStack stackInSlot = slot.getStack();
             itemStack = stackInSlot.copy();
 
-            // === SPEZIALFALL: Outputslot mit SHIFT-Klick ===
             if (slotIndex == SLOT_OUTPUT && slot instanceof SlotClayOvenOutputLocked) {
-                // Zugriff auf Key (Schaufel) prüfen
+
                 ItemStack keyStack = tileEntityClayOven.getStackInSlot(SLOT_SPADE);
                 if (!MachineUtilRegistry.isValidSpade(keyStack)) {
                     return null;
@@ -98,19 +99,16 @@ public class ContainerClayOven extends Container {
 
                 int amountTaken = stackInSlot.stackSize;
 
-                // Genug Haltbarkeit?
                 int durabilityLeft = keyStack.getMaxDamage() - keyStack.getItemDamage();
                 if (durabilityLeft < amountTaken) {
                     return null;
                 }
 
-                // Verschiebe Output ins Inventar
                 if (!mergeItemStack(stackInSlot, SLOT_PLAYER_INV_START, SLOT_TOTAL, true)) {
                     return null;
                 }
 
-                // Stack wurde verschoben → Schlüssel beschädigen
-                if (keyStack.getItem().isDamageable()) {
+                if (Objects.requireNonNull(keyStack.getItem()).isDamageable()) {
                     keyStack.setItemDamage(keyStack.getItemDamage() + amountTaken);
                     if (keyStack.getItemDamage() >= keyStack.getMaxDamage()) {
                         tileEntityClayOven.setInventorySlotContents(SLOT_SPADE, null); // Schaufel kaputt
@@ -120,22 +118,19 @@ public class ContainerClayOven extends Container {
                     tileEntityClayOven.markDirty();
                 }
 
-                // Output-Slot leeren
                 slot.putStack(null);
                 slot.onSlotChanged();
 
                 return itemStack;
             }
 
-            // === Maschinenbereich → Spieler (immer erlaubt) ===
             if (slotIndex < SLOT_PLAYER_INV_START) {
                 if (!mergeItemStack(stackInSlot, SLOT_PLAYER_INV_START, SLOT_TOTAL, true)) {
                     return null;
                 }
             } else {
-                // === Spieler → Maschine ===
                 boolean isSpadeItem = MachineUtilRegistry.isValidSpade(stackInSlot);
-                boolean merged = false;
+                boolean merged;
 
                 if (isSpadeItem) {
                     merged = mergeItemStack(stackInSlot, SLOT_SPADE, SLOT_SPADE + 1, false);
@@ -143,11 +138,10 @@ public class ContainerClayOven extends Container {
                     merged = mergeItemStack(stackInSlot, SLOT_INGRED_1, SLOT_INGRED_4 + 1, false);
                 }
 
-                // Falls nicht in Maschine mergebar → Hotbar/Inventory
                 if (!merged) {
-                    if (slotIndex >= SLOT_PLAYER_INV_START && slotIndex < SLOT_HOTBAR_START) {
+                    if (slotIndex < SLOT_HOTBAR_START) {
                         merged = mergeItemStack(stackInSlot, SLOT_HOTBAR_START, SLOT_TOTAL, false);
-                    } else if (slotIndex >= SLOT_HOTBAR_START && slotIndex < SLOT_TOTAL) {
+                    } else if (slotIndex < SLOT_TOTAL) {
                         merged = mergeItemStack(stackInSlot, SLOT_PLAYER_INV_START, SLOT_HOTBAR_START, false);
                     }
 
@@ -157,14 +151,12 @@ public class ContainerClayOven extends Container {
                 }
             }
 
-            // Stack geleert?
             if (stackInSlot.stackSize == 0) {
                 slot.putStack(null);
             } else {
                 slot.onSlotChanged();
             }
 
-            // Nichts bewegt?
             if (stackInSlot.stackSize == itemStack.stackSize) {
                 return null;
             }
