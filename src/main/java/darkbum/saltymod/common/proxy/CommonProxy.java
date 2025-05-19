@@ -110,7 +110,7 @@ public class CommonProxy {
         register(new PopulateChunkEventHandler());
         register(new RainMakerEventHandler());
         register(new TextureStitchEventHandler());
-        register(new TickPlayerTickEventHandler());
+        register(new TickEventHandler());
     }
 
     /**

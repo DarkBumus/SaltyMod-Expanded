@@ -6,7 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import static darkbum.saltymod.init.ModExternalItemLoader.*;
+import static darkbum.saltymod.init.ModExternalLoader.*;
 import static darkbum.saltymod.util.ConditionalRegistrar.*;
 import static darkbum.saltymod.common.config.ModConfigurationBlocks.*;
 import static darkbum.saltymod.common.config.ModConfigurationItems.*;

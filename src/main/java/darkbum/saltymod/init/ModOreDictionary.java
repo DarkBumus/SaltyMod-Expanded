@@ -6,12 +6,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-import static darkbum.saltymod.init.ModExternalItemLoader.*;
+import static darkbum.saltymod.init.ModExternalLoader.*;
 import static net.minecraftforge.oredict.OreDictionary.*;
 import static darkbum.saltymod.util.ConditionalRegistrar.*;
 import static darkbum.saltymod.common.config.ModConfigurationItems.*;
 import static darkbum.saltymod.init.ModBlocks.*;
 import static darkbum.saltymod.init.ModItems.*;
+import static darkbum.saltymod.init.ModItems.calamari;
 import static net.minecraft.init.Blocks.*;
 import static net.minecraft.init.Items.*;
 import static net.minecraft.init.Items.cake;

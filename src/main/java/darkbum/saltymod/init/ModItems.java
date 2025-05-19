@@ -9,15 +9,17 @@ import net.minecraft.potion.Potion;
 import darkbum.saltymod.item.*;
 import darkbum.saltymod.potion.ProbablePotionEffect;
 
-import static cpw.mods.fml.common.Loader.isModLoaded;
 import static darkbum.saltymod.common.config.ModConfigurationBlocks.*;
 import static darkbum.saltymod.common.config.ModConfigurationItems.*;
 import static darkbum.saltymod.common.config.ModConfigurationModCompatibility.*;
+import static darkbum.saltymod.common.config.ModConfigurationWorldGeneration.*;
 import static darkbum.saltymod.common.proxy.CommonProxy.*;
 import static darkbum.saltymod.init.ModBlocks.*;
+import static darkbum.saltymod.init.ModExternalLoader.*;
 import static darkbum.saltymod.util.ConditionalRegistrar.*;
 import static net.minecraft.init.Blocks.*;
 import static net.minecraft.init.Items.*;
+import static net.minecraft.init.Items.dye;
 import static net.minecraft.item.EnumAction.*;
 
 /**
@@ -551,6 +553,7 @@ public class ModItems {
             .addVariant(0, "sweetberry_cookie", "sweetberry_cookie", 2, 0.1f, false,
                 new ProbablePotionEffect(speed, 200, 0, one_third));
         chorus_cookie = new ItemChorusCookie("chorus_cookie", tab);
+
         chocolate_pie = new ItemSaltFood("chocolate_pie").setCreativeTab(tab)
             .addVariant(0, "chocolate_pie", "chocolate_pie", 7, 0.9f, false,
                 new ProbablePotionEffect(haste, 1800, 0, two_thirds));
@@ -736,12 +739,12 @@ public class ModItems {
         registerItem(saltwort, "saltwort");
         registerItem(golden_saltwort, "golden_saltwort", enableGoldenFoods);
         registerItem(golden_potato, "golden_potato", enableGoldenFoods);
-        registerItem(golden_berries, "golden_berries", enableGoldenFoods, isModLoaded("etfuturum"));
+        registerItem(golden_berries, "golden_berries", enableGoldenFoods, efr);
         registerItem(salt_cooked_porkchop, "salt_cooked_porkchop", enableSaltedPorkchop);
         registerItem(salt_cooked_beef, "salt_cooked_beef", enableSaltedBeef);
         registerItem(salt_cooked_chicken, "salt_cooked_chicken", enableSaltedChicken);
-        registerItem(salt_cooked_rabbit, "salt_cooked_rabbit", enableSaltedRabbit, isModLoaded("etfuturum"));
-        registerItem(salt_cooked_mutton, "salt_cooked_mutton", enableSaltedMutton, isModLoaded("etfuturum"));
+        registerItem(salt_cooked_rabbit, "salt_cooked_rabbit", enableSaltedRabbit, efr);
+        registerItem(salt_cooked_mutton, "salt_cooked_mutton", enableSaltedMutton, efr);
         registerItem(strider, "strider", enableStrider);
         registerItem(haunch, "haunch", enableHaunch);
         registerItem(cured_meat, "cured_meat", enableCuredMeat);
@@ -752,13 +755,13 @@ public class ModItems {
         registerItem(calamari, "calamari", enableCalamari);
         registerItem(salt_bread, "salt_bread", enableSaltedBread);
         registerItem(salt_baked_potato, "salt_baked_potato", enableSaltedPotato);
-        registerItem(salt_beetroot, "salt_beetroot", enableSaltedBeetroot);
+        registerItem(salt_beetroot, "salt_beetroot", enableSaltedBeetroot, efr);
         registerItem(salt_egg, "salt_egg", enableEgg);
         registerItem(egg_bowl, "egg_bowl", enableEgg);
         registerItem(salt_mushroom_stew, "salt_mushroom_stew", enableSaltedMushroomStew);
-        registerItem(salt_rabbit_stew, "salt_rabbit_stew", enableSaltedRabbitRagout, isModLoaded("etfuturum"));
-        registerItem(salt_beetroot_soup, "salt_beetroot_soup", enableSaltedBorscht, isModLoaded("etfuturum"));
-        registerItem(fungus_stew, "fungus_stew", enableFungusStew, isModLoaded("etfuturum"));
+        registerItem(salt_rabbit_stew, "salt_rabbit_stew", enableSaltedRabbitRagout, efr);
+        registerItem(salt_beetroot_soup, "salt_beetroot_soup", enableSaltedBorscht, efr);
+        registerItem(fungus_stew, "fungus_stew", enableFungusStew, efr);
         registerItem(chicken_soup, "chicken_soup", enableChickenSoup);
         registerItem(beef_stew, "beef_stew", enableBeefStew);
         registerItem(pumpkin_porridge, "pumpkin_porridge", enablePumpkinPorridge);
@@ -770,34 +773,34 @@ public class ModItems {
         registerItem(fish_soup, "fish_soup", enableFishSoup);
         registerItem(dandelion_salad, "dandelion_salad", enableDandelionSalad, enableOnion);
         registerItem(wheat_sprouts, "wheat_sprouts", enableWheatSprouts);
-        registerItem(beetroot_salad, "beetroot_salad", enableBeetrootSalad, isModLoaded("etfuturum"));
-        registerItem(dressed_herring, "dressed_herring", enableDressedHerring, enableOnion, isModLoaded("etfuturum"));
+        registerItem(beetroot_salad, "beetroot_salad", enableBeetrootSalad, efr);
+        registerItem(dressed_herring, "dressed_herring", enableDressedHerring, enableOnion, efr);
         registerItem(saltwort_salad, "saltwort_salad", enableSaltwortSalad);
         registerItem(golden_saltwort_salad, "golden_saltwort_salad", enableGoldenFoods);
         registerItem(saltwort_cooked_porkchop, "saltwort_cooked_porkchop", enableSaltwortPorkchop, enableSaltedPorkchop);
-        registerItem(saltwort_honey_porkchop, "saltwort_honey_porkchop", enableSaltwortHoneyPorkchop, enableHoney);
+        registerItem(saltwort_honey_porkchop, "saltwort_honey_porkchop", enableSaltwortHoneyPorkchop, enableHoneyPorkchop, enableHoney);
         registerItem(saltwort_cooked_beef, "saltwort_cooked_beef", enableSaltwortBeef, enableSaltedBeef);
-        registerItem(saltwort_cooked_mutton, "saltwort_cooked_mutton", enableSaltwortMutton, enableSaltedMutton, isModLoaded("etfuturum"));
+        registerItem(saltwort_cooked_mutton, "saltwort_cooked_mutton", enableSaltwortMutton, enableSaltedMutton, efr);
         registerItem(saltwort_cooked_strider, "saltwort_cooked_strider", enableSaltwortStrider, enableStrider);
         registerItem(saltwort_cooked_haunch, "saltwort_cooked_haunch", enableSaltwortHaunch, enableHaunch);
         registerItem(sugar_apple, "sugar_apple", enableSugaredApple);
         registerItem(sugar_melon, "sugar_melon", enableSugaredMelon);
-        registerItem(sugar_berries, "sugar_berries", enableSugaredBerries, isModLoaded("etfuturum"));
+        registerItem(sugar_berries, "sugar_berries", enableSugaredBerries, efr);
         registerItem(fruit_salad, "fruit_salad", enableFruitSalad);
-        registerItem(golden_fruit_salad, "golden_fruit_salad", enableGoldenFoods, isModLoaded("etfuturum"));
+        registerItem(golden_fruit_salad, "golden_fruit_salad", enableGoldenFoods, efr);
         registerItem(grated_carrot, "grated_carrot", enableGratedCarrot);
         registerItem(melon_soup, "melon_soup", enableMelonSoup);
         registerItem(honey_porkchop, "honey_porkchop", enableHoneyPorkchop, enableHoney);
         registerItem(honey_apple, "honey_apple", enableHoneyApple, enableHoney);
-        registerItem(honey_berries, "honey_berries", enableHoneyBerries, enableHoney, isModLoaded("etfuturum"));
-        registerItem(chocolate_berries, "chocolate_berries", enableChocolateBerries, isModLoaded("etfuturum"));
+        registerItem(honey_berries, "honey_berries", enableHoneyBerries, enableHoney, efr);
+        registerItem(chocolate_berries, "chocolate_berries", enableChocolateBerries, efr);
         registerItem(chocolate_bar, "chocolate_bar", enableChocolateBar);
-        registerItem(sweetberry_cookie, "sweetberry_cookie", enableBerryCookie);
-        registerItem(chorus_cookie, "chorus_cookie", enableChorusCookie);
+        registerItem(sweetberry_cookie, "sweetberry_cookie", enableBerryCookie, efr);
+        registerItem(chorus_cookie, "chorus_cookie", enableChorusCookie, efr);
         registerItem(chocolate_pie, "chocolate_pie", enableChocolatePie);
         registerItem(birthday_pie, "birthday_pie", enableBirthdayPie);
         registerItem(apple_pie, "apple_pie", enableApplePie);
-        registerItem(sweetberry_pie, "sweetberry_pie", enableBerryPie, isModLoaded("etfuturum"));
+        registerItem(sweetberry_pie, "sweetberry_pie", enableBerryPie, efr);
         registerItem(carrot_pie, "carrot_pie", enableCarrotPie);
         registerItem(mushroom_pie, "mushroom_pie", enableMushroomPie);
         registerItem(potato_pie, "potato_pie", enablePotatoPie);
@@ -811,14 +814,14 @@ public class ModItems {
         registerItem(saltwort_pie, "saltwort_pie", enableSaltwortPie);
         registerItem(fermented_saltwort, "fermented_saltwort", enableFermentedSaltwort);
         registerItem(fermented_fern, "fermented_fern", enableFermentedFern);
-        registerItem(fermented_marsh_reeds, "fermented_marsh_reeds", enableFermentedFern);
+        registerItem(fermented_marsh_reeds, "fermented_marsh_reeds", enableFermentedMarshReeds, enableSaltMarsh);
         registerItem(fermented_mushroom, "fermented_mushroom", enableFermentedMushroom);
         registerItem(pickled_calamari, "pickled_calamari", enablePickledCalamari, enableCalamari);
-        registerItem(pickled_beetroot, "pickled_beetroot", enablePickledBeetroot, isModLoaded("etfuturum"));
+        registerItem(pickled_beetroot, "pickled_beetroot", enablePickledBeetroot, efr);
         registerItem(pickled_onion, "pickled_onion", enablePickledOnion, enableOnion);
         registerItem(apple_preserves, "apple_preserves", enableApplePreserves);
         registerItem(melon_preserves, "melon_preserves", enableMelonPreserves);
-        registerItem(berry_preserves, "berry_preserves", enableBerryPreserves, isModLoaded("etfuturum"));
+        registerItem(berry_preserves, "berry_preserves", enableBerryPreserves, efr);
         registerItem(fizzy_drink, "fizzy_drink", enableFizzyDrink);
         registerItem(tunneler_concoction, "tunneler_concoction", enableTunnelersConcoction);
         registerItem(muffin, "muffin", enableMuffin);
@@ -833,30 +836,30 @@ public class ModItems {
         registerItem(rainmaker, "rainmaker", enableRainmaker);
 
 
-        registerItem(tf_salt_cooked_venison, "tf_salt_cooked_venison", enableTFFoods, isModLoaded("TwilightForest"));
-        registerItem(tf_salt_meef_steak, "tf_salt_meef_steak", enableTFFoods, isModLoaded("TwilightForest"));
-        registerItem(tf_salt_meef_stroganoff, "tf_salt_meef_stroganoff", enableTFFoods, isModLoaded("TwilightForest"));
-        registerItem(tf_salt_hydra_chop, "tf_salt_hydra_chop", enableTFFoods, isModLoaded("TwilightForest"));
-        registerItem(tf_pickled_mushgloom, "tf_pickled_mushgloom", enableTFFoods, isModLoaded("TwilightForest"));
-        registerItem(tf_saltwort_cooked_venison, "tf_saltwort_cooked_venison", enableTFFoods, isModLoaded("TwilightForest"));
-        registerItem(tf_saltwort_meef_steak, "tf_saltwort_meef_steak", enableTFFoods, isModLoaded("TwilightForest"));
+        registerItem(tf_salt_cooked_venison, "tf_salt_cooked_venison", enableTFFoods, tf);
+        registerItem(tf_salt_meef_steak, "tf_salt_meef_steak", enableTFFoods, tf);
+        registerItem(tf_salt_meef_stroganoff, "tf_salt_meef_stroganoff", tf);
+        registerItem(tf_salt_hydra_chop, "tf_salt_hydra_chop", enableTFFoods, tf);
+        registerItem(tf_pickled_mushgloom, "tf_pickled_mushgloom", enableTFFoods, tf);
+        registerItem(tf_saltwort_cooked_venison, "tf_saltwort_cooked_venison", enableTFFoods, tf);
+        registerItem(tf_saltwort_meef_steak, "tf_saltwort_meef_steak", enableTFFoods, tf);
 
 
-        registerItem(bop_hemoglobin, "bop_hemoglobin", enableBOPFoods, isModLoaded("BiomesOPlenty"));
-        registerItem(bop_poison, "bop_poison", enableBOPFoods, isModLoaded("BiomesOPlenty"));
-        registerItem(bop_salt_shroom_powder, "bop_salt_shroom_powder", enableBOPFoods, isModLoaded("BiomesOPlenty"));
-        registerItem(bop_sugar_fruit_salad, "bop_sugar_fruit_salad", enableBOPFoods, isModLoaded("BiomesOPlenty"));
-        registerItem(bop_salt_veggie_salad, "bop_salt_veggie_salad", enableBOPFoods, isModLoaded("BiomesOPlenty"));
-        registerItem(bop_salt_shroom_salad, "bop_salt_shroom_salad", enableBOPFoods, isModLoaded("BiomesOPlenty"));
-        registerItem(bop_salt_rice_bowl, "bop_salt_rice_bowl", enableBOPFoods, isModLoaded("BiomesOPlenty"));
-        registerItem(bop_pickled_turnip, "bop_pickled_turnip", enableBOPFoods, isModLoaded("BiomesOPlenty"));
+        registerItem(bop_hemoglobin, "bop_hemoglobin", enableBOPFoods, bop);
+        registerItem(bop_poison, "bop_poison", enableBOPFoods, bop);
+        registerItem(bop_salt_shroom_powder, "bop_salt_shroom_powder", enableBOPFoods, bop);
+        registerItem(bop_sugar_fruit_salad, "bop_sugar_fruit_salad", enableBOPFoods, bop);
+        registerItem(bop_salt_veggie_salad, "bop_salt_veggie_salad", enableBOPFoods, bop);
+        registerItem(bop_salt_shroom_salad, "bop_salt_shroom_salad", enableBOPFoods, bop);
+        registerItem(bop_salt_rice_bowl, "bop_salt_rice_bowl", enableBOPFoods, bop);
+        registerItem(bop_pickled_turnip, "bop_pickled_turnip", enableBOPFoods, bop);
 
 
-        registerItem(wm_salt_cooked_bison, "wm_salt_cooked_bison", enableWMFoods, isModLoaded("wildmobsmod"));
-        registerItem(wm_salt_cooked_calamari, "wm_salt_cooked_calamari", enableWMFoods, isModLoaded("wildmobsmod"));
-        registerItem(wm_salt_cooked_chevon, "wm_salt_cooked_chevon", enableWMFoods, isModLoaded("wildmobsmod"));
-        registerItem(wm_salt_cooked_goose, "wm_salt_cooked_goose", enableWMFoods, isModLoaded("wildmobsmod"));
-        registerItem(wm_salt_cooked_mouse, "wm_salt_cooked_mouse", enableWMFoods, isModLoaded("wildmobsmod"));
-        registerItem(wm_salt_cooked_venison, "wm_salt_cooked_venison", enableWMFoods, isModLoaded("wildmobsmod"));
+        registerItem(wm_salt_cooked_bison, "wm_salt_cooked_bison", enableWMFoods, wm);
+        registerItem(wm_salt_cooked_calamari, "wm_salt_cooked_calamari", enableWMFoods, wm);
+        registerItem(wm_salt_cooked_chevon, "wm_salt_cooked_chevon", enableWMFoods, wm);
+        registerItem(wm_salt_cooked_goose, "wm_salt_cooked_goose", enableWMFoods, wm);
+        registerItem(wm_salt_cooked_mouse, "wm_salt_cooked_mouse", enableWMFoods, wm);
+        registerItem(wm_salt_cooked_venison, "wm_salt_cooked_venison", enableWMFoods, wm);
     }
 }

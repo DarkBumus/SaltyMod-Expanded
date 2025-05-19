@@ -5,7 +5,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import static cpw.mods.fml.common.Loader.isModLoaded;
-import static darkbum.saltymod.init.ModExternalItemLoader.*;
+import static darkbum.saltymod.init.ModExternalLoader.*;
 import static darkbum.saltymod.util.ConditionalRegistrar.*;
 import static net.minecraftforge.oredict.OreDictionary.*;
 import static darkbum.saltymod.common.config.ModConfigurationBlocks.*;
@@ -20,6 +20,7 @@ import static net.minecraft.init.Items.*;
 import static net.minecraft.init.Items.cake;
 import static net.minecraft.init.Items.cauldron;
 import static net.minecraft.init.Items.wheat;
+import static net.minecraft.init.Items.dye;
 
 /**
  * Recipe class for Shaped Recipes.
@@ -41,7 +42,6 @@ public class ModShapedRecipes {
         Block beehive = etFuturumBlocks.get("beehive");
 
         Block campfire = campfireBackportBlocks.get("campfire");
-
 
         addShapedRecipe(new ItemStack(sugar),
             new Object[]{"xxx", "xxx", "xxx",
@@ -174,10 +174,11 @@ public class ModShapedRecipes {
             enableMachines, !isModLoaded("campfirebackport"));
 
         addShapedOreRecipe(new ItemStack(press),
-            new Object[]{"xyx", "z z", "xxx",
-                'x', "plankWood",
+            new Object[]{"xyx", "z z", "aaa",
+                'x', new ItemStack(iron_ingot),
                 'y', new ItemStack(hopper),
-                'z', new ItemStack(piston)},
+                'z', new ItemStack(piston),
+                'a', "plankWood"},
             enableMachines);
 
         addShapedOreRecipe(new ItemStack(mill),

@@ -2,19 +2,21 @@ package darkbum.saltymod.init.recipes;
 
 import cpw.mods.fml.common.Loader;
 import darkbum.saltymod.common.config.ModConfigurationWorldGeneration;
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
-import static darkbum.saltymod.init.ModExternalItemLoader.*;
+import static darkbum.saltymod.init.ModExternalLoader.*;
 import static darkbum.saltymod.util.ConditionalRegistrar.*;
 import static darkbum.saltymod.common.config.ModConfigurationBlocks.*;
 import static darkbum.saltymod.common.config.ModConfigurationItems.*;
 import static darkbum.saltymod.common.config.ModConfigurationModCompatibility.*;
 import static darkbum.saltymod.init.ModBlocks.*;
 import static darkbum.saltymod.init.ModItems.*;
+import static darkbum.saltymod.init.ModItems.calamari;
 import static net.minecraft.init.Blocks.*;
 import static net.minecraft.init.Items.*;
 import static net.minecraft.init.Items.wheat;
@@ -41,23 +43,21 @@ public class ModShapelessRecipes {
         Item sweet_berries = etFuturumItems.get("sweet_berries");
         Item dye = etFuturumItems.get("dye");
 
-        Item venisonCooked = twilightForestItems.get("item.venisonCooked");
-        Item meefSteak = twilightForestItems.get("item.meefSteak");
-        Item meefStroganoff = twilightForestItems.get("item.meefStroganoff");
-        Item hydraChop = twilightForestItems.get("item.hydraChop");
-        Item mushgloom = twilightForestItems.get("tile.TFPlant");
+        Item venisonCooked = twilightForestItems.get("venisonCooked");
+        Item meefSteak = twilightForestItems.get("meefSteak");
+        Item meefStroganoff = twilightForestItems.get("meefStroganoff");
+        Item hydraChop = twilightForestItems.get("hydraChop");
+        Block mushgloom = twilightForestBlocks.get("mushgloom");
 
         Item food = biomesOPlentyItems.get("food");
 
+        Item cooked_bison_meat = wildMobsItems.get("cooked_bison_meat");
+        Item cooked_calamari = wildMobsItems.get("cooked_calamari");
+        Item cooked_chevon = wildMobsItems.get("cooked_chevon");
+        Item cooked_goose = wildMobsItems.get("cooked_goose");
+        Item cooked_mouse = wildMobsItems.get("cooked_mouse");
+        Item cooked_venison = wildMobsItems.get("cooked_venison");
 
-        // Salty Food Rules: 1. Salt/Sugar Pinch, 2. Ingredient
-        // Bowl Rules: 1. Salt/Sugar Pinch, 2. Bowl, 3. Ingredients
-        // (Apple-Carrot-Melon-Potato-Mushroom-Fish-Seeds/Saltwort-Dandelion-Allium)
-        // Honeyed Food Rules: 1. Honey, 2. Food
-        // Chocolate Food Rules: 1. Cocoa Beans, 2. Food
-        // Pie Rules: 1. Salt/Sugar Pinch, 2. Ingredients, 3. Dough, 4. Egg,
-        // Fermented Ingredient Rules: 1. Ghast Tear, 2. Glass Bottle, 3. Ingredient
-        // Pickled Ingredient Rules: 1. Salt Pinch, 2. Water Bottle, 3. Ingredient
 
         addShapelessRecipe(new ItemStack(wheat_seeds, 9),
             new ItemStack(storage_sack));
@@ -410,11 +410,11 @@ public class ModShapelessRecipes {
 
 
         addShapelessRecipe(new ItemStack(tf_salt_cooked_venison),
-            new boolean[]{venisonCooked != null},
+            new boolean[]{enableTFFoods, venisonCooked != null},
             new ItemStack(salt_pinch),
             new ItemStack(venisonCooked));
         addShapelessRecipe(new ItemStack(tf_salt_meef_steak),
-            new boolean[]{meefSteak != null},
+            new boolean[]{enableTFFoods, meefSteak != null},
             new ItemStack(salt_pinch),
             new ItemStack(meefSteak));
         addShapelessRecipe(new ItemStack(tf_salt_meef_stroganoff),
@@ -422,7 +422,7 @@ public class ModShapelessRecipes {
             new ItemStack(salt_pinch),
             new ItemStack(meefStroganoff));
         addShapelessRecipe(new ItemStack(tf_salt_hydra_chop),
-            new boolean[]{hydraChop != null},
+            new boolean[]{enableTFFoods, hydraChop != null},
             new ItemStack(salt_pinch),
             new ItemStack(hydraChop));
         addShapelessRecipe(new ItemStack(tf_saltwort_cooked_venison),
@@ -438,7 +438,7 @@ public class ModShapelessRecipes {
             new ItemStack(saltwort),
             new ItemStack(saltwort));
         addShapelessRecipe(new ItemStack(tf_pickled_mushgloom),
-            new boolean[]{mushgloom != null},
+            new boolean[]{enableTFFoods, mushgloom != null},
             new ItemStack(salt_pinch),
             new ItemStack(potionitem),
             new ItemStack(mushgloom, 1, 9),
@@ -470,5 +470,30 @@ public class ModShapelessRecipes {
             new ItemStack(potionitem),
             new ItemStack(food, 1, 11),
             new ItemStack(food, 1, 11));
+
+        addShapelessRecipe(new ItemStack(wm_salt_cooked_bison),
+            new boolean[]{cooked_bison_meat != null},
+            new ItemStack(salt_pinch),
+            new ItemStack(cooked_bison_meat));
+        addShapelessRecipe(new ItemStack(wm_salt_cooked_calamari),
+            new boolean[]{cooked_calamari != null},
+            new ItemStack(salt_pinch),
+            new ItemStack(cooked_calamari));
+        addShapelessRecipe(new ItemStack(wm_salt_cooked_chevon),
+            new boolean[]{cooked_chevon != null},
+            new ItemStack(salt_pinch),
+            new ItemStack(cooked_chevon));
+        addShapelessRecipe(new ItemStack(wm_salt_cooked_goose),
+            new boolean[]{cooked_goose != null},
+            new ItemStack(salt_pinch),
+            new ItemStack(cooked_goose));
+        addShapelessRecipe(new ItemStack(wm_salt_cooked_mouse),
+            new boolean[]{cooked_mouse != null},
+            new ItemStack(salt_pinch),
+            new ItemStack(cooked_mouse));
+        addShapelessRecipe(new ItemStack(wm_salt_cooked_venison),
+            new boolean[]{cooked_venison != null},
+            new ItemStack(salt_pinch),
+            new ItemStack(cooked_venison));
     }
 }

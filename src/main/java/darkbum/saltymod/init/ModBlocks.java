@@ -8,7 +8,6 @@ import darkbum.saltymod.block.*;
 import darkbum.saltymod.block.BlockSaltBlock;
 import darkbum.saltymod.block.BlockSaltFlowerDirt;
 
-import static cpw.mods.fml.common.Loader.isModLoaded;
 import static darkbum.saltymod.block.BlockBeeBurrow.BeeBurrowType.*;
 import static darkbum.saltymod.block.BlockBeeNest.BeeNestType.*;
 import static darkbum.saltymod.block.BlockMarshReeds.*;
@@ -18,6 +17,7 @@ import static darkbum.saltymod.common.config.ModConfigurationItems.*;
 import static darkbum.saltymod.common.config.ModConfigurationModCompatibility.*;
 import static darkbum.saltymod.common.config.ModConfigurationWorldGeneration.*;
 import static darkbum.saltymod.common.proxy.CommonProxy.*;
+import static darkbum.saltymod.init.ModExternalLoader.*;
 import static darkbum.saltymod.util.ConditionalRegistrar.registerBlock;
 import static ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.*;
 
@@ -153,7 +153,7 @@ public class ModBlocks {
 
 //        registerBlock(dev_block, "dev_block");
         registerBlock(salt_ore, "salt_ore", enableSaltOre);
-        if (isModLoaded("etfuturum")) {
+        if (efr) {
             if (enableDeepslate && enableDeepslateOres) {
                 registerBlock(deepslate_salt_ore, "deepslate_salt_ore", enableSaltOre);
             }
@@ -175,7 +175,7 @@ public class ModBlocks {
         registerBlock(dry_mud_brick_stairs, "dry_mud_brick_stairs", enableMineralMud, enableMudBricks);
         registerBlock(dry_mud_brick_slab, ItemBlockMudBrickDrySlab.class, "dry_mud_brick_slab", enableMineralMud, enableMudBricks);
         registerBlock(double_dry_mud_brick_slab, ItemBlockMudBrickDrySlab.class, "double_dry_mud_brick_slab", enableMineralMud, enableMudBricks);
-        registerBlock(dry_mud_brick_wall, "dry_mud_brick_wall", enableMineralMud, enableMudBricks, isModLoaded("etfuturum"), enableMudBrickWall);
+        registerBlock(dry_mud_brick_wall, "dry_mud_brick_wall", enableMineralMud, enableMudBricks, efr, enableMudBrickWall);
         registerBlock(salt_crusted_oak_log, "salt_crusted_oak_log", enableSaltMarsh);
         registerBlock(evaporator, "evaporator", enableEvaporator);
         registerBlock(lit_evaporator, "lit_evaporator", enableEvaporator);
@@ -201,7 +201,7 @@ public class ModBlocks {
         registerBlock(onions, "onions", enableOnion);
         registerBlock(saltworts, "saltworts");
         registerBlock(salt_flower_d, ItemBlockSaltFlowerDirt.class, "salt_flower_d", enableSaltFlowers);
-        registerBlock(salt_flower_s, ItemBlockSaltFlowerSand.class, "salt_flower_s", enableSaltFlowers, isModLoaded("etfuturum"));
+        registerBlock(salt_flower_s, ItemBlockSaltFlowerSand.class, "salt_flower_s", enableSaltFlowers, efr);
         registerBlock(marsh_reeds_t, ItemBlockMarshReeds.class,"marsh_reeds_t", enableSaltMarsh);
         registerBlock(marsh_reeds_b, ItemBlockMarshReeds.class, "marsh_reeds_b", enableSaltMarsh);
     }

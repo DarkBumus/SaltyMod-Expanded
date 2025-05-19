@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-import static darkbum.saltymod.init.ModExternalItemLoader.*;
+import static darkbum.saltymod.init.ModExternalLoader.*;
 import static darkbum.saltymod.util.BlockUtils.*;
 import static darkbum.saltymod.util.ItemUtils.*;
 

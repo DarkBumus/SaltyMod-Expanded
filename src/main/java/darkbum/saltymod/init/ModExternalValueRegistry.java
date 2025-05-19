@@ -125,7 +125,7 @@ public class ModExternalValueRegistry {
 
             ItemFood baked_potato = (ItemFood) Items.baked_potato;
             baked_potato.healAmount = 4;
-            baked_potato.saturationModifier = 0.5f;
+            baked_potato.saturationModifier = 0.3f;
 
             ItemFood poisonous_potato = (ItemFood) Items.poisonous_potato;
             poisonous_potato.healAmount = 1;

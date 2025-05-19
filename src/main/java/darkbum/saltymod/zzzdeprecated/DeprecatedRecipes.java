@@ -5,7 +5,7 @@ import darkbum.saltymod.common.config.ModConfigurationBlocks;
 import darkbum.saltymod.common.config.ModConfigurationItems;
 import darkbum.saltymod.common.config.ModConfigurationModCompatibility;
 import darkbum.saltymod.common.config.ModConfigurationVanillaChanges;
-import darkbum.saltymod.init.ModExternalItemLoader;
+import darkbum.saltymod.init.ModExternalLoader;
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -26,13 +26,13 @@ public class DeprecatedRecipes {
      */
     public static void init() {
 
-        Block nether_fungus = ModExternalItemLoader.etFuturumBlocks.get("nether_fungus");
-        Item rabbit_raw = ModExternalItemLoader.etFuturumItems.get("rabbit_raw");
-        Item rabbit_stew = ModExternalItemLoader.etFuturumItems.get("rabbit_stew");
-        Item beetroot = ModExternalItemLoader.etFuturumItems.get("beetroot");
-        Item beetroot_soup = ModExternalItemLoader.etFuturumItems.get("beetroot_soup");
-        Item chorus_fruit = ModExternalItemLoader.etFuturumItems.get("chorus_fruit");
-        Item sweet_berries = ModExternalItemLoader.etFuturumItems.get("sweet_berries");
+        Block nether_fungus = ModExternalLoader.etFuturumBlocks.get("nether_fungus");
+        Item rabbit_raw = ModExternalLoader.etFuturumItems.get("rabbit_raw");
+        Item rabbit_stew = ModExternalLoader.etFuturumItems.get("rabbit_stew");
+        Item beetroot = ModExternalLoader.etFuturumItems.get("beetroot");
+        Item beetroot_soup = ModExternalLoader.etFuturumItems.get("beetroot_soup");
+        Item chorus_fruit = ModExternalLoader.etFuturumItems.get("chorus_fruit");
+        Item sweet_berries = ModExternalLoader.etFuturumItems.get("sweet_berries");
 
 
         ConditionalRegistrar.addShapelessOreRecipe(new ItemStack(Items.mushroom_stew),

@@ -34,6 +34,8 @@ public class ModConfigurationOther {
     // Config Options TOBEPHASEDOUT
     public static Map<Integer, Integer> cloudLevel;
 
+    public static boolean enableNEIShrub;
+
     /**
      * Initializes the configuration settings for the "to be phased out" category by reading values from the provided configuration file.
      *
@@ -42,7 +44,14 @@ public class ModConfigurationOther {
     public static void init(Configuration config) {
         config.setCategoryComment(categoryNameOth, categoryDescriptionOth);
 
-        String[] defaultCloudLevel = { "0=128", "7=160" };
+        enableNEIShrub = config.getBoolean(
+            "enableNEIShrub",
+            categoryNameOth,
+            true,
+            "Regulates whether or not the Shrub (tallgrass:0) should be shown in NEI or not."
+                + "\nDue to a bug with NEI this option currently shows two sets of tallgrass in NEI.");
+
+        String[] defaultCloudLevel = {"0=128", "7=160"};
 
         String[] loadedCloudLevel = config.getStringList(
             "loadedCloudLevel",

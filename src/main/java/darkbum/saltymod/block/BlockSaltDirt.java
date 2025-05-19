@@ -113,8 +113,8 @@ public class BlockSaltDirt extends Block {
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tabs, List<ItemStack> list) {
-        list.add(new ItemStack(item, 1, 1));
         list.add(new ItemStack(item, 1, 0));
+        list.add(new ItemStack(item, 1, 1));
     }
 
     /**

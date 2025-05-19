@@ -81,16 +81,16 @@ public class ModConfigurationModCompatibility {
             categoryNameMod,
             true,
             "Changes the food values of the Et Futurum Requiem Foods, to better fit the new balancing:"
-                + "\nRaw Mutton - 2 | 0.6F"
-                + "\nCooked Mutton - 4 | 0.6F"
-                + "\nRaw Rabbit - 1 | 0.6F"
-                + "\nCooked Rabbit - 3 | 0.6F"
-                + "\nRabbit Ragout - 7 | 0.7F"
-                + "\nBeetroot - 1 | 0.3F"
-                + "\nBorscht - 5 | 0.7F"
-                + "\nChorus Fruit - 1 | 0.3F"
-                + "\nSuspicious Stew - 5 | 0.7F"
-                + "\nSweetberries - 1 | 0.3F"
+                + "\nRaw Mutton - 2 | 0.6f"
+                + "\nCooked Mutton - 4 | 0.6f (Has a chance to give Health Boost for 5 seconds)"
+                + "\nRaw Rabbit - 1 | 0.6f"
+                + "\nCooked Rabbit - 3 | 0.6f (Has a chance to give Health Boost for 5 seconds)"
+                + "\nRabbit Ragout - 7 | 0.7f (Has a chance to give Health Boost for 5 seconds)"
+                + "\nBeetroot - 1 | 0.3f (Has a chance to give Jump Boost for 5 seconds)"
+                + "\nBorscht - 5 | 0.7f (Has a chance to give Jump Boost for 60 seconds)"
+                + "\nChorus Fruit - 1 | 0.3f"
+                + "\nSuspicious Stew - 5 | 0.7f"
+                + "\nSweetberries - 1 | 0.3f (Has a chance to give Speed for 5 seconds)"
                 + "\nNotes: The first value refers to the number of half hunger shanks the respective item returns. The second value refers to the saturation. For a more detailed understanding, refer to this table and halve the \"Saturation Ratio\" values depicted there: https://minecraft.wiki/w/Food#Foods"
                 + "\n");
 
@@ -286,7 +286,7 @@ public class ModConfigurationModCompatibility {
             "18-enableEFRHoneyCompatibility",
             categoryNameModIte,
             true,
-            "Integrates SaltyMod's Honey into Et Futurum Requiem's Honey as best as possible."
+            "Integrates SaltyMod Expanded's Honey into Et Futurum Requiem's Honey as best as possible."
                 + "\nWith this option active, Et Futurum Requiem's Honeycombs will be taken out of all possible recipes, so it can't be collected."
                 + "\nHoney Bottles will become craftable with SaltyMod's Honeycombs and Honeycomb Blocks will become craftable with SaltyMod's Waxcombs."
                 + "\nIt is recommended to deactivate Et Futurum Requiem's Bees in the entities.cfg and deactivate Et Futurum Requiem's Honeycomb with CraftTweaker.");

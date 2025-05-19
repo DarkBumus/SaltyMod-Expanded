@@ -199,7 +199,7 @@ public class ModAchievementList {
         "effect_swarmed",
         0,
         6,
-        carpenter_bee,
+        honey_bee,
         null).registerStat();
 
     public static Achievement craft_apiary = new Achievement(

@@ -74,6 +74,7 @@ public class ModConfigurationEffects {
             0.0f,
             1000.0f,
             "Changes the strength of the \"Inspired\" Potion Effect. This float value will be multiplied with the effect level."
-            + "\nSetting the value to 0.0f will negate the effect of \"Inspired\" fully.");
+            + "\nSetting the value to 0.0f will negate the effect of \"Inspired\" fully."
+            + "\nCareful, this setting is quite sensitive!");
     }
 }

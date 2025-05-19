@@ -3,7 +3,7 @@ package darkbum.saltymod.init.recipes;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
-import static darkbum.saltymod.init.ModExternalItemLoader.*;
+import static darkbum.saltymod.init.ModExternalLoader.*;
 import static darkbum.saltymod.util.ConditionalRegistrar.*;
 import static darkbum.saltymod.common.config.ModConfigurationItems.*;
 import static darkbum.saltymod.common.config.ModConfigurationModCompatibility.*;

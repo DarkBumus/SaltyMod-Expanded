@@ -11,7 +11,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import java.util.*;
 
 import static darkbum.saltymod.init.ModBlocks.*;
-import static darkbum.saltymod.init.ModExternalItemLoader.*;
+import static darkbum.saltymod.init.ModExternalLoader.*;
 import static darkbum.saltymod.init.ModItems.*;
 import static net.minecraft.init.Blocks.*;
 import static net.minecraft.init.Items.*;
@@ -40,7 +40,7 @@ public class MachineUtilRegistry {
 
         Block magma = etFuturumBlocks.get("magma");
         Block campfire = campfireBackportBlocks.get("campfire");
-        Block soul_campfire = campfireBackportBlocks.get("soul_campfire");
+        Block soul_campfire = campfireBackportBlocks.get("soul_campfire"); 
 
         // Heater Registry
         validHeaterBlocks.add(flowing_lava);

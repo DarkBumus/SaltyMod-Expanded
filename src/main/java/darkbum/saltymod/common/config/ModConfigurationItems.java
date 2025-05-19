@@ -19,7 +19,7 @@ public class ModConfigurationItems {
     // Category Strings
     private static final String categoryNameIte = "items";
     private static final String categoryDescriptionIte = "All the Items configuration that doesn't touch Armor, Food or Mod Compatibility";
-    private static final String categoryNameIteArm = "items | armor";
+    private static final String categoryNameIteArm = "items | armor + tools";
     private static final String categoryDescriptionIteArm = "All the Armor and Tool Items configuration";
     private static final String categoryNameIteFoo = "items | food";
     private static final String categoryDescriptionIteFoo = "All the Food Items configuration";
@@ -121,6 +121,7 @@ public class ModConfigurationItems {
 
     public static boolean enableFermentedSaltwort;
     public static boolean enableFermentedFern;
+    public static boolean enableFermentedMarshReeds;
     public static boolean enableFermentedMushroom;
     public static boolean enablePickledCalamari;
     public static boolean enablePickledOnion;
@@ -247,7 +248,7 @@ public class ModConfigurationItems {
 
         enableSaltPickaxe = config.getBoolean(
             "06-enableSaltPickaxe",
-            categoryDescriptionIteArm,
+            categoryNameIteArm,
             true,
             enableFeatures + "\nSalt Pickaxe" + "\n");
 
@@ -410,7 +411,7 @@ public class ModConfigurationItems {
             enableFeatures + "\nCactus Soup" + "\nSalted Cactus Soup" + "\n");
         enableBoneMarrowSoup = config.getBoolean(
             "22-enableBoneMarrowSoup",
-            categoryNameIte,
+            categoryNameIteFoo,
             true,
             enableFeatures + "\nBone Marrow Soup" + "\nSalted Bone Marrow Soup" + "\n");
         enableStewedVegetables = config.getBoolean(
@@ -555,23 +556,25 @@ public class ModConfigurationItems {
             enableFeatures + "\nFermented Saltwort" + "\n");
         enableFermentedFern = config
             .getBoolean("58-enableFermentedFern", categoryNameIteFoo, true, enableFeatures + "\nFermented Fern" + "\n");
+        enableFermentedMarshReeds = config
+            .getBoolean("59-enableFermentedMarshReeds", categoryNameIteFoo, true, enableFeatures + "\nFermented Marhs Reeds" + "\n");
         enableFermentedMushroom = config.getBoolean(
-            "59-enableFermentedMushroom",
+            "60-enableFermentedMushroom",
             categoryNameIteFoo,
             true,
             enableFeatures + "\nFermented Mushroom" + "\n");
         enablePickledCalamari = config
-            .getBoolean("60-enablePickledCalamari", categoryNameIteFoo, true, enableFeatures + "\nPickled Calamari" + "\n");
+            .getBoolean("61-enablePickledCalamari", categoryNameIteFoo, true, enableFeatures + "\nPickled Calamari" + "\n");
         enablePickledOnion = config
-            .getBoolean("61-enablePickledOnion", categoryNameIteFoo, true, enableFeatures + "\nPickled Onion" + "\n");
+            .getBoolean("62-enablePickledOnion", categoryNameIteFoo, true, enableFeatures + "\nPickled Onion" + "\n");
         enableApplePreserves = config
-            .getBoolean("62-enableApplePreserves", categoryNameIteFoo, true, enableFeatures + "\nApple Preserves" + "\n");
+            .getBoolean("63-enableApplePreserves", categoryNameIteFoo, true, enableFeatures + "\nApple Preserves" + "\n");
         enableMelonPreserves = config
-            .getBoolean("63-enableMelonPreserves", categoryNameIteFoo, true, enableFeatures + "\nMelon Preserves" + "\n");
+            .getBoolean("64-enableMelonPreserves", categoryNameIteFoo, true, enableFeatures + "\nMelon Preserves" + "\n");
 
-        enableMuffin = config.getBoolean("64-enableMuffin", categoryNameIteFoo, true, enableFeatures + "\nMuffin" + "\n");
+        enableMuffin = config.getBoolean("65-enableMuffin", categoryNameIteFoo, true, enableFeatures + "\nMuffin" + "\n");
 
         enableToughJelly = config
-            .getBoolean("65-enableToughJelly", categoryNameIteFoo, true, enableFeatures + "\nTough Jelly" + "\n");
+            .getBoolean("66-enableToughJelly", categoryNameIteFoo, true, enableFeatures + "\nTough Jelly" + "\n");
     }
 }

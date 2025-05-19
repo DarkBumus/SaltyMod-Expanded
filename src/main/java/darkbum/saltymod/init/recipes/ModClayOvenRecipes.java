@@ -5,7 +5,7 @@ import darkbum.saltymod.util.OvenbakingRecipe;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import static darkbum.saltymod.init.ModExternalItemLoader.*;
+import static darkbum.saltymod.init.ModExternalLoader.*;
 import static darkbum.saltymod.util.ConditionalRegistrar.*;
 import static darkbum.saltymod.common.config.ModConfigurationBlocks.*;
 import static darkbum.saltymod.common.config.ModConfigurationItems.*;
@@ -13,8 +13,10 @@ import static darkbum.saltymod.common.config.ModConfigurationModCompatibility.*;
 import static darkbum.saltymod.common.config.ModConfigurationVanillaChanges.*;
 import static darkbum.saltymod.util.OvenbakingRecipe.*;
 import static darkbum.saltymod.init.ModItems.*;
+import static darkbum.saltymod.init.ModItems.calamari;
 import static net.minecraft.init.Blocks.*;
 import static net.minecraft.init.Items.*;
+import static net.minecraft.init.Items.dye;
 
 /**
  * Recipe class for {@link TileEntityClayOven}.

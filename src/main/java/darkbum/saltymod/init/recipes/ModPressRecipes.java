@@ -5,7 +5,7 @@ import darkbum.saltymod.util.PotcookingRecipe;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import static darkbum.saltymod.init.ModExternalItemLoader.*;
+import static darkbum.saltymod.init.ModExternalLoader.*;
 import static darkbum.saltymod.util.ConditionalRegistrar.*;
 import static darkbum.saltymod.common.config.ModConfigurationEntities.*;
 import static darkbum.saltymod.common.config.ModConfigurationItems.*;
@@ -72,7 +72,7 @@ public class ModPressRecipes {
             true,
             false,
             new ItemStack(glass_bottle));
-/*        addPressRecipe(new ItemStack(honeycomb),
+        addPressRecipe(new ItemStack(honeycomb),
             new boolean[]{enableHoney, honey_bottle == null},
             new ItemStack(royal_jelly),
             new ItemStack(waxcomb),
@@ -85,7 +85,7 @@ public class ModPressRecipes {
             null,
             true,
             false,
-            new ItemStack(glass_bottle));*/
+            new ItemStack(glass_bottle));
 
         addPressRecipe(new ItemStack(horn),
             new boolean[]{enableHornedSheep},

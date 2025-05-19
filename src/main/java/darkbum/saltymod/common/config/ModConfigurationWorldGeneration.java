@@ -40,7 +40,6 @@ public class ModConfigurationWorldGeneration {
     public static int saltMarshWetness;
     public static boolean saltMarshAdditionalSaltOre;
     public static int saltMarshSaltOreFrequency;
-    public static int marshReedUpdateFrequency;
 
     // Config Options WorldGenerationStructures
     public static boolean enableSaltLakes;
@@ -114,17 +113,6 @@ public class ModConfigurationWorldGeneration {
             1,
             10,
             "Regulates the frequency of the additional Salt Ore Generation in Salt Marsh Biomes");
-        marshReedUpdateFrequency = config.getInt(
-            "07-marshReedUpdateFrequency",
-            categoryNameWorBio,
-            25,
-            1,
-            100,
-            "Regulates the chance in % at which Marsh Reeds will check for an update in case their placement is invalid."
-            + "\nIf you don't know what this means, leave the value as it is. However, if you fear for performance,"
-            + "\ndon't raise this value over ~35. Too many update checks will certainly impact your performance,"
-            + "especially when you're in a Salt Marsh with many Marsh Reeds."
-            + "\n");
 
         config.setCategoryComment(categoryNameWorStr, categoryDescriptionWorStr);
 

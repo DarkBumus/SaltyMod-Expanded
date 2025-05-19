@@ -3,7 +3,7 @@ package darkbum.saltymod;
 import java.io.File;
 
 import darkbum.saltymod.common.proxy.CommonProxy;
-import darkbum.saltymod.init.ModExternalItemLoader;
+import darkbum.saltymod.init.ModExternalLoader;
 import darkbum.saltymod.zzzdeprecated.DeprecatedRecipes;
 
 import org.apache.logging.log4j.LogManager;
@@ -156,7 +156,7 @@ public class SaltyMod {
         config.postInit();
 
         // Load mod items, external value changes and OreDictionary
-        ModExternalItemLoader.init();
+        ModExternalLoader.init();
         ModExternalValueRegistry.init();
         ModOreDictionary.init();
 

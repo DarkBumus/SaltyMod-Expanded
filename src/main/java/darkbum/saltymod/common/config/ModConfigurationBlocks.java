@@ -171,15 +171,19 @@ public class ModConfigurationBlocks {
             "14-enableMachines",
             categoryNameBlo,
             true,
-            enableFeatures + "\nHeater"
+            enableFeatures + "\nStove"
+                + "\nPress"
+                + "\nMill"
+                + "\nCooking Pot"
+                + "\nClay Pot"
                 + "\n");
         enableDeprecatedRecipes = config.getBoolean(
-            "15-enableDeprecatedMachines",
+            "15-enableDeprecatedRecipes",
             categoryNameBlo,
             false,
             "Regulates whether or not the deprecated recipes should be shown." +
-                "This allows you to see the recipes for machines as normal crafting recipes in NEI." +
-                "This feature will be deprecated altogether, as soon as NEI is properly integrated.");
+                "\nThis allows you to see the recipes for machines as normal crafting recipes in NEI." +
+                "\nhis feature will be deprecated altogether, as soon as NEI is properly integrated.");
 
         enableStorageBlocks = config.getBoolean(
             "16-enableStorageBlocks",
