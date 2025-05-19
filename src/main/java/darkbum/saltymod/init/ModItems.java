@@ -1,6 +1,5 @@
 package darkbum.saltymod.init;
 
-import darkbum.saltymod.common.config.*;
 import darkbum.saltymod.potion.ModPotion;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.*;
@@ -10,6 +9,7 @@ import darkbum.saltymod.item.*;
 import darkbum.saltymod.potion.ProbablePotionEffect;
 
 import static darkbum.saltymod.common.config.ModConfigurationBlocks.*;
+import static darkbum.saltymod.common.config.ModConfigurationEntities.*;
 import static darkbum.saltymod.common.config.ModConfigurationItems.*;
 import static darkbum.saltymod.common.config.ModConfigurationModCompatibility.*;
 import static darkbum.saltymod.common.config.ModConfigurationWorldGeneration.*;
@@ -76,7 +76,7 @@ public class ModItems {
     public static Item frozen_honey;
     public static Item royal_jelly;
     public static Item mineral_mud_ball;
-    public static Item horn;
+    public static Item sheep_horn;
     public static Item baking_soda;
     public static Item powdered_milk;
     public static Item salt;
@@ -228,7 +228,7 @@ public class ModItems {
         royal_jelly = new Item().setCreativeTab(tab).setUnlocalizedName("royal_jelly").setTextureName("saltymod:royal_jelly");
 
         mineral_mud_ball = new Item().setCreativeTab(tab).setUnlocalizedName("mineral_mud_ball").setTextureName("saltymod:mineral_mud_ball");
-        horn = new Item().setCreativeTab(tab).setUnlocalizedName("horn").setTextureName("saltymod:horn");
+        sheep_horn = new Item().setCreativeTab(tab).setUnlocalizedName("sheep_horn").setTextureName("saltymod:sheep_horn");
 
         baking_soda = new Item().setCreativeTab(tab).setUnlocalizedName("baking_soda").setTextureName("saltymod:baking_soda");
         powdered_milk = new ItemPowderedMilk("powdered_milk", tab).setTextureName("saltymod:powdered_milk");
@@ -728,7 +728,7 @@ public class ModItems {
         registerItem(frozen_honey, "frozen_honey", enableHoney);
         registerItem(royal_jelly, "royal_jelly", enableHoney);
         registerItem(mineral_mud_ball, "mineral_mud_ball", enableMineralMud);
-        registerItem(horn, "horn", ModConfigurationEntities.enableHornedSheep);
+        registerItem(sheep_horn, "sheep_horn", enableHornedSheep);
         registerItem(baking_soda, "baking_soda");
         registerItem(powdered_milk, "powdered_milk");
         registerItem(salt, "salt");

@@ -45,7 +45,7 @@ tile.dry_mud_brick_stairs.name=Mud Brick Stairs
 tile.dry_mud_brick_slab.name=Mud Brick Slab
 tile.dry_mud_brick_wall.name=Mud Brick Wall
 
-tile.salt_crusted_oak_log.name=Salt Crusted Oak Log
+tile.salt_crusted_oak_log.name=Salt-Crusted Oak Log
 
 tile.evaporator.name=Evaporator
 container.evaporator=Evaporator
@@ -129,15 +129,7 @@ item.honeycomb.name=Honeycomb
 item.frozen_honey.name=Frozen Honey
 item.royal_jelly.name=Royal Jelly
 
-item.horn.name=Horn
-item.horn.ponder.tooltip=Ponder
-item.horn.sing.tooltip=Sing
-item.horn.seek.tooltip=Seek
-item.horn.feel.tooltip=Feel
-item.horn.admire.tooltip=Admire
-item.horn.call.tooltip=Call
-item.horn.yearn.tooltip=Yearn
-item.horn.dream.tooltip=Dream
+item.sheep_horn.name=Sheep Horn
 item.marsh_reeds_grass.name=Marsh Reeds
 
 item.mineral_mud_ball.name=Mineral Mud Ball

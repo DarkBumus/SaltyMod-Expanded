@@ -87,7 +87,7 @@ public class ModPressRecipes {
             false,
             new ItemStack(glass_bottle));
 
-        addPressRecipe(new ItemStack(horn),
+        addPressRecipe(new ItemStack(sheep_horn),
             new boolean[]{enableHornedSheep},
             new ItemStack(tunneler_concoction),
             null,

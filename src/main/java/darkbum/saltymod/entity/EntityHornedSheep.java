@@ -142,7 +142,7 @@ public class EntityHornedSheep extends EntitySheep {
                 0.0F
             );
             if (this.rand.nextFloat() < 0.5F) {
-                this.dropItem(ModItems.horn, 1);
+                this.dropItem(ModItems.sheep_horn, 1);
             }
         }
     }
