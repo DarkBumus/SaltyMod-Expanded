@@ -361,30 +361,6 @@ public class ModShapelessRecipes {
             new ItemStack(baking_soda),
             new ItemStack(potionitem));
 
-        addShapelessOreRecipe(new ItemStack(muffin),
-            new boolean[]{enableHoney, enableDough},
-            "itemRoyaljelly",
-            new ItemStack(dye, 1, 3),
-            new ItemStack(dough),
-            new ItemStack(egg));
-        addShapelessOreRecipe(new ItemStack(muffin),
-            new boolean[]{enableHoney, !enableDough},
-            "itemRoyaljelly",
-            new ItemStack(dye, 1, 3),
-            new ItemStack(wheat),
-            new ItemStack(egg));
-        addShapelessRecipe(new ItemStack(muffin),
-            new boolean[]{!enableHoney, enableDough},
-            new ItemStack(sugar),
-            new ItemStack(dye, 1, 3),
-            new ItemStack(dough),
-            new ItemStack(egg));
-        addShapelessRecipe(new ItemStack(muffin),
-            new boolean[]{!enableHoney, !enableDough},
-            new ItemStack(sugar),
-            new ItemStack(dye, 1, 3),
-            new ItemStack(wheat),
-            new ItemStack(egg));
         addShapelessRecipe(new ItemStack(rainmaker_star),
             new boolean[]{enableRainmaker},
             new ItemStack(gunpowder),

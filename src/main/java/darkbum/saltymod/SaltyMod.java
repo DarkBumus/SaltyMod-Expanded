@@ -210,4 +210,6 @@ public class SaltyMod {
  * - Cooking Pot / Clay Oven Particles
  * - Salt Flowers Potting [LATER] [WTF]
  * - Achievements/Configs
+ * - Eating Particles for Bowl Foods
+ * - Eating time dependant on hunger/saturation
  */

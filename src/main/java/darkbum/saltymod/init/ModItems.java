@@ -170,9 +170,9 @@ public class ModItems {
     public static Item apple_preserves;
     public static Item melon_preserves;
     public static Item berry_preserves;
+    public static Item muffin;
     public static Item fizzy_drink;
     public static Item tunneler_concoction;
-    public static Item muffin;
     public static Item tough_jelly;
     public static Item mud_helmet;
     public static Item mud_chestplate;
@@ -639,13 +639,14 @@ public class ModItems {
                 new ProbablePotionEffect(speed, 1200, 2),
                 new ProbablePotionEffect(weakness, 600, 1));
 
+        muffin = new ItemMuffin("muffin", tab).setTextureName("saltymod:muffin");
+
         fizzy_drink = new ItemFizzyDrink("fizzy_drink", tab).setTextureName("saltymod:fizzy_drink");
         tunneler_concoction = new ItemTunnelerConcoction("tunneler_concoction", tab);
-        muffin = new ItemMuffin("muffin", tab).setTextureName("saltymod:muffin");
+
         tough_jelly = new ItemSaltFood("tough_jelly").setCreativeTab(tab)
             .addVariant(0, "tough_jelly", "tough_jelly", 1, 0.3f, false,
                 new ProbablePotionEffect(nausea, 300, 0, 0.3f));
-
         mud_helmet = new ItemMudArmor("mud_helmet", mudMaterial, 0);
         mud_chestplate = new ItemMudArmor("mud_chestplate", mudMaterial, 1);
         mud_leggings = new ItemMudArmor("mud_leggings", mudMaterial, 2);
@@ -822,9 +823,9 @@ public class ModItems {
         registerItem(apple_preserves, "apple_preserves", enableApplePreserves);
         registerItem(melon_preserves, "melon_preserves", enableMelonPreserves);
         registerItem(berry_preserves, "berry_preserves", enableBerryPreserves, efr);
+        registerItem(muffin, "muffin", enableMuffin);
         registerItem(fizzy_drink, "fizzy_drink", enableFizzyDrink);
         registerItem(tunneler_concoction, "tunneler_concoction", enableTunnelersConcoction);
-        registerItem(muffin, "muffin", enableMuffin);
         registerItem(tough_jelly, "tough_jelly", enableToughJelly);
         registerItem(mud_helmet, "mud_helmet", enableMudArmor, enableMineralMud);
         registerItem(mud_chestplate, "mud_chestplate", enableMudArmor, enableMineralMud);

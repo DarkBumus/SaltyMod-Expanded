@@ -1,7 +1,6 @@
 package darkbum.saltymod.zzzdeprecated;
 
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -666,6 +665,31 @@ public class DeprecatedRecipes {
             new boolean[]{!enableDough, enableSaltwortPie},
             new ItemStack(saltwort),
             new ItemStack(saltwort),
+            new ItemStack(wheat),
+            new ItemStack(egg));
+
+        addShapelessOreRecipe(new ItemStack(muffin),
+            new boolean[]{enableHoney, enableDough},
+            "itemRoyaljelly",
+            new ItemStack(dye, 1, 3),
+            new ItemStack(dough),
+            new ItemStack(egg));
+        addShapelessOreRecipe(new ItemStack(muffin),
+            new boolean[]{enableHoney, !enableDough},
+            "itemRoyaljelly",
+            new ItemStack(dye, 1, 3),
+            new ItemStack(wheat),
+            new ItemStack(egg));
+        addShapelessRecipe(new ItemStack(muffin),
+            new boolean[]{!enableHoney, enableDough},
+            new ItemStack(sugar),
+            new ItemStack(dye, 1, 3),
+            new ItemStack(dough),
+            new ItemStack(egg));
+        addShapelessRecipe(new ItemStack(muffin),
+            new boolean[]{!enableHoney, !enableDough},
+            new ItemStack(sugar),
+            new ItemStack(dye, 1, 3),
             new ItemStack(wheat),
             new ItemStack(egg));
 
