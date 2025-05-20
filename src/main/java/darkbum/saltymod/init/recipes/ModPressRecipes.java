@@ -42,6 +42,13 @@ public class ModPressRecipes {
             true,
             null);
 
+        addPressRecipe(new ItemStack(gravel),
+            null,
+            new ItemStack(sand),
+            false,
+            true,
+            null);
+
         addPressRecipe(new ItemStack(mineral_mud_ball),
             new boolean[]{enableMineralMud},
             new ItemStack(potionitem, 1, 0),
