@@ -2,6 +2,8 @@ package darkbum.saltymod.entity;
 
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.entity.EntityAgeable;
@@ -11,8 +13,10 @@ import net.minecraft.entity.ai.EntityAIMate;
 import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
 /**
@@ -145,5 +149,11 @@ public class EntityHornedSheep extends EntitySheep {
                 this.dropItem(ModItems.sheep_horn, 1);
             }
         }
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public ItemStack getPickedResult(MovingObjectPosition target) {
+        return new ItemStack(Items.spawn_egg, 1, 601);
     }
 }

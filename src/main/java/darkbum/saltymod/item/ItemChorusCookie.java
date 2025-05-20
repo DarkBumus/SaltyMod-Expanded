@@ -1,5 +1,6 @@
 package darkbum.saltymod.item;
 
+import darkbum.saltymod.util.ItemSaltFood;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;

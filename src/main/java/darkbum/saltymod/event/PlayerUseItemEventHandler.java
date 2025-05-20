@@ -3,7 +3,7 @@ package darkbum.saltymod.event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import darkbum.saltymod.init.ModAchievementList;
 import darkbum.saltymod.init.ModItems;
-import darkbum.saltymod.item.ItemSaltFood;
+import darkbum.saltymod.util.ItemSaltFood;
 import darkbum.saltymod.potion.ModPotion;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.player.PlayerUseItemEvent;

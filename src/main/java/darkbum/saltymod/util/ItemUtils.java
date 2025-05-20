@@ -1,6 +1,5 @@
 package darkbum.saltymod.util;
 
-import darkbum.saltymod.item.ItemSaltFood;
 import darkbum.saltymod.item.ItemSaltwort;
 import darkbum.saltymod.potion.ProbablePotionEffect;
 import net.minecraft.client.resources.I18n;

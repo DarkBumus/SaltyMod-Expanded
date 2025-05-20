@@ -2,6 +2,7 @@ package darkbum.saltymod.item;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import darkbum.saltymod.util.ItemSaltFood;
 import net.minecraft.creativetab.CreativeTabs;
 
 import net.minecraft.item.EnumRarity;

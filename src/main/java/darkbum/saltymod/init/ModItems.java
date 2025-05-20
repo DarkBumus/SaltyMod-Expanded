@@ -1,6 +1,7 @@
 package darkbum.saltymod.init;
 
 import darkbum.saltymod.potion.ModPotion;
+import darkbum.saltymod.util.ItemSaltFood;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.*;
 import net.minecraft.potion.Potion;

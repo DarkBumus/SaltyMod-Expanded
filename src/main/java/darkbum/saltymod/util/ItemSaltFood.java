@@ -1,4 +1,4 @@
-package darkbum.saltymod.item;
+package darkbum.saltymod.util;
 
 import java.util.*;
 
