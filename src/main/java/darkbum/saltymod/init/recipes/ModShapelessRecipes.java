@@ -3,11 +3,10 @@ package darkbum.saltymod.init.recipes;
 import cpw.mods.fml.common.Loader;
 import darkbum.saltymod.common.config.ModConfigurationWorldGeneration;
 import net.minecraft.block.Block;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
-
-import cpw.mods.fml.common.registry.GameRegistry;
 
 import static darkbum.saltymod.init.ModExternalLoader.*;
 import static darkbum.saltymod.util.ConditionalRegistrar.*;
@@ -78,12 +77,15 @@ public class ModShapelessRecipes {
         addShapelessRecipe(new ItemStack(fish, 9, 3),
             new boolean[]{enableStorageBlocks},
             new ItemStack(storage_barrel, 1, 4));
-        GameRegistry.addShapelessRecipe(new ItemStack(dye, 1, 2),
+
+        addShapelessRecipe(new ItemStack(Items.dye, 1, 2),
             new ItemStack(saltwort));
-        GameRegistry.addShapelessRecipe(new ItemStack(dye, 1, 5),
+        addShapelessRecipe(new ItemStack(Items.dye, 1, 5),
+            new boolean[]{enableSaltFlowers},
             new ItemStack(salt_flower_d, 1, 2));
-        GameRegistry.addShapelessRecipe(new ItemStack(dye, 1, 10),
-            new ItemStack(salt_flower_d, 1, 5));
+        addShapelessRecipe(new ItemStack(Items.dye, 1, 10),
+            new boolean[]{enableSaltFlowers},
+            new ItemStack(salt_flower_s, 1, 0));
 
         addShapelessRecipe(new ItemStack(melon_seeds, 9),
             new boolean[]{enableStorageBlocks},
@@ -110,10 +112,10 @@ public class ModShapelessRecipes {
             new ItemStack(storage_sack, 1, 4));
 
         addShapelessRecipe(new ItemStack(dye, 1, 0),
-            new boolean[]{dye != null},
+            new boolean[]{dye != null, enableSaltFlowers},
             new ItemStack(salt_flower_d, 1, 0));
-        addShapelessRecipe(new ItemStack(dye, 1, 15),
-            new boolean[]{dye == null},
+        addShapelessRecipe(new ItemStack(Items.dye, 1, 15),
+            new boolean[]{dye == null, enableSaltFlowers},
             new ItemStack(salt_flower_d, 1, 0));
 
         addShapelessRecipe(new ItemStack(salt_grass),

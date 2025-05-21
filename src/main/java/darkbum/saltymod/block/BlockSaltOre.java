@@ -83,7 +83,7 @@ public class BlockSaltOre extends Block {
      * @param hitX   The x-coordinate of the hit location on the block.
      * @param hitY   The y-coordinate of the hit location on the block.
      * @param hitZ   The z-coordinate of the hit location on the block.
-     * @return true, if a GUI was opened, false otherwise
+     * @return true, if a interaction happens, false otherwise
      */
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
@@ -137,7 +137,7 @@ public class BlockSaltOre extends Block {
     /**
      * Returns the number of items to drop when the block is broken, taking into account the fortune level.
      *
-     * @return The quantity of items to drop, with potential for extra items based on the fortune level.
+     * @return the quantity of items to drop, with potential for extra items based on the fortune level.
      */
     @Override
     public int quantityDroppedWithBonus(int fortune, Random random) {
@@ -152,7 +152,7 @@ public class BlockSaltOre extends Block {
     /**
      * Returns the amount of experience to drop when the block is broken.
      *
-     * @return The amount of experience to drop. In this case, it always returns 1.
+     * @return the amount of experience to drop. In this case, it always returns 1.
      */
     @Override
     public int getExpDrop(IBlockAccess world, int meta, int fortune) {

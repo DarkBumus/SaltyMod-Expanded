@@ -36,9 +36,10 @@ public class SaltOreGenerator implements IWorldGenerator {
 
     }
 
+    @SuppressWarnings("unused")
     public void generateOre(Block block, World world, Random rand, int chunkX, int chunkZ, int veinSize, int chance, int minY, int maxY, Block generateIn) {
         int heightRange = maxY - minY;
-        WorldGenMinable gen = new WorldGenMinable(block, veinSize, chance, generateIn);
+        WorldGenMinable gen = new WorldGenMinable(block, 0, veinSize, generateIn);
         for (int i = 0; i < ModConfigurationWorldGeneration.saltOreFrequency; i++) {
             int randPosX = chunkX + rand.nextInt(16);
             int randPosY = rand.nextInt(heightRange) + minY;

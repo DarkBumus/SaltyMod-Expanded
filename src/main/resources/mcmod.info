@@ -1,11 +1,11 @@
 [
 {
-  "modid": "SaltMod",
-  "name": "Salty Mod Expanded",
-  "description": "Salt the Earth Update!",
-  "version": "2.0.0",
+  "modid": "saltymod",
+  "name": "SaltyMod Expanded",
+  "description": "The Everything Update",
+  "version": "2.0.1",
   "mcversion": "1.7.10",
-  "url": "http://minecraft.curseforge.com/projects/saltymod",
+  "url": "https://modrinth.com/mod/saltymod-expanded",
   "updateUrl": "",
   "authorList": ["DarkBum"],
   "credits": "",

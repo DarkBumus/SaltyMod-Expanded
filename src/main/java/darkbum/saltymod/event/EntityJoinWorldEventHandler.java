@@ -1,7 +1,6 @@
 package darkbum.saltymod.event;
 
 import darkbum.saltymod.entity.ai.EntityAICustomEatGrass;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntitySheep;

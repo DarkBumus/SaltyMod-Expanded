@@ -63,11 +63,7 @@ public class ItemSalt extends Item {
                 flag = true;
             }
             if (flag) {
-                horse.worldObj.playSoundAtEntity(
-                    horse,
-                    "eating",
-                    1.0F,
-                    1.0F + ((new Random()).nextFloat() - (new Random()).nextFloat()) * 0.2F);
+                horse.worldObj.playSoundAtEntity(horse, "eating", 1.0F, 1.0F + ((new Random()).nextFloat() - (new Random()).nextFloat()) * 0.2F);
                 stack.stackSize--;
                 return true;
             }

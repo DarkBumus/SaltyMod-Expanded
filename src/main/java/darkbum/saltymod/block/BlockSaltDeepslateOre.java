@@ -32,6 +32,7 @@ public class BlockSaltDeepslateOre extends BlockSaltOre {
      *
      * @param block The parent ore this block belongs to.
      */
+    @SuppressWarnings("unused")
     public BlockSaltDeepslateOre(Block block, String name, CreativeTabs tab) {
         super(name, tab);
         setBlockName("deepslate_salt_ore");
