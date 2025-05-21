@@ -10,8 +10,8 @@ import darkbum.saltymod.common.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.IIcon;
 
+import static darkbum.saltymod.init.ModExternalLoader.etFuturumBlocks;
 import static darkbum.saltymod.util.BlockUtils.*;
-import static ganymedes01.etfuturum.ModBlocks.*;
 
 /**
  * Block class for the salt deepslate ore block.
@@ -24,6 +24,8 @@ public class BlockSaltDeepslateOre extends BlockSaltOre {
 
     @SideOnly(Side.CLIENT)
     private IIcon iconSide;
+
+
 
     /**
      * Constructs a new block instance with parent ore block.
@@ -62,7 +64,8 @@ public class BlockSaltDeepslateOre extends BlockSaltOre {
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-        return (side == 1 && meta > 0) ? deepslate.getBlockTextureFromSide(side)
+        Block deepslate = etFuturumBlocks.get("deepslate");
+        return (side == 1 && meta > 0) ? deepslate.getIcon(0, 0)
             : (((side == 2 && meta % 2 == 1) || (side == 5 && meta % 4 >= 2)
             || (side == 3 && meta % 8 >= 4)
             || (side == 4 && meta >= 8)) ? this.iconSide : this.blockIcon);

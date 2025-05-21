@@ -101,6 +101,13 @@ public class ModExternalLoader {
      */
     public static void loadEtFuturum() {
         if (!efr) return;
+        etFuturumBlocks.put("blue_ice", findBlock("etfuturum", "blue_ice"));
+        etFuturumBlocks.put("deepslate", findBlock("etfuturum", "deepslate"));
+        etFuturumBlocks.put("magma", findBlock("etfuturum", "magma"));
+        etFuturumBlocks.put("nether_fungus", findBlock("etfuturum", "nether_fungus"));
+        etFuturumBlocks.put("honeycomb_block", findBlock("etfuturum", "honeycomb_block"));
+        etFuturumBlocks.put("beehive", findBlock("etfuturum", "beehive"));
+
         etFuturumItems.put("suspicious_stew", findItem("etfuturum", "suspicious_stew"));
         etFuturumItems.put("mutton_raw", findItem("etfuturum", "mutton_raw"));
         etFuturumItems.put("mutton_cooked", findItem("etfuturum", "mutton_cooked"));
@@ -114,11 +121,6 @@ public class ModExternalLoader {
         etFuturumItems.put("sweet_berries", findItem("etfuturum", "sweet_berries"));
         etFuturumItems.put("dye", findItem("etfuturum", "dye"));
         etFuturumItems.put("honey_bottle", findItem("etfuturum", "honey_bottle"));
-        etFuturumBlocks.put("blue_ice", findBlock("etfuturum", "blue_ice"));
-        etFuturumBlocks.put("magma", findBlock("etfuturum", "magma"));
-        etFuturumBlocks.put("nether_fungus", findBlock("etfuturum", "nether_fungus"));
-        etFuturumBlocks.put("honeycomb_block", findBlock("etfuturum", "honeycomb_block"));
-        etFuturumBlocks.put("beehive", findBlock("etfuturum", "beehive"));
     }
 
     /**

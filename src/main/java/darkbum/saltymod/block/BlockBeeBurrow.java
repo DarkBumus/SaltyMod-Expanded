@@ -1,6 +1,7 @@
 package darkbum.saltymod.block;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import cpw.mods.fml.common.Loader;
@@ -12,10 +13,12 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -35,22 +38,22 @@ import static darkbum.saltymod.util.BlockUtils.*;
 public class BlockBeeBurrow extends Block {
 
     @SideOnly(Side.CLIENT)
-    IIcon iconTop;
+    IIcon iconTopSpruce;
 
     @SideOnly(Side.CLIENT)
-    IIcon iconSide;
+    IIcon iconSideSpruce;
 
     @SideOnly(Side.CLIENT)
-    IIcon iconBurrow;
+    IIcon iconBurrowSpruce;
 
-    /**
-     * Enum to differentiate between the types of bee burrows.
-     */
-    public enum BeeBurrowType {
-        SPRUCE, BIRCH
-    }
+    @SideOnly(Side.CLIENT)
+    IIcon iconTopBirch;
 
-    final BeeBurrowType type;
+    @SideOnly(Side.CLIENT)
+    IIcon iconSideBirch;
+
+    @SideOnly(Side.CLIENT)
+    IIcon iconBurrowBirch;
 
     /**
      * Constructs a new block instance with a given name, a creative tab and a type.
@@ -59,11 +62,9 @@ public class BlockBeeBurrow extends Block {
      *
      * @param name The internal name of the block.
      * @param tab  The creative tab in which the block appears.
-     * @param type The type of bee burrow.
      */
-    public BlockBeeBurrow(String name, CreativeTabs tab, BeeBurrowType type) {
+    public BlockBeeBurrow(String name, CreativeTabs tab) {
         super(Material.wood);
-        this.type = type;
         setBlockName(name);
         setCreativeTab(tab);
         propertiesBeeNest(this);
@@ -77,15 +78,12 @@ public class BlockBeeBurrow extends Block {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister icon) {
-        if (type == BeeBurrowType.SPRUCE) {
-            this.iconTop = icon.registerIcon("saltymod:bee_burrow_spruce_top");
-            this.iconSide = icon.registerIcon("log_spruce");
-            this.iconBurrow = icon.registerIcon("saltymod:bee_burrow_spruce");
-        } else {
-            this.iconTop = icon.registerIcon("saltymod:bee_burrow_birch_top");
-            this.iconSide = icon.registerIcon("log_birch");
-            this.iconBurrow = icon.registerIcon("saltymod:bee_burrow_birch");
-        }
+        iconTopSpruce = icon.registerIcon("saltymod:bee_burrow_spruce_top");
+        iconSideSpruce = icon.registerIcon("log_spruce");
+        iconBurrowSpruce = icon.registerIcon("saltymod:bee_burrow_spruce");
+        iconTopBirch = icon.registerIcon("saltymod:bee_burrow_birch_top");
+        iconSideBirch = icon.registerIcon("log_birch");
+        iconBurrowBirch = icon.registerIcon("saltymod:bee_burrow_birch");
     }
 
     /**
@@ -98,15 +96,58 @@ public class BlockBeeBurrow extends Block {
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-        IIcon[] icons = {iconTop, iconTop, iconSide, iconSide, iconBurrow, iconSide};
         int facing = meta % 4;
+        boolean isBirch = meta >= 4;
+
+        IIcon top = isBirch ? iconTopBirch : iconTopSpruce;
+        IIcon sideIcon = isBirch ? iconSideBirch : iconSideSpruce;
+        IIcon burrow = isBirch ? iconBurrowBirch : iconBurrowSpruce;
+
+        if (side == 0 || side == 1) return top;
+
         return switch (facing) {
-            case 0 -> icons[side == 0 ? 0 : (side == 1 ? 1 : (side == 3 ? 4 : 2))];
-            case 1 -> icons[side == 0 ? 0 : (side == 1 ? 1 : (side == 4 ? 4 : 2))];
-            case 2 -> icons[side == 0 ? 0 : (side == 1 ? 1 : (side == 2 ? 4 : 2))];
-            case 3 -> icons[side == 0 ? 0 : (side == 1 ? 1 : (side == 5 ? 4 : 2))];
-            default -> null;
+            case 0 -> (side == 3) ? burrow : sideIcon;
+            case 1 -> (side == 4) ? burrow : sideIcon;
+            case 2 -> (side == 2) ? burrow : sideIcon;
+            case 3 -> (side == 5) ? burrow : sideIcon;
+            default -> sideIcon;
         };
+    }
+
+    /**
+     * Adds the available sub-blocks of this item to the creative tab.
+     * This method is used to specify the different variations of this item
+     * that can be displayed in the creative inventory.
+     *
+     * @param item The item to add sub-blocks for.
+     * @param tabs The creative tab where the item is being displayed.
+     * @param list The list of item stacks to add the sub-blocks to.
+     */
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void getSubBlocks(Item item, CreativeTabs tabs, List<ItemStack> list) {
+        list.add(new ItemStack(item, 1, 0));
+        list.add(new ItemStack(item, 1, 4));
+    }
+
+    /**
+     * Returns the item stack to be picked when the block is targeted in creative mode.
+     * Always returns a single slab, even if targeting a double slab.
+     *
+     * @param target    The targeted block hit result.
+     * @param world     The world the block is in.
+     * @param x         The x-coordinate of the block.
+     * @param y         The y-coordinate of the block.
+     * @param z         The z-coordinate of the block.
+     * @param player    The player picking the block.
+     * @return an item stack of the single dry mud brick slab.
+     */
+    @Override
+    @SideOnly(Side.CLIENT)
+    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
+        int meta = world.getBlockMetadata(x, y, z);
+        int baseMeta = (meta >= 4) ? 4 : 0;
+        return new ItemStack(this, 1, baseMeta);
     }
 
     /**
@@ -123,7 +164,7 @@ public class BlockBeeBurrow extends Block {
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
         int directionMeta = MathHelper.floor_double((double) (entity.rotationYaw * 4.0F / 360.0F) + 2.5D) & 3;
-        int baseMeta = (type == BeeBurrowType.BIRCH) ? 4 : 0;
+        int baseMeta = (stack.getItemDamage() >= 4) ? 4 : 0;
         world.setBlockMetadataWithNotify(x, y, z, baseMeta + directionMeta, 2);
     }
 
@@ -154,16 +195,12 @@ public class BlockBeeBurrow extends Block {
     private boolean tryStripBlock(World world, int x, int y, int z, EntityPlayer player, ItemStack heldItem) {
         if (!Loader.isModLoaded("etfuturum") || !(heldItem.getItem() instanceof ItemAxe)) return false;
         if (world.isRemote) return true;
+
         int meta = world.getBlockMetadata(x, y, z);
-        Block replacement = (type == BeeBurrowType.SPRUCE)
-            ? ModBlocks.bee_burrow_spruce_stripped
-            : (type == BeeBurrowType.BIRCH)
-            ? ModBlocks.bee_burrow_birch_stripped
-            : null;
+        Block replacement = ModBlocks.bee_burrow_stripped;
 
         if (replacement != null) {
             world.setBlock(x, y, z, replacement, meta, 3);
-
             if (!player.capabilities.isCreativeMode) {
                 heldItem.damageItem(1, player);
                 BlockUtils.applySwarmedEffect(world, player, x, y, z, 600);
@@ -207,17 +244,15 @@ public class BlockBeeBurrow extends Block {
     public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int meta, int fortune) {
         ArrayList<ItemStack> drops = new ArrayList<>();
         Random random = new Random();
+        boolean isBirch = meta >= 4;
 
-        BeeBurrowType actualType = (meta >= 4) ? BeeBurrowType.BIRCH : BeeBurrowType.SPRUCE;    // 4+ means birch
-        ItemStack bee = (actualType == BeeBurrowType.SPRUCE) ? new ItemStack(ModItems.carpenter_bee) : new ItemStack(ModItems.regal_bee);
-        ItemStack comb = (actualType == BeeBurrowType.SPRUCE) ? new ItemStack(ModItems.waxcomb) : new ItemStack(ModItems.honeycomb);
+        ItemStack bee = isBirch ? new ItemStack(ModItems.regal_bee) : new ItemStack(ModItems.carpenter_bee);
+        ItemStack comb = isBirch ? new ItemStack(ModItems.honeycomb) : new ItemStack(ModItems.waxcomb);
+
         drops.add(bee);
-
         if (random.nextFloat() < 0.3f) {
-            int count = random.nextInt(3) + 1;  // 1-3 combs
-            ItemStack stack = comb.copy();
-            stack.stackSize = count;
-            drops.add(stack);
+            comb.stackSize = random.nextInt(3) + 1;
+            drops.add(comb);
         }
         return drops;
     }

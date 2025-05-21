@@ -8,8 +8,6 @@ import darkbum.saltymod.block.*;
 import darkbum.saltymod.block.BlockSaltBlock;
 import darkbum.saltymod.block.BlockSaltFlowerDirt;
 
-import static darkbum.saltymod.block.BlockBeeBurrow.BeeBurrowType.*;
-import static darkbum.saltymod.block.BlockBeeNest.BeeNestType.*;
 import static darkbum.saltymod.block.BlockMarshReeds.*;
 import static darkbum.saltymod.block.BlockStove.*;
 import static darkbum.saltymod.common.config.ModConfigurationBlocks.*;
@@ -57,12 +55,9 @@ public class ModBlocks {
     public static Block lit_evaporator;
     public static Block steam_evaporator;
     public static Block fish_farm;
-    public static Block bee_nest_temperate;
-    public static Block bee_nest_boreal;
-    public static Block bee_burrow_spruce;
-    public static Block bee_burrow_birch;
-    public static Block bee_burrow_spruce_stripped;
-    public static Block bee_burrow_birch_stripped;
+    public static Block bee_nest;
+    public static Block bee_burrow;
+    public static Block bee_burrow_stripped;
     public static Block apiary;
     public static Block stove;
     public static Block lit_stove;
@@ -121,12 +116,9 @@ public class ModBlocks {
 
         fish_farm = new BlockFishFarm("fish_farm", tab);
 
-        bee_nest_temperate = new BlockBeeNest("bee_nest", tab, TEMPERATE);
-        bee_nest_boreal = new BlockBeeNest("bee_nest", tab, BOREAL);
-        bee_burrow_spruce = new BlockBeeBurrow("bee_burrow", tab, SPRUCE);
-        bee_burrow_birch = new BlockBeeBurrow("bee_burrow", tab, BIRCH);
-        bee_burrow_spruce_stripped = new BlockBeeBurrowStripped("bee_burrow_stripped", tab, SPRUCE);
-        bee_burrow_birch_stripped = new BlockBeeBurrowStripped("bee_burrow_stripped", tab, BIRCH);
+        bee_nest = new BlockBeeNest("bee_nest", tab);
+        bee_burrow = new BlockBeeBurrow("bee_burrow", tab);
+        bee_burrow_stripped = new BlockBeeBurrowStripped("bee_burrow_stripped", tab);
         apiary = new BlockApiary("apiary", tab);
 
         stove = new BlockStoveUnlit("stove", tab);
@@ -181,12 +173,9 @@ public class ModBlocks {
         registerBlock(lit_evaporator, "lit_evaporator", enableEvaporator);
         registerBlock(steam_evaporator, "steam_evaporator", enableEvaporator);
         registerBlock(fish_farm, "fish_farm", enableFishFarm);
-        registerBlock(bee_nest_temperate, ItemBlockBeeNest.class, "bee_nest_temperate", enableApiary);
-        registerBlock(bee_nest_boreal, ItemBlockBeeNest.class, "bee_nest_boreal", enableApiary);
-        registerBlock(bee_burrow_spruce, ItemBlockBeeBurrow.class, "bee_burrow_spruce", enableApiary);
-        registerBlock(bee_burrow_birch, ItemBlockBeeBurrow.class, "bee_burrow_birch", enableApiary);
-        registerBlock(bee_burrow_spruce_stripped, ItemBlockBeeBurrow.class, "bee_burrow_spruce_stripped", enableApiary);
-        registerBlock(bee_burrow_birch_stripped, ItemBlockBeeBurrow.class, "bee_burrow_birch_stripped", enableApiary);
+        registerBlock(bee_nest, ItemBlockBeeNest.class, "bee_nest", enableApiary);
+        registerBlock(bee_burrow, ItemBlockBeeBurrow.class, "bee_burrow", enableApiary);
+        registerBlock(bee_burrow_stripped, ItemBlockBeeBurrow.class, "bee_burrow_stripped", enableApiary, efr);
         registerBlock(apiary, "apiary", enableApiary);
         registerBlock(stove, "stove", enableMachines);
         registerBlock(lit_stove, "lit_stove", enableMachines);

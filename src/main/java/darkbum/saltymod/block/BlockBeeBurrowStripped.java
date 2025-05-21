@@ -22,10 +22,9 @@ public class BlockBeeBurrowStripped extends BlockBeeBurrow {
      *
      * @param name The internal name of the block.
      * @param tab  The creative tab in which the block appears.
-     * @param type The type of bee burrow.
      */
-    public BlockBeeBurrowStripped(String name, CreativeTabs tab, BeeBurrowType type) {
-        super(name, tab, type);
+    public BlockBeeBurrowStripped(String name, CreativeTabs tab) {
+        super(name, tab);
     }
 
     /**
@@ -36,15 +35,12 @@ public class BlockBeeBurrowStripped extends BlockBeeBurrow {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister icon) {
-        if (type == BeeBurrowType.SPRUCE) {
-            this.iconTop = icon.registerIcon("saltymod:bee_burrow_spruce_stripped_top");
-            this.iconSide = icon.registerIcon("saltymod:bee_burrow_spruce_stripped_side");
-            this.iconBurrow = icon.registerIcon("saltymod:bee_burrow_spruce_stripped");
-        } else {
-            this.iconTop = icon.registerIcon("saltymod:bee_burrow_birch_stripped_top");
-            this.iconSide = icon.registerIcon("saltymod:bee_burrow_birch_stripped_side");
-            this.iconBurrow = icon.registerIcon("saltymod:bee_burrow_birch_stripped");
-        }
+            this.iconTopSpruce = icon.registerIcon("saltymod:bee_burrow_spruce_stripped_top");
+            this.iconSideSpruce = icon.registerIcon("saltymod:bee_burrow_spruce_stripped_side");
+            this.iconBurrowSpruce = icon.registerIcon("saltymod:bee_burrow_spruce_stripped");
+            this.iconTopBirch = icon.registerIcon("saltymod:bee_burrow_birch_stripped_top");
+            this.iconSideBirch = icon.registerIcon("saltymod:bee_burrow_birch_stripped_side");
+            this.iconBurrowBirch = icon.registerIcon("saltymod:bee_burrow_birch_stripped");
     }
 
     /**

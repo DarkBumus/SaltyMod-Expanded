@@ -1,6 +1,5 @@
 package darkbum.saltymod.util;
 
-import cpw.mods.fml.common.Loader;
 import darkbum.saltymod.init.ModSounds;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -24,9 +23,9 @@ import java.util.Random;
 import static darkbum.saltymod.block.BlockSaltBlock.*;
 import static darkbum.saltymod.common.config.ModConfigurationBlocks.*;
 import static darkbum.saltymod.init.ModBlocks.*;
+import static darkbum.saltymod.init.ModExternalLoader.*;
 import static darkbum.saltymod.init.ModItems.*;
 import static darkbum.saltymod.init.ModSounds.*;
-import static ganymedes01.etfuturum.client.sound.ModSounds.*;
 import static net.minecraft.block.material.Material.*;
 import static net.minecraft.init.Blocks.snow_layer;
 import static net.minecraft.init.Blocks.snow;
@@ -483,8 +482,11 @@ public class BlockUtils {
         block.setHardness(4.5f);
         block.setResistance(3.0f);
         block.setHarvestLevel("pickaxe", 0);
-        if (Loader.isModLoaded("etfuturum")) {
-            block.setStepSound(soundDeepslate);
+        Block deepslate = etFuturumBlocks.get("deepslate");
+        if (efr && deepslate != null) {
+            block.setStepSound(deepslate.stepSound);
+        } else {
+            block.setStepSound(soundTypeStone);
         }
     }
 

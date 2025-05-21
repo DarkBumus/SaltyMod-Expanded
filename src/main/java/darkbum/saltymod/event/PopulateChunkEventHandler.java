@@ -105,7 +105,7 @@ public class PopulateChunkEventHandler {
                             if (blockBelow == Blocks.log) {
                                 if (rand.nextFloat() < 0.005f) {
                                     int meta = rand.nextInt(3);
-                                    world.setBlock(worldX, y, worldZ, ModBlocks.bee_burrow_spruce, meta, 3);
+                                    world.setBlock(worldX, y, worldZ, ModBlocks.bee_burrow, meta, 3);
                                 }
                             }
                         }
@@ -124,7 +124,7 @@ public class PopulateChunkEventHandler {
                             if (blockBelow == Blocks.log) {
                                 if (rand.nextFloat() < 0.005f) {
                                     int meta = 4 + rand.nextInt(4);
-                                    world.setBlock(worldX, y, worldZ, ModBlocks.bee_burrow_birch, meta, 3);
+                                    world.setBlock(worldX, y, worldZ, ModBlocks.bee_burrow, meta, 3);
                                 }
                             }
                         }
@@ -146,7 +146,7 @@ public class PopulateChunkEventHandler {
                             if (blockBelow == Blocks.air) {
                                 if (rand.nextFloat() < 0.001f) {
                                     int meta = rand.nextInt(3);
-                                    world.setBlock(worldX, y, worldZ, ModBlocks.bee_nest_temperate, meta, 3);
+                                    world.setBlock(worldX, y, worldZ, ModBlocks.bee_nest, meta, 3);
                                 }
                             }
                         }
@@ -156,7 +156,7 @@ public class PopulateChunkEventHandler {
                             if (blockBelow == Blocks.air) {
                                 if (rand.nextFloat() < 0.0005f) {
                                     int meta = rand.nextInt(3);
-                                    world.setBlock(worldX, y, worldZ, ModBlocks.bee_nest_temperate, meta, 3);
+                                    world.setBlock(worldX, y, worldZ, ModBlocks.bee_nest, meta, 3);
                                 }
                             }
                         }
@@ -173,7 +173,7 @@ public class PopulateChunkEventHandler {
                             if (blockBelow == Blocks.air) {
                                 if (rand.nextFloat() < 0.002f) {
                                     int meta = rand.nextInt(3);
-                                    world.setBlock(worldX, y, worldZ, ModBlocks.bee_nest_temperate, meta, 3);
+                                    world.setBlock(worldX, y, worldZ, ModBlocks.bee_nest, meta, 3);
                                 }
                             }
                         }
@@ -194,7 +194,7 @@ public class PopulateChunkEventHandler {
                             if (blockBelow == Blocks.air) {
                                 if (rand.nextFloat() < 0.002f) {
                                     int meta = 4 + rand.nextInt(4);
-                                    world.setBlock(worldX, y, worldZ, ModBlocks.bee_nest_boreal, meta, 3);
+                                    world.setBlock(worldX, y, worldZ, ModBlocks.bee_nest, meta, 3);
                                 }
                             }
                         }
