@@ -25,7 +25,7 @@ import darkbum.saltymod.SaltyMod;
 import darkbum.saltymod.common.config.ModConfigurationBlocks;
 import darkbum.saltymod.common.config.ModConfigurationWorldGeneration;
 import darkbum.saltymod.init.ModItems;
-import darkbum.saltymod.inventory.gui.GuiHandler;
+import darkbum.saltymod.util.GuiHandler;
 import darkbum.saltymod.network.EvaporatorButtonMessage;
 import darkbum.saltymod.network.SaltwortMessage;
 import darkbum.saltymod.world.generator.*;

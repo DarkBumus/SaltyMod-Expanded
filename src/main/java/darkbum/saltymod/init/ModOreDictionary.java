@@ -18,7 +18,7 @@ import static net.minecraft.init.Items.*;
 import static net.minecraft.init.Items.cake;
 
 /**
- * Recipe class for {@link TileEntityEvaporator}
+ * OreDictionary class.
  *
  * @author DarkBum
  * @since 1.9.f

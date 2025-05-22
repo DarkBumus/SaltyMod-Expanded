@@ -32,9 +32,25 @@ public class ItemUtils {
         String baseKey = stack.getUnlocalizedName();
         String tooltipKey = baseKey + ".tooltip";
 
-        String tooltip = I18n.format(tooltipKey);
-        if (!tooltip.equals(tooltipKey)) {
-            list.add(tooltip);
+        boolean foundAny = false;
+        for (int i = 0; i < 10; i++) {
+            String lineKey = tooltipKey + "." + i;
+            String line = I18n.format(lineKey);
+            if (!line.equals(lineKey)) {
+                list.add(line);
+                foundAny = true;
+            } else if (i == 0) {
+                break;
+            } else {
+                break;
+            }
+        }
+
+        if (!foundAny) {
+            String singleTooltip = I18n.format(tooltipKey);
+            if (!singleTooltip.equals(tooltipKey)) {
+                list.add(singleTooltip);
+            }
         }
     }
 

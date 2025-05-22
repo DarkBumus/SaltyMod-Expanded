@@ -199,10 +199,10 @@ public class BlockSaltFlowerSand extends BlockFlower {
 
         switch (meta) {
             case 0:
-                drop.add(new ItemStack(this, 1, 5));
+                drop.add(new ItemStack(this, 1, 0));
                 break;
             case 1:
-                drop.add(new ItemStack(this, 1, 5));
+                drop.add(new ItemStack(this, 1, 0));
                 if (Loader.isModLoaded("etfuturum")
                     && ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems.enableBeetroot) {
                     Item beetroot = GameRegistry.findItem("etfuturum", "beetroot");
