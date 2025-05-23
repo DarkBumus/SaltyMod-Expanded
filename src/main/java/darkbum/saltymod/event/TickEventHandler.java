@@ -30,7 +30,7 @@ public class TickEventHandler {
      */
     @SuppressWarnings("unused")
     @SubscribeEvent
-    public void TickPlayerTick(TickEvent.PlayerTickEvent event) {
+    public void onPlayerTick(TickEvent.PlayerTickEvent event) {
         int px = MathHelper.floor_double(event.player.posX);
         int pz = MathHelper.floor_double(event.player.posZ);
 

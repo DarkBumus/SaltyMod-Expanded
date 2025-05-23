@@ -32,7 +32,7 @@ public class LivingDropsEventHandler {
      */
     @SuppressWarnings("unused")
     @SubscribeEvent
-    public void onLivingDrops(LivingDropsEvent event) {
+    public void onLivingDrop(LivingDropsEvent event) {
         EntityLivingBase entity = event.entityLiving;
         boolean isBurning = entity.isBurning();
         boolean isChild = entity.isChild();

@@ -26,7 +26,7 @@ public class AchievementEventHandler {
      */
     @SuppressWarnings("unused")
     @SubscribeEvent
-    public void achievement(AchievementEvent event) {
+    public void onAchievement(AchievementEvent event) {
         if (!(event.entityPlayer instanceof EntityPlayerMP player)) return;
 
         if (event.achievement == ModAchievementList.effect_swarmed) {

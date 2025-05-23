@@ -24,7 +24,7 @@ public class PlayerPickupXpEventHandler {
      */
     @SuppressWarnings("unused")
     @SubscribeEvent
-    public void playerPickupXp(PlayerPickupXpEvent event) {
+    public void onPlayerXpPickup(PlayerPickupXpEvent event) {
         EntityPlayer player = event.entityPlayer;
         EntityXPOrb orb = event.orb;
 

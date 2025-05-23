@@ -23,7 +23,7 @@ public class PlayerItemCraftedEventHandler {
      */
     @SuppressWarnings("unused")
     @SubscribeEvent
-    public void playerItemCrafted(PlayerEvent.ItemCraftedEvent event) {
+    public void onPlayerItemCrafted(PlayerEvent.ItemCraftedEvent event) {
         if (event.crafting.getItem() == ModItems.mineral_mud_ball) {
             event.player.addStat(ModAchievementList.find_mineral_mud, 1);
         }

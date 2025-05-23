@@ -22,11 +22,11 @@ public class RainMakerEventHandler {
     /**
      * Handles setting rain or thunder conditions in the world and notifying the player through a localized chat message.
      *
-     * @param event The RainMakerEvent containing world, player, and thunder status information.
+     * @param event The RainmakerEvent containing world, player, and thunder status information.
      */
     @SuppressWarnings("unused")
     @SubscribeEvent
-    public void rainMaker(RainMakerEvent event) {
+    public void onRainmaker(RainmakerEvent event) {
         if (!event.world.isRemote) {
             int durationTicks = (300 + (new Random()).nextInt(600)) * 20;
             event.world.getWorldInfo().setRainTime(durationTicks);
@@ -56,7 +56,7 @@ public class RainMakerEventHandler {
      * about the world, position, player, and whether it is thunder or just rain.
      */
     @Cancelable
-    public static class RainMakerEvent extends Event {
+    public static class RainmakerEvent extends Event {
 
         public final World world;
         public final double x;
@@ -66,7 +66,7 @@ public class RainMakerEventHandler {
         public final boolean isThunder;
 
         /**
-         * Constructs a new RainMakerEvent.
+         * Constructs a new RainmakerEvent.
          *
          * @param world the world where the event takes place
          * @param x the X coordinate of the event's position
@@ -75,7 +75,7 @@ public class RainMakerEventHandler {
          * @param player the player who triggered the event
          * @param isThunder whether the event is thunder or just rain
          */
-        public RainMakerEvent(World world, double x, double y, double z, EntityPlayer player, boolean isThunder) {
+        public RainmakerEvent(World world, double x, double y, double z, EntityPlayer player, boolean isThunder) {
             this.world = world;
             this.x = x;
             this.y = y;

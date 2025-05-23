@@ -26,7 +26,7 @@ public class TextureStitchEventHandler {
     @SuppressWarnings("unused")
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
-    public void textureStitchPre1(TextureStitchEvent.Pre event) {
+    public void onTextureStitchPre(TextureStitchEvent.Pre event) {
         if (event.map.getTextureType() == 0 && FluidRegistry.isFluidRegistered(milk)) {
             ClientProxy.MILK = event.map.registerIcon("saltymod:milk");
         }
@@ -40,7 +40,7 @@ public class TextureStitchEventHandler {
     @SuppressWarnings("unused")
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
-    public void textureStitchPost1(TextureStitchEvent.Post event) {
+    public void onTextureStitchPost(TextureStitchEvent.Post event) {
         if (FluidRegistry.isFluidRegistered(milk)) {
             milk.setIcons(ClientProxy.MILK);
         }

@@ -32,7 +32,7 @@ public class ItemSaltFood extends ItemFood implements IEdible {
      */
     private static class Variant {
         public final String unlocalizedName, textureName;
-        public final ItemStack container;
+        public final List<ItemStack> containers;
         public final int heal;
         public final float saturation;
         public final int stacksize;
@@ -50,12 +50,12 @@ public class ItemSaltFood extends ItemFood implements IEdible {
          * @param saturation      The saturation value.
          * @param isDogFood       Whether the variant is considered as dog food.
          * @param stacksize       The maximum stack size.
-         * @param container       The container item returned upon consumption.
+         * @param containers       The container item returned upon consumption.
          * @param useAction       The use action (e.g., eat or drink).
          * @param effects         The probable potion effects applied when consumed.
          */
         public Variant(String unlocalizedName, String textureName, int heal,
-                       float saturation, boolean isDogFood, int stacksize, ItemStack container,
+                       float saturation, boolean isDogFood, int stacksize, List<ItemStack> containers,
                        EnumAction useAction, ProbablePotionEffect... effects) {
             this.unlocalizedName = unlocalizedName;
             this.textureName = textureName;
@@ -63,7 +63,7 @@ public class ItemSaltFood extends ItemFood implements IEdible {
             this.saturation = saturation;
             this.isDogFood = isDogFood;
             this.stacksize = stacksize > 0 ? stacksize : 64;
-            this.container = container;
+            this.containers = containers;
             this.useAction = useAction != null ? useAction : EnumAction.eat;
             this.effects = effects != null ? effects : new ProbablePotionEffect[0];
         }
@@ -110,24 +110,24 @@ public class ItemSaltFood extends ItemFood implements IEdible {
      * @param saturation   The saturation value.
      * @param isDogFood    Whether it is dog food.
      * @param stacksize    The maximum stack size.
-     * @param container    The container item returned upon consumption.
+     * @param containers    The container item returned upon consumption.
      * @param useAction    The use action (eat or drink).
      * @param effects      The potion effects applied upon consumption.
      * @return this item instance for chaining.
      */
     public ItemSaltFood addVariant(int meta, String unlocalizedName, String textureName,
-                                   int heal, float saturation, boolean isDogFood, int stacksize, ItemStack container,
+                                   int heal, float saturation, boolean isDogFood, int stacksize, List<ItemStack> containers,
                                    EnumAction useAction, ProbablePotionEffect... effects) {
         variants.put(meta, new Variant(unlocalizedName, textureName, heal, saturation,
-            isDogFood, stacksize, container, useAction, effects));
+            isDogFood, stacksize, containers, useAction, effects));
         return this;
     }
 
     public ItemSaltFood addVariant(int meta, String unlocalizedName, String textureName,
-                                   int heal, float saturation, boolean isDogFood, int stacksize, ItemStack container,
+                                   int heal, float saturation, boolean isDogFood, int stacksize, List<ItemStack> containers,
                                    EnumAction useAction) {
         variants.put(meta, new Variant(unlocalizedName, textureName, heal, saturation,
-            isDogFood, stacksize, container, useAction));
+            isDogFood, stacksize, containers, useAction));
         return this;
     }
 
@@ -143,10 +143,10 @@ public class ItemSaltFood extends ItemFood implements IEdible {
     }
 
     public ItemSaltFood addVariant(int meta, String unlocalizedName, String textureName,
-                                   int heal, float saturation, boolean isDogFood, int stacksize, ItemStack container,
+                                   int heal, float saturation, boolean isDogFood, int stacksize, List<ItemStack> containers,
                                    ProbablePotionEffect... effects) {
         return addVariant(meta, unlocalizedName, textureName, heal, saturation, isDogFood,
-            stacksize, container, EnumAction.eat, effects);
+            stacksize, containers, EnumAction.eat, effects);
     }
 
     /**
@@ -300,15 +300,17 @@ public class ItemSaltFood extends ItemFood implements IEdible {
                     effect.procEffect(player, itemRand);
                 }
 
-                if (v.container != null) {
-                    ItemStack containerStack = v.container.copy();
-                    if (!player.inventory.addItemStackToInventory(containerStack)) {
-                        world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, containerStack));
+                if (v.containers != null) {
+                    for (ItemStack container : v.containers) {
+                        ItemStack copy = container.copy();
+                        if (!player.inventory.addItemStackToInventory(copy)) {
+                            world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, copy));
+                        }
                     }
                 }
             }
         }
-        this.onFoodEaten(stack, world, player);
+        onFoodEaten(stack, world, player);
         stack.stackSize--;
         return stack;
     }

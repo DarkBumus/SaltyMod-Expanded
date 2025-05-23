@@ -9,6 +9,11 @@ import net.minecraft.potion.Potion;
 import darkbum.saltymod.item.*;
 import darkbum.saltymod.potion.ProbablePotionEffect;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+
 import static darkbum.saltymod.common.config.ModConfigurationBlocks.*;
 import static darkbum.saltymod.common.config.ModConfigurationEntities.*;
 import static darkbum.saltymod.common.config.ModConfigurationItems.*;
@@ -18,6 +23,7 @@ import static darkbum.saltymod.common.proxy.CommonProxy.*;
 import static darkbum.saltymod.init.ModBlocks.*;
 import static darkbum.saltymod.init.ModExternalLoader.*;
 import static darkbum.saltymod.util.ConditionalRegistrar.*;
+import static java.util.Collections.*;
 import static net.minecraft.init.Blocks.*;
 import static net.minecraft.init.Items.*;
 import static net.minecraft.init.Items.dye;
@@ -330,167 +336,167 @@ public class ModItems {
                 new ProbablePotionEffect(well_fed, 200),
                 new ProbablePotionEffect(jump_boost, 100, 0, one_third));
         salt_egg = new ItemSaltFood("salt_egg").setCreativeTab(tab)
-            .addVariant(0, "salt_egg", "salt_egg", 2, 0.3f, false, 16, new ItemStack(dye, 1, 15),
+            .addVariant(0, "salt_egg", "salt_egg", 2, 0.3f, false, 16, singletonList(new ItemStack(dye, 1, 15)),
                 new ProbablePotionEffect(well_fed, 300));
-        egg_bowl = new ItemEggBowl("egg_bowl", tab).setMaxStackSize(16).setTextureName("saltymod:egg_bowl");
+        egg_bowl = new ItemEggBowl("egg_bowl", tab);
 
         salt_mushroom_stew = new ItemSaltFood("salt_mushroom_stew").setCreativeTab(tab)
-            .addVariant(0, "salt_mushroom_stew", "salt_mushroom_stew", 6, 0.8f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "salt_mushroom_stew", "salt_mushroom_stew", 6, 0.8f, false, 16, singletonList((new ItemStack(bowl))),
                 new ProbablePotionEffect(well_fed, 900),
                 new ProbablePotionEffect(strength, 900, 0, two_thirds));
         salt_rabbit_stew = new ItemSaltFood("salt_rabbit_stew").setCreativeTab(tab)
-            .addVariant(0, "salt_rabbit_stew", "salt_rabbit_stew", 8, 0.8f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "salt_rabbit_stew", "salt_rabbit_stew", 8, 0.8f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(well_fed, 1500),
                 new ProbablePotionEffect(health_boost, 900, 0, two_thirds),
                 new ProbablePotionEffect(night_vision, 600, 0, two_thirds),
                 new ProbablePotionEffect(strength, 200, 1, two_thirds));
         salt_beetroot_soup = new ItemSaltFood("salt_beetroot_soup").setCreativeTab(tab)
-            .addVariant(0, "salt_beetroot_soup", "salt_beetroot_soup", 6, 0.8f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "salt_beetroot_soup", "salt_beetroot_soup", 6, 0.8f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(well_fed, 1200),
                 new ProbablePotionEffect(jump_boost, 1200, 1, two_thirds));
         fungus_stew = new ItemSaltFood("fungus_stew").setCreativeTab(tab)
-            .addVariant(0, "fungus_stew", "fungus_stew", 4, 0.6f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "fungus_stew", "fungus_stew", 4, 0.6f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(wither, 200),
                 new ProbablePotionEffect(strength, 300, 0 ,one_third))
-            .addVariant(1, "salt_fungus_stew", "salt_fungus_stew", 5, 0.7f, false, 16, new ItemStack(bowl),
+            .addVariant(1, "salt_fungus_stew", "salt_fungus_stew", 5, 0.7f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(well_fed, 900),
                 new ProbablePotionEffect(strength, 900, 0, two_thirds));
         chicken_soup = new ItemSaltFood("chicken_soup").setCreativeTab(tab)
-            .addVariant(0, "chicken_soup", "chicken_soup", 7, 0.7f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "chicken_soup", "chicken_soup", 7, 0.7f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(health_boost, 600, 0, one_third),
                 new ProbablePotionEffect(night_vision, 200, 0, one_third),
                 new ProbablePotionEffect(strength, 100, 0, one_third))
-            .addVariant(1, "salt_chicken_soup", "salt_chicken_soup", 8, 0.8f, false, 16, new ItemStack(bowl),
+            .addVariant(1, "salt_chicken_soup", "salt_chicken_soup", 8, 0.8f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(well_fed, 1500),
                 new ProbablePotionEffect(health_boost, 900, 0, two_thirds),
                 new ProbablePotionEffect(night_vision, 600, 0, two_thirds),
                 new ProbablePotionEffect(strength, 200, 1, two_thirds));
         beef_stew = new ItemSaltFood("beef_stew").setCreativeTab(tab)
-            .addVariant(0, "beef_stew", "beef_stew", 7, 0.7f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "beef_stew", "beef_stew", 7, 0.7f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(health_boost, 600, 0, one_third),
                 new ProbablePotionEffect(night_vision, 200, 0, one_third),
                 new ProbablePotionEffect(strength, 100, 0, one_third))
-            .addVariant(1, "salt_beef_stew", "salt_beef_stew", 8, 0.8f, false, 16, new ItemStack(bowl),
+            .addVariant(1, "salt_beef_stew", "salt_beef_stew", 8, 0.8f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(well_fed, 1500),
                 new ProbablePotionEffect(health_boost, 900, 0, two_thirds),
                 new ProbablePotionEffect(night_vision, 600, 0, two_thirds),
                 new ProbablePotionEffect(strength, 200, 1, two_thirds));
         pumpkin_porridge = new ItemSaltFood("pumpkin_porridge").setCreativeTab(tab)
-            .addVariant(0, "pumpkin_porridge", "pumpkin_porridge", 5, 0.7f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "pumpkin_porridge", "pumpkin_porridge", 5, 0.7f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(resistance, 200, 0, one_third))
-            .addVariant(1, "salt_pumpkin_porridge", "salt_pumpkin_porridge", 6, 0.8f, false, 16, new ItemStack(bowl),
+            .addVariant(1, "salt_pumpkin_porridge", "salt_pumpkin_porridge", 6, 0.8f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(well_fed, 600),
                 new ProbablePotionEffect(resistance, 600, 0, two_thirds));
         cactus_soup = new ItemSaltFood("cactus_soup").setCreativeTab(tab)
-            .addVariant(0, "cactus_soup", "cactus_soup", 5, 0.7f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "cactus_soup", "cactus_soup", 5, 0.7f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(fire_resistance, 400, 0, one_third))
-            .addVariant(1, "salt_cactus_soup", "salt_cactus_soup", 6, 0.8f, false, 16, new ItemStack(bowl),
+            .addVariant(1, "salt_cactus_soup", "salt_cactus_soup", 6, 0.8f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(well_fed, 1200),
                 new ProbablePotionEffect(fire_resistance, 1200, 0, two_thirds));
         bone_marrow_soup = new ItemSaltFood("bone_marrow_soup").setCreativeTab(tab)
-            .addVariant(0, "bone_marrow_soup", "bone_marrow_soup", 6, 0.7f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "bone_marrow_soup", "bone_marrow_soup", 6, 0.7f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(health_boost, 100, 0, one_third),
                 new ProbablePotionEffect(strength, 100, 0, one_third))
-            .addVariant(1, "salt_bone_marrow_soup", "salt_bone_marrow_soup", 7, 0.8f, false, 16, new ItemStack(bowl),
+            .addVariant(1, "salt_bone_marrow_soup", "salt_bone_marrow_soup", 7, 0.8f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(well_fed, 900),
                 new ProbablePotionEffect(health_boost, 300, 0, two_thirds),
                 new ProbablePotionEffect(strength, 200, 0, two_thirds));
         stewed_vegetables = new ItemSaltFood("stewed_vegetables").setCreativeTab(tab)
-            .addVariant(0, "stewed_vegetables", "stewed_vegetables", 6, 0.7f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "stewed_vegetables", "stewed_vegetables", 6, 0.7f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(night_vision, 600, 0, one_third),
                 new ProbablePotionEffect(strength, 200, 0, one_third))
-            .addVariant(1, "salt_stewed_vegetables", "salt_stewed_vegetables", 7, 0.8f, false, 16, new ItemStack(bowl),
+            .addVariant(1, "salt_stewed_vegetables", "salt_stewed_vegetables", 7, 0.8f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(well_fed, 1200),
                 new ProbablePotionEffect(night_vision, 900, 0, two_thirds),
                 new ProbablePotionEffect(strength, 600, 0, two_thirds));
         potato_mushroom = new ItemSaltFood("potato_mushroom").setCreativeTab(tab)
-            .addVariant(0, "potato_mushroom", "potato_mushroom", 5, 0.7f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "potato_mushroom", "potato_mushroom", 5, 0.7f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(strength, 200, 0, one_third))
-            .addVariant(1, "salt_potato_mushroom", "salt_potato_mushroom", 6, 0.8f, false, 16, new ItemStack(bowl),
+            .addVariant(1, "salt_potato_mushroom", "salt_potato_mushroom", 6, 0.8f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(well_fed, 1200),
                 new ProbablePotionEffect(strength, 600, 0, two_thirds));
         golden_vegetables = new ItemSaltFood("golden_vegetables").setCreativeTab(tab)
-            .addVariant(0, "golden_vegetables", "golden_vegetables", 10, 1.2f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "golden_vegetables", "golden_vegetables", 10, 1.2f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(night_vision, 900),
                 new ProbablePotionEffect(regeneration, 900, 2))
-            .addVariant(1, "salt_golden_vegetables", "salt_golden_vegetables", 11, 1.2f, false, 16, new ItemStack(bowl),
+            .addVariant(1, "salt_golden_vegetables", "salt_golden_vegetables", 11, 1.2f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(well_fed, 1200),
                 new ProbablePotionEffect(night_vision, 900),
                 new ProbablePotionEffect(regeneration, 900, 2));
         fish_soup = new ItemSaltFood("fish_soup").setCreativeTab(tab)
-            .addVariant(0, "fish_soup", "fish_soup", 6, 0.7f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "fish_soup", "fish_soup", 6, 0.7f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(water_breathing, 600, 0, one_third),
                 new ProbablePotionEffect(night_vision, 200, 0, one_third))
-            .addVariant(1, "salt_fish_soup", "salt_fish_soup", 7, 0.8f, false, 16, new ItemStack(bowl),
+            .addVariant(1, "salt_fish_soup", "salt_fish_soup", 7, 0.8f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(well_fed, 1200),
                 new ProbablePotionEffect(water_breathing, 900, 0, two_thirds),
                 new ProbablePotionEffect(night_vision, 600, 0, two_thirds));
         dandelion_salad = new ItemSaltFood("dandelion_salad").setCreativeTab(tab)
-            .addVariant(0, "dandelion_salad", "dandelion_salad", 6, 0.7f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "dandelion_salad", "dandelion_salad", 6, 0.7f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(resistance, 300, 0, one_third),
                 new ProbablePotionEffect(inspired, 200, 0, one_third))
-            .addVariant(1, "salt_dandelion_salad", "salt_dandelion_salad", 7, 0.8f, false, 16, new ItemStack(bowl),
+            .addVariant(1, "salt_dandelion_salad", "salt_dandelion_salad", 7, 0.8f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(well_fed, 1200),
                 new ProbablePotionEffect(resistance, 800, 0, two_thirds),
                 new ProbablePotionEffect(inspired, 600, 0, two_thirds));
         wheat_sprouts = new ItemSaltFood("wheat_sprouts").setCreativeTab(tab)
-            .addVariant(0, "wheat_sprouts", "wheat_sprouts", 3, 0.7f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "wheat_sprouts", "wheat_sprouts", 3, 0.7f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(resistance, 700, 0, one_third))
-            .addVariant(1, "salt_wheat_sprouts", "salt_wheat_sprouts", 4, 0.8f, false, 16, new ItemStack(bowl),
+            .addVariant(1, "salt_wheat_sprouts", "salt_wheat_sprouts", 4, 0.8f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(well_fed, 2100),
                 new ProbablePotionEffect(resistance, 1200, 1, two_thirds));
         beetroot_salad = new ItemSaltFood("beetroot_salad").setCreativeTab(tab)
-            .addVariant(0, "beetroot_salad", "beetroot_salad", 6, 0.7f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "beetroot_salad", "beetroot_salad", 6, 0.7f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(jump_boost, 600, 0, one_third),
                 new ProbablePotionEffect(night_vision, 200, 0, one_third))
-            .addVariant(1, "salt_beetroot_salad", "salt_beetroot_salad", 7, 0.8f, false, 16, new ItemStack(bowl),
+            .addVariant(1, "salt_beetroot_salad", "salt_beetroot_salad", 7, 0.8f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(well_fed, 1200),
                 new ProbablePotionEffect(jump_boost, 900, 0, two_thirds),
                 new ProbablePotionEffect(night_vision, 600, 0, two_thirds));
         dressed_herring = new ItemSaltFood("dressed_herring").setCreativeTab(tab)
-            .addVariant(0, "dressed_herring", "dressed_herring", 6, 0.7f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "dressed_herring", "dressed_herring", 6, 0.7f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(water_breathing, 600, 0, one_third),
                 new ProbablePotionEffect(inspired, 600, 0, one_third),
                 new ProbablePotionEffect(night_vision, 200, 0, one_third),
                 new ProbablePotionEffect(jump_boost, 200, 0, one_third))
-            .addVariant(1, "salt_dressed_herring", "salt_dressed_herring", 7, 0.8f, false, 16, new ItemStack(bowl),
+            .addVariant(1, "salt_dressed_herring", "salt_dressed_herring", 7, 0.8f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(well_fed, 2100),
                 new ProbablePotionEffect(water_breathing, 900, 0, two_thirds),
                 new ProbablePotionEffect(inspired, 900, 0, two_thirds),
                 new ProbablePotionEffect(night_vision, 600, 0, two_thirds),
                 new ProbablePotionEffect(jump_boost, 600, 0, two_thirds));
         saltwort_salad = new ItemSaltFood("saltwort_salad").setCreativeTab(tab)
-            .addVariant(0, "saltwort_salad", "saltwort_salad", 5, 0.7f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "saltwort_salad", "saltwort_salad", 5, 0.7f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(regeneration, 1200, 1, one_third));
         golden_saltwort_salad = new ItemSaltFood("golden_saltwort_salad").setCreativeTab(tab)
-            .addVariant(0, "golden_saltwort_salad", "golden_saltwort_salad", 6, 1.2f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "golden_saltwort_salad", "golden_saltwort_salad", 6, 1.2f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(regeneration, 1200, 2, two_thirds));
         saltwort_cooked_porkchop = new ItemSaltFood("saltwort_cooked_porkchop").setCreativeTab(tab)
-            .addVariant(0, "saltwort_cooked_porkchop", "saltwort_cooked_porkchop", 12, 0.9f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "saltwort_cooked_porkchop", "saltwort_cooked_porkchop", 12, 0.9f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(well_fed, 1200),
                 new ProbablePotionEffect(health_boost, 900, 1, two_thirds),
                 new ProbablePotionEffect(regeneration, 1200, 2, two_thirds));
         saltwort_honey_porkchop = new ItemSaltFood("saltwort_honey_porkchop").setCreativeTab(tab)
-            .addVariant(0, "saltwort_honey_porkchop", "saltwort_honey_porkchop", 12, 0.9f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "saltwort_honey_porkchop", "saltwort_honey_porkchop", 12, 0.9f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(absorption, 900, 1, two_thirds),
                 new ProbablePotionEffect(regeneration, 1200, 2, two_thirds));
         saltwort_cooked_beef = new ItemSaltFood("saltwort_cooked_beef").setCreativeTab(tab)
-            .addVariant(0, "saltwort_cooked_beef", "saltwort_cooked_beef", 12, 0.9f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "saltwort_cooked_beef", "saltwort_cooked_beef", 12, 0.9f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(well_fed, 1200),
                 new ProbablePotionEffect(health_boost, 900, 1, two_thirds),
                 new ProbablePotionEffect(regeneration, 1200, 2, two_thirds));
         saltwort_cooked_mutton = new ItemSaltFood("saltwort_cooked_mutton").setCreativeTab(tab)
-            .addVariant(0, "saltwort_cooked_mutton", "saltwort_cooked_mutton", 12, 0.9f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "saltwort_cooked_mutton", "saltwort_cooked_mutton", 12, 0.9f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(well_fed, 1200),
                 new ProbablePotionEffect(health_boost, 900, 1, two_thirds),
                 new ProbablePotionEffect(regeneration, 1200, 2, two_thirds));
         saltwort_cooked_strider = new ItemSaltFood("saltwort_cooked_strider").setCreativeTab(tab)
-            .addVariant(0, "saltwort_cooked_strider", "saltwort_cooked_strider", 12, 0.9f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "saltwort_cooked_strider", "saltwort_cooked_strider", 12, 0.9f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(well_fed, 1200),
                 new ProbablePotionEffect(health_boost, 900, 1, two_thirds),
                 new ProbablePotionEffect(regeneration, 1200, 2, two_thirds));
         saltwort_cooked_haunch = new ItemSaltFood("saltwort_cooked_haunch").setCreativeTab(tab)
-            .addVariant(0, "saltwort_cooked_haunch", "saltwort_cooked_haunch", 12, 0.9f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "saltwort_cooked_haunch", "saltwort_cooked_haunch", 12, 0.9f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(well_fed, 1200),
                 new ProbablePotionEffect(health_boost, 900, 1, two_thirds),
                 new ProbablePotionEffect(regeneration, 1200, 2, two_thirds));
@@ -507,32 +513,32 @@ public class ModItems {
                 new ProbablePotionEffect(speed, 300));
 
         fruit_salad = new ItemSaltFood("fruit_salad").setCreativeTab(tab)
-            .addVariant(0, "fruit_salad", "fruit_salad", 6, 0.7f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "fruit_salad", "fruit_salad", 6, 0.7f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(speed, 900, 0, one_third),
                 new ProbablePotionEffect(fire_resistance, 600, 0, one_third))
-            .addVariant(1, "sugar_fruit_salad", "sugar_fruit_salad", 7, 0.8f, false, 16, new ItemStack(bowl),
+            .addVariant(1, "sugar_fruit_salad", "sugar_fruit_salad", 7, 0.8f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(speed, 1200, 2),
                 new ProbablePotionEffect(fire_resistance, 600, 0));
         golden_fruit_salad = new ItemSaltFood("golden_fruit_salad").setCreativeTab(tab)
-            .addVariant(0, "golden_fruit_salad", "golden_fruit_salad", 8, 0.7f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "golden_fruit_salad", "golden_fruit_salad", 8, 0.7f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(regeneration, 200, 1),
                 new ProbablePotionEffect(absorption, 2400),
                 new ProbablePotionEffect(speed, 900, 1, two_thirds))
-            .addVariant(1, "sugar_golden_fruit_salad", "sugar_golden_fruit_salad", 9, 0.8f, false, 16, new ItemStack(bowl),
+            .addVariant(1, "sugar_golden_fruit_salad", "sugar_golden_fruit_salad", 9, 0.8f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(regeneration, 200, 1),
                 new ProbablePotionEffect(absorption, 2400),
                 new ProbablePotionEffect(fire_resistance, 200),
                 new ProbablePotionEffect(speed, 900, 1));
         grated_carrot = new ItemSaltFood("grated_carrot").setCreativeTab(tab)
-            .addVariant(0, "grated_carrot", "grated_carrot", 6, 0.7f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "grated_carrot", "grated_carrot", 6, 0.7f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(night_vision, 1200, 0, one_third))
-            .addVariant(1, "sugar_grated_carrot", "sugar_grated_carrot", 7, 0.8f, false, 16, new ItemStack(bowl),
+            .addVariant(1, "sugar_grated_carrot", "sugar_grated_carrot", 7, 0.8f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(speed, 1200),
                 new ProbablePotionEffect(night_vision, 1200, 0, two_thirds));
         melon_soup = new ItemSaltFood("melon_soup").setCreativeTab(tab)
-            .addVariant(0, "melon_soup", "melon_soup", 5, 0.7f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "melon_soup", "melon_soup", 5, 0.7f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(fire_resistance, 1200, 0, one_third))
-            .addVariant(1, "sugar_melon_soup", "sugar_melon_soup", 6, 0.8f, false, 16, new ItemStack(bowl),
+            .addVariant(1, "sugar_melon_soup", "sugar_melon_soup", 6, 0.8f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(speed, 1200),
                 new ProbablePotionEffect(fire_resistance, 1200, 1, two_thirds));
 
@@ -600,43 +606,43 @@ public class ModItems {
                 new ProbablePotionEffect(regeneration, 1800, 1, two_thirds));
 
         fermented_saltwort = new ItemSaltFood("fermented_saltwort").setCreativeTab(tab)
-            .addVariant(0, "fermented_saltwort", "fermented_saltwort", 5, 0.7f, false, 1, new ItemStack(glass_bottle), drink,
+            .addVariant(0, "fermented_saltwort", "fermented_saltwort", 5, 0.7f, false, 1, singletonList(new ItemStack(glass_bottle)), drink,
                 new ProbablePotionEffect(regeneration, 1200, 3),
                 new ProbablePotionEffect(instant_damage, 1, 1));
         fermented_fern = new ItemSaltFood("fermented_fern").setCreativeTab(tab)
-            .addVariant(0, "fermented_fern", "fermented_fern", 4, 0.7f, false, 1, new ItemStack(glass_bottle), drink,
+            .addVariant(0, "fermented_fern", "fermented_fern", 4, 0.7f, false, 1, singletonList(new ItemStack(glass_bottle)), drink,
                 new ProbablePotionEffect(resistance, 1200, 2),
                 new ProbablePotionEffect(slowness, 600, 1));
         fermented_marsh_reeds = new ItemSaltFood("fermented_marsh_reeds").setCreativeTab(tab)
-            .addVariant(0, "fermented_marsh_reeds", "fermented_marsh_reeds", 4, 0.7f, false, 1, new ItemStack(glass_bottle), drink,
+            .addVariant(0, "fermented_marsh_reeds", "fermented_marsh_reeds", 4, 0.7f, false, 1, singletonList(new ItemStack(glass_bottle)), drink,
                 new ProbablePotionEffect(resistance, 1200, 2),
                 new ProbablePotionEffect(slowness, 600, 1));
         fermented_mushroom = new ItemSaltFood("fermented_mushroom").setCreativeTab(tab)
-            .addVariant(0, "fermented_mushroom", "fermented_mushroom", 4, 0.7f, false, 1, new ItemStack(glass_bottle), drink,
+            .addVariant(0, "fermented_mushroom", "fermented_mushroom", 4, 0.7f, false, 1, singletonList(new ItemStack(glass_bottle)), drink,
                 new ProbablePotionEffect(strength, 1200, 2),
                 new ProbablePotionEffect(blindness, 100, 0));
         pickled_calamari = new ItemSaltFood("pickled_calamari").setCreativeTab(tab)
-            .addVariant(0, "pickled_calamari", "pickled_calamari", 6, 0.7f, false, 1, new ItemStack(glass_bottle), drink,
+            .addVariant(0, "pickled_calamari", "pickled_calamari", 6, 0.7f, false, 1, singletonList(new ItemStack(glass_bottle)), drink,
                 new ProbablePotionEffect(water_breathing, 1200, 0),
                 new ProbablePotionEffect(mining_fatigue, 600, 1));
         pickled_beetroot = new ItemSaltFood("pickled_beetroot").setCreativeTab(tab)
-            .addVariant(0, "pickled_beetroot", "pickled_beetroot", 5, 0.8f, false, 1, new ItemStack(glass_bottle), drink,
+            .addVariant(0, "pickled_beetroot", "pickled_beetroot", 5, 0.8f, false, 1, singletonList(new ItemStack(glass_bottle)), drink,
                 new ProbablePotionEffect(jump_boost, 1200, 2),
                 new ProbablePotionEffect(nausea, 300));
         pickled_onion = new ItemSaltFood("pickled_onion").setCreativeTab(tab)
-            .addVariant(0, "pickled_onion", "pickled_onion", 6, 0.8f, false, 1, new ItemStack(glass_bottle), drink,
+            .addVariant(0, "pickled_onion", "pickled_onion", 6, 0.8f, false, 1, singletonList(new ItemStack(glass_bottle)), drink,
                 new ProbablePotionEffect(inspired, 1200, 2),
                 new ProbablePotionEffect(hunger, 600, 1));
         apple_preserves = new ItemSaltFood("apple_preserves").setCreativeTab(tab)
-            .addVariant(0, "apple_preserves", "apple_preserves", 8, 0.8f, false, 1, new ItemStack(glass_bottle), drink,
+            .addVariant(0, "apple_preserves", "apple_preserves", 8, 0.8f, false, 1, singletonList(new ItemStack(glass_bottle)), drink,
                 new ProbablePotionEffect(speed, 1200, 2),
                 new ProbablePotionEffect(weakness, 600, 1));
         melon_preserves = new ItemSaltFood("melon_preserves").setCreativeTab(tab)
-            .addVariant(0, "melon_preserves", "melon_preserves", 6, 0.8f, false, 1, new ItemStack(glass_bottle), drink,
+            .addVariant(0, "melon_preserves", "melon_preserves", 6, 0.8f, false, 1, singletonList(new ItemStack(glass_bottle)), drink,
                 new ProbablePotionEffect(fire_resistance, 1200),
                 new ProbablePotionEffect(weakness, 600, 1));
         berry_preserves = new ItemSaltFood("berry_preserves").setCreativeTab(tab)
-            .addVariant(0, "berry_preserves", "berry_preserves", 6, 0.8f, false, 1, new ItemStack(glass_bottle), drink,
+            .addVariant(0, "berry_preserves", "berry_preserves", 6, 0.8f, false, 1, singletonList(new ItemStack(glass_bottle)), drink,
                 new ProbablePotionEffect(speed, 1200, 2),
                 new ProbablePotionEffect(weakness, 600, 1));
 
@@ -665,19 +671,19 @@ public class ModItems {
         tf_salt_meef_steak = new ItemSaltFood("tf_salt_meef_steak").setCreativeTab(tab)
             .addVariant(0, "tf_salt_meef_steak", "tf/tf_salt_meef_steak", 7, 0.7f, false);
         tf_salt_meef_stroganoff = new ItemSaltFood("tf_salt_meef_stroganoff").setCreativeTab(tab)
-            .addVariant(0, "tf_salt_meef_stroganoff", "tf/tf_salt_meef_stroganoff", 9, 0.7f, false, 16, new ItemStack(bowl));
+            .addVariant(0, "tf_salt_meef_stroganoff", "tf/tf_salt_meef_stroganoff", 9, 0.7f, false, 16, singletonList(new ItemStack(bowl)));
         tf_salt_hydra_chop = new ItemSaltFood("tf_salt_hydra_chop").setCreativeTab(tab)
             .addVariant(0, "tf_salt_hydra_chop", "tf/tf_salt_hydra_chop", 19, 2.1f, false,
                 new ProbablePotionEffect(regeneration, 100, 0));
         tf_pickled_mushgloom = new ItemSaltFood("tf_pickled_mushgloom").setCreativeTab(tab)
-            .addVariant(0, "tf_pickled_mushgloom", "tf/tf_pickled_mushgloom", 6, 0.8f, false, 1, new ItemStack(glass_bottle), drink,
+            .addVariant(0, "tf_pickled_mushgloom", "tf/tf_pickled_mushgloom", 6, 0.8f, false, 1, singletonList(new ItemStack(glass_bottle)), drink,
                 new ProbablePotionEffect(night_vision, 1200, 0),
                 new ProbablePotionEffect(slowness, 100, 0));
         tf_saltwort_cooked_venison = new ItemSaltFood("tf_saltwort_cooked_venison").setCreativeTab(tab)
-            .addVariant(0, "tf_saltwort_cooked_venison", "tf/tf_saltwort_cooked_venison", 10, 0.9f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "tf_saltwort_cooked_venison", "tf/tf_saltwort_cooked_venison", 10, 0.9f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(regeneration, 100, 0));
         tf_saltwort_meef_steak = new ItemSaltFood("tf_saltwort_meef_steak").setCreativeTab(tab)
-            .addVariant(0, "tf_saltwort_meef_steak", "tf/tf_saltwort_meef_steak", 8, 0.9f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "tf_saltwort_meef_steak", "tf/tf_saltwort_meef_steak", 8, 0.9f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(regeneration, 100, 0));
 
 
@@ -689,18 +695,18 @@ public class ModItems {
             .addVariant(0, "bop_salt_shroom_powder", "bop/bop_salt_shroom_powder", 2, 0.2f, false,
                 new ProbablePotionEffect(nausea, 300, 0, 0.3f));
         bop_sugar_fruit_salad = new ItemSaltFood("bop_sugar_fruit_salad").setCreativeTab(tab)
-            .addVariant(0, "bop_sugar_fruit_salad", "bop/bop_sugar_fruit_salad", 7, 0.7f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "bop_sugar_fruit_salad", "bop/bop_sugar_fruit_salad", 7, 0.7f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(haste, 1200, 2, 0.1f));
         bop_salt_veggie_salad = new ItemSaltFood("bop_salt_veggie_salad").setCreativeTab(tab)
-            .addVariant(0, "bop_salt_veggie_salad", "bop/bop_salt_veggie_salad", 7, 0.7f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "bop_salt_veggie_salad", "bop/bop_salt_veggie_salad", 7, 0.7f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(health_boost, 1550, 2, 0.1f));
         bop_salt_shroom_salad = new ItemSaltFood("bop_salt_shroom_salad").setCreativeTab(tab)
-            .addVariant(0, "bop_salt_shroom_salad", "bop/bop_salt_shroom_salad", 7, 0.7f, false, 16, new ItemStack(bowl),
+            .addVariant(0, "bop_salt_shroom_salad", "bop/bop_salt_shroom_salad", 7, 0.7f, false, 16, singletonList(new ItemStack(bowl)),
                 new ProbablePotionEffect(jump_boost, 900, 2, 0.1f));
         bop_salt_rice_bowl = new ItemSaltFood("bop_salt_rice_bowl").setCreativeTab(tab)
-            .addVariant(0, "bop_salt_rice_bowl", "bop/bop_salt_rice_bowl", 3, 0.2f, false, 16, new ItemStack(bowl));
+            .addVariant(0, "bop_salt_rice_bowl", "bop/bop_salt_rice_bowl", 3, 0.2f, false, 16, singletonList(new ItemStack(bowl)));
         bop_pickled_turnip = new ItemSaltFood("bop_pickled_turnip").setCreativeTab(tab)
-            .addVariant(0, "bop_pickled_turnip", "bop/bop_pickled_turnip", 6, 0.8f, false, 1, new ItemStack(glass_bottle));
+            .addVariant(0, "bop_pickled_turnip", "bop/bop_pickled_turnip", 6, 0.8f, false, 1, singletonList(new ItemStack(glass_bottle)));
 
 
         wm_salt_cooked_bison = new ItemSaltFood("wm_salt_cooked_bison").setCreativeTab(tab)

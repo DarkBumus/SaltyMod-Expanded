@@ -39,6 +39,7 @@ public class ModConfigurationItems {
     public static boolean enableFizzyDrink;
     public static boolean fizzyDrinkEffect;
     public static boolean enableTunnelersConcoction;
+    public static int tunnelersConcoctionHasteLevel;
 
     public static boolean enableRainmaker;
 
@@ -200,9 +201,18 @@ public class ModConfigurationItems {
             categoryNameIte,
             true,
             enableFeatures + "\nTunneler's Concoction" + "\n");
+        tunnelersConcoctionHasteLevel = config.getInt(
+            "08-tunnelersConcoctionHasteLevel",
+            categoryNameIte,
+            5,
+            1,
+            5,
+            "Regulates the Haste level that the Tunneler's Concoction gives."
+            + "\n(This config exists as a reaction to a bug that prevents arm swing when the Haste level is too high."
+            + "\nIf this does not bother you, you can leave the config alone.)");
 
         enableRainmaker = config.getBoolean(
-            "08-enableRainmaker",
+            "09-enableRainmaker",
             categoryNameIte,
             true,
             enableFeatures + "\nRainmaker Star" + "\nRainmaker" + "\n");

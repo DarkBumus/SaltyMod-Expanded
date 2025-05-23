@@ -96,7 +96,7 @@ public class EntityRainmakerExplosion extends Entity {
         boolean isRaining = this.worldObj.isRaining();
         boolean isThunder = this.rand.nextInt(5) == 0 || isRaining;
 
-        MinecraftForge.EVENT_BUS.post(new RainMakerEvent(this.worldObj, this.posX, this.posY, this.posZ, this.player, isThunder));
+        MinecraftForge.EVENT_BUS.post(new RainmakerEvent(this.worldObj, this.posX, this.posY, this.posZ, this.player, isThunder));
 
         this.rain = true;
     }

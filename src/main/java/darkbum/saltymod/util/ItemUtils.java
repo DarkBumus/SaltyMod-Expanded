@@ -11,7 +11,9 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
+import static darkbum.saltymod.common.config.ModConfigurationItems.*;
 import static darkbum.saltymod.init.ModItems.*;
+import static java.util.Collections.*;
 import static net.minecraft.item.EnumAction.*;
 
 /**
@@ -120,8 +122,8 @@ public class ItemUtils {
     }
 
     public static void variantsTunnelerConcoction(ItemSaltFood item) {
-        item.addVariant(0, "tunneler_concoction", "tunneler_concoction", 0, 0.0f, false, 1, new ItemStack(Items.glass_bottle), drink,
-            new ProbablePotionEffect(haste, 3600, 4),
+        item.addVariant(0, "tunneler_concoction", "tunneler_concoction", 0, 0.0f, false, 1, singletonList(new ItemStack(Items.glass_bottle)), drink,
+            new ProbablePotionEffect(haste, 3600, tunnelersConcoctionHasteLevel - 1),
             new ProbablePotionEffect(instant_damage, 1, 1, 1.0f, 20),
             new ProbablePotionEffect(nausea, 300, 0, 1.0f, 20));
     }

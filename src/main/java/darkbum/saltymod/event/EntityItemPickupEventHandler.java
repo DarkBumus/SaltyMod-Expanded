@@ -40,7 +40,7 @@ public class EntityItemPickupEventHandler {
      */
     @SuppressWarnings("unused")
     @SubscribeEvent
-    public void onItemPickup(EntityItemPickupEvent event) {
+    public void onEntityItemPickup(EntityItemPickupEvent event) {
         World world = event.entityPlayer.worldObj;
         if (!world.isRemote) {
             Item pickedItem = event.item.getEntityItem().getItem();

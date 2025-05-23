@@ -105,9 +105,7 @@ public class SaltyMod {
         ModBiomes.init();
 
         // Register miscellaneous registries and handlers
-        if (enableTailor) {
-            ModFishRegistry.registerItems();
-        }
+        if (enableTailor) ModFishRegistry.registerItems();
         registerFuelHandler(new ModFuelHandler());
         ModFlammabilityHandler.init();
         ModDispenserBehaviorRegistry.init();
@@ -133,9 +131,7 @@ public class SaltyMod {
         ModAchievementList.init();
 
         // Register chest loot for Brickmaker Camps
-        if (enableBrickmakerCamp) {
-            ChestContent.init();
-        }
+        if (enableBrickmakerCamp) ChestContent.init();
 
         proxy.init(event);
         proxy.setRenderers();
@@ -185,9 +181,7 @@ public class SaltyMod {
         }
 
         // Load deprecated (legacy) recipes
-        if (!enableMachines || enableDeprecatedRecipes) {
-            DeprecatedRecipes.init();
-        }
+        if (!enableMachines || enableDeprecatedRecipes) DeprecatedRecipes.init();
 
         proxy.postInit(event);
 

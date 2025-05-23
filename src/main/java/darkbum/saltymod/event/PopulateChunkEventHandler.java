@@ -28,7 +28,7 @@ public class PopulateChunkEventHandler {
      */
     @SuppressWarnings("unused")
     @SubscribeEvent
-    public void populateChunkPost(PopulateChunkEvent.Post event) {
+    public void onChunkPopulatePost(PopulateChunkEvent.Post event) {
         World world = event.world;
 
         int chunkX = event.chunkX * 16;

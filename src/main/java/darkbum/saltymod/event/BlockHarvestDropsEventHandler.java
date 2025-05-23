@@ -25,7 +25,7 @@ public class BlockHarvestDropsEventHandler {
      */
     @SuppressWarnings("unused")
     @SubscribeEvent
-    public void blockHarvestDrops1(BlockEvent.HarvestDropsEvent event) {
+    public void onBlockHarvest(BlockEvent.HarvestDropsEvent event) {
         if (event.world.getTileEntity(event.x, event.y, event.z) instanceof TileEntityFlowerPot tileEntityFlowerPot) {
             if (tileEntityFlowerPot.getFlowerPotItem() == Item.getItemFromBlock(ModBlocks.saltworts)) {
                 event.drops.set(1, new ItemStack(ModItems.saltwort));

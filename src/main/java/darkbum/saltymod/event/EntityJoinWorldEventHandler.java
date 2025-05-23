@@ -24,7 +24,7 @@ public class EntityJoinWorldEventHandler {
      */
     @SuppressWarnings("unused")
     @SubscribeEvent
-    public void entityJoinWorld(EntityJoinWorldEvent event) {
+    public void onEntityJoinWorld(EntityJoinWorldEvent event) {
         if (event.entity instanceof EntityAnimal animal) {
             if (animal instanceof net.minecraft.entity.passive.EntityCow
                 || animal instanceof net.minecraft.entity.passive.EntityHorse) {

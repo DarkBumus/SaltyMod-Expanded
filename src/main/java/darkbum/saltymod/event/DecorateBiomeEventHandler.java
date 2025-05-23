@@ -23,7 +23,7 @@ public class DecorateBiomeEventHandler {
      */
     @SuppressWarnings("unused")
     @SubscribeEvent
-    public void decoateBiomeDecorate(DecorateBiomeEvent.Decorate event) {
+    public void onBiomeDecorate(DecorateBiomeEvent.Decorate event) {
         if (event.type == DecorateBiomeEvent.Decorate.EventType.LAKE
             && event.world.getBiomeGenForCoords(event.chunkX, event.chunkZ) == SALT_MARSH_BIOME) {
             event.setResult(Event.Result.DENY);

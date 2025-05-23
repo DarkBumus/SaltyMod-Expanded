@@ -289,7 +289,7 @@ public class ModShapelessRecipes {
             new ItemStack(sweet_berries));
         addShapelessRecipe(new ItemStack(chocolate_berries),
             new boolean[]{sweet_berries != null},
-            new ItemStack(dye, 1, 3),
+            new ItemStack(Items.dye, 1, 3),
             new ItemStack(sweet_berries));
 
         addShapelessRecipe(new ItemStack(fermented_saltwort),
