@@ -7,8 +7,8 @@ itemGroup.salt_blocks=盐类扩展｜方块
 # POTION EFFECTS
 
 potion.swarmed=蜂群袭扰！
-death.attack.swarmedDamage=%1$s 被蜂群蛰亡
-death.attack.swarmedDamage.player=%1$s 在躲避 %2$s 时被蜂群蛰亡
+death.attack.swarmedDamage=%1$s 被蜂群蛰死了
+death.attack.swarmedDamage.player=%1$s 在躲避 %2$s 时被蜂群蛰死了
 potion.well_fed=饱食
 potion.inspired=灵感
 
