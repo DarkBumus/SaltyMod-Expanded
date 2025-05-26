@@ -280,7 +280,7 @@ item.muffin.mess.0=用餐愉快！
 item.muffin.mess.1=嗯...真香！
 item.muffin.mess.2=再来一个？
 item.muffin.mess.3=好吃！
-item.tough_jelly.name=硬质凝胶
+item.tough_jelly.name=法式蜗牛
 
 item.mud_helmet.name=淤泥头盔
 item.mud_chestplate.name=淤泥胸甲
@@ -341,7 +341,7 @@ achievement.nav_salt_crystal=破碎之物...
 achievement.nav_salt_crystal.desc=摔落在盐晶簇上
 achievement.navelse_salt_crystal=...转运之法
 achievement.navelse_salt_crystal.desc=将女巫或史莱姆推上盐晶簇
-achievement.slime_salt_crystal=硬质凝胶
+achievement.slime_salt_crystal=法式蜗牛
 achievement.slime_salt_crystal.desc=手持盐晶碎片击杀史莱姆
 achievement.witch_salt_crystal=阿喀琉斯之踵
 achievement.witch_salt_crystal.desc=手持盐晶碎片击杀女巫
