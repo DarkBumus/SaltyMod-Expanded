@@ -301,12 +301,12 @@ item.rainmaker.mess.thunder=你的世界迎来了雷暴！
 # MOD ITEMS
 
 item.tf_salt_cooked_venison.name=咸鹿排
-item.tf_salt_meef_steak.name=咸牛肉排
+item.tf_salt_meef_steak.name=咸牛头人肉排
 item.tf_salt_meef_stroganoff.name=咸牛肉杂烩
 item.tf_salt_hydra_chop.name=咸海德拉肉排
 item.tf_pickled_mushgloom.name=腌荧光菇
 item.tf_saltwort_cooked_venison.name=鹿排佐盐麦芽
-item.tf_saltwort_meef_steak.name=牛肉排佐盐麦芽
+item.tf_saltwort_meef_steak.name=牛头人肉排佐盐麦芽
 
 item.bop_hemoglobin.name=血红蛋白
 item.bop_poison.name=毒药
