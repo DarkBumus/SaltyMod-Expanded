@@ -1,18 +1,13 @@
 package darkbum.saltymod.init;
 
 import darkbum.saltymod.potion.ModPotion;
-import darkbum.saltymod.util.ItemSaltFood;
+import darkbum.saltymod.item.ItemSaltFood;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.*;
 import net.minecraft.potion.Potion;
 
 import darkbum.saltymod.item.*;
 import darkbum.saltymod.potion.ProbablePotionEffect;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
 
 import static darkbum.saltymod.common.config.ModConfigurationBlocks.*;
 import static darkbum.saltymod.common.config.ModConfigurationEntities.*;

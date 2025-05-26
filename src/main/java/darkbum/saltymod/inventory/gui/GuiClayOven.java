@@ -7,7 +7,6 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 import static darkbum.saltymod.inventory.container.ContainerClayOven.SLOT_OUTPUT;
@@ -20,19 +19,15 @@ public class GuiClayOven extends GuiContainer {
 
     private static final ResourceLocation resourceLocation = new ResourceLocation("saltymod", "textures/gui/container/clay_oven.png");
 
-    public GuiClayOven(InventoryPlayer par1InventoryPlayer, TileEntityClayOven par2TileEntityClayOven) {
-        super(new ContainerClayOven(par1InventoryPlayer, par2TileEntityClayOven));
-        this.tileEntityClayOven = par2TileEntityClayOven;
+    public GuiClayOven(InventoryPlayer inventoryPlayer, TileEntityClayOven tileEntityClayOven) {
+        super(new ContainerClayOven(inventoryPlayer, tileEntityClayOven));
+        this.tileEntityClayOven = tileEntityClayOven;
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        String s = this.tileEntityClayOven.hasCustomInventoryName() ? this.tileEntityClayOven.getInventoryName()
-            : I18n.format(this.tileEntityClayOven.getInventoryName());
-        this.fontRendererObj
-            .drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
-        this.fontRendererObj
-            .drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 4, 4210752);
+        String string = I18n.format("container.clay_oven");
+        fontRendererObj.drawString(string, this.xSize / 2 - this.fontRendererObj.getStringWidth(string) / 2, 6, 4210752);
     }
 
     @Override
@@ -46,7 +41,7 @@ public class GuiClayOven extends GuiContainer {
 
         if (this.tileEntityClayOven.isRunning()) {
             int progress = this.tileEntityClayOven.getBakeProgressScale(24);
-            drawTexturedModalRect(x + 81, y + 25, 176, 14, progress + 1, 17);  // Höhe jetzt 17, nicht 16
+            drawTexturedModalRect(x + 81, y + 25, 176, 14, progress + 1, 17);
         }
 
         if (this.tileEntityClayOven.isHeaterBelow) {

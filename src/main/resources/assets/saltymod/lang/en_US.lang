@@ -49,9 +49,9 @@ tile.salt_crusted_oak_log.name=Salt-Crusted Oak Log
 
 tile.evaporator.name=Evaporator
 container.evaporator=Evaporator
-container.discard=Discard
-container.empty=Empty
-container.pressure=Pressure
+container.evaporator.discard=Discard
+container.evaporator.empty=Empty
+container.evaporator.pressure=Pressure
 fluid.milk=Milk
 tile.fish_farm.name=Fish Farm
 container.fish_farm=Fish Farm

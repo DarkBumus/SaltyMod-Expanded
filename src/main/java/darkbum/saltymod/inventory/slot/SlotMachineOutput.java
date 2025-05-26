@@ -1,24 +1,18 @@
-package darkbum.saltymod.inventory.container;
+package darkbum.saltymod.inventory.slot;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-import darkbum.saltymod.init.ModItems;
-
-public class SlotFishFarmFuel extends Slot {
-
-    public SlotFishFarmFuel(IInventory iInventory, int slotIndex, int x, int y) {
-        super(iInventory, slotIndex, x, y);
-    }
+public class SlotMachineOutput extends Slot {
 
     public boolean isItemValid(ItemStack itemStack) {
-        return (itemStack.getItem() == ModItems.fish_bait);
+        return false;
     }
 
-    public int getSlotStackLimit() {
-        return 64;
+    public SlotMachineOutput(IInventory iInventory, int slotIndex, int x, int y) {
+        super(iInventory, slotIndex, x, y);
     }
 
     public void onPickupFromSlot(EntityPlayer entityPlayer, ItemStack itemStack) {

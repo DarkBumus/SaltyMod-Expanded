@@ -3,7 +3,7 @@ package darkbum.saltymod.event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import darkbum.saltymod.init.ModAchievementList;
 import darkbum.saltymod.init.ModItems;
-import darkbum.saltymod.util.ItemSaltFood;
+import darkbum.saltymod.item.ItemSaltFoodBase;
 import darkbum.saltymod.potion.ModPotion;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
@@ -25,7 +25,7 @@ public class PlayerUseItemEventHandler {
     @SuppressWarnings("unused")
     @SubscribeEvent
     public void onPlayerUseItemFinish(PlayerUseItemEvent.Finish event) {
-        if (event.item == null || !(event.item.getItem() instanceof ItemSaltFood)) return;
+        if (event.item == null || !(event.item.getItem() instanceof ItemSaltFoodBase)) return;
 
         EntityPlayer player = event.entityPlayer;
 

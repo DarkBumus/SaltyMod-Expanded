@@ -40,7 +40,7 @@ public class MachineUtilRegistry {
 
         Block magma = etFuturumBlocks.get("magma");
         Block campfire = campfireBackportBlocks.get("campfire");
-        Block soul_campfire = campfireBackportBlocks.get("soul_campfire"); 
+        Block soul_campfire = campfireBackportBlocks.get("soul_campfire");
 
         // Heater Registry
         validHeaterBlocks.add(flowing_lava);

@@ -1,13 +1,9 @@
 package darkbum.saltymod.item;
 
-import darkbum.saltymod.util.ItemSaltFood;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
-import java.util.Arrays;
-
-import static darkbum.saltymod.init.ModItems.*;
-import static net.minecraft.init.Items.*;
+import static darkbum.saltymod.util.ItemUtils.*;
 
 /**
  * Item class for the egg bowl item.
@@ -28,7 +24,7 @@ public class ItemEggBowl extends ItemSaltFood {
         super(baseName);
         setCreativeTab(tab);
         setAlwaysEdible();
-        addVariant(0, "egg_bowl", "egg_bowl", 0, 0.0f, false, 16, Arrays.asList(new ItemStack(bowl), new ItemStack(salt_egg, 4, 0)));
+        variantsEggBowl(this);
     }
 
     @Override

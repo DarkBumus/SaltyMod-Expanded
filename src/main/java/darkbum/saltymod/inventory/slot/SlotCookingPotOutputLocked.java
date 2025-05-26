@@ -1,4 +1,4 @@
-package darkbum.saltymod.inventory.container;
+package darkbum.saltymod.inventory.slot;
 
 import darkbum.saltymod.util.MachineUtilRegistry;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,7 +29,7 @@ public class SlotCookingPotOutputLocked extends SlotOutputLockedBase {
     }
 
     @Override
-    protected void onConsumeKeys(int amountTaken) {
+    public void onConsumeKeys(int amountTaken) {
         ItemStack keyStack = keyInventory.getStackInSlot(keySlotIndex);
         if (keyStack != null && keyStack.stackSize > 0) {
             int consume = Math.min(amountTaken, keyStack.stackSize);

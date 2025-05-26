@@ -7,7 +7,6 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 import static darkbum.saltymod.inventory.container.ContainerCookingPot.SLOT_OUTPUT;
@@ -27,12 +26,8 @@ public class GuiCookingPot extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        String s = tileEntityCookingPot.hasCustomInventoryName() ? tileEntityCookingPot.getInventoryName()
-            : I18n.format(tileEntityCookingPot.getInventoryName());
-        fontRendererObj
-            .drawString(s, xSize / 2 - fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
-        fontRendererObj
-            .drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 4, 4210752);
+        String string = I18n.format("container.cooking_pot");
+        fontRendererObj.drawString(string, xSize / 2 - fontRendererObj.getStringWidth(string) / 2, 6, 4210752);
     }
 
     @Override

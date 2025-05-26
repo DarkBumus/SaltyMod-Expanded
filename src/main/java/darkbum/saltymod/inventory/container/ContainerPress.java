@@ -2,6 +2,9 @@ package darkbum.saltymod.inventory.container;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import darkbum.saltymod.inventory.slot.SlotMachineOutput;
+import darkbum.saltymod.inventory.slot.SlotPressInput;
+import darkbum.saltymod.inventory.slot.SlotPressVessel;
 import darkbum.saltymod.util.MachineUtilRegistry;
 import darkbum.saltymod.tileentity.TileEntityPress;
 import net.minecraft.entity.player.EntityPlayer;

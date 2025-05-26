@@ -6,14 +6,13 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 public class GuiPress extends GuiContainer {
 
     private final TileEntityPress tileEntityPress;
 
-    private static final ResourceLocation resourceLocation = new ResourceLocation("saltymod", "textures/gui/container/press.png");
+    private static final ResourceLocation resourceLocation = new ResourceLocation("saltymod:textures/gui/container/press.png");
 
     public GuiPress(InventoryPlayer par1InventoryPlayer, TileEntityPress par2TileEntityPress) {
         super(new ContainerPress(par1InventoryPlayer, par2TileEntityPress));
@@ -22,10 +21,8 @@ public class GuiPress extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        String s = this.tileEntityPress.hasCustomInventoryName() ? this.tileEntityPress.getInventoryName()
-            : I18n.format(this.tileEntityPress.getInventoryName());
-        this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
-        this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 4, 4210752);
+        String string = I18n.format("container.press");
+        this.fontRendererObj.drawString(string, this.xSize / 2 - this.fontRendererObj.getStringWidth(string) / 2, 6, 4210752);
     }
 
     @Override

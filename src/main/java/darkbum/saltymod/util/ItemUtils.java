@@ -1,6 +1,7 @@
 package darkbum.saltymod.util;
 
-import darkbum.saltymod.item.ItemSaltwort;
+import darkbum.saltymod.item.ItemSaltFood;
+import darkbum.saltymod.item.ItemSaltFoodBase;
 import darkbum.saltymod.potion.ProbablePotionEffect;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,12 +10,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static darkbum.saltymod.common.config.ModConfigurationItems.*;
 import static darkbum.saltymod.init.ModItems.*;
 import static java.util.Collections.*;
+import static net.minecraft.init.Items.bowl;
 import static net.minecraft.item.EnumAction.*;
+import static org.lwjgl.input.Keyboard.*;
 
 /**
  * Utility class for handling various item-related functionalities.
@@ -22,7 +26,7 @@ import static net.minecraft.item.EnumAction.*;
  * @author DarkBum
  * @since 2.0.0
  */
-public class ItemUtils {
+public final class ItemUtils {
 
     /**
      * Adds a tooltip to the provided ItemStack based on its unlocalized name.
@@ -35,24 +39,55 @@ public class ItemUtils {
         String tooltipKey = baseKey + ".tooltip";
 
         boolean foundAny = false;
+
         for (int i = 0; i < 10; i++) {
             String lineKey = tooltipKey + "." + i;
             String line = I18n.format(lineKey);
-            if (!line.equals(lineKey)) {
+
+            if (line.equals(lineKey)) break;
+
+            String conditionKey = I18n.format(lineKey + ".condition");
+            if (!conditionKey.equals(lineKey + ".condition")) {
+                if (isConditionMet(conditionKey)) {
+                    list.add(line);
+                    foundAny = true;
+                }
+            } else {
                 list.add(line);
                 foundAny = true;
-            } else if (i == 0) {
-                break;
-            } else {
-                break;
             }
         }
 
         if (!foundAny) {
             String singleTooltip = I18n.format(tooltipKey);
             if (!singleTooltip.equals(tooltipKey)) {
-                list.add(singleTooltip);
+                String condition = I18n.format(tooltipKey + ".condition");
+                if (!condition.equals(tooltipKey + ".condition")) {
+                    if (isConditionMet(condition)) {
+                        list.add(singleTooltip);
+                    }
+                } else {
+                    list.add(singleTooltip);
+                }
             }
+        }
+    }
+
+    //Currently unused and filled with dummy cases
+    public static boolean isConditionMet(String configKey) {
+        return switch (configKey) {
+            case "enableApplePie" -> enableApplePie;
+            case "enableApplePreserves" -> enableApplePreserves;
+            default -> false;
+        };
+    }
+
+    @SuppressWarnings("unused")
+    public static void addItemHiddenTooltip(ItemStack stack, List<String> list) {
+        if (isKeyDown(KEY_LSHIFT) || isKeyDown(KEY_RSHIFT)) {
+            addItemTooltip(stack, list);
+        } else {
+            list.add(I18n.format("item.all.tooltip.hidden"));
         }
     }
 
@@ -76,7 +111,7 @@ public class ItemUtils {
      *
      * @param item the ItemSaltFood object to add the variants to
      */
-    public static void variantsGoldenBerries(ItemSaltFood item) {
+    public static void variantsGoldenBerries(ItemSaltFoodBase item) {
         item.addVariant(0, "golden_berries", "golden_berries", 3, 0.6f, false,
             new ProbablePotionEffect(regeneration, 100, 1),
             new ProbablePotionEffect(absorption, 1200),
@@ -111,12 +146,20 @@ public class ItemUtils {
 //        item.addVariant(2, "testing_apple", "dev/test_food", 2, 0.3f, false, new ProbablePotionEffect(well_fed, 6000));
     }
 
+    public static void variantsEggBowl(ItemSaltFood item) {
+        item.addVariant(0, "egg_bowl", "egg_bowl", 0, 0.0f, false, 16, Arrays.asList(new ItemStack(bowl), new ItemStack(salt_egg, 4, 0)));
+    }
+
     public static void variantsMuffin(ItemSaltFood item) {
         item.addVariant(0, "muffin", "muffin", 3, 3.4f, false,
             new ProbablePotionEffect(well_fed, 3600, 0, 1.0f, 20));
     }
 
-    public static void variantsSaltwort(ItemSaltwort item) {
+    public static void variantsFizzyDrink(ItemSaltFood item) {
+        item.addVariant(0, "fizzy_drink", "fizzy_drink", 0, 0.0f, false, 1, singletonList(new ItemStack(Items.glass_bottle)), drink);
+    }
+
+    public static void variantsSaltwort(ItemSaltFood item) {
         item.addVariant(0, "saltwort", "saltwort", 1, 0.3f, false,
             new ProbablePotionEffect(regeneration, 100, 1, one_third));
     }
