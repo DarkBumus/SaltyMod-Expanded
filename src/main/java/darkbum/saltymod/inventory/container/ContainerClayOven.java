@@ -2,6 +2,9 @@ package darkbum.saltymod.inventory.container;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import darkbum.saltymod.inventory.slot.SlotClayOvenOutputLocked;
+import darkbum.saltymod.inventory.slot.SlotClayOvenSpade;
+import darkbum.saltymod.inventory.slot.SlotMachineIngred;
 import darkbum.saltymod.util.MachineUtilRegistry;
 import darkbum.saltymod.tileentity.TileEntityClayOven;
 import net.minecraft.entity.player.EntityPlayer;

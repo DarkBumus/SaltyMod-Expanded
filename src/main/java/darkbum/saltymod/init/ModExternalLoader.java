@@ -151,6 +151,7 @@ public class ModExternalLoader {
     public static void loadBiomesOPlenty() {
         if (!bop) return;
         biomesOPlentyItems.put("food", findItem("BiomesOPlenty", "food"));
+        biomesOPlentyItems.put("dart", findItem("BiomesOPlenty", "dart"));
     }
 
     public static void loadWildMobs() {

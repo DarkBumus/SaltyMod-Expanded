@@ -2,12 +2,17 @@ package darkbum.saltymod.inventory.container;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import darkbum.saltymod.inventory.slot.SlotCookingPotBowl;
+import darkbum.saltymod.inventory.slot.SlotCookingPotOutputLocked;
+import darkbum.saltymod.inventory.slot.SlotCookingPotPinch;
+import darkbum.saltymod.inventory.slot.SlotMachineIngred;
 import darkbum.saltymod.util.MachineUtilRegistry;
 import darkbum.saltymod.tileentity.TileEntityCookingPot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
+import net.minecraft.inventory.SlotFurnace;
 import net.minecraft.item.ItemStack;
 
 public class ContainerCookingPot extends Container {
@@ -60,12 +65,10 @@ public class ContainerCookingPot extends Container {
     @Override
     public void detectAndSendChanges() {
         super.detectAndSendChanges();
-        // Optional: erzwinge Slot-Update
         for (int i = 0; i < inventorySlots.size(); ++i) {
             Slot slot = inventorySlots.get(i);
             if (slot.getHasStack()) {
                 ItemStack stack = slot.getStack();
-                // Kleine Maßnahme gegen Jitter:
                 if (!ItemStack.areItemStacksEqual(stack, inventoryItemStacks.get(i))) {
                     inventoryItemStacks.set(i, stack.copy());
                 }
@@ -95,13 +98,11 @@ public class ContainerCookingPot extends Container {
             ItemStack stackInSlot = slot.getStack();
             itemStack = stackInSlot.copy();
 
-            // Maschinenbereich → Spieler
             if (slotIndex < SLOT_PLAYER_INV_START) {
                 if (!mergeItemStack(stackInSlot, SLOT_PLAYER_INV_START, SLOT_TOTAL, true)) {
                     return null;
                 }
             } else {
-                // Spieler → Maschine
                 boolean isPinchItem = MachineUtilRegistry.isValidPinch(stackInSlot);
                 boolean isBowlItem = MachineUtilRegistry.isValidBowl(stackInSlot);
                 boolean isSpadeItem = MachineUtilRegistry.isValidSpade(stackInSlot);
@@ -128,26 +129,22 @@ public class ContainerCookingPot extends Container {
                 }
             }
 
-            // Stack geleert?
             if (stackInSlot.stackSize == 0) {
                 slot.putStack(null);
             } else {
                 slot.onSlotChanged();
             }
 
-            // Nichts bewegt?
             if (stackInSlot.stackSize == itemStack.stackSize) {
                 return null;
             }
 
-            // Sonderbehandlung: Output-Slot → Schlüssel-Items abziehen
             if (slotIndex == SLOT_OUTPUT && slot instanceof SlotCookingPotOutputLocked) {
                 int amountTaken = itemStack.stackSize;
                 ((SlotCookingPotOutputLocked) slot).onConsumeKeys(amountTaken);
 
                 slot.onPickupFromSlot(player, stackInSlot);
 
-                // Wichtig: NICHT zurückgeben → verhindert Item im Mauszeiger
                 return null;
             }
 

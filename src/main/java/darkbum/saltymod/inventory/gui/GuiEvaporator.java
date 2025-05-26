@@ -60,9 +60,8 @@ public class GuiEvaporator extends GuiContainer {
     }
 
     protected void drawGuiContainerForegroundLayer(int par_1, int par_2) {
-        String string = tileEntityEvaporator.hasCustomInventoryName() ? tileEntityEvaporator.getInventoryName() : I18n.format(tileEntityEvaporator.getInventoryName());
+        String string = I18n.format("container.evaporator");
         fontRendererObj.drawString(string, xSize / 2 - fontRendererObj.getStringWidth(string) / 2, 6, 4210752);
-        fontRendererObj.drawString(I18n.format("container.inventory"), 8, ySize - 96 + 2, 4210752);
     }
 
     @Override
@@ -154,7 +153,7 @@ public class GuiEvaporator extends GuiContainer {
         }
         if (mouseX >= x + 49 && mouseY >= y + 62 && mouseX < x + 49 + 3 && mouseY < y + 62 + 3) {
             ArrayList<String> toolTip = new ArrayList<>();
-            if (tileEntityEvaporator.liquidLevel > 0) toolTip.add(I18n.format("container.discard"));
+            if (tileEntityEvaporator.liquidLevel > 0) toolTip.add(I18n.format("container.evaporator.discard"));
             drawText(toolTip, mouseX, mouseY, fontRendererObj);
         }
         if (mouseX >= x + 48 && mouseY >= y + 26 && mouseX < x + 48 + 5 && mouseY < y + 26 + 33) {
@@ -164,7 +163,7 @@ public class GuiEvaporator extends GuiContainer {
                 int maxLevel = tileEntityEvaporator.maxCap;
                 toolTip.add(currentLevel + " / " + maxLevel + " mB");
             } else {
-                toolTip.add(I18n.format("container.empty"));
+                toolTip.add(I18n.format("container.evaporator.empty"));
             }
             drawText(toolTip, mouseX, mouseY, fontRendererObj);
         }
@@ -173,7 +172,7 @@ public class GuiEvaporator extends GuiContainer {
             if (tileEntityEvaporator.pressure > 0) {
                 int currentLevel = tileEntityEvaporator.pressure;
                 int maxLevel = evaporatorPressureBuildup;
-                toolTip.add(I18n.format("container.pressure") + ": " + currentLevel + " / " + maxLevel + " PU");
+                toolTip.add(I18n.format("container.evaporator.pressure") + ": " + currentLevel + " / " + maxLevel + " PU");
             }
             drawText(toolTip, mouseX, mouseY, fontRendererObj);
         }

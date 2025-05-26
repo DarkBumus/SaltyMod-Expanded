@@ -2,6 +2,7 @@ package darkbum.saltymod.init.recipes;
 
 import cpw.mods.fml.common.Loader;
 import darkbum.saltymod.common.config.ModConfigurationWorldGeneration;
+import darkbum.saltymod.init.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -49,6 +50,7 @@ public class ModShapelessRecipes {
         Block mushgloom = twilightForestBlocks.get("mushgloom");
 
         Item food = biomesOPlentyItems.get("food");
+        Item dart = biomesOPlentyItems.get("dart");
 
         Item cooked_bison_meat = wildMobsItems.get("cooked_bison_meat");
         Item cooked_calamari = wildMobsItems.get("cooked_calamari");
@@ -422,6 +424,10 @@ public class ModShapelessRecipes {
             new ItemStack(mushgloom, 1, 9),
             new ItemStack(mushgloom, 1, 9));
 
+        addShapelessRecipe(new ItemStack(dart, 1, 1),
+            new boolean[]{dart != null},
+            new ItemStack(dart, 1, 0),
+            new ItemStack(ModItems.bop_poison));
         addShapelessRecipe(new ItemStack(bop_salt_shroom_powder),
             new boolean[]{food != null},
             new ItemStack(salt_pinch),

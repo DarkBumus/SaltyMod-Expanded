@@ -1,4 +1,4 @@
-package darkbum.saltymod.util;
+package darkbum.saltymod.item;
 
 import java.util.*;
 
@@ -25,7 +25,7 @@ import cpw.mods.fml.common.Optional;
  * Variants can be registered with unique metadata, unlocalized names, textures, and other attributes.
  */
 @Optional.Interface(modid = "AppleCore", iface = "squeek.applecore.api.food.IEdible")
-public class ItemSaltFood extends ItemFood implements IEdible {
+public abstract class ItemSaltFoodBase extends ItemFood implements IEdible {
 
     /**
      * Represents a single food variant with specific attributes such as healing, saturation, container item, and potion effects.
@@ -35,7 +35,7 @@ public class ItemSaltFood extends ItemFood implements IEdible {
         public final List<ItemStack> containers;
         public final int heal;
         public final float saturation;
-        public final int stacksize;
+        public final int maxStackSize;
         public final boolean isDogFood;
         public final EnumAction useAction;
         public final ProbablePotionEffect[] effects;
@@ -49,20 +49,20 @@ public class ItemSaltFood extends ItemFood implements IEdible {
          * @param heal            The amount of hunger restored.
          * @param saturation      The saturation value.
          * @param isDogFood       Whether the variant is considered as dog food.
-         * @param stacksize       The maximum stack size.
+         * @param maxStackSize       The maximum stack size.
          * @param containers       The container item returned upon consumption.
          * @param useAction       The use action (e.g., eat or drink).
          * @param effects         The probable potion effects applied when consumed.
          */
         public Variant(String unlocalizedName, String textureName, int heal,
-                       float saturation, boolean isDogFood, int stacksize, List<ItemStack> containers,
+                       float saturation, boolean isDogFood, int maxStackSize, List<ItemStack> containers,
                        EnumAction useAction, ProbablePotionEffect... effects) {
             this.unlocalizedName = unlocalizedName;
             this.textureName = textureName;
             this.heal = heal;
             this.saturation = saturation;
             this.isDogFood = isDogFood;
-            this.stacksize = stacksize > 0 ? stacksize : 64;
+            this.maxStackSize = maxStackSize > 0 ? maxStackSize : 64;
             this.containers = containers;
             this.useAction = useAction != null ? useAction : EnumAction.eat;
             this.effects = effects != null ? effects : new ProbablePotionEffect[0];
@@ -76,7 +76,7 @@ public class ItemSaltFood extends ItemFood implements IEdible {
      *
      * @param baseName The base unlocalized name for the item.
      */
-    public ItemSaltFood(String baseName) {
+    public ItemSaltFoodBase(String baseName) {
         super(0, 0.0f, false);
         setUnlocalizedName(baseName);
         setHasSubtypes(true);
@@ -109,44 +109,44 @@ public class ItemSaltFood extends ItemFood implements IEdible {
      * @param heal         The hunger value restored.
      * @param saturation   The saturation value.
      * @param isDogFood    Whether it is dog food.
-     * @param stacksize    The maximum stack size.
+     * @param maxStackSize    The maximum stack size.
      * @param containers    The container item returned upon consumption.
      * @param useAction    The use action (eat or drink).
      * @param effects      The potion effects applied upon consumption.
      * @return this item instance for chaining.
      */
-    public ItemSaltFood addVariant(int meta, String unlocalizedName, String textureName,
-                                   int heal, float saturation, boolean isDogFood, int stacksize, List<ItemStack> containers,
-                                   EnumAction useAction, ProbablePotionEffect... effects) {
+    public ItemSaltFoodBase addVariant(int meta, String unlocalizedName, String textureName,
+                                       int heal, float saturation, boolean isDogFood, int maxStackSize, List<ItemStack> containers,
+                                       EnumAction useAction, ProbablePotionEffect... effects) {
         variants.put(meta, new Variant(unlocalizedName, textureName, heal, saturation,
-            isDogFood, stacksize, containers, useAction, effects));
+            isDogFood, maxStackSize, containers, useAction, effects));
         return this;
     }
 
-    public ItemSaltFood addVariant(int meta, String unlocalizedName, String textureName,
-                                   int heal, float saturation, boolean isDogFood, int stacksize, List<ItemStack> containers,
-                                   EnumAction useAction) {
+    public ItemSaltFoodBase addVariant(int meta, String unlocalizedName, String textureName,
+                                       int heal, float saturation, boolean isDogFood, int maxStackSize, List<ItemStack> containers,
+                                       EnumAction useAction) {
         variants.put(meta, new Variant(unlocalizedName, textureName, heal, saturation,
-            isDogFood, stacksize, containers, useAction));
+            isDogFood, maxStackSize, containers, useAction));
         return this;
     }
 
-    public ItemSaltFood addVariant(int meta, String unlocalizedName, String textureName,
-                                   int heal, float saturation, boolean isDogFood) {
+    public ItemSaltFoodBase addVariant(int meta, String unlocalizedName, String textureName,
+                                       int heal, float saturation, boolean isDogFood) {
         return addVariant(meta, unlocalizedName, textureName, heal, saturation, isDogFood, 64, null, EnumAction.eat);
     }
 
-    public ItemSaltFood addVariant(int meta, String unlocalizedName, String textureName,
-                                   int heal, float saturation, boolean isDogFood,
-                                   ProbablePotionEffect... effects) {
+    public ItemSaltFoodBase addVariant(int meta, String unlocalizedName, String textureName,
+                                       int heal, float saturation, boolean isDogFood,
+                                       ProbablePotionEffect... effects) {
         return addVariant(meta, unlocalizedName, textureName, heal, saturation, isDogFood, 64, null, EnumAction.eat, effects);
     }
 
-    public ItemSaltFood addVariant(int meta, String unlocalizedName, String textureName,
-                                   int heal, float saturation, boolean isDogFood, int stacksize, List<ItemStack> containers,
-                                   ProbablePotionEffect... effects) {
+    public ItemSaltFoodBase addVariant(int meta, String unlocalizedName, String textureName,
+                                       int heal, float saturation, boolean isDogFood, int maxStackSize, List<ItemStack> containers,
+                                       ProbablePotionEffect... effects) {
         return addVariant(meta, unlocalizedName, textureName, heal, saturation, isDogFood,
-            stacksize, containers, EnumAction.eat, effects);
+            maxStackSize, containers, EnumAction.eat, effects);
     }
 
     /**
@@ -174,7 +174,7 @@ public class ItemSaltFood extends ItemFood implements IEdible {
      * @return this item instance, allowing for method chaining.
      */
     @Override
-    public ItemSaltFood setCreativeTab(CreativeTabs tab) {
+    public ItemSaltFoodBase setCreativeTab(CreativeTabs tab) {
         super.setCreativeTab(tab);
         return this;
     }
@@ -245,7 +245,7 @@ public class ItemSaltFood extends ItemFood implements IEdible {
     @Override
     public int getItemStackLimit(ItemStack stack) {
         Variant v = variants.get(stack.getItemDamage());
-        return v != null ? v.stacksize : super.getItemStackLimit(stack);
+        return v != null ? v.maxStackSize : super.getItemStackLimit(stack);
     }
 
     /**

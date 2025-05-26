@@ -2,17 +2,17 @@ package darkbum.saltymod.item;
 
 import java.util.List;
 
-import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.item.EnumAction;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import darkbum.saltymod.common.config.ModConfigurationItems;
 import darkbum.saltymod.init.ModAchievementList;
+
+import static darkbum.saltymod.util.ItemUtils.addItemTooltip;
+import static darkbum.saltymod.util.ItemUtils.variantsFizzyDrink;
 
 /**
  * Item class for the fizzy drink item.
@@ -21,18 +21,19 @@ import darkbum.saltymod.init.ModAchievementList;
  * @author DarkBum
  * @since 1.9.f
  */
-public class ItemFizzyDrink extends Item {
+public class ItemFizzyDrink extends ItemSaltFood {
 
     /**
      * Constructs a new item instance with the specified name and creative tab.
      *
-     * @param name The base name of the item.
+     * @param baseName The base name of the item.
      * @param tab The creative tab to display this item in.
      */
-    public ItemFizzyDrink(String name, CreativeTabs tab) {
-        setMaxStackSize(1);
-        setUnlocalizedName(name);
+    public ItemFizzyDrink(String baseName, CreativeTabs tab) {
+        super(baseName);
         setCreativeTab(tab);
+        setAlwaysEdible();
+        variantsFizzyDrink(this);
     }
 
     /**
@@ -48,7 +49,7 @@ public class ItemFizzyDrink extends Item {
      */
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean advanced) {
-        list.add(I18n.format(getUnlocalizedName() + ".tooltip"));
+        addItemTooltip(stack, list);
     }
 
     /**
@@ -63,28 +64,6 @@ public class ItemFizzyDrink extends Item {
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
         player.setItemInUse(stack, getMaxItemUseDuration(stack));
         return stack;
-    }
-
-    /**
-     * Returns the action that is performed when the player uses the item.
-     *
-     * @param stack The ItemStack being used.
-     * @return the action performed while using the item.
-     */
-    @Override
-    public EnumAction getItemUseAction(ItemStack stack) {
-        return EnumAction.drink;
-    }
-
-    /**
-     * Returns the maximum duration of time the player can use the item.
-     *
-     * @param stack The ItemStack being used.
-     * @return the maximum duration in ticks (32 ticks equals approximately 1.6 seconds).
-     */
-    @Override
-    public int getMaxItemUseDuration(ItemStack stack) {
-        return 32;
     }
 
     /**

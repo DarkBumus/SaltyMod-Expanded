@@ -17,7 +17,7 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
  * @author DarkBum
  * @since 2.0.0
  */
-public class ConditionalRegistrar {
+public final class ConditionalRegistrar {
 
     /**
      * Checks whether any of the provided conditions are false.

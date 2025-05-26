@@ -5,7 +5,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class StructureUtils {
+public final class StructureUtils {
 
     public enum Rotation {
         NORTH, EAST, SOUTH, WEST;

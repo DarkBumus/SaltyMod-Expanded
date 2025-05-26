@@ -1,4 +1,4 @@
-package darkbum.saltymod.inventory.container;
+package darkbum.saltymod.inventory.slot;
 
 import darkbum.saltymod.util.MachineUtilRegistry;
 import net.minecraft.entity.player.EntityPlayer;

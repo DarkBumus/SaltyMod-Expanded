@@ -1,5 +1,7 @@
 package darkbum.saltymod.inventory.container;
 
+import darkbum.saltymod.inventory.slot.SlotApiaryFuel;
+import darkbum.saltymod.inventory.slot.SlotMachineOutput;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
