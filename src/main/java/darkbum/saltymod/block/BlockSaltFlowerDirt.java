@@ -124,7 +124,7 @@ public class BlockSaltFlowerDirt extends BlockFlower {
                 return;
             }
         } else if (ModConfigurationBlocks.saltFlowersLargeHitbox == 2) {
-            if (meta == 1 || meta == 2 || meta == 3 || meta == 4 || meta == 5 || meta == 6) {
+            if (meta == 0 || meta == 1 || meta == 2 || meta == 3 || meta == 4 || meta == 5 || meta == 6) {
                 float minX = 2.0f / 16.0f;
                 float minY = 0.0f;
                 float minZ = 2.0f / 16.0f;

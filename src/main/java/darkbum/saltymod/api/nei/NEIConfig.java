@@ -1,13 +1,14 @@
 package darkbum.saltymod.api.nei;
 
 import darkbum.saltymod.common.config.ModConfigurationOther;
-import darkbum.saltymod.init.ModBlocks;
-import darkbum.saltymod.init.ModItems;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
+
+import static darkbum.saltymod.init.ModBlocks.*;
+import static darkbum.saltymod.init.ModItems.*;
+import static net.minecraft.init.Blocks.*;
 
 /**
  * NEI plugin configuration for SaltyMod Expanded
@@ -25,24 +26,24 @@ public class NEIConfig implements IConfigureNEI {
     @Override
     public void loadConfig() {
         if (ModConfigurationOther.enableNEIShrub) {
-            API.addItemListEntry(new ItemStack(Blocks.tallgrass, 1, 0));
-            API.addItemListEntry(new ItemStack(Blocks.tallgrass, 1, 1));
-            API.addItemListEntry(new ItemStack(Blocks.tallgrass, 1, 2));
+            API.addItemListEntry(new ItemStack(tallgrass, 1, 0));
+            API.addItemListEntry(new ItemStack(tallgrass, 1, 1));
+            API.addItemListEntry(new ItemStack(tallgrass, 1, 2));
         }
 
-        API.hideItem(new ItemStack(ModItems.dev_item, 1, 0));
-        API.hideItem(new ItemStack(ModItems.dev_item, 1, 1));
-        API.hideItem(new ItemStack(ModItems.dev_item, 1, 2));
-        API.hideItem(new ItemStack(ModBlocks.double_salt_slab, 1, 0));
-        API.hideItem(new ItemStack(ModBlocks.double_salt_slab, 1, 1));
-        API.hideItem(new ItemStack(ModBlocks.double_salt_slab, 1, 2));
-        API.hideItem(new ItemStack(ModBlocks.double_salt_slab, 1, 9));
-        API.hideItem(new ItemStack(ModBlocks.double_salt_slab, 1, 10));
-        API.hideItem(new ItemStack(ModBlocks.grass_top));
-        API.hideItem(new ItemStack(ModBlocks.double_dry_mud_brick_slab, 1, 0));
-        API.hideItem(new ItemStack(ModBlocks.onions));
-        API.hideItem(new ItemStack(ModBlocks.saltworts));
-        API.hideItem(new ItemStack(ModBlocks.marsh_reeds_t));
+        API.hideItem(new ItemStack(dev_item, 1, 0));
+        API.hideItem(new ItemStack(dev_item, 1, 1));
+        API.hideItem(new ItemStack(dev_item, 1, 2));
+        API.hideItem(new ItemStack(double_salt_slab, 1, 0));
+        API.hideItem(new ItemStack(double_salt_slab, 1, 1));
+        API.hideItem(new ItemStack(double_salt_slab, 1, 2));
+        API.hideItem(new ItemStack(double_salt_slab, 1, 9));
+        API.hideItem(new ItemStack(double_salt_slab, 1, 10));
+        API.hideItem(new ItemStack(grass_top));
+        API.hideItem(new ItemStack(double_dry_mud_brick_slab, 1, 0));
+        API.hideItem(new ItemStack(onions));
+        API.hideItem(new ItemStack(saltworts));
+        API.hideItem(new ItemStack(marsh_reeds_t));
 
         API.registerRecipeHandler(new NEIPotcookingRecipeHandler());
     }

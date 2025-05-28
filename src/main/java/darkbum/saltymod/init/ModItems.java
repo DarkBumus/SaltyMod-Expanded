@@ -193,14 +193,14 @@ public class ModItems {
     public static Item tf_saltwort_cooked_venison;
     public static Item tf_saltwort_meef_steak;
 
-    public static Item bop_hemoglobin;
-    public static Item bop_poison;
     public static Item bop_salt_shroom_powder;
     public static Item bop_sugar_fruit_salad;
     public static Item bop_salt_veggie_salad;
     public static Item bop_salt_shroom_salad;
     public static Item bop_salt_rice_bowl;
     public static Item bop_pickled_turnip;
+    public static Item bop_poison;
+    public static Item bop_hemoglobin;
 
     public static Item wm_salt_cooked_bison;
     public static Item wm_salt_cooked_calamari;
@@ -682,10 +682,6 @@ public class ModItems {
                 new ProbablePotionEffect(regeneration, 100, 0));
 
 
-        bop_hemoglobin = new ItemSaltFood("bop_hemoglobin").setCreativeTab(tab)
-            .addVariant(0, "bop_hemoglobin", "bop/bop_hemoglobin", 2, 4.0f, false,
-                new ProbablePotionEffect(instant_health, 1, 1));
-        bop_poison = new Item().setCreativeTab(tab).setUnlocalizedName("bop_poison").setTextureName("saltymod:bop/bop_poison");
         bop_salt_shroom_powder = new ItemSaltFood("bop_salt_shroom_powder").setCreativeTab(tab)
             .addVariant(0, "bop_salt_shroom_powder", "bop/bop_salt_shroom_powder", 2, 0.2f, false,
                 new ProbablePotionEffect(nausea, 300, 0, 0.3f));
@@ -702,6 +698,10 @@ public class ModItems {
             .addVariant(0, "bop_salt_rice_bowl", "bop/bop_salt_rice_bowl", 3, 0.2f, false, 16, singletonList(new ItemStack(bowl)));
         bop_pickled_turnip = new ItemSaltFood("bop_pickled_turnip").setCreativeTab(tab)
             .addVariant(0, "bop_pickled_turnip", "bop/bop_pickled_turnip", 6, 0.8f, false, 1, singletonList(new ItemStack(glass_bottle)));
+        bop_poison = new Item().setCreativeTab(tab).setUnlocalizedName("bop_poison").setTextureName("saltymod:bop/bop_poison");
+        bop_hemoglobin = new ItemSaltFood("bop_hemoglobin").setCreativeTab(tab)
+            .addVariant(0, "bop_hemoglobin", "bop/bop_hemoglobin", 2, 4.0f, false,
+                new ProbablePotionEffect(instant_health, 1, 1));
 
 
         wm_salt_cooked_bison = new ItemSaltFood("wm_salt_cooked_bison").setCreativeTab(tab)
@@ -848,14 +848,14 @@ public class ModItems {
         registerItem(tf_saltwort_meef_steak, "tf_saltwort_meef_steak", enableTFFoods, tf);
 
 
-        registerItem(bop_hemoglobin, "bop_hemoglobin", enableBOPFoods, bop);
-        registerItem(bop_poison, "bop_poison", enableBOPFoods, bop);
         registerItem(bop_salt_shroom_powder, "bop_salt_shroom_powder", enableBOPFoods, bop);
         registerItem(bop_sugar_fruit_salad, "bop_sugar_fruit_salad", enableBOPFoods, bop);
         registerItem(bop_salt_veggie_salad, "bop_salt_veggie_salad", enableBOPFoods, bop);
         registerItem(bop_salt_shroom_salad, "bop_salt_shroom_salad", enableBOPFoods, bop);
         registerItem(bop_salt_rice_bowl, "bop_salt_rice_bowl", enableBOPFoods, bop);
         registerItem(bop_pickled_turnip, "bop_pickled_turnip", enableBOPFoods, bop);
+        registerItem(bop_poison, "bop_poison", enableBOPFoods, bop);
+        registerItem(bop_hemoglobin, "bop_hemoglobin", enableBOPFoods, bop);
 
 
         registerItem(wm_salt_cooked_bison, "wm_salt_cooked_bison", enableWMFoods, wm);

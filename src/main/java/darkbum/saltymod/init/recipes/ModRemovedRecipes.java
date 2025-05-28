@@ -29,21 +29,21 @@ public class ModRemovedRecipes {
         Block honeycomb_block = etFuturumBlocks.get("honeycomb_block");
         Block beehive = etFuturumBlocks.get("beehive");
 
-        removeFirstRecipeFor(mushroom_stew,
+        removeAllRecipesFor(mushroom_stew,
             enableRecipeChanges);
-        removeFirstRecipeFor(bread,
+        removeAllRecipesFor(bread,
             enableRecipeChanges, enableDough);
-        removeFirstRecipeFor(cake,
+        removeAllRecipesFor(cake,
             enableRecipeChanges, enableDough);
-        removeFirstRecipeFor(cake,
+        removeAllRecipesFor(cake,
             enableRecipeChanges, replaceCake);
-        removeFirstRecipeFor(cake,
+        removeAllRecipesFor(cake,
             enableRecipeChanges, enableDough);
-        removeFirstRecipeFor(cake,
+        removeAllRecipesFor(cake,
             enableRecipeChanges, replaceCake);
-        removeFirstRecipeFor(cookie,
+        removeAllRecipesFor(cookie,
             enableRecipeChanges, enableDough);
-        removeFirstRecipeFor(pumpkin_pie,
+        removeAllRecipesFor(pumpkin_pie,
             enableRecipeChanges, enableDough);
 
         removeAllRecipesFor(rabbit_stew,

@@ -67,6 +67,11 @@ public class ModShapelessRecipes {
             new ItemStack(water_bucket),
             new ItemStack(bucket));
 
+        addShapelessRecipe(new ItemStack(slime_ball),
+            new boolean[]{enableDough},
+            new ItemStack(Items.dye, 1, 10),
+            new ItemStack(dough));
+
         addShapelessRecipe(new ItemStack(fish, 9),
             new boolean[]{enableStorageBlocks},
             new ItemStack(storage_barrel));
@@ -424,10 +429,6 @@ public class ModShapelessRecipes {
             new ItemStack(mushgloom, 1, 9),
             new ItemStack(mushgloom, 1, 9));
 
-        addShapelessRecipe(new ItemStack(dart, 1, 1),
-            new boolean[]{dart != null},
-            new ItemStack(dart, 1, 0),
-            new ItemStack(ModItems.bop_poison));
         addShapelessRecipe(new ItemStack(bop_salt_shroom_powder),
             new boolean[]{food != null},
             new ItemStack(salt_pinch),
@@ -454,6 +455,10 @@ public class ModShapelessRecipes {
             new ItemStack(potionitem),
             new ItemStack(food, 1, 11),
             new ItemStack(food, 1, 11));
+        addShapelessRecipe(new ItemStack(dart, 1, 1),
+            new boolean[]{dart != null},
+            new ItemStack(dart, 1, 0),
+            new ItemStack(ModItems.bop_poison));
 
         addShapelessRecipe(new ItemStack(wm_salt_cooked_bison),
             new boolean[]{cooked_bison_meat != null},
