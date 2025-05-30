@@ -49,9 +49,9 @@ tile.salt_crusted_oak_log.name=盐渍橡木原木
 
 tile.evaporator.name=蒸发器
 container.evaporator=蒸发器
-container.discard=丢弃
-container.empty=清空
-container.pressure=压力
+container.evaporator.discard=丢弃
+container.evaporator.empty=清空
+container.evaporator.pressure=压力
 fluid.milk=牛奶
 tile.fish_farm.name=养鱼场
 container.fish_farm=养鱼场
@@ -335,8 +335,8 @@ entity.saltymod.horned_sheep.name=角羊
 achievement.find_salt=盐之物语!
 achievement.find_salt.desc=收集盐
 
-achievement.find_salt_crystal=不仅仅是盐
-achievement.find_salt_crystal.desc=获取盐晶碎片
+achievement.find_salt_shard=盐晶碎片
+achievement.find_salt_shard.desc=获得盐晶碎片
 achievement.nav_salt_crystal=破碎之物...
 achievement.nav_salt_crystal.desc=摔落在盐晶上
 achievement.navelse_salt_crystal=...转运之法
