@@ -335,8 +335,8 @@ entity.saltymod.horned_sheep.name=Horned Sheep
 achievement.find_salt=Salt!
 achievement.find_salt.desc=Collect some salt
 
-achievement.find_salt_crystal=More than salt
-achievement.find_salt_crystal.desc=Obtain a salt shard
+achievement.find_salt_shard=More than salt
+achievement.find_salt_shard.desc=Obtain a salt shard
 achievement.nav_salt_crystal=Break a thing,...
 achievement.nav_salt_crystal.desc=Fall onto a salt crystal
 achievement.navelse_salt_crystal=...mend your luck

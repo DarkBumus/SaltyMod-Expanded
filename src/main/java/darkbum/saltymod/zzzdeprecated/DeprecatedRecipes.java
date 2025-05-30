@@ -50,7 +50,6 @@ public class DeprecatedRecipes {
         addShapelessRecipe(new ItemStack(cookie, 4),
             new boolean[]{enableRecipeChanges, !enableDough},
             new ItemStack(wheat),
-            new ItemStack(wheat),
             new ItemStack(dye, 1, 3));
 
         addShapelessRecipe(new ItemStack(pumpkin_pie),
@@ -462,7 +461,6 @@ public class DeprecatedRecipes {
         addShapelessRecipe(new ItemStack(sweetberry_cookie, 4),
             new boolean[]{sweet_berries != null, !enableDough, enableBerryCookie},
             new ItemStack(wheat),
-            new ItemStack(wheat),
             new ItemStack(sweet_berries));
         addShapelessRecipe(new ItemStack(chorus_cookie, 4),
             new boolean[]{chorus_fruit != null, enableDough, enableChorusCookie},
@@ -470,7 +468,6 @@ public class DeprecatedRecipes {
             new ItemStack(chorus_fruit));
         addShapelessRecipe(new ItemStack(chorus_cookie, 4),
             new boolean[]{chorus_fruit != null, !enableDough, enableChorusCookie},
-            new ItemStack(wheat),
             new ItemStack(wheat),
             new ItemStack(chorus_fruit));
 
@@ -669,25 +666,25 @@ public class DeprecatedRecipes {
             new ItemStack(egg));
 
         addShapelessOreRecipe(new ItemStack(muffin),
-            new boolean[]{enableHoney, enableDough},
+            new boolean[]{enableHoney, enableDough, enableMuffin},
             "itemRoyaljelly",
             new ItemStack(dye, 1, 3),
             new ItemStack(dough),
             new ItemStack(egg));
         addShapelessOreRecipe(new ItemStack(muffin),
-            new boolean[]{enableHoney, !enableDough},
+            new boolean[]{enableHoney, !enableDough, enableMuffin},
             "itemRoyaljelly",
             new ItemStack(dye, 1, 3),
             new ItemStack(wheat),
             new ItemStack(egg));
         addShapelessRecipe(new ItemStack(muffin),
-            new boolean[]{!enableHoney, enableDough},
+            new boolean[]{!enableHoney, enableDough, enableMuffin},
             new ItemStack(sugar),
             new ItemStack(dye, 1, 3),
             new ItemStack(dough),
             new ItemStack(egg));
         addShapelessRecipe(new ItemStack(muffin),
-            new boolean[]{!enableHoney, !enableDough},
+            new boolean[]{!enableHoney, !enableDough, enableMuffin},
             new ItemStack(sugar),
             new ItemStack(dye, 1, 3),
             new ItemStack(wheat),

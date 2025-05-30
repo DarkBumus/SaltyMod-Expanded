@@ -10,6 +10,8 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import static darkbum.saltymod.init.ModAchievementList.*;
 import static darkbum.saltymod.init.ModBlocks.*;
 import static darkbum.saltymod.init.ModItems.*;
+import static darkbum.saltymod.util.AchievementHelper.*;
+import static net.minecraft.item.Item.*;
 
 /**
  * Event handler class for item pickup-related events.
@@ -28,21 +30,13 @@ public class EntityItemPickupEventHandler {
         if (!world.isRemote) {
             Item pickedItem = event.item.getEntityItem().getItem();
 
-            if (pickedItem == salt) {
-                player.addStat(find_salt, 1);
-            } else if (pickedItem == salt_shard) {
-                player.addStat(find_salt_crystal, 1);
-            } else if (pickedItem == mineral_mud_ball) {
-                player.addStat(find_mineral_mud, 1);
-            } else if (pickedItem == saltwort) {
-                player.addStat(find_saltwort, 1);
-            } else if (pickedItem == dough) {
-                player.addStat(find_dough, 1);
-            } else if (pickedItem == Item.getItemFromBlock(dry_mud_brick)) {
-                player.addStat(find_mud_brick, 1);
-            } else if (pickedItem == onion) {
-                player.addStat(find_onion, 1);
-            }
+            tryAward(player, pickedItem, salt, find_salt);
+            tryAward(player, pickedItem, salt_shard, find_salt_shard);
+            tryAward(player, pickedItem, mineral_mud_ball, find_mineral_mud);
+            tryAward(player, pickedItem, saltwort, find_saltwort);
+            tryAward(player, pickedItem, dough, find_dough);
+            tryAward(player, pickedItem, getItemFromBlock(dry_mud_brick), find_mud_brick);
+            tryAward(player, pickedItem, onion, find_onion);
         }
     }
 }

@@ -114,7 +114,7 @@ public class BlockMill extends Block {
      */
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
-        BlockUtils.setBlockDirectionFromEntity(world, x, y, z, entity);
+        setBlockDirectionFromEntity(world, x, y, z, entity);
     }
 
     @Override

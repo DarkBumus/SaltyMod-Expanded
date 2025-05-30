@@ -26,7 +26,7 @@ public class ModAchievementList {
 
     public static Achievement find_salt;
     public static Achievement make_rain;
-    public static Achievement find_salt_crystal;
+    public static Achievement find_salt_shard;
     public static Achievement nav_salt_crystal;
     public static Achievement navelse_salt_crystal;
     public static Achievement slime_salt_crystal;
@@ -70,9 +70,9 @@ public class ModAchievementList {
             rainmaker,
             find_salt).registerStat();
 
-        find_salt_crystal = new Achievement(
-            "achievement.find_salt_crystal",
-            "find_salt_crystal",
+        find_salt_shard = new Achievement(
+            "achievement.find_salt_shard",
+            "find_salt_shard",
             -4,
             -2,
             iron_pickaxe,
@@ -84,7 +84,7 @@ public class ModAchievementList {
             -4,
             -4,
             Items.bone,
-            find_salt_crystal).registerStat();
+            find_salt_shard).registerStat();
 
         navelse_salt_crystal = new Achievement(
             "achievement.navelse_salt_crystal",
@@ -100,7 +100,7 @@ public class ModAchievementList {
             -5,
             -3,
             tough_jelly,
-            find_salt_crystal).setSpecial().registerStat();
+            find_salt_shard).setSpecial().registerStat();
 
         witch_salt_crystal = new Achievement(
             "achievement.witch_salt_crystal",
@@ -108,7 +108,7 @@ public class ModAchievementList {
             -3,
             -3,
             new ItemStack(dev_item, 1, 2),
-            find_salt_crystal).setSpecial().registerStat();
+            find_salt_shard).setSpecial().registerStat();
 
         farm_salt = new Achievement(
             "achievement.farm_salt",
@@ -272,7 +272,7 @@ public class ModAchievementList {
 
         list.add(find_salt);
         list.add(make_rain);
-        list.add(find_salt_crystal);
+        list.add(find_salt_shard);
         list.add(nav_salt_crystal);
         list.add(navelse_salt_crystal);
         list.add(slime_salt_crystal);

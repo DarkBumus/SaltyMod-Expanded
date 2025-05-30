@@ -1,6 +1,5 @@
 package darkbum.saltymod.init;
 
-import darkbum.saltymod.tileentity.TileEntityEvaporator;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -86,6 +85,7 @@ public class ModOreDictionary {
         registerOre("itemRoyaljelly", royal_jelly);
         registerOre("itemIngredientBucket", water_bucket);
         registerOre("itemIngredientBucket", milk_bucket);
+        registerOre("itemSalt", salt);
         registerOre("cropOnion", onion);
         registerOre("cropSaltwort", saltwort);
 
