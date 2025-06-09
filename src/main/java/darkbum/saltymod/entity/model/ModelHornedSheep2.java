@@ -43,17 +43,29 @@ public class ModelHornedSheep2 extends ModelQuadruped {
         leg4 = new ModelRenderer(this, 0, 16);
         leg4.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.0F);
         leg4.setRotationPoint(3.0F, 12.0F, -5.0F);
-        if (ModConfigurationEntities.hornedSheepThinHorns) {
-            head.setTextureOffset(0, 32).addBox(3.0F, -5.0F, -4.5F, 2, 7, 6, 0.0F);
-            head.setTextureOffset(0, 45).addBox(3.0F, -1.0F, -7.5F, 2, 3, 3, 0.0F);
-            head.setTextureOffset(20, 32).addBox(-5.0F, -5.0F, -4.5F, 2, 7, 6, 0.0F);
-            head.setTextureOffset(14, 45).addBox(-5.0F, -1.0F, -7.5F, 2, 3, 3, 0.0F);
-        }
         if (!ModConfigurationEntities.hornedSheepThinHorns) {
-            head.setTextureOffset(0, 32).addBox(3.0F, -5.0F, -4.5F, 4, 7, 6, 0.0F);
-            head.setTextureOffset(0, 45).addBox(3.0F, -1.0F, -7.5F, 4, 3, 3, 0.0F);
-            head.setTextureOffset(20, 32).addBox(-7.0F, -5.0F, -4.5F, 4, 7, 6, 0.0F);
-            head.setTextureOffset(14, 45).addBox(-7.0F, -1.0F, -7.5F, 4, 3, 3, 0.0F);
+            head.setTextureOffset(0, 32).addBox(-7.0F, -5.0F, -4.5F, 4, 7, 6, 0.0F);
+            head.setTextureOffset(0, 45).addBox(-7.0F, -1.0F, -7.5F, 4, 3, 3, 0.0F);
+            ModelRenderer leftHorn1 = new ModelRenderer(this, 0, 32);
+            leftHorn1.mirror = true;
+            leftHorn1.setTextureOffset(0, 32).addBox(3.0F, -5.0F, -4.5F, 4, 7, 6, 0.0F);
+            head.addChild(leftHorn1);
+            ModelRenderer leftHorn2 = new ModelRenderer(this, 0, 45);
+            leftHorn2.mirror = true;
+            leftHorn2.setTextureOffset(0, 45).addBox(3.0F, -1.0F, -7.5F, 4, 3, 3, 0.0F);
+            head.addChild(leftHorn2);
+        }
+        if (ModConfigurationEntities.hornedSheepThinHorns) {
+            head.setTextureOffset(20, 32).addBox(-5.0F, -5.0F, -4.5F, 2, 7, 6, 0.0F);
+            head.setTextureOffset(20, 45).addBox(-5.0F, -1.0F, -7.5F, 2, 3, 3, 0.0F);
+            ModelRenderer leftHorn1 = new ModelRenderer(this, 0, 32);
+            leftHorn1.mirror = true;
+            leftHorn1.setTextureOffset(20, 32).addBox(3.0F, -5.0F, -4.5F, 2, 7, 6, 0.0F);
+            head.addChild(leftHorn1);
+            ModelRenderer leftHorn2 = new ModelRenderer(this, 0, 45);
+            leftHorn2.mirror = true;
+            leftHorn2.setTextureOffset(20, 45).addBox(3.0F, -1.0F, -7.5F, 2, 3, 3, 0.0F);
+            head.addChild(leftHorn2);
         }
     }
 

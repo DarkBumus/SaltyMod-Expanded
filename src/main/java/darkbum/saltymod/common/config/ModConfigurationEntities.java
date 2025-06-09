@@ -27,8 +27,13 @@ public class ModConfigurationEntities {
 
     // Effects Config Options
     public static boolean enableHornedSheep;
-
     public static boolean hornedSheepThinHorns;
+
+    public static boolean chickensAlwaysDropFeathers;
+    public static boolean babyChickensDropFeathers;
+    public static boolean chickensShedFeathers;
+    public static int featherSheddingFrequency;
+    public static boolean chickensShedFeathersWithEggs;
 
     /**
      * Initializes the entity configuration settings by reading values from the provided configuration file.
@@ -45,11 +50,38 @@ public class ModConfigurationEntities {
             enableFeatures + "\nHorned Sheep"
             + "\nHorn"
             + "\n");
-
         hornedSheepThinHorns = config.getBoolean(
             "02-hornedSheepThinHorns",
             categoryNameEnt,
             false,
             "Changes the model and texture to give the Horned Sheep thinner horns");
+
+        chickensAlwaysDropFeathers = config.getBoolean(
+            "03-chickensAlwaysDropFeathers",
+            categoryNameEnt,
+            true,
+            "Changes whether or not chickens should always drop feathers");
+        babyChickensDropFeathers = config.getBoolean(
+            "04-babyChickensDropFeathers",
+            categoryNameEnt,
+            true,
+            "Changes whether or not baby chickens can drop feathers");
+        chickensShedFeathers = config.getBoolean(
+            "05-chickensShedFeathers",
+            categoryNameEnt,
+            true,
+            "Changes whether or not chickens should randomly shed feathers");
+        featherSheddingFrequency = config.getInt(
+            "06-featherSheddingFrequency",
+            categoryNameEnt,
+            26000,
+            1200,
+            72000,
+            "Changes the feather shedding frequency in ticks. 1200 is ~ every minute, 72000 is ~ every sixty minutes");
+        chickensShedFeathersWithEggs = config.getBoolean(
+            "07-chickensShedFeathersWithEggs",
+            categoryNameEnt,
+            true,
+            "Changes whether or not chickens should always shed feathers when laying an egg");
     }
 }

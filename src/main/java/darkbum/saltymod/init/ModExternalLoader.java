@@ -77,6 +77,7 @@ public class ModExternalLoader {
     public static void loadForestry() {
         if (!fo) return;
         forestryItems.put("beeCombs", findItem("Forestry", "beeCombs"));
+        forestryItems.put("royalJelly", findItem("Forestry", "royalJelly"));
     }
 
     /**

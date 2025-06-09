@@ -104,6 +104,7 @@ public class CommonProxy {
         register(new EntityItemPickupEventHandler());
         register(new EntityJoinWorldEventHandler());
         register(new LivingDropsEventHandler());
+        register(new LivingUpdateEventHandler());
         register(new PlayerItemCraftedEventHandler());
         register(new PlayerPickupXpEventHandler());
         register(new PlayerUseItemEventHandler());

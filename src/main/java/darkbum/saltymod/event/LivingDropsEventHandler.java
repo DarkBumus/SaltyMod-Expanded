@@ -4,15 +4,20 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityBat;
+import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import darkbum.saltymod.init.ModItems;
+
+import static darkbum.saltymod.common.config.ModConfigurationEntities.*;
+import static darkbum.saltymod.init.ModItems.*;
+import static net.minecraft.init.Items.*;
 
 /**
  * Event handler class for entity drops-related events.
@@ -45,6 +50,10 @@ public class LivingDropsEventHandler {
             handleHorseDrops(entity, isBurning);
         } else if (entity instanceof EntityBat) {
             handleBatDrops(entity, isBurning);
+        } else if (babyChickensDropFeathers && entity instanceof EntityChicken && isChild) {
+            handleBabyChickenDrops(entity);
+        } else if (chickensAlwaysDropFeathers && entity instanceof EntityChicken && !isChild) {
+            handleChickenDrops(entity, event);
         }
     }
 
@@ -56,7 +65,7 @@ public class LivingDropsEventHandler {
     private void handleZombieDrops(EntityLivingBase entity) {
         int dropChance = ThreadLocalRandom.current().nextInt(1000);
         if (dropChance < 25) {
-            entity.entityDropItem(new ItemStack(ModItems.onion, 1), 0.0F);
+            if (onion != null) entity.entityDropItem(new ItemStack(onion, 1), 0.0f);
         }
     }
 
@@ -67,9 +76,9 @@ public class LivingDropsEventHandler {
      * @param isBurning Whether the squid is burning.
      */
     private void handleSquidDrops(EntityLivingBase entity, boolean isBurning) {
-        int amount = getDropAmount(3);
+        int amount = getDropAmount(1, 3);
         int meta = isBurning ? 1 : 0;
-        entity.entityDropItem(new ItemStack(ModItems.calamari, amount, meta), 0.0F);
+        if (calamari != null) entity.entityDropItem(new ItemStack(calamari, amount, meta), 0.0f);
     }
 
     /**
@@ -79,9 +88,9 @@ public class LivingDropsEventHandler {
      * @param isBurning Whether the horse is burning.
      */
     private void handleHorseDrops(EntityLivingBase entity, boolean isBurning) {
-        int amount = getDropAmount(2);
+        int amount = getDropAmount(1, 2);
         int meta = isBurning ? 1 : 0;
-        entity.entityDropItem(new ItemStack(ModItems.haunch, amount, meta), 0.0F);
+        if (haunch != null) entity.entityDropItem(new ItemStack(haunch, amount, meta), 0.0f);
     }
 
     /**
@@ -92,7 +101,37 @@ public class LivingDropsEventHandler {
      */
     private void handleBatDrops(EntityLivingBase entity, boolean isBurning) {
         int meta = isBurning ? 1 : 0;
-        entity.entityDropItem(new ItemStack(ModItems.strider, 1, meta), 0.0F);
+        if (strider != null) entity.entityDropItem(new ItemStack(strider, 1, meta), 0.0f);
+    }
+
+    /**
+     * Handles custom drops for baby chickens.
+     *
+     * @param entity   The bat entity.
+     */
+    private void handleBabyChickenDrops(EntityLivingBase entity) {
+        int amount = getDropAmount(chickensAlwaysDropFeathers ? 1 : 0, 1);
+        entity.entityDropItem(new ItemStack(feather, amount, 0), 0.0f);
+    }
+
+    /**
+     * Handles custom drops for chickens.
+     *
+     * @param entity   The bat entity.
+     */
+    private void handleChickenDrops(EntityLivingBase entity, LivingDropsEvent event) {
+        boolean hasFeatherAlready = false;
+
+        for (EntityItem drop : event.drops) {
+            ItemStack stack = drop.getEntityItem();
+            if (stack != null && stack.getItem() == feather) {
+                hasFeatherAlready = true;
+                break;
+            }
+        }
+        if (!hasFeatherAlready) {
+            entity.entityDropItem(new ItemStack(feather, 1, 0), 0.0f);
+        }
     }
 
     /**
@@ -101,7 +140,10 @@ public class LivingDropsEventHandler {
      * @param max The maximum amount (inclusive).
      * @return The randomly generated drop amount.
      */
-    private int getDropAmount(int max) {
-        return ThreadLocalRandom.current().nextInt(1, max + 1);
+    public static int getDropAmount(int min, int max) {
+        if (min > max) {
+            throw new IllegalArgumentException("Min may not be larger than max!");
+        }
+        return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
 }

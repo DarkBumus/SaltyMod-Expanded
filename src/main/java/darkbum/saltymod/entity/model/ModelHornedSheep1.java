@@ -63,15 +63,15 @@ public class ModelHornedSheep1 extends ModelQuadruped {
      * Sets the rotation angles for the model's parts.
      *
      * @param limbSwing The limb swing distance.
-     * @param limbSwingAngles The limb swing angle.
+     * @param limbSwingAngle The limb swing angle.
      * @param entityTickTime The entity's tick time.
      * @param rotationYaw The entity's yaw rotation.
      * @param rotationPitch The entity's pitch rotation.
      * @param unitPixel The scaling factor.
      * @param entity The entity instance.
      */
-    public void setRotationAngles(float limbSwing, float limbSwingAngles, float entityTickTime, float rotationYaw, float rotationPitch, float unitPixel, Entity entity) {
-        super.setRotationAngles(limbSwing, limbSwingAngles, entityTickTime, rotationYaw, rotationPitch, unitPixel, entity);
+    public void setRotationAngles(float limbSwing, float limbSwingAngle, float entityTickTime, float rotationYaw, float rotationPitch, float unitPixel, Entity entity) {
+        super.setRotationAngles(limbSwing, limbSwingAngle, entityTickTime, rotationYaw, rotationPitch, unitPixel, entity);
         head.rotateAngleX = headRotationAngle;
     }
 }

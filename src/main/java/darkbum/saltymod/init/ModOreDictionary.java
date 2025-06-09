@@ -33,6 +33,7 @@ public class ModOreDictionary {
         Item royaljellyItem = harvestcraftItems.get("royaljellyItem");
 
         Item beeCombs = forestryItems.get("beeCombs");
+        Item royalJelly = forestryItems.get("royalJelly");
 
         Item honeyCombFilled = growthcraftItems.get("honeyCombFilled");
 
@@ -77,8 +78,6 @@ public class ModOreDictionary {
         registerOre("itemFish", tailor);
         registerOre("itemMilk", milk_bucket);
         registerOre("itemMilk", powdered_milk);
-        registerOre("materialWaxcomb", waxcomb);
-        registerOre("materialWax", waxcomb);
         registerOre("itemSweetener", sugar);
         registerOre("itemSweetener", honeycomb);
         registerOre("itemHoney", honeycomb);
@@ -86,8 +85,12 @@ public class ModOreDictionary {
         registerOre("itemIngredientBucket", water_bucket);
         registerOre("itemIngredientBucket", milk_bucket);
         registerOre("itemSalt", salt);
+        registerOre("materialWaxcomb", waxcomb);
+        registerOre("materialWax", waxcomb);
         registerOre("cropOnion", onion);
         registerOre("cropSaltwort", saltwort);
+        registerOre("foodCalamariraw", new ItemStack(calamari, 1, 0));
+        registerOre("foodCalamaricooked", new ItemStack(calamari, 1, 1));
 
         registerOre("itemFood", apple);
         registerOre("itemFood", melon);
@@ -250,6 +253,7 @@ public class ModOreDictionary {
 
         registerOre("itemSweetener", beeCombs, beeCombs != null);
         registerOre("itemHoney", beeCombs, beeCombs != null);
+        registerOre("itemRoyaljelly", royalJelly, royalJelly != null);
 
         registerOre("itemSweetener", honeyCombFilled, honeyCombFilled != null);
         registerOre("itemHoney", honeyCombFilled, honeyCombFilled != null);

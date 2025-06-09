@@ -6,9 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
-import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.EntityAIMate;
 import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.passive.EntitySheep;
@@ -18,6 +16,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+
+import static darkbum.saltymod.init.ModEntities.*;
 
 /**
  * Entity class for the horned sheep entity.
@@ -151,9 +151,17 @@ public class EntityHornedSheep extends EntitySheep {
         }
     }
 
+    /**
+     * Returns the spawn egg ItemStack corresponding to this entity when middle-clicked in creative mode.
+     * Uses the entity's registered spawn egg metadata from ModEntities.
+     *
+     * @param target The targeted block or entity under the cursor.
+     * @return an ItemStack of the spawn egg with the correct metadata for this entity, or null if none is registered.
+     */
     @Override
     @SideOnly(Side.CLIENT)
     public ItemStack getPickedResult(MovingObjectPosition target) {
-        return new ItemStack(Items.spawn_egg, 1, 601);
+        Integer id = getEntityEggId(this.getClass());
+        return id != null ? new ItemStack(Items.spawn_egg, 1, id) : null;
     }
 }

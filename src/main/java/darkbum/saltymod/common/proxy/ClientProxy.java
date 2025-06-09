@@ -18,6 +18,10 @@ import darkbum.saltymod.entity.render.RenderRainmakerExplosion;
 import darkbum.saltymod.init.ModItems;
 import net.minecraft.util.IIcon;
 
+import static cpw.mods.fml.client.registry.RenderingRegistry.*;
+import static darkbum.saltymod.common.config.ModConfigurationBlocks.*;
+import static darkbum.saltymod.common.config.ModConfigurationWorldGeneration.*;
+
 /**
  * Client-side proxy class responsible for client-only initializations like custom renderers for blocks and entities.
  * This class extends behavior defined in {@link CommonProxy}.
@@ -51,19 +55,19 @@ public class ClientProxy extends CommonProxy {
      * Called during client-side initialization.
      */
     public void setBlockRenderers() {
-        if (ModConfigurationBlocks.enableSaltDirt) {
-            saltGrassRenderType = RenderingRegistry.getNextAvailableRenderId();
-            RenderingRegistry.registerBlockHandler(new SaltGrassRenderer());
+        if (enableSaltDirt) {
+            saltGrassRenderType = getNextAvailableRenderId();
+            registerBlockHandler(new SaltGrassRenderer());
         }
 
-        if (ModConfigurationBlocks.enableMachines) {
-            cookingPotRenderType = RenderingRegistry.getNextAvailableRenderId();
-            RenderingRegistry.registerBlockHandler(new CookingPotRenderer());
+        if (enableMachines) {
+            cookingPotRenderType = getNextAvailableRenderId();
+            registerBlockHandler(new CookingPotRenderer());
         }
 
-        if (ModConfigurationWorldGeneration.enableSaltMarsh) {
-            marshReedsRenderType = RenderingRegistry.getNextAvailableRenderId();
-            RenderingRegistry.registerBlockHandler(new MarshReedsRenderer());
+        if (enableSaltMarsh) {
+            marshReedsRenderType = getNextAvailableRenderId();
+            registerBlockHandler(new MarshReedsRenderer());
         }
     }
 
@@ -72,11 +76,8 @@ public class ClientProxy extends CommonProxy {
      * This method must only be called on the client side.
      */
     public void setEntityRenderers() {
-        RenderingRegistry.registerEntityRenderingHandler(EntityRainmaker.class,
-            new RenderSnowball(ModItems.rainmaker));
-        RenderingRegistry.registerEntityRenderingHandler(EntityRainmakerExplosion.class,
-            new RenderRainmakerExplosion());
-        RenderingRegistry.registerEntityRenderingHandler(EntityHornedSheep.class,
-            new RenderHornedSheep(new ModelHornedSheep2(), new ModelHornedSheep1(), 0.7F));
+        registerEntityRenderingHandler(EntityRainmaker.class, new RenderSnowball(ModItems.rainmaker));
+        registerEntityRenderingHandler(EntityRainmakerExplosion.class, new RenderRainmakerExplosion());
+        registerEntityRenderingHandler(EntityHornedSheep.class, new RenderHornedSheep(new ModelHornedSheep2(), new ModelHornedSheep1(), 0.7f));
     }
 }

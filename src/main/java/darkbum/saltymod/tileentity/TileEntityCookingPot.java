@@ -5,8 +5,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.util.PotcookingRecipe;
 import darkbum.saltymod.util.MachineUtilRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -389,17 +391,55 @@ public class TileEntityCookingPot extends TileEntity implements ISidedInventory 
 
         for (int i = 0; i < 6; i++) {
             if (inventory[i] != null) {
-                inventory[i].stackSize--;
-                if (inventory[i].stackSize <= 0) {
+                ItemStack input = inventory[i];
+                Item item = input.getItem();
+                assert item != null;
+                ItemStack container = item.getContainerItem(input);
+
+                input.stackSize--;
+                if (input.stackSize <= 0) {
                     inventory[i] = null;
+                }
+
+                if (container != null) {
+                    if (inventory[i] == null) {
+                        inventory[i] = container.copy();
+                    } else {
+                        if (!worldObj.isRemote) {
+                            worldObj.spawnEntityInWorld(new EntityItem(
+                                worldObj,
+                                xCoord + 0.5, yCoord + 0.5, zCoord + 0.5,
+                                container.copy()
+                            ));
+                        }
+                    }
                 }
             }
         }
 
         if (inventory[7] != null) {
-            inventory[7].stackSize--;
-            if (inventory[7].stackSize <= 0) {
+            ItemStack input = inventory[7];
+            Item item = input.getItem();
+            assert item != null;
+            ItemStack container = item.getContainerItem(input);
+
+            input.stackSize--;
+            if (input.stackSize <= 0) {
                 inventory[7] = null;
+            }
+
+            if (container != null) {
+                if (inventory[7] == null) {
+                    inventory[7] = container.copy();
+                } else {
+                    if (!worldObj.isRemote) {
+                        worldObj.spawnEntityInWorld(new EntityItem(
+                            worldObj,
+                            xCoord + 0.5, yCoord + 0.5, zCoord + 0.5,
+                            container.copy()
+                        ));
+                    }
+                }
             }
         }
 

@@ -21,7 +21,6 @@ public class RenderHornedSheep extends RenderLiving {
 
     private static final ResourceLocation hornedSheepTextures = new ResourceLocation("saltymod:textures/entity/horned_sheep/horned_sheep_fur.png");
     private static final ResourceLocation shearedHornedSheepTextures = new ResourceLocation("saltymod:textures/entity/horned_sheep/horned_sheep.png");
-    private static final ResourceLocation shearedHornedSheepThinTextures = new ResourceLocation("saltymod:textures/entity/horned_sheep/thin/horned_sheep_thin.png");
 
     /**
      * Constructs a new RenderHornedSheep instance.
@@ -32,7 +31,7 @@ public class RenderHornedSheep extends RenderLiving {
      */
     public RenderHornedSheep(ModelBase modelBase1, ModelBase modelBase2, float shadowSize) {
         super(modelBase1, shadowSize);
-        this.setRenderPassModel(modelBase2);
+        setRenderPassModel(modelBase2);
     }
 
     /**
@@ -43,7 +42,7 @@ public class RenderHornedSheep extends RenderLiving {
      */
     @Override
     protected ResourceLocation getEntityTexture(Entity entity) {
-        return this.getEntityTexture((EntityHornedSheep) entity);
+        return getEntityTexture((EntityHornedSheep) entity);
     }
 
     /**
@@ -53,9 +52,6 @@ public class RenderHornedSheep extends RenderLiving {
      * @return the texture resource location.
      */
     protected ResourceLocation getEntityTexture(EntityHornedSheep entity) {
-        if (ModConfigurationEntities.hornedSheepThinHorns) {
-            return shearedHornedSheepThinTextures;
-        }
         return shearedHornedSheepTextures;
     }
 
@@ -69,7 +65,7 @@ public class RenderHornedSheep extends RenderLiving {
      */
     @Override
     protected int shouldRenderPass(EntityLivingBase entityLivingBase, int renderPass, float partialTicks) {
-        return this.shouldRenderPass((EntityHornedSheep) entityLivingBase, renderPass, partialTicks);
+        return shouldRenderPass((EntityHornedSheep) entityLivingBase, renderPass, partialTicks);
     }
 
     /**
@@ -82,10 +78,9 @@ public class RenderHornedSheep extends RenderLiving {
      */
     protected int shouldRenderPass(EntityHornedSheep entityHornedSheep, int renderPass, float partialTicks) {
         if (renderPass == 0 && !entityHornedSheep.getSheared()) {
-            this.bindTexture(hornedSheepTextures);
+            bindTexture(hornedSheepTextures);
 
             if (entityHornedSheep.hasCustomNameTag() && "jeb_".equals(entityHornedSheep.getCustomNameTag())) {
-                boolean flag = true;
                 int k = entityHornedSheep.ticksExisted / 25 + entityHornedSheep.getEntityId();
                 int l = k % EntityHornedSheep.fleeceColorTable.length;
                 int i1 = (k + 1) % EntityHornedSheep.fleeceColorTable.length;

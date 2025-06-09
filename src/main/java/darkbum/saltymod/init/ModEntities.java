@@ -7,6 +7,9 @@ import darkbum.saltymod.entity.EntityRainmakerExplosion;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static cpw.mods.fml.common.registry.EntityRegistry.*;
 import static darkbum.saltymod.common.config.ModConfigurationEntities.*;
 import static darkbum.saltymod.common.config.ModConfigurationItems.*;
@@ -19,6 +22,7 @@ import static darkbum.saltymod.common.config.ModConfigurationItems.*;
  */
 public class ModEntities {
 
+    private static final Map<Class<? extends Entity>, Integer> ENTITY_IDS = new HashMap<>();
     static int startEntityId = 600;
 
     /**
@@ -26,12 +30,15 @@ public class ModEntities {
      */
     public static void init() {
         if (enableRainmaker) {
-            registerModEntity(EntityRainmaker.class, "rainmaker", 0, SaltyMod.instance, 64, 20, true);
-            registerModEntity(EntityRainmakerExplosion.class, "rainmaker_dust", 1, SaltyMod.instance, 64, 20, false);
+            int rainmakerId = getUniqueEntityId();
+            registerModEntity(EntityRainmaker.class, "rainmaker", rainmakerId, SaltyMod.instance, 64, 20, true);
+            int rainmakerExplosionId = getUniqueEntityId();
+            registerModEntity(EntityRainmakerExplosion.class, "rainmaker_explosion", rainmakerExplosionId, SaltyMod.instance, 64, 20, false);
         }
         if (enableHornedSheep) {
-            registerModEntity(EntityHornedSheep.class, "horned_sheep", 2, SaltyMod.instance, 64, 3, true);
-            registerEntityEgg(EntityHornedSheep.class, 15198183, 9663326);
+            int hornedSheepId = getUniqueEntityId();
+            registerModEntity(EntityHornedSheep.class, "horned_sheep", hornedSheepId, SaltyMod.instance, 64, 3, true);
+            registerEntityEgg(EntityHornedSheep.class, hornedSheepId, 15198183, 9663326);
         }
     }
 
@@ -42,10 +49,12 @@ public class ModEntities {
      * @return a unique entity ID.
      */
     public static int getUniqueEntityId() {
-        while (true) {
+        while (EntityList.getStringFromID(startEntityId) != null) {
             startEntityId++;
-            if (EntityList.getStringFromID(startEntityId) == null) return startEntityId;
         }
+        int id = startEntityId;
+        startEntityId++;
+        return id;
     }
 
     /**
@@ -56,9 +65,19 @@ public class ModEntities {
      * @param primaryColor  The primary color of the spawn egg.
      * @param secondaryColor The secondary color of the spawn egg.
      */
-    public static void registerEntityEgg(Class<? extends Entity> entity, int primaryColor, int secondaryColor) {
-        int id = getUniqueEntityId();
+    public static void registerEntityEgg(Class<? extends Entity> entity, int id, int primaryColor, int secondaryColor) {
         EntityList.IDtoClassMapping.put(id, entity);
         EntityList.entityEggs.put(id, new EntityList.EntityEggInfo(id, primaryColor, secondaryColor));
+        ENTITY_IDS.put(entity, id);
+    }
+
+    /**
+     * Retrieves the spawn egg meta associated with the given entity class.
+     *
+     * @param clazz The entity class for which to get the spawn egg ID.
+     * @return the spawn egg metadata if registered, otherwise null.
+     */
+    public static Integer getEntityEggId(Class<? extends Entity> clazz) {
+        return ENTITY_IDS.get(clazz);
     }
 }
