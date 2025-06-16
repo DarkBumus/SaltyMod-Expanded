@@ -36,15 +36,20 @@ public class ClientProxy extends CommonProxy {
     public static IIcon MILK;
 
     /** Custom render IDs for special block renderers. */
+    @SideOnly(Side.CLIENT)
     public static int saltGrassRenderType;
+
+    @SideOnly(Side.CLIENT)
     public static int cookingPotRenderType;
+
+    @SideOnly(Side.CLIENT)
     public static int marshReedsRenderType;
 
     /**
      * Helper method that overrides from CommonProxy and makes sure the renderer methods are only called client-side.
      */
-    @SideOnly(Side.CLIENT)
     @Override
+    @SideOnly(Side.CLIENT)
     public void setRenderers() {
         setBlockRenderers();
         setEntityRenderers();
