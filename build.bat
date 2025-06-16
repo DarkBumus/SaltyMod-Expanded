@@ -1,1 +1,3 @@
-cmd /k gradlew build --stacktrace
+gradlew build -x checkstyleMain
+
+pause

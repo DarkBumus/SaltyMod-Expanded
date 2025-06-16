@@ -36,7 +36,6 @@ public class BlockBeeNest extends Block {
 
     private IIcon[] temperateIcons = new IIcon[4];
 
-    @SideOnly(Side.CLIENT)
     private IIcon[] borealIcons = new IIcon[4];
 
     /**
