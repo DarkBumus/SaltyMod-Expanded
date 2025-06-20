@@ -9,6 +9,9 @@ public class IMCSenderGTNH {
 	public static void IMCSender() {
 		sendHandler("darkbum.saltymod.api.nei.NEIPotcookingRecipeHandler", "saltymod:cooking_pot");
 		sendCatalyst(SaltyMod.MODID + ".cooking_pot", "saltymod:cooking_pot");
+
+		sendHandler("darkbum.saltymod.api.nei.NEIOvenbakingRecipeHandler", "saltymod:clay_oven");
+		sendCatalyst(SaltyMod.MODID + ".clay_oven", "saltymod:clay_oven");
 	}
 
 	/*

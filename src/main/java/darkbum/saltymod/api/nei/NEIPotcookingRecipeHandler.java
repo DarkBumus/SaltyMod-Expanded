@@ -19,7 +19,6 @@ import java.util.Map;
 
 /**
  * NEI recipe handler for displaying Cooking Pot recipes in the NEI interface.
- * For now, this handler provides a GUI texture and a display name for this recipe category.
  *
  * @author DarkBum
  * @since 2.0.0

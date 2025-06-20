@@ -46,6 +46,7 @@ public class NEIConfig implements IConfigureNEI {
         API.hideItem(new ItemStack(marsh_reeds_t));
 
         API.registerRecipeHandler(new NEIPotcookingRecipeHandler());
+        API.registerRecipeHandler(new NEIOvenbakingRecipeHandler());
     }
 
     /**
