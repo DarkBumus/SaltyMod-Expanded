@@ -53,6 +53,10 @@ public class PotcookingRecipe {
         public boolean matches(ItemStack input) {
             return areStacksEqual(stack, input);
         }
+
+        public ItemStack getStack() {
+            return stack;
+        }
     }
 
     /**
@@ -79,6 +83,10 @@ public class PotcookingRecipe {
                 }
             }
             return false;
+        }
+
+        public List<ItemStack> getOres() {
+            return OreDictionary.getOres(oreName);
         }
     }
 
@@ -138,6 +146,10 @@ public class PotcookingRecipe {
     public void registerRecipe(ItemStack output, boolean requiresHeater, float xpChance, IIngredientMatcher... ingredMatchers) {
         List<IIngredientMatcher> ingredList = Arrays.asList(ingredMatchers);
         recipes.put(output, new PotRecipe(output, requiresHeater, ingredList, xpChance));
+    }
+
+    public Set<Map.Entry<ItemStack, PotRecipe>> getRecipes() {
+        return recipes.entrySet();
     }
 
     /**
