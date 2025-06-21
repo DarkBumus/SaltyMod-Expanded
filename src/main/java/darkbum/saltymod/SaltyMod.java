@@ -17,6 +17,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import darkbum.saltymod.api.nei.NEIConfig;
+import darkbum.saltymod.api.nei.IMCSenderGTNH;
 import darkbum.saltymod.common.config.ModConfigurationBase;
 import darkbum.saltymod.init.*;
 import darkbum.saltymod.init.recipes.*;
@@ -136,6 +137,8 @@ public class SaltyMod {
         proxy.init(event);
         proxy.setRenderers();
 
+        IMCSenderGTNH.IMCSender();
+        
         logger.info("Finished SaltyMod Expanded Initialization");
     }
 
