@@ -2,6 +2,7 @@ package darkbum.saltymod.tileentity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import darkbum.saltymod.util.PressingRecipe;
 import darkbum.saltymod.util.MachineUtilRegistry;
 import darkbum.saltymod.init.ModBlocks;
 import net.minecraft.block.Block;
@@ -182,22 +183,22 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
         if (!isHeaterRequirementMet(recipe)) return false;
         if (!isMillRequirementMet(recipe)) return false;
         if (!isVesselRequirementMet(recipe, vessel)) return false;
-        if (!canAcceptOutput(inventory[1], recipe.output1)) return false;
-        return canAcceptOutput(inventory[2], recipe.output2);
+        if (!canAcceptOutput(inventory[1], recipe.output1())) return false;
+        return canAcceptOutput(inventory[2], recipe.output2());
     }
 
     private boolean isHeaterRequirementMet(PressingRecipe.PressRecipe recipe) {
-        return recipe.requiresHeater == isHeaterNearby;
+        return recipe.requiresHeater() == isHeaterNearby;
     }
 
     private boolean isMillRequirementMet(PressingRecipe.PressRecipe recipe) {
-        return recipe.requiresMill == isMillNearby;
+        return recipe.requiresMill() == isMillNearby;
     }
 
     private boolean isVesselRequirementMet(PressingRecipe.PressRecipe recipe, ItemStack vessel) {
-        if (recipe.vesselItem == null) return true;
+        if (recipe.vesselItem() == null) return true;
         if (vessel == null) return false;
-        return MachineUtilRegistry.isValidVessel(vessel) && vessel.getItem() == recipe.vesselItem.getItem();
+        return MachineUtilRegistry.isValidVessel(vessel) && vessel.getItem() == recipe.vesselItem().getItem();
     }
 
     private boolean canAcceptOutput(ItemStack currentStack, ItemStack output) {
@@ -216,27 +217,27 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
         PressingRecipe.PressRecipe recipe = PressingRecipe.pressing().getRecipeFor(input, vessel);
         if (recipe == null) return;
 
-        if (recipe.output1 != null) {
+        if (recipe.output1() != null) {
             if (inventory[1] == null) {
-                inventory[1] = recipe.output1.copy();
+                inventory[1] = recipe.output1().copy();
             } else {
-                inventory[1].stackSize += recipe.output1.stackSize;
+                inventory[1].stackSize += recipe.output1().stackSize;
             }
         }
 
-        if (recipe.output2 != null) {
+        if (recipe.output2() != null) {
             if (inventory[2] == null) {
-                inventory[2] = recipe.output2.copy();
+                inventory[2] = recipe.output2().copy();
             } else {
-                inventory[2].stackSize += recipe.output2.stackSize;
+                inventory[2].stackSize += recipe.output2().stackSize;
             }
         }
 
         inventory[0].stackSize--;
         if (inventory[0].stackSize <= 0) inventory[0] = null;
 
-        if (recipe.vesselItem != null && inventory[3] != null && MachineUtilRegistry.isValidVessel(inventory[3])) {
-            if (inventory[3].getItem() == recipe.vesselItem.getItem()) {
+        if (recipe.vesselItem() != null && inventory[3] != null && MachineUtilRegistry.isValidVessel(inventory[3])) {
+            if (inventory[3].getItem() == recipe.vesselItem().getItem()) {
                 inventory[3].stackSize--;
                 if (inventory[3].stackSize <= 0) {
                     inventory[3] = null;

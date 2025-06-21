@@ -6,7 +6,6 @@ import codechicken.nei.recipe.TemplateRecipeHandler;
 import darkbum.saltymod.SaltyMod;
 import darkbum.saltymod.init.ModItems;
 import darkbum.saltymod.inventory.gui.GuiClayOven;
-import darkbum.saltymod.item.ItemSalt;
 import darkbum.saltymod.util.OvenbakingRecipe;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemStack;
@@ -48,7 +47,7 @@ public class NEIOvenbakingRecipeHandler extends TemplateRecipeHandler {
 
         @Override
         public List<PositionedStack> getIngredients() {
-            return this.ingreds;
+            return this.getCycledIngredients(cycleticks / 20, this.ingreds);
         }
 
         @Override
@@ -68,7 +67,7 @@ public class NEIOvenbakingRecipeHandler extends TemplateRecipeHandler {
 
     @Override
     public void loadTransferRects() {
-        transferRects.add(new RecipeTransferRect(new Rectangle(80, 10, 24, 24), SaltyMod.MODID + ".clay_oven"));
+        transferRects.add(new RecipeTransferRect(new Rectangle(72, 10, 24, 24), SaltyMod.MODID + ".clay_oven"));
     }
     
 	@Override

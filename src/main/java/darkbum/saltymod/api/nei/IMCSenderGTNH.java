@@ -12,6 +12,9 @@ public class IMCSenderGTNH {
 
 		sendHandler("darkbum.saltymod.api.nei.NEIOvenbakingRecipeHandler", "saltymod:clay_oven");
 		sendCatalyst(SaltyMod.MODID + ".clay_oven", "saltymod:clay_oven");
+
+		sendHandler("darkbum.saltymod.api.nei.NEIPressingRecipeHandler", "saltymod:press");
+		sendCatalyst(SaltyMod.MODID + ".press", "saltymod:press");
 	}
 
 	/*

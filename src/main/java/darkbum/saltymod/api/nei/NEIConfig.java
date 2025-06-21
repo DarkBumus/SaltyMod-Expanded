@@ -47,6 +47,7 @@ public class NEIConfig implements IConfigureNEI {
 
         API.registerRecipeHandler(new NEIPotcookingRecipeHandler());
         API.registerRecipeHandler(new NEIOvenbakingRecipeHandler());
+        API.registerRecipeHandler(new NEIPressingRecipeHandler());
     }
 
     /**

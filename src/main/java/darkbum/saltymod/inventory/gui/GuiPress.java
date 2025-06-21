@@ -16,36 +16,36 @@ public class GuiPress extends GuiContainer {
 
     public GuiPress(InventoryPlayer par1InventoryPlayer, TileEntityPress par2TileEntityPress) {
         super(new ContainerPress(par1InventoryPlayer, par2TileEntityPress));
-        this.tileEntityPress = par2TileEntityPress;
+        tileEntityPress = par2TileEntityPress;
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         String string = I18n.format("container.press");
-        this.fontRendererObj.drawString(string, this.xSize / 2 - this.fontRendererObj.getStringWidth(string) / 2, 6, 4210752);
+        fontRendererObj.drawString(string, xSize / 2 - fontRendererObj.getStringWidth(string) / 2, 6, 4210752);
     }
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.getTextureManager().bindTexture(resourceLocation);
-        int x = (this.width - this.xSize) / 2;
-        int y = (this.height - this.ySize) / 2;
+        mc.getTextureManager().bindTexture(resourceLocation);
+        int x = (width - xSize) / 2;
+        int y = (height - ySize) / 2;
 
-        drawTexturedModalRect(x, y, 0, 0, this.xSize, this.ySize);
+        drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
 
-        if (this.tileEntityPress.isRunning()) {
-            int progress = this.tileEntityPress.getPressProgressScale(16);
+        if (tileEntityPress.isRunning()) {
+            int progress = tileEntityPress.getPressProgressScale(16);
 
             drawTexturedModalRect(x + 73, y + 36, 176, 14, progress, 14);
             drawTexturedModalRect(x + 88 + (15 - progress), y + 36, 191 + (15 - progress), 14, progress, 14);
         }
 
-        if (this.tileEntityPress.isHeaterNearby) {
+        if (tileEntityPress.isHeaterNearby) {
             drawTexturedModalRect(x + 63, y + 18, 176, 0, 14, 14);
         }
 
-        if (this.tileEntityPress.isMillNearby) {
+        if (tileEntityPress.isMillNearby) {
             drawTexturedModalRect(x + 99, y + 18, 190, 0, 14, 14);
         }
     }

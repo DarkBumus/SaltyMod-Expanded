@@ -1,5 +1,6 @@
 package darkbum.saltymod.util;
 
+import com.github.bsideup.jabel.Desugar;
 import net.minecraft.item.ItemStack;
 
 import java.util.*;
@@ -27,54 +28,11 @@ public class PressingRecipe {
     }
 
     /**
-     * Represents a recipe for the pressing machine.
-     * A recipe can produce up to two output items and may require a vessel, heater, or mill.
-     */
-    public static class PressRecipe {
-        public final ItemStack input;
-        public final ItemStack output1;
-        public final ItemStack output2;
-        public final boolean requiresHeater;
-        public final boolean requiresMill;
-        public final ItemStack vesselItem;
+    * A record representing a press recipe in the press.
+    */
+    @Desugar
+    public record PressRecipe(ItemStack input, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill, ItemStack vesselItem) {
 
-        /**
-         * Creates a new press recipe with a vessel requirement.
-         *
-         * @param input         The input ItemStack.
-         * @param output1       The primary output ItemStack.
-         * @param output2       The secondary output ItemStack.
-         * @param requiresHeater Whether a heater is required.
-         * @param requiresMill  Whether a mill is required.
-         * @param vesselItem    The vessel ItemStack, or null if no vessel is required.
-         */
-        public PressRecipe(ItemStack input, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill, ItemStack vesselItem) {
-            this.input = input;
-            this.output1 = output1;
-            this.output2 = output2;
-            this.requiresHeater = requiresHeater;
-            this.requiresMill = requiresMill;
-            this.vesselItem = vesselItem;
-        }
-
-        /**
-         * Creates a new press recipe without a vessel requirement.
-         *
-         * @param input         The input ItemStack.
-         * @param output1       The primary output ItemStack.
-         * @param output2       The secondary output ItemStack.
-         * @param requiresHeater Whether a heater is required.
-         * @param requiresMill  Whether a mill is required.
-         */
-        public PressRecipe(ItemStack input, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill) {
-            this(input, output1, output2, requiresHeater, requiresMill, null);
-        }
-
-        /**
-         * Checks if the recipe requires a vessel item.
-         *
-         * @return true, if a vessel item is required, false otherwise.
-         */
         public boolean requiresVessel() {
             return vesselItem != null;
         }
@@ -95,7 +53,11 @@ public class PressingRecipe {
     }
 
     public void registerRecipe(ItemStack input, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill) {
-        recipes.put(input, new PressRecipe(input, output1, output2, requiresHeater, requiresMill));
+        recipes.put(input, new PressRecipe(input, output1, output2, requiresHeater, requiresMill, null));
+    }
+
+    public Set<Map.Entry<ItemStack, PressRecipe>> getRecipes() {
+        return recipes.entrySet();
     }
 
     /**
