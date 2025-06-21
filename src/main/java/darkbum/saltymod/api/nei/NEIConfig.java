@@ -2,11 +2,10 @@ package darkbum.saltymod.api.nei;
 
 import darkbum.saltymod.common.config.ModConfigurationOther;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import cpw.mods.fml.common.FMLCommonHandler;
 
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
-
 import static darkbum.saltymod.init.ModBlocks.*;
 import static darkbum.saltymod.init.ModItems.*;
 import static net.minecraft.init.Blocks.*;
@@ -24,6 +23,7 @@ public class NEIConfig implements IConfigureNEI {
      * Registers the three meta values (0, 1, 2) of the tallgrass block to be shown in the NEI item list.
      * Registers custom recipe handlers to allow NEI to display SME-specific Cooking Pot recipes.
      */
+
     @Override
     public void loadConfig() {
         if (ModConfigurationOther.enableNEIShrub) {
@@ -46,12 +46,14 @@ public class NEIConfig implements IConfigureNEI {
         API.hideItem(new ItemStack(saltworts));
         API.hideItem(new ItemStack(marsh_reeds_t));
 
-        if(world.isRemote) {
+        if(FMLCommonHandler.instance().getSide().isClient()) {
             API.registerRecipeHandler(new NEIPotcookingRecipeHandler());
             API.registerRecipeHandler(new NEIOvenbakingRecipeHandler());
             API.registerRecipeHandler(new NEIPressingRecipeHandler());
         }
+
     }
+
 
     /**
      * @return the display name String of this NEI plugin.
