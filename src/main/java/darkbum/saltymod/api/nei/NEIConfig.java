@@ -3,6 +3,8 @@ package darkbum.saltymod.api.nei;
 import darkbum.saltymod.common.config.ModConfigurationOther;
 import net.minecraft.item.ItemStack;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
 
@@ -24,6 +26,7 @@ public class NEIConfig implements IConfigureNEI {
      * Registers custom recipe handlers to allow NEI to display SME-specific Cooking Pot recipes.
      */
     @Override
+    @SideOnly(Side.CLIENT)
     public void loadConfig() {
         if (ModConfigurationOther.enableNEIShrub) {
             API.addItemListEntry(new ItemStack(tallgrass, 1, 0));
