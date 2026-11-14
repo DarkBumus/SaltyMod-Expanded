@@ -133,6 +133,7 @@ public class BlockCookingPot extends BlockContainer {
      * @return a custom render type ID, provided by the client proxy.
      */
     @Override
+    @SideOnly(Side.CLIENT)
     public int getRenderType() {
         return ClientProxy.cookingPotRenderType;
     }

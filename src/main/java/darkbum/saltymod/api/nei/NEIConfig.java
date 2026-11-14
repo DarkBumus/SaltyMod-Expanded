@@ -1,5 +1,6 @@
 package darkbum.saltymod.api.nei;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import darkbum.saltymod.common.config.ModConfigurationOther;
 import net.minecraft.item.ItemStack;
 
@@ -45,7 +46,20 @@ public class NEIConfig implements IConfigureNEI {
         API.hideItem(new ItemStack(saltworts));
         API.hideItem(new ItemStack(marsh_reeds_t));
 
-        API.registerRecipeHandler(new NEIPotcookingRecipeHandler());
+        if(FMLCommonHandler.instance().getSide().isClient()) {
+            NEIPotcookingRecipeHandler potcookingHandler = new NEIPotcookingRecipeHandler();
+            NEIOvenbakingRecipeHandler ovenbakingHandler = new NEIOvenbakingRecipeHandler();
+            NEIPressingRecipeHandler pressingHandler = new NEIPressingRecipeHandler();
+
+            API.registerRecipeHandler(potcookingHandler);
+            API.registerUsageHandler(potcookingHandler);
+
+            API.registerRecipeHandler(ovenbakingHandler);
+            API.registerUsageHandler(ovenbakingHandler);
+
+            API.registerRecipeHandler(pressingHandler);
+            API.registerUsageHandler(pressingHandler);
+        }
     }
 
     /**

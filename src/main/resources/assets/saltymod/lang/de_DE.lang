@@ -1,9 +1,9 @@
-﻿KREATIVMODUS-TAB
+﻿# KREATIVMODUS-TAB
 
 itemGroup.saltTab=SaltyMod Expanded
 
 
-BLÖCKE
+# BLÖCKE
 
 tile.saltOre.name=Steinsalz
 tile.saltDeepslateOre.name=Tiefenschiefer-Steinsalz

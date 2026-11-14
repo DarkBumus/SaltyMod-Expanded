@@ -51,6 +51,7 @@ public class ItemChocolateBar extends ItemSaltFood {
      */
     @Override
     protected void onFoodEaten(ItemStack stack, net.minecraft.world.World world, EntityPlayer player) {
-        sendRandomFullChatMessage(world, player, getUnlocalizedName(), 4);
+        super.onFoodEaten(stack, world, player);
+        sendRandomChatMessage(world, player, getUnlocalizedName(), 4, "full");
     }
 }

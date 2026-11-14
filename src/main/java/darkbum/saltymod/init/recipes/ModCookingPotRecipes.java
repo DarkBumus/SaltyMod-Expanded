@@ -176,6 +176,20 @@ public class ModCookingPotRecipes {
             stack(new ItemStack(cactus)),
             stack(new ItemStack(cactus)));
 
+        addPotRecipe(new ItemStack(bone_marrow_soup),
+            new boolean[]{enableBoneMarrowSoup},
+            true,
+            0.25f,
+            stack(new ItemStack(bone)),
+            ore("blockMushroom"));
+        addPotRecipe(new ItemStack(bone_marrow_soup, 1, 1),
+            new boolean[]{enableBoneMarrowSoup},
+            true,
+            0.35f,
+            stack(new ItemStack(salt_pinch)),
+            stack(new ItemStack(bone)),
+            ore("blockMushroom"));
+
         addPotRecipe(new ItemStack(stewed_vegetables),
             new boolean[]{enableStewedVegetables},
             true,

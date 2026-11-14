@@ -841,7 +841,7 @@ public class ModItems {
 
         registerItem(tf_salt_cooked_venison, "tf_salt_cooked_venison", enableTFFoods, tf);
         registerItem(tf_salt_meef_steak, "tf_salt_meef_steak", enableTFFoods, tf);
-        registerItem(tf_salt_meef_stroganoff, "tf_salt_meef_stroganoff", tf);
+        registerItem(tf_salt_meef_stroganoff, "tf_salt_meef_stroganoff", enableTFFoods, tf);
         registerItem(tf_salt_hydra_chop, "tf_salt_hydra_chop", enableTFFoods, tf);
         registerItem(tf_pickled_mushgloom, "tf_pickled_mushgloom", enableTFFoods, tf);
         registerItem(tf_saltwort_cooked_venison, "tf_saltwort_cooked_venison", enableTFFoods, tf);

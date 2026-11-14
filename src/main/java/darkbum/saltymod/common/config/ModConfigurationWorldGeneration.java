@@ -47,6 +47,7 @@ public class ModConfigurationWorldGeneration {
     public static int saltLakeQuantity;
     public static int saltLakeDistance;
     public static int saltLakeRadius;
+    public static boolean saltLakeUniformTexture;
 
     public static boolean enableBrickmakerCamp;
     public static int brickmakerCampFrequency;
@@ -149,14 +150,19 @@ public class ModConfigurationWorldGeneration {
             5,
             50,
             "Regulates the radius of single Salt Lakes");
+        saltLakeUniformTexture = config.getBoolean(
+            "06-saltLakeUniformTexture",
+            categoryNameWorStr,
+            false,
+            "Changes the Salt Lake Bottom texture to be uniform.");
 
         enableBrickmakerCamp = config.getBoolean(
-            "06-enableBrickmakerCamps",
+            "07-enableBrickmakerCamps",
             categoryNameWorStr,
             true,
             enableFeatures + "\nBrickmaker Camp" + "\n");
         brickmakerCampFrequency = config.getInt(
-            "07-brickmakerCampFrequency",
+            "08-brickmakerCampFrequency",
             categoryNameWorStr,
             20,
             10,

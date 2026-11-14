@@ -92,18 +92,33 @@ public final class ItemUtils {
     }
 
     /**
-     * Sends a random chat message to the player if they have full hunger.
+     * Sends a random chat message to the player if depending on their hunger level.
      *
      * @param world           the world where the player resides
      * @param player          the player to send the message to
      * @param unlocalizedName the base name of the message
      * @param numberOfMessages the number of possible messages to choose from
      */
-    public static void sendRandomFullChatMessage(World world, EntityPlayer player, String unlocalizedName, int numberOfMessages) {
-        if (!world.isRemote && player.getFoodStats().getFoodLevel() >= 20) {
-            String message = I18n.format(unlocalizedName + ".mess." + world.rand.nextInt(numberOfMessages));
-            player.addChatMessage(new ChatComponentText(message));
+    public static void sendRandomChatMessage(World world, EntityPlayer player, String unlocalizedName, int numberOfMessages, String messageType) {
+        if (world.isRemote) return;
+        int foodLevel = player.getFoodStats().getFoodLevel();
+
+        switch (messageType) {
+            case "full":
+                if (foodLevel < 20) return;
+                break;
+            case "empty":
+                if (foodLevel >= 20) return;
+                break;
+            case "any":
+                break;
+            default:
+                return;
         }
+        String message = I18n.format(
+            unlocalizedName + ".mess." + messageType + "." + world.rand.nextInt(numberOfMessages)
+        );
+        player.addChatMessage(new ChatComponentText(message));
     }
 
     /**
@@ -166,7 +181,8 @@ public final class ItemUtils {
 
     public static void variantsTunnelerConcoction(ItemSaltFood item) {
         item.addVariant(0, "tunneler_concoction", "tunneler_concoction", 0, 0.0f, false, 1, singletonList(new ItemStack(Items.glass_bottle)), drink,
-            new ProbablePotionEffect(haste, 3600, tunnelersConcoctionHasteLevel - 1),
+            new ProbablePotionEffect(haste, 3600, tunnelersConcoctionHasteLevel - 1, 1.0f, 20),
+            new ProbablePotionEffect(haste, 1800, tunnelersConcoctionHasteLevel - 3),
             new ProbablePotionEffect(instant_damage, 1, 1, 1.0f, 20),
             new ProbablePotionEffect(nausea, 300, 0, 1.0f, 20));
     }

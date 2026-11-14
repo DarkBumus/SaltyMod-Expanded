@@ -11,6 +11,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -155,6 +156,7 @@ public class BlockSaltGrass extends Block implements IGrowable {
      * @return a custom render type ID, provided by the client proxy.
      */
     @Override
+    @SideOnly(Side.CLIENT)
     public int getRenderType() {
         return ClientProxy.saltGrassRenderType;
     }
@@ -199,6 +201,19 @@ public class BlockSaltGrass extends Block implements IGrowable {
     @SideOnly(Side.CLIENT)
     public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
         return 16777215;
+    }
+
+    /**
+     * Returns the item dropped by the block when it is broken.
+     *
+     * @param meta    The metadata of the block.
+     * @param random  A random number generator to simulate randomness in the drop.
+     * @param fortune The fortune level of the tool used to break the block.
+     * @return the item to drop when the block is broken. In this case, it returns ModItems.salt.
+     */
+    @Override
+    public Item getItemDropped(int meta, Random random, int fortune) {
+        return Item.getItemFromBlock(ModBlocks.salt_dirt_lite);
     }
 
     /**

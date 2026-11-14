@@ -17,6 +17,7 @@ import darkbum.saltymod.init.ModAchievementList;
 import darkbum.saltymod.init.ModBlocks;
 
 import static darkbum.saltymod.block.BlockSaltBlock.*;
+import static darkbum.saltymod.common.config.ModConfigurationWorldGeneration.saltLakeUniformTexture;
 import static darkbum.saltymod.util.BlockUtils.*;
 
 /**
@@ -70,6 +71,9 @@ public class BlockSaltLake extends BlockSaltOre {
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
+        if (saltLakeUniformTexture) {
+            return this.iconTop;
+        }
         return (side == 1) ? this.iconTop
             : ((side == 0) ? ModBlocks.salt_ore.getBlockTextureFromSide(side)
             : (((side == 2 && meta % 2 == 1) || (side == 5 && meta % 4 >= 2)

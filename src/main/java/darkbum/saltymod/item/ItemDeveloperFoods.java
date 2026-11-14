@@ -54,13 +54,10 @@ public class ItemDeveloperFoods extends ItemSaltFood {
      */
     @Override
     public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player) {
-        if (!world.isRemote) {
-            int meta = stack.getItemDamage();
-            if (meta == 0 || meta == 1) {
-                player.clearActivePotions();
-            }
-            super.onEaten(stack, world, player);
+        int meta = stack.getItemDamage();
+        if (!world.isRemote && (meta == 0 || meta == 1)) {
+            player.clearActivePotions();
         }
-        return stack;
+        return super.onEaten(stack, world, player);
     }
 }

@@ -2,7 +2,6 @@ package darkbum.saltymod.init.recipes;
 
 import darkbum.saltymod.tileentity.TileEntityClayOven;
 import darkbum.saltymod.util.OvenbakingRecipe;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -216,7 +215,7 @@ public class ModClayOvenRecipes {
             stack(new ItemStack(wheat)),
             stack(new ItemStack(egg)));
 
-        addOvenRecipe(new ItemStack(potato_mushroom),
+        addOvenRecipe(new ItemStack(potato_pie),
             new boolean[]{enableDough, enablePotatoPie},
             true,
             0.4f,
@@ -224,7 +223,7 @@ public class ModClayOvenRecipes {
             stack(new ItemStack(potato)),
             stack(new ItemStack(dough)),
             stack(new ItemStack(egg)));
-        addOvenRecipe(new ItemStack(potato_mushroom),
+        addOvenRecipe(new ItemStack(potato_pie),
             new boolean[]{!enableDough, enablePotatoPie},
             true,
             0.4f,

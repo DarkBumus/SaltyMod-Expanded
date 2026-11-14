@@ -60,7 +60,7 @@ public class LivingDropsEventHandler {
     /**
      * Handles custom drops for zombies.
      *
-     * @param entity The zombie entity.
+     * @param entity    The zombie entity.
      */
     private void handleZombieDrops(EntityLivingBase entity) {
         int dropChance = ThreadLocalRandom.current().nextInt(1000);
@@ -72,7 +72,7 @@ public class LivingDropsEventHandler {
     /**
      * Handles custom drops for squids.
      *
-     * @param entity   The squid entity.
+     * @param entity    The squid entity.
      * @param isBurning Whether the squid is burning.
      */
     private void handleSquidDrops(EntityLivingBase entity, boolean isBurning) {
@@ -84,7 +84,7 @@ public class LivingDropsEventHandler {
     /**
      * Handles custom drops for horses.
      *
-     * @param entity   The horse entity.
+     * @param entity    The horse entity.
      * @param isBurning Whether the horse is burning.
      */
     private void handleHorseDrops(EntityLivingBase entity, boolean isBurning) {
@@ -96,7 +96,7 @@ public class LivingDropsEventHandler {
     /**
      * Handles custom drops for bats.
      *
-     * @param entity   The bat entity.
+     * @param entity    The bat entity.
      * @param isBurning Whether the bat is burning.
      */
     private void handleBatDrops(EntityLivingBase entity, boolean isBurning) {
@@ -107,7 +107,7 @@ public class LivingDropsEventHandler {
     /**
      * Handles custom drops for baby chickens.
      *
-     * @param entity   The bat entity.
+     * @param entity    The baby chicken entity.
      */
     private void handleBabyChickenDrops(EntityLivingBase entity) {
         int amount = getDropAmount(chickensAlwaysDropFeathers ? 1 : 0, 1);
@@ -117,7 +117,7 @@ public class LivingDropsEventHandler {
     /**
      * Handles custom drops for chickens.
      *
-     * @param entity   The bat entity.
+     * @param entity    The chicken entity.
      */
     private void handleChickenDrops(EntityLivingBase entity, LivingDropsEvent event) {
         boolean hasFeatherAlready = false;
@@ -137,8 +137,8 @@ public class LivingDropsEventHandler {
     /**
      * Generates a random drop amount within the specified range.
      *
-     * @param max The maximum amount (inclusive).
-     * @return The randomly generated drop amount.
+     * @param max   The maximum amount (inclusive).
+     * @return      The randomly generated drop amount.
      */
     public static int getDropAmount(int min, int max) {
         if (min > max) {

@@ -27,28 +27,28 @@ public class GuiClayOven extends GuiContainer {
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         String string = I18n.format("container.clay_oven");
-        fontRendererObj.drawString(string, this.xSize / 2 - this.fontRendererObj.getStringWidth(string) / 2, 6, 4210752);
+        fontRendererObj.drawString(string, xSize / 2 - fontRendererObj.getStringWidth(string) / 2, 6, 4210752);
     }
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.getTextureManager().bindTexture(resourceLocation);
-        int x = (this.width - this.xSize) / 2;
-        int y = (this.height - this.ySize) / 2;
+        mc.getTextureManager().bindTexture(resourceLocation);
+        int x = (width - xSize) / 2;
+        int y = (height - ySize) / 2;
 
-        drawTexturedModalRect(x, y, 0, 0, this.xSize, this.ySize);
+        drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
 
-        if (this.tileEntityClayOven.isRunning()) {
-            int progress = this.tileEntityClayOven.getBakeProgressScale(24);
+        if (tileEntityClayOven.isRunning()) {
+            int progress = tileEntityClayOven.getBakeProgressScale(24);
             drawTexturedModalRect(x + 81, y + 25, 176, 14, progress + 1, 17);
         }
 
-        if (this.tileEntityClayOven.isHeaterBelow) {
+        if (tileEntityClayOven.isHeaterBelow) {
             drawTexturedModalRect(x + 50, y + 54, 176, 0, 14, 14);
         }
 
-        if (slotClayOvenOutputLocked != null && !this.slotClayOvenOutputLocked.canTakeStack(mc.thePlayer) && slotClayOvenOutputLocked.getHasStack()) {
+        if (slotClayOvenOutputLocked != null && !slotClayOvenOutputLocked.canTakeStack(mc.thePlayer) && slotClayOvenOutputLocked.getHasStack()) {
             drawTexturedModalRect(x + 129, y + 22, 176, 31, 7, 7);
         }
     }

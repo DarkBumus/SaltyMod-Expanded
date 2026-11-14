@@ -26,11 +26,11 @@ public class LivingUpdateEventHandler {
             entity.entityDropItem(new ItemStack(feather, 1, 0), 0.0f);
         }
 
-        if (chickensShedFeathersWithEggs) {
+        if (chickensShedFeathersWithEggs && !entity.isChild() && entity.func_152116_bZ()) {
             int current = entity.timeUntilNextEgg;
             Integer previous = lastEggTimers.get(entity);
 
-            if (previous != null && current > previous) {
+            if (previous != null && current >= 6000 && current > previous) {
                 int amount = getDropAmount(chickensAlwaysDropFeathers ? 1 : 0, 1);
                 entity.entityDropItem(new ItemStack(feather, amount, 0), 0.0f);
             }

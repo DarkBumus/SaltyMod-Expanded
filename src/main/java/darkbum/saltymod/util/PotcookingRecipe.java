@@ -53,6 +53,10 @@ public class PotcookingRecipe {
         public boolean matches(ItemStack input) {
             return areStacksEqual(stack, input);
         }
+
+        public ItemStack getStack() {
+            return stack;
+        }
     }
 
     /**
@@ -79,6 +83,9 @@ public class PotcookingRecipe {
                 }
             }
             return false;
+        }
+        public List<ItemStack> getOres() {
+            return OreDictionary.getOres(oreName);
         }
     }
 
@@ -140,6 +147,10 @@ public class PotcookingRecipe {
         recipes.put(output, new PotRecipe(output, requiresHeater, ingredList, xpChance));
     }
 
+    public Set<Map.Entry<ItemStack, PotRecipe>> getRecipes() {
+        return recipes.entrySet();
+    }
+
     /**
      * Retrieves a matching recipe based on the given input ingredients.
      *
@@ -160,6 +171,7 @@ public class PotcookingRecipe {
             for (ItemStack ingred : ingreds) {
                 boolean ingredMatched = false;
                 for (int j = 0; j < recipe.ingreds.size(); j++) {
+                    if(recipe.ingreds.get(j) == null) continue;
                     if (!matchedIngreds[j] && recipe.ingreds.get(j).matches(ingred)) {
                         matchedIngreds[j] = true;
                         ingredMatched = true;

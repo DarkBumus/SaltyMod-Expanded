@@ -1,6 +1,7 @@
 package darkbum.saltymod.util;
 
 import com.github.bsideup.jabel.Desugar;
+
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -53,6 +54,10 @@ public class OvenbakingRecipe {
         public boolean matches(ItemStack input) {
             return areStacksEqual(stack, input);
         }
+
+        public ItemStack getStack() {
+            return stack;
+        }
     }
 
     /**
@@ -79,6 +84,9 @@ public class OvenbakingRecipe {
                 }
             }
             return false;
+        }
+        public List<ItemStack> getOres() {
+            return OreDictionary.getOres(oreName);
         }
     }
 
@@ -140,6 +148,10 @@ public class OvenbakingRecipe {
         recipes.put(output, new OvenRecipe(output, requiresHeater, ingredList, xpChance));
     }
 
+    public Set<Map.Entry<ItemStack, OvenRecipe>> getRecipes() {
+        return recipes.entrySet();
+    }
+
     /**
      * Retrieves a recipe based on the given input ingredients.
      *
@@ -160,6 +172,7 @@ public class OvenbakingRecipe {
             for (ItemStack ingred : ingreds) {
                 boolean ingredMatched = false;
                 for (int j = 0; j < recipe.ingreds.size(); j++) {
+                    if(recipe.ingreds.get(j) == null) continue;
                     if (!matchedIngreds[j] && recipe.ingreds.get(j).matches(ingred)) {
                         matchedIngreds[j] = true;
                         ingredMatched = true;

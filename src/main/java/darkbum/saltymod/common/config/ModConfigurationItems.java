@@ -205,7 +205,7 @@ public class ModConfigurationItems {
             "08-tunnelersConcoctionHasteLevel",
             categoryNameIte,
             5,
-            1,
+            3,
             5,
             "Regulates the Haste level that the Tunneler's Concoction gives."
             + "\n(This config exists as a reaction to a bug that prevents arm swing when the Haste level is too high."

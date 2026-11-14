@@ -77,10 +77,33 @@ public abstract class ItemSaltFoodBase extends ItemFood implements IEdible {
      * @param baseName The base unlocalized name for the item.
      */
     public ItemSaltFoodBase(String baseName) {
-        super(0, 0.0f, false);
+        super(0, 0.0f, false); // per-variant values supplied via overrides
         setUnlocalizedName(baseName);
         setHasSubtypes(true);
         setMaxDamage(0);
+    }
+
+    /* ---------------- AppleCore / SoL integration ---------------- */
+
+    @Override
+    public int func_150905_g(ItemStack stack) {
+        Variant v = variants.get(stack.getItemDamage());
+        return v != null ? v.heal : 0;
+    }
+
+    @Override
+    public float func_150906_h(ItemStack stack) {
+        Variant v = variants.get(stack.getItemDamage());
+        return v != null ? v.saturation : 0F;
+    }
+
+    // === Keep your old helpers for compatibility (NO @Override) ===
+    public int getHealAmount(ItemStack stack) {
+        return func_150905_g(stack);
+    }
+
+    public float getSaturationModifier(ItemStack stack) {
+        return func_150906_h(stack);
     }
 
     /**
@@ -94,7 +117,7 @@ public abstract class ItemSaltFoodBase extends ItemFood implements IEdible {
     public FoodValues getFoodValues(ItemStack stack) {
         if (Loader.isModLoaded("AppleCore")) {
             Variant v = variants.get(stack.getItemDamage());
-            return v != null ? new FoodValues(v.heal, v.saturation) : new FoodValues(0, 0.0f);
+            return v != null ? new FoodValues(v.heal, v.saturation) : null;
         } else {
             return null;
         }
@@ -118,17 +141,14 @@ public abstract class ItemSaltFoodBase extends ItemFood implements IEdible {
     public ItemSaltFoodBase addVariant(int meta, String unlocalizedName, String textureName,
                                        int heal, float saturation, boolean isDogFood, int maxStackSize, List<ItemStack> containers,
                                        EnumAction useAction, ProbablePotionEffect... effects) {
-        variants.put(meta, new Variant(unlocalizedName, textureName, heal, saturation,
-            isDogFood, maxStackSize, containers, useAction, effects));
+        variants.put(meta, new Variant(unlocalizedName, textureName, heal, saturation, isDogFood, maxStackSize, containers, useAction, effects));
         return this;
     }
 
     public ItemSaltFoodBase addVariant(int meta, String unlocalizedName, String textureName,
                                        int heal, float saturation, boolean isDogFood, int maxStackSize, List<ItemStack> containers,
                                        EnumAction useAction) {
-        variants.put(meta, new Variant(unlocalizedName, textureName, heal, saturation,
-            isDogFood, maxStackSize, containers, useAction));
-        return this;
+        return addVariant(meta, unlocalizedName, textureName, heal, saturation, isDogFood, maxStackSize, containers, useAction, (ProbablePotionEffect[]) null);
     }
 
     public ItemSaltFoodBase addVariant(int meta, String unlocalizedName, String textureName,
@@ -145,8 +165,7 @@ public abstract class ItemSaltFoodBase extends ItemFood implements IEdible {
     public ItemSaltFoodBase addVariant(int meta, String unlocalizedName, String textureName,
                                        int heal, float saturation, boolean isDogFood, int maxStackSize, List<ItemStack> containers,
                                        ProbablePotionEffect... effects) {
-        return addVariant(meta, unlocalizedName, textureName, heal, saturation, isDogFood,
-            maxStackSize, containers, EnumAction.eat, effects);
+        return addVariant(meta, unlocalizedName, textureName, heal, saturation, isDogFood, maxStackSize, containers, EnumAction.eat, effects);
     }
 
     /**
@@ -203,10 +222,7 @@ public abstract class ItemSaltFoodBase extends ItemFood implements IEdible {
     @Override
     public IIcon getIconFromDamage(int meta) {
         Variant v = variants.get(meta);
-        if (v != null) {
-            return v.icon;
-        }
-        return super.getIconFromDamage(meta);
+        return v != null ? v.icon : super.getIconFromDamage(meta);
     }
 
     /**
@@ -231,8 +247,8 @@ public abstract class ItemSaltFoodBase extends ItemFood implements IEdible {
      */
     @Override
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
-        for (Map.Entry<Integer, Variant> entry : variants.entrySet()) {
-            list.add(new ItemStack(this, 1, entry.getKey()));
+        for (Integer meta : variants.keySet()) {
+            list.add(new ItemStack(this, 1, meta));
         }
     }
 
@@ -270,10 +286,51 @@ public abstract class ItemSaltFoodBase extends ItemFood implements IEdible {
     }
 
     /**
+     * Apply custom potion effects here; this is invoked by super.onEaten() after hunger is applied.
+     */
+    @Override
+    protected void onFoodEaten(ItemStack stack, World world, EntityPlayer player) {
+        super.onFoodEaten(stack, world, player);
+        if (!world.isRemote) {
+            Variant v = variants.get(stack.getItemDamage());
+            if (v != null) {
+                for (ProbablePotionEffect effect : v.effects) {
+                    effect.procEffect(player, itemRand);
+                }
+            }
+        }
+    }
+
+    /**
+     * IMPORTANT: don’t add hunger here manually.
+     * Call super so vanilla path runs: it does addStats(this, stack) which AppleCore hooks,
+     * then calls onFoodEaten where we apply effects/containers.
+     */
+    @Override
+    public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player) {
+        // super handles: stackSize--, FoodStats.addStats(this, stack) (AppleCore/SoL see this), then calls onFoodEaten
+        ItemStack result = super.onEaten(stack, world, player);
+
+        // Handle containers AFTER super so we don’t interfere with AppleCore/SoL
+        if (!world.isRemote) {
+            Variant v = variants.get(stack.getItemDamage());
+            if (v != null && v.containers != null) {
+                for (ItemStack container : v.containers) {
+                    ItemStack copy = container.copy();
+                    if (!player.inventory.addItemStackToInventory(copy)) {
+                        world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, copy));
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
      * Retrieves the use action (e.g., eat or drink) for the given item stack.
      *
      * @param stack The item stack.
-     * @return the use action.
+     * @return      The use action.
      */
     @Override
     public EnumAction getItemUseAction(ItemStack stack) {
@@ -281,37 +338,37 @@ public abstract class ItemSaltFoodBase extends ItemFood implements IEdible {
         return v != null ? v.useAction : EnumAction.none;
     }
 
-    /**
-     * Handles the consumption of the item stack, applying food stats and potion effects.
-     *
-     * @param stack  The item stack being consumed.
-     * @param world  The world in which the player is located.
-     * @param player The player consuming the item.
-     * @return the modified item stack.
-     */
-    @Override
-    public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player) {
-        if (!world.isRemote) {
-            Variant v = variants.get(stack.getItemDamage());
-            if (v != null) {
-                player.getFoodStats().addStats(v.heal, v.saturation);
-
-                for (ProbablePotionEffect effect : v.effects) {
-                    effect.procEffect(player, itemRand);
-                }
-
-                if (v.containers != null) {
-                    for (ItemStack container : v.containers) {
-                        ItemStack copy = container.copy();
-                        if (!player.inventory.addItemStackToInventory(copy)) {
-                            world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, copy));
-                        }
-                    }
-                }
-            }
-        }
-        onFoodEaten(stack, world, player);
-        stack.stackSize--;
-        return stack;
-    }
+//    /**
+//     * Handles the consumption of the item stack, applying food stats and potion effects.
+//     *
+//     * @param stack  The item stack being consumed.
+//     * @param world  The world in which the player is located.
+//     * @param player The player consuming the item.
+//     * @return the modified item stack.
+//     */
+//    @Override
+//    public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player) {
+//        if (!world.isRemote) {
+//            Variant v = variants.get(stack.getItemDamage());
+//            if (v != null) {
+//                player.getFoodStats().addStats(v.heal, v.saturation);
+//
+//                for (ProbablePotionEffect effect : v.effects) {
+//                    effect.procEffect(player, itemRand);
+//                }
+//
+//                if (v.containers != null) {
+//                    for (ItemStack container : v.containers) {
+//                        ItemStack copy = container.copy();
+//                        if (!player.inventory.addItemStackToInventory(copy)) {
+//                            world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, copy));
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        onFoodEaten(stack, world, player);
+//        stack.stackSize--;
+//        return stack;
+//    }
 }

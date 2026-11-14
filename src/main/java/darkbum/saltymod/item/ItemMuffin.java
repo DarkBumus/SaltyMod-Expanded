@@ -52,8 +52,11 @@ public class ItemMuffin extends ItemSaltFood {
      */
     @Override
     protected void onFoodEaten(ItemStack stack, net.minecraft.world.World world, EntityPlayer player) {
+        super.onFoodEaten(stack, world, player);
+
+        sendRandomChatMessage(world, player, getUnlocalizedName(), 4, "full");
+
         if (!world.isRemote && player.getFoodStats().getFoodLevel() >= 20) {
-            sendRandomFullChatMessage(world, player, getUnlocalizedName(), 4);
             player.triggerAchievement(consumespec_muffin);
         }
     }

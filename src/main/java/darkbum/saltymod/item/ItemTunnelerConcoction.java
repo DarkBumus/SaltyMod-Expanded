@@ -1,8 +1,12 @@
 package darkbum.saltymod.item;
 
+import darkbum.saltymod.common.config.ModConfigurationItems;
+import darkbum.saltymod.init.ModAchievementList;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 import java.util.List;
 
@@ -54,6 +58,27 @@ public class ItemTunnelerConcoction extends ItemSaltFood {
      */
     @Override
     protected void onFoodEaten(ItemStack stack, net.minecraft.world.World world, EntityPlayer player) {
-        sendRandomFullChatMessage(world, player, getUnlocalizedName(), 4);
+        super.onFoodEaten(stack, world, player);
+        sendRandomChatMessage(world, player, getUnlocalizedName(), 4, "full");
+        sendRandomChatMessage(world, player, getUnlocalizedName(), 4, "empty");
+    }
+
+    /**
+     * Called when the player consumes this item.
+     *
+     * @param stack  The ItemStack that was consumed.
+     * @param world  The world in which the item was consumed.
+     * @param player The player consuming the item.
+     * @return the resulting ItemStack after the item is consumed.
+     */
+    @Override
+    public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player) {
+        onFoodEaten(stack, world, player);
+
+        if (!player.capabilities.isCreativeMode) {
+            stack.stackSize--;
+        }
+
+        return (stack.stackSize <= 0) ? new ItemStack(Items.glass_bottle) : stack;
     }
 }
