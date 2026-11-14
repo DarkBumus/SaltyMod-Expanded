@@ -37,27 +37,21 @@ public class PotcookingRecipe {
     /**
      * Ingredient matcher for specific ItemStacks.
      */
-    public static class StackIngredient implements IIngredientMatcher {
-        private final ItemStack stack;
-
+    @Desugar
+    public record StackIngredient(ItemStack stack) implements IIngredientMatcher {
         /**
          * Creates a new StackIngredient matcher.
          *
          * @param stack The ItemStack to match.
          */
-        public StackIngredient(ItemStack stack) {
-            this.stack = stack;
+        public StackIngredient {
         }
 
-        @Override
-        public boolean matches(ItemStack input) {
-            return areStacksEqual(stack, input);
+            @Override
+            public boolean matches(ItemStack input) {
+                return areStacksEqual(stack, input);
+            }
         }
-
-        public ItemStack getStack() {
-            return stack;
-        }
-    }
 
     /**
      * Ingredient matcher for OreDictionary entries.

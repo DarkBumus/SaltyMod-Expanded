@@ -22,6 +22,7 @@ public class IMCSenderGTNH {
      * Author: GlodBlock
      */
 
+    @SuppressWarnings("unused")
     private static void sendHandler(String aName, String aBlock) {
         sendHandler(aName, aBlock, 1);
     }
@@ -40,15 +41,11 @@ public class IMCSenderGTNH {
         FMLInterModComms.sendMessage("NotEnoughItems", "registerHandlerInfo", aNBT);
     }
 
-    private static void sendCatalyst(String aName, String aStack, int aPriority) {
+    private static void sendCatalyst(String aName, String aStack) {
         NBTTagCompound aNBT = new NBTTagCompound();
         aNBT.setString("handlerID", aName);
         aNBT.setString("itemName", aStack);
-        aNBT.setInteger("priority", aPriority);
+        aNBT.setInteger("priority", 0);
         FMLInterModComms.sendMessage("NotEnoughItems", "registerCatalystInfo", aNBT);
-    }
-
-    private static void sendCatalyst(String aName, String aStack) {
-        sendCatalyst(aName, aStack, 0);
     }
 }

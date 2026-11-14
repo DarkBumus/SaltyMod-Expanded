@@ -1,11 +1,8 @@
 package darkbum.saltymod.common.proxy;
 
 import darkbum.saltymod.block.render.*;
-import darkbum.saltymod.common.config.ModConfigurationBlocks;
-import darkbum.saltymod.common.config.ModConfigurationWorldGeneration;
 import net.minecraft.client.renderer.entity.RenderSnowball;
 
-import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import darkbum.saltymod.entity.EntityHornedSheep;

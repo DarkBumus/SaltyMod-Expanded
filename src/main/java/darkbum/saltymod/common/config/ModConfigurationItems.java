@@ -26,7 +26,9 @@ public class ModConfigurationItems {
 
     // Replacement Strings
     private static final String enableFeatures = "Enables the following features:";
+    @SuppressWarnings("unused")
     private static final String compatibilityStringEFR1 = "Notes: This is for when you have Et Futurum Requiem installed, but for some reason, don't want ";
+    @SuppressWarnings("unused")
     private static final String compatibilityStringEFR2 = " to be present";
 
     // Items Config Options

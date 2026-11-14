@@ -41,7 +41,7 @@ public class NEIPotcookingRecipeHandler extends TemplateRecipeHandler {
                 PotcookingRecipe.IIngredientMatcher ingred = recipe.ingreds().get(i);
                 PotcookingRecipe.IIngredientMatcher firstIngred = recipe.ingreds().get(0);
                 if(firstIngred instanceof PotcookingRecipe.StackIngredient stackIngredient) {
-                    if(stackIngredient.getStack().getItem() == ModItems.salt_pinch || stackIngredient.getStack().getItem() == ModItems.sugar_pinch) {
+                    if(stackIngredient.stack().getItem() == ModItems.salt_pinch || stackIngredient.stack().getItem() == ModItems.sugar_pinch) {
                         i2 = i - 1;
                     }
                 }
@@ -52,10 +52,10 @@ public class NEIPotcookingRecipeHandler extends TemplateRecipeHandler {
                 if(ingred instanceof PotcookingRecipe.OreIngredient oreIngredient) {
                     ingreds.add(new PositionedStack(oreIngredient.getOres(), posX, posY));
                 } else if(ingred instanceof PotcookingRecipe.StackIngredient stackIngredient) {
-                    if(stackIngredient.getStack().getItem() == ModItems.salt_pinch || stackIngredient.getStack().getItem() == ModItems.sugar_pinch) {
-                        ingreds.add(new PositionedStack(stackIngredient.getStack(), 3, 6));
+                    if(stackIngredient.stack().getItem() == ModItems.salt_pinch || stackIngredient.stack().getItem() == ModItems.sugar_pinch) {
+                        ingreds.add(new PositionedStack(stackIngredient.stack(), 3, 6));
                     } else {
-                        ingreds.add(new PositionedStack(stackIngredient.getStack(), posX, posY));
+                        ingreds.add(new PositionedStack(stackIngredient.stack(), posX, posY));
                     }
 
                 }

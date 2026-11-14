@@ -54,6 +54,10 @@ public class NEIPressingRecipeHandler extends TemplateRecipeHandler {
                 ? recipe.output1()
                 : recipe.output2();
 
+            if (mainOutput == null) {
+                throw new IllegalArgumentException("Press recipe must have at least one output!");
+            }
+
             this.result = new PositionedStack(mainOutput, 57, 42);
         }
 

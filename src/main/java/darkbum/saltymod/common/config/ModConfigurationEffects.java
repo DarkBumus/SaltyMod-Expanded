@@ -21,8 +21,11 @@ public class ModConfigurationEffects {
     private static final String categoryDescriptionEff = "All the Effects configuration";
 
     // Replacement Strings
+    @SuppressWarnings("unused")
     private static final String enableFeatures = "Enables the following features:";
+    @SuppressWarnings("unused")
     private static final String compatibilityStringEFR1 = "Notes: This is for when you have Et Futurum Requiem installed, but for some reason, don't want ";
+    @SuppressWarnings("unused")
     private static final String compatibilityStringEFR2 = " to be present";
 
     // Effects Config Options

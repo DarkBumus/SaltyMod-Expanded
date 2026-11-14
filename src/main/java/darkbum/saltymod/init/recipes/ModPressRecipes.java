@@ -10,7 +10,6 @@ import static darkbum.saltymod.util.ConditionalRegistrar.*;
 import static darkbum.saltymod.common.config.ModConfigurationEntities.*;
 import static darkbum.saltymod.common.config.ModConfigurationItems.*;
 import static darkbum.saltymod.init.ModItems.*;
-import static darkbum.saltymod.util.PressingRecipe.*;
 import static net.minecraft.init.Blocks.*;
 import static net.minecraft.init.Items.*;
 import static net.minecraft.init.Items.wheat;

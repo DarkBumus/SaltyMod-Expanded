@@ -1,9 +1,6 @@
 package darkbum.saltymod.core;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import com.gtnewhorizon.gtnhmixins.IEarlyMixinLoader;
 
@@ -21,8 +18,7 @@ public class EarlyMixinLoader implements IEarlyMixinLoader, IFMLLoadingPlugin {
     @Override
     public List<String> getMixins(Set<String> loadedCoreMods) {
         final List<String> mixins = new ArrayList<>();
-//        mixins.add("minecraft.MixinGuiMultiplayer");
-        return mixins;
+        return Collections.emptyList();
     }
 
     @Override

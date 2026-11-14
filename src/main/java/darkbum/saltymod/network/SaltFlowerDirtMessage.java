@@ -41,6 +41,7 @@ public class SaltFlowerDirtMessage implements IMessage {
      * @param z The z-coordinate of the Flower Pot tile entity.
      * @param i The metadata value of the Saltwort item.
      */
+    @SuppressWarnings("unused")
     public SaltFlowerDirtMessage(int x, int y, int z, int i) {
         this.x = x;
         this.y = y;

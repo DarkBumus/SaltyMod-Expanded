@@ -98,10 +98,12 @@ public abstract class ItemSaltFoodBase extends ItemFood implements IEdible {
     }
 
     // === Keep your old helpers for compatibility (NO @Override) ===
+    @SuppressWarnings("unused")
     public int getHealAmount(ItemStack stack) {
         return func_150905_g(stack);
     }
 
+    @SuppressWarnings("unused")
     public float getSaturationModifier(ItemStack stack) {
         return func_150906_h(stack);
     }
@@ -302,9 +304,12 @@ public abstract class ItemSaltFoodBase extends ItemFood implements IEdible {
     }
 
     /**
-     * IMPORTANT: don’t add hunger here manually.
-     * Call super so vanilla path runs: it does addStats(this, stack) which AppleCore hooks,
-     * then calls onFoodEaten where we apply effects/containers.
+     * Handles the consumption of the item stack, applying food stats and potion effects.
+     *
+     * @param stack  The item stack being consumed.
+     * @param world  The world in which the player is located.
+     * @param player The player consuming the item.
+     * @return the modified item stack.
      */
     @Override
     public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player) {
@@ -337,38 +342,4 @@ public abstract class ItemSaltFoodBase extends ItemFood implements IEdible {
         Variant v = variants.get(stack.getItemDamage());
         return v != null ? v.useAction : EnumAction.none;
     }
-
-//    /**
-//     * Handles the consumption of the item stack, applying food stats and potion effects.
-//     *
-//     * @param stack  The item stack being consumed.
-//     * @param world  The world in which the player is located.
-//     * @param player The player consuming the item.
-//     * @return the modified item stack.
-//     */
-//    @Override
-//    public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player) {
-//        if (!world.isRemote) {
-//            Variant v = variants.get(stack.getItemDamage());
-//            if (v != null) {
-//                player.getFoodStats().addStats(v.heal, v.saturation);
-//
-//                for (ProbablePotionEffect effect : v.effects) {
-//                    effect.procEffect(player, itemRand);
-//                }
-//
-//                if (v.containers != null) {
-//                    for (ItemStack container : v.containers) {
-//                        ItemStack copy = container.copy();
-//                        if (!player.inventory.addItemStackToInventory(copy)) {
-//                            world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, copy));
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        onFoodEaten(stack, world, player);
-//        stack.stackSize--;
-//        return stack;
-//    }
 }

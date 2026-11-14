@@ -1,6 +1,5 @@
 package darkbum.saltymod.entity.render;
 
-import darkbum.saltymod.common.config.ModConfigurationEntities;
 import darkbum.saltymod.entity.EntityHornedSheep;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -51,6 +50,7 @@ public class RenderHornedSheep extends RenderLiving {
      * @param entity The Horned Sheep entity.
      * @return the texture resource location.
      */
+    @SuppressWarnings("unused")
     protected ResourceLocation getEntityTexture(EntityHornedSheep entity) {
         return shearedHornedSheepTextures;
     }

@@ -44,7 +44,7 @@ public class NEIOvenbakingRecipeHandler extends TemplateRecipeHandler {
                 if(ingred instanceof OvenbakingRecipe.OreIngredient oreIngredient) {
                     ingreds.add(new PositionedStack(oreIngredient.getOres(), posX, posY));
                 } else if(ingred instanceof OvenbakingRecipe.StackIngredient stackIngredient) {
-                    ingreds.add(new PositionedStack(stackIngredient.getStack(), posX, posY));
+                    ingreds.add(new PositionedStack(stackIngredient.stack(), posX, posY));
                 }
             }
             this.result = new PositionedStack(recipe.output(), 111, 15);

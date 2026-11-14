@@ -34,9 +34,9 @@ import static darkbum.saltymod.util.BlockUtils.*;
  */
 public class BlockBeeNest extends Block {
 
-    private IIcon[] temperateIcons = new IIcon[4];
+    private final IIcon[] temperateIcons = new IIcon[4];
 
-    private IIcon[] borealIcons = new IIcon[4];
+    private final IIcon[] borealIcons = new IIcon[4];
 
     /**
      * Constructs a new block instance with a given name, a creative tab and a type.

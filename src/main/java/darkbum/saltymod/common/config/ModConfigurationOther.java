@@ -27,8 +27,11 @@ public class ModConfigurationOther {
     private static final String categoryDescriptionOth = "TO BE PHASED OUT | IGNORE";
 
     // Replacement Strings
+    @SuppressWarnings("unused")
     private static final String enableFeatures = "Enables the following features:";
+    @SuppressWarnings("unused")
     private static final String compatibilityString1 = "Notes: This is for when you have Et Futurum Requiem installed, but for some reason, don't want ";
+    @SuppressWarnings("unused")
     private static final String compatibilityString2 = " to be present";
 
     // Config Options TOBEPHASEDOUT
