@@ -174,22 +174,23 @@ public class BlockSaltCrustedLog extends Block {
     }
 
     /**
-     * Called when the block is broken, including handling secondary drops.
+     * Called when the block is harvested by a player.
      *
-     * @param block     The block that was replaced.
-     * @param meta      The metadata of the block.
+     * @param world The world the block is in.
+     * @param player The player who is harvesting the block.
+     * @param x     The X-coordinate of the block.
+     * @param y     The Y-coordinate of the block.
+     * @param z     The Z-coordinate of the block.
+     * @param meta The metadata of the block being harvested.
      */
     @Override
-    public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
-        if (!world.isRemote) {
-            ItemStack logDrop = new ItemStack(Blocks.log);
-            dropBlockAsItem(world, x, y, z, logDrop);
-
-            ItemStack saltDrop = new ItemStack(ModItems.salt_pinch);
-            dropBlockAsItem(world, x, y, z, saltDrop);
+    public void harvestBlock(World world, EntityPlayer player, int x, int y, int z, int meta) {
+        if (!world.isRemote && !player.capabilities.isCreativeMode) {
+            dropBlockAsItem(world, x, y, z, new ItemStack(Blocks.log));
+            dropBlockAsItem(world, x, y, z, new ItemStack(ModItems.salt_pinch));
         }
 
-        super.breakBlock(world, x, y, z, block, meta);
+        super.harvestBlock(world, player, x, y, z, meta);
     }
 
     /**

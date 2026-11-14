@@ -18,12 +18,12 @@ public class GuiApiary extends GuiContainer {
         super(new ContainerApiary(inventoryPlayer, tileEntityApiary));
     }
 
-    protected void drawGuiContainerForegroundLayer(int par_1, int par_2) {
+    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         String string = I18n.format("container.apiary");
         fontRendererObj.drawString(string, xSize / 2 - fontRendererObj.getStringWidth(string) / 2, 6, 4210752);
     }
 
-    protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
+    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         mc.getTextureManager().bindTexture(resourceLocation);
         int x = (width - xSize) / 2;

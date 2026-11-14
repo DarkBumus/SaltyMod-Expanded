@@ -21,7 +21,7 @@ public class ModPotion extends Potion {
 
     private static final ResourceLocation POTION_ICONS = new ResourceLocation("saltymod:textures/gui/container/potions.png");
 
-    public static final DamageSource SWARMED_DAMAGE = new DamageSource("beesDamage").setDamageBypassesArmor();
+    public static final DamageSource SWARMED_DAMAGE = new DamageSource("swarmed_damage").setDamageBypassesArmor();
 
     public static Potion swarmed;
     public static Potion wellFed;

@@ -7,8 +7,8 @@ itemGroup.salt_blocks=SaltyMod Expanded Blocks
 # POTION EFFECTS
 
 potion.swarmed=Swarmed!
-death.attack.swarmedDamage=%1$s was stung to death by Bees
-death.attack.swarmedDamage.player=%1$s was stung to death by Bees while trying to escape %2$s
+death.attack.swarmed_damage=%1$s was stung to death by Bees
+death.attack.swarmed_damage.player=%1$s was stung to death by Bees while trying to escape %2$s
 potion.well_fed=Well Fed
 potion.inspired=Inspired
 
