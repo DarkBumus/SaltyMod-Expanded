@@ -74,8 +74,10 @@ container.press.no_mill=No Mill
 tile.mill.name=Mill
 tile.cooking_pot.name=Cooking Pot
 container.cooking_pot=Cooking Pot
+container.cooking_pot.output_locked=No Bowl
 tile.clay_oven.name=Clay Oven
 container.clay_oven=Clay Oven
+container.clay_oven.output_locked=No Shovel
 
 tile.storage_crate_carrot.name=Carrot Crate
 tile.storage_crate_potato.name=Potato Crate

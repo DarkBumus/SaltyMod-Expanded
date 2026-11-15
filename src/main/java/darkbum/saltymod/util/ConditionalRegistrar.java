@@ -237,23 +237,23 @@ public final class ConditionalRegistrar {
      * @param requiresMill whether the recipe requires a mill
      * @param vesselItem the item required for the vessel in the press
      */
-    public static void addPressRecipe(ItemStack input, boolean[] conditions, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill, ItemStack vesselItem) {
+    public static void addPressRecipe(PressingRecipe.IIngredientMatcher input, boolean[] conditions, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill, ItemStack vesselItem) {
         if (checkConditions(conditions)) return;
         PressingRecipe.pressing().registerRecipe(input, output1, output2, requiresHeater, requiresMill, vesselItem);
     }
 
     @SuppressWarnings("unused")
-    public static void addPressRecipe(ItemStack input, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill, ItemStack vesselItem) {
+    public static void addPressRecipe(PressingRecipe.IIngredientMatcher input, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill, ItemStack vesselItem) {
         addPressRecipe(input, new boolean[0], output1, output2, requiresHeater, requiresMill, vesselItem);
     }
 
-    public static void addPressRecipe(ItemStack input, boolean[] conditions, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill) {
+    public static void addPressRecipe(PressingRecipe.IIngredientMatcher input, boolean[] conditions, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill) {
         if (checkConditions(conditions)) return;
         PressingRecipe.pressing().registerRecipe(input, output1, output2, requiresHeater, requiresMill);
     }
 
     @SuppressWarnings("unused")
-    public static void addPressRecipe(ItemStack input, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill) {
+    public static void addPressRecipe(PressingRecipe.IIngredientMatcher input, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill) {
         addPressRecipe(input, new boolean[0], output1, output2, requiresHeater, requiresMill);
     }
 

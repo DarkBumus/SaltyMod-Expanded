@@ -3,7 +3,6 @@ package darkbum.saltymod.init;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 import static darkbum.saltymod.init.ModExternalLoader.*;
 import static net.minecraftforge.oredict.OreDictionary.*;
@@ -40,6 +39,7 @@ public class ModOreDictionary {
         Item StriderFlankRaw = netherliciousItems.get("StriderFlankRaw");
         Item StriderFlankCooked = netherliciousItems.get("StriderFlankCooked");
 
+        Block smooth_sandstone = etFuturumBlocks.get("smooth_sandstone");
         Block magma = etFuturumBlocks.get("magma");
         Block nether_fungus = etFuturumBlocks.get("nether_fungus");
         Item suspicious_stew = etFuturumItems.get("suspicious_stew");
@@ -59,6 +59,8 @@ public class ModOreDictionary {
         Block soul_campfire = campfireBackportBlocks.get("soul_campfire");
 
         // Salty Mod Ore Dictionaries
+        registerOre("blockSandstone", new ItemStack(sandstone, 1, WILDCARD_VALUE), sandstone != null);
+        registerOre("blockSandstone", smooth_sandstone, smooth_sandstone != null);
         registerOre("blockMushroom", red_mushroom, red_mushroom != null);
         registerOre("blockMushroom", brown_mushroom, brown_mushroom != null);
         registerOre("oreSalt", salt_ore, salt_ore != null);
@@ -244,7 +246,7 @@ public class ModOreDictionary {
 
         registerOre("itemBowl", bowl, bowl != null);
 
-        registerOre("itemSpade", new ItemStack(wooden_shovel, 1, OreDictionary.WILDCARD_VALUE), wooden_shovel != null);
+        registerOre("itemSpade", new ItemStack(wooden_shovel, 1, WILDCARD_VALUE), wooden_shovel != null);
 
         //External Ore Dictionaries
         registerOre("itemSweetener", honeycombItem, honeycombItem != null);

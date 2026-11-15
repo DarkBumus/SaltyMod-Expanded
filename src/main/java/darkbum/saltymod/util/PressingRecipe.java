@@ -1,100 +1,169 @@
+
 package darkbum.saltymod.util;
 
 import com.github.bsideup.jabel.Desugar;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.*;
 
 import static net.minecraftforge.oredict.OreDictionary.*;
 
-/**
- * Utility class for handlung recipes for the press.
- * Recipes can include up to two output items, a vessel requirement, and optional heater/mill requirements.
- *
- * @author DarkBum
- * @since 2.0.0
- */
 public class PressingRecipe {
     private static final PressingRecipe pressBase = new PressingRecipe();
-    private final Map<ItemStack, PressRecipe> recipes = new HashMap<>();
+    private final List<PressRecipe> recipes = new ArrayList<>();
 
-    /**
-     * Retrieves the singleton instance of the PressingRecipe manager.
-     *
-     * @return the PressingRecipe instance.
-     */
     public static PressingRecipe pressing() {
         return pressBase;
     }
 
     /**
-     * Represents a recipe for the pressing machine.
-     * A recipe can produce up to two output items and may require a vessel, heater, or mill.
+     * Interface for input ingredient matching.
+     */
+    public interface IIngredientMatcher {
+        boolean matches(ItemStack stack);
+    }
+
+    /**
+     * Ingredient matcher for specific ItemStacks.
      */
     @Desugar
-    public record PressRecipe(ItemStack input, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill, ItemStack vesselItem) {
+    public record StackIngredient(ItemStack stack) implements IIngredientMatcher {
 
-        /**
-         * Checks if the recipe requires a vessel item.
-         *
-         * @return true, if a vessel item is required, false otherwise.
-         */
+        @Override
+        public boolean matches(ItemStack input) {
+            return areStacksEqual(stack, input);
+        }
+    }
+
+    /**
+     * Ingredient matcher for OreDictionary entries.
+     */
+    public static class OreIngredient implements IIngredientMatcher {
+        private final String oreName;
+
+        public OreIngredient(String oreName) {
+            this.oreName = oreName;
+        }
+
+        @Override
+        public boolean matches(ItemStack input) {
+            List<ItemStack> ores = OreDictionary.getOres(oreName);
+
+            for (ItemStack oreStack : ores) {
+                if (input != null && areStacksEqual(oreStack, input)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public List<ItemStack> getOres() {
+            return OreDictionary.getOres(oreName);
+        }
+    }
+
+    /**
+     * Creates a StackIngredient matcher.
+     */
+    public static StackIngredient stack(ItemStack stack) {
+        return new StackIngredient(stack);
+    }
+
+    /**
+     * Creates an OreIngredient matcher.
+     */
+    public static OreIngredient ore(String name) {
+        return new OreIngredient(name);
+    }
+
+    /**
+     * Recipe definition.
+     */
+    @Desugar
+    public record PressRecipe(
+        IIngredientMatcher input,
+        ItemStack output1,
+        ItemStack output2,
+        boolean requiresHeater,
+        boolean requiresMill,
+        ItemStack vesselItem
+    ) {
+
         public boolean requiresVessel() {
             return vesselItem != null;
         }
     }
 
     /**
-     * Registers a new pressing recipe with a vessel requirement.
-     *
-     * @param input         The input ItemStack.
-     * @param output1       The primary output ItemStack.
-     * @param output2       The secondary output ItemStack.
-     * @param requiresHeater Whether a heater is required.
-     * @param requiresMill  Whether a mill is required.
-     * @param vesselItem    The vessel ItemStack, or null if no vessel is required.
+     * Registers a new pressing recipe with a vessel.
      */
-    public void registerRecipe(ItemStack input, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill, ItemStack vesselItem) {
-        recipes.put(input, new PressRecipe(input, output1, output2, requiresHeater, requiresMill, vesselItem));
-    }
-
-    public void registerRecipe(ItemStack input, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill) {
-        recipes.put(input, new PressRecipe(input, output1, output2, requiresHeater, requiresMill, null));
-    }
-
-    public Set<Map.Entry<ItemStack, PressRecipe>> getRecipes() {
-        return recipes.entrySet();
+    public void registerRecipe(
+        IIngredientMatcher input,
+        ItemStack output1,
+        ItemStack output2,
+        boolean requiresHeater,
+        boolean requiresMill,
+        ItemStack vesselItem
+    ) {
+        recipes.add(new PressRecipe(
+            input,
+            output1,
+            output2,
+            requiresHeater,
+            requiresMill,
+            vesselItem
+        ));
     }
 
     /**
-     * Retrieves the recipe for the given input and vessel items.
-     *
-     * @param input  The input ItemStack.
-     * @param vessel The vessel ItemStack, or null if no vessel is provided.
-     * @return the corresponding PressRecipe, or null if no valid recipe is found.
+     * Registers a new pressing recipe without a vessel.
+     */
+    public void registerRecipe(
+        IIngredientMatcher input,
+        ItemStack output1,
+        ItemStack output2,
+        boolean requiresHeater,
+        boolean requiresMill
+    ) {
+        registerRecipe(input, output1, output2, requiresHeater, requiresMill, null);
+    }
+
+    /**
+     * Returns all registered recipes.
+     */
+    public List<PressRecipe> getRecipes() {
+        return Collections.unmodifiableList(recipes);
+    }
+
+    /**
+     * Retrieves a matching recipe.
      */
     public PressRecipe getRecipeFor(ItemStack input, ItemStack vessel) {
-        for (Map.Entry<ItemStack, PressRecipe> entry : recipes.entrySet()) {
-            PressRecipe recipe = entry.getValue();
-            if (areStacksEqual(input, entry.getKey())) {
-                if (recipe.requiresVessel() && (!MachineUtilRegistry.isValidVessel(vessel))) {
-                    return null;
-                }
-                return recipe;
+        for (PressRecipe recipe : recipes) {
+
+            if (recipe.input() == null || !recipe.input().matches(input)) {
+                continue;
             }
+
+            if (recipe.requiresVessel() && !MachineUtilRegistry.isValidVessel(vessel)) {
+                continue;
+            }
+
+            return recipe;
         }
+
         return null;
     }
 
     /**
-     * Compares two ItemStacks for equality based on item type and damage value.
-     *
-     * @param stack1 The first ItemStack.
-     * @param stack2 The second ItemStack.
-     * @return true, if the stacks are considered equal, false otherwise.
+     * Compares two ItemStacks.
      */
-    private boolean areStacksEqual(ItemStack stack1, ItemStack stack2) {
-        return stack2.getItem() == stack1.getItem() &&
-            (stack2.getItemDamage() == WILDCARD_VALUE || stack2.getItemDamage() == stack1.getItemDamage());
+    private static boolean areStacksEqual(ItemStack stack1, ItemStack stack2) {
+        if (stack1 == null || stack2 == null) return false;
+
+        return stack2.getItem() == stack1.getItem()
+            && (stack1.getItemDamage() == WILDCARD_VALUE
+            || stack2.getItemDamage() == stack1.getItemDamage());
     }
 }

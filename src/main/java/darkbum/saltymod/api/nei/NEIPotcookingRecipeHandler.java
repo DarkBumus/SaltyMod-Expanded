@@ -16,7 +16,6 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 import static codechicken.lib.gui.GuiDraw.drawTexturedModalRect;
 
@@ -82,8 +81,8 @@ public class NEIPotcookingRecipeHandler extends TemplateRecipeHandler {
     @Override
     public void loadCraftingRecipes(String outputId, Object... results) {
         if (outputId.equals(getOverlayIdentifier()) && getClass() == NEIPotcookingRecipeHandler.class) {
-            for (Map.Entry<ItemStack, PotcookingRecipe.PotRecipe> recipe : PotcookingRecipe.cooking().getRecipes()) {
-                arecipes.add(new CookingPotPair(recipe.getValue()));
+            for (PotcookingRecipe.PotRecipe recipe : PotcookingRecipe.cooking().getRecipes()) {
+                arecipes.add(new CookingPotPair(recipe));
             }
         } else {
             super.loadCraftingRecipes(outputId, results);
@@ -92,19 +91,21 @@ public class NEIPotcookingRecipeHandler extends TemplateRecipeHandler {
 
     @Override
     public void loadCraftingRecipes(ItemStack result) {
-        for (Map.Entry<ItemStack, PotcookingRecipe.PotRecipe> recipe : PotcookingRecipe.cooking().getRecipes()) {
-            if(NEIServerUtils.areStacksSameType(recipe.getKey(), result)) {
-                arecipes.add(new CookingPotPair(recipe.getValue()));
+        for (PotcookingRecipe.PotRecipe recipe : PotcookingRecipe.cooking().getRecipes()) {
+            if (NEIServerUtils.areStacksSameType(recipe.output(), result)) {
+                arecipes.add(new CookingPotPair(recipe));
             }
         }
     }
 
     @Override
     public void loadUsageRecipes(ItemStack ingredient) {
-        for (Map.Entry<ItemStack, PotcookingRecipe.PotRecipe> recipe : PotcookingRecipe.cooking().getRecipes()) {
-            for (PotcookingRecipe.IIngredientMatcher matcher : recipe.getValue().ingreds()) {
+        if (ingredient == null || ingredient.getItem() == null) return;
+
+        for (PotcookingRecipe.PotRecipe recipe : PotcookingRecipe.cooking().getRecipes()) {
+            for (PotcookingRecipe.IIngredientMatcher matcher : recipe.ingreds()) {
                 if (matcher.matches(ingredient)) {
-                    arecipes.add(new CookingPotPair(recipe.getValue()));
+                    arecipes.add(new CookingPotPair(recipe));
                     break;
                 }
             }
@@ -120,7 +121,7 @@ public class NEIPotcookingRecipeHandler extends TemplateRecipeHandler {
 
     @Override
     public void loadTransferRects() {
-        transferRects.add(new TemplateRecipeHandler.RecipeTransferRect(new Rectangle(42, 41, 18, 18), SaltyMod.MODID + ".press"));
+        transferRects.add(new TemplateRecipeHandler.RecipeTransferRect(new Rectangle(42, 41, 18, 18), SaltyMod.MODID + ".cooking_pot"));
         transferRects.add(new RecipeTransferRect(new Rectangle(84, 14, 24, 18), SaltyMod.MODID + ".cooking_pot"));
     }
 

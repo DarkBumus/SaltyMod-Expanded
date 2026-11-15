@@ -16,10 +16,8 @@ import org.lwjgl.opengl.GL11;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import static codechicken.lib.gui.GuiDraw.drawTexturedModalRect;
-import static net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE;
 
 /**
  * NEI recipe handler for displaying Pressing recipes in the NEI interface.
@@ -40,7 +38,17 @@ public class NEIPressingRecipeHandler extends TemplateRecipeHandler {
             this.mill = recipe.requiresMill();
             this.ingreds = new ArrayList<>();
 
-            ingreds.add(new PositionedStack(recipe.input(), 75, 6));
+            if (recipe.input() instanceof PressingRecipe.StackIngredient stackIngredient) {
+                ingreds.add(new PositionedStack(stackIngredient.stack(), 75, 6));
+            }
+
+            if (recipe.input() instanceof PressingRecipe.OreIngredient oreIngredient) {
+                ingreds.add(new PositionedStack(
+                    oreIngredient.getOres(),
+                    75,
+                    6
+                ));
+            }
 
             if (recipe.output2() != null && recipe.output1() != null) {
                 ingreds.add(new PositionedStack(recipe.output2(), 93, 42));
@@ -83,8 +91,8 @@ public class NEIPressingRecipeHandler extends TemplateRecipeHandler {
     @Override
     public void loadCraftingRecipes(String outputId, Object... results) {
         if (outputId.equals(getOverlayIdentifier()) && getClass() == NEIPressingRecipeHandler.class) {
-            for (Map.Entry<ItemStack, PressingRecipe.PressRecipe> recipe : PressingRecipe.pressing().getRecipes()) {
-                arecipes.add(new PressPair(recipe.getValue()));
+            for (PressingRecipe.PressRecipe recipe : PressingRecipe.pressing().getRecipes()) {
+                arecipes.add(new PressPair(recipe));
             }
         } else {
             super.loadCraftingRecipes(outputId, results);
@@ -93,8 +101,7 @@ public class NEIPressingRecipeHandler extends TemplateRecipeHandler {
 
     @Override
     public void loadCraftingRecipes(ItemStack result) {
-        for (Map.Entry<ItemStack, PressingRecipe.PressRecipe> recipe : PressingRecipe.pressing().getRecipes()) {
-            PressingRecipe.PressRecipe pressRecipe = recipe.getValue();
+        for (PressingRecipe.PressRecipe pressRecipe : PressingRecipe.pressing().getRecipes()) {
 
             boolean matchesOutput1 = pressRecipe.output1() != null
                 && NEIServerUtils.areStacksSameType(pressRecipe.output1(), result);
@@ -112,14 +119,10 @@ public class NEIPressingRecipeHandler extends TemplateRecipeHandler {
     public void loadUsageRecipes(ItemStack ingredient) {
         if (ingredient == null || ingredient.getItem() == null) return;
 
-        for (Map.Entry<ItemStack, PressingRecipe.PressRecipe> recipe : PressingRecipe.pressing().getRecipes()) {
-            PressingRecipe.PressRecipe pressRecipe = recipe.getValue();
-            ItemStack recipeInput = pressRecipe.input();
+        for (PressingRecipe.PressRecipe pressRecipe : PressingRecipe.pressing().getRecipes()) {
 
-            boolean isInput = recipeInput != null
-                && recipeInput.getItem() == ingredient.getItem()
-                && (recipeInput.getItemDamage() == WILDCARD_VALUE
-                || recipeInput.getItemDamage() == ingredient.getItemDamage());
+            boolean isInput = pressRecipe.input() != null
+                && pressRecipe.input().matches(ingredient);
 
             boolean isVessel = pressRecipe.vesselItem() != null
                 && NEIServerUtils.areStacksSameType(pressRecipe.vesselItem(), ingredient);

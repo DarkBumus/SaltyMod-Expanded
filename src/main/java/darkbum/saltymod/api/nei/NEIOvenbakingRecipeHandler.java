@@ -15,7 +15,6 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 import static codechicken.lib.gui.GuiDraw.drawTexturedModalRect;
 
@@ -69,8 +68,8 @@ public class NEIOvenbakingRecipeHandler extends TemplateRecipeHandler {
     @Override
     public void loadCraftingRecipes(String outputId, Object... results) {
         if (outputId.equals(getOverlayIdentifier()) && getClass() == NEIOvenbakingRecipeHandler.class) {
-            for (Map.Entry<ItemStack, OvenbakingRecipe.OvenRecipe> recipe : OvenbakingRecipe.baking().getRecipes()) {
-                arecipes.add(new OvenPair(recipe.getValue()));
+            for (OvenbakingRecipe.OvenRecipe recipe : OvenbakingRecipe.baking().getRecipes()) {
+                arecipes.add(new OvenPair(recipe));
             }
         } else {
             super.loadCraftingRecipes(outputId, results);
@@ -79,19 +78,21 @@ public class NEIOvenbakingRecipeHandler extends TemplateRecipeHandler {
 
     @Override
     public void loadCraftingRecipes(ItemStack result) {
-        for (Map.Entry<ItemStack, OvenbakingRecipe.OvenRecipe> recipe : OvenbakingRecipe.baking().getRecipes()) {
-            if(NEIServerUtils.areStacksSameType(recipe.getKey(), result)) {
-                arecipes.add(new OvenPair(recipe.getValue()));
+        for (OvenbakingRecipe.OvenRecipe recipe : OvenbakingRecipe.baking().getRecipes()) {
+            if (NEIServerUtils.areStacksSameType(recipe.output(), result)) {
+                arecipes.add(new OvenPair(recipe));
             }
         }
     }
 
     @Override
     public void loadUsageRecipes(ItemStack ingredient) {
-        for (Map.Entry<ItemStack, OvenbakingRecipe.OvenRecipe> recipe : OvenbakingRecipe.baking().getRecipes()) {
-            for (OvenbakingRecipe.IIngredientMatcher matcher : recipe.getValue().ingreds()) {
+        if (ingredient == null || ingredient.getItem() == null) return;
+
+        for (OvenbakingRecipe.OvenRecipe recipe : OvenbakingRecipe.baking().getRecipes()) {
+            for (OvenbakingRecipe.IIngredientMatcher matcher : recipe.ingreds()) {
                 if (matcher.matches(ingredient)) {
-                    arecipes.add(new OvenPair(recipe.getValue()));
+                    arecipes.add(new OvenPair(recipe));
                     break;
                 }
             }
@@ -107,7 +108,7 @@ public class NEIOvenbakingRecipeHandler extends TemplateRecipeHandler {
 
     @Override
     public void loadTransferRects() {
-        transferRects.add(new TemplateRecipeHandler.RecipeTransferRect(new Rectangle(43, 41, 18, 18), SaltyMod.MODID + ".press"));
+        transferRects.add(new TemplateRecipeHandler.RecipeTransferRect(new Rectangle(43, 41, 18, 18), SaltyMod.MODID + ".clay_oven"));
         transferRects.add(new RecipeTransferRect(new Rectangle(76, 14, 24, 18), SaltyMod.MODID + ".clay_oven"));
     }
 

@@ -410,18 +410,6 @@ public class ModShapelessRecipes {
             new boolean[]{enableTFFoods, hydraChop != null},
             new ItemStack(salt_pinch),
             new ItemStack(hydraChop));
-        addShapelessRecipe(new ItemStack(tf_saltwort_cooked_venison),
-            new boolean[]{enableTFFoods},
-            new ItemStack(bowl),
-            new ItemStack(tf_salt_cooked_venison),
-            new ItemStack(saltwort),
-            new ItemStack(saltwort));
-        addShapelessRecipe(new ItemStack(tf_saltwort_meef_steak),
-            new boolean[]{enableTFFoods},
-            new ItemStack(bowl),
-            new ItemStack(tf_salt_meef_steak),
-            new ItemStack(saltwort),
-            new ItemStack(saltwort));
         addShapelessRecipe(new ItemStack(tf_pickled_mushgloom),
             new boolean[]{enableTFFoods, mushgloom != null},
             new ItemStack(salt_pinch),
@@ -430,58 +418,58 @@ public class ModShapelessRecipes {
             new ItemStack(mushgloom, 1, 9));
 
         addShapelessRecipe(new ItemStack(bop_salt_shroom_powder),
-            new boolean[]{food != null},
+            new boolean[]{enableBOPFoods, food != null},
             new ItemStack(salt_pinch),
             new ItemStack(food, 1, 1));
         addShapelessRecipe(new ItemStack(bop_sugar_fruit_salad),
-            new boolean[]{food != null},
+            new boolean[]{enableBOPFoods, food != null},
             new ItemStack(sugar_pinch),
             new ItemStack(food, 1, 4));
         addShapelessRecipe(new ItemStack(bop_salt_veggie_salad),
-            new boolean[]{food != null},
+            new boolean[]{enableBOPFoods, food != null},
             new ItemStack(salt_pinch),
             new ItemStack(food, 1, 5));
         addShapelessRecipe(new ItemStack(bop_salt_shroom_salad),
-            new boolean[]{food != null},
+            new boolean[]{enableBOPFoods, food != null},
             new ItemStack(salt_pinch),
             new ItemStack(food, 1, 6));
         addShapelessRecipe(new ItemStack(bop_salt_rice_bowl),
-            new boolean[]{food != null},
+            new boolean[]{enableBOPFoods, food != null},
             new ItemStack(salt_pinch),
             new ItemStack(food, 1, 13));
         addShapelessRecipe(new ItemStack(bop_pickled_turnip),
-            new boolean[]{food != null},
+            new boolean[]{enableBOPFoods, food != null},
             new ItemStack(salt_pinch),
             new ItemStack(potionitem),
             new ItemStack(food, 1, 11),
             new ItemStack(food, 1, 11));
         addShapelessRecipe(new ItemStack(dart, 1, 1),
-            new boolean[]{dart != null},
+            new boolean[]{enableBOPFoods, dart != null},
             new ItemStack(dart, 1, 0),
             new ItemStack(ModItems.bop_poison));
 
         addShapelessRecipe(new ItemStack(wm_salt_cooked_bison),
-            new boolean[]{cooked_bison_meat != null},
+            new boolean[]{enableWMFoods, cooked_bison_meat != null},
             new ItemStack(salt_pinch),
             new ItemStack(cooked_bison_meat));
         addShapelessRecipe(new ItemStack(wm_salt_cooked_calamari),
-            new boolean[]{cooked_calamari != null},
+            new boolean[]{enableWMFoods, cooked_calamari != null},
             new ItemStack(salt_pinch),
             new ItemStack(cooked_calamari));
         addShapelessRecipe(new ItemStack(wm_salt_cooked_chevon),
-            new boolean[]{cooked_chevon != null},
+            new boolean[]{enableWMFoods, cooked_chevon != null},
             new ItemStack(salt_pinch),
             new ItemStack(cooked_chevon));
         addShapelessRecipe(new ItemStack(wm_salt_cooked_goose),
-            new boolean[]{cooked_goose != null},
+            new boolean[]{enableWMFoods, cooked_goose != null},
             new ItemStack(salt_pinch),
             new ItemStack(cooked_goose));
         addShapelessRecipe(new ItemStack(wm_salt_cooked_mouse),
-            new boolean[]{cooked_mouse != null},
+            new boolean[]{enableWMFoods, cooked_mouse != null},
             new ItemStack(salt_pinch),
             new ItemStack(cooked_mouse));
         addShapelessRecipe(new ItemStack(wm_salt_cooked_venison),
-            new boolean[]{cooked_venison != null},
+            new boolean[]{enableWMFoods, cooked_venison != null},
             new ItemStack(salt_pinch),
             new ItemStack(cooked_venison));
     }

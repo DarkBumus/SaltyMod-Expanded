@@ -103,7 +103,12 @@ public class ModExternalLoader {
     public static void loadEtFuturum() {
         if (!efr) return;
         etFuturumBlocks.put("blue_ice", findBlock("etfuturum", "blue_ice"));
+        etFuturumBlocks.put("smooth_sandstone", findBlock("etfuturum", "smooth_sandstone"));
+        etFuturumBlocks.put("copper_ore", findBlock("etfuturum", "copper_ore"));
+        etFuturumBlocks.put("deepslate_copper_ore", findBlock("etfuturum", "deepslate_copper_ore"));
         etFuturumBlocks.put("deepslate", findBlock("etfuturum", "deepslate"));
+        etFuturumBlocks.put("deepslate_iron_ore", findBlock("etfuturum", "deepslate_iron_ore"));
+        etFuturumBlocks.put("deepslate_gold_ore", findBlock("etfuturum", "deepslate_gold_ore"));
         etFuturumBlocks.put("magma", findBlock("etfuturum", "magma"));
         etFuturumBlocks.put("nether_fungus", findBlock("etfuturum", "nether_fungus"));
         etFuturumBlocks.put("honeycomb_block", findBlock("etfuturum", "honeycomb_block"));
@@ -119,8 +124,10 @@ public class ModExternalLoader {
         etFuturumItems.put("beetroot_seeds", findItem("etfuturum", "beetroot_seeds"));
         etFuturumItems.put("beetroot_soup", findItem("etfuturum", "beetroot_soup"));
         etFuturumItems.put("chorus_fruit", findItem("etfuturum", "chorus_fruit"));
-        etFuturumItems.put("sweet_berries", findItem("etfuturum", "sweet_berries"));
+        etFuturumItems.put("chorus_fruit_popped", findItem("etfuturum", "chorus_fruit_popped"));
+        etFuturumItems.put("raw_ore", findItem("etfuturum", "raw_ore"));
         etFuturumItems.put("dye", findItem("etfuturum", "dye"));
+        etFuturumItems.put("sweet_berries", findItem("etfuturum", "sweet_berries"));
         etFuturumItems.put("honey_bottle", findItem("etfuturum", "honey_bottle"));
     }
 
@@ -140,7 +147,9 @@ public class ModExternalLoader {
         if (!tf) return;
         twilightForestBlocks.put("mushgloom", findBlock("TwilightForest", "tile.TFPlant"));
 
+        twilightForestItems.put("venisonRaw", findItem("TwilightForest", "item.venisonRaw"));
         twilightForestItems.put("venisonCooked", findItem("TwilightForest", "item.venisonCooked"));
+        twilightForestItems.put("meefRaw", findItem("TwilightForest", "item.meefRaw"));
         twilightForestItems.put("meefSteak", findItem("TwilightForest", "item.meefSteak"));
         twilightForestItems.put("meefStroganoff", findItem("TwilightForest", "item.meefStroganoff"));
         twilightForestItems.put("hydraChop", findItem("TwilightForest", "item.hydraChop"));
@@ -157,11 +166,19 @@ public class ModExternalLoader {
 
     public static void loadWildMobs() {
         if (!wm) return;
+        wildMobsItems.put("bison_meat", findItem("wildmobsmod", "bison_meat"));
         wildMobsItems.put("cooked_bison_meat", findItem("wildmobsmod", "cooked_bison_meat"));
+        wildMobsItems.put("calamari", findItem("wildmobsmod", "calamari"));
         wildMobsItems.put("cooked_calamari", findItem("wildmobsmod", "cooked_calamari"));
+        wildMobsItems.put("chevon", findItem("wildmobsmod", "chevon"));
         wildMobsItems.put("cooked_chevon", findItem("wildmobsmod", "cooked_chevon"));
+        wildMobsItems.put("goose", findItem("wildmobsmod", "goose"));
         wildMobsItems.put("cooked_goose", findItem("wildmobsmod", "cooked_goose"));
+        wildMobsItems.put("mouse", findItem("wildmobsmod", "mouse"));
         wildMobsItems.put("cooked_mouse", findItem("wildmobsmod", "cooked_mouse"));
+        wildMobsItems.put("venison", findItem("wildmobsmod", "venison"));
         wildMobsItems.put("cooked_venison", findItem("wildmobsmod", "cooked_venison"));
+        wildMobsItems.put("magma_plant_seed", findItem("wildmobsmod", "magma_plant_seed"));
+        wildMobsItems.put("roasted_magma_plant_seed", findItem("wildmobsmod", "roasted_magma_plant_seed"));
     }
 }

@@ -9,6 +9,8 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
+import java.util.Collections;
+
 import static darkbum.saltymod.inventory.container.ContainerClayOven.SLOT_OUTPUT;
 
 public class GuiClayOven extends GuiContainer {
@@ -50,6 +52,30 @@ public class GuiClayOven extends GuiContainer {
 
         if (slotClayOvenOutputLocked != null && !slotClayOvenOutputLocked.canTakeStack(mc.thePlayer) && slotClayOvenOutputLocked.getHasStack()) {
             drawTexturedModalRect(x + 129, y + 22, 176, 31, 7, 7);
+        }
+    }
+
+    @Override
+    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+        super.drawScreen(mouseX, mouseY, partialTicks);
+
+        int x = (width - xSize) / 2;
+        int y = (height - ySize) / 2;
+
+        if (slotClayOvenOutputLocked != null
+            && !slotClayOvenOutputLocked.canTakeStack(mc.thePlayer)
+            && slotClayOvenOutputLocked.getHasStack()
+            && mouseX >= x + 129 && mouseX < x + 136
+            && mouseY >= y + 22 && mouseY < y + 29) {
+
+            String tooltip = I18n.format("container.clay_oven.output_locked");
+
+            drawHoveringText(
+                Collections.singletonList(tooltip),
+                mouseX,
+                mouseY,
+                fontRendererObj
+            );
         }
     }
 }

@@ -7,13 +7,13 @@ import net.minecraft.nbt.NBTTagCompound;
 public class IMCSenderGTNH {
 
     public static void IMCSender() {
-        sendHandler("darkbum.saltymod.api.nei.NEIPotcookingRecipeHandler", "saltymod:cooking_pot", 3);
+        sendHandler("darkbum.saltymod.api.nei.NEIPotcookingRecipeHandler", "saltymod:cooking_pot", 4);
         sendCatalyst(SaltyMod.MODID + ".cooking_pot", "saltymod:cooking_pot");
 
-        sendHandler("darkbum.saltymod.api.nei.NEIOvenbakingRecipeHandler", "saltymod:clay_oven", 3);
+        sendHandler("darkbum.saltymod.api.nei.NEIOvenbakingRecipeHandler", "saltymod:clay_oven", 4);
         sendCatalyst(SaltyMod.MODID + ".clay_oven", "saltymod:clay_oven");
 
-        sendHandler("darkbum.saltymod.api.nei.NEIPressingRecipeHandler", "saltymod:press", 3);
+        sendHandler("darkbum.saltymod.api.nei.NEIPressingRecipeHandler", "saltymod:press", 4);
         sendCatalyst(SaltyMod.MODID + ".press", "saltymod:press");
     }
 

@@ -10,6 +10,8 @@ import static darkbum.saltymod.util.ConditionalRegistrar.*;
 import static darkbum.saltymod.common.config.ModConfigurationEntities.*;
 import static darkbum.saltymod.common.config.ModConfigurationItems.*;
 import static darkbum.saltymod.init.ModItems.*;
+import static darkbum.saltymod.util.PressingRecipe.ore;
+import static darkbum.saltymod.util.PressingRecipe.stack;
 import static net.minecraft.init.Blocks.*;
 import static net.minecraft.init.Items.*;
 import static net.minecraft.init.Items.wheat;
@@ -33,23 +35,63 @@ public class ModPressRecipes {
      */
     public static void init() {
 
+        Item raw_ore = etFuturumItems.get("raw_ore");
         Item honey_bottle = etFuturumItems.get("honey_bottle");
 
-        addPressRecipe(new ItemStack(cobblestone),
+        addPressRecipe(stack(new ItemStack(stone)),
+            null,
+            new ItemStack(cobblestone),
+            false,
+            true,
+            null);
+        addPressRecipe(stack(new ItemStack(cobblestone)),
             null,
             new ItemStack(gravel),
             false,
             true,
             null);
-
-        addPressRecipe(new ItemStack(gravel),
+        addPressRecipe(stack(new ItemStack(gravel)),
             null,
-            new ItemStack(sand),
+            new ItemStack(sand, 1, 0),
+            false,
+            true,
+            null);
+        addPressRecipe(stack(new ItemStack(gravel)),
+            null,
+            new ItemStack(sand, 1, 1),
+            false,
+            true,
+            new ItemStack(dye, 1, 1));
+
+        addPressRecipe(stack(new ItemStack(gold_ore)),
+            new boolean[]{raw_ore != null},
+            new ItemStack(cobblestone),
+            new ItemStack(raw_ore, 1, 2),
+            false,
+            true,
+            null);
+        addPressRecipe(stack(new ItemStack(iron_ore)),
+            new boolean[]{raw_ore != null},
+            new ItemStack(cobblestone),
+            new ItemStack(raw_ore, 1, 1),
             false,
             true,
             null);
 
-        addPressRecipe(new ItemStack(mineral_mud_ball),
+        addPressRecipe(stack(new ItemStack(glass)),
+            null,
+            new ItemStack(sand, 1, 0),
+            false,
+            true,
+            null);
+        addPressRecipe(ore("blockSandstone"),
+            null,
+            new ItemStack(sand, 1, 0),
+            false,
+            true,
+            null);
+
+        addPressRecipe(stack(new ItemStack(mineral_mud_ball)),
             new boolean[]{enableMineralMud},
             new ItemStack(potionitem, 1, 0),
             new ItemStack(clay_ball),
@@ -57,7 +99,7 @@ public class ModPressRecipes {
             false,
             new ItemStack(glass_bottle));
 
-        addPressRecipe(new ItemStack(wheat),
+        addPressRecipe(stack(new ItemStack(wheat)),
             new boolean[]{enableDough},
             new ItemStack(glass_bottle),
             new ItemStack(dough),
@@ -65,28 +107,28 @@ public class ModPressRecipes {
             true,
             new ItemStack(potionitem, 1, 0));
 
-        addPressRecipe(new ItemStack(honeycomb),
+        addPressRecipe(stack(new ItemStack(honeycomb)),
             new boolean[]{enableHoney, honey_bottle != null},
             new ItemStack(honey_bottle),
             new ItemStack(waxcomb),
             false,
             false,
             new ItemStack(glass_bottle));
-        addPressRecipe(new ItemStack(frozen_honey),
+        addPressRecipe(stack(new ItemStack(frozen_honey)),
             new boolean[]{enableHoney, honey_bottle != null},
             new ItemStack(honey_bottle),
             null,
             true,
             false,
             new ItemStack(glass_bottle));
-        addPressRecipe(new ItemStack(honeycomb),
+        addPressRecipe(stack(new ItemStack(honeycomb)),
             new boolean[]{enableHoney, honey_bottle == null},
             new ItemStack(royal_jelly),
             new ItemStack(waxcomb),
             false,
             false,
             new ItemStack(glass_bottle));
-        addPressRecipe(new ItemStack(frozen_honey),
+        addPressRecipe(stack(new ItemStack(frozen_honey)),
             new boolean[]{enableHoney, honey_bottle == null},
             new ItemStack(royal_jelly),
             null,
@@ -94,7 +136,7 @@ public class ModPressRecipes {
             false,
             new ItemStack(glass_bottle));
 
-        addPressRecipe(new ItemStack(sheep_horn),
+        addPressRecipe(stack(new ItemStack(sheep_horn)),
             new boolean[]{enableHornedSheep},
             new ItemStack(tunneler_concoction),
             null,

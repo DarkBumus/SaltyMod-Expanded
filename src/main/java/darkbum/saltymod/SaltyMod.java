@@ -90,7 +90,7 @@ public class SaltyMod {
         event.getModMetadata().name = GOLD + NAME + WHITE;
         event.getModMetadata().version = YELLOW + VERSION;
         event.getModMetadata().credits = AQUA
-            + "Thanks to original author Liahim85 and contributors jss2a98aj, Roadhog360, DelirusCrux, AstroTibs, Just Moe, Jack";
+            + "Thanks to original author Liahim85 and contributors jss2a98aj, Roadhog360, DelirusCrux, AstroTibs, Just Moe, Jack, Jerome";
 
         // Load and initialize configuration files
         File configDir = new File(event.getModConfigurationDirectory(), "saltymod");

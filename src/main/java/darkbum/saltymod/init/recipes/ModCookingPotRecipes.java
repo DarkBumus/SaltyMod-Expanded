@@ -42,6 +42,12 @@ public class ModCookingPotRecipes {
         Item beetroot_soup = etFuturumItems.get("beetroot_soup");
         Item sweet_berries = etFuturumItems.get("sweet_berries");
 
+//        addPotRecipe(new ItemStack(milk_bucket),
+//            true,
+//            0.1f,
+//            stack(new ItemStack(powdered_milk)),
+//            stack(new ItemStack(water_bucket)));
+
         addPotRecipe(new ItemStack(mushroom_stew),
             new boolean[]{enableMachines},
             true,

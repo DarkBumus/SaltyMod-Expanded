@@ -38,9 +38,45 @@ public class ModClayOvenRecipes {
      */
     public static void init() {
 
+        Item mutton_raw = etFuturumItems.get("mutton_raw");
+        Item mutton_cooked = etFuturumItems.get("mutton_cooked");
+        Item rabbit_raw = etFuturumItems.get("rabbit_raw");
+        Item rabbit_cooked = etFuturumItems.get("rabbit_cooked");
         Item chorus_fruit = etFuturumItems.get("chorus_fruit");
+        Item chorus_fruit_popped = etFuturumItems.get("chorus_fruit_popped");
         Item sweet_berries = etFuturumItems.get("sweet_berries");
 
+        addOvenRecipe(new ItemStack(bread),
+            new boolean[]{enableDough, enableRecipeChanges},
+            true,
+            0.35f,
+            stack(new ItemStack(dough)));
+        addOvenRecipe(new ItemStack(bread),
+            new boolean[]{!enableDough, enableRecipeChanges},
+            true,
+            0.35f,
+            stack(new ItemStack(wheat)),
+            stack(new ItemStack(wheat)),
+            stack(new ItemStack(wheat)));
+
+        addOvenRecipe(new ItemStack(cooked_porkchop),
+            new boolean[]{enableRecipeChanges},
+            true,
+            0.15f,
+            stack(new ItemStack(porkchop)));
+
+        addOvenRecipe(new ItemStack(cooked_fished, 1, 0),
+            new boolean[]{enableRecipeChanges},
+            true,
+            0.15f,
+            stack(new ItemStack(fish, 1, 0)));
+
+        addOvenRecipe(new ItemStack(cooked_fished, 1, 1),
+            new boolean[]{enableRecipeChanges},
+            true,
+            0.15f,
+            stack(new ItemStack(fish, 1, 1)));
+
         addOvenRecipe(new ItemStack(cookie, 4),
             new boolean[]{enableDough, enableRecipeChanges},
             true,
@@ -53,6 +89,24 @@ public class ModClayOvenRecipes {
             0.25f,
             stack(new ItemStack(wheat)),
             stack(new ItemStack(dye, 1, 3)));
+
+        addOvenRecipe(new ItemStack(cooked_beef),
+            new boolean[]{enableRecipeChanges},
+            true,
+            0.15f,
+            stack(new ItemStack(beef)));
+
+        addOvenRecipe(new ItemStack(cooked_chicken),
+            new boolean[]{enableRecipeChanges},
+            true,
+            0.15f,
+            stack(new ItemStack(chicken)));
+
+        addOvenRecipe(new ItemStack(baked_potato),
+            new boolean[]{enableRecipeChanges},
+            true,
+            0.15f,
+            stack(new ItemStack(potato)));
 
         addOvenRecipe(new ItemStack(pumpkin_pie),
             new boolean[]{enableDough, enableRecipeChanges},
@@ -70,6 +124,160 @@ public class ModClayOvenRecipes {
             stack(new ItemStack(pumpkin)),
             stack(new ItemStack(wheat)),
             stack(new ItemStack(egg)));
+
+        addOvenRecipe(new ItemStack(mutton_cooked),
+            new boolean[]{enableRecipeChanges},
+            true,
+            0.15f,
+            stack(new ItemStack(mutton_raw)));
+
+        addOvenRecipe(new ItemStack(rabbit_cooked),
+            new boolean[]{enableRecipeChanges},
+            true,
+            0.15f,
+            stack(new ItemStack(rabbit_raw)));
+
+        addOvenRecipe(new ItemStack(chorus_fruit_popped),
+            new boolean[]{enableRecipeChanges},
+            true,
+            0.15f,
+            stack(new ItemStack(chorus_fruit)));
+
+        addOvenRecipe(new ItemStack(salt_cooked_porkchop),
+            new boolean[]{enableRecipeChanges},
+            true,
+            0.25f,
+            stack(new ItemStack(salt_pinch)),
+            stack(new ItemStack(porkchop)));
+
+        addOvenRecipe(new ItemStack(salt_cooked_beef),
+            new boolean[]{enableRecipeChanges},
+            true,
+            0.25f,
+            stack(new ItemStack(salt_pinch)),
+            stack(new ItemStack(beef)));
+
+        addOvenRecipe(new ItemStack(salt_cooked_chicken),
+            new boolean[]{enableRecipeChanges},
+            true,
+            0.25f,
+            stack(new ItemStack(salt_pinch)),
+            stack(new ItemStack(chicken)));
+
+        addOvenRecipe(new ItemStack(salt_cooked_rabbit),
+            new boolean[]{enableRecipeChanges},
+            true,
+            0.25f,
+            stack(new ItemStack(salt_pinch)),
+            stack(new ItemStack(rabbit_raw)));
+
+        addOvenRecipe(new ItemStack(salt_cooked_mutton),
+            new boolean[]{enableRecipeChanges},
+            true,
+            0.25f,
+            stack(new ItemStack(salt_pinch)),
+            stack(new ItemStack(mutton_raw)));
+
+        addOvenRecipe(new ItemStack(strider, 1, 1),
+            new boolean[]{enableRecipeChanges},
+            true,
+            0.15f,
+            stack(new ItemStack(strider, 1, 0)));
+
+        addOvenRecipe(new ItemStack(strider, 1, 2),
+            new boolean[]{enableRecipeChanges},
+            true,
+            0.25f,
+            stack(new ItemStack(salt_pinch)),
+            stack(new ItemStack(strider, 1, 0)));
+
+        addOvenRecipe(new ItemStack(haunch, 1, 1),
+            new boolean[]{enableRecipeChanges},
+            true,
+            0.15f,
+            stack(new ItemStack(haunch, 1, 0)));
+
+        addOvenRecipe(new ItemStack(haunch, 1, 2),
+            new boolean[]{enableRecipeChanges},
+            true,
+            0.25f,
+            stack(new ItemStack(salt_pinch)),
+            stack(new ItemStack(haunch, 1, 0)));
+
+        addOvenRecipe(new ItemStack(salt_cooked_cod),
+            new boolean[]{enableRecipeChanges},
+            true,
+            0.25f,
+            stack(new ItemStack(salt_pinch)),
+            stack(new ItemStack(fish, 1, 0)));
+
+        addOvenRecipe(new ItemStack(salt_cooked_salmon),
+            new boolean[]{enableRecipeChanges},
+            true,
+            0.25f,
+            stack(new ItemStack(salt_pinch)),
+            stack(new ItemStack(fish, 1, 1)));
+
+        addOvenRecipe(new ItemStack(cooked_tropical_fish, 1, 0),
+            new boolean[]{enableRecipeChanges},
+            true,
+            0.15f,
+            stack(new ItemStack(fish, 1, 2)));
+
+        addOvenRecipe(new ItemStack(cooked_tropical_fish, 1, 1),
+            new boolean[]{enableRecipeChanges},
+            true,
+            0.25f,
+            stack(new ItemStack(salt_pinch)),
+            stack(new ItemStack(fish, 1, 2)));
+
+        addOvenRecipe(new ItemStack(tailor, 1, 1),
+            new boolean[]{enableRecipeChanges},
+            true,
+            0.15f,
+            stack(new ItemStack(tailor, 1, 0)));
+
+        addOvenRecipe(new ItemStack(tailor, 1, 2),
+            new boolean[]{enableRecipeChanges},
+            true,
+            0.25f,
+            stack(new ItemStack(salt_pinch)),
+            stack(new ItemStack(tailor, 1, 0)));
+
+        addOvenRecipe(new ItemStack(calamari, 1, 1),
+            new boolean[]{enableRecipeChanges},
+            true,
+            0.15f,
+            stack(new ItemStack(calamari, 1, 0)));
+
+        addOvenRecipe(new ItemStack(calamari, 1, 2),
+            new boolean[]{enableRecipeChanges},
+            true,
+            0.25f,
+            stack(new ItemStack(salt_pinch)),
+            stack(new ItemStack(calamari, 1, 0)));
+
+        addOvenRecipe(new ItemStack(salt_bread),
+            new boolean[]{enableDough, enableRecipeChanges},
+            true,
+            0.45f,
+            stack(new ItemStack(salt_pinch)),
+            stack(new ItemStack(dough)));
+        addOvenRecipe(new ItemStack(salt_bread),
+            new boolean[]{!enableDough, enableRecipeChanges},
+            true,
+            0.45f,
+            stack(new ItemStack(salt_pinch)),
+            stack(new ItemStack(wheat)),
+            stack(new ItemStack(wheat)),
+            stack(new ItemStack(wheat)));
+
+        addOvenRecipe(new ItemStack(salt_baked_potato),
+            new boolean[]{enableRecipeChanges},
+            true,
+            0.25f,
+            stack(new ItemStack(salt_pinch)),
+            stack(new ItemStack(potato)));
 
         addOvenRecipe(new ItemStack(sweetberry_cookie, 4),
             new boolean[]{enableDough, enableBerryCookie},
