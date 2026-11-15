@@ -102,7 +102,8 @@ public class PotcookingRecipe {
         ItemStack output,
         boolean requiresHeater,
         List<IIngredientMatcher> ingreds,
-        float xpChance
+        float xpChance,
+        boolean isBucketRecipe
     ) {
 
         public boolean shouldSpawnXp() {
@@ -111,12 +112,13 @@ public class PotcookingRecipe {
     }
 
     /**
-     * Registers a new cooking recipe.
+     * Registers a new cooking recipe with an optional bucket recipe flag.
      */
     public void registerRecipe(
         ItemStack output,
         boolean requiresHeater,
         float xpChance,
+        boolean isBucketRecipe,
         IIngredientMatcher... ingredMatchers
     ) {
         List<IIngredientMatcher> ingredList = Arrays.asList(ingredMatchers);
@@ -125,7 +127,8 @@ public class PotcookingRecipe {
             output,
             requiresHeater,
             ingredList,
-            xpChance
+            xpChance,
+            isBucketRecipe
         ));
     }
 

@@ -42,6 +42,8 @@ public class TileEntityCookingPot extends TileEntity implements ISidedInventory 
 
     public static final int[] slotOutput = new int[]{6};
 
+    public boolean isOutputBucketRecipe = false;
+
     /**
      * Checks if the inventory has a custom name.
      *
@@ -129,6 +131,7 @@ public class TileEntityCookingPot extends TileEntity implements ISidedInventory 
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
+        isOutputBucketRecipe = nbt.getBoolean("OutputIsBucketRecipe");
         NBTTagList itemList = nbt.getTagList("Items", 10);
         inventory = new ItemStack[getSizeInventory()];
 
@@ -151,6 +154,7 @@ public class TileEntityCookingPot extends TileEntity implements ISidedInventory 
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
+        nbt.setBoolean("OutputIsBucketRecipe", isOutputBucketRecipe);
         nbt.setShort("CookTime", (short) cookingTime);
         NBTTagList itemList = new NBTTagList();
 
@@ -327,7 +331,8 @@ public class TileEntityCookingPot extends TileEntity implements ISidedInventory 
         PotcookingRecipe.PotRecipe recipe = PotcookingRecipe.cooking().getRecipeFor(ingreds);
         if (recipe == null) return false;
 
-        return isHeaterRequirementMet(recipe) && canAcceptOutput(inventory[6], recipe.output());
+        return isHeaterRequirementMet(recipe)
+            && canAcceptOutput(inventory[6], recipe.output(), recipe.isBucketRecipe());
     }
 
     /**
@@ -343,15 +348,19 @@ public class TileEntityCookingPot extends TileEntity implements ISidedInventory 
     /**
      * Checks if the output slot can accept the produced item.
      *
-     * @param currentStack The current stack in the output slot.
-     * @param output       The output stack to be added.
+     * @param currentStack   The current stack in the output slot.
+     * @param output         The output stack to be added.
+     * @param isBucketRecipe Whether the recipe is a bucket recipe.
      * @return true, if the output can be added, false otherwise.
      */
-    private boolean canAcceptOutput(ItemStack currentStack, ItemStack output) {
+    private boolean canAcceptOutput(ItemStack currentStack, ItemStack output, boolean isBucketRecipe) {
         if (output == null) return true;
         if (currentStack == null) return true;
 
+        if (isOutputBucketRecipe != isBucketRecipe) return false;
+
         if (!currentStack.isItemEqual(output)) return false;
+
         return currentStack.stackSize + output.stackSize <= currentStack.getMaxStackSize();
     }
 
@@ -381,70 +390,68 @@ public class TileEntityCookingPot extends TileEntity implements ISidedInventory 
         PotcookingRecipe.PotRecipe recipe = PotcookingRecipe.cooking().getRecipeFor(ingreds);
         if (recipe == null) return;
 
+        if (!isHeaterRequirementMet(recipe)
+            || !canAcceptOutput(inventory[6], recipe.output(), recipe.isBucketRecipe())) {
+            return;
+        }
+
         if (recipe.output() != null) {
             if (inventory[6] == null) {
                 inventory[6] = recipe.output().copy();
+                isOutputBucketRecipe = recipe.isBucketRecipe();
             } else {
                 inventory[6].stackSize += recipe.output().stackSize;
             }
         }
 
+        // Consume ingredients in the regular input slots.
         for (int i = 0; i < 6; i++) {
-            if (inventory[i] != null) {
-                ItemStack input = inventory[i];
-                Item item = input.getItem();
-                assert item != null;
-                ItemStack container = item.getContainerItem(input);
-
-                input.stackSize--;
-                if (input.stackSize <= 0) {
-                    inventory[i] = null;
-                }
-
-                if (container != null) {
-                    if (inventory[i] == null) {
-                        inventory[i] = container.copy();
-                    } else {
-                        if (!worldObj.isRemote) {
-                            worldObj.spawnEntityInWorld(new EntityItem(
-                                worldObj,
-                                xCoord + 0.5, yCoord + 0.5, zCoord + 0.5,
-                                container.copy()
-                            ));
-                        }
-                    }
-                }
-            }
+            consumeIngredient(i, recipe.isBucketRecipe());
         }
 
-        if (inventory[7] != null) {
-            ItemStack input = inventory[7];
-            Item item = input.getItem();
-            assert item != null;
-            ItemStack container = item.getContainerItem(input);
-
-            input.stackSize--;
-            if (input.stackSize <= 0) {
-                inventory[7] = null;
-            }
-
-            if (container != null) {
-                if (inventory[7] == null) {
-                    inventory[7] = container.copy();
-                } else {
-                    if (!worldObj.isRemote) {
-                        worldObj.spawnEntityInWorld(new EntityItem(
-                            worldObj,
-                            xCoord + 0.5, yCoord + 0.5, zCoord + 0.5,
-                            container.copy()
-                        ));
-                    }
-                }
-            }
-        }
+        // Consume the ingredient in the special pinch slot.
+        consumeIngredient(7, recipe.isBucketRecipe());
 
         if (recipe.shouldSpawnXp() && worldObj != null && !worldObj.isRemote) {
             spawnXp(worldObj, xCoord, yCoord, zCoord, recipe.xpChance());
+        }
+    }
+
+    /**
+     * Consumes one item from an ingredient slot.
+     * Container items are only returned for regular recipes.
+     *
+     * @param slot           The ingredient slot.
+     * @param isBucketRecipe Whether the current recipe is a bucket recipe.
+     */
+    private void consumeIngredient(int slot, boolean isBucketRecipe) {
+        if (inventory[slot] == null) return;
+
+        ItemStack input = inventory[slot];
+        Item item = input.getItem();
+
+        assert item != null;
+
+        ItemStack container = isBucketRecipe ? null : item.getContainerItem(input);
+
+        input.stackSize--;
+
+        if (input.stackSize <= 0) {
+            inventory[slot] = null;
+        }
+
+        if (container != null) {
+            if (inventory[slot] == null) {
+                inventory[slot] = container.copy();
+            } else {
+                if (!worldObj.isRemote) {
+                    worldObj.spawnEntityInWorld(new EntityItem(
+                        worldObj,
+                        xCoord + 0.5, yCoord + 0.5, zCoord + 0.5,
+                        container.copy()
+                    ));
+                }
+            }
         }
     }
 
@@ -496,5 +503,14 @@ public class TileEntityCookingPot extends TileEntity implements ISidedInventory 
     @Override
     public boolean canExtractItem(int index, ItemStack itemstack, int side) {
         return false;
+    }
+
+    /**
+     * Checks whether the current output belongs to a bucket recipe.
+     *
+     * @return true if the output is from a bucket recipe, false otherwise.
+     */
+    public boolean isOutputBucketRecipe() {
+        return isOutputBucketRecipe;
     }
 }

@@ -62,10 +62,6 @@ public class ModShapelessRecipes {
 
         addShapelessRecipe(new ItemStack(wheat_seeds, 9),
             new ItemStack(storage_sack));
-        addShapelessRecipe(new ItemStack(milk_bucket),
-            new ItemStack(powdered_milk),
-            new ItemStack(water_bucket),
-            new ItemStack(bucket));
 
         addShapelessRecipe(new ItemStack(slime_ball),
             new boolean[]{enableDough},

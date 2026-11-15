@@ -39,6 +39,7 @@ public class ModOreDictionary {
         Item StriderFlankRaw = netherliciousItems.get("StriderFlankRaw");
         Item StriderFlankCooked = netherliciousItems.get("StriderFlankCooked");
 
+        Block blue_ice = etFuturumBlocks.get("blue_ice");
         Block smooth_sandstone = etFuturumBlocks.get("smooth_sandstone");
         Block magma = etFuturumBlocks.get("magma");
         Block nether_fungus = etFuturumBlocks.get("nether_fungus");
@@ -59,8 +60,17 @@ public class ModOreDictionary {
         Block soul_campfire = campfireBackportBlocks.get("soul_campfire");
 
         // Salty Mod Ore Dictionaries
+        registerOre("blockGlass", new ItemStack(glass), glass != null);
+        registerOre("blockGlass", new ItemStack(stained_glass, 1, WILDCARD_VALUE), stained_glass != null);
         registerOre("blockSandstone", new ItemStack(sandstone, 1, WILDCARD_VALUE), sandstone != null);
         registerOre("blockSandstone", smooth_sandstone, smooth_sandstone != null);
+        registerOre("blockIce", new ItemStack(ice), ice != null);
+        registerOre("blockIce", new ItemStack(packed_ice), packed_ice != null);
+        registerOre("blockIce", new ItemStack(blue_ice), blue_ice != null);
+        registerOre("blockStoneBrick", new ItemStack(stonebrick, 1, WILDCARD_VALUE), stonebrick != null);
+        registerOre("blockQuartz", new ItemStack(quartz_block, 1, WILDCARD_VALUE), quartz_block != null);
+        registerOre("blockTerracotta", new ItemStack(stained_hardened_clay, 1, WILDCARD_VALUE), stained_hardened_clay != null);
+        registerOre("blockTerracotta", new ItemStack(hardened_clay), hardened_clay != null);
         registerOre("blockMushroom", red_mushroom, red_mushroom != null);
         registerOre("blockMushroom", brown_mushroom, brown_mushroom != null);
         registerOre("oreSalt", salt_ore, salt_ore != null);

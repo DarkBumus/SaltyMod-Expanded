@@ -51,11 +51,11 @@ public class NEIPressingRecipeHandler extends TemplateRecipeHandler {
             }
 
             if (recipe.output2() != null && recipe.output1() != null) {
-                ingreds.add(new PositionedStack(recipe.output2(), 93, 42));
+                ingreds.add(new PositionedStack(recipe.output2(), 93, 44));
             }
 
             if (recipe.vesselItem() != null) {
-                ingreds.add(new PositionedStack(recipe.vesselItem(), 21, 42));
+                ingreds.add(new PositionedStack(recipe.vesselItem(), 21, 44));
             }
 
             ItemStack mainOutput = recipe.output1() != null
@@ -66,7 +66,7 @@ public class NEIPressingRecipeHandler extends TemplateRecipeHandler {
                 throw new IllegalArgumentException("Press recipe must have at least one output!");
             }
 
-            this.result = new PositionedStack(mainOutput, 57, 42);
+            this.result = new PositionedStack(mainOutput, 57, 44);
         }
 
         @Override
@@ -144,7 +144,7 @@ public class NEIPressingRecipeHandler extends TemplateRecipeHandler {
 
     @Override
     public void loadTransferRects() {
-        transferRects.add(new RecipeTransferRect(new Rectangle(68, 28, 31, 8), SaltyMod.MODID + ".press"));
+        transferRects.add(new RecipeTransferRect(new Rectangle(68, 29, 31, 8), SaltyMod.MODID + ".press"));
     }
 
     @Override
@@ -187,16 +187,8 @@ public class NEIPressingRecipeHandler extends TemplateRecipeHandler {
         }
 
         int progress = (int) ((System.currentTimeMillis() / 50L) % 17L);
-        drawTexturedModalRect(
-            68, 25,
-            176, 14,
-            progress, 14
-        );
-        drawTexturedModalRect(
-            83 + (15 - progress), 25,
-            191 + (15 - progress), 14,
-            progress, 14
-        );
+        drawTexturedModalRect(68, 29, 176, 14, progress, 14);
+        drawTexturedModalRect(83 + (15 - progress), 29, 191 + (15 - progress), 14, progress, 14);
 
     }
 

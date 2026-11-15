@@ -34,7 +34,7 @@ public class NEIPotcookingRecipeHandler extends TemplateRecipeHandler {
 
         public CookingPotPair(PotcookingRecipe.PotRecipe recipe) {
             this.ingreds = new ArrayList<>();
-            this.bowl = new PositionedStack(new ItemStack(Items.bowl), 119, 44);
+            this.bowl = recipe.isBucketRecipe() ? null : new PositionedStack(new ItemStack(Items.bowl), 119, 44);
             for (int i = 0; i < recipe.ingreds().size(); i++) {
                 int i2 = i;
                 PotcookingRecipe.IIngredientMatcher ingred = recipe.ingreds().get(i);
@@ -74,7 +74,7 @@ public class NEIPotcookingRecipeHandler extends TemplateRecipeHandler {
 
         @Override
         public List<PositionedStack> getOtherStacks() {
-            return Collections.singletonList(this.bowl);
+            return this.bowl != null ? Collections.singletonList(this.bowl) : Collections.emptyList();
         }
     }
 

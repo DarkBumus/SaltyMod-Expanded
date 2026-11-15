@@ -39,8 +39,8 @@ public class GuiPress extends GuiContainer {
         if (tileEntityPress.isRunning()) {
             int progress = tileEntityPress.getPressProgressScale(16);
 
-            drawTexturedModalRect(x + 73, y + 36, 176, 14, progress, 14);
-            drawTexturedModalRect(x + 88 + (15 - progress), y + 36, 191 + (15 - progress), 14, progress, 14);
+            drawTexturedModalRect(x + 73, y + 40, 176, 14, progress, 8);
+            drawTexturedModalRect(x + 88 + (15 - progress), y + 40, 191 + (15 - progress), 14, progress, 8);
         }
 
         if (tileEntityPress.isHeaterNearby) {

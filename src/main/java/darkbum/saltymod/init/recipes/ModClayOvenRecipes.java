@@ -314,7 +314,7 @@ public class ModClayOvenRecipes {
             stack(new ItemStack(dough)),
             stack(new ItemStack(egg)));
         addOvenRecipe(new ItemStack(chocolate_pie),
-            new boolean[]{enableDough, enableChocolatePie},
+            new boolean[]{!enableDough, enableChocolatePie},
             true,
             0.5f,
             stack(new ItemStack(dye, 1, 3)),

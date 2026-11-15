@@ -196,16 +196,22 @@ public final class ConditionalRegistrar {
      * @param xpChance the chance to gain experience from the recipe
      * @param ingredients the ingredient matchers for the recipe
      */
-    public static void addPotRecipe(ItemStack output, boolean[] conditions, boolean requiresHeater, float xpChance, PotcookingRecipe.IIngredientMatcher... ingredients) {
+    public static void addPotRecipe(ItemStack output, boolean[] conditions, boolean requiresHeater, float xpChance, boolean isBucketRecipe, PotcookingRecipe.IIngredientMatcher... ingredients) {
         if (checkConditions(conditions)) return;
-        PotcookingRecipe.cooking().registerRecipe(output, requiresHeater, xpChance, ingredients);
+        PotcookingRecipe.cooking().registerRecipe(output, requiresHeater, xpChance, isBucketRecipe, ingredients);
     }
 
-    @SuppressWarnings("unused")
+    public static void addPotRecipe(ItemStack output, boolean[] conditions, boolean requiresHeater, float xpChance, PotcookingRecipe.IIngredientMatcher... ingredients) {
+        addPotRecipe(output, conditions, requiresHeater, xpChance, false, ingredients);
+    }
+
     public static void addPotRecipe(ItemStack output, boolean requiresHeater, float xpChance, PotcookingRecipe.IIngredientMatcher... ingredients) {
-        addPotRecipe(output, new boolean[0], requiresHeater, xpChance, ingredients);
+        addPotRecipe(output, new boolean[0], requiresHeater, xpChance, false, ingredients);
     }
 
+    public static void addPotRecipe(ItemStack output, boolean requiresHeater, float xpChance, boolean isBucketRecipe, PotcookingRecipe.IIngredientMatcher... ingredients) {
+        addPotRecipe(output, new boolean[0], requiresHeater, xpChance, isBucketRecipe, ingredients);
+    }
 
     /**
      * Adds a clay oven recipe to the game if the provided conditions are met.

@@ -34,9 +34,9 @@ public class ContainerPress extends Container {
         this.tileEntityPress = tileEntityPress;
 
         addSlotToContainer(new SlotPressInput(playerInventory.player, tileEntityPress, SLOT_INPUT, 80, 17));
-        addSlotToContainer(new SlotMachineOutput(tileEntityPress, SLOT_OUTPUT_1, 62, 53));
-        addSlotToContainer(new SlotMachineOutput(tileEntityPress, SLOT_OUTPUT_2, 98, 53));
-        addSlotToContainer(new SlotPressVessel(tileEntityPress, SLOT_VESSEL, 26, 53));
+        addSlotToContainer(new SlotMachineOutput(tileEntityPress, SLOT_OUTPUT_1, 62, 55));
+        addSlotToContainer(new SlotMachineOutput(tileEntityPress, SLOT_OUTPUT_2, 98, 55));
+        addSlotToContainer(new SlotPressVessel(tileEntityPress, SLOT_VESSEL, 26, 55));
 
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 9; col++) {

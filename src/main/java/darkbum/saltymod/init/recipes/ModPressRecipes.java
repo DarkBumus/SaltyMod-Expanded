@@ -2,6 +2,7 @@ package darkbum.saltymod.init.recipes;
 
 import darkbum.saltymod.tileentity.TileEntityPress;
 import darkbum.saltymod.util.PotcookingRecipe;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -36,32 +37,33 @@ public class ModPressRecipes {
     public static void init() {
 
         Item raw_ore = etFuturumItems.get("raw_ore");
+        Item dye = etFuturumItems.get("dye");
         Item honey_bottle = etFuturumItems.get("honey_bottle");
 
         addPressRecipe(stack(new ItemStack(stone)),
-            null,
             new ItemStack(cobblestone),
+            null,
             false,
             true,
             null);
         addPressRecipe(stack(new ItemStack(cobblestone)),
-            null,
             new ItemStack(gravel),
+            null,
             false,
             true,
             null);
         addPressRecipe(stack(new ItemStack(gravel)),
-            null,
             new ItemStack(sand, 1, 0),
+            null,
             false,
             true,
             null);
         addPressRecipe(stack(new ItemStack(gravel)),
-            null,
             new ItemStack(sand, 1, 1),
+            null,
             false,
             true,
-            new ItemStack(dye, 1, 1));
+            new ItemStack(Items.dye, 1, 1));
 
         addPressRecipe(stack(new ItemStack(gold_ore)),
             new boolean[]{raw_ore != null},
@@ -77,35 +79,110 @@ public class ModPressRecipes {
             false,
             true,
             null);
-
-        addPressRecipe(stack(new ItemStack(glass)),
-            null,
-            new ItemStack(sand, 1, 0),
+        addPressRecipe(stack(new ItemStack(iron_ore)),
+            new ItemStack(cobblestone),
+            new ItemStack(coal, 1, 0),
             false,
             true,
             null);
+
+        addPressRecipe(ore("blockGlass"),
+            new ItemStack(sand, 1, 0),
+            null,
+            false,
+            true,
+            null);
+
+        addPressRecipe(stack(new ItemStack(lapis_ore)),
+            new ItemStack(cobblestone),
+            new ItemStack(Items.dye, 3, 4),
+            false,
+            true,
+            null);
+
         addPressRecipe(ore("blockSandstone"),
-            null,
             new ItemStack(sand, 1, 0),
+            null,
+            false,
+            true,
+            null);
+        addPressRecipe(stack(new ItemStack(brick_block)),
+            new ItemStack(bucket),
+            new ItemStack(clay, 1, 0),
+            false,
+            true,
+            new ItemStack(water_bucket));
+        addPressRecipe(stack(new ItemStack(mossy_cobblestone)),
+            new ItemStack(gravel),
+            null,
             false,
             true,
             null);
 
-        addPressRecipe(stack(new ItemStack(mineral_mud_ball)),
-            new boolean[]{enableMineralMud},
-            new ItemStack(potionitem, 1, 0),
-            new ItemStack(clay_ball),
-            false,
-            false,
-            new ItemStack(glass_bottle));
-
-        addPressRecipe(stack(new ItemStack(wheat)),
-            new boolean[]{enableDough},
-            new ItemStack(glass_bottle),
-            new ItemStack(dough),
+        addPressRecipe(stack(new ItemStack(diamond_ore)),
+            new ItemStack(cobblestone),
+            new ItemStack(diamond),
             false,
             true,
-            new ItemStack(potionitem, 1, 0));
+            null);
+        addPressRecipe(stack(new ItemStack(redstone_ore)),
+            new ItemStack(cobblestone),
+            new ItemStack(redstone, 3, 0),
+            false,
+            true,
+            null);
+
+        addPressRecipe(ore("blockIce"),
+            new ItemStack(snow),
+            null,
+            false,
+            true,
+            null);
+        addPressRecipe(ore("blockIce"),
+            new ItemStack(water_bucket),
+            null,
+            true,
+            false,
+            new ItemStack(bucket));
+        addPressRecipe(stack(new ItemStack(glowstone)),
+            new ItemStack(glowstone_dust, 2, 0),
+            null,
+            false,
+            true,
+            null);
+
+        addPressRecipe(ore("blockStoneBrick"),
+            new ItemStack(cobblestone),
+            null,
+            false,
+            true,
+            null);
+
+        addPressRecipe(stack(new ItemStack(emerald_ore)),
+            new ItemStack(cobblestone),
+            new ItemStack(emerald),
+            false,
+            true,
+            null);
+        addPressRecipe(stack(new ItemStack(quartz_ore)),
+            new ItemStack(netherrack),
+            new ItemStack(quartz),
+            false,
+            true,
+            null);
+
+        addPressRecipe(ore("blockQuartz"),
+            new ItemStack(netherrack),
+            new ItemStack(quartz, 4, 0),
+            false,
+            true,
+            null);
+        addPressRecipe(ore("blockTerracotta"),
+            new ItemStack(bucket),
+            new ItemStack(clay, 1, 0),
+            false,
+            true,
+            new ItemStack(water_bucket));
 
         addPressRecipe(stack(new ItemStack(honeycomb)),
             new boolean[]{enableHoney, honey_bottle != null},
