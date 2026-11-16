@@ -35,30 +35,40 @@ public class NEIPotcookingRecipeHandler extends TemplateRecipeHandler {
         public CookingPotPair(PotcookingRecipe.PotRecipe recipe) {
             this.ingreds = new ArrayList<>();
             this.bowl = recipe.isBucketRecipe() ? null : new PositionedStack(new ItemStack(Items.bowl), 119, 44);
+
             for (int i = 0; i < recipe.ingreds().size(); i++) {
                 int i2 = i;
                 PotcookingRecipe.IIngredientMatcher ingred = recipe.ingreds().get(i);
                 PotcookingRecipe.IIngredientMatcher firstIngred = recipe.ingreds().get(0);
-                if(firstIngred instanceof PotcookingRecipe.StackIngredient stackIngredient) {
-                    if(stackIngredient.stack().getItem() == ModItems.salt_pinch || stackIngredient.stack().getItem() == ModItems.sugar_pinch) {
+
+                if (firstIngred instanceof PotcookingRecipe.StackIngredient stackIngredient) {
+                    if (stackIngredient.stack().getItem() == ModItems.salt_pinch
+                        || stackIngredient.stack().getItem() == ModItems.sugar_pinch) {
                         i2 = i - 1;
                     }
                 }
+
                 int rX = 18 * i2;
                 int posX = ((rX % 54) + 30) - 5;
                 int rY = Math.floorDiv(rX, 54) + 1;
                 int posY = (rY * 18) - 12;
-                if(ingred instanceof PotcookingRecipe.OreIngredient oreIngredient) {
+
+                if (ingred instanceof PotcookingRecipe.MultiStackIngredient multiStackIngredient) {
+                    ingreds.add(new PositionedStack(multiStackIngredient.stacks(), posX, posY));
+
+                } else if (ingred instanceof PotcookingRecipe.OreIngredient oreIngredient) {
                     ingreds.add(new PositionedStack(oreIngredient.getOres(), posX, posY));
-                } else if(ingred instanceof PotcookingRecipe.StackIngredient stackIngredient) {
-                    if(stackIngredient.stack().getItem() == ModItems.salt_pinch || stackIngredient.stack().getItem() == ModItems.sugar_pinch) {
+
+                } else if (ingred instanceof PotcookingRecipe.StackIngredient stackIngredient) {
+                    if (stackIngredient.stack().getItem() == ModItems.salt_pinch
+                        || stackIngredient.stack().getItem() == ModItems.sugar_pinch) {
                         ingreds.add(new PositionedStack(stackIngredient.stack(), 3, 6));
                     } else {
                         ingreds.add(new PositionedStack(stackIngredient.stack(), posX, posY));
                     }
-
                 }
             }
+
             this.result = new PositionedStack(recipe.output(), 119, 15);
         }
 

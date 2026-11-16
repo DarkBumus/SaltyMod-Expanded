@@ -34,18 +34,26 @@ public class NEIOvenbakingRecipeHandler extends TemplateRecipeHandler {
         public OvenPair(OvenbakingRecipe.OvenRecipe recipe) {
             this.ingreds = new ArrayList<>();
             this.woodenShovel = new PositionedStack(new ItemStack(Items.wooden_shovel), 111, 44);
+
             for (int i = 0; i < recipe.ingreds().size(); i++) {
                 OvenbakingRecipe.IIngredientMatcher ingred = recipe.ingreds().get(i);
+
                 int rX = 18 * i;
                 int posX = ((rX % 36) + 30) + 5;
                 int rY = Math.floorDiv(rX, 36) + 1;
                 int posY = (rY * 18) - 12;
-                if(ingred instanceof OvenbakingRecipe.OreIngredient oreIngredient) {
+
+                if (ingred instanceof OvenbakingRecipe.MultiStackIngredient multiStackIngredient) {
+                    ingreds.add(new PositionedStack(multiStackIngredient.stacks(), posX, posY));
+
+                } else if (ingred instanceof OvenbakingRecipe.OreIngredient oreIngredient) {
                     ingreds.add(new PositionedStack(oreIngredient.getOres(), posX, posY));
-                } else if(ingred instanceof OvenbakingRecipe.StackIngredient stackIngredient) {
+
+                } else if (ingred instanceof OvenbakingRecipe.StackIngredient stackIngredient) {
                     ingreds.add(new PositionedStack(stackIngredient.stack(), posX, posY));
                 }
             }
+
             this.result = new PositionedStack(recipe.output(), 111, 15);
         }
 

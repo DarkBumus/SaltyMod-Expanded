@@ -176,7 +176,7 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
         if (input == null) return false;
 
         ItemStack vessel = inventory[3];
-        PressingRecipe.PressRecipe recipe = PressingRecipe.pressing().getRecipeFor(input, vessel);
+        PressingRecipe.PressRecipe recipe = PressingRecipe.pressing().getRecipeFor(input, vessel, isHeaterNearby, isMillNearby);
         if (recipe == null) return false;
 
         if (!isHeaterRequirementMet(recipe)) return false;
@@ -229,7 +229,7 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
         if (input == null) return;
 
         ItemStack vessel = inventory[3];
-        PressingRecipe.PressRecipe recipe = PressingRecipe.pressing().getRecipeFor(input, vessel);
+        PressingRecipe.PressRecipe recipe = PressingRecipe.pressing().getRecipeFor(input, vessel, isHeaterNearby, isMillNearby);
         if (recipe == null) return;
 
         ItemStack output1 = getRecipeOutput(recipe.output1(), recipe, input);

@@ -36,6 +36,43 @@ public class PressingRecipe {
         }
     }
 
+        /**
+         * Ingredient matcher for multiple alternative ItemStacks.
+         */
+
+        @Desugar
+        public record MultiStackIngredient(List<ItemStack> stacks) implements IIngredientMatcher {
+            public MultiStackIngredient(List<ItemStack> stacks) {
+                this.stacks = new ArrayList<>();
+
+                for (ItemStack stack : stacks) {
+                    this.stacks.add(stack.copy());
+                }
+            }
+
+            @Override
+            public boolean matches(ItemStack input) {
+                for (ItemStack stack : stacks) {
+                    if (areStacksEqual(stack, input)) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+
+            @Override
+            public List<ItemStack> stacks() {
+                List<ItemStack> result = new ArrayList<>();
+
+                for (ItemStack stack : stacks) {
+                    result.add(stack.copy());
+                }
+
+                return result;
+            }
+        }
+
     /**
      * Ingredient matcher for OreDictionary entries.
      */
@@ -132,6 +169,66 @@ public class PressingRecipe {
         registerRecipe(input, output1, output2, requiresHeater, requiresMill, null, false);
     }
 
+    public void registerRecipe(PressRecipe recipe) {
+        recipes.add(recipe);
+    }
+
+
+    /**
+     * Removes a recipe by its exact object identity.
+     */
+    public void removeRecipe(PressRecipe recipe) {
+        for (int i = 0; i < recipes.size(); i++) {
+            if (recipes.get(i) == recipe) {
+                recipes.remove(i);
+                return;
+            }
+        }
+    }
+
+    public List<RemovedRecipe> removeRecipesByInput(ItemStack input) {
+        List<RemovedRecipe> removedRecipes = new ArrayList<>();
+
+        for (int i = recipes.size() - 1; i >= 0; i--) {
+            PressRecipe recipe = recipes.get(i);
+
+            if (recipe.input() != null && recipe.input().matches(input)) {
+                removedRecipes.add(new RemovedRecipe(i, recipe));
+                recipes.remove(i);
+            }
+        }
+
+        Collections.reverse(removedRecipes);
+        return removedRecipes;
+    }
+
+    /**
+     * Restores previously removed recipes at their original positions.
+     */
+    public void restoreRecipes(List<RemovedRecipe> removedRecipes) {
+        for (RemovedRecipe removed : removedRecipes) {
+            int index = Math.min(removed.index(), recipes.size());
+            recipes.add(index, removed.recipe());
+        }
+    }
+
+    @SuppressWarnings("unused")
+    private static boolean areOutputsEqual(
+        ItemStack stack1,
+        ItemStack stack2
+    ) {
+        if (stack1 == null || stack2 == null) {
+            return false;
+        }
+
+        return stack1.isItemEqual(stack2)
+            && ItemStack.areItemStackTagsEqual(stack1, stack2);
+    }
+
+    @Desugar
+    public record RemovedRecipe(int index, PressRecipe recipe) {
+    }
+
     /**
      * Returns all registered recipes.
      */
@@ -139,18 +236,35 @@ public class PressingRecipe {
         return Collections.unmodifiableList(recipes);
     }
 
+
     /**
-     * Retrieves a matching recipe.
+     * Retrieves a matching recipe, including machine and vessel requirements.
      */
-    public PressRecipe getRecipeFor(ItemStack input, ItemStack vessel) {
+    public PressRecipe getRecipeFor(
+        ItemStack input,
+        ItemStack vessel,
+        boolean isHeaterNearby,
+        boolean isMillNearby
+    ) {
         for (PressRecipe recipe : recipes) {
 
             if (recipe.input() == null || !recipe.input().matches(input)) {
                 continue;
             }
 
-            if (recipe.requiresVessel() && !MachineUtilRegistry.isValidVessel(vessel)) {
+            if (recipe.requiresHeater() != isHeaterNearby) {
                 continue;
+            }
+
+            if (recipe.requiresMill() != isMillNearby) {
+                continue;
+            }
+
+            if (recipe.requiresVessel()) {
+                if (!MachineUtilRegistry.isValidVessel(vessel)
+                    || vessel.getItem() != recipe.vesselItem().getItem()) {
+                    continue;
+                }
             }
 
             return recipe;
@@ -158,6 +272,7 @@ public class PressingRecipe {
 
         return null;
     }
+
 
     /**
      * Compares two ItemStacks.

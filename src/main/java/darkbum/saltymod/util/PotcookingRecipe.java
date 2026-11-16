@@ -80,6 +80,42 @@ public class PotcookingRecipe {
         return new StackIngredient(stack);
     }
 
+    @Desugar
+    public record MultiStackIngredient(List<ItemStack> stacks) implements IIngredientMatcher {
+
+            public MultiStackIngredient(List<ItemStack> stacks) {
+                this.stacks = new ArrayList<>();
+
+                for (ItemStack stack : stacks) {
+                    if (stack != null) {
+                        this.stacks.add(stack.copy());
+                    }
+                }
+            }
+
+            @Override
+            public boolean matches(ItemStack input) {
+                for (ItemStack stack : stacks) {
+                    if (areStacksEqual(stack, input)) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+
+            @Override
+            public List<ItemStack> stacks() {
+                List<ItemStack> result = new ArrayList<>();
+
+                for (ItemStack stack : stacks) {
+                    result.add(stack.copy());
+                }
+
+                return result;
+            }
+        }
+
     /**
      * Creates a new OreIngredient matcher.
      */
@@ -111,9 +147,14 @@ public class PotcookingRecipe {
         }
     }
 
+    @Desugar
+    public record RemovedRecipe(int index, PotRecipe recipe) {
+    }
+
     /**
      * Registers a new cooking recipe with an optional bucket recipe flag.
      */
+
     public void registerRecipe(
         ItemStack output,
         boolean requiresHeater,
@@ -121,9 +162,9 @@ public class PotcookingRecipe {
         boolean isBucketRecipe,
         IIngredientMatcher... ingredMatchers
     ) {
-        List<IIngredientMatcher> ingredList = Arrays.asList(ingredMatchers);
+        List<IIngredientMatcher> ingredList = new ArrayList<>(Arrays.asList(ingredMatchers));
 
-        recipes.add(new PotRecipe(
+        registerRecipe(new PotRecipe(
             output,
             requiresHeater,
             ingredList,
@@ -131,6 +172,57 @@ public class PotcookingRecipe {
             isBucketRecipe
         ));
     }
+
+    public void registerRecipe(PotRecipe recipe) {
+        recipes.add(recipe);
+    }
+
+    public void removeRecipe(PotRecipe recipe) {
+        for (int i = 0; i < recipes.size(); i++) {
+            if (recipes.get(i) == recipe) {
+                recipes.remove(i);
+                return;
+            }
+        }
+    }
+
+    public List<RemovedRecipe> removeRecipesByOutput(ItemStack output) {
+        List<RemovedRecipe> removed = new ArrayList<>();
+
+        for (int i = recipes.size() - 1; i >= 0; i--) {
+            PotRecipe recipe = recipes.get(i);
+
+            if (areOutputsEqual(recipe.output(), output)) {
+                removed.add(new RemovedRecipe(i, recipe));
+                recipes.remove(i);
+            }
+        }
+
+        Collections.reverse(removed);
+
+        return removed;
+    }
+
+    public void restoreRecipes(List<RemovedRecipe> removedRecipes) {
+        for (RemovedRecipe removed : removedRecipes) {
+            int index = Math.min(removed.index(), recipes.size());
+
+            recipes.add(index, removed.recipe());
+        }
+    }
+
+    private static boolean areOutputsEqual(ItemStack stack1, ItemStack stack2) {
+        if (stack1 == null || stack2 == null) {
+            return false;
+        }
+
+        return stack1.getItem() == stack2.getItem()
+            && (stack1.getItemDamage() == WILDCARD_VALUE
+            || stack2.getItemDamage() == WILDCARD_VALUE
+            || stack1.getItemDamage() == stack2.getItemDamage())
+            && ItemStack.areItemStackTagsEqual(stack1, stack2);
+    }
+
 
     /**
      * Returns all registered recipes.

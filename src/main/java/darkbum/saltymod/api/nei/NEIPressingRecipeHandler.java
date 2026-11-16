@@ -38,11 +38,15 @@ public class NEIPressingRecipeHandler extends TemplateRecipeHandler {
             this.mill = recipe.requiresMill();
             this.ingreds = new ArrayList<>();
 
-            if (recipe.input() instanceof PressingRecipe.StackIngredient stackIngredient) {
+            if (recipe.input() instanceof PressingRecipe.MultiStackIngredient multiStackIngredient) {
+                ingreds.add(new PositionedStack(
+                    multiStackIngredient.stacks(),
+                    75,
+                    6
+                ));
+            } else if (recipe.input() instanceof PressingRecipe.StackIngredient stackIngredient) {
                 ingreds.add(new PositionedStack(stackIngredient.stack(), 75, 6));
-            }
-
-            if (recipe.input() instanceof PressingRecipe.OreIngredient oreIngredient) {
+            } else if (recipe.input() instanceof PressingRecipe.OreIngredient oreIngredient) {
                 ingreds.add(new PositionedStack(
                     oreIngredient.getOres(),
                     75,

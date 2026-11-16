@@ -24,10 +24,19 @@
  * For more details, see https://docs.gradle.org/7.6/userguide/java_library_plugin.html#sec:java_library_configurations_graph
  */
 
+repositories {
+    maven {
+        name = "Modrinth"
+        url = "https://api.modrinth.com/maven"
+    }
+}
+
 dependencies {
 	compile deobf('https://github.com/Roadhog360/Et-Futurum-Requiem/releases/download/2.6.2/etfuturum-2.6.2.jar')
 	compile deobf('https://github.com/GTNewHorizons/NotEnoughItems/releases/download/2.7.34-GTNH/NotEnoughItems-2.7.34-GTNH.jar')
 	compile deobf('https://github.com/GTNewHorizons/AppleCore/releases/download/3.3.4/AppleCore-3.3.4.jar')
+
+    compileOnly "maven.modrinth:crafttweaker:3.1.0"
 
     api("com.github.GTNewHorizons:CodeChickenCore:1.4.0:dev")
     api('com.github.GTNewHorizons:CodeChickenLib:1.2.1:dev') {
@@ -38,4 +47,5 @@ dependencies {
 	runtimeOnly('com.github.GTNewHorizons:NaturesCompass:1.3.6-GTNH:dev')
 	runtimeOnly('com.github.GTNewHorizons:waila:1.5.24:dev')
 
+    runtimeOnly('maven.modrinth:crafttweaker:3.1.0')
 }

@@ -3,6 +3,7 @@ package darkbum.saltymod;
 import java.io.File;
 
 import darkbum.saltymod.common.proxy.CommonProxy;
+import darkbum.saltymod.compat.minetweaker.MineTweakerCompat;
 import darkbum.saltymod.init.ModExternalLoader;
 import darkbum.saltymod.util.SuspiciousStewRegistry;
 import darkbum.saltymod.zzzdeprecated.DeprecatedRecipes;
@@ -173,6 +174,10 @@ public class SaltyMod {
             ModClayOvenRecipes.init();
         }
 
+        if (isModLoaded("MineTweaker3")) {
+            MineTweakerCompat.init();
+        }
+
         // Register custom ore for Et Futurum Requiem's deepslate compatibility
         if (enableSaltOre && isModLoaded("etfuturum")) {
             addOre(salt_ore, deepslate_salt_ore);
@@ -197,13 +202,11 @@ public class SaltyMod {
 /*
  * //TO-DO-LIST//
  * Things I (might) need help with:
- * - Tackle Powdered Milk Recipe [Duplicating Bucket] | Impossible?
  * - Change particles of the Swarmed effect
  * - Change Heart texture of the Swarmed effect
  * - Underground Salt Lakes? [MAYBE]
  * - Underground Salt Caves/Tunnels/Mines? [MAYBE]
  * - Recipe Book [LATER]
- * - Add Press/Cooking Pot/Clay Oven to NEI
  * - Slimes! [LATER]
  * - Rice, Tea, Brewing, Curing [LATER]
  * - Cooking Pot / Clay Oven Particles
