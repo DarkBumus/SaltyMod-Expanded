@@ -211,7 +211,6 @@ public class SaltyMod {
  * - Rice, Tea, Brewing, Curing [LATER]
  * - Cooking Pot / Clay Oven Particles
  * - Salt Flowers Potting [LATER] [WTF]
- * - Achievements/Configs
  * - Eating Particles for Bowl Foods
  * - Eating time dependant on hunger/saturation
  * - Primitive Mobs: Treasure Slimes, Brain Slimes
