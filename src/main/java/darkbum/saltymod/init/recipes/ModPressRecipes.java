@@ -2,7 +2,6 @@ package darkbum.saltymod.init.recipes;
 
 import darkbum.saltymod.tileentity.TileEntityPress;
 import darkbum.saltymod.util.PotcookingRecipe;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -15,7 +14,6 @@ import static darkbum.saltymod.util.PressingRecipe.ore;
 import static darkbum.saltymod.util.PressingRecipe.stack;
 import static net.minecraft.init.Blocks.*;
 import static net.minecraft.init.Items.*;
-import static net.minecraft.init.Items.wheat;
 
 /**
  * Recipe class for {@link TileEntityPress}.
@@ -37,7 +35,6 @@ public class ModPressRecipes {
     public static void init() {
 
         Item raw_ore = etFuturumItems.get("raw_ore");
-        Item dye = etFuturumItems.get("dye");
         Item honey_bottle = etFuturumItems.get("honey_bottle");
 
         addPressRecipe(stack(new ItemStack(stone)),
@@ -63,7 +60,7 @@ public class ModPressRecipes {
             null,
             false,
             true,
-            new ItemStack(Items.dye, 1, 1));
+            new ItemStack(dye, 1, 1));
 
         addPressRecipe(stack(new ItemStack(gold_ore)),
             new boolean[]{raw_ore != null},
@@ -95,7 +92,7 @@ public class ModPressRecipes {
 
         addPressRecipe(stack(new ItemStack(lapis_ore)),
             new ItemStack(cobblestone),
-            new ItemStack(Items.dye, 3, 4),
+            new ItemStack(dye, 3, 4),
             false,
             true,
             null);
