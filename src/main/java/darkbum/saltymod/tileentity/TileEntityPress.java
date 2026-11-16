@@ -182,8 +182,11 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
         if (!isHeaterRequirementMet(recipe)) return false;
         if (!isMillRequirementMet(recipe)) return false;
         if (!isVesselRequirementMet(recipe, vessel)) return false;
-        if (!canAcceptOutput(inventory[1], recipe.output1())) return false;
-        return canAcceptOutput(inventory[2], recipe.output2());
+
+        ItemStack output1 = getRecipeOutput(recipe.output1(), recipe, input);
+        ItemStack output2 = getRecipeOutput(recipe.output2(), recipe, input);
+        if (!canAcceptOutput(inventory[1], output1)) return false;
+        return canAcceptOutput(inventory[2], output2);
     }
 
     private boolean isHeaterRequirementMet(PressingRecipe.PressRecipe recipe) {
@@ -204,8 +207,21 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
         if (output == null) return true;
         if (currentStack == null) return true;
 
-        if (!currentStack.isItemEqual(output)) return false;
+        if (!currentStack.isItemEqual(output) || !ItemStack.areItemStackTagsEqual(currentStack, output)) return false;
+
         return currentStack.stackSize + output.stackSize <= currentStack.getMaxStackSize();
+    }
+
+    private ItemStack getRecipeOutput(ItemStack output, PressingRecipe.PressRecipe recipe, ItemStack input) {
+        if (output == null) return null;
+
+        ItemStack result = output.copy();
+
+        if (recipe.copyInputMeta()) {
+            result.setItemDamage(input.getItemDamage());
+        }
+
+        return result;
     }
 
     public void pressItems() {
@@ -216,19 +232,22 @@ public class TileEntityPress extends TileEntity implements ISidedInventory {
         PressingRecipe.PressRecipe recipe = PressingRecipe.pressing().getRecipeFor(input, vessel);
         if (recipe == null) return;
 
-        if (recipe.output1() != null) {
+        ItemStack output1 = getRecipeOutput(recipe.output1(), recipe, input);
+        ItemStack output2 = getRecipeOutput(recipe.output2(), recipe, input);
+
+        if (output1 != null) {
             if (inventory[1] == null) {
-                inventory[1] = recipe.output1().copy();
+                inventory[1] = output1;
             } else {
-                inventory[1].stackSize += recipe.output1().stackSize;
+                inventory[1].stackSize += output1.stackSize;
             }
         }
 
-        if (recipe.output2() != null) {
+        if (output2 != null) {
             if (inventory[2] == null) {
-                inventory[2] = recipe.output2().copy();
+                inventory[2] = output2;
             } else {
-                inventory[2].stackSize += recipe.output2().stackSize;
+                inventory[2].stackSize += output2.stackSize;
             }
         }
 

@@ -187,6 +187,7 @@ public class PotcookingRecipe {
 
         return stack2.getItem() == stack1.getItem()
             && (stack1.getItemDamage() == WILDCARD_VALUE
-            || stack2.getItemDamage() == stack1.getItemDamage());
+            || stack2.getItemDamage() == stack1.getItemDamage())
+            && ItemStack.areItemStackTagsEqual(stack1, stack2);
     }
 }

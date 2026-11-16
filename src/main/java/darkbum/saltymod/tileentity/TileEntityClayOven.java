@@ -347,7 +347,8 @@ public class TileEntityClayOven extends TileEntity implements ISidedInventory {
         if (output == null) return true;
         if (currentStack == null) return true;
 
-        if (!currentStack.isItemEqual(output)) return false;
+        if (!currentStack.isItemEqual(output) || !ItemStack.areItemStackTagsEqual(currentStack, output)) return false;
+
         return currentStack.stackSize + output.stackSize <= currentStack.getMaxStackSize();
     }
 

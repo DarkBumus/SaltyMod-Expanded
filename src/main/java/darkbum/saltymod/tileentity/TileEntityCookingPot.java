@@ -359,7 +359,7 @@ public class TileEntityCookingPot extends TileEntity implements ISidedInventory 
 
         if (isOutputBucketRecipe != isBucketRecipe) return false;
 
-        if (!currentStack.isItemEqual(output)) return false;
+        if (!currentStack.isItemEqual(output) || !ItemStack.areItemStackTagsEqual(currentStack, output)) return false;
 
         return currentStack.stackSize + output.stackSize <= currentStack.getMaxStackSize();
     }

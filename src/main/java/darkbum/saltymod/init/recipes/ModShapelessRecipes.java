@@ -41,13 +41,13 @@ public class ModShapelessRecipes {
         Item beetroot = etFuturumItems.get("beetroot");
         Item beetroot_seeds = etFuturumItems.get("beetroot_seeds");
         Item sweet_berries = etFuturumItems.get("sweet_berries");
-        Item dye = etFuturumItems.get("dye");
+        Item efrdye = etFuturumItems.get("efrdye");
 
+        Block mushgloom = twilightForestBlocks.get("mushgloom");
         Item venisonCooked = twilightForestItems.get("venisonCooked");
         Item meefSteak = twilightForestItems.get("meefSteak");
         Item meefStroganoff = twilightForestItems.get("meefStroganoff");
         Item hydraChop = twilightForestItems.get("hydraChop");
-        Block mushgloom = twilightForestBlocks.get("mushgloom");
 
         Item food = biomesOPlentyItems.get("food");
         Item dart = biomesOPlentyItems.get("dart");
@@ -114,11 +114,11 @@ public class ModShapelessRecipes {
             new boolean[]{beetroot_seeds != null, enableStorageBlocks},
             new ItemStack(storage_sack, 1, 4));
 
-        addShapelessRecipe(new ItemStack(dye, 1, 0),
-            new boolean[]{dye != null, enableSaltFlowers},
+        addShapelessRecipe(new ItemStack(efrdye, 1, 0),
+            new boolean[]{efrdye != null, enableSaltFlowers},
             new ItemStack(salt_flower_d, 1, 0));
         addShapelessRecipe(new ItemStack(Items.dye, 1, 15),
-            new boolean[]{dye == null, enableSaltFlowers},
+            new boolean[]{efrdye == null, enableSaltFlowers},
             new ItemStack(salt_flower_d, 1, 0));
 
         addShapelessRecipe(new ItemStack(salt_grass),

@@ -2,10 +2,12 @@ package darkbum.saltymod.init.recipes;
 
 import darkbum.saltymod.tileentity.TileEntityCookingPot;
 import darkbum.saltymod.util.PotcookingRecipe;
+import darkbum.saltymod.util.SuspiciousStewRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import static darkbum.saltymod.common.config.ModConfigurationVanillaChanges.enableRecipeChanges;
 import static darkbum.saltymod.init.ModExternalLoader.*;
 import static darkbum.saltymod.util.ConditionalRegistrar.*;
 import static darkbum.saltymod.common.config.ModConfigurationBlocks.*;
@@ -35,12 +37,122 @@ public class ModCookingPotRecipes {
      */
     public static void init() {
 
+        ItemStack allium_stew = SuspiciousStewRegistry.get("allium_stew");
+        ItemStack azure_bluet_stew = SuspiciousStewRegistry.get("azure_bluet_stew");
+        ItemStack blue_orchid_stew = SuspiciousStewRegistry.get("blue_orchid_stew");
+        ItemStack dandelion_stew = SuspiciousStewRegistry.get("dandelion_stew");
+        ItemStack oxeye_daisy_stew = SuspiciousStewRegistry.get("oxeye_daisy_stew");
+        ItemStack poppy_stew = SuspiciousStewRegistry.get("poppy_stew");
+        ItemStack red_tulip_stew = SuspiciousStewRegistry.get("red_tulip_stew");
+        ItemStack orange_tulip_stew = SuspiciousStewRegistry.get("orange_tulip_stew");
+        ItemStack white_tulip_stew = SuspiciousStewRegistry.get("white_tulip_stew");
+        ItemStack pink_tulip_stew = SuspiciousStewRegistry.get("pink_tulip_stew");
+        ItemStack lily_of_the_valley_stew = SuspiciousStewRegistry.get("lily_of_the_valley_stew");
+        ItemStack cornflower_stew = SuspiciousStewRegistry.get("cornflower_stew");
+        ItemStack wither_rose_stew = SuspiciousStewRegistry.get("wither_rose_stew");
+
+        Block cornflower = etFuturumBlocks.get("cornflower");
+        Block lily_of_the_valley = etFuturumBlocks.get("lily_of_the_valley");
+        Block wither_rose = etFuturumBlocks.get("wither_rose");
         Block nether_fungus = etFuturumBlocks.get("nether_fungus");
+        Item suspicious_stew = etFuturumItems.get("suspicious_stew");
         Item rabbit_raw = etFuturumItems.get("rabbit_raw");
         Item rabbit_stew = etFuturumItems.get("rabbit_stew");
         Item beetroot = etFuturumItems.get("beetroot");
         Item beetroot_soup = etFuturumItems.get("beetroot_soup");
         Item sweet_berries = etFuturumItems.get("sweet_berries");
+
+        addPotRecipe(allium_stew,
+            new boolean[]{enableRecipeChanges, suspicious_stew != null},
+            true,
+            0.4f,
+            ore("blockMushroom"),
+            ore("blockMushroom"),
+            stack(new ItemStack(red_flower, 1, 2)));
+        addPotRecipe(azure_bluet_stew,
+            new boolean[]{enableRecipeChanges, suspicious_stew != null},
+            true,
+            0.4f,
+            ore("blockMushroom"),
+            ore("blockMushroom"),
+            stack(new ItemStack(red_flower, 1, 3)));
+        addPotRecipe(blue_orchid_stew,
+            new boolean[]{enableRecipeChanges, suspicious_stew != null},
+            true,
+            0.4f,
+            ore("blockMushroom"),
+            ore("blockMushroom"),
+            stack(new ItemStack(red_flower, 1, 1)));
+        addPotRecipe(dandelion_stew,
+            new boolean[]{enableRecipeChanges, suspicious_stew != null},
+            true,
+            0.4f,
+            ore("blockMushroom"),
+            ore("blockMushroom"),
+            stack(new ItemStack(yellow_flower)));
+        addPotRecipe(oxeye_daisy_stew,
+            new boolean[]{enableRecipeChanges, suspicious_stew != null},
+            true,
+            0.4f,
+            ore("blockMushroom"),
+            ore("blockMushroom"),
+            stack(new ItemStack(red_flower, 1, 8)));
+        addPotRecipe(poppy_stew,
+            new boolean[]{enableRecipeChanges, suspicious_stew != null},
+            true,
+            0.4f,
+            ore("blockMushroom"),
+            ore("blockMushroom"),
+            stack(new ItemStack(red_flower, 1, 0)));
+        addPotRecipe(red_tulip_stew,
+            new boolean[]{enableRecipeChanges, suspicious_stew != null},
+            true,
+            0.4f,
+            ore("blockMushroom"),
+            ore("blockMushroom"),
+            stack(new ItemStack(red_flower, 1, 4)));
+        addPotRecipe(orange_tulip_stew,
+            new boolean[]{enableRecipeChanges, suspicious_stew != null},
+            true,
+            0.4f,
+            ore("blockMushroom"),
+            ore("blockMushroom"),
+            stack(new ItemStack(red_flower, 1, 5)));
+        addPotRecipe(white_tulip_stew,
+            new boolean[]{enableRecipeChanges, suspicious_stew != null},
+            true,
+            0.4f,
+            ore("blockMushroom"),
+            ore("blockMushroom"),
+            stack(new ItemStack(red_flower, 1, 6)));
+        addPotRecipe(pink_tulip_stew,
+            new boolean[]{enableRecipeChanges, suspicious_stew != null},
+            true,
+            0.4f,
+            ore("blockMushroom"),
+            ore("blockMushroom"),
+            stack(new ItemStack(red_flower, 1, 7)));
+        addPotRecipe(lily_of_the_valley_stew,
+            new boolean[]{enableRecipeChanges, suspicious_stew != null, lily_of_the_valley != null},
+            true,
+            0.4f,
+            ore("blockMushroom"),
+            ore("blockMushroom"),
+            stack(new ItemStack(lily_of_the_valley)));
+        addPotRecipe(cornflower_stew,
+            new boolean[]{enableRecipeChanges, suspicious_stew != null, cornflower != null},
+            true,
+            0.4f,
+            ore("blockMushroom"),
+            ore("blockMushroom"),
+            stack(new ItemStack(cornflower)));
+        addPotRecipe(wither_rose_stew,
+            new boolean[]{enableRecipeChanges, suspicious_stew != null, wither_rose != null},
+            true,
+            0.4f,
+            ore("blockMushroom"),
+            ore("blockMushroom"),
+            stack(new ItemStack(wither_rose)));
 
         addPotRecipe(new ItemStack(milk_bucket),
             true,

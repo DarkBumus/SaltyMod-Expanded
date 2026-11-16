@@ -87,7 +87,8 @@ public class PressingRecipe {
         ItemStack output2,
         boolean requiresHeater,
         boolean requiresMill,
-        ItemStack vesselItem
+        ItemStack vesselItem,
+        boolean copyInputMeta
     ) {
 
         public boolean requiresVessel() {
@@ -104,7 +105,8 @@ public class PressingRecipe {
         ItemStack output2,
         boolean requiresHeater,
         boolean requiresMill,
-        ItemStack vesselItem
+        ItemStack vesselItem,
+        boolean copyInputMeta
     ) {
         recipes.add(new PressRecipe(
             input,
@@ -112,7 +114,8 @@ public class PressingRecipe {
             output2,
             requiresHeater,
             requiresMill,
-            vesselItem
+            vesselItem,
+            copyInputMeta
         ));
     }
 
@@ -126,7 +129,7 @@ public class PressingRecipe {
         boolean requiresHeater,
         boolean requiresMill
     ) {
-        registerRecipe(input, output1, output2, requiresHeater, requiresMill, null);
+        registerRecipe(input, output1, output2, requiresHeater, requiresMill, null, false);
     }
 
     /**
@@ -164,6 +167,7 @@ public class PressingRecipe {
 
         return stack2.getItem() == stack1.getItem()
             && (stack1.getItemDamage() == WILDCARD_VALUE
-            || stack2.getItemDamage() == stack1.getItemDamage());
+            || stack2.getItemDamage() == stack1.getItemDamage())
+            && ItemStack.areItemStackTagsEqual(stack1, stack2);
     }
 }

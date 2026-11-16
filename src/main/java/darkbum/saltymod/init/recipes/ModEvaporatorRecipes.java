@@ -30,32 +30,32 @@ public class ModEvaporatorRecipes {
      * Initializes all custom evaporator recipes.
      */
     public static void init() {
-        instance().addEvaporating(WATER, salt_pinch, 1000, 0.0F);
+        instance().addEvaporating(WATER, salt_pinch, 1000, 0.5f);
 
         Item dart = biomesOPlentyItems.get("dart");
 
         if (enableEvaporator) {
             if (isFluidRegistered("milk")) {
                 Fluid milk = getFluid("milk");
-                instance().addEvaporating(milk, powdered_milk, 1000, 0.0F);
+                instance().addEvaporating(milk, powdered_milk, 1000, 0.5f);
             } else {
                 milk = new Fluid("milk");
                 registerFluid(milk);
                 registerFluidContainer(new FluidStack(milk, 1000), new ItemStack(Items.milk_bucket), EMPTY_BUCKET);
-                instance().addEvaporating(milk, powdered_milk, 1000, 0.0F);
+                instance().addEvaporating(milk, powdered_milk, 1000, 0.5f);
             }
             if (bop && enableBOPFoods) {
                 if (isFluidRegistered("blood")) {
                     Fluid blood = getFluid("blood");
-                    instance().addEvaporating(blood, ModItems.bop_hemoglobin, 1000, 1.0F);
+                    instance().addEvaporating(blood, ModItems.bop_hemoglobin, 1000, 1.0f);
                 }
                 if (isFluidRegistered("hell_blood")) {
                     Fluid blood = getFluid("hell_blood");
-                    instance().addEvaporating(blood, ModItems.bop_hemoglobin, 1000, 1.0F);
+                    instance().addEvaporating(blood, ModItems.bop_hemoglobin, 1000, 1.0f);
                 }
                 if (dart != null && isFluidRegistered("poison")) {
                     Fluid poisonFl = getFluid("poison");
-                    instance().addEvaporating(poisonFl, ModItems.bop_poison, 1000, 1.0F);
+                    instance().addEvaporating(poisonFl, ModItems.bop_poison, 1000, 1.0f);
                 }
             }
         }

@@ -113,8 +113,10 @@ public class OvenbakingRecipe {
 
     private static boolean areStacksEqual(ItemStack stack1, ItemStack stack2) {
         if (stack1 == null || stack2 == null) return false;
+
         return stack2.getItem() == stack1.getItem()
             && (stack1.getItemDamage() == WILDCARD_VALUE
-            || stack2.getItemDamage() == stack1.getItemDamage());
+            || stack2.getItemDamage() == stack1.getItemDamage())
+            && ItemStack.areItemStackTagsEqual(stack1, stack2);
     }
 }

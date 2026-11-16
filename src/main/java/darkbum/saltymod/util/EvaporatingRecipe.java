@@ -6,6 +6,7 @@ import com.github.bsideup.jabel.Desugar;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.Fluid;
 
 /**
@@ -19,7 +20,7 @@ public class EvaporatingRecipe {
 
     private static final EvaporatingRecipe INSTANCE = new EvaporatingRecipe();
     private final Map<Fluid, EvaporateResults> evaporatingList = new HashMap<>();
-    private final Map<List<Object>, Experience> experienceList = new HashMap<>();
+    private final Map<ExperienceKey, Experience> experienceList = new HashMap<>();
 
     /**
      * Retrieves the singleton instance of this class.
@@ -41,7 +42,7 @@ public class EvaporatingRecipe {
     public void addEvaporating(Fluid fluid, ItemStack stack, int vol, float exp) {
         if (fluid != null && stack != null) {
             evaporatingList.put(fluid, new EvaporateResults(stack, vol));
-            experienceList.put(Arrays.asList(stack.getItem(), stack.getItemDamage()), new Experience(exp));
+            experienceList.put(new ExperienceKey(stack), new Experience(exp));
         }
     }
 
@@ -122,7 +123,7 @@ public class EvaporatingRecipe {
      */
     private Experience getExperience(ItemStack stack) {
         if (stack == null) return null;
-        return experienceList.get(Arrays.asList(stack.getItem(), stack.getItemDamage()));
+        return experienceList.get(new ExperienceKey(stack));
     }
 
     /**
@@ -141,7 +142,7 @@ public class EvaporatingRecipe {
      * @return A map of item and metadata pairs to experience values.
      */
     @SuppressWarnings("unused")
-    private Map<List<Object>, Experience> getExperienceList() {
+    private Map<ExperienceKey, Experience> getExperienceList() {
         return experienceList;
     }
 
@@ -188,5 +189,17 @@ public class EvaporatingRecipe {
      */
     public Set<Fluid> getRegisteredFluids() {
         return Collections.unmodifiableSet(evaporatingList.keySet());
+    }
+
+    @Desugar
+    private record ExperienceKey(Item item, int meta, NBTTagCompound nbt) {
+
+        private ExperienceKey(ItemStack stack) {
+            this(
+                stack.getItem(),
+                stack.getItemDamage(),
+                stack.hasTagCompound() ? (NBTTagCompound) stack.getTagCompound().copy() : null
+            );
+        }
     }
 }

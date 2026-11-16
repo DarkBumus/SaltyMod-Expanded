@@ -24,35 +24,25 @@ public class ModRemovedRecipes {
      */
     public static void init() {
 
+        Item suspicious_stew = etFuturumItems.get("suspicious_stew");
         Item rabbit_stew = etFuturumItems.get("rabbit_stew");
         Item beetroot_soup = etFuturumItems.get("beetroot_soup");
         Block honeycomb_block = etFuturumBlocks.get("honeycomb_block");
         Block beehive = etFuturumBlocks.get("beehive");
 
-        removeAllRecipesFor(mushroom_stew,
-            enableRecipeChanges);
-        removeAllRecipesFor(bread,
-            enableRecipeChanges, enableDough);
-        removeAllRecipesFor(cake,
-            enableRecipeChanges, enableDough);
-        removeAllRecipesFor(cake,
-            enableRecipeChanges, replaceCake);
-        removeAllRecipesFor(cake,
-            enableRecipeChanges, enableDough);
-        removeAllRecipesFor(cake,
-            enableRecipeChanges, replaceCake);
-        removeAllRecipesFor(cookie,
-            enableRecipeChanges, enableDough);
-        removeAllRecipesFor(pumpkin_pie,
-            enableRecipeChanges, enableDough);
+        removeAllRecipesFor(mushroom_stew, enableRecipeChanges);
+        removeAllRecipesFor(bread, enableRecipeChanges, enableDough);
+        removeAllRecipesFor(cake, enableRecipeChanges, enableDough);
+        removeAllRecipesFor(cake, enableRecipeChanges, replaceCake);
+        removeAllRecipesFor(cake, enableRecipeChanges, enableDough);
+        removeAllRecipesFor(cake, enableRecipeChanges, replaceCake);
+        removeAllRecipesFor(cookie, enableRecipeChanges, enableDough);
+        removeAllRecipesFor(pumpkin_pie, enableRecipeChanges, enableDough);
 
-        removeAllRecipesFor(rabbit_stew,
-            rabbit_stew != null);
-        removeAllRecipesFor(beetroot_soup,
-            beetroot_soup != null);
-        removeAllRecipesFor(honeycomb_block,
-            honeycomb_block != null, enableEFRHoneyCompatibility);
-        removeAllRecipesFor(beehive,
-            beehive != null, enableEFRHoneyCompatibility);
+        removeAllRecipesFor(suspicious_stew, enableRecipeChanges, suspicious_stew != null);
+        removeAllRecipesFor(rabbit_stew, enableRecipeChanges, rabbit_stew != null);
+        removeAllRecipesFor(beetroot_soup, enableRecipeChanges, beetroot_soup != null);
+        removeAllRecipesFor(honeycomb_block, honeycomb_block != null, enableEFRHoneyCompatibility);
+        removeAllRecipesFor(beehive, beehive != null, enableEFRHoneyCompatibility);
     }
 }

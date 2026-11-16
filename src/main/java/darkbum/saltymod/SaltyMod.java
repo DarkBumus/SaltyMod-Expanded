@@ -4,6 +4,7 @@ import java.io.File;
 
 import darkbum.saltymod.common.proxy.CommonProxy;
 import darkbum.saltymod.init.ModExternalLoader;
+import darkbum.saltymod.util.SuspiciousStewRegistry;
 import darkbum.saltymod.zzzdeprecated.DeprecatedRecipes;
 
 import org.apache.logging.log4j.LogManager;
@@ -157,6 +158,7 @@ public class SaltyMod {
         // Load mod items, external value changes and OreDictionary
         ModExternalLoader.init();
         ModExternalValueRegistry.init();
+        SuspiciousStewRegistry.init();
         ModOreDictionary.init();
 
         // Load internal recipes

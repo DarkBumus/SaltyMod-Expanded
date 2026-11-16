@@ -245,7 +245,7 @@ public final class ConditionalRegistrar {
      */
     public static void addPressRecipe(PressingRecipe.IIngredientMatcher input, boolean[] conditions, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill, ItemStack vesselItem) {
         if (checkConditions(conditions)) return;
-        PressingRecipe.pressing().registerRecipe(input, output1, output2, requiresHeater, requiresMill, vesselItem);
+        PressingRecipe.pressing().registerRecipe(input, output1, output2, requiresHeater, requiresMill, vesselItem, false);
     }
 
     @SuppressWarnings("unused")
@@ -261,6 +261,17 @@ public final class ConditionalRegistrar {
     @SuppressWarnings("unused")
     public static void addPressRecipe(PressingRecipe.IIngredientMatcher input, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill) {
         addPressRecipe(input, new boolean[0], output1, output2, requiresHeater, requiresMill);
+    }
+
+    @SuppressWarnings("unused")
+    public static void addPressRecipe(PressingRecipe.IIngredientMatcher input, boolean[] conditions, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill, ItemStack vesselItem, boolean copyInputMeta) {
+        if (checkConditions(conditions)) return;
+        PressingRecipe.pressing().registerRecipe(input, output1, output2, requiresHeater, requiresMill, vesselItem, copyInputMeta);
+    }
+
+    @SuppressWarnings("unused")
+    public static void addPressRecipe(PressingRecipe.IIngredientMatcher input, ItemStack output1, ItemStack output2, boolean requiresHeater, boolean requiresMill, ItemStack vesselItem, boolean copyInputMeta) {
+        PressingRecipe.pressing().registerRecipe(input, output1, output2, requiresHeater, requiresMill, vesselItem, copyInputMeta);
     }
 
     /**
