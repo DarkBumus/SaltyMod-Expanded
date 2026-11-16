@@ -1,9 +1,6 @@
 package darkbum.saltymod.util;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.github.bsideup.jabel.Desugar;
 import net.minecraft.block.Block;
@@ -182,5 +179,14 @@ public class EvaporatingRecipe {
          */
         private Experience {
         }
+    }
+
+    /**
+     * Retrieves all fluids with registered evaporation recipes.
+     *
+     * @return An unmodifiable set of registered fluids.
+     */
+    public Set<Fluid> getRegisteredFluids() {
+        return Collections.unmodifiableSet(evaporatingList.keySet());
     }
 }

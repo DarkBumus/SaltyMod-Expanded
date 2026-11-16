@@ -126,14 +126,17 @@ public class TileEntityEvaporator extends TileEntity implements ISidedInventory,
                 if (isBurning() && canEvaporate()) {
                     if (clear && !liquid) {
                         int vol = EvaporatingRecipe.instance().getEvaporateFluidVolume(tank.getFluid().getFluid());
+                        int time = vol / 5;
+
                         evaporateTime++;
-                        if (evaporateTime == vol) {
+
+                        if (evaporateTime >= time) {
                             evaporateTime = 0;
                             evaporate();
                             teUpdate = true;
                         }
-                        tank.drain(1, true);
-                    } else if (!liquid) {
+                        tank.drain((int) Math.ceil((double) vol / time), true);
+                    } else if (!clear) {
                         pressure();
                     }
                 } else {
@@ -229,7 +232,10 @@ public class TileEntityEvaporator extends TileEntity implements ISidedInventory,
     public int getEvaporateProgressScale(int scale) {
         int vol = EvaporatingRecipe.instance().getEvaporateFluidVolume(FluidRegistry.getFluid(liquidID));
         if (vol == 0) vol = 1000;
-        return evaporateTime * scale / vol;
+
+        int time = Math.max(1, vol / 5);
+
+        return evaporateTime * scale / time;
     }
 
     @SideOnly(Side.CLIENT)

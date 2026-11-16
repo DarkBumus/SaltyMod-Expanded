@@ -15,6 +15,9 @@ public class IMCSenderGTNH {
 
         sendHandler("darkbum.saltymod.api.nei.NEIPressingRecipeHandler", "saltymod:press", 4);
         sendCatalyst(SaltyMod.MODID + ".press", "saltymod:press");
+
+        sendHandler("darkbum.saltymod.api.nei.NEIEvaporatingRecipeHandler", "saltymod:evaporator", 4);
+        sendCatalyst(SaltyMod.MODID + ".evaporator", "saltymod:evaporator");
     }
 
     /*

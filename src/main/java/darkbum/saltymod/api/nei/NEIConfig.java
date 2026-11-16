@@ -50,6 +50,7 @@ public class NEIConfig implements IConfigureNEI {
             NEIPotcookingRecipeHandler potcookingHandler = new NEIPotcookingRecipeHandler();
             NEIOvenbakingRecipeHandler ovenbakingHandler = new NEIOvenbakingRecipeHandler();
             NEIPressingRecipeHandler pressingHandler = new NEIPressingRecipeHandler();
+            NEIEvaporatingRecipeHandler evaporatingHandler = new NEIEvaporatingRecipeHandler();
 
             API.registerRecipeHandler(potcookingHandler);
             API.registerUsageHandler(potcookingHandler);
@@ -59,6 +60,9 @@ public class NEIConfig implements IConfigureNEI {
 
             API.registerRecipeHandler(pressingHandler);
             API.registerUsageHandler(pressingHandler);
+
+            API.registerRecipeHandler(evaporatingHandler);
+            API.registerUsageHandler(evaporatingHandler);
         }
     }
 

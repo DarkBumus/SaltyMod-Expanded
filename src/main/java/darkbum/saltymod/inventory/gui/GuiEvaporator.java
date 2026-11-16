@@ -114,7 +114,7 @@ public class GuiEvaporator extends GuiContainer {
                     default -> 0;
                 };
                 if (yOffset > 0) {
-                    drawTexturedModalRect(x + 34, y + 28 + 29 - yOffset, 181, 59 - yOffset, 12, yOffset);
+                    drawTexturedModalRect(x + 34, y + 27 + 29 - yOffset, 181, 59 - yOffset, 12, yOffset);
                 }
             }
         }
