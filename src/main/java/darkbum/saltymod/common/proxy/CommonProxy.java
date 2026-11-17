@@ -5,6 +5,7 @@ import darkbum.saltymod.creativetab.TabSaltItems;
 import darkbum.saltymod.event.*;
 import darkbum.saltymod.network.SaltFlowerDirtMessage;
 import darkbum.saltymod.network.SaltFlowerSandMessage;
+import darkbum.saltymod.world.entity.HornedSheepSpawns;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
@@ -85,6 +86,8 @@ public class CommonProxy {
 
         // Register chest gen hooks
         registerChestGenHooks();
+
+        registerEntitySpanws();
     }
 
     /**
@@ -105,6 +108,7 @@ public class CommonProxy {
         register(new EntityJoinWorldEventHandler());
         register(new LivingDropsEventHandler());
         register(new LivingUpdateEventHandler());
+        register(new MapGenInitEventHandler());
         register(new PlayerItemCraftedEventHandler());
         register(new PlayerPickupXpEventHandler());
         register(new PlayerUseItemEventHandler());
@@ -120,6 +124,10 @@ public class CommonProxy {
     private void register(Object handler) {
         MinecraftForge.EVENT_BUS.register(handler);
         FMLCommonHandler.instance().bus().register(handler);
+
+        if(handler instanceof MapGenInitEventHandler || handler instanceof PopulateChunkEventHandler) {
+            MinecraftForge.TERRAIN_GEN_BUS.register(handler);
+        }
     }
 
     /**
@@ -157,6 +165,10 @@ public class CommonProxy {
         ChestGenHooks.addItem("villageBlacksmith", new WeightedRandomChestContent(new ItemStack(ModItems.salt), 2, 5, 10));
         ChestGenHooks.addItem("pyramidDesertyChest", new WeightedRandomChestContent(new ItemStack(ModItems.saltwort), 2, 3, 3));
         ChestGenHooks.addItem("pyramidJungleChest", new WeightedRandomChestContent(new ItemStack(ModItems.saltwort), 2, 5, 5));
+    }
+
+    private void registerEntitySpanws() {
+        HornedSheepSpawns.register();
     }
 
     /**

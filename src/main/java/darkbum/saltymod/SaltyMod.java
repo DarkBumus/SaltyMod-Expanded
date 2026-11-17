@@ -6,7 +6,6 @@ import darkbum.saltymod.common.proxy.CommonProxy;
 import darkbum.saltymod.compat.minetweaker.MineTweakerCompat;
 import darkbum.saltymod.init.ModExternalLoader;
 import darkbum.saltymod.util.SuspiciousStewRegistry;
-import darkbum.saltymod.zzzdeprecated.DeprecatedRecipes;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,6 +29,7 @@ import static cpw.mods.fml.common.Loader.isModLoaded;
 import static cpw.mods.fml.common.registry.GameRegistry.*;
 import static darkbum.saltymod.common.config.ModConfigurationBlocks.*;
 import static darkbum.saltymod.common.config.ModConfigurationItems.*;
+import static darkbum.saltymod.common.config.ModConfigurationModCompatibility.*;
 import static darkbum.saltymod.common.config.ModConfigurationWorldGeneration.*;
 import static darkbum.saltymod.init.ModBlocks.*;
 import static ganymedes01.etfuturum.api.DeepslateOreRegistry.*;
@@ -174,10 +174,6 @@ public class SaltyMod {
             ModClayOvenRecipes.init();
         }
 
-        if (isModLoaded("MineTweaker3")) {
-            MineTweakerCompat.init();
-        }
-
         // Register custom ore for Et Futurum Requiem's deepslate compatibility
         if (enableSaltOre && isModLoaded("etfuturum")) {
             addOre(salt_ore, deepslate_salt_ore);
@@ -190,8 +186,9 @@ public class SaltyMod {
             logger.info("NEI Config loaded");
         }
 
-        // Load deprecated (legacy) recipes
-        if (!enableMachines || enableDeprecatedRecipes) DeprecatedRecipes.init();
+        if (isModLoaded("MineTweaker3") && enableMineTweakerSupport) {
+            MineTweakerCompat.init();
+        }
 
         proxy.postInit(event);
 

@@ -2,6 +2,9 @@ package darkbum.saltymod.event;
 
 import java.util.Random;
 
+import cpw.mods.fml.common.eventhandler.Event;
+import cpw.mods.fml.common.eventhandler.EventPriority;
+import darkbum.saltymod.world.biome.SaltMarshUndergroundLakeGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -20,6 +23,65 @@ import darkbum.saltymod.init.ModBlocks;
 public class PopulateChunkEventHandler {
 
     private static final Random rand = new Random();
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public void onPopulateChunk(PopulateChunkEvent.Populate event) {
+
+        // Only handle normal water and lava lakes.
+        if (event.type != PopulateChunkEvent.Populate.EventType.LAKE
+            && event.type != PopulateChunkEvent.Populate.EventType.LAVA) {
+            return;
+        }
+
+        // Do not override another mod's explicit denial.
+        if (event.getResult() == Event.Result.DENY) {
+            return;
+        }
+
+        // Leave Vanilla generation untouched outside the Salt Marsh.
+        if (!SaltMarshUndergroundLakeGenerator.hasSaltMarshInPopulationArea(
+            event.world, event.chunkX, event.chunkZ
+        )) {
+            return;
+        }
+
+        // Prevent the Vanilla surface lake attempt.
+        event.setResult(Event.Result.DENY);
+
+        // Vanilla does not generate lakes in village chunks.
+        if (event.hasVillageGenerated) {
+            return;
+        }
+
+        if (event.type == PopulateChunkEvent.Populate.EventType.LAKE) {
+
+            // Vanilla has already performed its 1-in-4 chance roll
+            // before firing the LAKE event.
+            SaltMarshUndergroundLakeGenerator.generate(
+                event.world,
+                event.rand,
+                event.chunkX,
+                event.chunkZ,
+                Blocks.water
+            );
+
+        } else {
+
+            // Vanilla performs its 1-in-8 chance roll after
+            // firing the LAVA event, so we reproduce it here.
+            if (event.rand.nextInt(8) != 0) {
+                return;
+            }
+
+            SaltMarshUndergroundLakeGenerator.generate(
+                event.world,
+                event.rand,
+                event.chunkX,
+                event.chunkZ,
+                Blocks.lava
+            );
+        }
+    }
 
     /**
      * Handles populating certain biomes with bee burrows or nests based on the specific biome type and block metadata.

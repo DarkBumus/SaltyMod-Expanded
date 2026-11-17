@@ -36,7 +36,7 @@ import static darkbum.saltymod.util.BlockUtils.*;
  * @author DarkBum
  * @since 1.9.f
  */
-public class BlockSaltGrass extends Block implements IGrowable {
+public class BlockSaltGrass extends BlockGrass implements IGrowable {
 
     @SideOnly(Side.CLIENT)
     private IIcon iconTop;
@@ -65,7 +65,7 @@ public class BlockSaltGrass extends Block implements IGrowable {
      * @param tab  The creative tab in which the block appears.
      */
     public BlockSaltGrass(String name, CreativeTabs tab) {
-        super(Material.grass);
+        super();
         setBlockName(name);
         setCreativeTab(tab);
         setTickRandomly(true);
@@ -151,6 +151,22 @@ public class BlockSaltGrass extends Block implements IGrowable {
     }
 
     /**
+     * Returns the appropriate icon for a block at a given world position.
+     *
+     * @param world The block access object.
+     * @param x     The x-coordinate of the block.
+     * @param y     The y-coordinate of the block.
+     * @param z     The z-coordinate of the block.
+     * @param side  The side to get the icon for.
+     * @return The appropriate icon for the block.
+     */
+    @Override
+    @SideOnly(Side.CLIENT)
+    public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
+        return getIcon(side, world.getBlockMetadata(x, y, z));
+    }
+
+    /**
      * Gets the render type for this block.
      *
      * @return a custom render type ID, provided by the client proxy.
@@ -200,7 +216,7 @@ public class BlockSaltGrass extends Block implements IGrowable {
      */
     @SideOnly(Side.CLIENT)
     public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
-        return 16777215;
+        return Blocks.grass.colorMultiplier(world, x, y, z);
     }
 
     /**

@@ -28,6 +28,7 @@ public class SaltGrassRenderer implements ISimpleBlockRenderingHandler {
 
         // Draw all faces of the block
         tess.startDrawingQuads();
+        tess.setColorOpaque_F(1.0F, 1.0F, 1.0F);
         tess.setNormal(0.0F, -1.0F, 0.0F);
         renderer.renderFaceYNeg(block, 0.0D, 0.0D, 0.0D, renderer.getBlockIconFromSide(block, 0));
         tess.setNormal(0.0F, 1.0F, 0.0F);
@@ -54,10 +55,18 @@ public class SaltGrassRenderer implements ISimpleBlockRenderingHandler {
      * @param z         The z-coordinate of the block.
      * @return true if the block was rendered.
      */
-    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
-        RenderBlocks renderer) {
-        renderer.renderStandardBlock(block, x, y, z);
+    @Override
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+        int meta = world.getBlockMetadata(x, y, z);
+
+        // Render the salt grass block without biome tint.
+        renderer.renderStandardBlockWithAmbientOcclusion(
+            block, x, y, z, 1.0F, 1.0F, 1.0F
+        );
+
+        // Render the grass overlay.
         renderer.renderStandardBlock(ModBlocks.grass_top, x, y, z);
+
         return true;
     }
 

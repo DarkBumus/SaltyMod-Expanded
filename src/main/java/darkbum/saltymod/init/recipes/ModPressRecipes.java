@@ -496,8 +496,8 @@ public class ModPressRecipes {
             null);
 
         addPressRecipe(stack(new ItemStack(dry_mud_brick)),
-            new ItemStack(wet_mud_brick, 1, 0),
             new ItemStack(bucket),
+            new ItemStack(wet_mud_brick, 1, 0),
             false,
             true,
             new ItemStack(water_bucket));

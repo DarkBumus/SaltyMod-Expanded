@@ -32,6 +32,8 @@ public class ModConfigurationModCompatibility {
     private static final String compatibilityStringEFR2 = " to be present";
 
     // Mod Compatibility Config Options
+    public static boolean enableMineTweakerSupport;
+
     public static boolean enableEFRFoodValueChanges;
     public static boolean enableEFRStewsStacksize16;
 
@@ -76,8 +78,51 @@ public class ModConfigurationModCompatibility {
     public static void init(Configuration config) {
         config.setCategoryComment(categoryNameMod, categoryDescriptionMod);
 
+        enableMineTweakerSupport = config.getBoolean(
+            "01-enableMineTweakerSupport",
+            categoryNameMod,
+            true,
+            "Enables MineTweaker/CraftTweaker support for the Cooking Pot, the Clay Oven and the Press."
+                + "\n"
+                + "\n Definition of the Cooking Pot Recipe:"
+                + "\n mods.saltymod.cookingPot.addRecipe(<modid:output>, requiresHeater?, xp, /isBucketRecipe?/, [<modid:input>, <modid:input>, <modid:input>, <modid:input>, <modid:input>, <modid:input>, <modid:input>]);"
+                + "\n If you want to create a recipe for a salted version of an item, you need to make sure that the first input is <saltymod:salt_pinch>. Other than that, the Cooking Pot supports six input slots."
+                + "\n The Cooking Pot supports OreDict entries and the basic MineTweaker functions. Careful: Bucket Recipes consume the bucket(s) in the input slot(s). The boolean for isBucketRecipe? is options."
+                + "\n"
+                + "\n Examples of the Cooking Pot Recipe:"
+                + "\n mods.saltymod.cookingPot.addRecipe(<minecraft:sand>, true, 0.3, [<minecraft:sponge>, <minecraft:sponge>]);"
+                + "\n mods.saltymod.cookingPot.addRecipe(<minecraft:stone>, true, 0.3, [<ore:logWood>, <minecraft:beef>]);"
+                + "\n mods.saltymod.cookingPot.addRecipe(<minecraft:cobblestone>, true, 0.2, [<minecraft.beef>.ore(<minecraft:porkchop>)]);"
+                + "\n mods.saltymod.cookingPot.addRecipe(<minecraft:lava_bucket>, true, 0.1, [<saltymod:salt_pinch>, <ore:logWood>, <minecraft:water_bucket>, <minecraft:beef>, <minecraft:porkchop>, <minecraft:sponge>, <ore:blockMushroom>]);"
+                + "\n mods.saltymod.cookingPot.removeRecipe(<minecraft:sand>);"
+                + "\n"
+                + "\n"
+                + "\n Definition of the Clay Oven Recipe:"
+                + "\n mods.saltymod.clayOven.addRecipe(<modid:output>, requiresHeater?, xp, [<modid:input>, <modid:input>, <modid:input>, <modid:input>]);"
+                + "\n"
+                + "\n Examples of the Clay Oven Recipe:"
+                + "\n mods.saltymod.clayOven.addRecipe(<minecraft:sand:1>, true, 0.3, [<minecraft:dirt>, <minecraft:grass>]);"
+                + "\n mods.saltymod.clayOven.addRecipe(<minecraft:gravel>, true, 0.3, [<ore:blockGlass>, <minecraft:chicken>]);"
+                + "\n mods.saltymod.clayOven.addRecipe(<minecraft:lapis_block>, true, 0.2, [<minecraft:poisonous_potato>.or(<minecraft:baked_potato>)]);"
+                + "\n mods.saltymod.clayOven.addRecipe(<minecraft:golden_apple:1>, true, 0.1, [<ore:logWood>, <minecraft:water_bucket>, <minecraft:beef>, <ore:blockMushroom>]);"
+                + "\n mods.saltymod.clayOven.removeRecipe(<minecraft:sand:1>);"
+                + "\n"
+                + "\n"
+                + "\n Definition of the Press Recipe:"
+                + "\n mods.saltymod.press.addRecipe(<modid:input>, <modid:output>, <modid:output>, requiresHeater?, requiresMill?, <modid:vessel>, copyInputMeta?);"
+                + "\n The boolean copyInputMeta? is used for bulk conversion. Assume a (nonsensical) recipe in which Wool of any color gets pressed into Stained Glass of any color. You can set copyInputMeta?=true and input a wildcard value for the input."
+                + "\n"
+                + "\n Examples of the Press Recipe:"
+                + "\n mods.saltymod.press.addRecipe(<minecraft:wool:1>, <minecraft:iron_ingot>, <minecraft:gold_nugget>, true, false, false);"
+                + "\n mods.saltymod.press.addRecipe(<ore:blockMushroom>, null, <minecraft:bread>, true, true, false);"
+                + "\n mods.saltymod.press.addRecipe(<minecraft:beef>.or(<minecraft:porkchop>), <minecraft:cooked_beef>, null, false, false, false);"
+                + "\n mods.saltymod.press.addRecipe(<minecraft:wool:*>, <minecraft:stained_glass>, null, true, true, null, true);"
+                + "\n mods.saltymod.press.addRecipe(<etfuturum:beetroot>, <minecraft:dye:1>, null, true, true, <minecraft:glass_bottle>, false);"
+                + "\n mods.saltymod.press.removeRecipe(<etfuturum:beetroot>);"
+                + "\n");
+
         enableEFRFoodValueChanges = config.getBoolean(
-            "01-enableEFRFoodValueChanges",
+            "02-enableEFRFoodValueChanges",
             categoryNameMod,
             true,
             "Changes the food values of the Et Futurum Requiem Foods, to better fit the new balancing:"
@@ -95,7 +140,7 @@ public class ModConfigurationModCompatibility {
                 + "\n");
 
         enableEFRStewsStacksize16 = config.getBoolean(
-            "02-enableEFRStewsStacksize16",
+            "03-enableEFRStewsStacksize16",
             categoryNameMod,
             true,
             "Changes the maximum stacksize of Et Futurum Requiem's Stews to 16."
@@ -103,7 +148,7 @@ public class ModConfigurationModCompatibility {
                 + "\n");
 
         enableTFSaltOre = config.getBoolean(
-            "03-enableTFSaltOre",
+            "04-enableTFSaltOre",
             categoryNameMod,
             true,
             "Enables Salt Ore Generation in the Twilight Forest Dimension");

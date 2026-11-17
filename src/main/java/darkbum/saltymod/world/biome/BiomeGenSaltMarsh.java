@@ -24,7 +24,7 @@ public class BiomeGenSaltMarsh extends BiomeGenBase {
     public BiomeGenSaltMarsh(int id) {
         super(id);
 
-        setHeight(new BiomeGenBase.Height(-0.125F, 0.0F));
+        setHeight(new BiomeGenBase.Height(-0.175F, 0.0F));
         setTemperatureRainfall(0.9F, 0.9F);
         waterColorMultiplier = 14745518;
 
@@ -37,8 +37,7 @@ public class BiomeGenSaltMarsh extends BiomeGenBase {
         spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntitySheep.class, 8, 2, 4));
         spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityHornedSheep.class, 8, 2, 4));
 
-        BiomeDictionary
-            .registerBiomeType(this, BiomeDictionary.Type.SWAMP, BiomeDictionary.Type.WET, BiomeDictionary.Type.BEACH);
+        BiomeDictionary.registerBiomeType(this, BiomeDictionary.Type.SWAMP, BiomeDictionary.Type.WET, BiomeDictionary.Type.BEACH);
         BiomeManager.addSpawnBiome(this);
         BiomeManager.addBiome(
             BiomeManager.BiomeType.WARM,
@@ -54,7 +53,10 @@ public class BiomeGenSaltMarsh extends BiomeGenBase {
             topBlock = Blocks.grass;
             fillerBlock = Blocks.dirt;
         }
-        genBiomeTerrain(world, random, blocks, bytes, x, z, doub);
+
+        double adjustedNoise = Math.max(doub, -5.99D);
+
+        genBiomeTerrain(world, random, blocks, bytes, x, z, adjustedNoise);
     }
 
     @SideOnly(Side.CLIENT)
