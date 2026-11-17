@@ -46,10 +46,8 @@ public class BlockMarshReeds {
      */
     public static class BlockMarshReedsTop extends BlockBush implements IShearable {
 
-        @SideOnly(Side.CLIENT)
         public IIcon iconTop;
 
-        @SideOnly(Side.CLIENT)
         public IIcon[] iconsTop = new IIcon[4];
 
         /**
@@ -239,10 +237,8 @@ public class BlockMarshReeds {
      */
     public static class BlockMarshReedsBottom extends BlockBush implements IShearable {
 
-        @SideOnly(Side.CLIENT)
         public IIcon iconBottom;
 
-        @SideOnly(Side.CLIENT)
         public IIcon[] iconsBottom = new IIcon[4];
 
         /**
