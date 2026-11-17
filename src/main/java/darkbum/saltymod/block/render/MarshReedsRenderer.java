@@ -7,9 +7,11 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
 import static darkbum.saltymod.block.BlockMarshReeds.*;
+import static darkbum.saltymod.common.config.ModConfigurationBlocks.*;
 
 /**
  * Renderer class for {@link BlockMarshReedsBottom}.
@@ -22,53 +24,114 @@ import static darkbum.saltymod.block.BlockMarshReeds.*;
 public class MarshReedsRenderer implements ISimpleBlockRenderingHandler {
 
     /**
+     * Returns a deterministic texture variant based on the plant's coordinates.
+     *
+     * @param x The x-coordinate of the plant.
+     * @param z The z-coordinate of the plant.
+     * @return A variant index between 0 and 3.
+     */
+    private static int getVariant(int x, int z) {
+        int hash = x * 73428767;
+        hash ^= z * 912931;
+
+        hash ^= hash >>> 16;
+        hash *= 0x7FEB352D;
+        hash ^= hash >>> 15;
+        hash *= 0x846CA68B;
+        hash ^= hash >>> 16;
+
+        return hash & 3;
+    }
+
+    /**
      * No special inventory rendering for this block.
      */
     @Override
-    public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {}
+    public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
+    }
 
     /**
      * Renders the marhs reeds in the world.
      * The marsh reeds consist of an upper section that draws from the standard icon of the block,
      * aswell as a lower section that draws from the lower icon of the block.
      *
-     * @param world     The world access object.
-     * @param x         The x-coordinate of the block.
-     * @param y         The y-coordinate of the block.
-     * @param z         The z-coordinate of the block.
-     * @param block     The block to render.
-     * @param modelId   The model ID for this renderer.
-     * @param renderer  The render helper.
+     * @param world    The world access object.
+     * @param x        The x-coordinate of the block.
+     * @param y        The y-coordinate of the block.
+     * @param z        The z-coordinate of the block.
+     * @param block    The block to render.
+     * @param modelId  The model ID for this renderer.
+     * @param renderer The render helper.
      * @return true if the block was rendered.
      */
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
         Block blockAbove = world.getBlock(x, y + 1, z);
         Block blockBelow = world.getBlock(x, y - 1, z);
-
         Tessellator tessellator = Tessellator.instance;
 
-        if (block == ModBlocks.marsh_reeds_b) {
-            tessellator.setBrightness(block.getMixedBrightnessForBlock(world, x, y, z));
-            tessellator.setColorOpaque_F(1.0f, 1.0f, 1.0f);
+        if (diverseMarshReeds) {
 
-            renderer.drawCrossedSquares(((BlockMarshReedsBottom) ModBlocks.marsh_reeds_b).iconBottom, x, y, z, 1.0f);
-            if (blockAbove != ModBlocks.marsh_reeds_t && blockAbove != ModBlocks.marsh_reeds_b) {
-                renderer.drawCrossedSquares(((BlockMarshReedsTop) ModBlocks.marsh_reeds_t).iconTop, x, y + 1, z, 1.0f);
+            if (block == ModBlocks.marsh_reeds_b) {
+
+                int variant = getVariant(x, z);
+
+                assert ModBlocks.marsh_reeds_b instanceof BlockMarshReedsBottom;
+                IIcon iconBottom = ((BlockMarshReedsBottom) ModBlocks.marsh_reeds_b).iconsBottom[variant];
+                assert ModBlocks.marsh_reeds_t instanceof BlockMarshReedsTop;
+                IIcon iconTop = ((BlockMarshReedsTop) ModBlocks.marsh_reeds_t).iconsTop[variant];
+
+                tessellator.setBrightness(block.getMixedBrightnessForBlock(world, x, y, z));
+                tessellator.setColorOpaque_F(1.0f, 1.0f, 1.0f);
+                renderer.drawCrossedSquares(iconBottom, x, y, z, 1.0f);
+
+                if (blockAbove != ModBlocks.marsh_reeds_t && blockAbove != ModBlocks.marsh_reeds_b) {
+                    renderer.drawCrossedSquares(iconTop, x, y + 1, z, 1.0f);
+                }
+
+                renderer.renderBlockLiquid(Blocks.water, x, y, z);
             }
-            renderer.renderBlockLiquid(Blocks.water, x, y, z);
-        }
-        if (block == ModBlocks.marsh_reeds_t) {
-            tessellator.setBrightness(block.getMixedBrightnessForBlock(world, x, y, z));
-            tessellator.setColorOpaque_F(1.0f, 1.0f, 1.0f);
 
-            renderer.drawCrossedSquares(((BlockMarshReedsTop) ModBlocks.marsh_reeds_t).iconTop, x, y, z, 1.0f);
-            if (blockBelow != ModBlocks.marsh_reeds_t && blockBelow != ModBlocks.marsh_reeds_b) {
-                renderer.drawCrossedSquares(((BlockMarshReedsBottom) ModBlocks.marsh_reeds_b).iconBottom, x, y - 1, z, 1.0f);
-                renderer.renderBlockLiquid(Blocks.water, x, y - 1, z);
+            if (block == ModBlocks.marsh_reeds_t) {
+
+                int variant = getVariant(x, z);
+
+                assert ModBlocks.marsh_reeds_t instanceof BlockMarshReedsTop;
+                IIcon iconTop = ((BlockMarshReedsTop) ModBlocks.marsh_reeds_t).iconsTop[variant];
+                assert ModBlocks.marsh_reeds_b instanceof BlockMarshReedsBottom;
+                IIcon iconBottom = ((BlockMarshReedsBottom) ModBlocks.marsh_reeds_b).iconsBottom[variant];
+
+                tessellator.setBrightness(block.getMixedBrightnessForBlock(world, x, y, z));
+                tessellator.setColorOpaque_F(1.0f, 1.0f, 1.0f);
+                renderer.drawCrossedSquares(iconTop, x, y, z, 1.0f);
+
+                if (blockBelow != ModBlocks.marsh_reeds_t && blockBelow != ModBlocks.marsh_reeds_b) {
+                    renderer.drawCrossedSquares(iconBottom, x, y - 1, z, 1.0f);
+                    renderer.renderBlockLiquid(Blocks.water, x, y - 1, z);
+                }
+            }
+        } else {
+            if (block == ModBlocks.marsh_reeds_b) {
+                tessellator.setBrightness(block.getMixedBrightnessForBlock(world, x, y, z));
+                tessellator.setColorOpaque_F(1.0f, 1.0f, 1.0f);
+
+                renderer.drawCrossedSquares(((BlockMarshReedsBottom) ModBlocks.marsh_reeds_b).iconBottom, x, y, z, 1.0f);
+                if (blockAbove != ModBlocks.marsh_reeds_t && blockAbove != ModBlocks.marsh_reeds_b) {
+                    renderer.drawCrossedSquares(((BlockMarshReedsTop) ModBlocks.marsh_reeds_t).iconTop, x, y + 1, z, 1.0f);
+                }
+                renderer.renderBlockLiquid(Blocks.water, x, y, z);
+            }
+            if (block == ModBlocks.marsh_reeds_t) {
+                tessellator.setBrightness(block.getMixedBrightnessForBlock(world, x, y, z));
+                tessellator.setColorOpaque_F(1.0f, 1.0f, 1.0f);
+
+                renderer.drawCrossedSquares(((BlockMarshReedsTop) ModBlocks.marsh_reeds_t).iconTop, x, y, z, 1.0f);
+                if (blockBelow != ModBlocks.marsh_reeds_t && blockBelow != ModBlocks.marsh_reeds_b) {
+                    renderer.drawCrossedSquares(((BlockMarshReedsBottom) ModBlocks.marsh_reeds_b).iconBottom, x, y - 1, z, 1.0f);
+                    renderer.renderBlockLiquid(Blocks.water, x, y - 1, z);
+                }
             }
         }
-
         return true;
     }
 

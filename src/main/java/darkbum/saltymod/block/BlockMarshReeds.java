@@ -25,6 +25,7 @@ import net.minecraftforge.common.IShearable;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static darkbum.saltymod.common.config.ModConfigurationBlocks.*;
 import static darkbum.saltymod.util.BlockUtils.*;
 
 /**
@@ -48,13 +49,16 @@ public class BlockMarshReeds {
         @SideOnly(Side.CLIENT)
         public IIcon iconTop;
 
+        @SideOnly(Side.CLIENT)
+        public IIcon[] iconsTop = new IIcon[4];
+
         /**
          * Constructs a new block instance with a given name and a creative tab.
          * <p>
          * Also assigns a material and other base properties through {@link BlockUtils}.
          *
-         * @param name  The internal name of the block.
-         * @param tab   The creative tab in which the block appears.
+         * @param name The internal name of the block.
+         * @param tab  The creative tab in which the block appears.
          */
         public BlockMarshReedsTop(String name, CreativeTabs tab) {
             super(Material.plants);
@@ -67,13 +71,22 @@ public class BlockMarshReeds {
         /**
          * Registers the textures for the different sides of the block.
          *
-         * @param icon  The icon register used to load textures.
+         * @param icon The icon register used to load textures.
          */
         @Override
         @SideOnly(Side.CLIENT)
         public void registerBlockIcons(IIconRegister icon) {
-            iconTop = icon.registerIcon("saltymod:marsh_reeds_top");
-            blockIcon = iconTop;
+            if (diverseMarshReeds) {
+                for (int i = 0; i < iconsTop.length; i++) {
+                    iconsTop[i] = icon.registerIcon(
+                        "saltymod:marsh_reeds_top_" + (i + 1)
+                    );
+                }
+                blockIcon = iconsTop[0];
+            } else {
+                iconTop = icon.registerIcon("saltymod:marsh_reeds_top");
+                blockIcon = iconTop;
+            }
         }
 
         /**
@@ -109,12 +122,12 @@ public class BlockMarshReeds {
          * Returns the item stack to be picked when the block is targeted in creative mode.
          * Always returns a single slab, even if targeting a double slab.
          *
-         * @param target    The targeted block hit result.
-         * @param world     The world the block is in.
-         * @param x         The x-coordinate of the block.
-         * @param y         The y-coordinate of the block.
-         * @param z         The z-coordinate of the block.
-         * @param player    The player picking the block.
+         * @param target The targeted block hit result.
+         * @param world  The world the block is in.
+         * @param x      The x-coordinate of the block.
+         * @param y      The y-coordinate of the block.
+         * @param z      The z-coordinate of the block.
+         * @param player The player picking the block.
          * @return an item stack of the single dry mud brick slab.
          */
         @Override
@@ -151,8 +164,8 @@ public class BlockMarshReeds {
          * <p>
          * The block will check for its counterpart below and destroy itself and the counterpart when destroyed.
          *
-         * @param block     The block that was replaced.
-         * @param meta      The metadata of the block.
+         * @param block The block that was replaced.
+         * @param meta  The metadata of the block.
          */
         @Override
         public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
@@ -168,7 +181,7 @@ public class BlockMarshReeds {
          * Returns the item dropped when this block is broken.
          * Returns null so that nothing is dropped directly.
          *
-         * @param fortune  The fortune level of the player's tool.
+         * @param fortune The fortune level of the player's tool.
          * @return null when the chance doesn't return a drop.
          */
         @Override
@@ -205,7 +218,7 @@ public class BlockMarshReeds {
         /**
          * Returns a list of drops when this block is sheared.
          *
-         * @param stack     The shear itemstack.
+         * @param stack The shear itemstack.
          * @return a list containing one itemstack of the base marsh reeds block.
          */
         @Override
@@ -228,6 +241,9 @@ public class BlockMarshReeds {
 
         @SideOnly(Side.CLIENT)
         public IIcon iconBottom;
+
+        @SideOnly(Side.CLIENT)
+        public IIcon[] iconsBottom = new IIcon[4];
 
         /**
          * Constructs a new block instance with a given name and a creative tab.
@@ -253,8 +269,17 @@ public class BlockMarshReeds {
         @Override
         @SideOnly(Side.CLIENT)
         public void registerBlockIcons(IIconRegister icon) {
-            iconBottom = icon.registerIcon("saltymod:marsh_reeds_bottom");
-            blockIcon = iconBottom;
+            if (diverseMarshReeds) {
+                for (int i = 0; i < iconsBottom.length; i++) {
+                    iconsBottom[i] = icon.registerIcon(
+                        "saltymod:marsh_reeds_bottom_" + (i + 1)
+                    );
+                }
+                blockIcon = iconsBottom[0];
+            } else {
+                iconBottom = icon.registerIcon("saltymod:marsh_reeds_bottom");
+                blockIcon = iconBottom;
+            }
         }
 
         /**

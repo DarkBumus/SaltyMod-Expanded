@@ -62,6 +62,8 @@ public class ModConfigurationBlocks {
     public static boolean enableSaltFlowers;
     public static int saltFlowersLargeHitbox;
 
+    public static boolean diverseMarshReeds;
+
     /**
      * Initializes the block configuration settings by reading values from the provided configuration file.
      *
@@ -249,5 +251,13 @@ public class ModConfigurationBlocks {
                 + "\n1 = Only the suspicious versions' hitboxes are larger"
                 + "\n2 = All hitboxes are larger"
                 + "\n");
+
+        diverseMarshReeds = config.getBoolean(
+            "22-diverseMarshReeds",
+            categoryNameBlo,
+            false,
+            "Changes the rendering of Marsh Reeds to allow for multiple textures that are randomly distributed to blocks in the world."
+            + "\n This is especially useful, when you want to animate Marsh Reeds and avoid them all moving in unison."
+            + "\n");
     }
 }
