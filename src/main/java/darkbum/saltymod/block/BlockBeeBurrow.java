@@ -205,6 +205,7 @@ public class BlockBeeBurrow extends Block {
                 heldItem.damageItem(1, player);
                 BlockUtils.applySwarmedEffect(world, player, x, y, z, 600);
             }
+            world.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, "minecraft_1.21:item.axe.strip", 1.0F, 0.8F);
             return true;
         }
         return false;

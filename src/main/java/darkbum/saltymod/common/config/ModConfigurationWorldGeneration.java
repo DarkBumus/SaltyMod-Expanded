@@ -68,9 +68,16 @@ public class ModConfigurationWorldGeneration {
             4,
             1,
             10,
-            "Regulates the frequency of the Salt Ore Generation");
-        saltoreVeinSize = config
-            .getInt("02-saltoreVeinSize", categoryNameWor, 5, 1, 10, "Regulates the size of Salt Ore veins");
+            "Regulates the frequency of the Salt Ore Generation"
+            + "\n");
+        saltoreVeinSize = config.getInt(
+            "02-saltoreVeinSize",
+            categoryNameWor,
+            5,
+            1,
+            10,
+            "Regulates the size of Salt Ore veins"
+            + "\n");
 
         config.setCategoryComment(categoryNameWorBio, categoryDescriptionWorBio);
 
@@ -79,43 +86,48 @@ public class ModConfigurationWorldGeneration {
             categoryNameWorBio,
             true,
             enableFeatures
-                + "\nSalt Marsh"
-                + "\nSalt Crusted Oak Logs"
-                + "\nMarsh Reeds"
-                + "\n");
+            + "\nSalt Marsh"
+            + "\nSalt Crusted Oak Logs"
+            + "\nMarsh Reeds"
+            + "\n");
         saltMarshBiomeID = config.getInt(
             "02-saltMarshBiomeID",
             categoryNameWorBio,
             40,
             0,
             255,
-            "Sets the Biome ID of the Salt Marsh Biome, setting this to \"-1\" completely disables the Biome");
+            "Sets the Biome ID of the Salt Marsh Biome, setting this to \"-1\" completely disables the Biome"
+            + "\n");
         saltMarshBiomeWeight = config.getInt(
             "03-saltMarshBiomeWeight",
             categoryNameWorBio,
             10,
             1,
             50,
-            "Regulates the generation chance of Salt Marsh Biomes");
+            "Regulates the generation chance of Salt Marsh Biomes"
+            + "\n");
         saltMarshWetness = config.getInt(
             "04-saltMarshWetness",
             categoryNameWorBio,
             2,
             0,
             20,
-            "Regulates the generation of extra lakes in the Salt Marsh Biome. The higher the number, the more lakes will generate. Careful, this is quite sensitive.");
+            "Regulates the generation of extra lakes in the Salt Marsh Biome. The higher the number, the more lakes will generate. Careful, this is quite sensitive."
+            + "\n");
         saltMarshAdditionalSaltOre = config.getBoolean(
             "05-saltMarshAdditionalSaltOre",
             categoryNameWorBio,
             true,
-            "Enables additional Salt Ore Generation in Salt Marsh Biomes");
+            "Enables additional Salt Ore Generation in Salt Marsh Biomes"
+            + "\n");
         saltMarshSaltOreFrequency = config.getInt(
             "06-saltMarshSaltOreFrequency",
             categoryNameWorBio,
             4,
             1,
             10,
-            "Regulates the frequency of the additional Salt Ore Generation in Salt Marsh Biomes");
+            "Regulates the frequency of the additional Salt Ore Generation in Salt Marsh Biomes"
+            + "\n");
 
         config.setCategoryComment(categoryNameWorStr, categoryDescriptionWorStr);
 
@@ -123,52 +135,61 @@ public class ModConfigurationWorldGeneration {
             "01-enableSaltLakes",
             categoryNameWorStr,
             true,
-            enableFeatures + "\nSalt Lake" + "\nSalt Lake Bottom" + "\n");
+            enableFeatures + "\nSalt Lake"
+            +"\nSalt Lake Bottom"
+            + "\n");
         saltLakeFrequency = config.getInt(
             "02-saltLakeFrequency",
             categoryNameWorStr,
             500,
             1,
             1000,
-            "Regulates the frequency of the Salt Lake Group Generation");
+            "Regulates the frequency of the Salt Lake Group Generation"
+            + "\n");
         saltLakeQuantity = config.getInt(
             "03-saltLakeQuantity",
             categoryNameWorStr,
             5,
             1,
             10,
-            "Regulates the quantity of single Salt Lakes in Salt Lake Groups");
+            "Regulates the quantity of single Salt Lakes in Salt Lake Groups"
+            + "\n");
         saltLakeDistance = config.getInt(
             "04-saltLakeDistance",
             categoryNameWorStr,
             30,
             10,
             50,
-            "Regulates the distance between single Salt Lakes in Salt Lake Groups");
+            "Regulates the distance between single Salt Lakes in Salt Lake Groups"
+            + "\n");
         saltLakeRadius = config.getInt(
             "05-saltLakeRadius",
             categoryNameWorStr,
             20,
             5,
             50,
-            "Regulates the radius of single Salt Lakes");
+            "Regulates the radius of single Salt Lakes"
+            + "\n");
         saltLakeUniformTexture = config.getBoolean(
             "06-saltLakeUniformTexture",
             categoryNameWorStr,
             false,
-            "Changes the Salt Lake Bottom texture to be uniform.");
+            "Changes the Salt Lake Bottom texture to be uniform."
+            + "\n");
 
         enableBrickmakerCamp = config.getBoolean(
             "07-enableBrickmakerCamps",
             categoryNameWorStr,
             true,
-            enableFeatures + "\nBrickmaker Camp" + "\n");
+            enableFeatures + "\nBrickmaker Camp"
+            + "\n");
         brickmakerCampFrequency = config.getInt(
             "08-brickmakerCampFrequency",
             categoryNameWorStr,
             20,
             10,
             50,
-            "Regulates the frequency of the Brickmaker Camp Generation in Salt Marsh Biomes. The higher the number, the rarer the spawn.");
+            "Regulates the frequency of the Brickmaker Camp Generation in Salt Marsh Biomes. The higher the number, the rarer the spawn."
+            + "\n");
     }
 }

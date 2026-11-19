@@ -111,7 +111,6 @@ public class SaltyMod {
         if (enableTailor) ModFishRegistry.registerItems();
         registerFuelHandler(new ModFuelHandler());
         ModFlammabilityHandler.init();
-        ModDispenserBehaviorRegistry.init();
 
         proxy.preInit(event);
 
@@ -189,6 +188,10 @@ public class SaltyMod {
         if (isModLoaded("MineTweaker3") && enableMineTweakerSupport) {
             MineTweakerCompat.init();
         }
+
+        ModDispenserBehaviorRegistry.init();
+        ModDispenserBehaviorRegistry.registerShovels();
+        ModDispenserBehaviorRegistry.registerHoes();
 
         proxy.postInit(event);
 

@@ -52,7 +52,8 @@ public class ModConfigurationOther {
             categoryNameOth,
             true,
             "Regulates whether or not the Shrub (tallgrass:0) should be shown in NEI or not."
-                + "\nDue to a bug with NEI this option currently shows two sets of tallgrass in NEI.");
+            + "\nDue to a bug with NEI this option currently shows two sets of tallgrass in NEI."
+            + "\n");
 
         String[] defaultCloudLevel = {"0=128", "7=160"};
 
@@ -60,7 +61,8 @@ public class ModConfigurationOther {
             "loadedCloudLevel",
             categoryNameOth,
             defaultCloudLevel,
-            "The height of the clouds in a specific dimension (DimensionID=CloudLevel)");
+            "The height of the clouds in a specific dimension (DimensionID=CloudLevel)"
+            + "\n");
 
         cloudLevel = new HashMap<>();
         Pattern splitpattern = Pattern.compile("=");

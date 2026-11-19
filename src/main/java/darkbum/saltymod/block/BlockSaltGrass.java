@@ -2,6 +2,7 @@ package darkbum.saltymod.block;
 
 import java.util.Random;
 
+import cpw.mods.fml.common.Loader;
 import darkbum.saltymod.util.BlockUtils;
 import net.minecraft.block.*;
 import net.minecraft.block.material.MapColor;
@@ -13,6 +14,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemHoe;
+import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.ColorizerGrass;
@@ -27,6 +29,7 @@ import darkbum.saltymod.common.proxy.ClientProxy;
 import darkbum.saltymod.init.ModBlocks;
 import darkbum.saltymod.init.ModItems;
 
+import static darkbum.saltymod.init.ModExternalLoader.etFuturumBlocks;
 import static darkbum.saltymod.util.BlockUtils.*;
 
 /**
@@ -216,7 +219,19 @@ public class BlockSaltGrass extends BlockGrass implements IGrowable {
      */
     @SideOnly(Side.CLIENT)
     public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
-        return Blocks.grass.colorMultiplier(world, x, y, z);
+        return 0xFFFFFF;
+    }
+
+    /**
+     * Returns the render color used by block particles.
+     *
+     * @param meta The metadata of the block.
+     * @return white, so particles are not biome-tinted.
+     */
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getRenderColor(int meta) {
+        return 0xFFFFFF;
     }
 
     /**
@@ -241,11 +256,20 @@ public class BlockSaltGrass extends BlockGrass implements IGrowable {
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
         ItemStack currentItem = player.getCurrentEquippedItem();
+        Block grass_path = etFuturumBlocks.get("grass_path");
 
         if (currentItem != null && currentItem.getItem() instanceof ItemHoe) {
             if (!world.isRemote) {
                 world.setBlock(x, y, z, Blocks.farmland);
                 world.spawnEntityInWorld(new EntityItem(world, x + 0.5, y + 1, z + 0.5, new ItemStack(ModItems.salt_pinch)));
+            }
+            return true;
+        }
+        if (currentItem != null && currentItem.getItem() instanceof ItemSpade && Loader.isModLoaded("etfuturum") && grass_path != null) {
+            if (!world.isRemote) {
+                world.setBlock(x, y, z, grass_path);
+                world.spawnEntityInWorld(new EntityItem(world, x + 0.5, y + 1, z + 0.5, new ItemStack(ModItems.salt_pinch)));
+                world.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, "minecraft_1.21:item.shovel.flatten", 1.0F, 1.0F);
             }
             return true;
         }

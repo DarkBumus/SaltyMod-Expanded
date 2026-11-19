@@ -51,7 +51,8 @@ public class ModConfigurationEffects {
             0,
             65536,
             "Sets the Potion ID for the \"Swarmed!\" Potion Effect. Only use a value above 127 if you have an ID extender mod."
-                + "\nIf you don't know what that is, don't use a value above 127.");
+            + "\nIf you don't know what that is, don't use a value above 127."
+            + "\n");
 
         wellFedEffectID = config.getInt(
             "02-wellFedEffectID",
@@ -60,7 +61,8 @@ public class ModConfigurationEffects {
             0,
             65536,
             "Sets the Potion ID for the \"Well Fed\" Potion Effect. Only use a value above 127 if you have an ID extender mod."
-                + "\nIf you don't know what that is, don't use a value above 127.");
+            + "\nIf you don't know what that is, don't use a value above 127."
+            + "\n");
 
         inspiredEffectID = config.getInt(
             "03-inspiredEffectID",
@@ -69,7 +71,8 @@ public class ModConfigurationEffects {
             0,
             65536,
             "Sets the Potion ID for the \"Inspired\" Potion Effect. Only use a value above 127 if you have an ID extender mod."
-                + "\nIf you don't know what that is, don't use a value above 127.");
+            + "\nIf you don't know what that is, don't use a value above 127."
+            + "\n");
         inspiredEffectStrength = config.getFloat(
             "04-inspiredEffectStrength",
             categoryNameEff,
@@ -78,6 +81,7 @@ public class ModConfigurationEffects {
             1000.0f,
             "Changes the strength of the \"Inspired\" Potion Effect. This float value will be multiplied with the effect level."
             + "\nSetting the value to 0.0f will negate the effect of \"Inspired\" fully."
-            + "\nCareful, this setting is quite sensitive!");
+            + "\nCareful, this setting is quite sensitive!"
+            + "\n");
     }
 }

@@ -8,9 +8,11 @@ import darkbum.saltymod.init.ModItems;
 import darkbum.saltymod.util.BlockUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
+import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -44,7 +46,7 @@ public class BlockMarshReeds {
      * @author DarkBum
      * @since 2.0.0
      */
-    public static class BlockMarshReedsTop extends BlockBush implements IShearable {
+    public static class BlockMarshReedsTop extends BlockBush implements IShearable, IGrowable {
 
         public IIcon iconTop;
 
@@ -225,6 +227,30 @@ public class BlockMarshReeds {
             ret.add(new ItemStack(Item.getItemFromBlock(ModBlocks.marsh_reeds_b), 1, world.getBlockMetadata(x, y, z)));
             return ret;
         }
+
+        /**
+         * Whether this block can be grown using bonemeal.
+         */
+        @Override
+        public boolean func_149851_a(World world, int x, int y, int z, boolean isRemote) {
+            return true;
+        }
+
+        /**
+         * Whether the bonemeal growth attempt succeeds.
+         */
+        @Override
+        public boolean func_149852_a(World world, Random random, int x, int y, int z) {
+            return true;
+        }
+
+        /**
+         * Drops the base marsh reeds block when bonemeal is used.
+         */
+        @Override
+        public void func_149853_b(World world, Random random, int x, int y, int z) {
+            dropMarshReeds(world, x, y, z);
+        }
     }
 
 
@@ -235,7 +261,7 @@ public class BlockMarshReeds {
      * @author DarkBum
      * @since 2.0.0
      */
-    public static class BlockMarshReedsBottom extends BlockBush implements IShearable {
+    public static class BlockMarshReedsBottom extends BlockBush implements IShearable, IGrowable {
 
         public IIcon iconBottom;
 
@@ -461,5 +487,39 @@ public class BlockMarshReeds {
             ret.add(new ItemStack(Item.getItemFromBlock(ModBlocks.marsh_reeds_b), 1, world.getBlockMetadata(x, y, z)));
             return ret;
         }
+
+        /**
+         * Whether this block can be grown using bonemeal.
+         */
+        @Override
+        public boolean func_149851_a(World world, int x, int y, int z, boolean isRemote) {
+            return true;
+        }
+
+        /**
+         * Whether the bonemeal growth attempt succeeds.
+         */
+        @Override
+        public boolean func_149852_a(World world, Random random, int x, int y, int z) {
+            return true;
+        }
+
+        /**
+         * Drops the base marsh reeds block when bonemeal is used.
+         */
+        @Override
+        public void func_149853_b(World world, Random random, int x, int y, int z) {
+            dropMarshReeds(world, x, y, z);
+        }
+    }
+
+    /**
+     * Drops the base marsh reeds block.
+     */
+    private static void dropMarshReeds(World world, int x, int y, int z) {
+        if (world.isRemote) return;
+
+        ItemStack drop = new ItemStack(Item.getItemFromBlock(ModBlocks.marsh_reeds_b), 1, world.getBlockMetadata(x, y, z));
+        world.spawnEntityInWorld(new EntityItem(world, x + 0.5D, y + 0.5D, z + 0.5D, drop));
     }
 }

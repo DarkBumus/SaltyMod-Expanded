@@ -56,34 +56,40 @@ public class ModConfigurationEntities {
             "02-hornedSheepThinHorns",
             categoryNameEnt,
             false,
-            "Changes the model and texture to give the Horned Sheep thinner horns");
+            "Changes the model and texture to give the Horned Sheep thinner horns"
+            + "\n");
 
         chickensAlwaysDropFeathers = config.getBoolean(
             "03-chickensAlwaysDropFeathers",
             categoryNameEnt,
             true,
-            "Changes whether or not chickens should always drop feathers");
+            "Changes whether or not chickens should always drop feathers"
+            + "\n");
         babyChickensDropFeathers = config.getBoolean(
             "04-babyChickensDropFeathers",
             categoryNameEnt,
             true,
-            "Changes whether or not baby chickens can drop feathers");
+            "Changes whether or not baby chickens can drop feathers"
+            + "\n");
         chickensShedFeathers = config.getBoolean(
             "05-chickensShedFeathers",
             categoryNameEnt,
             true,
-            "Changes whether or not chickens should randomly shed feathers");
+            "Changes whether or not chickens should randomly shed feathers"
+            + "\n");
         featherSheddingFrequency = config.getInt(
             "06-featherSheddingFrequency",
             categoryNameEnt,
             26000,
             1200,
             72000,
-            "Changes the feather shedding frequency in ticks. 1200 is ~ every minute, 72000 is ~ every sixty minutes");
+            "Changes the feather shedding frequency in ticks. 1200 is ~ every minute, 72000 is ~ every sixty minutes"
+            + "\n");
         chickensShedFeathersWithEggs = config.getBoolean(
             "07-chickensShedFeathersWithEggs",
             categoryNameEnt,
             true,
-            "Changes whether or not chickens should always shed feathers when laying an egg");
+            "Changes whether or not chickens should always shed feathers when laying an egg"
+            + "\n");
     }
 }

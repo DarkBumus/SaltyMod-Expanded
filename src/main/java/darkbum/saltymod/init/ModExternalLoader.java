@@ -105,6 +105,7 @@ public class ModExternalLoader {
         etFuturumBlocks.put("efrstone", findBlock("etfuturum", "stone"));
         etFuturumBlocks.put("prismarine_block", findBlock("etfuturum", "prismarine_block"));
         etFuturumBlocks.put("red_sandstone", findBlock("etfuturum", "red_sandstone"));
+        etFuturumBlocks.put("grass_path", findBlock("etfuturum", "grass_path"));
         etFuturumBlocks.put("end_bricks", findBlock("etfuturum", "end_bricks"));
         etFuturumBlocks.put("nether_gold_ore", findBlock("etfuturum", "nether_gold_ore"));
         etFuturumBlocks.put("blue_ice", findBlock("etfuturum", "blue_ice"));
@@ -151,6 +152,11 @@ public class ModExternalLoader {
         etFuturumBlocks.put("deepslate_lapis_ore", findBlock("etfuturum", "deepslate_lapis_ore"));
         etFuturumBlocks.put("deepslate_diamond_ore", findBlock("etfuturum", "deepslate_diamond_ore"));
         etFuturumBlocks.put("deepslate_emerald_ore", findBlock("etfuturum", "deepslate_emerald_ore"));
+        etFuturumBlocks.put("stone_slab", findBlock("etfuturum", "stone_slab"));
+        etFuturumBlocks.put("double_stone_slab", findBlock("etfuturum", "double_stone_slab"));
+        etFuturumBlocks.put("mossy_stone_brick_stairs", findBlock("etfuturum", "mossy_stone_brick_stairs"));
+        etFuturumBlocks.put("mossy_cobblestone_stairs", findBlock("etfuturum", "mossy_cobblestone_stairs"));
+        etFuturumBlocks.put("stone_wall", findBlock("etfuturum", "stone_wall"));
         etFuturumBlocks.put("magma", findBlock("etfuturum", "magma"));
         etFuturumBlocks.put("blackstone", findBlock("etfuturum", "blackstone"));
         etFuturumBlocks.put("gilded_blackstone", findBlock("etfuturum", "gilded_blackstone"));

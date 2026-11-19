@@ -87,7 +87,7 @@ public class CommonProxy {
         // Register chest gen hooks
         registerChestGenHooks();
 
-        registerEntitySpanws();
+        registerEntitySpawns();
     }
 
     /**
@@ -103,12 +103,14 @@ public class CommonProxy {
     private void registerEventHandlers() {
         register(new AchievementEventHandler());
         register(new BlockHarvestDropsEventHandler());
+        register(new BonemealEventHandler());
         register(new DecorateBiomeEventHandler());
         register(new EntityItemPickupEventHandler());
         register(new EntityJoinWorldEventHandler());
         register(new LivingDropsEventHandler());
         register(new LivingUpdateEventHandler());
         register(new MapGenInitEventHandler());
+        register(new PlayerInteractEventHandler());
         register(new PlayerItemCraftedEventHandler());
         register(new PlayerPickupXpEventHandler());
         register(new PlayerUseItemEventHandler());
@@ -167,7 +169,7 @@ public class CommonProxy {
         ChestGenHooks.addItem("pyramidJungleChest", new WeightedRandomChestContent(new ItemStack(ModItems.saltwort), 2, 5, 5));
     }
 
-    private void registerEntitySpanws() {
+    private void registerEntitySpawns() {
         HornedSheepSpawns.register();
     }
 
